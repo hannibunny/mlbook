@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Concepts of Data Mining and Machine Learning &#8212; Machine Learning Lecture</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bayes- and Naive Bayes Classifier" href="machinelearning/parametricClassification1D.html" />
+    <link rel="prev" title="Intro and Overview Machine Learning Lecture" href="intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/00BasicConcepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/00BasicConcepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-data-mining-process">
+   Overview Data Mining Process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-definition-concepts-categories">
+   Machine Learning: Definition, Concepts, Categories
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition">
+     Definition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categories">
+     Categories
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supervised-learning">
+       Supervised Learning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#unsupervised-learning">
+       Unsupervised Learning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reinforcement-learning">
+       Reinforcement Learning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-scheme-for-machine-learning">
+     General Scheme for Machine Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation">
+     Cross Validation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bias-and-variance-overfitting-and-underfitting">
+     Bias and Variance, Overfitting and Underfitting
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bias-variance-tradeoff">
+       Bias-Variance-Tradeoff
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#overfitting-underfitting">
+       Overfitting / Underfitting
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="basic-concepts-of-data-mining-and-machine-learning">
+<h1>Basic Concepts of Data Mining and Machine Learning<a class="headerlink" href="#basic-concepts-of-data-mining-and-machine-learning" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 13.07.2021</p></li>
+</ul>
+<div class="section" id="overview-data-mining-process">
+<h2>Overview Data Mining Process<a class="headerlink" href="#overview-data-mining-process" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Cross-industry standard process for data mining (CRISP)</strong> proposes a common approach for realizing data mining projects:</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/CRISPsmall.png" />
+<p>In the first phase of CRISP the overall business-case, which shall be supported by the data mining process must be clearly defined and understood. Then the goal of the data mining project itself must be defined. This includes the specification of metrics for measuring the performance of the data mining project.</p>
+<p>In the second phase data must be gathered, accessed, understood and described. Quantitiy and qualitity of the data must be assessed on a high-level.</p>
+<p>In the third phase data must be investigated and understood more thoroughly. Common means for understanding data are e.g. visualization and the calculation of simple statistics. Outliers must be detected and processed, sampling rates must be determined, features must be selected and eventually be transformed to other formats.</p>
+<p>In the modelling phase various algorithms and their hyperparameters are selected and applied. Their performance on the given data is determined in the evaluation phase.</p>
+<p>The output of the evaluation is usually fed back to the first phases (business- and data-understanding). Applying this feedback the techniques in the overall process are adapted and optimized. Usually only after several iterations of this process the evaluation yields good results and the project can be deployed.</p>
+</div>
+<div class="section" id="machine-learning-definition-concepts-categories">
+<h2>Machine Learning: Definition, Concepts, Categories<a class="headerlink" href="#machine-learning-definition-concepts-categories" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h3>
+<p>There is no unique definition of Machine Learning. One of the most famous definitions has been formulated in <a class="reference external" href="http://www.cs.cmu.edu/~tom/mlbook.html">Tom Mitchell, Machine Learning</a>:</p>
+<ul class="simple">
+<li><p>A computer is said to learn from <strong>experience E</strong> with respect to some <strong>task T</strong> and some <strong>performance measure P</strong> , if its performance on T, as measured by P, improves with experience E.</p></li>
+</ul>
+<p>This definition has a very pragmatic implication: At the very beginning of any Machine Learning project one should specify T, E and P! In some projects the determination of these elements is trivial, in particular the <em>task T</em> is usually clear. However, the determination of <em>experience E</em> and <em>performance measure P</em> can be sophisticated. Spend time to specify these elements. It will help you to understand, design and evaluate your project.</p>
+<p><strong>Examples:</strong> What would be T, E and P for</p>
+<ul class="simple">
+<li><p>a spam-classifier</p></li>
+<li><p>an intelligent search-engine, which provides individual results on queries</p></li>
+<li><p>a recommender-system for an online-shop</p></li>
+</ul>
+</div>
+<div class="section" id="categories">
+<h3>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h3>
+<p>The field of Machine Learning is usually categorized with respect to two dimensions: The first dimension is the question <em>What shall be learned?</em> and the second asks for <em>How shall be learned?</em>. The resulting 2-dimensional matrix is depicted below:</p>
+<img alt="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" class="align-center" src="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" />
+<p>On an abstract level there exist 4 answers on the first question. One can either learn</p>
+<ul class="simple">
+<li><p>a classifier, e.g. object recognition, spam-filter, Intrusion detection, …</p></li>
+<li><p>a regression-model, e.g. time-series prediction, like weather- or stock-price forecasts, range-prediction for electric vehicles, estimation of product-quantities, …</p></li>
+<li><p>associations between instances, e.g. document clustering, customer-grouping, quantisation problems, automatic playlist-generation, ….</p></li>
+<li><p>associations between features, e.g. market basket analysis (customer who buy cheese, also buy wine, …)</p></li>
+<li><p>strategie, e.g. for automatic driving or games</p></li>
+</ul>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/classReg.PNG" />
+<p>On the 2nd dimension, which asks for <em>How to learn?</em>, the answers are:</p>
+<ul class="simple">
+<li><p>supervised: This category requires a <em>teacher</em> who provides labels (target-values) for each training-element. For example in face-recognition the teacher most label the inputs (pictures of faces) with the name of the corresponding persons. In general labeling is expensive and labeled data is scarce.</p></li>
+<li><p>unsupervised learning: In this case training data consists only of inputs - no teacher is required for labeling. For example pictures can be clustered, such that similar pictures are assigned to the same group.</p></li>
+<li><p>Reinforcement learning: In this type no teacher who lables each input-instance is available. However, there is a critics-element, which provides feedback from time-to-time. For example an intelligent agent in a computer game maps each input state to a corresponding action. Only after a possibly long sequence of actions the agent gets feedback in form of an increasing/decreasing High-Score.</p></li>
+</ul>
+<div class="section" id="supervised-learning">
+<h4>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h4>
+<img alt="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearning.png" class="align-center" src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearning.png" />
+<p><strong>Apply Learned Modell:</strong>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningApply.png" style="width:800px" align="center"></p>
+</div>
+<div class="section" id="unsupervised-learning">
+<h4>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h4>
+<img alt="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" class="align-center" src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" />
+<p><strong>Apply learned Model:</strong>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervisedApply.png" style="width:800px" align="center"></p>
+</div>
+<div class="section" id="reinforcement-learning">
+<h4>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h4>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" />
+</div>
+</div>
+<div class="section" id="general-scheme-for-machine-learning">
+<h3>General Scheme for Machine Learning<a class="headerlink" href="#general-scheme-for-machine-learning" title="Permalink to this headline">¶</a></h3>
+<p>In Machine Learning one distinguishes</p>
+<ul class="simple">
+<li><p>training-phase,</p></li>
+<li><p>test-phase</p></li>
+<li><p>operational phase.</p></li>
+</ul>
+<p>Training and test are shown in the image below. In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be tested. In the case of supervised learning testing compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" />
+<p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …):</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" />
+</div>
+<div class="section" id="cross-validation">
+<h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
+<p>K-fold cross-Validation is the standard validation method if labeled data is rare. The entire set of labeled data is partitioned into k (<span class="math notranslate nohighlight">\(k=10\)</span> in the example below) disjoint subsets. The entire evaluation consists of k iterations. In the i.th iteration, the i.th partition (subset) is applied for validation, all other partitions are applied for training the model. In each iteration the model’s performance, e.g. accuracy, is determined on the validation-partition. Finally, the overall performance is the average performance over all k performance values.</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/CrossValidation.jpg" />
+</div>
+<div class="section" id="bias-and-variance-overfitting-and-underfitting">
+<h3>Bias and Variance, Overfitting and Underfitting<a class="headerlink" href="#bias-and-variance-overfitting-and-underfitting" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="bias-variance-tradeoff">
+<h4>Bias-Variance-Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this headline">¶</a></h4>
+<p>The goal of <strong>supervised machine learning</strong> is to learn a model</p>
+<div class="math notranslate nohighlight">
+\[f: \cal{X} \rightarrow \cal{Y}\]</div>
+<p>which maps inputs from <span class="math notranslate nohighlight">\(\cal{X}\)</span> to targets from <span class="math notranslate nohighlight">\(\cal{Y}\)</span> from a set of given training data <span class="math notranslate nohighlight">\(T=\{x_p,y_p\}_{p=1}^N\)</span> with <span class="math notranslate nohighlight">\(x_p \in \cal{X}\)</span> and <span class="math notranslate nohighlight">\(y_p \in \cal{Y}\)</span>. The learned model <span class="math notranslate nohighlight">\(f\)</span>, shall represent the deterministic part of the mapping from input <span class="math notranslate nohighlight">\(x\)</span> to target <span class="math notranslate nohighlight">\(y\)</span>. However, in Machine Learning, it is assumed that this mapping contains also a non-deterministic prediction error <span class="math notranslate nohighlight">\(\epsilon\)</span>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+y=f(x)+\epsilon.
+\]</div>
+<p>The prediction error consists of the following 3 parts:</p>
+<ul class="simple">
+<li><p>irreducible error</p></li>
+<li><p>bias error</p></li>
+<li><p>variance error</p></li>
+</ul>
+<p>The irreducible error can not be avoided. It is caused, e.g. by latent variables, which influence the mapping but are not part of the input <span class="math notranslate nohighlight">\(x\)</span> or by erroneous measurements. However, bias-error and variance-error can be minimized by a careful selection and configuration of the ML algorithm. The ML engineer tries to learn a model, which minimizes both, bias- and variance-error.</p>
+<p>A <strong>high bias</strong> means that a learning algorithm has been selected, which imposes strict conditions on the type of the model, that can be learned. For example <strong>Linear Regression</strong> has a high bias, because only linear models can be learned. If the data can not be well fitted by such a linear model, the bias-error is high.</p>
+<p>A <strong>high variance</strong> means that the learned model strongly varies with varying training data - even if the overall data distribution is identical. Algorithms, which are able to strongly adapt to the given training data are e.g. Support Vector Machines (SVM) with non-linear kernels or decision trees.</p>
+<p>In the figure below the top-row (part 1 and part 2) shows a linear model of high bias (only a linear function can be learned). The variance is low because even though the training data in part 1 and part 2 is different, the learned models are similar. The lower row (part 3 and part 4) refers to an algorithm (non-linear SVM) of low-bias (many different types of functions can be learned), but high-variance, because the learned model in part 3 and part 4 are significantly different.</p>
+<p>The goal is to find an algorithm, which learns a model of low bias and low variance. However, usually low bias yields high variance and vice versa. The goal is to find a good trade-off between them</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/BiasVariance.png" />
+</div>
+<div class="section" id="overfitting-underfitting">
+<h4>Overfitting / Underfitting<a class="headerlink" href="#overfitting-underfitting" title="Permalink to this headline">¶</a></h4>
+<p>The goal of supervised machine learning is to find a model, which performs well on new data, i.e. data, which has not be seen during training. It is in general no problem, to find an algorithm, which learns a model, that is well adapted to the given training data. However, it is a big challenge to find a model, that performs well on previously unseen data.</p>
+<p><strong>Overfitting</strong> means, that a model has been strongly adapted to the training data, but it performs bad on new data. Algorithms of low-bias are able to learn models, which are strongly fittet to training data, i.e. the probability of overfitting is high.</p>
+<p><strong>Underfitting</strong> means, that the learned model is weakly adapted to the training data. Algorithms of high-bias yield an increased probability of underfitting.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Intro and Overview Machine Learning Lecture</a>
+    <a class='right-next' id="next-link" href="machinelearning/parametricClassification1D.html" title="next page">Bayes- and Naive Bayes Classifier</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

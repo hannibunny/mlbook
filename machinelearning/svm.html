@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Vector Machines (SVM) &#8212; Machine Learning Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gaussian Process" href="gp.html" />
+    <link rel="prev" title="Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gp.html">
+   Gaussian Process
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/machinelearning/svm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svms-for-classification">
+   SVMs for Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-robust-discriminants">
+     Finding Robust Discriminants
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="support-vector-machines-svm">
+<h1>Support Vector Machines (SVM)<a class="headerlink" href="#support-vector-machines-svm" title="Permalink to this headline">¶</a></h1>
+<p>Support Vector Machines (SVM) have been introduced in <a class="bibtex reference internal" href="../referenceSection.html#cortes95" id="id1">[CV95]</a>. They can be applied for supervised machine learning, both for classification and regression tasks. Depending on the selected hyperparameter <code class="docutils literal notranslate"><span class="pre">kernel</span></code> (linear, polynomial or rbf), SVMs can learn linear or non-linear models. Other positive features of SVMs are</p>
+<ul class="simple">
+<li><p>many different types of functions can be learned by SVMs, i.e. they have a low bias (for non-linear kernels)</p></li>
+<li><p>they scale good with high-dimensional data</p></li>
+<li><p>only a small set of hyperparameters must be configured</p></li>
+<li><p>overfitting/generalisation can easily be controlled, regularisation is inherent</p></li>
+</ul>
+<div class="section" id="svms-for-classification">
+<h2>SVMs for Classification<a class="headerlink" href="#svms-for-classification" title="Permalink to this headline">¶</a></h2>
+<p>SVMs learn class boundaries, which discriminate a pair of classes. In the case of non-binary classification with <span class="math notranslate nohighlight">\(K\)</span> classes, <span class="math notranslate nohighlight">\(K\)</span> class boundaries are learned. Each of which discriminates one class from all others. In any case, the learned class-boundaries are linear hyperplanes.</p>
+<ul class="simple">
+<li><p>In the case of a <strong>linear kernel</strong>, each learned (d-1)-hyperplane discriminates the d-dimensional space into two subspaces. <span class="math notranslate nohighlight">\(d\)</span> is the dimesionality of the original space, i.e. the number of components in the input-vector <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>In the case of a <strong>non-linear kernel</strong>, the original d-dimensional input data is virtually transformed into a higher-dimensional space with <span class="math notranslate nohighlight">\(m &gt; d\)</span> dimensions. In this m-dimensional space training data is hopefully linear-separable. The learnd (m-1)-dimensional hyperplane linearly discriminates the m-dimensional space. But the back-transformation of this hyperplane is a non-linear discrimator in the original d-dimensional space.</p></li>
+</ul>
+<p>The picture below sketches data, which is not linear-separable in the original 2-dimensional space. However, there exists a transformation into a 3-dimensional space, in which the given training data can be discriminated by a 2-dimensional hyperplane.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/svmtransform.jpg" style="width:600px" align="center">
+<figcaption>
+<em>Data, which is not linear-separable in the original 2-dimensional space may be linear separable in a higher dimensional space.</em>
+</figcaption>
+</figure>
+<p>Another important property of SVM classifiers is that <strong>they found good class-boundaries</strong>. In order to understand what is meant by <em>good class-boundary</em> take a look at the picture below. The 4 subplots contain the same training-data but four different class-boundaries, each of which discriminates the given training data error-free. The question is <em>which of these discriminantes is the best?</em> The discriminantes in the right column are not robust, because in some regions the datapoints are quite close to the boundary. The discriminant in the top left subplot is the most robust, i.e. the one which generalizes best, because the training-data-free range around the discriminant is maximal. <strong>A SVM classifier actually finds such robust class-boundaries by maximizing the training-data-free range around the discriminant.</strong></p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/bestdisk.jpg" style="width:600px" align="center">
+<figcaption><em>
+The discriminant in the top left subplot is the most robust one, because it has a maximal training-data-free range around it.
+</em></figcaption>
+</figure>
+<div class="section" id="finding-robust-discriminants">
+<h3>Finding Robust Discriminants<a class="headerlink" href="#finding-robust-discriminants" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned above, SVM classifiers find robust discriminants in the sense that the discriminant is determined such that it not only separates the given training-data well, but also has a maximal training-data free range around it. In this subsection it is shown, how such discriminantes are learned from data. To illustrate this we apply the example depicted below. We have a set of 8 training-instances, partitioned into 2 classes. The task is to find a robust discriminant with the properties mentioned above.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleIntro.png" style="width:600px" align="center">
+<figcaption><em>
+Example: Learn a good discriminant from the set of 8 training-instances 
+</em></figcaption>
+</figure>
+<p>As ususal in supervised machine learning, we start from a set of <span class="math notranslate nohighlight">\(N\)</span> labeled training instances</p>
+<div class="math notranslate nohighlight">
+\[ 
+T=\{\mathbf{x}_p,r_p\}_{p=1}^N,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> is the p.th input-vector and <span class="math notranslate nohighlight">\(r_p\)</span> is the corresponding label. In the context of binary SVMs the label-values are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r_p=-1\)</span>, falls <span class="math notranslate nohighlight">\(\mathbf{x}_p \in C_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_p=+1\)</span>, falls <span class="math notranslate nohighlight">\(\mathbf{x}_p \in C_2\)</span></p></li>
+</ul>
+<p>The training goal is: Determine the weights <span class="math notranslate nohighlight">\(\mathbf{w}=(w_1,\ldots,w_d)\)</span> and <span class="math notranslate nohighlight">\(w_0\)</span>, such that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4f531b16-7a60-4915-a598-77deaa170f44">
+<span class="eqno">(1)<a class="headerlink" href="#equation-4f531b16-7a60-4915-a598-77deaa170f44" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+\mathbf{w}^T \mathbf{x_p} + w_0 \geq +1 &amp; \mbox{ für } &amp; r_p=+1 \nonumber \\
+\mathbf{w}^T \mathbf{x_p} + w_0 \leq -1 &amp; \mbox{ für } &amp; r_p=-1 \nonumber 
+\label{eq:k2svmklass}
+\end{eqnarray}\]</div>
+<p>This goal can equivalently be formulated by imposing the following condition:</p>
+<div class="math notranslate nohighlight">
+\[
+r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 1
+\]</div>
+<p>Note, that this condition defines a <strong>boundary area</strong>, not simply a <strong>boundary line</strong>, as in other algorithms, where the condition, that must be fullfilled is:</p>
+<div class="math notranslate nohighlight">
+\[
+r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 0
+\]</div>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg" style="width:600px" align="center">
+<figcaption><em>
+Example Autostichting
+</em></figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machinelearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="parametricClassification1D.html" title="previous page">Bayes- and Naive Bayes Classifier</a>
+    <a class='right-next' id="next-link" href="gp.html" title="next page">Gaussian Process</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
