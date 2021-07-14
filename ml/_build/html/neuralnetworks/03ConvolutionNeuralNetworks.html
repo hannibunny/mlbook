@@ -1,0 +1,1331 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convolutional Neural Networks &#8212; Machine Learning Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Implementing Neural Networks with Keras" href="03KerasMLPandCNNcifar.html" />
+    <link rel="prev" title="Recurrent Neural Networks" href="02RecurrentNeuralNetworks.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/neuralnetworks/03ConvolutionNeuralNetworks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/neuralnetworks/03ConvolutionNeuralNetworks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overall-architecture">
+   Overall Architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolution-layer">
+   Convolution Layer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concept-of-2d-convolution-filtering">
+     Concept of 2D-Convolution Filtering
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stepsize">
+       Stepsize
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#zero-padding">
+       Zero-Padding
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-2d-convolution-filter">
+       Example: 2D-convolution filter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-gradient-filters-for-edge-detection">
+       Example: Gradient Filters for Edge Detection
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#applying-the-prewitt-filter-for-detecting-horizontal-and-vertical-edges-in-an-image">
+       Applying the Prewitt filter for detecting horizontal and vertical edges in an image
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-layer-in-cnns">
+     Convolutional Layer in CNNs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dense-layer">
+       Dense Layer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simple-convolutional-layer-1-dimensional">
+       Simple Convolutional Layer 1-Dimensional
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simple-convolutional-layer-2-dimensional">
+       Simple Convolutional Layer 2-Dimensional
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multiple-channels-at-the-input-of-the-convolutional-layer">
+       Multiple Channels at the input of the Convolutional Layer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multiple-feature-maps-at-the-output-of-the-convolutional-layer">
+       Multiple Feature Maps at the output of the Convolutional Layer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activation-function">
+     Activation function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pooling-layer-in-cnns">
+   Pooling Layer in CNNs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concatenation-of-convolution-and-pooling">
+   Concatenation of Convolution and Pooling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fully-connected-layers">
+   Fully Connected Layers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cnn-summary">
+     CNN Summary
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cnn-requirements">
+     CNN Requirements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-concepts">
+   Advanced concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolution-as-matrix-multiplication">
+     Convolution as matrix multiplication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deconvolution">
+     Deconvolution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#application-of-deconvolution-for-semantic-image-segmentation">
+       Application of Deconvolution for Semantic Image Segmentation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dilated-convolution">
+     Dilated Convolution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dropout">
+     Dropout
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-normalization">
+     Batch-Normalization
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convolutional-neural-networks">
+<h1>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 30.10.2020</p></li>
+</ul>
+<p>There exists different types of deep neural networks, e.g.</p>
+<ul class="simple">
+<li><p>Convolutional Neural Networks (CNNs)</p></li>
+<li><p>Deep Belief Networks (DBNs)</p></li>
+<li><p>Stacked Autoencoders</p></li>
+<li><p>(Hierarchical) Recurrent Networks</p></li>
+<li><p>(Hierarchical) Attention Networks</p></li>
+<li><p>Sequence-to-Sequence Networks</p></li>
+<li><p>Transformer Networks</p></li>
+<li><p>Deep Q-Networks (Deep Reinforcementlearning)</p></li>
+<li><p>Generative Adversarial Networks</p></li>
+</ul>
+<p>and many variants of them.</p>
+<p>Among these different types, CNNs are currently the most relevant ones. This notebook describes the overall architecture and the different layer-types, applied in a CNN. Since the most prominent application of CNNs is object recognition in images, the descriptions in this notebook refer to this use-case.</p>
+<div class="section" id="overall-architecture">
+<h2>Overall Architecture<a class="headerlink" href="#overall-architecture" title="Permalink to this headline">¶</a></h2>
+<p>On an abstract level the architecture of a Deep Neural Network looks like this:</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/dnnExtractorClassifier.png" />
+<p>The goal of deep learning is to extract meaningful features. The <em>Extractor-Part</em> of the network learns from low-level features (e.g. pixel values) at the input of the network a hierarchy of increasingly meaningful features. Using informative features a classifier at the end of the Deep Neural Network can easily determine the correct class (see also the sketch below and the <a class="reference external" href="#cnnconceptcat">cat-example-image</a>).</p>
+<p><strong>Example:</strong> Four different types of feature-representations to be used as input for a classifier, which shall be able to detect houses and cars:</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/betterFeatures.png" src="https://maucher.home.hdm-stuttgart.de/Pics/betterFeatures.png" />
+<p><strong>Visualization of learned features</strong></p>
+<p>Source: <a class="reference external" href="https://arxiv.org/pdf/1311.2901.pdf">Zeiler and Fergus: Visualizing and Understanding of Convolutional Neural Networks</a></p>
+<p>Learned features in layers 1 and 2:
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/zeilerLayers1-2.PNG"></p>
+<p>Learned features in layer 3:
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/zeilerLayer3.PNG"></p>
+<p>Learned features in layers 4 and 5:
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/zeilerLayers4-5.PNG"></p>
+<p>The picture below contains a very famous CNN - the so called <a class="reference external" href="https://www.nvidia.cn/content/tesla/pdf/machine-learning/imagenet-classification-with-deep-convolutional-nn.pdf">AlexNet</a>, which won the ImageNet contest in 2012. In the classification-task of this contest 1000 different objects must be recognized in images. For training 15 million labeled images have been applied. On a computer with two GTX 580 3GB GPUs training took about 6 days. AlexNet achieved a top-5 error rate of 15.4% - compared to 26.2% of the second best. AlexNet can be considered as an important milestone in the development and application of deep neural networks.
+<a id="alexnet"></a>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/AlexNetArchitecture.png" width="800" align="center"></p>
+<p>The input of to the AlexNet is a 3-channel RGB-image. The dense-layer at the output consists of 1000 neurons, each refering to one of the 1000 object categories, which are distinguished in the ImageNet data. The index of the output-neuron with the maximum value indicates the most-probable object category.</p>
+<p>Between input- and output-layer, there are basically three different types of layers:</p>
+<ul class="simple">
+<li><p>convolutional layers</p></li>
+<li><p>pooling layers</p></li>
+<li><p>fully connected layers</p></li>
+</ul>
+<p>Moreover, normalisation-layers, dropout-layers, deconvolution-layers and dilation-layers are also frequently applied in CNNs. In the following sections, these layer types are described.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="n">grays</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="convolution-layer">
+<h2>Convolution Layer<a class="headerlink" href="#convolution-layer" title="Permalink to this headline">¶</a></h2>
+<p>A key concept of CNNs is the convolutional layer type. This layer type applies convolutional filtering, which is a well known image processing (or more general: signal processing) technique to extract features from the given input. In contrast to conventional convolutional filtering, in CNNs the filter coefficients and thus the relevant features are <strong>learned</strong>. In this section first the concept of conventional convolutional filtering is described. Then subsection <a class="reference external" href="#convLayer">Convolutional Layer in CNNs</a> discusses the application of this concept in CNNs.</p>
+<p><a id="conceptConvolution"></a></p>
+<div class="section" id="concept-of-2d-convolution-filtering">
+<h3>Concept of 2D-Convolution Filtering<a class="headerlink" href="#concept-of-2d-convolution-filtering" title="Permalink to this headline">¶</a></h3>
+<p>Convolution Filtering of a 2D-Input of size</p>
+<div class="math notranslate nohighlight">
+\[
+(r \times c)
+\]</div>
+<p>with a 2D-Filter of size</p>
+<div class="math notranslate nohighlight">
+\[
+(a \times b)
+\]</div>
+<p>is defined by applying the filter at each possible position and calculating the scalar product of the filter coefficients and the input-values covered by the current position of the filter. This scalar product is the filter-output at the corresponding position.
+If the filter is applied with a stepsize of <span class="math notranslate nohighlight">\(s=1\)</span>, then there exists <span class="math notranslate nohighlight">\((r-a+1) \times (c-b+1)\)</span> possible positions for calculating the scalar product. Hence, the output of the convolution filtering is of size</p>
+<div class="math notranslate nohighlight">
+\[
+(r-a+1) \times (c-b+1).
+\]</div>
+<p>Hereafter, we assume to have quadratic inputs of size <span class="math notranslate nohighlight">\((r \times r)\)</span> and quadratic filters of size <span class="math notranslate nohighlight">\((a \times a)\)</span>.</p>
+<p>The picture below shows the filtering of a <span class="math notranslate nohighlight">\((10 \times 10)\)</span> input with an average filter of size <span class="math notranslate nohighlight">\((3 \times 3)\)</span>. In this picture the filtering operation is only shown for the upper right and the lower left position. Actually, there are <span class="math notranslate nohighlight">\((8 \times 8)\)</span> elements in the output.</p>
+<blockquote>
+<div><p><strong>Note:</strong> In signal processing convolution and correlation is not the same. Convolution is correlation with the filter rotated 180 degrees. In context of neural networks, where filter coefficients are learned, this distinction can be ignored. As it is common in machine learning literature, in this notebook convolution and correlation are the same.</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" style="width: 600px;" /></a>
+<div class="section" id="stepsize">
+<h4>Stepsize<a class="headerlink" href="#stepsize" title="Permalink to this headline">¶</a></h4>
+<p>The filter need not be convolved in steps of <span class="math notranslate nohighlight">\(s=1\)</span> across the input. Larger stepsizes yield a correspondingly smaller output. In the picture below filtering with stepsize of <span class="math notranslate nohighlight">\(s=2\)</span> is shown below filtering the same input with a stepsize of <span class="math notranslate nohighlight">\(s=1\)</span>.</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvStepSizeSmall.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvStepSizeSmall.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvStepSizeSmall.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="zero-padding">
+<h4>Zero-Padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">¶</a></h4>
+<p>Besides stepsize, <em>Padding</em> is an important parameter of convolutional filtering. A padding of <span class="math notranslate nohighlight">\(p&gt;0\)</span> means, that at the left, right, upper and lower boundary of the input <span class="math notranslate nohighlight">\(p\)</span> columns (rows) of zeros are attached to the input. In the picture below a padding of <span class="math notranslate nohighlight">\(p=1\)</span> (lower part) is compared with a convolutional filtering without padding (upper part).
+Often zero-padding is set such that the size of output is equal to the size of the input. For a stepsize of <span class="math notranslate nohighlight">\(s=1\)</span> and an uneven filter-width of <span class="math notranslate nohighlight">\(a\)</span>, this is the case if</p>
+<div class="math notranslate nohighlight">
+\[
+p=\frac{a-1}{2}
+\]</div>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvPaddingSmall.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvPaddingSmall.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvPaddingSmall.png" style="width: 600px;" /></a>
+<p>For a quadratic input with sidelength <code class="docutils literal notranslate"><span class="pre">r</span></code>, a quadratic filter of side-length <code class="docutils literal notranslate"><span class="pre">a</span></code>,  a padding of <code class="docutils literal notranslate"><span class="pre">p</span></code>, and a stepsize of <code class="docutils literal notranslate"><span class="pre">s</span></code>, the quadratic output of convolution-filtering has a side-length of</p>
+<div class="math notranslate nohighlight">
+\[
+o=\frac{r-a+2p}{s}+1.
+\]</div>
+</div>
+<div class="section" id="example-2d-convolution-filter">
+<h4>Example: 2D-convolution filter<a class="headerlink" href="#example-2d-convolution-filter" title="Permalink to this headline">¶</a></h4>
+<p>Below, a 2D input <code class="docutils literal notranslate"><span class="pre">x1</span></code> of shape (10,10) is defined as a numpy-array. The signal values are <code class="docutils literal notranslate"><span class="pre">1</span></code> (white) in the (4,4)-center region and <code class="docutils literal notranslate"><span class="pre">0</span></code> (black) elsewhere. For the display of the 2-dimensional signal the matplotlib method imshow() is applied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">x1</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 1. 1. 1. 0. 0. 0.]
+ [0. 0. 0. 1. 1. 1. 1. 0. 0. 0.]
+ [0. 0. 0. 1. 1. 1. 1. 0. 0. 0.]
+ [0. 0. 0. 1. 1. 1. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offt</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">offx</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">dx</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">dy</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">number</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">x1</span>[row,col]
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span><span class="n">row</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">grays</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x1</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;2-Dimensional Input Image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03ConvolutionNeuralNetworks_18_0.png" src="../_images/03ConvolutionNeuralNetworks_18_0.png" />
+</div>
+</div>
+<p>A 2-dimensional <strong>average-filter</strong> shall be applied on this image. We implement this filter as a numpy-array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FSIZE</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">avgFilter</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">FSIZE</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">FSIZE</span><span class="p">,</span><span class="n">FSIZE</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients of average filter:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">avgFilter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficients of average filter:
+ [[0.11 0.11 0.11]
+ [0.11 0.11 0.11]
+ [0.11 0.11 0.11]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The filtering operation is performed in the following code cell. Note, that the <code class="docutils literal notranslate"><span class="pre">correlate()</span></code> function applies filtering with <strong>zero-padding</strong> of size $<span class="math notranslate nohighlight">\(p=\frac{a-1}{2}\)</span>$.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avgImg</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">avgFilter</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+<span class="c1">#print &quot;Result of average filtering:\n&quot;,avgImg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The filter result as calculated above, is visualized in the code-cell below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">avgImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">number</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%1.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">avgImg</span>[row,col]
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span><span class="n">row</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">grays</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">avgImg</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on Average filter&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03ConvolutionNeuralNetworks_24_0.png" src="../_images/03ConvolutionNeuralNetworks_24_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-gradient-filters-for-edge-detection">
+<h4>Example: Gradient Filters for Edge Detection<a class="headerlink" href="#example-gradient-filters-for-edge-detection" title="Permalink to this headline">¶</a></h4>
+<p>A 2-dimensional filter, which calculates the gradient in x-direction can be implemented as 2-dimensional numpy-array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gradx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.  0.  1.]
+ [-1.  0.  1.]
+ [-1.  0.  1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The filter defined above is the well known <a class="reference external" href="https://de.wikipedia.org/wiki/Prewitt-Operator">Prewitt Filter</a>, which is frequently applied for edge-detection. The response of this filter applied to our example image can be calculated as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradxImg</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">gradx</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+<span class="c1">#print &quot;Result of x-gradient Filtering:\n&quot;,gradxImg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualization of the Prewitt-x-gradient calculation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gradxImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">number</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%1.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">gradxImg</span>[row,col]
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span><span class="n">row</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">grays</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">gradxImg</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on x-gradient filtering with Prewitt&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03ConvolutionNeuralNetworks_30_0.png" src="../_images/03ConvolutionNeuralNetworks_30_0.png" />
+</div>
+</div>
+<p>For determining the gradient in y-direction the Prewitt filter for the x-gradient must just be transposed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grady</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">gradx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grady</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1. -1. -1.]
+ [ 0.  0.  0.]
+ [ 1.  1.  1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The response of this y-gradient prewitt filter applied to our example image can be calculated and visualized as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradyImg</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">grady</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+<span class="c1">#print &quot;Result of y-gradient Filtering:\n&quot;,gradyImg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gradyImg</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">number</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%1.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">gradyImg</span>[row,col]
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="n">dx</span><span class="p">,</span><span class="n">row</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">grays</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">gradyImg</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on y-gradient filtering with Prewitt&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03ConvolutionNeuralNetworks_35_0.png" src="../_images/03ConvolutionNeuralNetworks_35_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="applying-the-prewitt-filter-for-detecting-horizontal-and-vertical-edges-in-an-image">
+<h4>Applying the Prewitt filter for detecting horizontal and vertical edges in an image<a class="headerlink" href="#applying-the-prewitt-filter-for-detecting-horizontal-and-vertical-edges-in-an-image" title="Permalink to this headline">¶</a></h4>
+<p>In the previous subsection the Prewitt filter has been applied on a small 2D-input. Now, both filters are applied to the real image. The real greyscale image, it’s gradients in x- and y-direction and the magnitude of the gradient are plotted below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../Data/a4weiss.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="n">afd3ee859712</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../Data/a4weiss.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/PIL/Image.py</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2902</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2903</span>     <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2904</span>         <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2905</span>         <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="g g-Whitespace">   </span><span class="mi">2906</span> 
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../Data/a4weiss.jpg&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imx</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">gradx</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+<span class="n">imy</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">grady</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of the Prewitt filter is stored in the numpy arrays imx and imy, respectively. Moreover, the magnitude of the gradient is calculated and plotted to the matplotlib figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnitude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">imx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">imy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Magnitude of Gradient&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imx</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Derivative in x-direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Derivative in y-direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imy</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03ConvolutionNeuralNetworks_40_0.png" src="../_images/03ConvolutionNeuralNetworks_40_0.png" />
+</div>
+</div>
+<p><a id="convLayer"></a></p>
+</div>
+</div>
+<div class="section" id="convolutional-layer-in-cnns">
+<h3>Convolutional Layer in CNNs<a class="headerlink" href="#convolutional-layer-in-cnns" title="Permalink to this headline">¶</a></h3>
+<p>In the car-image example above 3 different filters where applied on a single input. Each filter extracted a specific feature:</p>
+<ul class="simple">
+<li><p>the x-component of the gradient,</p></li>
+<li><p>the y-component of the gradient,</p></li>
+<li><p>the magnitude of the gradient.</p></li>
+</ul>
+<p>In Convolutional Neural Networks (CNN) the concept of convolution-filtering is realized as demonstrated above. However, in CNNs</p>
+<ul class="simple">
+<li><p>the filter coefficients are not defined by the user. Instead they are <strong>learned in the training phase</strong>, such that these filters are able to detect patterns, which frequently occur in the training data. In the context of CNNs the filter-coefficients are called <strong>weights</strong>.</p></li>
+<li><p>the output of a convolutional filter is called a <strong>feature map</strong>. All elements of a single feature map are calculated by the same set of <strong>shared weights</strong>.</p></li>
+<li><p>the output-elements of a convolutional filter are typically fed element-wise to an <strong>activation-function</strong>, which maps single scalars to other scalars.</p></li>
+<li><p>for a given input not only one, but <strong>multiple feature maps</strong> are calculated in parallel. Different feature maps have different sets of <strong>shared weights</strong>. In the car-image above, three different filters calculated 3 different feature maps on a single input.</p></li>
+<li><p>The input does not only contain one, but multiple parallel 2D arrays of equal size. These parallel 2D-arrays are called <strong>channels</strong>.</p></li>
+</ul>
+<div class="section" id="dense-layer">
+<h4>Dense Layer<a class="headerlink" href="#dense-layer" title="Permalink to this headline">¶</a></h4>
+<p>In conventional neural networks (Multi Layer Perceptron) each layer is a so called <em>Dense Layer</em> as depicted in the image below:
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/denseLayerTikz.png" style="width: 600px" /></p>
+</div>
+<div class="section" id="simple-convolutional-layer-1-dimensional">
+<h4>Simple Convolutional Layer 1-Dimensional<a class="headerlink" href="#simple-convolutional-layer-1-dimensional" title="Permalink to this headline">¶</a></h4>
+<p>A single feature map calculated from a single channel in a 1-dimensional convolutional layer is shown below:</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/convLayer1DTikz.png" src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer1DTikz.png" />
+</div>
+<div class="section" id="simple-convolutional-layer-2-dimensional">
+<h4>Simple Convolutional Layer 2-Dimensional<a class="headerlink" href="#simple-convolutional-layer-2-dimensional" title="Permalink to this headline">¶</a></h4>
+<p>A single feature map calculated from a single channel in a 2-dimensional convolutional layer is shown below:</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/convLayer2DTikz.png" src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer2DTikz.png" />
+<p>In the sequel, neurons and weights in convolutional layers are represented as 2-dimensional arrays. The picture below represents the same operation as the picture above.</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/convLayer2DarrayTikz.png" src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer2DarrayTikz.png" />
+<p><a id="multichannels"></a></p>
+</div>
+<div class="section" id="multiple-channels-at-the-input-of-the-convolutional-layer">
+<h4>Multiple Channels at the input of the Convolutional Layer<a class="headerlink" href="#multiple-channels-at-the-input-of-the-convolutional-layer" title="Permalink to this headline">¶</a></h4>
+<p>In CNNs the input to a convolutional layer is in general not a single 2D-array, but a set of multiple arrays (channels). For example in object recognition the input of the first convolutional layer <span class="math notranslate nohighlight">\(conv_1\)</span> is usually the image. The number of channels is then 3 for a RGB-image and 1 for a greyscale image. For all of the following convolutional layers <span class="math notranslate nohighlight">\(conv_i, \; i&gt;1,\)</span> the input is typically the set of (pooled) feature maps of the previous layer <span class="math notranslate nohighlight">\(conv_{i-1}\)</span>. In the picture below the calculation of the values of a single feature map from <span class="math notranslate nohighlight">\(L=3\)</span> channels at the input of the convolutional layer is depicted. Note that for calculating the values of a single feature map, for each channel an individual filter is learned and applied.</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultChan.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultChan.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultChan.png" style="width: 500px;" /></a>
+<p><a id="multifeatures"></a></p>
+</div>
+<div class="section" id="multiple-feature-maps-at-the-output-of-the-convolutional-layer">
+<h4>Multiple Feature Maps at the output of the Convolutional Layer<a class="headerlink" href="#multiple-feature-maps-at-the-output-of-the-convolutional-layer" title="Permalink to this headline">¶</a></h4>
+<p>The previous subsection demonstrated the calulation of a single feature map from multiple channels at the input of the convolutional layer. <strong>In a CNN there are multiple channels at the input and multiple feature maps at the output of a convolutional layer.</strong> For sake of simplicity - and because we already know how multiple channels at the input influence a single feature map at the output - the picture and the code cells below demonstrate how multiple feature maps at the output are calculated from a single channel. Note that each feature map has it’s own set of shared weights (filter-coeffients) for each channel at the input of the convolutional layer:</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultFeats.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultFeats.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultFeats.png" style="width: 500px;" /></a>
+</div>
+</div>
+<div class="section" id="activation-function">
+<h3>Activation function<a class="headerlink" href="#activation-function" title="Permalink to this headline">¶</a></h3>
+<p>Activation functions operate element-wise on the values of feature maps. The most common activation functions are</p>
+<ul class="simple">
+<li><p>ReLU (Rectified Linear Unit)</p></li>
+<li><p>sigmoid</p></li>
+<li><p>tanh (tangens hyperbolicus)</p></li>
+<li><p>linear</p></li>
+<li><p>softmax</p></li>
+<li><p>threshold
+These functions are defined and visualized below.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">input</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tanh</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">input</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Softmax activation function.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1">###Sigmoid#################</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ysig</span><span class="o">=</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ysig</span><span class="p">,</span><span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sigmoid&quot;</span><span class="p">)</span>
+<span class="c1">###Tanh####################</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ytan</span><span class="o">=</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ytan</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tanh&quot;</span><span class="p">)</span>
+<span class="c1">###Linear##################</span>
+<span class="n">ylin</span><span class="o">=</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ylin</span><span class="p">,</span><span class="s1">&#39;m-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear&quot;</span><span class="p">)</span>
+<span class="c1">###Relu####################</span>
+<span class="n">yrelu</span><span class="o">=</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">yrelu</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ReLU&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03ConvolutionNeuralNetworks_53_0.png" src="../_images/03ConvolutionNeuralNetworks_53_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pooling-layer-in-cnns">
+<h2>Pooling Layer in CNNs<a class="headerlink" href="#pooling-layer-in-cnns" title="Permalink to this headline">¶</a></h2>
+<p>Convolutional layers extract spatial features from their input. The filters (sets of shared weights) define which features are extracted. In the training phase the filters are learned, such that after learning they represent patterns, which frequently appear in the training data. Since each element in a feature map corresponds to a unique region of the input, feature maps do not only represent if the feature is contained in the current input, but also where it is contained (spatial information).</p>
+<p>The benefits of <strong>pooling layers</strong> are:</p>
+<ul class="simple">
+<li><p>they reduce the size of the input channels and therefore reduce complexity</p></li>
+<li><p>they provide a certain degree of shift-invariance in the sense, that if in two inputs a certain feature appears not in exactly the same position, but in nearby positions they yield the same pooled output.</p></li>
+</ul>
+<p>Similar as in a convolution layer, in pooling layers a filter is shifted across a 2D-input and calculates for each position a single value. However, in pooling layers</p>
+<ul>
+<li><p>the filter weights are not learned, instead the operation performed is a fixed and often non-linear operation. Common pooling operations are:</p>
+<ul class="simple">
+<li><p><strong>max-pooling</strong>: the filter outputs the maximum of it’s current input region</p></li>
+<li><p><strong>min-pooling</strong>: the filter outputs the minimum of it’s current input region</p></li>
+<li><p><strong>mean-pooling</strong>: the filter outputs the arithmetic mean of it’s current input region</p></li>
+</ul>
+<p>The most frequent type is max-pooling.</p>
+</li>
+<li><p>the common stepsize <span class="math notranslate nohighlight">\(s\)</span> in a pooling layer is equal to the width of the filter <span class="math notranslate nohighlight">\(w\)</span>, i.e. the pooling filter operates on <em>non-overlapping</em> regions. Even though <span class="math notranslate nohighlight">\(s=w\)</span> is the common configuration, it is not mandatory and there exist some good CNNs, whose pooling layers operate in a overlapping manner with <span class="math notranslate nohighlight">\(s&lt;w\)</span>.</p></li>
+</ul>
+<p>In the picture below max-pooling with a filter width of <span class="math notranslate nohighlight">\(w=s=2\)</span> is shown. In this case pooling reduces the size of the 2D-input by a factor of 2.</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/MaxPooling.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/MaxPooling.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/MaxPooling.png" style="width: 600px;" /></a>
+<p>The configuration sketched in the picture above is implemented in the code cells below.</p>
+</div>
+<div class="section" id="concatenation-of-convolution-and-pooling">
+<h2>Concatenation of Convolution and Pooling<a class="headerlink" href="#concatenation-of-convolution-and-pooling" title="Permalink to this headline">¶</a></h2>
+<p>As shown by the example of the <a class="reference external" href="#alexnet">AlexNet architecture</a>, in a CNN after the input layer usually a cascade of convolution followed by pooling is applied. Each convolutional layer extracts meaningful features and their location. Each pooling layer reduces the size of the channels and thus the spatial resolution of features.</p>
+<p>The image below shows a single sequence of convolution and pooling.</p>
+<p><a id="convrelupool"></a>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPool.png" width="700" align="center"></p>
+<p>In subsections <a class="reference external" href="#multichannels">Multiple Channels</a> and <a class="reference external" href="#multifeatures">Multiple Feature Maps</a> it was already shown how to calculate a single feature map from multiple input channels and how to calculate multiple feature maps from a single input channel. Now, we have a combination of both of them: Multiple feature maps are calculated from multiple channels. For a convolutional Layer with <span class="math notranslate nohighlight">\(C\)</span> input channels and <span class="math notranslate nohighlight">\(F\)</span> feature maps at the output, the entire operation is defined by an array of <span class="math notranslate nohighlight">\(F\)</span> rows and <span class="math notranslate nohighlight">\(C\)</span> columns. Each element of this array is a 2-dim array <span class="math notranslate nohighlight">\(W_{ij}\)</span>, which is the filter applied for calculating feature map <span class="math notranslate nohighlight">\(i\)</span> from channel <span class="math notranslate nohighlight">\(j\)</span>. Hence, the <strong>entire convolutional operation</strong> is defined by a <strong>4-dim filter array</strong>, whose</p>
+<ul class="simple">
+<li><p>first dimension is the number of featuremaps <span class="math notranslate nohighlight">\(F\)</span> at the output of the convolutional layer</p></li>
+<li><p>second dimension is the number of channels <span class="math notranslate nohighlight">\(C\)</span> at the input of the convolutional layer</p></li>
+<li><p>third and forth dimension is given by the size of the covolutional filter <span class="math notranslate nohighlight">\(W_{ij}\)</span>.</p></li>
+</ul>
+<p>Correspondingly, the <span class="math notranslate nohighlight">\(C\)</span> input channels can be arranged in a <strong>3-dimensional input array</strong>, whose</p>
+<ul class="simple">
+<li><p>first dimension is the number of channels <span class="math notranslate nohighlight">\(C\)</span> at the input of the convolutional layer</p></li>
+<li><p>second dimension is the number of rows in each input channel</p></li>
+<li><p>third dimension is the number of columns in each input channel</p></li>
+</ul>
+<p>Applying the 4-dimensional filter array on the 3-dimensional input array yields a <strong>3-dimensional feature array</strong>, whose</p>
+<ul class="simple">
+<li><p>first dimension is the number of featuremaps <span class="math notranslate nohighlight">\(F\)</span> in the output of the convolutional layer</p></li>
+<li><p>second dimension is the number of rows in each featuremap at the output of the convolutional layer</p></li>
+<li><p>third dimension is the number of columns in each featuremap at the output of the convolutional layer</p></li>
+</ul>
+<p>The picture below sketches the sequence of convolution, activation and pooling in an abstract manner: For <span class="math notranslate nohighlight">\(L_i\)</span> input channels of convolutional layer <span class="math notranslate nohighlight">\(conv_i\)</span> <span class="math notranslate nohighlight">\(L_{i+1}\)</span> feature maps are calculated. These feature maps are processed by an activation function and fed to a pooling layer. The pooled <span class="math notranslate nohighlight">\(L_{i+1}\)</span> feature maps are the <span class="math notranslate nohighlight">\(L_{i+1}\)</span> input channel for the next convolutional layer. If no further convolution-layer is applied, the pooled feature maps are serialized and fed to a fully connected layer.</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ChannelCubes.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ChannelCubes.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ChannelCubes.png" style="width: 400px;" /></a>
+</div>
+<div class="section" id="fully-connected-layers">
+<h2>Fully Connected Layers<a class="headerlink" href="#fully-connected-layers" title="Permalink to this headline">¶</a></h2>
+<p>In CNNs cascades of convolution- and pooling layer learn to extract meaningful features. These learned features are then fed to a classifier or to a regressor, which outputs the estimated class or the estimated numeric value, respectively. The final classifier or regressor is usually implemented by a usual single- or multilayer perceptron (SLP or MLP). The layers of the SLP or MLP are called <strong>fully connected layers</strong>, since each neuron in layer <span class="math notranslate nohighlight">\(k\)</span> is connected to all neurons in layer <span class="math notranslate nohighlight">\(k-1\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2,\ldots,x_n)\)</span> is the input and <span class="math notranslate nohighlight">\(\mathbf{y}=(y_1,y_2,\ldots,y_m)\)</span> is the output of a fully connected layer, then</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y}=g(W \cdot \mathbf{x^T}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(g()\)</span> is the activation function and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}W=\left(
+		\begin{array}{cccc}
+		w_{1,1} &amp; w_{1,2} &amp; \cdots &amp; w_{1,16}  \\ 
+		w_{2,1} &amp; w_{2,2} &amp; \cdots &amp; w_{2,16}  \\ 
+        \vdots &amp;  \vdots  &amp; \ddots &amp; \vdots  \\
+		w_{8,1} &amp; w_{8,2} &amp; \cdots &amp; w_{8,16}  \\ 
+		\end{array}
+		\right)\end{split}\]</div>
+<p>is the weight matrix. Entry <span class="math notranslate nohighlight">\(w_{i,j}\)</span> is the weight from the <span class="math notranslate nohighlight">\(j.th\)</span> element in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to the <span class="math notranslate nohighlight">\(i.th\)</span> element in <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
+<p>As shown in the picture below, the output of the last pooling layer is serialized before it is fed into a fully connected layer. In this example only one fully connected layer is applied, i.e. the classifier is just a SLP. Since there are 8 neurons in the output of the fully connected layer, this example architecture can be applied for a classification into 8 classes. In this case the output is usually processed by a <strong>softmax-activation function</strong>, which is not depicted in the image below.</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFC.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFC.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFC.png" style="width: 800px;" /></a>
+<p><a id='cnnconceptcat'></a></p>
+<div class="section" id="cnn-summary">
+<h3>CNN Summary<a class="headerlink" href="#cnn-summary" title="Permalink to this headline">¶</a></h3>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/cnnConceptCat.png" />
+<p>Image source: <a class="reference external" href="https://www.manning.com/books/deep-learning-with-python">F. Chollet, Deep Learning with Python</a></p>
+<ul class="simple">
+<li><p>The <strong>Extractor-Part of a CNN</strong> learns filters, which are able to extract <strong>local structures</strong>, which frequently occur in the training data.</p></li>
+<li><p>Since the features are local, restricted to the size of the filter-kernel, it doesn’t matter at which position in the training images the structures appear <span class="math notranslate nohighlight">\(\Rightarrow\)</span> <strong>Translation invariance</strong></p></li>
+<li><p>A CNN learns a <strong>hierarchy of increasingly meaningful features</strong>. Higher level features are combined from lower level features.</p></li>
+<li><p>Using high-level features such as a cat-eye, a cat-ear and a cat-mouth, a <strong>classifier</strong> at the end of the CNN can easily determine the correct class (cat).</p></li>
+<li><p>In the earlier layers, where the feature maps are quite large, the <strong>location of features in the images</strong> can be determined quite well.</p></li>
+<li><p>The deeper the layers the smaller their size and the <strong>smaller the spatial resolution</strong>. I.e. location information gets smaller. In the extreme case, where the feature map consists of only a single neuron, location information is zero.</p></li>
+<li><p>In some applications a classification task may benefit from zero-location information, in others location-information may support classification.</p></li>
+</ul>
+</div>
+<div class="section" id="cnn-requirements">
+<h3>CNN Requirements<a class="headerlink" href="#cnn-requirements" title="Permalink to this headline">¶</a></h3>
+<p>CNNs (deep neural networks in general) usually consist of many layers and learnable parameters <span class="math notranslate nohighlight">\(\Rightarrow\)</span> A large set of training data is required to learn robust models. However, there exist approaches to apply deep neural networks with only small sets of trainingdata, e.g.</p>
+<ul class="simple">
+<li><p>Apply (and fine-tune) pretrained networks</p></li>
+<li><p>Apply <strong>Active Learning</strong></p></li>
+<li><p>Apply Data Augmentation techniques</p></li>
+</ul>
+<p>The application of CNNs (deep neural networks in general) only makes sense if input data is somehow correlated. E.g. spatial correlation as in the case of images or temporal correlations as in the case of time-series data or in the case of written or spoken language.</p>
+</div>
+</div>
+<div class="section" id="advanced-concepts">
+<h2>Advanced concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this headline">¶</a></h2>
+<p>Above the basic concepts of CNNs, i.e. convolution-, pooling- and fully-connected layers have been introduced. Further concepts, frequently applied in CNNs are e.g.</p>
+<ul class="simple">
+<li><p>normalization</p></li>
+<li><p>dropout</p></li>
+<li><p>dilation</p></li>
+<li><p>deconvolution</p></li>
+</ul>
+<p>Dropout has already been introduced in the context of MLPs. Below, deconvolution, dilation and batch-normalization are described. In order to understand deconvolution, we first show how any convolution can be realized as a filter matrix-multiplication.</p>
+<p><a id="convbymatrix"></a></p>
+<div class="section" id="convolution-as-matrix-multiplication">
+<h3>Convolution as matrix multiplication<a class="headerlink" href="#convolution-as-matrix-multiplication" title="Permalink to this headline">¶</a></h3>
+<p>Any convolutional filtering, as introduced above, can be calculated by matrix-multipliaction. Assume that the 2-dim input is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{X}=\left[
+	\begin{array}{cccc}
+	x_{0,0} &amp; x_{0,1} &amp; x_{0,2} &amp; x_{0,3} \\
+	x_{1,0} &amp; x_{1,1} &amp; x_{1,2} &amp; x_{1,3} \\
+	x_{2,0} &amp; x_{2,1} &amp; x_{2,2} &amp; x_{2,3} \\
+	x_{3,0} &amp; x_{3,1} &amp; x_{3,2} &amp; x_{3,3} \\
+	\end{array}
+	\right]
+\end{split}\]</div>
+<p>and the 2-dim filter is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}	
+\mathbf{W}=\left[
+\begin{array}{ccc}
+w_{0,0} &amp; w_{0,1} &amp; w_{0,2} \\
+w_{1,0} &amp; w_{1,1} &amp; w_{1,2}\\
+w_{2,0} &amp; w_{2,1} &amp; w_{2,2}\\
+\end{array}
+\right]
+\end{split}\]</div>
+<p>Then the serialized representation of the filter output, <span class="math notranslate nohighlight">\(\mathbf{Y_s}\)</span>, can be calculated by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y_s}=\mathbf{W_S}*\mathbf{X_S},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{W_S}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{W_S}=\left[
+	\begin{array}{cccccccccccccccc}
+	w_{0,0} &amp;  w_{0,1}  &amp;   w_{0,2}   &amp;    0  &amp; w_{1,0} &amp;  w_{1,1}  &amp;   w_{1,2}   &amp;    0  &amp; w_{2,0} &amp;  w_{2,1}  &amp;   w_{2,2}   &amp;    0  &amp; 0 &amp;  0  &amp;   0   &amp;    0  \\
+    0 &amp; w_{0,0} &amp;  w_{0,1}  &amp;   w_{0,2}   &amp;    0  &amp; w_{1,0} &amp;  w_{1,1}  &amp;   w_{1,2}   &amp;    0  &amp; w_{2,0} &amp;  w_{2,1}  &amp;   w_{2,2}   &amp;    0  &amp; 0 &amp;  0  &amp;   0     \\
+    0 &amp;  0  &amp;   0   &amp;    0 &amp; w_{0,0} &amp;  w_{0,1}  &amp;   w_{0,2}   &amp;    0  &amp; w_{1,0} &amp;  w_{1,1}  &amp;   w_{1,2}   &amp;    0  &amp; w_{2,0} &amp;  w_{2,1}  &amp;   w_{2,2}   &amp;    0   \\
+     0 &amp; 0 &amp;  0  &amp;   0   &amp;    0 &amp; w_{0,0} &amp;  w_{0,1}  &amp;   w_{0,2}   &amp;    0  &amp; w_{1,0} &amp;  w_{1,1}  &amp;   w_{1,2}   &amp;    0  &amp; w_{2,0} &amp;  w_{2,1}  &amp;   w_{2,2}    \\
+	\end{array}
+	\right]
+    \end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\mathbf{X_S}\)</span> is the serialized representation of the input.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{X_s}=
+	\left[
+	\begin{array}{c}
+	X_{0,0} \\
+	X_{0,1} \\
+	X_{0,2} \\
+	X_{0,3} \\
+	X_{1,0} \\
+	X_{1,1} \\
+	X_{1,2} \\
+	X_{1,3} \\
+	X_{2,0} \\
+	X_{2,1} \\
+	X_{2,2} \\
+	X_{2,3} \\
+	X_{3,0} \\
+	X_{3,1} \\
+	X_{3,2} \\
+	X_{3,3} \\
+	\end{array}
+	\right]	
+\end{split}\]</div>
+<p>Note that this matrix <span class="math notranslate nohighlight">\(\mathbf{W_S}\)</span> refers to the case of no zero-padding (<span class="math notranslate nohighlight">\(p=0\)</span>) and a step-size of <span class="math notranslate nohighlight">\(s=1\)</span>. However, it can easily be adopted to arbitrary values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</div>
+<div class="section" id="deconvolution">
+<h3>Deconvolution<a class="headerlink" href="#deconvolution" title="Permalink to this headline">¶</a></h3>
+<p>The concept of convolution has been described in <a class="reference external" href="#conceptConvolution">section Concept of 2D-convolution</a>. Applying a squared filter of side-length <code class="docutils literal notranslate"><span class="pre">a</span></code>, with a zero-padding of <code class="docutils literal notranslate"><span class="pre">p</span></code> and a stepsize of <code class="docutils literal notranslate"><span class="pre">s</span></code> on a squared input of side-length <code class="docutils literal notranslate"><span class="pre">r</span></code> yields a squared output of side-length</p>
+<div class="math notranslate nohighlight">
+\[
+o=\frac{r-a+2p}{s}+1.
+\]</div>
+<p>Depending on the parameters the output of side-length <code class="docutils literal notranslate"><span class="pre">o</span></code> is usually smaller than the input of side-length <code class="docutils literal notranslate"><span class="pre">r</span></code>. However, there is sometimes also demand for <strong>calculating an output, which is larger than the input of the corresponding layer</strong>. For example in</p>
+<ul class="simple">
+<li><p>architectures, which shall provide a visualisation of the learned features, such as in the famous work of Zeiler and Fergus, <a class="reference external" href="https://arxiv.org/pdf/1311.2901.pdf">Visualizing and Understanding Convolutional Networks</a>.</p></li>
+<li><p>CNNs for increasing image resolution, e.g. <a class="reference external" href="http://mmlab.ie.cuhk.edu.hk/projects/FSRCNN.html">Accelerating the Super-Resolution CNN</a>,</p></li>
+<li><p>generative networks, e.g. <strong>Generative Adversarial Networks (GANs)</strong> as introduced in <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Goodfellow et al: Generative Adversarial Nets</a>,</p></li>
+<li><p>CNNs for semantic segmentation, e.g. <a class="reference external" href="https://arxiv.org/pdf/1411.4038.pdf">Shelhamer et al: Fully Convolutional Networks for Semantic Segmentation</a></p></li>
+</ul>
+<p>The <em>increasing-operation</em> can be achieved by <strong>deconvolutional layers</strong>. Actually, the name <em>deconvolution</em> is misleading. Ihe operation shall be better named <strong>transpose convolution</strong>, because it is defined by multiplying the transposed matrix <span class="math notranslate nohighlight">\(W_S^T\)</span> with an serialized from of the input.</p>
+<p>In section <a class="reference external" href="#convbymatrix">Convolution as matrix multiplication</a> it was shown, that any convolution-filtering can be realized by matrix-multiplication:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y_s}=\mathbf{W_S}*\mathbf{X_S}
+\]</div>
+<p>The serialized input <span class="math notranslate nohighlight">\(\mathbf{X_S}\)</span> has <span class="math notranslate nohighlight">\(r^2\)</span> components and the serialized output has <span class="math notranslate nohighlight">\(o^2\)</span> components, where <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(o\)</span> are the side-lengths of the squared input and output, respectively. Hence, matrix <span class="math notranslate nohighlight">\(\mathbf{W_S}\)</span> has <span class="math notranslate nohighlight">\(o^2\)</span> rows and <span class="math notranslate nohighlight">\(r^2\)</span> columns. The transpose of this matrix <span class="math notranslate nohighlight">\(\mathbf{W_S^T}\)</span> has <span class="math notranslate nohighlight">\(r^2\)</span> rows and <span class="math notranslate nohighlight">\(o^2\)</span> columns. Since, usually <span class="math notranslate nohighlight">\(o&lt;r\)</span>, the multiplication of an input <span class="math notranslate nohighlight">\(\mathbf{U_S}\)</span> with <span class="math notranslate nohighlight">\(\mathbf{W_S^T}\)</span> yields a <em>larger output</em></p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{V_s}=\mathbf{W_S^T}*\mathbf{U_S}.
+\]</div>
+<div class="section" id="application-of-deconvolution-for-semantic-image-segmentation">
+<h4>Application of Deconvolution for Semantic Image Segmentation<a class="headerlink" href="#application-of-deconvolution-for-semantic-image-segmentation" title="Permalink to this headline">¶</a></h4>
+<p>Source: <a class="reference external" href="https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf">Shelhamer et al; Fully Convolutional Networks for Semantic Image Segmentaion</a></p>
+<p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/shelhamerSemanticSegmentation.png" /></p>
+<p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/shelhamerNet.png" /></p>
+</div>
+</div>
+<div class="section" id="dilated-convolution">
+<h3>Dilated Convolution<a class="headerlink" href="#dilated-convolution" title="Permalink to this headline">¶</a></h3>
+<p>In the convolution operation as introduced above, the input to the filter at a given position is a small contiguous field within the input-array, e.g. an area of <span class="math notranslate nohighlight">\((3 \times 3)\)</span> pixels. This area of contiguous values, which influence the output at a given position of the filter is also called <strong>local receptive field</strong>. In a dilated convolution the local receptive field of a filter need not be a contiguous area. Instead, a <strong>dilation rate of <span class="math notranslate nohighlight">\(d\)</span></strong> defines, that there are <span class="math notranslate nohighlight">\(d-1\)</span> gaps inbetween the elements, which constitute the local receptive field. The lower part in the picture below shows a dilated convolutional filtering with <span class="math notranslate nohighlight">\(d=2\)</span>.</p>
+<p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvDilated.png" /></p>
+<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is <span class="math notranslate nohighlight">\((a-1)(d-1)\)</span>. The side-length of the filter-result is then</p>
+<p>$<span class="math notranslate nohighlight">\(o=\frac{r-a+2p+(a-1)(d-1)}{s}+1\)</span>$.</p>
+<p>Dilation allows the extraction of features, from a larger input area, without increasing the filter-width and thus the number of parameters, which must be learned. Simultaneously it implies a stronger subsampling, thus pooling may be not required.</p>
+</div>
+<div class="section" id="dropout">
+<h3>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">¶</a></h3>
+<p>Dropout is a technique to prevent Neural Networks, such as MLPs, CNNs, LSTMs from overfitting. The key idea is to randomly drop units along with their connections from the neural network during training. This prevents units from co-adapting too much. The drop of a defined ratio (0.1-0.5) of random neurons is valid only for one iteration. During this iteration the weights of the droped units are not adapted. In the next iteration another set of units, which are dropped temporarily is randomly selected. Dropout is only applied in the training-phase.<br />
+<img alt="Dropout" src="https://maucher.home.hdm-stuttgart.de/Pics/dropout.PNG" /></p>
+</div>
+<div class="section" id="batch-normalization">
+<h3>Batch-Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h3>
+<p>Many Machine-Learning algorithms require a normalized input. This is particular true for algorithms, which apply (stochastic) gradient descent training, such as neural networks. Normalization means, that data is transformed such that each feature has a mean of 0 and a variance of 1.</p>
+<p>For example in the following dataset, mean and standard-deviation of the three features (columns) columns differ strongly. In a neural network, the effect of this difference is that weightadaptations for features with high values are much stronger, than for features with low values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rawdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">18</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">17000</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">37</span><span class="p">,</span><span class="mf">0.003</span><span class="p">,</span><span class="mi">87000</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mi">90000</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">52</span><span class="p">,</span><span class="mf">0.0001</span><span class="p">,</span><span class="mi">120000</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mf">0.07</span><span class="p">,</span><span class="mi">42000</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">31</span><span class="p">,</span><span class="mf">0.008</span><span class="p">,</span><span class="mi">46000</span><span class="p">],</span>
+                 <span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rawdata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[    18.        0.01  17000.  ]
+ [    37.        0.    87000.  ]
+ [    40.        0.02  90000.  ]
+ [    52.        0.   120000.  ]
+ [    25.        0.07  42000.  ]
+ [    31.        0.01  46000.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For normalization, first the mean and the standard-variation is calculated for each feature. Then from each value <span class="math notranslate nohighlight">\(x_{i,j}\)</span> in the datamatrix, the column-mean <span class="math notranslate nohighlight">\(mean_j\)</span> is subtracted and the result is divided by the column-standard-deviation <span class="math notranslate nohighlight">\(std_j\)</span>:
+$<span class="math notranslate nohighlight">\(x'_{i,j}=\frac{x_{i,j}-mean_j}{std_j}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">featmean</span><span class="o">=</span><span class="n">rawdata</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">featstd</span><span class="o">=</span><span class="n">rawdata</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean values of columns:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">featmean</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;standard-deviations of columns:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">featstd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean values of columns:
+ [   33.83     0.02 67000.  ]
+standard-deviations of columns:
+ [   10.92     0.02 34890.3 ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalizeddata</span><span class="o">=</span><span class="p">(</span><span class="n">rawdata</span><span class="o">-</span><span class="n">featmean</span><span class="p">)</span><span class="o">/</span><span class="n">featstd</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized data:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">normalizeddata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Normalized data:
+ [[-1.45 -0.36 -1.43]
+ [ 0.29 -0.65  0.57]
+ [ 0.56  0.06  0.66]
+ [ 1.66 -0.77  1.52]
+ [-0.81  2.16 -0.72]
+ [-0.26 -0.44 -0.6 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean of normalized data:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">normalizeddata</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard-deviation of normalized data:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">normalizeddata</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of normalized data:
+ [-0.  0. -0.]
+Standard-deviation of normalized data:
+ [1. 1. 1.]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Batch-Normalization</strong>, means</p>
+<ol class="simple">
+<li><p>that training-data is normalized for each batch individually,</p></li>
+<li><p>batch-wise normalization is not only performed before feeding data into a neural network, but can be applied at the output of any convolutional layer in the CNN. If it is applied, it is performed at the output of a convolutional layer, <strong>before</strong> this output is processed by the activation-function.</p></li>
+</ol>
+<p>The benefits of Batch-Normalization is a more stable training-process and a faster convergence.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./neuralnetworks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02RecurrentNeuralNetworks.html" title="previous page">Recurrent Neural Networks</a>
+    <a class='right-next' id="next-link" href="03KerasMLPandCNNcifar.html" title="next page">Implementing Neural Networks with Keras</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

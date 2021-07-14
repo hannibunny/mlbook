@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generative Adversarial Nets (GAN) &#8212; Machine Learning Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
+    <link rel="prev" title="Variational Autoencoder (VAE) to generate handwritten digits" href="../neuralnetworks/04VariationalAutoencoder.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/gan/DCGAN.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/gan/DCGAN.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#idea-gans">
+   Idea GANs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-applications-of-gans">
+   Example Applications of GANs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-to-image-translation">
+     Image-to-Image Translation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatic-anime-character-creation">
+     Automatic Anime Character Creation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits">
+   Keras implementation of GAN, which generates MNIST-type handwritten digits
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generator-model">
+     Generator Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discriminator-model">
+     Discriminator Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-gan-by-combining-generator-and-discriminator">
+     Build GAN by combining Generator and Discriminator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-gan">
+     Train GAN
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-30-epochs">
+     Generate new numbers from GAN learned over 30 epochs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-60-epochs">
+     Generate new numbers from GAN learned over 60 epochs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="generative-adversarial-nets-gan">
+<h1>Generative Adversarial Nets (GAN)<a class="headerlink" href="#generative-adversarial-nets-gan" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 07.01.2019</p></li>
+</ul>
+<p>References:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al: Generative Adversarial Nets</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1511.06434.pdf">A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs</a></p></li>
+</ol>
+<div class="section" id="idea-gans">
+<h2>Idea GANs<a class="headerlink" href="#idea-gans" title="Permalink to this headline">¶</a></h2>
+<p>In 2014 GANs have been introduced by <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>. Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
+<p>On an abstract level the idea of GANs can be described as follows: A counterfeiter produces fake banknotes. The police is able to discriminate the fake banknotes from real ones and it provides feedback to the counterfeiter on why the banknotes can be detected as fake. This feedback is used by the counterfeiter in order to produce fake, which is less distinguishable from real bankotes. After some iterations of producing better but not sufficiently good fake the counterfeiter is able to produce fake, which can not be discriminated from real banknotes.</p>
+<p>A GAN consists of two models:</p>
+<ol class="simple">
+<li><p>The <strong>discriminator</strong> is the police. It learns to discriminate real data from artificially generated fake data.</p></li>
+<li><p>The <strong>generator</strong> is the counterfeiter, which learns to generate data, that is indistinguishable from real data.</p></li>
+</ol>
+<p><img alt="GAN" src="gan/./Pics/GAN.png" /></p>
+</div>
+<div class="section" id="example-applications-of-gans">
+<h2>Example Applications of GANs<a class="headerlink" href="#example-applications-of-gans" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="image-to-image-translation">
+<h3>Image-to-Image Translation<a class="headerlink" href="#image-to-image-translation" title="Permalink to this headline">¶</a></h3>
+<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG" style="width: 450px;" /></a>
+<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG" style="width: 450px;" /></a>
+</div>
+<div class="section" id="automatic-anime-character-creation">
+<h3>Automatic Anime Character Creation<a class="headerlink" href="#automatic-anime-character-creation" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://arxiv.org/pdf/1708.05509.pdf">Y. Jin et al: Towards the Automatic Anime Characters Creation with Generative Adversarial Networks</a></p>
+<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png" style="width: 450px;" /></a>
+<p>In this notebook a GAN is designed, which learns to generate handwritten numbers between 0 and 9, like the ones, given in the MNIST dataset. In this case the real data is the MNIST dataset, which contains 70000 greyscale images of size 28x28, 7000 images for each of the 10 digits.</p>
+<p>The Discriminator model is just a binary classifier, whose task is to distinguish fake, from real images. The fake images are produced by the Generator model. At it’s input the Generator model receives 1-dimensional vectors of length 100, whose components are uniformly distributed random float-values between -1 and 1. The discriminator model is learned such that the <em>cross-entropy-loss</em> for discrimating real from fake images is minimized by Stochastic Gradient Descent (SGD). The Generator model is learned such that the generated fake data is classified as real-data by the discriminator.</p>
+</div>
+</div>
+<div class="section" id="keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits">
+<h2>Keras implementation of GAN, which generates MNIST-type handwritten digits<a class="headerlink" href="#keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits" title="Permalink to this headline">¶</a></h2>
+<p>Below a Deep Convolutional GAN (DCGAN) as introduced in <a class="reference external" href="https://arxiv.org/pdf/1511.06434.pdf">A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs</a> is implemented. This type of GAN applies a Convolutional Neural Net (CNN) for the Generator- and the Discriminator model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install tqdm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="k">import</span> <span class="n">mnist</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="k">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>  <span class="c1">#this package is used to show progress in training loops</span>
+<span class="kn">from</span> <span class="nn">keras.layers.advanced_activations</span> <span class="k">import</span> <span class="n">LeakyReLU</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>The MNIST-handwritten digits dataset is available in the Keras datasets module and can be accessed as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((60000, 28, 28), (60000,), (10000, 28, 28), (10000,))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(60000, 28, 28, 1)
+(10000, 28, 28, 1)
+[[  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   3.  18.
+   18.  18. 126. 136. 175.  26. 166. 255. 247. 127.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.  30.  36.  94. 154. 170. 253.
+  253. 253. 253. 253. 225. 172. 253. 242. 195.  64.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.  49. 238. 253. 253. 253. 253. 253.
+  253. 253. 253. 251.  93.  82.  82.  56.  39.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.  18. 219. 253. 253. 253. 253. 253.
+  198. 182. 247. 241.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.  80. 156. 107. 253. 253. 205.
+   11.   0.  43. 154.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.  14.   1. 154. 253.  90.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0. 139. 253. 190.
+    2.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  11. 190. 253.
+   70.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  35. 241.
+  225. 160. 108.   1.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  81.
+  240. 253. 253. 119.  25.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   45. 186. 253. 253. 150.  27.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.  16.  93. 252. 253. 187.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0. 249. 253. 249.  64.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   46. 130. 183. 253. 253. 207.   2.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  39. 148.
+  229. 253. 253. 253. 250. 182.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.  24. 114. 221. 253.
+  253. 253. 253. 201.  78.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.  23.  66. 213. 253. 253. 253.
+  253. 198.  81.   2.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.  18. 171. 219. 253. 253. 253. 253. 195.
+   80.   9.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.  55. 172. 226. 253. 253. 253. 253. 244. 133.  11.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0. 136. 253. 253. 253. 212. 135. 132.  16.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The values of all input-images range from 0 to 255. Next, a rescaling to the range <span class="math notranslate nohighlight">\([-1,1]\)</span> is performed. This is necesarry, because the output-layer of the Generator model applies a tanh-activation, which has a value rane of <span class="math notranslate nohighlight">\([-1,1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train</span> <span class="o">-</span> <span class="mf">127.5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">127.5</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -0.9764706  -0.85882354 -0.85882354 -0.85882354 -0.01176471  0.06666667
+   0.37254903 -0.79607844  0.3019608   1.          0.9372549  -0.00392157
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -0.7647059  -0.7176471  -0.2627451   0.20784314
+   0.33333334  0.9843137   0.9843137   0.9843137   0.9843137   0.9843137
+   0.7647059   0.34901962  0.9843137   0.8980392   0.5294118  -0.49803922
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -0.6156863   0.8666667   0.9843137   0.9843137   0.9843137
+   0.9843137   0.9843137   0.9843137   0.9843137   0.9843137   0.96862745
+  -0.27058825 -0.35686275 -0.35686275 -0.56078434 -0.69411767 -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -0.85882354  0.7176471   0.9843137   0.9843137   0.9843137
+   0.9843137   0.9843137   0.5529412   0.42745098  0.9372549   0.8901961
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -0.37254903  0.22352941 -0.16078432  0.9843137
+   0.9843137   0.60784316 -0.9137255  -1.         -0.6627451   0.20784314
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -0.8901961  -0.99215686  0.20784314
+   0.9843137  -0.29411766 -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.          0.09019608
+   0.9843137   0.49019608 -0.9843137  -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -0.9137255
+   0.49019608  0.9843137  -0.4509804  -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -0.7254902   0.8901961   0.7647059   0.25490198 -0.15294118 -0.99215686
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -0.3647059   0.88235295  0.9843137   0.9843137  -0.06666667
+  -0.8039216  -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -0.64705884  0.45882353  0.9843137   0.9843137
+   0.1764706  -0.7882353  -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -0.8745098  -0.27058825  0.9764706
+   0.9843137   0.46666667 -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.          0.9529412
+   0.9843137   0.9529412  -0.49803922 -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -0.6392157   0.01960784  0.43529412  0.9843137
+   0.9843137   0.62352943 -0.9843137  -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -0.69411767  0.16078432  0.79607844  0.9843137   0.9843137   0.9843137
+   0.9607843   0.42745098 -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -0.8117647  -0.10588235
+   0.73333335  0.9843137   0.9843137   0.9843137   0.9843137   0.5764706
+  -0.3882353  -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -0.81960785 -0.48235294  0.67058825  0.9843137
+   0.9843137   0.9843137   0.9843137   0.5529412  -0.3647059  -0.9843137
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -0.85882354  0.34117648  0.7176471   0.9843137   0.9843137   0.9843137
+   0.9843137   0.5294118  -0.37254903 -0.92941177 -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -0.5686275   0.34901962
+   0.77254903  0.9843137   0.9843137   0.9843137   0.9843137   0.9137255
+   0.04313726 -0.9137255  -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.          0.06666667  0.9843137
+   0.9843137   0.9843137   0.6627451   0.05882353  0.03529412 -0.8745098
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]
+ [-1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.         -1.         -1.
+  -1.         -1.         -1.         -1.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first 9 real images in the training dataset are plotted below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plt.subplot(3,3,1)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DCGAN_14_0.png" src="../_images/DCGAN_14_0.png" />
+</div>
+</div>
+<div class="section" id="generator-model">
+<h3>Generator Model<a class="headerlink" href="#generator-model" title="Permalink to this headline">¶</a></h3>
+<p>The Generator model receives 1-dimensional vectors of length 100 with uniformly distributed float values from -1 to 1 at it’s input. The first layer is a dense layer with 128x7x7 neurons. The output of this dense layer is reshaped into 128 channels, each of size 7x7.
+Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, followed by a Conv2D-layer) 64 channels of size 14x14 are generated in the next layer. Finally, these 64 channels are processed by another deconvolution layer with filters of size 5x5 into a single-channel output of size 28x28.</p>
+<p>In between layers, batch normalization stabilizes learning. The activation function after the dense- and the first deconvolution-layer is a LeakyReLU. The output deconvolution-layer applies tanh- activation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+        <span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+        <span class="n">BatchNormalization</span><span class="p">(),</span>
+        <span class="n">Reshape</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">128</span><span class="p">)),</span>
+        <span class="n">UpSampling2D</span><span class="p">(),</span>
+        <span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>
+        <span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+        <span class="n">BatchNormalization</span><span class="p">(),</span>
+        <span class="n">UpSampling2D</span><span class="p">(),</span>
+        <span class="n">Conv2D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense (Dense)                (None, 6272)              633472    
+_________________________________________________________________
+leaky_re_lu (LeakyReLU)      (None, 6272)              0         
+_________________________________________________________________
+batch_normalization (BatchNo (None, 6272)              25088     
+_________________________________________________________________
+reshape (Reshape)            (None, 7, 7, 128)         0         
+_________________________________________________________________
+up_sampling2d (UpSampling2D) (None, 14, 14, 128)       0         
+_________________________________________________________________
+conv2d (Conv2D)              (None, 14, 14, 64)        204864    
+_________________________________________________________________
+leaky_re_lu_1 (LeakyReLU)    (None, 14, 14, 64)        0         
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 14, 14, 64)        256       
+_________________________________________________________________
+up_sampling2d_1 (UpSampling2 (None, 28, 28, 64)        0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 28, 28, 1)         1601      
+=================================================================
+Total params: 865,281
+Trainable params: 852,609
+Non-trainable params: 12,672
+_________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discriminator-model">
+<h3>Discriminator Model<a class="headerlink" href="#discriminator-model" title="Permalink to this headline">¶</a></h3>
+<p>The discriminator is also a CNN. For this experiment on the MNIST dataset, the input is an image (single channel) of size 28x28. The sigmoid output is an indicator for the probability that the input is a real image.
+I.e. if the output value is close to 1, the input is likely a real image, if the output is close to 0, the input is likely a fake.
+The first convolution layer applies 5x5 filters in order to calculate 64 features. The second convolution layer applies 5x5 filters to the 64 input channels and calculates 128 feature maps. The last dense layer has a single neuron with a sigmoid activation for binary classification.</p>
+<p>The difference from a typical CNN is the absence of max-pooling in between layers. Instead, a strided convolution is used for downsampling. The activation function used in each CNN layer is a leaky ReLU. A dropout of 0.3 between layers is used to prevent overfitting and memorization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discriminator</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>
+        <span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span> 
+        <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>
+        <span class="n">Conv2D</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>
+        <span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>
+        <span class="n">Flatten</span><span class="p">(),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discriminator</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_1&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_2 (Conv2D)            (None, 14, 14, 64)        1664      
+_________________________________________________________________
+leaky_re_lu_2 (LeakyReLU)    (None, 14, 14, 64)        0         
+_________________________________________________________________
+dropout (Dropout)            (None, 14, 14, 64)        0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 7, 7, 128)         204928    
+_________________________________________________________________
+leaky_re_lu_3 (LeakyReLU)    (None, 7, 7, 128)         0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 7, 7, 128)         0         
+_________________________________________________________________
+flatten (Flatten)            (None, 6272)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 6273      
+=================================================================
+Total params: 212,865
+Trainable params: 212,865
+Non-trainable params: 0
+_________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next for the Generator- and the Discriminator the training algorithm is defined. Both models are trained by minimizing the <em>binary cross-entropy</em> loss. For both models the <a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf"><em>Adam</em> algorithm</a> is applied.
+In contrast to standard SGD, Adam applies individual learning-rates for each learnable parameter and adpats these learning-rates individually during training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discriminator</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="build-gan-by-combining-generator-and-discriminator">
+<h3>Build GAN by combining Generator and Discriminator<a class="headerlink" href="#build-gan-by-combining-generator-and-discriminator" title="Permalink to this headline">¶</a></h3>
+<p>Now, since Generator- and Discriminator models are defined, the overall adversarial model can be build, by simply stacking these models together. The output of the generator is passed to the input of the discriminator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ganInput</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">ganInput</span><span class="p">)</span>
+<span class="n">ganOutput</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">gan</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">ganInput</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">ganOutput</span><span class="p">)</span>
+<span class="n">gan</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gan</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         [(None, 100)]             0         
+_________________________________________________________________
+sequential (Sequential)      (None, 28, 28, 1)         865281    
+_________________________________________________________________
+sequential_1 (Sequential)    (None, 1)                 212865    
+=================================================================
+Total params: 1,078,146
+Trainable params: 852,609
+Non-trainable params: 225,537
+_________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-gan">
+<h3>Train GAN<a class="headerlink" href="#train-gan" title="Permalink to this headline">¶</a></h3>
+<p>Finally, a function <code class="docutils literal notranslate"><span class="pre">train()</span></code> is implemented, which defines the overall training process. The flow-chart of this function is depicted below:</p>
+<p><img alt="GANtrainingProcess" src="gan/./Pics/GANtrainingProcess.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+    <span class="n">batch_count</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">batch_size</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epoch</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">batch_count</span><span class="p">)):</span>
+            <span class="c1"># Random input for the generator</span>
+            <span class="n">noise_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            
+            <span class="c1"># select batchsize random images from X_train</span>
+            <span class="c1"># these are the real images that will be passed to the discriminator</span>
+            <span class="n">image_batch</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)]</span>
+            
+            <span class="c1"># Predictions from the generator:</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">noise_input</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+            
+            <span class="c1"># the discriminator takes in the real images and the generated images</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">predictions</span><span class="p">,</span> <span class="n">image_batch</span><span class="p">])</span>
+            
+            <span class="c1"># labels for the discriminator</span>
+            <span class="n">y_discriminator</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">batch_size</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">batch_size</span>
+            
+            <span class="c1"># train the discriminator</span>
+            <span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">discriminator</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
+            
+            <span class="c1"># train the generator</span>
+            <span class="n">noise_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="n">y_generator</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">batch_size</span>
+            <span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">gan</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">noise_input</span><span class="p">,</span> <span class="n">y_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Train for 30 epochs. Depending on your hardware this process may take a long time. In my experiments on CPU about 20min per epoch and on GPU 12-15sec per epoch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">57</span><span class="n">f9cef8857f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-16-036338951789&gt;</span> in <span class="ni">train</span><span class="nt">(epoch, batch_size)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>             <span class="c1"># train the discriminator</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="ne">---&gt; </span><span class="mi">24</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> 
+<span class="g g-Whitespace">     </span><span class="mi">26</span>             <span class="c1"># train the generator</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ni">train_on_batch</span><span class="nt">(self, x, y, sample_weight, class_weight, reset_metrics, return_dict)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1721</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="o">.</span><span class="n">scope</span><span class="p">(),</span> \
+<span class="g g-Whitespace">   </span><span class="mi">1722</span>          <span class="n">training_utils</span><span class="o">.</span><span class="n">RespectCompiledTrainableState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1723</span>       <span class="n">iterator</span> <span class="o">=</span> <span class="n">data_adapter</span><span class="o">.</span><span class="n">single_batch_iterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1724</span>                                                     <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1725</span>                                                     <span class="n">class_weight</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">single_batch_iterator</span><span class="nt">(strategy, x, y, sample_weight, class_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1511</span>     <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1512</span> 
+<span class="ne">-&gt; </span><span class="mi">1513</span>   <span class="n">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1514</span>   <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_ops</span><span class="o">.</span><span class="n">DatasetV2</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1515</span>   <span class="k">if</span> <span class="n">class_weight</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">_check_data_cardinality</span><span class="nt">(data)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="ne">AttributeError</span>: &#39;int&#39; object has no attribute &#39;shape&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the weights, learned after these 30 epochs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s1">&#39;gen_30_scaled_images.h5&#39;</span><span class="p">)</span>
+<span class="n">discriminator</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s1">&#39;dis_30_scaled_images.h5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Start from the weight learned in 30 epochs and continue training for another 20 epochs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 468/468 [00:11&lt;00:00, 40.27it/s]
+100%|██████████| 468/468 [00:11&lt;00:00, 40.41it/s]
+100%|██████████| 468/468 [00:11&lt;00:00, 39.83it/s]
+100%|██████████| 468/468 [00:11&lt;00:00, 39.13it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.76it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.66it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.71it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.61it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.81it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 37.92it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.63it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.84it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.52it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.68it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.46it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.54it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.62it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.56it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.56it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.10it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.54it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 37.98it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.64it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.65it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.68it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.52it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.68it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.47it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.92it/s]
+100%|██████████| 468/468 [00:12&lt;00:00, 38.43it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the weights, learned after 60 epochs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s1">&#39;gen_60_scaled_images.h5&#39;</span><span class="p">)</span>
+<span class="n">discriminator</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s1">&#39;dis_60_scaled_images.h5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-new-numbers-from-gan-learned-over-30-epochs">
+<h3>Generate new numbers from GAN learned over 30 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h3>
+<p>Load the learned weights and apply them for generating fake images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;gen_30_scaled_images.h5&#39;</span><span class="p">)</span>
+<span class="n">discriminator</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;dis_30_scaled_images.h5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_output</span><span class="p">():</span>
+    <span class="n">try_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">try_input</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># tight_layout minimizes the overlap between 2 sub-plots</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_output</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DCGAN_40_0.png" src="../_images/DCGAN_40_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="generate-new-numbers-from-gan-learned-over-60-epochs">
+<h3>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h3>
+<p>Load the learned weights and apply them for generating fake images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;gen_60_scaled_images.h5&#39;</span><span class="p">)</span>
+<span class="n">discriminator</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;dis_60_scaled_images.h5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_output</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DCGAN_43_0.png" src="../_images/DCGAN_43_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./gan"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../neuralnetworks/04VariationalAutoencoder.html" title="previous page">Variational Autoencoder (VAE) to generate handwritten digits</a>
+    <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page">Representations for Words and Texts</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

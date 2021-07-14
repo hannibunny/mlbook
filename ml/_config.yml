@@ -1,0 +1,21 @@
+# Book settings
+title: Machine Learning Lecture
+author: Prof. Dr. Johannes Maucher
+logo: hdmlogomed.jpg
+
+only_build_toc_files: true
+
+bibtex_bibfiles:
+  - maucherML.bib
+
+parse:
+  myst_extended_syntax: true
+
+latex:
+  latex_documents:
+    targetname: ml.tex
+
+html:
+  only_build_toc_files: true
+
+

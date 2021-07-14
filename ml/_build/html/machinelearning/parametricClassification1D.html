@@ -1,0 +1,1276 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bayes- and Naive Bayes Classifier &#8212; Machine Learning Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Support Vector Machines (SVM)" href="svm.html" />
+    <link rel="prev" title="Basic Concepts of Data Mining and Machine Learning" href="../00BasicConcepts.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gp.html">
+   Gaussian Process
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/machinelearning/parametricClassification1D.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/machinelearning/parametricClassification1D.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-labeled-data">
+   Access labeled data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training">
+   Training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-inference-phase">
+   Classification (Inference Phase)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-classification-with-scikit-learn">
+   Bayesian Classification with Scikit-Learn
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-the-naive-bayes-classifier">
+     Train the Naive Bayes Classifier:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use-the-trained-model-for-predictions">
+     Use the trained model for predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-accuracy-on-training-data">
+     Model Accuracy on training data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation">
+     Cross Validation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naive-bayes-classifier-for-multidimensional-data">
+     Naive Bayes Classifier for Multidimensional data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bayes-and-naive-bayes-classifier">
+<h1>Bayes- and Naive Bayes Classifier<a class="headerlink" href="#bayes-and-naive-bayes-classifier" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>In this section and nearly all other parts of this course basic notions of <strong>probability theory</strong> are required. If you feel unsure about this, it is strongly recommended to study this <a class="reference external" href="https://hannibunny.github.io/probability/intro.html">short intro in probability theory</a>.</p>
+</div></blockquote>
+<p>In this notebook a Bayesian classifier for 1-dimensional input data is developed. The task is to predict the <strong>category of car (<span class="math notranslate nohighlight">\(C_i\)</span>)</strong>, a customers will purchase, if his <strong>annual income (<span class="math notranslate nohighlight">\(x\)</span>)</strong> is known.</p>
+<p>The classification shall be realized by applying Bayes-Theorem, which in this context is:</p>
+<div class="math notranslate nohighlight">
+\[
+P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_k)}
+\]</div>
+<p>In the <strong>training phase</strong> the gaussian distributed likelihood <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori <span class="math notranslate nohighlight">\(P(C_i)\)</span> for each of the 3 car classes <span class="math notranslate nohighlight">\(C_i\)</span> is estimated from a sample of 27 training instances, each containing the annual income and the purchased car of a former customer. The file containing the training data can be ob obtained from <span class="xref myst">here</span></p>
+<p>Required Python modules:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="access-labeled-data">
+<h2>Access labeled data<a class="headerlink" href="#access-labeled-data" title="Permalink to this headline">¶</a></h2>
+<p>Read customer data from file. Each row in the file represents one custoner. The first column is the customer ID, the second column is the annual income of the customer and the third column is the class of car he or she bought:</p>
+<ul class="simple">
+<li><p>0 = Low Class</p></li>
+<li><p>1 = Middle Class</p></li>
+<li><p>2 = Premium Class</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">autoDF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;AutoKunden.csv&quot;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="c1">#,header=None,names=[&quot;income&quot;,&quot;class&quot;],sep=&quot;  &quot;,index_col=0)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">autoDF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>income</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>77017</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>69062</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16558</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>88625</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>93726</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>66035</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>72293</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>14595</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>36797</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>65124</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>15454</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>21161</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>56231</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>44612</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>31415</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>26697</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>23132</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>17469</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>64526</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>17936</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>33298</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>25335</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>67334</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>20405</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>28099</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>37016</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>81069</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The above data shall be applied for training the classifier. <strong>The trained model shall then be applied to classify customers, whose annual income is defined in the list below:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AnnualIncomeList</span><span class="o">=</span><span class="p">[</span><span class="mi">25000</span><span class="p">,</span><span class="mi">29000</span><span class="p">,</span><span class="mi">63000</span><span class="p">,</span><span class="mi">69000</span><span class="p">]</span> <span class="c1">#customers with this annual income shall be classified</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>In the training-phase for each car-class <span class="math notranslate nohighlight">\(C_i\)</span> the likelihood-function <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori probability <span class="math notranslate nohighlight">\(p(C_i)\)</span> must be determined. It is assumed that the likelihoods are gaussian normal distributions. Hence, for each class the <strong>mean</strong> and the <strong>standard-deviation</strong> must be estimated from the given data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classStats</span><span class="o">=</span><span class="n">autoDF</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;class&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="s2">&quot;income&quot;</span><span class="p">:[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span><span class="s2">&quot;std&quot;</span><span class="p">]})</span>
+<span class="n">classStats</span><span class="p">[</span><span class="s2">&quot;apriori&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">classStats</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;count&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="n">autoDF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">classStats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>class</th>
+      <th colspan="2" halign="left">income</th>
+      <th>apriori</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>class</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8</td>
+      <td>19651.625</td>
+      <td>5099.443609</td>
+      <td>0.296296</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12</td>
+      <td>42385.000</td>
+      <td>17406.072645</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7</td>
+      <td>77884.000</td>
+      <td>10666.250044</td>
+      <td>0.259259</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">Aposteriori</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">classStats</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">classStats</span><span class="p">[</span><span class="s2">&quot;apriori&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">m</span><span class="o">=</span><span class="n">classStats</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">classStats</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">][</span><span class="s2">&quot;std&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">aposterioriMod</span><span class="o">=</span><span class="n">p</span><span class="o">*</span><span class="n">likelihood</span>
+    <span class="n">Aposteriori</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aposterioriMod</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">aposterioriMod</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;class &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">AnnualIncome</span> <span class="ow">in</span> <span class="n">AnnualIncomeList</span><span class="p">:</span> <span class="c1">#plot vertical lines at the annual incomes for which classification is required</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">AnnualIncome</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Annual Income&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Likelihood times A-Priori Probability for all 3 classes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/parametricClassification1D_12_0.png" src="../_images/parametricClassification1D_12_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="classification-inference-phase">
+<h2>Classification (Inference Phase)<a class="headerlink" href="#classification-inference-phase" title="Permalink to this headline">¶</a></h2>
+<p>Once the model is trained the likelihood <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori probability <span class="math notranslate nohighlight">\(P(C_i)\)</span> is known for all 3 classes <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
+<p>The most probable class is then calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+C_{pred} = argmax_{C_i}\left( \frac{p(x|C_i) \cdot p(C_i)}{p(x)}\right) = argmax_{C_i}\left( \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_k)}\right) 
+\]</div>
+<p>In the code-cell below, customers with incomes of <span class="math notranslate nohighlight">\(25.000.-,29000.-,63000.-\)</span> and <span class="math notranslate nohighlight">\(69000.-\)</span> Euro are classified by the learned model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">AnnualIncome</span> <span class="ow">in</span> <span class="n">AnnualIncomeList</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annual Income = </span><span class="si">%7.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">AnnualIncome</span>)
+    <span class="n">i</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">AnnualIncome</span><span class="o">/</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">proVal</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">Aposteriori</span><span class="p">]</span>
+    <span class="n">sumProbs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">proVal</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">proVal</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;APosteriori propabilitiy of class </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%1.4f</span><span class="s1">&#39;</span><span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">p</span><span class="o">/</span><span class="n">sumProbs</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Most probable class for customer with income </span><span class="si">%5.2f</span><span class="s1"> Euro is </span><span class="si">%d</span><span class="s1"> &#39;</span><span class="o">%</span> <span class="p">(</span><span class="n">AnnualIncome</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">proVal</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------
+Annual Income = 25000.00
+APosteriori propabilitiy of class 0 = 0.6837
+APosteriori propabilitiy of class 1 = 0.3163
+APosteriori propabilitiy of class 2 = 0.0000
+Most probable class for customer with income 25000.00 Euro is 0 
+--------------------
+Annual Income = 29000.00
+APosteriori propabilitiy of class 0 = 0.3630
+APosteriori propabilitiy of class 1 = 0.6370
+APosteriori propabilitiy of class 2 = 0.0000
+Most probable class for customer with income 29000.00 Euro is 1 
+--------------------
+Annual Income = 63000.00
+APosteriori propabilitiy of class 0 = 0.0000
+APosteriori propabilitiy of class 1 = 0.5797
+APosteriori propabilitiy of class 2 = 0.4203
+Most probable class for customer with income 63000.00 Euro is 1 
+--------------------
+Annual Income = 69000.00
+APosteriori propabilitiy of class 0 = 0.0000
+APosteriori propabilitiy of class 1 = 0.3159
+APosteriori propabilitiy of class 2 = 0.6841
+Most probable class for customer with income 69000.00 Euro is 2 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bayesian-classification-with-scikit-learn">
+<h2>Bayesian Classification with Scikit-Learn<a class="headerlink" href="#bayesian-classification-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p>For Bayesian Classification Scikit-Learn provides Naive Bayes Classifiers for Gaussian-, Bernoulli- and Multinomial distributed data. In the example above 1-dimensional Gaussian distributed input-data has been applied. In this case the Scikit-Learn Naive Bayes Classifier for Gaussian-distributed data, <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> learns the same model as the classifier implemented in the previous sections of this notebook. This is demonstrated in the following code-cells:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="k">import</span> <span class="n">GaussianNB</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">autoDF</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">autoDF</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="train-the-naive-bayes-classifier">
+<h3>Train the Naive Bayes Classifier:<a class="headerlink" href="#train-the-naive-bayes-classifier" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">=</span><span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Income</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GaussianNB()
+</pre></div>
+</div>
+</div>
+</div>
+<p>The parameters mean and standarddeviation of the learned likelihoods are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Learned mean values for each of the 3 classes: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">clf</span><span class="o">.</span><span class="n">theta_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Learned standard deviations for each of the 3 classes: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">sigma_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note that std is slightly different as above. This is because std of pandas divides by (N-1)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Learned mean values for each of the 3 classes: 
+ [[19651.625]
+ [42385.   ]
+ [77884.   ]]
+Learned standard deviations for each of the 3 classes: 
+ [[ 4770.09278]
+ [16665.04581]
+ [ 9875.02871]]
+Note that std is slightly different as above. This is because std of pandas divides by (N-1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="use-the-trained-model-for-predictions">
+<h3>Use the trained model for predictions<a class="headerlink" href="#use-the-trained-model-for-predictions" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Income</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">AnnualIncomeList</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">predictions</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Income</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">inc</span><span class="p">,</span><span class="n">pre</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">AnnualIncomeList</span><span class="p">,</span><span class="n">predictions</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Most probable class for annual income of </span><span class="si">%7d</span><span class="s2">.-Euro is </span><span class="si">%2d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span><span class="n">pre</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Most probable class for annual income of   25000.-Euro is  0
+Most probable class for annual income of   29000.-Euro is  1
+Most probable class for annual income of   63000.-Euro is  1
+Most probable class for annual income of   69000.-Euro is  2
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">predict(input)</span></code>-method returns the estimated class for the given input. If the a-posteriori probability <span class="math notranslate nohighlight">\(P(C_i|\mathbf{x})\)</span> is of interest, the <code class="docutils literal notranslate"><span class="pre">predict_proba(input)</span></code>-method can be applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictionsProb</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Income</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">inc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">AnnualIncomeList</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A-Posteriori for class 0: </span><span class="si">%1.3f</span><span class="s2"> ; class 1: </span><span class="si">%1.3f</span><span class="s2"> ; class 3 </span><span class="si">%1.3f</span><span class="s2"> for user with income </span><span class="si">%7d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">predictionsProb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">predictionsProb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">predictionsProb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">inc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A-Posteriori for class 0: 0.682 ; class 1: 0.318 ; class 3 0.000 for user with income   25000
+A-Posteriori for class 0: 0.320 ; class 1: 0.680 ; class 3 0.000 for user with income   29000
+A-Posteriori for class 0: 0.000 ; class 1: 0.595 ; class 3 0.405 for user with income   63000
+A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with income   69000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-accuracy-on-training-data">
+<h3>Model Accuracy on training data<a class="headerlink" href="#model-accuracy-on-training-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Income</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">autoDF</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">predictions</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Income</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correctClassification</span><span class="o">=</span><span class="n">predictions</span><span class="o">==</span><span class="n">labels</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">correctClassification</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True False  True  True  True False  True  True  True  True  True False
+  True  True  True  True False  True  True  True  True False  True  True
+ False  True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numCorrect</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">correctClassification</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracyTrain</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">numCorrect</span><span class="p">)</span><span class="o">/</span><span class="n">autoDF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on training data is: </span><span class="si">%1.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">accuracyTrain</span>)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training data is: 0.778
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">confusion_matrix</span>
+<span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span><span class="n">y_pred</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7, 1, 0],
+       [3, 7, 2],
+       [0, 0, 7]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the confusion matrix the entry <span class="math notranslate nohighlight">\(C_{i,j}\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is the number of instances, which are known to be in class <span class="math notranslate nohighlight">\(i\)</span>, but predicted to class <span class="math notranslate nohighlight">\(j\)</span>. For example the confusion matrix above indicates, that 3 elements of true class <span class="math notranslate nohighlight">\(1\)</span> have been predicted as class <span class="math notranslate nohighlight">\(0\)</span>-instances.</p>
+</div>
+<div class="section" id="cross-validation">
+<h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
+<p>The accuracy on training data should not be applied for model evaluation. Instead a model should be evaluated by determining the accuracy (or other performance figures) on data, which has not been applied for training. Since we have only few labeled data in this example cross-validation is applied for determining the model’s accuracy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">cross_val_score</span>
+<span class="n">clf</span><span class="o">=</span><span class="n">GaussianNB</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">Income</span><span class="p">,</span><span class="n">labels</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.66667 0.66667 0.8     0.8     0.8    ]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="naive-bayes-classifier-for-multidimensional-data">
+<h3>Naive Bayes Classifier for Multidimensional data<a class="headerlink" href="#naive-bayes-classifier-for-multidimensional-data" title="Permalink to this headline">¶</a></h3>
+<p>In the playground-example above the input-features where only one dimensional: The only input feature has been the annual income of a customer. The 1-dimensional case is quite unusual in practice. In the code-cell below a <strong>Naive Bayes Classifier</strong> is evaluated for multidimensional data. This is just to demonstrate that the same process as applied above for the simple dataset, can also be applied for arbitrary complex datasets.</p>
+<p>Again we start from the Bayes Theorem:</p>
+<div class="math notranslate nohighlight">
+\[
+P(C_i|\mathbf{x})=\frac{p(\mathbf{x}|C_i)P(C_i)}{P(\mathbf{x})}.
+\]</div>
+<p>However, the crucial difference to the simple example above is, that not only one random variable <span class="math notranslate nohighlight">\(X\)</span> constitutes the input, but many many random variables <span class="math notranslate nohighlight">\(X_1,X_2,\ldots,X_N\)</span>. I.e a concrete input is a vector</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x}=(x_{i_1},x_{i_1},\ldots,x_{i_N})
+\]</div>
+<p>The problem is then: <strong>Of what type is the N-dimensional likelihood <span class="math notranslate nohighlight">\(p(\mathbf{x}|C_i)\)</span> and how to estimate this likelihood?</strong></p>
+<p>For the general case, where some of the input variables are discrete and others are numeric, there does not exist a joint-likelihood. Therefore, one <strong>naively</strong> assumes that all input variables <span class="math notranslate nohighlight">\(X_i\)</span> are independent of each other. Then the N-dimensional likelihood <span class="math notranslate nohighlight">\(p(\mathbf{x}|C_i)\)</span> can be factorised into <span class="math notranslate nohighlight">\(N\)</span> 1-dimensional likelihoods and these 1-dimenensional likelihoods can be easily estimated from the given training data (as shown above). This is the widely applied <strong>Naive Bayes Classifier:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+P(C_i|\mathbf{x})=\frac{p(\mathbf{x}|C_i)}{P(\mathbf{x})}P(C_i) = \frac{\prod_{j=1}^N p(x_j|C_i)}{P(\mathbf{x})} P(C_i)
+\]</div>
+<p>Below, we apply the <span class="xref myst">wine dataset</span>. This dataset is described <span class="xref myst">here</span>. Actually it is also relatively small, but it contains multidimensional data.</p>
+<p>In the dataset the results of a chemical analysis of wines grown in the same region in Italy but derived from three different cultivars. The analysis determined the quantities of <span class="math notranslate nohighlight">\(N=13\)</span> constituents found in each of the three types of wines. The task is to predict the wine-type (first column of the dataset) from the 13 features, that have been obtained in the chemical analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">wineDataFrame</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;wine.data&quot;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">wineDataFrame</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>14.23</td>
+      <td>1.71</td>
+      <td>2.43</td>
+      <td>15.6</td>
+      <td>127</td>
+      <td>2.80</td>
+      <td>3.06</td>
+      <td>0.28</td>
+      <td>2.29</td>
+      <td>5.64</td>
+      <td>1.04</td>
+      <td>3.92</td>
+      <td>1065</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>13.20</td>
+      <td>1.78</td>
+      <td>2.14</td>
+      <td>11.2</td>
+      <td>100</td>
+      <td>2.65</td>
+      <td>2.76</td>
+      <td>0.26</td>
+      <td>1.28</td>
+      <td>4.38</td>
+      <td>1.05</td>
+      <td>3.40</td>
+      <td>1050</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>13.16</td>
+      <td>2.36</td>
+      <td>2.67</td>
+      <td>18.6</td>
+      <td>101</td>
+      <td>2.80</td>
+      <td>3.24</td>
+      <td>0.30</td>
+      <td>2.81</td>
+      <td>5.68</td>
+      <td>1.03</td>
+      <td>3.17</td>
+      <td>1185</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>14.37</td>
+      <td>1.95</td>
+      <td>2.50</td>
+      <td>16.8</td>
+      <td>113</td>
+      <td>3.85</td>
+      <td>3.49</td>
+      <td>0.24</td>
+      <td>2.18</td>
+      <td>7.80</td>
+      <td>0.86</td>
+      <td>3.45</td>
+      <td>1480</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>13.24</td>
+      <td>2.59</td>
+      <td>2.87</td>
+      <td>21.0</td>
+      <td>118</td>
+      <td>2.80</td>
+      <td>2.69</td>
+      <td>0.39</td>
+      <td>1.82</td>
+      <td>4.32</td>
+      <td>1.04</td>
+      <td>2.93</td>
+      <td>735</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>3</td>
+      <td>13.71</td>
+      <td>5.65</td>
+      <td>2.45</td>
+      <td>20.5</td>
+      <td>95</td>
+      <td>1.68</td>
+      <td>0.61</td>
+      <td>0.52</td>
+      <td>1.06</td>
+      <td>7.70</td>
+      <td>0.64</td>
+      <td>1.74</td>
+      <td>740</td>
+    </tr>
+    <tr>
+      <th>174</th>
+      <td>3</td>
+      <td>13.40</td>
+      <td>3.91</td>
+      <td>2.48</td>
+      <td>23.0</td>
+      <td>102</td>
+      <td>1.80</td>
+      <td>0.75</td>
+      <td>0.43</td>
+      <td>1.41</td>
+      <td>7.30</td>
+      <td>0.70</td>
+      <td>1.56</td>
+      <td>750</td>
+    </tr>
+    <tr>
+      <th>175</th>
+      <td>3</td>
+      <td>13.27</td>
+      <td>4.28</td>
+      <td>2.26</td>
+      <td>20.0</td>
+      <td>120</td>
+      <td>1.59</td>
+      <td>0.69</td>
+      <td>0.43</td>
+      <td>1.35</td>
+      <td>10.20</td>
+      <td>0.59</td>
+      <td>1.56</td>
+      <td>835</td>
+    </tr>
+    <tr>
+      <th>176</th>
+      <td>3</td>
+      <td>13.17</td>
+      <td>2.59</td>
+      <td>2.37</td>
+      <td>20.0</td>
+      <td>120</td>
+      <td>1.65</td>
+      <td>0.68</td>
+      <td>0.53</td>
+      <td>1.46</td>
+      <td>9.30</td>
+      <td>0.60</td>
+      <td>1.62</td>
+      <td>840</td>
+    </tr>
+    <tr>
+      <th>177</th>
+      <td>3</td>
+      <td>14.13</td>
+      <td>4.10</td>
+      <td>2.74</td>
+      <td>24.5</td>
+      <td>96</td>
+      <td>2.05</td>
+      <td>0.76</td>
+      <td>0.56</td>
+      <td>1.35</td>
+      <td>9.20</td>
+      <td>0.61</td>
+      <td>1.60</td>
+      <td>560</td>
+    </tr>
+  </tbody>
+</table>
+<p>178 rows × 14 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wineData</span><span class="o">=</span><span class="n">wineDataFrame</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wineData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(178, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="o">=</span><span class="n">wineData</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="c1">#features are in columns 1 to end</span>
+<span class="n">labels</span><span class="o">=</span><span class="n">wineData</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#class label is in column 0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">=</span><span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">acc</span><span class="o">=</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Accuracy is &quot;</span><span class="p">,</span><span class="n">acc</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Accuracy is  0.9663492063492063
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machinelearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../00BasicConcepts.html" title="previous page">Basic Concepts of Data Mining and Machine Learning</a>
+    <a class='right-next' id="next-link" href="svm.html" title="next page">Support Vector Machines (SVM)</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,46 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+
+
+- file: intro
+
+- part: Introduction
+  chapters:
+  - file: 00BasicConcepts
+
+- part: Conventional ML
+  chapters:
+  - file: machinelearning/parametricClassification1D
+  - file: machinelearning/svm
+  - file: machinelearning/gp
+
+- part: Neural Networks
+  chapters:
+  - file: neuralnetworks/01NeuralNets
+  - file: neuralnetworks/02RecurrentNeuralNetworks
+  - file: neuralnetworks/03ConvolutionNeuralNetworks
+  - file: neuralnetworks/03KerasMLPandCNNcifar
+  - file: neuralnetworks/04KerasPretrainedClassifiers
+  - file: neuralnetworks/05KerasPretrainedCovid
+
+
+- part: Autoencoder
+  chapters:
+  - file: neuralnetworks/04VariationalAutoencoder
+
+- part: GAN
+  chapters:
+  - file: gan/DCGAN
+  
+- part: Text
+  chapters:
+  - file: text/01ModellingWordsAndTexts
+  
+- part: References
+  chapters:
+  - file: referenceSection 
+
+#- part: Global, Local and Subspace Features
+#  chapters:
+#  - file: 
