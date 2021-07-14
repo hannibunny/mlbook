@@ -66,13 +66,14 @@ The **training goal** is: Determine the weights $\mathbf{w}=(w_1,\ldots,w_d)$ an
 \label{eq:k2svmklass}
 \end{eqnarray}
 	
-This goal can equivalently be formulated by imposing the following condition:
+This goal can equivalently be formulated by imposing the following condition
 	
 $$
 r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 1
 $$
+
 	
-Note, that this condition defines a **boundary area**, not simply a **boundary line**, as in other algorithms, where the condition, that must be fullfilled is:
+to be fullfilled for all training-instances. Note, that this condition defines a **boundary area**, rather than just a **boundary line**, as in other algorithms, where the condition, that must be fullfilled is:
 
 $$
 r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 0
