@@ -379,7 +379,7 @@
 <p><img alt="abstractmlp" src="http://maucher.home.hdm-stuttgart.de/Pics/abstrmlp.png" /></p>
 <p>If the output of the neurons in layer <span class="math notranslate nohighlight">\(k\)</span> are denoted by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-645a9b52-85af-4760-9e4c-0b65a810e946">
-<span class="eqno">(2)<a class="headerlink" href="#equation-645a9b52-85af-4760-9e4c-0b65a810e946" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(21)<a class="headerlink" href="#equation-645a9b52-85af-4760-9e4c-0b65a810e946" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h}^k=(h_1^k,h_2^k,\ldots,h_{z_k}^k),
 \end{equation}\]</div>
 <p>the input to the network is <span class="math notranslate nohighlight">\(\mathbf{h}^0=\mathbf{x}\)</span> and the bias values of the <span class="math notranslate nohighlight">\(z_k\)</span> neurons in layer <span class="math notranslate nohighlight">\(k\)</span> are arranged in the vector</p>
@@ -389,7 +389,7 @@
 \]</div>
 <p>then the output at each layer <span class="math notranslate nohighlight">\(k\)</span> can be calculated by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-d77d5e78-f43d-482c-9e8f-50aa6446fe0c">
-<span class="eqno">(3)<a class="headerlink" href="#equation-d77d5e78-f43d-482c-9e8f-50aa6446fe0c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(22)<a class="headerlink" href="#equation-d77d5e78-f43d-482c-9e8f-50aa6446fe0c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h}^k = g(\mathbf{b}^k + W^k \mathbf{h}^{k-1}), 
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(g(\cdot)\)</span> is the <em>activation-function</em>. Typical activation-functions are e.g. sigmoid-, tanh-, softmax- or the identity-function. The weight matrix <span class="math notranslate nohighlight">\(W^k\)</span> of layer <span class="math notranslate nohighlight">\(k\)</span> consists of <span class="math notranslate nohighlight">\(z_k\)</span> rows and <span class="math notranslate nohighlight">\(z_{k-1}\)</span> columns. The entry <span class="math notranslate nohighlight">\(W_{ij}^k\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is the weight of the connection from neuron <span class="math notranslate nohighlight">\(j\)</span> in layer <span class="math notranslate nohighlight">\(k-1\)</span> to neuron <span class="math notranslate nohighlight">\(i\)</span> in layer <span class="math notranslate nohighlight">\(k\)</span>.</p>
@@ -404,7 +404,7 @@
 <img alt="abstrRNN" src="http://maucher.home.hdm-stuttgart.de/Pics/abstrrnn.png" /></p>
 <p>The recurrent-layer’s output <span class="math notranslate nohighlight">\(\mathbf{h}^1(t)\)</span> from the current input <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> and the previous output <span class="math notranslate nohighlight">\(\mathbf{h}^1(t-1)\)</span>, can equivalently be realized by a single matrix multiplication, if the weight matrices <span class="math notranslate nohighlight">\(W^1 \)</span> and <span class="math notranslate nohighlight">\(R^{1}\)</span> are stacked horizontally and the column-vectors <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> and <span class="math notranslate nohighlight">\(\mathbf{h}^1(t-1)\)</span> are stacked vertically:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-d168cf81-f8c3-4d25-86c6-ddc77db66081">
-<span class="eqno">(4)<a class="headerlink" href="#equation-d168cf81-f8c3-4d25-86c6-ddc77db66081" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<span class="eqno">(23)<a class="headerlink" href="#equation-d168cf81-f8c3-4d25-86c6-ddc77db66081" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 	\mathbf{h}^1(t) &amp;=&amp; g\left(W^1 \mathbf{x}(t)+R^{1} \mathbf{h}^1(t-1)+\mathbf{b}^1\right) \nonumber\\
 	&amp;=&amp; g\left( (W^1 \mid R^{1}) \left(\begin{array}{c}\mathbf{x}(t) \\ \mathbf{h}^1(t-1) \end{array} \right)+\mathbf{b}^1 \right)
 \end{eqnarray}\]</div>
