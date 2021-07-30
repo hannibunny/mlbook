@@ -438,10 +438,66 @@ $$
 K_{pol}(\mathbf{x}_p,\mathbf{x}) = \left( \mathbf{x}^T\mathbf{x}_p+1\right)^q,
 $$ (polkernel)
 
-where the degree $q$ is a hyperparameter and helps to control the complexity of the learned models. The higher the degree $q$, the higher the dimension of the corresponding space to which data is virtually transformed and the higher the complexity of the learned model.  
-##### RBF Kernel
+where the degree $q$ is a hyperparameter and helps to control the complexity of the learned models. The higher the degree $q$, the higher the dimension of the corresponding space, to which data is virtually transformed, and the higher the complexity of the learned model.  
+
+ ```{admonition} Example Polynomial kernel with degree $d=2$
+ :class: tip
  
+ 
+    For a degree of $d=2$, the polynomial kernel as defined in {eq}`polkernel` is (for a better readability we replaced $\mathbf{x}_p$ by $\mathbf{y}$):  
+	\begin{eqnarray}
+		K(\mathbf{y},\mathbf{x}) & = & \left( \mathbf{x}^T\mathbf{y}+1\right)^2 \nonumber \\
+								 & = & \left( x_1y_1+x_2y_2+1 \right)^2 \nonumber \\
+								 & = & \left( 1+2x_1y_1+2x_2y_2+2x_1x_2y_1y_2+x_1^2y_1^2+x_2^2y_2^2 \right) \nonumber
+		\end{eqnarray}
+
+	Note that this kernel yields exactly the same result as the scalar product $\Phi(\mathbf{y})^T \Phi(\mathbf{x})$ in the 6-dimensional space, whose dimensions are defined as in 
+	the example {eq}`eq:ex1`.
+ ```
+
+In image {ref}`vardgree` it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.png
+---
+align: center
+width: 800pt
+name: vardegree
+---
+Linear kernel vs. polynomial kernel of degree 2 versus polynomial kernel of degree 5. The corresponding discriminant in the original space can be complexer for increasing degree. 
+
+```
+
+##### RBF Kernel
+
+An important non-linear kernel type is the **Radial Basis Function (RBF)**, which is defined as follows:
+
+$$
+K(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x}    ||^2   \right]
+$$ (rbfkernel)
+
+This function defines a spherical kernel around the support vector $\mathbf{x}_p$. The hyperparameter $\gamma$ determines the *width* of the spherical kernel. Each of the 4 plots in the image below sketches 3 RBF-kernels around different centers (support vectors) and their sum. In each of the 4 plots a different hyperparameter $\gamma$ has been applied. 
+
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png
+---
+align: center
+width: 800pt
+---
+1-dimensional RBFs of different degrees and different parameters $\gamma$. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line. 
+
+```
+
+In image {ref}`vargamma` for 4 different values of $\gamma$ the discriminant learned from the given training data is shown. As can be seen, the smaller the value of $\gamma$, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller $\gamma$ reduces the potentential for overfitting.  
 
  
- 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.png
+---
+align: center
+width: 800pt
+name: vargamma
+---
+1-dimensional RBFs of different degrees and different parameters $\gamma$. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line. 
+
+```
  
