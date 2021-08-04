@@ -362,6 +362,7 @@ However, as we will see later, the transformation to a higher-dimensional space 
 
  ```{admonition} Example Transformation
  :class: tip
+ :name: ex1
 
 	* Original space $X$: $\mathbb{R}^2$ with $d=2$ basis-functions $x_1$ and $x_2$
 	* High-dimensional space $Z$: $\mathbb{R}^6$ with $r=6$ basis functions
@@ -373,8 +374,7 @@ However, as we will see later, the transformation to a higher-dimensional space 
 	z_4=\Phi_4(\mathbf{x})& = & \sqrt{2}x_1 x_2 \nonumber\\
 	z_5=\Phi_5(\mathbf{x}) & = & x_1^2 \nonumber\\
 	z_6=\Phi_6(\mathbf{x}) &=& x_2^2 
-	\label{eq:ex1}
-	\end{eqnarray}
+	\end{eqnarray} (ex1)
 	
  ```
  
@@ -452,12 +452,12 @@ where the degree $q$ is a hyperparameter and helps to control the complexity of 
 		\end{eqnarray}
 
 	Note that this kernel yields exactly the same result as the scalar product $\Phi(\mathbf{y})^T \Phi(\mathbf{x})$ in the 6-dimensional space, whose dimensions are defined as in 
-	the example {eq}`eq:ex1`.
+	the {ref}`example above <ex1>`.
  ```
 
-In image {ref}`vardgree` it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.
+In {ref}`the image below <vardegree>` it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.png
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG
 ---
 align: center
 width: 800pt
@@ -472,7 +472,7 @@ Linear kernel vs. polynomial kernel of degree 2 versus polynomial kernel of degr
 An important non-linear kernel type is the **Radial Basis Function (RBF)**, which is defined as follows:
 
 $$
-K(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x}    ||^2   \right]
+K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x}    ||^2   \right]
 $$ (rbfkernel)
 
 This function defines a spherical kernel around the support vector $\mathbf{x}_p$. The hyperparameter $\gamma$ determines the *width* of the spherical kernel. Each of the 4 plots in the image below sketches 3 RBF-kernels around different centers (support vectors) and their sum. In each of the 4 plots a different hyperparameter $\gamma$ has been applied. 
@@ -487,11 +487,11 @@ width: 800pt
 
 ```
 
-In image {ref}`vargamma` for 4 different values of $\gamma$ the discriminant learned from the given training data is shown. As can be seen, the smaller the value of $\gamma$, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller $\gamma$ reduces the potentential for overfitting.  
+In {ref}`the image below <vargamma>` for 4 different values of $\gamma$ the discriminant learned from the given training data is shown. As can be seen, the smaller the value of $\gamma$, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller $\gamma$ reduces the potentential for overfitting.  
 
  
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.png
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG
 ---
 align: center
 width: 800pt

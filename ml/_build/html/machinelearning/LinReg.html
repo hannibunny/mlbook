@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Regression &#8212; Machine Learning Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example Linear Regression" href="heartRateRegression.html" />
+    <link rel="prev" title="Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gp.html">
+   Gaussian Process
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/machinelearning/LinReg.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood-estimation">
+   Maximum-Likelihood Estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-linear-regression">
+   Generalized Linear Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regularisation">
+   Regularisation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ridge-regression">
+     Ridge Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lasso">
+     Lasso
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elastic-net">
+     Elastic-Net
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linear-regression">
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
+<p>For a given set of labeled training data</p>
+<div class="math notranslate nohighlight">
+\[
+T=\{\mathbf{x}_t,r_t \}_{t=1}^N, 
+\]</div>
+<p>where the targets <span class="math notranslate nohighlight">\(r_t\)</span> are numeric values, usually from <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> and the inputs <span class="math notranslate nohighlight">\(\mathbf{x}_t=(x_{1,t}, \ldots, x_{d,t})\)</span> are numeric vectors of length <span class="math notranslate nohighlight">\(d\)</span>, the goal of regression is to learn a function, which maps the input-vectors to the target-values.</p>
+<p>We usually assume that the targets <span class="math notranslate nohighlight">\(r\)</span> can be calculated as a sum of a determinisitc function <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> and a non-determininstic noise <span class="math notranslate nohighlight">\(n\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+r=f(\mathbf{x})+n,
+\]</div>
+<p>and we like to find a good approximation <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> for the unknown deterministic part <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>.</p>
+<p>In linear regression we assume that the approximation <span class="math notranslate nohighlight">\(g(x|\Theta)\)</span> is a linear function of type</p>
+<div class="math notranslate nohighlight" id="equation-linfunction">
+<span class="eqno">(10)<a class="headerlink" href="#equation-linfunction" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d 
+\]</div>
+<p>This means, that we assume a certain type of function and we want to learn the parameters</p>
+<div class="math notranslate nohighlight">
+\[
+\Theta = \lbrace w_0, w_1, \ldots , w_d \rbrace
+\]</div>
+<p>from data, such that the corresponding <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> is a good estimate for <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>.</p>
+<p>Concerning the non-deterministic part <span class="math notranslate nohighlight">\(n\)</span> one often assumes that it is a Gaussian-distributed random variable of mean <span class="math notranslate nohighlight">\(\mu=0\)</span> and standard-deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. In this case the posterior <span class="math notranslate nohighlight">\(p(r|\mathbf{x})\)</span> is also a Gaussian distribution with standard-deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and mean <span class="math notranslate nohighlight">\(\mu=g(\mathbf{x} \mid \theta)\)</span>.</p>
+<div class="section" id="maximum-likelihood-estimation">
+<h2>Maximum-Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this headline">¶</a></h2>
+<p>Maximum-Likelihood Estimation (MLE) estimates the parameters <span class="math notranslate nohighlight">\(\Theta\)</span>, such that the corresponding <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> is the one, which most likely generates the given set of training data <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>Under the assumption that noise <span class="math notranslate nohighlight">\(n\)</span> is a Gaussian-distributed variable of mean <span class="math notranslate nohighlight">\(\mu=0\)</span>, one can prove that the MLE approach can be realized by minimizing the <strong>Sum of Squared Error (SSE) Loss function</strong>:</p>
+<div class="math notranslate nohighlight" id="equation-sse">
+<span class="eqno">(2)<a class="headerlink" href="#equation-sse" title="Permalink to this equation">¶</a></span>\[
+E(\Theta | T)=\frac{1}{2} \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 = \frac{1}{2} \sum\limits_{t=1}^N [r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})]^2
+\]</div>
+<p>This means that the learning task is: <strong>Determine the parameters <span class="math notranslate nohighlight">\(w_i \in \Theta\)</span>, which minimize the SSE (function <a class="reference internal" href="#equation-sse">(2)</a>).</strong></p>
+<p>In general, in order to find the value <span class="math notranslate nohighlight">\(x\)</span>, at which a function <span class="math notranslate nohighlight">\(f(x)\)</span> is minimal, we have to calculate the first derivation <span class="math notranslate nohighlight">\(f'(x)=\frac{\partial f}{\partial x} \)</span> and determine it’s zeros.</p>
+<p>Here we have an error function <span class="math notranslate nohighlight">\(E(\Theta | T)\)</span>, which depends not only on a single variable, but on all weights <span class="math notranslate nohighlight">\(w_i \in \Theta\)</span>. Hence, we have to determine all partial derivatives</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8a0600f9-c5fb-4a52-b017-bf664fd64a88">
+<span class="eqno">(3)<a class="headerlink" href="#equation-8a0600f9-c5fb-4a52-b017-bf664fd64a88" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+\frac{\partial E}{\partial w_0} &amp;=&amp; \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -1 \nonumber \\
+\frac{\partial E}{\partial w_1} &amp;=&amp; \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{1,t} \nonumber \\
+\vdots							&amp;=&amp;	\vdots \nonumber \\
+\frac{\partial E}{\partial w_d} &amp;=&amp; \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{d,t} \nonumber 
+\end{eqnarray}\]</div>
+<p>and set them equal to zero. This yields a system of <span class="math notranslate nohighlight">\(d+1\)</span> linear equations, which can be written a matrix-multiplication</p>
+<div class="math notranslate nohighlight" id="equation-yaw">
+<span class="eqno">(4)<a class="headerlink" href="#equation-yaw" title="Permalink to this equation">¶</a></span>\[
+\mathbf{y}=\mathbf{A} \cdot \mathbf{w},
+\]</div>
+<p>and solving for <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> yields:</p>
+<div class="math notranslate nohighlight" id="equation-way">
+<span class="eqno">(5)<a class="headerlink" href="#equation-way" title="Permalink to this equation">¶</a></span>\[
+\mathbf{w} = \mathbf{A}^{-1} \mathbf{y},
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A}= \left[ 
+\begin{array}{ccccc}
+	N &amp; \sum\limits_{t=1}^N x_{1,t} &amp; \sum\limits_{t=1}^N x_{2,t} &amp; \cdots &amp; \sum\limits_{t=1}^N x_{d,t}\\
+	\sum\limits_{t=1}^N x_{1,t} &amp; \sum\limits_{t=1}^N x_{1,t} x_{1,t} &amp; \sum\limits_{t=1}^N x_{1,t} x_{2,t}&amp; \cdots &amp; \sum\limits_{t=1}^N x_{1,t} x_{d,t} \\
+	\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+	\sum\limits_{t=1}^N x_{d,t} &amp; \sum\limits_{t=1}^N x_{d,t} x_{1,t} &amp; \sum\limits_{t=1}^N x_{d,t} x_{2,t}  &amp; \cdots &amp; \sum\limits_{t=1}^N x_{d,t} x_{d,t} \\
+	\end{array}
+	\right],
+	\qquad 
+	\mathbf{w} = \left[ \begin{array}{c}
+	w_0 \\
+	w_1 \\
+	\vdots \\
+	w_d 	
+	\end{array}
+	\right],
+	\qquad 
+	\mathbf{y} = \left[ \begin{array}{c}
+	\sum\limits_{t=1}^N r_t \\
+	\sum\limits_{t=1}^N r_t x_{1,t} \\	
+	\vdots \\
+	\sum\limits_{t=1}^N r_t x_{d,t}\\
+	\end{array}
+	\right]
+\end{split}\]</div>
+<p>For an efficient solution one usually calulates <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b18520cb-80a2-4dd3-9dfa-4e9bc78bff2c">
+<span class="eqno">(6)<a class="headerlink" href="#equation-b18520cb-80a2-4dd3-9dfa-4e9bc78bff2c" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+\mathbf{A} &amp; = &amp; \mathbf{D}^T \mathbf{D} \nonumber \\
+\mathbf{y} &amp; = &amp; \mathbf{D}^T \mathbf{r} \nonumber
+\end{eqnarray}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{D}= \left[ 
+\begin{array}{ccccc}
+1 &amp; x_{1,1} &amp; x_{2,1} &amp; \cdots &amp; x_{d,1} \\
+1 &amp; x_{1,2} &amp; x_{2,2} &amp; \cdots &amp; x_{d,2} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+1 &amp; x_{1,N} &amp; x_{2,N} &amp; \cdots &amp; x_{d,N} \\
+\end{array}
+\right]
+	\qquad \mbox{und} \qquad
+\mathbf{r} = \left[ \begin{array}{c}
+r_1 \\
+r_2 \\
+\vdots \\
+r_N \\
+\end{array}
+\right]
+\end{split}\]</div>
+<p>By expressing <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> in eauation <a class="reference internal" href="#equation-way">(5)</a> in terms of <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{r}\)</span>  the weights, which minimize the loss function are:</p>
+<div class="math notranslate nohighlight" id="equation-minweights">
+<span class="eqno">(7)<a class="headerlink" href="#equation-minweights" title="Permalink to this equation">¶</a></span>\[
+\mathbf{w}= \left( \mathbf{D}^T \mathbf{D} \right)^{-1} \mathbf{D}^T \mathbf{r}.
+\]</div>
+</div>
+<div class="section" id="generalized-linear-regression">
+<h2>Generalized Linear Regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this headline">¶</a></h2>
+<p>With <strong>Linear Regression</strong> one can not only learn linear functions <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-linfunction">(10)</a>. Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Regression</strong> of type</p>
+<div class="math notranslate nohighlight" id="equation-genlin">
+<span class="eqno">(11)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + \Phi_2(\mathbf{x}) + \cdots + \Phi_z(\mathbf{x})
+\]</div>
+<p>can be learned. Note that this is still called <strong>linear</strong> regression, because we are still linear in the variable’s <span class="math notranslate nohighlight">\(w_i\)</span>.</p>
+<div class="tip admonition" id="exlin1">
+<p class="admonition-title">Example Generalized Linear Regression with</p>
+<p>Assume that the input vectors are of dimension <span class="math notranslate nohighlight">\(d=2\)</span>, i.e. <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2)\)</span> and we like to learn a quadratic function. For this we can define a set of functions <span class="math notranslate nohighlight">\(\Phi_i\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e7d50d78-d144-4d11-a3a5-718298621e82">
+<span class="eqno">(9)<a class="headerlink" href="#equation-e7d50d78-d144-4d11-a3a5-718298621e82" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+   \Phi_1(\mathbf{x}) &amp; = &amp; x_1 \nonumber\\
+   \Phi_2(\mathbf{x}) &amp; = &amp; x_2 \nonumber\\
+   \Phi_3(\mathbf{x})&amp; = &amp; x_1 x_2 \nonumber\\
+   \Phi_5(\mathbf{x}) &amp; = &amp; x_1^2 \nonumber\\
+   \Phi_6(\mathbf{x}) &amp;=&amp; x_2^2 
+   \end{eqnarray}\]</div>
+<p>The learning task is then to determine the weights <span class="math notranslate nohighlight">\(w_i\)</span> of the polynomial</p>
+<div class="math notranslate nohighlight" id="equation-linfunction">
+<span class="eqno">(10)<a class="headerlink" href="#equation-linfunction" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x} + \cdots + w_6 \Phi_6(\mathbf{x})
+\]</div>
+<p>which yields the minimum loss.</p>
+</div>
+<p>Finding the weights <span class="math notranslate nohighlight">\(w_i\)</span>, which minimize the loss function, can be performed in the same way as described above. One just has to replace all <span class="math notranslate nohighlight">\(x_{i,t}\)</span> by <span class="math notranslate nohighlight">\(\Phi_i(\mathbf{x}_t)\)</span>. In particular <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> can be calculated as in equation <a class="reference internal" href="#equation-minweights">(7)</a>, but now matrix <span class="math notranslate nohighlight">\(D\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-genlin">
+<span class="eqno">(11)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\mathbf{D}= \left[ 
+\begin{array}{ccccc}
+1 &amp; \Phi_1(\mathbf{x}_{1}) &amp; \Phi_2(\mathbf{x}_{1})&amp; \cdots &amp; \Phi_z(\mathbf{x}_{1}) \\
+1 &amp; \Phi_1(\mathbf{x}_{2}) &amp; \Phi_2(\mathbf{x}_{2})&amp; \cdots &amp; \Phi_z(\mathbf{x}_{2}) \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+1 &amp; \Phi_1(\mathbf{x}_{N}) &amp; \Phi_2(\mathbf{x}_{N})&amp; \cdots &amp; \Phi_z(\mathbf{x}_{N}) \\
+\end{array}
+\right]
+\end{split}\]</div>
+</div>
+<div class="section" id="regularisation">
+<h2>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">¶</a></h2>
+<p>In Machine Learning Regularisation is a technique to avoid overfitting. With regularisation the weights are learned such that they not only minimize a loss function on training data (e.g. the Mean Squared Error) but simultaneously have as low as possible absolut values. This additional restriction - absolute values of weights shall be low - yields better generalisation because functions with lower coefficients <span class="math notranslate nohighlight">\(w_i\)</span> are smoother. However, the challenge is to find a good trade-off between minimizing the error on training data and minimizing the weights <span class="math notranslate nohighlight">\(w_i\)</span>. If too much emphasis is put on the weight-minimizsation the learned function may be to simple, i.e. it is underfitted to training data.</p>
+<p>The different regularisation methods, described below, learn weights by minimizing training-error and a regularisation term simultaneously:</p>
+<div class="math notranslate nohighlight" id="equation-genreg">
+<span class="eqno">(12)<a class="headerlink" href="#equation-genreg" title="Permalink to this equation">¶</a></span>\[
+weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
+\]</div>
+<p>The regularisation methods differ in the definition of the <em>regularisation-term</em>. The hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span> is used to control the trade-off between error-minimisation and weight-minimisation.</p>
+<div class="section" id="ridge-regression">
+<h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline">¶</a></h3>
+<p>In Ridge-Regression the error-function <span class="math notranslate nohighlight">\(E(w,T)\)</span> in equation <a class="reference internal" href="#equation-genreg">(12)</a> is the MSE and the regularisation term is the squared <strong>L2-norm</strong>. I.e. Ridge-Regression minimizes</p>
+<div class="math notranslate nohighlight" id="equation-ridge">
+<span class="eqno">(15)<a class="headerlink" href="#equation-ridge" title="Permalink to this equation">¶</a></span>\[
+\mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_2^2 \right),
+\]</div>
+<p>where the <strong>p-norm</strong> $<span class="math notranslate nohighlight">\(||w||_p\)</span>$ is defined to be</p>
+<div class="math notranslate nohighlight" id="equation-pnorm">
+<span class="eqno">(14)<a class="headerlink" href="#equation-pnorm" title="Permalink to this equation">¶</a></span>\[
+||w||_p = \left(\sum\limits_{i} |w_i|^p \right)^{\frac{1}{p}}
+\]</div>
+<p>For Ridge Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge">Ridge</a>.</p>
+</div>
+<div class="section" id="lasso">
+<h3>Lasso<a class="headerlink" href="#lasso" title="Permalink to this headline">¶</a></h3>
+<p>Lasso regularisation provides sparse weights. This means that many weights are zero or very close to zero and only the weights which belong to the most important features are non-zero. This sparsity can be achieved by applying the <strong>L1-Norm</strong> as regularisation term.</p>
+<div class="math notranslate nohighlight" id="equation-ridge">
+<span class="eqno">(15)<a class="headerlink" href="#equation-ridge" title="Permalink to this equation">¶</a></span>\[
+\mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_1 \right),
+\]</div>
+<p>For Lasso Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso">Lasso</a>.</p>
+</div>
+<div class="section" id="elastic-net">
+<h3>Elastic-Net<a class="headerlink" href="#elastic-net" title="Permalink to this headline">¶</a></h3>
+<p>Elastic-Net regularisation applies a regularisation term, which is a weighted sum of <strong>L1-</strong> and <strong>L2-norm</strong>.</p>
+<div class="math notranslate nohighlight" id="equation-elasticnet">
+<span class="eqno">(16)<a class="headerlink" href="#equation-elasticnet" title="Permalink to this equation">¶</a></span>\[
+\mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \rho ||w||_1  +  \frac{\lambda (1-\rho)}{2} ||w||_2^2 \right),
+\]</div>
+<p>For Elastic-Net Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet">ElasticNet</a>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machinelearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="parametricClassification1D.html" title="previous page">Bayes- and Naive Bayes Classifier</a>
+    <a class='right-next' id="next-link" href="heartRateRegression.html" title="next page">Example Linear Regression</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

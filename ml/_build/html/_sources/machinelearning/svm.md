@@ -362,6 +362,7 @@ However, as we will see later, the transformation to a higher-dimensional space 
 
  ```{admonition} Example Transformation
  :class: tip
+ :name: ex1
 
 	* Original space $X$: $\mathbb{R}^2$ with $d=2$ basis-functions $x_1$ and $x_2$
 	* High-dimensional space $Z$: $\mathbb{R}^6$ with $r=6$ basis functions
@@ -373,8 +374,7 @@ However, as we will see later, the transformation to a higher-dimensional space 
 	z_4=\Phi_4(\mathbf{x})& = & \sqrt{2}x_1 x_2 \nonumber\\
 	z_5=\Phi_5(\mathbf{x}) & = & x_1^2 \nonumber\\
 	z_6=\Phi_6(\mathbf{x}) &=& x_2^2 
-	\label{eq:ex1}
-	\end{eqnarray}
+	\end{eqnarray} (ex1)
 	
  ```
  
@@ -383,7 +383,7 @@ The linear discriminant in the high-dimensional space $Z$ is defined by:
 $$
 g(\mathbf{z})=\mathbf{w}^T\mathbf{z} +w_0 \quad = \mathbf{w}^T \Phi(\mathbf{x}) +w_0 \quad = \sum\limits_{j=1}^6 w_j \Phi_j (\mathbf{x}) +w_0
 $$ (diskz)
-\end{equation}
+
  
 #### Kernel Trick
 In the example above the number of dimensions in the high-dimensional space, in which the discriminant is determined, has been $r=6$. In practical cases however, the dimensionality of the new space can be extremely large, such that it would be computational infeasible to transform data in this space and calculate the discriminant there. The transformation can be avoided by applying the *kernel-trick*, which is described here:
@@ -418,15 +418,86 @@ $$
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{and} \quad  0 \leq \alpha_p \leq C \quad \forall p .
 $$ (ldrestrictions)
 
-This already describes the entire training-process for non-linear SVM classifiers. However, you may wonder how to find a suitable transformation $\mathbf{\Phi}$ and a corresponding kernel $K(\mathbf{x}_p^T, \mathbf{x}_s)$? Actually, in practical SVMs we do not take care about a concrete transformation. Instead we select select a type of kernel (linear, polynomila or RBF). The selected kernel corresponds to a transformation into a higher-dimensional space, but we do not have to care about this transformation. We just need the kernel-function.
+This already describes the entire training-process for non-linear SVM classifiers. However, you may wonder how to find a suitable transformation $\Phi$ and a corresponding kernel $K(\mathbf{x}_p^T, \mathbf{x}_s)$? Actually, in practical SVMs we do not take care about a concrete transformation. Instead we select a type of kernel (linear, polynomial or RBF). The selected kernel corresponds to a transformation into a higher-dimensional space, but we do not have to care about this transformation. We just need the kernel-function.
 
 ##### Linear Kernel
 
+The linear kernel is just the scalar-product of the input vectors:
+
+$$
+K_{lin}(\mathbf{x}_p,\mathbf{x}) = \mathbf{x}_p^T \mathbf{x}
+$$ (linkernel)
+
+By inserting this linear kernel into equation {eq}`ldnonlinear` we obtain equation {eq}`linmax`. I.e. by applying the linear kernel no transform to a higher-dimensional space is performed. Instead just a linear discriminant is learned in the original space, as described in previous section.
+
 ##### Polynomial Kernel
 
-##### RBF Kernel
+Polynomial kernels are defined by 
+
+$$
+K_{pol}(\mathbf{x}_p,\mathbf{x}) = \left( \mathbf{x}^T\mathbf{x}_p+1\right)^q,
+$$ (polkernel)
+
+where the degree $q$ is a hyperparameter and helps to control the complexity of the learned models. The higher the degree $q$, the higher the dimension of the corresponding space, to which data is virtually transformed, and the higher the complexity of the learned model.  
+
+ ```{admonition} Example Polynomial kernel with degree $d=2$
+ :class: tip
  
+ 
+    For a degree of $d=2$, the polynomial kernel as defined in {eq}`polkernel` is (for a better readability we replaced $\mathbf{x}_p$ by $\mathbf{y}$):  
+	\begin{eqnarray}
+		K(\mathbf{y},\mathbf{x}) & = & \left( \mathbf{x}^T\mathbf{y}+1\right)^2 \nonumber \\
+								 & = & \left( x_1y_1+x_2y_2+1 \right)^2 \nonumber \\
+								 & = & \left( 1+2x_1y_1+2x_2y_2+2x_1x_2y_1y_2+x_1^2y_1^2+x_2^2y_2^2 \right) \nonumber
+		\end{eqnarray}
+
+	Note that this kernel yields exactly the same result as the scalar product $\Phi(\mathbf{y})^T \Phi(\mathbf{x})$ in the 6-dimensional space, whose dimensions are defined as in 
+	the {ref}`example above <ex1>`.
+ ```
+
+In {ref}`the image below <vardegree>` it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG
+---
+align: center
+width: 800pt
+name: vardegree
+---
+Linear kernel vs. polynomial kernel of degree 2 versus polynomial kernel of degree 5. The corresponding discriminant in the original space can be complexer for increasing degree. 
+
+```
+
+##### RBF Kernel
+
+An important non-linear kernel type is the **Radial Basis Function (RBF)**, which is defined as follows:
+
+$$
+K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x}    ||^2   \right]
+$$ (rbfkernel)
+
+This function defines a spherical kernel around the support vector $\mathbf{x}_p$. The hyperparameter $\gamma$ determines the *width* of the spherical kernel. Each of the 4 plots in the image below sketches 3 RBF-kernels around different centers (support vectors) and their sum. In each of the 4 plots a different hyperparameter $\gamma$ has been applied. 
+
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png
+---
+align: center
+width: 800pt
+---
+1-dimensional RBFs of different degrees and different parameters $\gamma$. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line. 
+
+```
+
+In {ref}`the image below <vargamma>` for 4 different values of $\gamma$ the discriminant learned from the given training data is shown. As can be seen, the smaller the value of $\gamma$, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller $\gamma$ reduces the potentential for overfitting.  
 
  
- 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG
+---
+align: center
+width: 800pt
+name: vargamma
+---
+1-dimensional RBFs of different degrees and different parameters $\gamma$. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line. 
+
+```
  

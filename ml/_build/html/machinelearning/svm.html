@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Gaussian Process" href="gp.html" />
-    <link rel="prev" title="Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
+    <link rel="prev" title="Example Linear Regression" href="heartRateRegression.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -115,6 +115,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="parametricClassification1D.html">
    Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heartRateRegression.html">
+   Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -395,23 +405,23 @@ T=\{\mathbf{x}_p,r_p\}_{p=1}^N,
 <li><p><span class="math notranslate nohighlight">\(r_p=+1\)</span>, if <span class="math notranslate nohighlight">\(\mathbf{x}_p \in C_2\)</span></p></li>
 </ul>
 <p>The <strong>training goal</strong> is: Determine the weights <span class="math notranslate nohighlight">\(\mathbf{w}=(w_1,\ldots,w_d)\)</span> and <span class="math notranslate nohighlight">\(w_0\)</span>, such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4a5a0f6-97ec-40ef-a323-99ecb36c5d24">
-<span class="eqno">(1)<a class="headerlink" href="#equation-b4a5a0f6-97ec-40ef-a323-99ecb36c5d24" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-d139e031-a94e-4e87-814d-5416774f4acc">
+<span class="eqno">(17)<a class="headerlink" href="#equation-d139e031-a94e-4e87-814d-5416774f4acc" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \mathbf{w}^T \mathbf{x_p} + w_0 \geq +1 &amp; \mbox{ for } &amp; r_p=+1 \nonumber \\
 \mathbf{w}^T \mathbf{x_p} + w_0 \leq -1 &amp; \mbox{ for } &amp; r_p=-1 \nonumber 
 \label{eq:k2svmklass}
 \end{eqnarray}\]</div>
 <p>This goal can equivalently be formulated by imposing the following condition</p>
 <div class="math notranslate nohighlight" id="equation-condregion">
-<span class="eqno">(2)<a class="headerlink" href="#equation-condregion" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-condregion" title="Permalink to this equation">¶</a></span>\[
 r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 1
 \]</div>
 <p>to be fullfilled for all training-instances. Note, that this condition defines a <strong>boundary area</strong>, rather than just a <strong>boundary line</strong>, as in other algorithms, where the condition, that must be fullfilled is:</p>
 <div class="math notranslate nohighlight" id="equation-condline">
-<span class="eqno">(3)<a class="headerlink" href="#equation-condline" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(19)<a class="headerlink" href="#equation-condline" title="Permalink to this equation">¶</a></span>\[
 r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 0
 \]</div>
-<p>The difference between the two conditions is visualized in the following picture. The plot on the left refers to condition <a class="reference internal" href="#equation-condline">(3)</a>. With this condition a discriminant is learned such that it separates the training-instances of the two classes. The plot on the right refers to condition <a class="reference internal" href="#equation-condregion">(2)</a>. Here, the discriminant is learned such that the two classes are separated and the training-data-free range around the discriminant is as large as possible. The discriminant learned in this way generalizes better (less overfitting). The vectors, which ly on the region-boundary are called <strong>support vectors</strong>.</p>
+<p>The difference between the two conditions is visualized in the following picture. The plot on the left refers to condition <a class="reference internal" href="#equation-condline">(19)</a>. With this condition a discriminant is learned such that it separates the training-instances of the two classes. The plot on the right refers to condition <a class="reference internal" href="#equation-condregion">(18)</a>. Here, the discriminant is learned such that the two classes are separated and the training-data-free range around the discriminant is as large as possible. The discriminant learned in this way generalizes better (less overfitting). The vectors, which ly on the region-boundary are called <strong>support vectors</strong>.</p>
 <div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg" style="width: 600pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Left: Other linear classification algorithms learn discriminantes, which separate the classes with as less as possible errors. Right: Discriminantes learned by SVMs have the additional property, that the training-data-free range around them is maximized.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
@@ -433,12 +443,12 @@ r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 0
 \]</div>
 <p>This condition implies, that <span class="math notranslate nohighlight">\(||\mathbf{w}||\)</span> must be minimized in order to maximize the distance <span class="math notranslate nohighlight">\(\rho\)</span>. We find the minimal weights and therefore the maximal <span class="math notranslate nohighlight">\(\rho\)</span> by minimizing</p>
 <div class="math notranslate nohighlight" id="equation-optw">
-<span class="eqno">(4)<a class="headerlink" href="#equation-optw" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-optw" title="Permalink to this equation">¶</a></span>\[
 \frac{1}{2}||\mathbf{w}||^2
 \]</div>
 <p>under the constraints</p>
 <div class="math notranslate nohighlight" id="equation-optwr">
-<span class="eqno">(5)<a class="headerlink" href="#equation-optwr" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(21)<a class="headerlink" href="#equation-optwr" title="Permalink to this equation">¶</a></span>\[
 r_p(\mathbf{w}^T\mathbf{x}_p+w_0)\geq 1, \quad \forall p
 \]</div>
 <p>This is a standard quadratic optimisation problem with constraints. The complexity of the numeric solution of this problem is proportional to the number of dimensions in the given space. A possible optimisation method is <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin_cobyla.html">Constraint BY Linear Approximation</a>.</p>
@@ -481,7 +491,7 @@ print &quot;Found weights of the optimal discriminant:    &quot;,res
 <p>This drawback of dimension-dependent complexity can be circumvented by transforming the optimisation problem into it’s <strong>dual form</strong> and solving this dual optimisation problem. The complexity of solving the dual form scales with the number of training-instances <span class="math notranslate nohighlight">\(N\)</span>, but not with the dimensionality. Another crucial advantage of the dual form is that it allows the application of the <strong>kernel trick</strong> (see below).</p>
 <div class="section" id="dual-form">
 <h4>Dual Form<a class="headerlink" href="#dual-form" title="Permalink to this headline">¶</a></h4>
-<p>A function <span class="math notranslate nohighlight">\(f(x)\)</span>, such as <a class="reference internal" href="#equation-optw">(4)</a>, that shall be minimized w.r.t. a set of <span class="math notranslate nohighlight">\(N\)</span> constraints, such as <a class="reference internal" href="#equation-optwr">(5)</a>, can always be formulated as an optimisation problems without constraints as follows:</p>
+<p>A function <span class="math notranslate nohighlight">\(f(x)\)</span>, such as <a class="reference internal" href="#equation-optw">(20)</a>, that shall be minimized w.r.t. a set of <span class="math notranslate nohighlight">\(N\)</span> constraints, such as <a class="reference internal" href="#equation-optwr">(21)</a>, can always be formulated as an optimisation problems without constraints as follows:</p>
 <ol>
 <li><p>reformulate all constraints to a form <span class="math notranslate nohighlight">\(c_p(x) \geq 0\)</span></p></li>
 <li><p>the optimisation-problem without constraints is then: Minimize</p>
@@ -492,40 +502,40 @@ print &quot;Found weights of the optimal discriminant:    &quot;,res
 <p>with positive-valued <strong>Lagrange Coefficients <span class="math notranslate nohighlight">\(\alpha_p\)</span></strong>.</p>
 </li>
 </ol>
-<p>The given optimization problem defined by  <a class="reference internal" href="#equation-optw">(4)</a> and  <a class="reference internal" href="#equation-optwr">(5)</a> can then be reformulated as follows: Minimize</p>
+<p>The given optimization problem defined by  <a class="reference internal" href="#equation-optw">(20)</a> and  <a class="reference internal" href="#equation-optwr">(21)</a> can then be reformulated as follows: Minimize</p>
 <div class="math notranslate nohighlight" id="equation-lagrangeorig">
-<span class="eqno">(6)<a class="headerlink" href="#equation-lagrangeorig" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(22)<a class="headerlink" href="#equation-lagrangeorig" title="Permalink to this equation">¶</a></span>\[
   L = \frac{1}{2}||\mathbf{w}||^2 \, - \, \sum\limits_{p=1}^N \alpha_p \left(r_p(\mathbf{w}^T\mathbf{x}_p+w_0)-1\right),
 \]</div>
 <p>For this representation without constraints the <strong>partial derivates</strong> w.r.t. all parameters <span class="math notranslate nohighlight">\(w_i\)</span> are determined:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0839ce81-5c42-46eb-8a56-e3f8bc2a3a79">
-<span class="eqno">(7)<a class="headerlink" href="#equation-0839ce81-5c42-46eb-8a56-e3f8bc2a3a79" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray} 
+<div class="amsmath math notranslate nohighlight" id="equation-09aae56a-b4d3-47c3-8a59-6a318fd1b337">
+<span class="eqno">(23)<a class="headerlink" href="#equation-09aae56a-b4d3-47c3-8a59-6a318fd1b337" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray} 
 \frac{\partial L}{\partial w_i} &amp; = &amp; w_i - \, \sum\limits_{p=1}^N \alpha_p r_p x_{p,i} \quad \mbox{  for  } i=1,\ldots,d \\
 \frac{\partial L}{\partial w_0} &amp; = &amp;  - \sum\limits_{p=1}^N \alpha_p r_p 
 \end{eqnarray}\]</div>
 <p>At the location of the minimum all of these partial derivatives must be 0. Setting all these equations to 0 and resolving them, such that the <span class="math notranslate nohighlight">\(w_i\)</span> are in isolated form on the left side of the equations yields</p>
-<div class="amsmath math notranslate nohighlight" id="equation-20a566e2-d2de-4051-a699-8b46fa7e72ec">
-<span class="eqno">(8)<a class="headerlink" href="#equation-20a566e2-d2de-4051-a699-8b46fa7e72ec" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray} 	 
+<div class="amsmath math notranslate nohighlight" id="equation-2a5f8972-33fc-4794-946c-4885087cf42a">
+<span class="eqno">(24)<a class="headerlink" href="#equation-2a5f8972-33fc-4794-946c-4885087cf42a" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray} 	 
 	\mathbf{w} &amp; = &amp; \sum\limits_{p=1}^N \alpha_p r_p \mathbf{x}_{p} \\
 	0 &amp; = &amp; \sum\limits_{p=1}^N \alpha_p r_p 
 \end{eqnarray}\]</div>
-<p>The <strong>dual form</strong> can then be obtained by inserting these equations for <span class="math notranslate nohighlight">\(w_i\)</span> into equation <a class="reference internal" href="#equation-lagrangeorig">(6)</a>. This dual form is:</p>
+<p>The <strong>dual form</strong> can then be obtained by inserting these equations for <span class="math notranslate nohighlight">\(w_i\)</span> into equation <a class="reference internal" href="#equation-lagrangeorig">(22)</a>. This dual form is:</p>
 <p>Maximize</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a18ebda9-39fc-4616-b8bd-0c8e8ad4de5a">
-<span class="eqno">(9)<a class="headerlink" href="#equation-a18ebda9-39fc-4616-b8bd-0c8e8ad4de5a" title="Permalink to this equation">¶</a></span>\[\begin{equation} 	 
+<div class="amsmath math notranslate nohighlight" id="equation-adb64085-2ee8-4d8d-bf17-020b9b158e6f">
+<span class="eqno">(25)<a class="headerlink" href="#equation-adb64085-2ee8-4d8d-bf17-020b9b158e6f" title="Permalink to this equation">¶</a></span>\[\begin{equation} 	 
 L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s r_p r_s \mathbf{x}_p^T \mathbf{x}_s \right)+\sum\limits_{p=1}^N \alpha_p 
 	\label{eq:dualopt}
 \end{equation}\]</div>
 <p>w.r.t. the Lagrange-Coefficients <span class="math notranslate nohighlight">\(\alpha_p\)</span> under the restriction</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4aa5f940-7545-4643-af01-8f53e03ae217">
-<span class="eqno">(10)<a class="headerlink" href="#equation-4aa5f940-7545-4643-af01-8f53e03ae217" title="Permalink to this equation">¶</a></span>\[\begin{equation} 	
+<div class="amsmath math notranslate nohighlight" id="equation-3c163b5a-17a5-40f2-b0dd-858701b99871">
+<span class="eqno">(26)<a class="headerlink" href="#equation-3c163b5a-17a5-40f2-b0dd-858701b99871" title="Permalink to this equation">¶</a></span>\[\begin{equation} 	
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{and} \quad \alpha_p \geq 0 \quad \forall p
 \label{eq:dualoptR}
 \end{equation}\]</div>
 <p>This dual form can be solved by numeric algorithms for quadratic optimization. The solution reveals, that almost all of the <span class="math notranslate nohighlight">\(N\)</span> Lagrange-Coefficients <span class="math notranslate nohighlight">\(\alpha_p\)</span> are 0. The training instances <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span>, for which <span class="math notranslate nohighlight">\(\alpha_p&gt;0\)</span> are called <strong>Support Vectors</strong>.</p>
 <p>From the <span class="math notranslate nohighlight">\(\alpha_p&gt;0\)</span> and the Support Vectors, the parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> can be determined as follows:</p>
 <div class="math notranslate nohighlight" id="equation-sumofsupport">
-<span class="eqno">(11)<a class="headerlink" href="#equation-sumofsupport" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(27)<a class="headerlink" href="#equation-sumofsupport" title="Permalink to this equation">¶</a></span>\[
 \mathbf{w}=\sum\limits_{p=1}^N \alpha_p r_p \mathbf{x}_p
 \]</div>
 <p>This sum depends only on the Support Vectors. Note that <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> doesn’t contain <span class="math notranslate nohighlight">\(w_0\)</span>. In order to determine this remaining parameter we can exploit the property of Support Vectors to lie exactly on the boundary of the region around the discriminant. This means that for all Support Vectors we have:</p>
@@ -570,7 +580,7 @@ g_j(\mathbf{x})=\mathbf{w}_j^T \mathbf{x} +w_{0,j}
 \]</div>
 <p>With this, the optimisation problem can now be reformulated to minimize</p>
 <div class="math notranslate nohighlight" id="equation-minsofterror">
-<span class="eqno">(12)<a class="headerlink" href="#equation-minsofterror" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(28)<a class="headerlink" href="#equation-minsofterror" title="Permalink to this equation">¶</a></span>\[
 \min(\frac{1}{2}||\mathbf{w}||^2 + C\sum\limits_{p=1}^N \zeta_p  )
 \]</div>
 <p>under the restriction</p>
@@ -581,7 +591,7 @@ r_p(\mathbf{w}^T\mathbf{x}_p+w_0)\geq 1 - \zeta_p, \quad \forall p
 <p>with <span class="math notranslate nohighlight">\(\zeta_p \geq 0\)</span></p>
 <p>The corresponding <strong>dual form</strong> is: Maximize</p>
 <div class="math notranslate nohighlight" id="equation-linmax">
-<span class="eqno">(13)<a class="headerlink" href="#equation-linmax" title="Permalink to this equation">¶</a></span>\[	 
+<span class="eqno">(29)<a class="headerlink" href="#equation-linmax" title="Permalink to this equation">¶</a></span>\[	 
 L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s r_p r_s \mathbf{x}_p^T \mathbf{x}_s \right)+\sum\limits_{p=1}^N \alpha_p
 \]</div>
 <p>w.r.t. the Lagrange-Coefficients <span class="math notranslate nohighlight">\(\alpha_p\)</span> under the restriction</p>
@@ -589,7 +599,7 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 \[	 
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{und} \quad  0 \leq \alpha_p \leq C \quad \forall p.
 \]</div>
-<p>The parameter <span class="math notranslate nohighlight">\(C\)</span> in equation <a class="reference internal" href="#equation-minsofterror">(12)</a> is an important hyperparameter, which can be configured to control overfitting. A large value for <span class="math notranslate nohighlight">\(C\)</span> means that in the minimization process the minimization of the soft-error is more important than the minimization of the weights <span class="math notranslate nohighlight">\(||\mathbf{w}||^2\)</span> (i.e. the regularisation). On the other hand, a small value for <span class="math notranslate nohighlight">\(C\)</span> yields a discriminant with a wider margin around it and therefore a better generalizing model. This is visualized in the two plots of the figure below.</p>
+<p>The parameter <span class="math notranslate nohighlight">\(C\)</span> in equation <a class="reference internal" href="#equation-minsofterror">(28)</a> is an important hyperparameter, which can be configured to control overfitting. A large value for <span class="math notranslate nohighlight">\(C\)</span> means that in the minimization process the minimization of the soft-error is more important than the minimization of the weights <span class="math notranslate nohighlight">\(||\mathbf{w}||^2\)</span> (i.e. the regularisation). On the other hand, a small value for <span class="math notranslate nohighlight">\(C\)</span> yields a discriminant with a wider margin around it and therefore a better generalizing model. This is visualized in the two plots of the figure below.</p>
 <div class="figure align-center" id="id7">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmsoftmarg.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmsoftmarg.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/svmsoftmarg.jpg" style="width: 600pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Left: A high value for C implies that in the minimization process the minimization of the soft-error is more important than the maximisation of the margin around the discriminant. This yields a model, which is stronger fitted to the trainng-data than the model on the right hand side. Here a smaller value of C yields more regularisation and a thus a smaller risk of overfitting.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
@@ -599,7 +609,7 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 </div>
 <div class="section" id="non-linear-svm-classification">
 <h3>Non-linear SVM classification<a class="headerlink" href="#non-linear-svm-classification" title="Permalink to this headline">¶</a></h3>
-<p>SVMs, as described in the previous subsections, find robust linear discriminants. These SVMs are said to have a <em>linear kernel</em>. In particular,the scalar product <span class="math notranslate nohighlight">\(\mathbf{x}_p^T \mathbf{x}_s\)</span> in equation <a class="reference internal" href="#equation-linmax">(13)</a> constitutes the linear kernel. In the sequel non-linear kernels will be introduced. The idea is to transform the inputs <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> into a higher-dimensional space, where this input data is linear-separable. This idea has already been sketched in the <a class="reference internal" href="#transformhigh"><span class="std std-ref">figure above</span></a>. In the figure below a concrete transformation is shown.</p>
+<p>SVMs, as described in the previous subsections, find robust linear discriminants. These SVMs are said to have a <em>linear kernel</em>. In particular,the scalar product <span class="math notranslate nohighlight">\(\mathbf{x}_p^T \mathbf{x}_s\)</span> in equation <a class="reference internal" href="#equation-linmax">(29)</a> constitutes the linear kernel. In the sequel non-linear kernels will be introduced. The idea is to transform the inputs <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> into a higher-dimensional space, where this input data is linear-separable. This idea has already been sketched in the <a class="reference internal" href="#transformhigh"><span class="std std-ref">figure above</span></a>. In the figure below a concrete transformation is shown.</p>
 <div class="figure align-center" id="id8">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmTransformedData.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmTransformedData.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svmTransformedData.png" style="width: 800pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Left: Original 2-dimensional space. As can be seen the two classes are not linearly separable in this space. Right: After a non-linear transformation into a new space, in this case also a 2-dimensional space, data is linearly separable. A SVM with a non-linear kernel, learns a linear discriminant into a new space, which corrsponds to a non-linear class-boundary in the original space. The transformation applied here is defined by <span class="math notranslate nohighlight">\(z_1 = \Phi_1(x_1)=x_1^3\)</span> and <span class="math notranslate nohighlight">\(z_2 = \Phi_2(x_2)=x_2\)</span></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
@@ -614,66 +624,108 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 <li><p><span class="math notranslate nohighlight">\(\mathbf{z}_p = \Phi(\mathbf{x}_p)\)</span> is the representation of <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> in <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
 </ul>
 </div>
-<div class="tip admonition">
+<div class="tip admonition" id="ex1">
 <p class="admonition-title">Example Transformation</p>
 <ul class="simple">
 <li><p>Original space <span class="math notranslate nohighlight">\(X\)</span>: <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> with <span class="math notranslate nohighlight">\(d=2\)</span> basis-functions <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span></p></li>
 <li><p>High-dimensional space <span class="math notranslate nohighlight">\(Z\)</span>: <span class="math notranslate nohighlight">\(\mathbb{R}^6\)</span> with <span class="math notranslate nohighlight">\(r=6\)</span> basis functions</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-50bc8b86-7847-4176-9cb3-696dba6f4a03">
-<span class="eqno">(14)<a class="headerlink" href="#equation-50bc8b86-7847-4176-9cb3-696dba6f4a03" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-051caeac-614d-4e70-a5c6-1b74753b67e8">
+<span class="eqno">(30)<a class="headerlink" href="#equation-051caeac-614d-4e70-a5c6-1b74753b67e8" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
    z_1=\Phi_1(\mathbf{x}) &amp; = &amp; 1 \nonumber\\
    z_2=\Phi_2(\mathbf{x}) &amp; = &amp; \sqrt{2}x_1 \nonumber\\
    z_3=\Phi_3(\mathbf{x}) &amp; = &amp; \sqrt{2}x_2 \nonumber\\
    z_4=\Phi_4(\mathbf{x})&amp; = &amp; \sqrt{2}x_1 x_2 \nonumber\\
    z_5=\Phi_5(\mathbf{x}) &amp; = &amp; x_1^2 \nonumber\\
    z_6=\Phi_6(\mathbf{x}) &amp;=&amp; x_2^2 
-   \label{eq:ex1}
    \end{eqnarray}\]</div>
 </div>
 <p>The linear discriminant in the high-dimensional space <span class="math notranslate nohighlight">\(Z\)</span> is defined by:</p>
 <div class="math notranslate nohighlight" id="equation-diskz">
-<span class="eqno">(15)<a class="headerlink" href="#equation-diskz" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-diskz" title="Permalink to this equation">¶</a></span>\[
 g(\mathbf{z})=\mathbf{w}^T\mathbf{z} +w_0 \quad = \mathbf{w}^T \Phi(\mathbf{x}) +w_0 \quad = \sum\limits_{j=1}^6 w_j \Phi_j (\mathbf{x}) +w_0
 \]</div>
-<p>\end{equation}</p>
 <div class="section" id="kernel-trick">
 <h4>Kernel Trick<a class="headerlink" href="#kernel-trick" title="Permalink to this headline">¶</a></h4>
 <p>In the example above the number of dimensions in the high-dimensional space, in which the discriminant is determined, has been <span class="math notranslate nohighlight">\(r=6\)</span>. In practical cases however, the dimensionality of the new space can be extremely large, such that it would be computational infeasible to transform data in this space and calculate the discriminant there. The transformation can be avoided by applying the <em>kernel-trick</em>, which is described here:</p>
-<p>As in equation <a class="reference internal" href="#equation-sumofsupport">(11)</a>, we assume that the weights can be obtained as a weighted sum of support vectors. The only difference is that now we sum up the transformations of the support vectors:</p>
+<p>As in equation <a class="reference internal" href="#equation-sumofsupport">(27)</a>, we assume that the weights can be obtained as a weighted sum of support vectors. The only difference is that now we sum up the transformations of the support vectors:</p>
 <div class="math notranslate nohighlight" id="equation-sumofsupporttrans">
-<span class="eqno">(16)<a class="headerlink" href="#equation-sumofsupporttrans" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-sumofsupporttrans" title="Permalink to this equation">¶</a></span>\[
 \mathbf{w}= \sum\limits_{p=1}^N \alpha_p r_p \Phi(\mathbf{x}_p) 
 \]</div>
-<p>By inserting equation <a class="reference internal" href="#equation-sumofsupporttrans">(16)</a> into the discriminant definition <a class="reference internal" href="#equation-diskz">(15)</a> we obtain:</p>
+<p>By inserting equation <a class="reference internal" href="#equation-sumofsupporttrans">(32)</a> into the discriminant definition <a class="reference internal" href="#equation-diskz">(31)</a> we obtain:</p>
 <div class="math notranslate nohighlight" id="equation-diskx">
-<span class="eqno">(17)<a class="headerlink" href="#equation-diskx" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-diskx" title="Permalink to this equation">¶</a></span>\[
 g(\mathbf{x})= \mathbf{w}^T \Phi(\mathbf{x}) +w_0 \quad = \sum\limits_{p=1}^N \left( \alpha_p r_p \Phi(\mathbf{x}_p)^T \Phi(\mathbf{x})\right) +w_0
 \]</div>
 <p>The <strong>kernel-trick</strong> is now to apply a non-linear kernel function <span class="math notranslate nohighlight">\(K(\mathbf{x}_p,\mathbf{x})\)</span>, which yields the same result as the scalar-product <span class="math notranslate nohighlight">\(\Phi(\mathbf{x}_p)^T \Phi(\mathbf{x})\)</span> in the high-dimensional space, but can be performed in the original space.</p>
 <div class="math notranslate nohighlight" id="equation-diskkern">
-<span class="eqno">(18)<a class="headerlink" href="#equation-diskkern" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-diskkern" title="Permalink to this equation">¶</a></span>\[
 g(\mathbf{x})=  \sum\limits_{p=1}^N \left( \alpha_p r_p  K(\mathbf{x}_p,\mathbf{x}) \right) +w_0
 \]</div>
 <p>In order to calculate this discriminant the Langrange-coefficients <span class="math notranslate nohighlight">\(\alpha_p\)</span> must be determined. They are obtained, as in the linear case, by maximizing</p>
 <div class="math notranslate nohighlight" id="equation-ldnonlinear">
-<span class="eqno">(19)<a class="headerlink" href="#equation-ldnonlinear" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-ldnonlinear" title="Permalink to this equation">¶</a></span>\[
 L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s r_p r_s K(\mathbf{x}_p^T, \mathbf{x}_s) \right)+\sum\limits_{p=1}^N \alpha_p 
 \]</div>
 <p>w.r.t. the Langrange-coefficients under the constraints</p>
 <div class="math notranslate nohighlight" id="equation-ldrestrictions">
-<span class="eqno">(20)<a class="headerlink" href="#equation-ldrestrictions" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(36)<a class="headerlink" href="#equation-ldrestrictions" title="Permalink to this equation">¶</a></span>\[
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{and} \quad  0 \leq \alpha_p \leq C \quad \forall p .
 \]</div>
-<p>This already describes the entire training-process for non-linear SVM classifiers. However, you may wonder how to find a suitable transformation <span class="math notranslate nohighlight">\(\mathbf{\Phi}\)</span> and a corresponding kernel <span class="math notranslate nohighlight">\(K(\mathbf{x}_p^T, \mathbf{x}_s)\)</span>? Actually, in practical SVMs we do not take care about a concrete transformation. Instead we select select a type of kernel (linear, polynomila or RBF). The selected kernel corresponds to a transformation into a higher-dimensional space, but we do not have to care about this transformation. We just need the kernel-function.</p>
+<p>This already describes the entire training-process for non-linear SVM classifiers. However, you may wonder how to find a suitable transformation <span class="math notranslate nohighlight">\(\Phi\)</span> and a corresponding kernel <span class="math notranslate nohighlight">\(K(\mathbf{x}_p^T, \mathbf{x}_s)\)</span>? Actually, in practical SVMs we do not take care about a concrete transformation. Instead we select a type of kernel (linear, polynomial or RBF). The selected kernel corresponds to a transformation into a higher-dimensional space, but we do not have to care about this transformation. We just need the kernel-function.</p>
 <div class="section" id="linear-kernel">
 <h5>Linear Kernel<a class="headerlink" href="#linear-kernel" title="Permalink to this headline">¶</a></h5>
+<p>The linear kernel is just the scalar-product of the input vectors:</p>
+<div class="math notranslate nohighlight" id="equation-linkernel">
+<span class="eqno">(37)<a class="headerlink" href="#equation-linkernel" title="Permalink to this equation">¶</a></span>\[
+K_{lin}(\mathbf{x}_p,\mathbf{x}) = \mathbf{x}_p^T \mathbf{x}
+\]</div>
+<p>By inserting this linear kernel into equation <a class="reference internal" href="#equation-ldnonlinear">(35)</a> we obtain equation <a class="reference internal" href="#equation-linmax">(29)</a>. I.e. by applying the linear kernel no transform to a higher-dimensional space is performed. Instead just a linear discriminant is learned in the original space, as described in previous section.</p>
 </div>
 <div class="section" id="polynomial-kernel">
 <h5>Polynomial Kernel<a class="headerlink" href="#polynomial-kernel" title="Permalink to this headline">¶</a></h5>
+<p>Polynomial kernels are defined by</p>
+<div class="math notranslate nohighlight" id="equation-polkernel">
+<span class="eqno">(38)<a class="headerlink" href="#equation-polkernel" title="Permalink to this equation">¶</a></span>\[
+K_{pol}(\mathbf{x}_p,\mathbf{x}) = \left( \mathbf{x}^T\mathbf{x}_p+1\right)^q,
+\]</div>
+<p>where the degree <span class="math notranslate nohighlight">\(q\)</span> is a hyperparameter and helps to control the complexity of the learned models. The higher the degree <span class="math notranslate nohighlight">\(q\)</span>, the higher the dimension of the corresponding space, to which data is virtually transformed, and the higher the complexity of the learned model.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example Polynomial kernel with degree <span class="math notranslate nohighlight">\(d=2\)</span></p>
+<p>For a degree of <span class="math notranslate nohighlight">\(d=2\)</span>, the polynomial kernel as defined in <a class="reference internal" href="#equation-polkernel">(38)</a> is (for a better readability we replaced <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> by <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1d8f1523-854e-4776-8cf9-8990503582ea">
+<span class="eqno">(39)<a class="headerlink" href="#equation-1d8f1523-854e-4776-8cf9-8990503582ea" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+   	K(\mathbf{y},\mathbf{x}) &amp; = &amp; \left( \mathbf{x}^T\mathbf{y}+1\right)^2 \nonumber \\
+   							 &amp; = &amp; \left( x_1y_1+x_2y_2+1 \right)^2 \nonumber \\
+   							 &amp; = &amp; \left( 1+2x_1y_1+2x_2y_2+2x_1x_2y_1y_2+x_1^2y_1^2+x_2^2y_2^2 \right) \nonumber
+   	\end{eqnarray}\]</div>
+<p>Note that this kernel yields exactly the same result as the scalar product <span class="math notranslate nohighlight">\(\Phi(\mathbf{y})^T \Phi(\mathbf{x})\)</span> in the 6-dimensional space, whose dimensions are defined as in
+the <a class="reference internal" href="#ex1"><span class="std std-ref">example above</span></a>.</p>
+</div>
+<p>In <a class="reference internal" href="#vardegree"><span class="std std-ref">the image below</span></a> it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.</p>
+<div class="figure align-center" id="vardegree">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG" style="width: 800pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Linear kernel vs. polynomial kernel of degree 2 versus polynomial kernel of degree 5. The corresponding discriminant in the original space can be complexer for increasing degree.</span><a class="headerlink" href="#vardegree" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="rbf-kernel">
 <h5>RBF Kernel<a class="headerlink" href="#rbf-kernel" title="Permalink to this headline">¶</a></h5>
+<p>An important non-linear kernel type is the <strong>Radial Basis Function (RBF)</strong>, which is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-rbfkernel">
+<span class="eqno">(40)<a class="headerlink" href="#equation-rbfkernel" title="Permalink to this equation">¶</a></span>\[
+K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x}    ||^2   \right]
+\]</div>
+<p>This function defines a spherical kernel around the support vector <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span>. The hyperparameter <span class="math notranslate nohighlight">\(\gamma\)</span> determines the <em>width</em> of the spherical kernel. Each of the 4 plots in the image below sketches 3 RBF-kernels around different centers (support vectors) and their sum. In each of the 4 plots a different hyperparameter <span class="math notranslate nohighlight">\(\gamma\)</span> has been applied.</p>
+<div class="figure align-center" id="id9">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png" src="https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png" style="width: 800pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">1-dimensional RBFs of different degrees and different parameters <span class="math notranslate nohighlight">\(\gamma\)</span>. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<p>In <a class="reference internal" href="#vargamma"><span class="std std-ref">the image below</span></a> for 4 different values of <span class="math notranslate nohighlight">\(\gamma\)</span> the discriminant learned from the given training data is shown. As can be seen, the smaller the value of <span class="math notranslate nohighlight">\(\gamma\)</span>, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller <span class="math notranslate nohighlight">\(\gamma\)</span> reduces the potentential for overfitting.</p>
+<div class="figure align-center" id="vargamma">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG" style="width: 800pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">1-dimensional RBFs of different degrees and different parameters <span class="math notranslate nohighlight">\(\gamma\)</span>. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line.</span><a class="headerlink" href="#vargamma" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -708,7 +760,7 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="parametricClassification1D.html" title="previous page">Bayes- and Naive Bayes Classifier</a>
+    <a class='left-prev' id="prev-link" href="heartRateRegression.html" title="previous page">Example Linear Regression</a>
     <a class='right-next' id="next-link" href="gp.html" title="next page">Gaussian Process</a>
 
     </div>
