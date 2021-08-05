@@ -189,7 +189,18 @@ $$
 weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 $$ (genreg)
 
-The regularisation methods differ in the definition of the *regularisation-term*. The hyperparameter $\lambda$ is used to control the trade-off between error-minimisation and weight-minimisation.
+The different techniques described below all perform linear regression, but differ in the used *regularisation-term*. The hyperparameter $\lambda$ is used to control the trade-off between error-minimisation and weight-minimisation.
+
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png
+---
+align: center
+width: 800pt
+name: regular
+---
+The plot on the left hand side displays a polynomial of degree 7, which has been learned from the given training data without regularisation. It can be observed, that the weights have comparatively high values and the learned function is tightly fitted to training data (overfitted). In contrast on the right hand side regularisation has been applied (Ridge regression). It can be seen, that now the learned weights are much smaller and the corresponding curve is smoother and not overfitted to training data.
+
+```
 
 ### Ridge Regression
 
@@ -199,7 +210,7 @@ $$
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_2^2 \right),
 $$ (ridge)
 
-where the **p-norm** $$||w||_p$$ is defined to be
+where the **p-norm** $||w||_p$ is defined to be
 
 $$
 ||w||_p = \left(\sum\limits_{i} |w_i|^p \right)^{\frac{1}{p}}

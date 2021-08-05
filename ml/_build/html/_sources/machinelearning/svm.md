@@ -175,7 +175,7 @@ The figure below visualizes the discriminant, as learned in the code-cell above.
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/nonlinsep8pointsDiscriminant.png
 ---
 align: center
-width: 600pt
+width: 500pt
 ---
 The learned discriminant is characterised by having a maximum training-data free margin around it.
 ```
@@ -494,10 +494,205 @@ In {ref}`the image below <vargamma>` for 4 different values of $\gamma$ the disc
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG
 ---
 align: center
-width: 800pt
-name: vargamma
+width: 600pt
+name: svcgammainfluence
 ---
 1-dimensional RBFs of different degrees and different parameters $\gamma$. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line. 
 
 ```
+
+
+## SVM for Regression (SVR)
+
+### Recap Linear Regression
+
+The supervised learning category regression has already been introduced in section [Linear Regression](LinReg). Recall that in linear regression during training in general the weights $w_i \in \Theta$ are determined, which minimize the regularized loss function:
+
+$$
+\mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \rho ||w||_1  +  \frac{\lambda (1-\rho)}{2} ||w||_2^2 \right),
+$$ (elasticnet2)
+
+In this function, the case 
+
+* $\lambda = 0$ refers to *Ordinary Least Square* without regularisation
+* $\lambda > 0 \mbox{ and } \rho=0$ refers to *Ridge Regression*
+* $\lambda > 0 \mbox{ and } \rho=1$ refers to *Lasso Regression*
+* $\lambda > 0 \mbox{ and } 0< \rho < 1$ refers to *Elastic Net Regression*
+
+### Optimisation Objective in SVR training
+
+The goal of SVR training is not to find the $g(\mathbf{x}|\Theta)$, which minimizes any variant of equation {eq}`elasticnet2`. Instead a $g(\mathbf{x}|\Theta)$ has to be determined, for which the relation
+
+$$
+g(\mathbf{x}_t|\Theta) < \epsilon
+$$ (epscond)
+
+is true for all $(\mathbf{x}_t,r_t) \in T$. This means that all training instances must be located within a region of radius $\epsilon$ around $g(\mathbf{x}|\Theta)$. This region will be called the **$\epsilon$-tube** of $g(\mathbf{x}|\Theta)$. The radius $\epsilon$ of the tube is a hyperparameter, which is configured by the user.
+
+In the image below a $g(\mathbf{x}|\Theta)$, which fulfills the condition that all training instances are located within it's $\epsilon$-tube is shown. 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svrLinEps08.png
+---
+align: center
+width: 600pt
+name: svrlineps
+---
+For the configured $\epsilon$ a $g(\mathbf{x}|\Theta)$ has been determined, which fulfills condition {eq}`epscond` for all training elements. I.e. all training instances lie within the $\epsilon$-tube.
+
+```
+
+In order to find a regularized $g(\mathbf{x}|\Theta)$, which fulfills condition {eq}`epscond` the following quadratic optimisation problem with constraints is solved:
+Find
+
+$$
+\min(\frac{1}{2}||\mathbf{w}||^2) 
+$$ (svrminweight)
+
+such that 
+
+$$
+\mathbf{w}^T\mathbf{x}_t+w_0 -r_t \leq \epsilon, \quad \mbox{ or } \quad r_t-(\mathbf{w}^T\mathbf{x}_t+w_0) \leq \epsilon \quad \forall t
+$$ (svrcond)
+
+Depending on the configured value for $\epsilon$ this optimisation problem may be not solvable. In this case a similar approach is implemented as in equation {eq}`minsofterror` for SVM classification. I.e. one accepts a **soft-error** for each training instance $(\mathbf{x}_t,r_t) \in T$ but tries to keep the sum over all soft-errors as small as possible.
+
+The soft-error of a single training instance $(\mathbf{x}_t,r_t)$ is defined to be the distance between the target $r_t$ and the boundary of the $\epsilon$-tube around $g(\mathbf{x}|\Theta)$. This means that all instances, which lie within the $\epsilon$-tube do not contribute to the error at all! 
+
+Formally, the so called **$\epsilon$-sensitive error function** is
+
+$$
+E(T)=  \sum\limits_{t=1}^N E_{\epsilon}(g(x_t)-r_t), \mbox{ where }\\
+E_{\epsilon}(g(x_t)-r_t) = \left\{ 
+	\begin{array}{ll}
+	0 & \mbox{ falls }  |g(x_t)-r_t| < \epsilon \\
+	|g(x_t)-r_t| - \epsilon & sonst \\
+	\end{array}
+	\right.
+$$ (epserror)
+
+Besides the property that deviations within the $\epsilon$-tube are ignored, there is another crucial difference compared to the MSE: The difference between the model's prediction and the target contributes only linearly to the entire soft-error. This linear increase of the error, compared to the quadratic-increase of the MSE, is depicted in the image below. Because of these properties SVR regression is more robust in the presence of outliers.
  
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svmErrorFunc.png
+---
+align: center
+width: 600pt
+name: svrerrorfunction
+---
+Linear Increase of $\epsilon$-sensitive error (red) compared to quadratic increase of MSE (blue).
+
+```
+
+As already mentioned, the soft-error of a single training instance $(\mathbf{x}_t,r_t)$ is defined to be the distance between the target $r_t$ and the boundary of the $\epsilon$-tube around $g(\mathbf{x}|\Theta)$. For training instances $(\mathbf{x}_t,r_t)$ above the **$\epsilon$-tube**, the error-margin is denoted by $\zeta_t$. For training instances $(\mathbf{x}_t,r_t)$ below the **$\epsilon$-tube**, the error-margin is denoted by $\widehat{\zeta}_t$.
+
+  
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinReg011.png
+---
+align: center
+width: 600pt
+name: svrnonlinreg
+---
+Only the training instances outside the $\epsilon$-tube contibute to the soft-error. For instances below the tube the error margin is denoted by $\widehat{\zeta}_t$, for instances above the tube the margin is denoted by $\zeta_t$.
+
+```
+
+Similar as in equation {eq}`minsofterror` for SVM classification, the optimisation problem, which accepts error-margins is now:
+
+Minimize
+
+$$
+C \sum\limits_{t=1}^N(\zeta_t+\widehat{\zeta_t}) \, + \, \frac{1}{2}||\mathbf{w}||^2
+$$ (svrsoftopt)
+
+for $\zeta_t \geq 0$ and $\widehat{\zeta_t} > 0$ and
+
+\begin{eqnarray}
+r_t - g(x_t) & \leq & \epsilon + \zeta_t  \nonumber \\
+g(x_t) - r_t & \leq & \epsilon + \widehat{\zeta}_t. \nonumber \\
+\end{eqnarray}
+
+The dual form of this optimisation problem is :
+
+Maximize
+
+$$
+L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( (\alpha_p-\widehat{\alpha}_p) (\alpha_s -\widehat{\alpha}_s) K(\mathbf{x}_p , \mathbf{x}_s) \right)   
+	- \epsilon \sum\limits_{p=1}^N (\alpha_p+\widehat{\alpha}_p) + \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p)r_p,
+$$ (dualoptsvr)
+
+w.r.t. the Langrange coefficients $\alpha_p$ (corresponds to error-margin $\zeta_p$) and $\widehat{\alpha}_p$ (corresponds to error-margin $\widehat{\zeta}_p$) under the constraints
+
+\begin{eqnarray}
+  0 \leq \alpha_p \leq C \\
+  0 \leq \widehat{\alpha}_p \leq C \\
+  \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) = 0
+\end{eqnarray}
+
+For the kernel 
+
+$$
+K(\mathbf{x}_p , \mathbf{x}_s)= \Phi(\mathbf{x}_p)^T \Phi(\mathbf{x}_s)
+$$
+
+in equation {eq}`dualoptsvr` the same options can be applied as in the classification task, e.g. linear-, polynomial- or RBF-kernel.
+
+The result of the above optimisation are the Lagrange coefficients $\alpha_p$ and $\widehat{\alpha}_p$. Similar to equation {eq}`sumofsupporttrans` for SVM classification, the weights can be calculated by 
+
+$$
+ \mathbf{w}=\sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) \Phi(\mathbf{x}_p), 
+$$ (wreg)
+
+Inserting this equation for the weights into 
+
+$$
+g(\mathbf{x})= \mathbf{w}^T \Phi(\mathbf{x}) +w_0
+$$
+
+yields
+
+$$
+g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) k(\mathbf{x},\mathbf{x}_p)+w_0
+$$ (svrpartw)
+
+The training inputs $\mathbf{x}_p$ with $\alpha_p \neq 0 \vee \widehat{\alpha}_p \neq 0$ are the support vectors. Only the support vectors determine the learned function. It can be shown, that all training instances $(\mathbf{x}_t,r_t)$, which lie
+
+* within the $\epsilon$-tube have $\alpha_p=\widehat{\alpha}_p=0$
+* on the upper boundary of the $\epsilon$-tube have $0 < \alpha_p < C \quad \widehat{\alpha}_p = 0$ 
+* above the upper boundary of the $\epsilon$-tube have $\alpha_p = C \quad \widehat{\alpha}_p = 0$
+* on the lower boundary of the $\epsilon$-tube have $\alpha_p \quad 0 < \widehat{\alpha}_p < C$ 
+* below the lower boundary of the $\epsilon$-tube have $\alpha_p = 0 \quad \widehat{\alpha}_p = C$
+
+I.e. the support vectors are all input-vectors, which do not lie within the $\epsilon$-tube.
+
+In equation {eq}`svrpartw` the weight $w_0$ is still unknown. It can be calculated for example by choosing a training instance $(\mathbf{x}_t,r_t)$ for which the corresponding Lagrange coefficient fulfills $0 < \alpha_p < C$. This training instance lies on the upper boundary of the $\epsilon$-tube, i.e. $\zeta=0$ and therefore
+
+$$
+w_0 = r_p - \epsilon - \sum\limits_{m=1}^N (\alpha_m-\widehat{\alpha}_m) k(\mathbf{x_p},\mathbf{x}_m).
+$$
+
+### Influence of the hyperparameters
+
+Besides the kernel-function the most important hyperparameters of SVRs are the radius of the tube $\epsilon$ and the parameter $C$. As can be seen in equation {eq}`svrsoftopt` a higher value of $C$ yields less importance on weight-minimmisation and therefore a stronger fit to the training data. The hyperparameter $\epsilon$ also influences underfitting and overfitting, respectively. A large radius of the tube (large $\epsilon$) implies that many training-instances lie within the tube. Accordingly the number of support-vectors is small and it's relatively easy to achieve a small overall soft-error. With wide tubes that easily cover all training elements weight-minimizsation gets easier and the chance for underfitting increases.
+
+The influence of $\epsilon$ and $C$ is visualized in the images below.
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryEps.png
+---
+align: center
+width: 600pt
+name: varepsilon
+---
+Learned SVR models with RBF kernels. Parameter $C=10$ is fixed. Parameter $\epsilon$ increases from the upper left to the lower right plot. Smaller $\epsilon$ increases the chance of overfitting.
+
+```
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryC.png
+---
+align: center
+width: 600pt
+name: varC
+---
+Learned SVR models with RBF kernels. Parameter $\epsilon=0.2$ is fixed. Parameter $C$ increases from the upper left to the lower right plot. Higher $C$ increases the chance of overfitting.
+
+```
