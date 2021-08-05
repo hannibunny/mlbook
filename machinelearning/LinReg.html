@@ -372,8 +372,8 @@ E(\Theta | T)=\frac{1}{2} \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 = \
 <p>This means that the learning task is: <strong>Determine the parameters <span class="math notranslate nohighlight">\(w_i \in \Theta\)</span>, which minimize the SSE (function <a class="reference internal" href="#equation-sse">(2)</a>).</strong></p>
 <p>In general, in order to find the value <span class="math notranslate nohighlight">\(x\)</span>, at which a function <span class="math notranslate nohighlight">\(f(x)\)</span> is minimal, we have to calculate the first derivation <span class="math notranslate nohighlight">\(f'(x)=\frac{\partial f}{\partial x} \)</span> and determine it’s zeros.</p>
 <p>Here we have an error function <span class="math notranslate nohighlight">\(E(\Theta | T)\)</span>, which depends not only on a single variable, but on all weights <span class="math notranslate nohighlight">\(w_i \in \Theta\)</span>. Hence, we have to determine all partial derivatives</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a0600f9-c5fb-4a52-b017-bf664fd64a88">
-<span class="eqno">(3)<a class="headerlink" href="#equation-8a0600f9-c5fb-4a52-b017-bf664fd64a88" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-f26c9396-a629-4bc8-bc3c-70eea22f3ff8">
+<span class="eqno">(3)<a class="headerlink" href="#equation-f26c9396-a629-4bc8-bc3c-70eea22f3ff8" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \frac{\partial E}{\partial w_0} &amp;=&amp; \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -1 \nonumber \\
 \frac{\partial E}{\partial w_1} &amp;=&amp; \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{1,t} \nonumber \\
 \vdots							&amp;=&amp;	\vdots \nonumber \\
@@ -418,8 +418,8 @@ E(\Theta | T)=\frac{1}{2} \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 = \
 	\right]
 \end{split}\]</div>
 <p>For an efficient solution one usually calulates <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b18520cb-80a2-4dd3-9dfa-4e9bc78bff2c">
-<span class="eqno">(6)<a class="headerlink" href="#equation-b18520cb-80a2-4dd3-9dfa-4e9bc78bff2c" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-d5757ec6-3553-4bfe-be1c-b7b936e879cf">
+<span class="eqno">(6)<a class="headerlink" href="#equation-d5757ec6-3553-4bfe-be1c-b7b936e879cf" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \mathbf{A} &amp; = &amp; \mathbf{D}^T \mathbf{D} \nonumber \\
 \mathbf{y} &amp; = &amp; \mathbf{D}^T \mathbf{r} \nonumber
 \end{eqnarray}\]</div>
@@ -460,8 +460,8 @@ g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + \Phi_2(\mathbf{x}) + \cdots + \Phi_
 <div class="tip admonition" id="exlin1">
 <p class="admonition-title">Example Generalized Linear Regression with</p>
 <p>Assume that the input vectors are of dimension <span class="math notranslate nohighlight">\(d=2\)</span>, i.e. <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2)\)</span> and we like to learn a quadratic function. For this we can define a set of functions <span class="math notranslate nohighlight">\(\Phi_i\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7d50d78-d144-4d11-a3a5-718298621e82">
-<span class="eqno">(9)<a class="headerlink" href="#equation-e7d50d78-d144-4d11-a3a5-718298621e82" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-a92fe9ae-bcf8-4e14-ba2b-d474c6090671">
+<span class="eqno">(9)<a class="headerlink" href="#equation-a92fe9ae-bcf8-4e14-ba2b-d474c6090671" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
    \Phi_1(\mathbf{x}) &amp; = &amp; x_1 \nonumber\\
    \Phi_2(\mathbf{x}) &amp; = &amp; x_2 \nonumber\\
    \Phi_3(\mathbf{x})&amp; = &amp; x_1 x_2 \nonumber\\
@@ -496,7 +496,11 @@ g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x} + \cdots + w_
 <span class="eqno">(12)<a class="headerlink" href="#equation-genreg" title="Permalink to this equation">¶</a></span>\[
 weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 \]</div>
-<p>The regularisation methods differ in the definition of the <em>regularisation-term</em>. The hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span> is used to control the trade-off between error-minimisation and weight-minimisation.</p>
+<p>The different techniques described below all perform linear regression, but differ in the used <em>regularisation-term</em>. The hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span> is used to control the trade-off between error-minimisation and weight-minimisation.</p>
+<div class="figure align-center" id="regular">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png" src="https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png" style="width: 800pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The plot on the left hand side displays a polynomial of degree 7, which has been learned from the given training data without regularisation. It can be observed, that the weights have comparatively high values and the learned function is tightly fitted to training data (overfitted). In contrast on the right hand side regularisation has been applied (Ridge regression). It can be seen, that now the learned weights are much smaller and the corresponding curve is smoother and not overfitted to training data.</span><a class="headerlink" href="#regular" title="Permalink to this image">¶</a></p>
+</div>
 <div class="section" id="ridge-regression">
 <h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline">¶</a></h3>
 <p>In Ridge-Regression the error-function <span class="math notranslate nohighlight">\(E(w,T)\)</span> in equation <a class="reference internal" href="#equation-genreg">(12)</a> is the MSE and the regularisation term is the squared <strong>L2-norm</strong>. I.e. Ridge-Regression minimizes</p>
@@ -504,7 +508,7 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 <span class="eqno">(15)<a class="headerlink" href="#equation-ridge" title="Permalink to this equation">¶</a></span>\[
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_2^2 \right),
 \]</div>
-<p>where the <strong>p-norm</strong> $<span class="math notranslate nohighlight">\(||w||_p\)</span>$ is defined to be</p>
+<p>where the <strong>p-norm</strong> <span class="math notranslate nohighlight">\(||w||_p\)</span> is defined to be</p>
 <div class="math notranslate nohighlight" id="equation-pnorm">
 <span class="eqno">(14)<a class="headerlink" href="#equation-pnorm" title="Permalink to this equation">¶</a></span>\[
 ||w||_p = \left(\sum\limits_{i} |w_i|^p \right)^{\frac{1}{p}}
