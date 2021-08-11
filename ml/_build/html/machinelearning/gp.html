@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gaussian Process &#8212; Machine Learning Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +55,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Neural Networks Introduction" href="../neuralnetworks/01NeuralNets.html" />
     <link rel="prev" title="Support Vector Machines (SVM)" href="svm.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,44 +71,49 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Machine Learning Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
    Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="parametricClassification1D.html">
    Bayes- and Naive Bayes Classifier
@@ -138,12 +140,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
    Neural Networks Introduction
@@ -175,48 +177,48 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
    Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
    Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
    Representations for Words and Texts
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -224,6 +226,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -239,28 +242,31 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../_sources/machinelearning/gp.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/machinelearning/gp.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
@@ -271,22 +277,99 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
         
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/machinelearning/gp.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap-gaussian-normal-distribution">
+   Recap Gaussian Normal Distribution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#univariate">
+     Univariate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multivariate">
+     Multivariate
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Gaussian Process
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#covariance-function">
+     Covariance Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-samples-of-gaussian-process">
+     Generate Samples of Gaussian Process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implementation-generate-samples-of-gp">
+       Implementation: Generate Samples of GP
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-process-regression">
+   Gaussian Process Regression
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -294,8 +377,437 @@
         
               <div>
                 
-  <div class="section" id="gaussian-process">
+  <hr class="docutils" />
+<div class="section" id="gaussian-process">
 <h1>Gaussian Process<a class="headerlink" href="#gaussian-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In the previous sections <strong>parametric</strong> and <strong>non-parametric</strong> supervised ML-methods have been introduced. In parametric algorithms, such as <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a> one assumes a certain model type (e.g. the model is a linear function) and the algorithm learns the parameters of this model type (e.g. slope and bias) such that the concrete model fits well to the given training data. One the other hand a non-parametric approach such as <a class="reference internal" href="knn.html"><span class="doc std std-doc">K-Nearest Neighbors</span></a> does not require any assumptions about the model-type and it does not learn any parameters, that define a model. Instead it just saves all training data and predicts the output of new data by determining the nearest training instances.</p>
+<p>Parametric methods are weak, if the assumption on the model-type is inadequate. After the training phase the entire knowledge of the training data is compressed in a few model parameters. This may constitute waste of information. For example, after training we do not know in which regions much training data has been available and hence predictions may have an increased reliabilty. The drawback of non-parametric methods is their large memory footprint and their long inference time. Moreover, since we do not have a model, predictions in regions, where no training-data has been available, are quite unreliable.</p>
+<p>In this context a <strong>Gaussian Process</strong> can be considered to be a <strong>semi-parametric</strong> supervised ML-algorithm. In the inference phase the predictions are calculated from training data. It is not necessary to assume a certain model type (therefore non-parametric). However, on must assume a way how predictions are calculated from training data and possibly learn parameters, which specify this way (therefore parametric).</p>
+<p>Gaussian Processes can be applied for regression and classification. However, in practice they are mostly applied for regression. In this lecture only the regression-case is considered.</p>
+</div>
+<div class="section" id="recap-gaussian-normal-distribution">
+<h2>Recap Gaussian Normal Distribution<a class="headerlink" href="#recap-gaussian-normal-distribution" title="Permalink to this headline">¶</a></h2>
+<p>A Gaussian Process is closely related to a <strong>Multidimensional Gaussian Distribution</strong>. Therefore, we first recall univariate and multivariate Gaussian distributions, before the Gaussian Process and it’s application for Regression will be described.</p>
+<div class="section" id="univariate">
+<h3>Univariate<a class="headerlink" href="#univariate" title="Permalink to this headline">¶</a></h3>
+<p>The Power Density Function (PDF) of a <strong>Gaussian distribed random variable <span class="math notranslate nohighlight">\(X\)</span></strong> is:</p>
+<div class="math notranslate nohighlight" id="equation-gausspdfuni">
+<span class="eqno">(40)<a class="headerlink" href="#equation-gausspdfuni" title="Permalink to this equation">¶</a></span>\[
+p_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the mean and <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation. This distribution is plotted below for two different standard deviations.</p>
+<div class="figure align-default" id="id4">
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png" src="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png" />
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">align: center
+width: 600pt
+name:  gausspdf</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<div class="legend">
+<p>PDFs of univariate Gaussian distribution with different standard deviations.</p>
+</div>
+</div>
+<p>In the sequel a Gaussian distributed random variable <span class="math notranslate nohighlight">\(X\)</span> with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> is denoted by</p>
+<div class="math notranslate nohighlight">
+\[
+X \sim \mathcal{N}(\mu,\sigma^2)
+\]</div>
+<p><strong>Estimate parameters from data:</strong></p>
+<p>The univariate Gaussian distribution, as defined in equation <a class="reference internal" href="#equation-gausspdfuni">(40)</a> is completely defined by the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. If a sample of <span class="math notranslate nohighlight">\(Z\)</span> values <span class="math notranslate nohighlight">\(x_i\)</span> of a univariate random variable <span class="math notranslate nohighlight">\(X\)</span> are given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.</p>
+<p>Estimate for <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+m=\frac{1}{Z}\sum\limits_{i=1}^Z x_i 
+\]</div>
+<p>Estimate for <span class="math notranslate nohighlight">\(\sigma\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+s=\sqrt{\frac{1}{Z-1}\sum_{i=1}^Z (x_i-m)^2}.
+\]</div>
+</div>
+<div class="section" id="multivariate">
+<h3>Multivariate<a class="headerlink" href="#multivariate" title="Permalink to this headline">¶</a></h3>
+<p>The Power Density Function (PDF) of a <strong>Multidimensional Gaussian Distribution</strong> is:</p>
+<div class="math notranslate nohighlight" id="equation-gausspdfmulti">
+<span class="eqno">(41)<a class="headerlink" href="#equation-gausspdfmulti" title="Permalink to this equation">¶</a></span>\[
+  p(\mathbf{x})=\frac{1}{(2 \pi)^{d/2} |\Sigma|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}- \boldsymbol\mu)^T \Sigma^{-1}(\mathbf{x}-\boldsymbol\mu)\right] , \quad -\infty &lt; x &lt; \infty 
+\]</div>
+<p>Here</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{x}=\left[x_1,x_2,\ldots,x_d \right]\)</span> are the values of <span class="math notranslate nohighlight">\(d\)</span> random variables, which are jointly Gaussian distributed.</p></li>
+<li><p>the <strong>mean-value-vektor</strong> is</p>
+<div class="math notranslate nohighlight" id="equation-meanvec">
+<span class="eqno">(42)<a class="headerlink" href="#equation-meanvec" title="Permalink to this equation">¶</a></span>\[
+	\mathbf{\mu}=[\mu_1,\mu_2,\ldots, \mu_d]
+	\]</div>
+</li>
+<li><p>the <strong>covariance matrix</strong> is</p>
+<div class="math notranslate nohighlight" id="equation-covmat">
+<span class="eqno">(43)<a class="headerlink" href="#equation-covmat" title="Permalink to this equation">¶</a></span>\[\begin{split} 
+	\Sigma = \left(
+	\begin{array}{cccc}
+	\sigma_{11}^2 &amp; \sigma_{12} &amp;\cdots &amp; \sigma_{1d} \\
+	\sigma_{21} &amp; \sigma_{22}^2 &amp;\cdots &amp; \sigma_{2d} \\
+	\vdots      &amp; \vdots      &amp; \ddots &amp;  \vdots \\
+	\sigma_{d1} &amp; \sigma_{d2} &amp; \cdots &amp; \sigma_{dd}^2 \\
+	\end{array} \right)
+	\end{split}\]</div>
+<p>In this matrix the elements on the principal diagonal <span class="math notranslate nohighlight">\(\sigma_{ii}^2\)</span> are the variances along the corresponding axis. All other elements are covariances, which describe the correlation between the axes. If <span class="math notranslate nohighlight">\(\sigma_{ij}=0\)</span>, then the random variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> are not correlated. The higher the absolute value of <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span>, the stronger the correlation. From the variances and the covariances the <strong>linear correlation-coefficient <span class="math notranslate nohighlight">\(\rho_{ij}\)</span></strong> can be calculated as follows:</p>
+<div class="math notranslate nohighlight" id="equation-corr">
+<span class="eqno">(44)<a class="headerlink" href="#equation-corr" title="Permalink to this equation">¶</a></span>\[
+	\rho_{ij}=\frac{\sigma_{ij}}{\sigma_{ii} \sigma_{jj}}
+	\]</div>
+<p>The correlation coefficient has a value-range from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(1\)</span> and helps to better <em>quantify</em> the correlation between the axis.</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(|\Sigma|\)</span> is the determinant of the covariance matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Sigma^{-1}\)</span> is the inverse of the covariance matrix</p></li>
+</ul>
+<p>Below, the PDF of a 2-dimensional Gaussian distribution with</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{\mu}=[0,0]
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\Sigma = \left(
+	\begin{array}{cc}
+	1.5 &amp; 0  \\
+	0 &amp; 1.5  \\
+	\end{array} \right)
+\end{split}\]</div>
+<p>is plotted.</p>
+<div class="figure align-center" id="gausspdf">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gauss2dimpdf.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gauss2dimpdf.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gauss2dimpdf.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">PDF of a 2-dimensional Gaussian distribution.</span><a class="headerlink" href="#gausspdf" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>Estimate parameters from data:</strong></p>
+<p>In order to estimate a multi-dimensional Gaussian distribution from a dataset <span class="math notranslate nohighlight">\(T\)</span>, the mean-value-vektor <span class="math notranslate nohighlight">\(\mathbf{\mu}\)</span> and the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> must be estimated.</p>
+<p>We denote the <strong>estimation of the mean-value-vektor <span class="math notranslate nohighlight">\(\mu\)</span></strong> by <span class="math notranslate nohighlight">\(m=[m_1,m_2,\ldots m_N]\)</span>. The components of this vektor are just the columnwise mean-values of the datamatrix:</p>
+<div class="math notranslate nohighlight">
+\[
+m_i=\frac{1}{Z}\sum_{k=1}^Z x_{k,i} \quad \forall i \in \left\{ 1,N \right\}, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_{k,i}\)</span> is the value of random variable <span class="math notranslate nohighlight">\(X_i\)</span> of instance <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>Moreover, the <strong>estimation of the covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span></strong> is denoted by <span class="math notranslate nohighlight">\(S\)</span>. And the components of <span class="math notranslate nohighlight">\(S\)</span> are</p>
+<ul class="simple">
+<li><p>the estimations of the variances <span class="math notranslate nohighlight">\(\sigma_{ii}^2\)</span>, which are denoted by <span class="math notranslate nohighlight">\(s_{ii}^2\)</span></p></li>
+<li><p>the estimations of the covariances <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span>, which are denoted by <span class="math notranslate nohighlight">\(s_{ij}\)</span>.</p></li>
+</ul>
+<p>From a given dataset <span class="math notranslate nohighlight">\(T\)</span> with <span class="math notranslate nohighlight">\(Z\)</span> instances (rows) and <span class="math notranslate nohighlight">\(N\)</span> random variables (columns), the variances and covariances are estimated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+s_{ii}^2=\frac{1}{Z-1}\sum_{k=1}^Z (x_{k,i}-m_i)^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+s_{ij}=\frac{1}{Z-1}\sum_{k=1}^Z (x_{k,i}-m_i) \cdot (x_{k,j}-m_j)
+\]</div>
+<p>Below for two distinct 2-dimensional Gaussian distributions the PDF and a corresponding data sample are visualized. In the first example the two random variables are uncorrelated, in the second plot correlated.</p>
+<div class="figure align-center" id="dimgauss1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma0.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma0.png" src="https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma0.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Left: PDF of a 2-dimensional Gaussian distribution with no correlation between the two random variables <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span>. Right: Sample of data, drawn from the PDF on the left hand side.</span><a class="headerlink" href="#dimgauss1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="dimgauss2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma1.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma1.png" src="https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma1.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Left: PDF of a 2-dimensional Gaussian distribution with strong positive correlation between the two random variables <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span>. Right: Sample of data, drawn from the PDF on the left hand side.</span><a class="headerlink" href="#dimgauss2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Gaussian Process<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>After recalling Multidimensional Gaussian Distributions, it’s no big deal to understand Gaussian Processes. In a nutshell: Multidimensioanl Gaussian Distributions are distributions over a finite set of <span class="math notranslate nohighlight">\(d\)</span> correlated random variables. A Gaussian Process extends this to an infinite set of random variables. The differences are listed in the two panels below:</p>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text">Multidimensional Gaussian Distribution</p>
+</div>
+<div class="card-body docutils">
+<ul>
+<li><p class="card-text">Joint Distribution over d Gaussian Variables</p>
+<div class="math notranslate nohighlight">
+\[
+	X=\left[ X_1,X_2,\ldots X_d \right]
+	\]</div>
+</li>
+<li><p class="card-text">At each index <span class="math notranslate nohighlight">\(i\)</span>, with <span class="math notranslate nohighlight">\(i \in \{1,\ldots,d\}\)</span> a Gaussian distributed variable <span class="math notranslate nohighlight">\(X_i\)</span> with mean <span class="math notranslate nohighlight">\(\mu_i\)</span> and variance <span class="math notranslate nohighlight">\(\sigma_i\)</span> is defined.</p></li>
+<li><p class="card-text">The random variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> are correlated with covariance <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span></p></li>
+<li><p class="card-text">Each subset of the <span class="math notranslate nohighlight">\(d\)</span> random variables is again a Multidimensional Gaussian Distribution</p></li>
+<li><p class="card-text">The  Multidimensional Gaussian Distribution is completely defined by it’s mean-vector <span class="math notranslate nohighlight">\(\mathbf{\mu}=[\mu_1,\mu_2,\ldots, \mu_d]\)</span> and it’s covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text">Gaussian Process</p>
+</div>
+<div class="card-body docutils">
+<ul>
+<li><p class="card-text">Distribution over continous functions</p>
+<div class="math notranslate nohighlight">
+\[
+  f(x)
+  \]</div>
+</li>
+<li><p class="card-text">For each <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(-\infty &lt; x &lt; \infty\)</span> a Gaussian distributed <span class="math notranslate nohighlight">\(f(x)\)</span> with mean <span class="math notranslate nohighlight">\(m(x)\)</span> and variance <span class="math notranslate nohighlight">\(k(x,x)\)</span> is defined.</p></li>
+<li><p class="card-text">The function values <span class="math notranslate nohighlight">\(f(x_i)\)</span> and <span class="math notranslate nohighlight">\(f(x_j)\)</span> are correlated with covariance <span class="math notranslate nohighlight">\(k(x_i,x_j)\)</span></p></li>
+<li><p class="card-text">Each finite subset of the infinity number of function values <span class="math notranslate nohighlight">\(f(x_i)\)</span> is a Multidimensional Gaussian Distribution</p></li>
+<li><p class="card-text">The Gaussian Process is completely defined by it’s mean-function <span class="math notranslate nohighlight">\(m(x)\)</span> and it’s covariance function <span class="math notranslate nohighlight">\(k(x_i,x_j)\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition-gaussian-process admonition">
+<p class="admonition-title">Gaussian Process</p>
+<p>A Gaussian Process is a Probabilistic Distribution over functions <span class="math notranslate nohighlight">\(f(x)\)</span>, with <span class="math notranslate nohighlight">\(-\infty &lt; x &lt; \infty\)</span>. Since there exists an infinite number of values for <span class="math notranslate nohighlight">\(x\)</span> it can be considered as an infinite-dimensional Gaussian distribution. Each finite subset of function-values <span class="math notranslate nohighlight">\(f(x_1),f(x_2),\ldots,f(x_d)\)</span> is a usual Multidimensional Gaussian Distribution.</p>
+</div>
+<p>In the sequel a Gaussian Process with mean-function <span class="math notranslate nohighlight">\(m(x)\)</span> and covariance function <span class="math notranslate nohighlight">\(k(x,x')\)</span> is denoted by</p>
+<div class="math notranslate nohighlight">
+\[
+f \sim \mathcal{GP}(m,k)
+\]</div>
+<div class="section" id="covariance-function">
+<h3>Covariance Function<a class="headerlink" href="#covariance-function" title="Permalink to this headline">¶</a></h3>
+<p>The most common covariance-function <span class="math notranslate nohighlight">\(k(x,x')\)</span> is the **squared exponential$$</p>
+<div class="math notranslate nohighlight" id="equation-squaredexp">
+<span class="eqno">(45)<a class="headerlink" href="#equation-squaredexp" title="Permalink to this equation">¶</a></span>\[
+k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
+\]</div>
+<p>Parameters and characteristics of this covariance function are</p>
+<ul class="simple">
+<li><p>The correlation between <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f(x')\)</span> decreases with increasing distance between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
+<li><p><strong>Length-Scale <span class="math notranslate nohighlight">\(\ell\)</span></strong>: The higher <span class="math notranslate nohighlight">\(\ell\)</span> the slower the decrease of the correlation between <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f(x')\)</span> with increasing distance between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>. A high value <span class="math notranslate nohighlight">\(\ell\)</span> means strong correlation between neighbouring function-values. This yields <em>smooth</em> curves. Small values for <span class="math notranslate nohighlight">\(\ell\)</span> means less correlation and the potential for high differences in neighbouring function-values.</p></li>
+<li><p><strong>Variance <span class="math notranslate nohighlight">\(\sigma_f^2\)</span></strong>. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.</p></li>
+</ul>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text">Length-scale <span class="math notranslate nohighlight">\(\ell=1.0\)</span></p>
+</div>
+<div class="card-body docutils">
+<div class="figure align-default" id="id5">
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png" />
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">High length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text">Length-scale <span class="math notranslate nohighlight">\(\ell=0.408\)</span></p>
+</div>
+<div class="card-body docutils">
+<div class="figure align-default" id="id6">
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png" />
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Smaller length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-samples-of-gaussian-process">
+<h3>Generate Samples of Gaussian Process<a class="headerlink" href="#generate-samples-of-gaussian-process" title="Permalink to this headline">¶</a></h3>
+<p>Even though functions assign one function value to each argument of a possibly <strong>infinite domain</strong>, in computer programs functions are evaluated always at a finite set of arguments. Therefore, in computer programs one can think of functions as tables, in which to each domain value <span class="math notranslate nohighlight">\(x\)</span> a corresponding function value <span class="math notranslate nohighlight">\(f(x)\)</span> is mapped. <strong>Since in computer programs we always have finite subsets and any finite subset of a Gaussian Process is a Multidimensional Gaussisan Distribution, we can generate samples of a Gaussian Process in exactly the same was as we generate samples of a Multidimensional Gaussian Distribution.</strong> For generating samples of a Multidimensional Gaussian Distribution we have to specify the mean vector (<a class="reference internal" href="#equation-meanvec">(42)</a>) and the covariance matrix (<a class="reference internal" href="#equation-covmat">(43)</a>).</p>
+<p>The mean-value vector is obtained by evaluating the mean function <span class="math notranslate nohighlight">\(m(x)\)</span> at all <span class="math notranslate nohighlight">\(x_i\)</span> of the domain.</p>
+<div class="math notranslate nohighlight" id="equation-kmue">
+<span class="eqno">(46)<a class="headerlink" href="#equation-kmue" title="Permalink to this equation">¶</a></span>\[
+\boldsymbol\mu=[\mu_1,\mu_2,\ldots, \mu_N]= [m(x_1), m(x_2), \ldots m(x_N)]
+\]</div>
+<p>The covariance matrix is obtained by evaluating the covariance function <span class="math notranslate nohighlight">\(k(x,x')\)</span> at all possible pairs of arguments, i.e. the entry in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the covariance matrix is <span class="math notranslate nohighlight">\(k(x_i,x_j)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+K=\left( 
+\begin{array}{cccc}
+k(x_1,x_1) &amp; k(x_1,x_2) &amp; \ldots &amp; k(x_1,x_N) \\
+k(x_2,x_1) &amp; k(x_2,x_2) &amp; \ldots &amp; k(x_2,x_N) \\
+\vdots     &amp; \vdots     &amp; \ddots &amp; \vdots     \\
+k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\ 
+\end{array}
+\right)
+\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Calculation of mean-vector and covariance matrix</p>
+<p>Assume that the domain has only 4 elements</p>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{x}=[1,2,3,4]
+   \]</div>
+<p>For the mean function</p>
+<div class="math notranslate nohighlight">
+\[
+   m(x)=\frac{x^2}{4}
+   \]</div>
+<p>and the covariance function</p>
+<div class="math notranslate nohighlight">
+\[
+   k(x,x')=2 \cdot e^{-\frac{1}{2}(x-x')^2}
+   \]</div>
+<p>the corresponding mean-vector and covariance matrix are:</p>
+<div class="math notranslate nohighlight">
+\[
+   \boldsymbol\mu=[0.25, 1.0 , 2.25, 4.0]
+   \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   K=\left( 
+   \begin{array}{cccc}
+   2.0   &amp;  1.213 &amp; 0.271 &amp; 0.022 \\
+   1.213 &amp; 2.0    &amp; 1.213 &amp; 0.271 \\
+   0.271 &amp; 1.213  &amp;2.0    &amp; 1.213 \\
+   0.022 &amp; 0.271  &amp; 1.213 &amp; 2.0   \\
+   \end{array}
+   \right),
+   \end{split}\]</div>
+<p>respectively.</p>
+</div>
+<div class="section" id="implementation-generate-samples-of-gp">
+<h4>Implementation: Generate Samples of GP<a class="headerlink" href="#implementation-generate-samples-of-gp" title="Permalink to this headline">¶</a></h4>
+<p>Below it is shown how samples of a Gaussian Process can be generated.</p>
+<p>Generate domain, mean-vector and covariance-matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span> 
+<span class="n">mx</span><span class="o">=</span><span class="mf">0.5</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    
+<span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#covariance function</span>
+        <span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+        <span class="n">K</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generate 3 samples of a Multidimensional Gausian Distribution</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pointset</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#Erzeugt 3 Samples einer multivariaten</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pointset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.34684176  0.98688974  0.8600011   1.00185168  1.39473183  1.97429704
+   2.64724427  3.31076266  3.8683915   4.24151331  4.3770787   4.25108717
+   3.86709428  3.25084107  2.44393257  1.49889766  0.47535374 -0.56483549
+  -1.56464002 -2.4796916  -3.28331549 -3.96556645 -4.52573716 -4.96137341
+  -5.25934462 -5.3941122  -5.33453784 -5.05533497 -4.5463375  -3.81468961
+  -2.88060448 -1.77215769 -0.52485176  0.81269388  2.1711628 ]
+ [-0.2457973  -0.20749268  0.03584151  0.47222111  1.06152124  1.75124857
+   2.4937448   3.2531101   3.99703741  4.67997535  5.23092331  5.5567971
+   5.56291273  5.18240765  4.40195376  3.27327441  1.90633111  0.44697003
+  -0.95341578 -2.16711267 -3.11048718 -3.75115468 -4.10156929 -4.20248772
+  -4.10249454 -3.84071102 -3.43835966 -2.90098876 -2.22826378 -1.42489353
+  -0.50677192  0.49937508  1.55970485  2.63540558  3.68088485]
+ [ 0.9133627   1.08139505  1.38319101  1.78797593  2.24776949  2.70593609
+   3.1079496   3.41025868  3.5837011   3.61132566  3.48423127  3.20007567
+   2.76646015  2.2073742   1.5681018   0.91397153  0.32072891 -0.14221242
+  -0.43109773 -0.54302426 -0.52023637 -0.4397068  -0.38978251 -0.44149596
+  -0.62469177 -0.91672092 -1.24589024 -1.50691954 -1.58369617 -1.37483085
+  -0.81776869  0.0932695   1.30029644  2.68856576  4.10707226]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualize the generated samples and the mean-function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">r_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean $m(x)=0.5+x*sin(x)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">pointset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">pointset</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">pointset</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;$m(x)=0.5+x*sin(x)$ </span><span class="se">\n</span><span class="s2">$k(x,x&#39;)=2 \cdot \exp(0.5\cdot(x-x&#39;)^2)$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Samples and Mean from a Gaussian Process&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">fillx</span> <span class="o">=</span> <span class="n">r_</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="nb">vars</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="n">stds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">vars</span><span class="p">)</span>
+<span class="n">filly</span> <span class="o">=</span> <span class="n">r_</span><span class="p">[</span><span class="n">mx</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">,</span> <span class="n">mx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">fillx</span><span class="p">,</span> <span class="n">filly</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/gp_7_0.png" src="../_images/gp_7_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaussian-process-regression">
+<h2>Gaussian Process Regression<a class="headerlink" href="#gaussian-process-regression" title="Permalink to this headline">¶</a></h2>
+<p>In the previous subsection it was described how samples of a Gaussian Process can be generated, given a mean-function and a covariance function. However, up to now nothing has been said, how this can be applied for a supervised ML regression task. The idea is that the Gaussian Process with defined mean- and covariance function constiute a <strong>prior</strong>. On the basis of this prior we calculate a <strong>posterior</strong> for the given training data</p>
+<div class="math notranslate nohighlight">
+\[
+T=\{x_t,y_t \}_{t=1}^N
+\]</div>
+<p>In particular the given training data are considered to be support-points of a GP sample and we can calculate all other points <span class="math notranslate nohighlight">\((x,f(x))\)</span> on this particular GP sample from the mean- and covariance function and the given support-points. The prediction at an arbitrary argument <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
+<div class="figure align-center" id="supportpoints">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPosteriorZeroMean.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPosteriorZeroMean.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPosteriorZeroMean.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Training data is considered to constitute support-points (red) of a GP sample. By applying the mean- and covariance-function of the GP all other points of this sample (green dashed line) can be determined.</span><a class="headerlink" href="#supportpoints" title="Permalink to this image">¶</a></p>
+</div>
+<p>Recall that in <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a>, it is assumed that the output <span class="math notranslate nohighlight">\(y_t\)</span> is the sum of a deterministic term <span class="math notranslate nohighlight">\(f(x_t)\)</span> and a noise term <span class="math notranslate nohighlight">\(z_t\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+y_t=f(x_t)+n_t
+\]</div>
+<p>The noise term <span class="math notranslate nohighlight">\(n_t\)</span> is assumed to be a sample of a 1-dimensional Gaussian distribution with zero mean and variance <span class="math notranslate nohighlight">\(\sigma_n^2\)</span>. In Linear Regression one tries to estimate a good approximation</p>
+<div class="math notranslate nohighlight">
+\[
+g(x)=w_0+w_1x_1+w_2x_2+\ldots+w_dx_d
+\]</div>
+<p>for the determinisic part <span class="math notranslate nohighlight">\(f(x)\)</span>. This approximation <span class="math notranslate nohighlight">\(g(x)\)</span> minimizes the Mean Squared Error between the given labels <span class="math notranslate nohighlight">\(y\)</span> and the model’s prediction <span class="math notranslate nohighlight">\(g(x)\)</span> on the training data.</p>
+<p>Now in Gaussian Process Regression we assume that training data constitutes support-points on a sample of a Gaussian Process with predefined mean- and covariance function. In contrast to Linear Regression now the assumption is</p>
+<div class="math notranslate nohighlight" id="equation-gpass">
+<span class="eqno">(47)<a class="headerlink" href="#equation-gpass" title="Permalink to this equation">¶</a></span>\[
+y_t=f(x_t)+n_t+z_t,
+\]</div>
+<p><strong>where <span class="math notranslate nohighlight">\(z_t\)</span> is considered to be a component of a sample of an N-dimensional Gaussian Distribution with zero mean.</strong> As in Linear Regression <span class="math notranslate nohighlight">\(n_t\)</span> is assumed to be a sample of a 1-dimensional Gaussian distribution with zero mean and variance <span class="math notranslate nohighlight">\(\sigma_n^2\)</span>. It is independent of all other training instances. The independent noise term <span class="math notranslate nohighlight">\(n_t\)</span> and the correlated noise term <span class="math notranslate nohighlight">\(z_t\)</span> can be integrated into a single Multidimensional Gaussian distribution by adding the term</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_n^2 \delta(x,x')
+\]</div>
+<p>to the covariance function <span class="math notranslate nohighlight">\(k(x,x')\)</span>, with the <em>Kronecker function</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\delta(x,x')= \left\{ 
+\begin{array}{lcl} 
+1 &amp; \mbox{ falls } &amp; x=x' \\ 
+0 &amp; \mbox{ falls } &amp; x \neq x'
+\end{array}
+\right.
+\end{split}\]</div>
+<p>For example if the original covariance function is the squared exponential, as definied in equation <a class="reference internal" href="#equation-squaredexp">(45)</a> the new covariance function which integrates the noise term is</p>
+<div class="math notranslate nohighlight" id="equation-squaredexpex">
+<span class="eqno">(48)<a class="headerlink" href="#equation-squaredexpex" title="Permalink to this equation">¶</a></span>\[
+k_n(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}} + \sigma_n^2 \delta(x,x')
+\]</div>
+<p>If the covariance-matrix is calculated with this noise-integrating covariance function the difference to the covariance matrix without noise-integration is, that now the values of the main diagonal are <span class="math notranslate nohighlight">\(\sigma_f^2+\sigma_n^2\)</span>, rather than <span class="math notranslate nohighlight">\(\sigma_f^2\)</span>.</p>
+<p>The main differences between GP Regression and Linear Regression are:</p>
+<ul class="simple">
+<li><p>in GP Regression the covariances between the training-instances are regarded, i.e. dependecies between neighboring training instances are taken into account.</p></li>
+<li><p>in GP Regression the goal is not to learn an approximation for <span class="math notranslate nohighlight">\(f(x)\)</span>. Instead, the values <span class="math notranslate nohighlight">\(y_*\)</span> at the arguments of interest <span class="math notranslate nohighlight">\(x_*\)</span> are estimated directly.</p></li>
+</ul>
+<p><span id="id2">[<a class="reference internal" href="../referenceSection.html#id3">Ebd15</a>]</span>, <span id="id3">[<a class="reference internal" href="../referenceSection.html#id4">RW</a>]</span></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -320,15 +832,15 @@
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="svm.html" title="previous page">Support Vector Machines (SVM)</a>
     <a class='right-next' id="next-link" href="../neuralnetworks/01NeuralNets.html" title="next page">Neural Networks Introduction</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -336,7 +848,7 @@
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -345,11 +857,9 @@
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

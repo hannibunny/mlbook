@@ -1,17 +1,27 @@
-# Apply Pretrained Neural Networks on new Task
-* Author: Johannes Maucher
-* Last Update: 04.11.2020
+#!/usr/bin/env python
+# coding: utf-8
 
-## What you will learn
-* Download and integrate deep neural network ([VGG-16](https://arxiv.org/pdf/1409.1556.pdf)), which has been trained on ImageNet Dataset
-* Extract the feature-extractor part of this network, freeze the weights of this part, and define a new classifier-network on top of the pre-trained feature extractor.
-* Train the new network (only the new classifier part) for the task of differentiating x-ray pictures of healthy lungs from x-ray pictures of covid-19 infected lungs.
+# # Apply Pretrained Neural Networks on new Task
+# * Author: Johannes Maucher
+# * Last Update: 04.11.2020
+# 
+# ## What you will learn
+# * Download and integrate deep neural network ([VGG-16](https://arxiv.org/pdf/1409.1556.pdf)), which has been trained on ImageNet Dataset
+# * Extract the feature-extractor part of this network, freeze the weights of this part, and define a new classifier-network on top of the pre-trained feature extractor.
+# * Train the new network (only the new classifier part) for the task of differentiating x-ray pictures of healthy lungs from x-ray pictures of covid-19 infected lungs.
 
-The x-ray images of healthy and infected lungs can be downloaded from [here](https://www.dropbox.com/s/ahu4bqmjf4s51xw/dataset.zip?dl=0). After downloading, decompress the archive and assign the path of the resulting `dataset`-directory to the variable `datapath`. For example:
+# The x-ray images of healthy and infected lungs can be downloaded from [here](https://www.dropbox.com/s/ahu4bqmjf4s51xw/dataset.zip?dl=0). After downloading, decompress the archive and assign the path of the resulting `dataset`-directory to the variable `datapath`. For example:
+
+# In[1]:
+
 
 datapath = "/Users/johannes/OneDrive - bwstaff/Data/dataset"
 
-## Imports and Configuration
+
+# ## Imports and Configuration
+
+# In[2]:
+
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import VGG16
@@ -30,28 +40,48 @@ import numpy as np
 import cv2
 import os
 
-### Define training parameters
+
+# ### Define training parameters
+
+# In[3]:
+
 
 INIT_LR = 1e-3 #Initial Learning Rate
 EPOCHS = 25 #Number of epochs in training
 BS = 10 #Training Batch Size
 
-## Import all images and visualize
 
-Grab the list of images in the dataset directory. Then initialize the list of data and class images
+# ## Import all images and visualize
+
+# Grab the list of images in the dataset directory. Then initialize the list of data and class images
+
+# In[4]:
+
 
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images(datapath))
 data = []
 labels = []
 
-Plot first three imagepaths:
+
+# Plot first three imagepaths:
+
+# In[5]:
+
 
 imagePaths[:3]
 
-Plot last three imagepaths:
+
+# Plot last three imagepaths:
+
+# In[6]:
+
 
 imagePaths[-3:]
+
+
+# In[7]:
+
 
 # loop over the image paths
 for imagePath in imagePaths:
@@ -68,9 +98,17 @@ for imagePath in imagePaths:
         data.append(image)
         labels.append(label)
 
+
+# In[8]:
+
+
 len(labels),len(data)
 
-Below a x-ray image of a healthy  and a x-ray image of a covid infected lung is shown:
+
+# Below a x-ray image of a healthy  and a x-ray image of a covid infected lung is shown:
+
+# In[9]:
+
 
 plt.figure(figsize=(12,8))
 plt.subplot(1,2,1)
@@ -83,39 +121,67 @@ plt.title(labels[-1])
 plt.grid(False)
 plt.show()
 
-## Preprocessing
 
-Convert the data and labels to NumPy arrays while scaling the pixel intensities to the range $[0,1]$
+# ## Preprocessing
+# 
+# Convert the data and labels to NumPy arrays while scaling the pixel intensities to the range $[0,1]$
+
+# In[10]:
+
 
 data = np.array(data) / 255.0
 labels = np.array(labels)
 
-Perform one-hot encoding on the labels:
+
+# Perform one-hot encoding on the labels:
+
+# In[11]:
+
 
 lb = LabelBinarizer()
 labels = lb.fit_transform(labels)
 labels = to_categorical(labels)
 
-## Split into training- and test-partition
-Partition the data into training and testing splits using 60% of the data for training and the remaining 40% for testing
+
+# ## Split into training- and test-partition
+# Partition the data into training and testing splits using 60% of the data for training and the remaining 40% for testing
+
+# In[12]:
+
 
 (trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.40, stratify=labels, random_state=42)
+
+
+# In[13]:
+
 
 print(trainX.shape)
 print(testX.shape)
 
-## Image Data Generator
 
-The [ImageDataGenerator](https://keras.io/api/preprocessing/image/) is an easy way to load and augment images in batches for image classification tasks. Together with the method `fit_generator()` (see below), it provides the possibility, that not all of the training data must be kept in the memory. Instead only the current batch is loaded. Moreover, the `ImageDataGenerator`-class provides methods to modify images, e.g. by shift, rotation, flipping, color-transform etc. 
-In the code cell below an object of this class is instantiated, which will randomly rotate images within an angle of 15°.
+# ## Image Data Generator
+
+# The [ImageDataGenerator](https://keras.io/api/preprocessing/image/) is an easy way to load and augment images in batches for image classification tasks. Together with the method `fit_generator()` (see below), it provides the possibility, that not all of the training data must be kept in the memory. Instead only the current batch is loaded. Moreover, the `ImageDataGenerator`-class provides methods to modify images, e.g. by shift, rotation, flipping, color-transform etc. 
+# In the code cell below an object of this class is instantiated, which will randomly rotate images within an angle of 15°.
+
+# In[14]:
+
 
 trainAug = ImageDataGenerator(rotation_range=15, fill_mode="nearest")
 
-## Load Feature Extractor Part of pretrained VGG16 Net
+
+# ## Load Feature Extractor Part of pretrained VGG16 Net
+
+# In[15]:
+
 
 baseModel = VGG16(weights="imagenet", include_top=False,input_tensor=Input(shape=(224, 224, 3)))
 
-## Construct the new Classifier that will be placed on top of the Feature Extractor
+
+# ## Construct the new Classifier that will be placed on top of the Feature Extractor
+
+# In[16]:
+
 
 headModel = baseModel.output
 headModel = AveragePooling2D(pool_size=(4, 4))(headModel)
@@ -126,18 +192,34 @@ headModel = Dense(2, activation="softmax")(headModel)
 
 model = Model(inputs=baseModel.input, outputs=headModel)
 
-Loop over all layers in the base model and freeze them so that they will **not** be updated during the training process
+
+# Loop over all layers in the base model and freeze them so that they will **not** be updated during the training process
+
+# In[17]:
+
 
 for layer in baseModel.layers:
     layer.trainable = False
 
+
+# In[18]:
+
+
 model.summary()
 
-## Compile and train Network
+
+# ## Compile and train Network
+
+# In[19]:
+
 
 print("[INFO] compiling model...")
 opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
 model.compile(loss="binary_crossentropy", optimizer=opt,metrics=["accuracy"])
+
+
+# In[20]:
+
 
 print("[INFO] training classifier part of the network...")
 H = model.fit_generator(
@@ -147,6 +229,10 @@ H = model.fit_generator(
     validation_steps=len(testX) // BS,
     verbose=False,
     epochs=EPOCHS)
+
+
+# In[24]:
+
 
 # plot the training loss and accuracy
 N = EPOCHS
@@ -162,7 +248,11 @@ plt.ylabel("Loss/Accuracy")
 plt.legend(loc="lower left")
 plt.savefig("plot")
 
-## Evaluation
+
+# ## Evaluation
+
+# In[25]:
+
 
 print("[INFO] Apply model on test data...")
 predIdxs = model.predict(testX, batch_size=BS)
@@ -171,11 +261,19 @@ predIdxs = model.predict(testX, batch_size=BS)
 # label with corresponding largest predicted probability
 predIdxs = np.argmax(predIdxs, axis=1)
 
-### Classification Report
+
+# ### Classification Report
+
+# In[26]:
+
 
 print(classification_report(testY.argmax(axis=1), predIdxs, target_names=lb.classes_))
 
-### Confusion Matrix
+
+# ### Confusion Matrix
+
+# In[27]:
+
 
 def plot_cm(y_true, y_pred, class_names):
   cm = confusion_matrix(y_true, y_pred)
@@ -198,5 +296,15 @@ def plot_cm(y_true, y_pred, class_names):
   plt.ylim(b, t) # update the ylim(bottom, top) values
   plt.show() 
 
+
+# In[28]:
+
+
 plot_cm(testY.argmax(axis=1), predIdxs, lb.classes_)
+
+
+# In[ ]:
+
+
+
 

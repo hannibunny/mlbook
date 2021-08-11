@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Concepts of Data Mining and Machine Learning &#8212; Machine Learning Lecture</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -56,16 +53,16 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bayes- and Naive Bayes Classifier" href="machinelearning/parametricClassification1D.html" />
+    <link rel="next" title="K - Nearest Neighbour Classification / Regression" href="machinelearning/knn.html" />
     <link rel="prev" title="Intro and Overview Machine Learning Lecture" href="intro.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,44 +71,49 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Intro and Overview Machine Learning Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/parametricClassification1D.html">
    Bayes- and Naive Bayes Classifier
@@ -138,12 +140,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/01NeuralNets.html">
    Neural Networks Introduction
@@ -175,48 +177,48 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/04VariationalAutoencoder.html">
    Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="gan/DCGAN.html">
    Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text/01ModellingWordsAndTexts.html">
    Representations for Words and Texts
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="referenceSection.html">
    References
@@ -224,6 +226,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -239,21 +242,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -271,16 +274,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -299,16 +302,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#overview-data-mining-process">
    Overview Data Mining Process
@@ -377,8 +380,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -395,7 +398,7 @@
 <div class="section" id="overview-data-mining-process">
 <h2>Overview Data Mining Process<a class="headerlink" href="#overview-data-mining-process" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>Cross-industry standard process for data mining (CRISP)</strong> proposes a common approach for realizing data mining projects:</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/CRISPsmall.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/CRISPsmall.png" alt="Drawing" style="width: 400px;"/>
 <p>In the first phase of CRISP the overall business-case, which shall be supported by the data mining process must be clearly defined and understood. Then the goal of the data mining project itself must be defined. This includes the specification of metrics for measuring the performance of the data mining project.</p>
 <p>In the second phase data must be gathered, accessed, understood and described. Quantitiy and qualitity of the data must be assessed on a high-level.</p>
 <p>In the third phase data must be investigated and understood more thoroughly. Common means for understanding data are e.g. visualization and the calculation of simple statistics. Outliers must be detected and processed, sampling rates must be determined, features must be selected and eventually be transformed to other formats.</p>
@@ -421,8 +424,7 @@
 <div class="section" id="categories">
 <h3>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h3>
 <p>The field of Machine Learning is usually categorized with respect to two dimensions: The first dimension is the question <em>What shall be learned?</em> and the second asks for <em>How shall be learned?</em>. The resulting 2-dimensional matrix is depicted below:</p>
-<img alt="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" class="align-center" src="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" />
-<p>On an abstract level there exist 4 answers on the first question. One can either learn</p>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" style="width:800px" align="center"><p>On an abstract level there exist 4 answers on the first question. One can either learn</p>
 <ul class="simple">
 <li><p>a classifier, e.g. object recognition, spam-filter, Intrusion detection, …</p></li>
 <li><p>a regression-model, e.g. time-series prediction, like weather- or stock-price forecasts, range-prediction for electric vehicles, estimation of product-quantities, …</p></li>
@@ -430,7 +432,7 @@
 <li><p>associations between features, e.g. market basket analysis (customer who buy cheese, also buy wine, …)</p></li>
 <li><p>strategie, e.g. for automatic driving or games</p></li>
 </ul>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/classReg.PNG" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/classReg.PNG" alt="Drawing" style="width: 800px;"/>
 <p>On the 2nd dimension, which asks for <em>How to learn?</em>, the answers are:</p>
 <ul class="simple">
 <li><p>supervised: This category requires a <em>teacher</em> who provides labels (target-values) for each training-element. For example in face-recognition the teacher most label the inputs (pictures of faces) with the name of the corresponding persons. In general labeling is expensive and labeled data is scarce.</p></li>
@@ -439,20 +441,17 @@
 </ul>
 <div class="section" id="supervised-learning">
 <h4>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h4>
-<img alt="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearning.png" class="align-center" src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearning.png" />
-<p><strong>Apply Learned Modell:</strong>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearning.png" style="width:800px" align="center"><p><strong>Apply Learned Modell:</strong>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningApply.png" style="width:800px" align="center"></p>
 </div>
 <div class="section" id="unsupervised-learning">
 <h4>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h4>
-<img alt="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" class="align-center" src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" />
-<p><strong>Apply learned Model:</strong>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" style="width:800px" align="center"><p><strong>Apply learned Model:</strong>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervisedApply.png" style="width:800px" align="center"></p>
 </div>
 <div class="section" id="reinforcement-learning">
 <h4>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h4>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" style="width:500px" align="center"></div>
 </div>
 <div class="section" id="general-scheme-for-machine-learning">
 <h3>General Scheme for Machine Learning<a class="headerlink" href="#general-scheme-for-machine-learning" title="Permalink to this headline">¶</a></h3>
@@ -463,15 +462,12 @@
 <li><p>operational phase.</p></li>
 </ul>
 <p>Training and test are shown in the image below. In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be tested. In the case of supervised learning testing compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" />
-<p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …):</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" alt="Drawing" style="width: 800px;"/><p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …):</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/></div>
 <div class="section" id="cross-validation">
 <h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
 <p>K-fold cross-Validation is the standard validation method if labeled data is rare. The entire set of labeled data is partitioned into k (<span class="math notranslate nohighlight">\(k=10\)</span> in the example below) disjoint subsets. The entire evaluation consists of k iterations. In the i.th iteration, the i.th partition (subset) is applied for validation, all other partitions are applied for training the model. In each iteration the model’s performance, e.g. accuracy, is determined on the validation-partition. Finally, the overall performance is the average performance over all k performance values.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/CrossValidation.jpg" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/CrossValidation.jpg" alt="Drawing" style="width: 800px;"/></div>
 <div class="section" id="bias-and-variance-overfitting-and-underfitting">
 <h3>Bias and Variance, Overfitting and Underfitting<a class="headerlink" href="#bias-and-variance-overfitting-and-underfitting" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="bias-variance-tradeoff">
@@ -495,14 +491,14 @@ y=f(x)+\epsilon.
 <p>A <strong>high variance</strong> means that the learned model strongly varies with varying training data - even if the overall data distribution is identical. Algorithms, which are able to strongly adapt to the given training data are e.g. Support Vector Machines (SVM) with non-linear kernels or decision trees.</p>
 <p>In the figure below the top-row (part 1 and part 2) shows a linear model of high bias (only a linear function can be learned). The variance is low because even though the training data in part 1 and part 2 is different, the learned models are similar. The lower row (part 3 and part 4) refers to an algorithm (non-linear SVM) of low-bias (many different types of functions can be learned), but high-variance, because the learned model in part 3 and part 4 are significantly different.</p>
 <p>The goal is to find an algorithm, which learns a model of low bias and low variance. However, usually low bias yields high variance and vice versa. The goal is to find a good trade-off between them</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/BiasVariance.png" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/BiasVariance.png" alt="Drawing" style="width: 600px;"/></div>
 <div class="section" id="overfitting-underfitting">
 <h4>Overfitting / Underfitting<a class="headerlink" href="#overfitting-underfitting" title="Permalink to this headline">¶</a></h4>
 <p>The goal of supervised machine learning is to find a model, which performs well on new data, i.e. data, which has not be seen during training. It is in general no problem, to find an algorithm, which learns a model, that is well adapted to the given training data. However, it is a big challenge to find a model, that performs well on previously unseen data.</p>
-<p><strong>Overfitting</strong> means, that a model has been strongly adapted to the training data, but it performs bad on new data. Algorithms of low-bias are able to learn models, which are strongly fittet to training data, i.e. the probability of overfitting is high.</p>
+<p><strong>Overfitting</strong> means, that a model has been strongly adapted to the training data, but it performs bad on new data. Algorithms of low-bias are able to learn models, which are strongly fittet to training data. However, then often the variance is and the probability of overfitting is high.</p>
 <p><strong>Underfitting</strong> means, that the learned model is weakly adapted to the training data. Algorithms of high-bias yield an increased probability of underfitting.</p>
-</div>
+<p>The image below sketches the relation between bias, variance, over- and underfitting (Image source: <a class="reference external" href="https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229">https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229</a>)</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/></div>
 </div>
 </div>
 </div>
@@ -529,15 +525,15 @@ y=f(x)+\epsilon.
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Intro and Overview Machine Learning Lecture</a>
-    <a class='right-next' id="next-link" href="machinelearning/parametricClassification1D.html" title="next page">Bayes- and Naive Bayes Classifier</a>
+    <a class='right-next' id="next-link" href="machinelearning/knn.html" title="next page">K - Nearest Neighbour Classification / Regression</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -545,7 +541,7 @@ y=f(x)+\epsilon.
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -554,11 +550,9 @@ y=f(x)+\epsilon.
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>
