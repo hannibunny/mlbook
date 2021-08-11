@@ -1,0 +1,54 @@
+Traceback (most recent call last):
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 1087, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/asyncio/base_events.py", line 608, in run_until_complete
+    return future.result()
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 540, in async_execute
+    await self.async_execute_cell(
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 832, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 740, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from matplotlib import pyplot as plt
+from scipy import r_
+plt.figure(figsize=(10,10))
+plt.plot(x,mx,label="mean $m(x)=0.5+x*sin(x)$")
+plt.plot(x,pointset[0],'--',color="gray")
+plt.plot(x,pointset[1],'-.',color="gray")
+plt.plot(x,pointset[2],color="gray")
+plt.text(0.5,6,"$m(x)=0.5+x*sin(x)$ \n$k(x,x')=2 \cdot \exp(0.5\cdot(x-x')^2)$",fontsize=14)
+plt.title('Random Samples and Mean from a Gaussian Process')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+fillx = r_[x, x[::-1]]
+print(mx)
+print(len(mx))
+print(stds)
+print(len(stds))
+vars=np.diag(K)
+stds=np.sqrt(vars)
+filly = r_[mx+2*stds, mx[::-1]-2*stds[::-1]]
+plt.fill(fillx, filly, facecolor='gray', edgecolor='white', alpha=0.3)
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-3-af6bec05fb0e>[0m in [0;36m<module>[0;34m[0m
+[1;32m     13[0m [0mprint[0m[0;34m([0m[0mmx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m [0mprint[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mmx[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 15[0;31m [0mprint[0m[0;34m([0m[0mstds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     16[0m [0mprint[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mstds[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     17[0m [0mvars[0m[0;34m=[0m[0mnp[0m[0;34m.[0m[0mdiag[0m[0;34m([0m[0mK[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'stds' is not defined
+NameError: name 'stds' is not defined
+

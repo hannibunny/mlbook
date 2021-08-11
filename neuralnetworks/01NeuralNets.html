@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neural Networks Introduction &#8212; Machine Learning Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +55,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Recurrent Neural Networks" href="02RecurrentNeuralNetworks.html" />
     <link rel="prev" title="Gaussian Process" href="../machinelearning/gp.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,44 +71,49 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Machine Learning Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
    Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
    Bayes- and Naive Bayes Classifier
@@ -138,12 +140,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Neural Networks Introduction
@@ -175,48 +177,48 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="04VariationalAutoencoder.html">
    Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
    Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
    Representations for Words and Texts
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -224,6 +226,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -239,21 +242,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -271,16 +274,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -299,16 +302,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#natural-neuron">
    Natural Neuron
@@ -464,8 +467,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -486,7 +489,7 @@
 </div>
 <div class="section" id="artificial-neuron">
 <h2>Artificial Neuron<a class="headerlink" href="#artificial-neuron" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="http://maucher.home.hdm-stuttgart.de/Pics/slpPresentationSingle.png"><img alt="http://maucher.home.hdm-stuttgart.de/Pics/slpPresentationSingle.png" src="http://maucher.home.hdm-stuttgart.de/Pics/slpPresentationSingle.png" style="width: 400px;" /></a>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/slpPresentationSingle.png" width="400">
 <p>The artificial model of a neuron is shown in the picture below. At the input of each neuron the weighted sum</p>
 <div class="math notranslate nohighlight">
 \[in=\sum\limits_{j=0}^d w_jx_j = \mathbf{w}\cdot \mathbf{x^T}=(w_0, w_1, \ldots, w_d) \cdot (x_0, x_1, \ldots, x_d)^T \]</div>
@@ -531,15 +534,13 @@
 <div class="math notranslate nohighlight">
 \[in=\sum\limits_{j=0}^d w_jx_j  \quad \mbox{  is equivalent to  } \quad in=\sum\limits_{j=1}^d w_jx_j+b\]</div>
 <p>Hence the following two graphical representations are equivalent:</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/slpPresentations.png" src="https://maucher.home.hdm-stuttgart.de/Pics/slpPresentations.png" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpPresentations.png" style="width: 700px;"/></div>
 </div>
 <div class="section" id="artificial-neural-networks-general-notions">
 <h2>Artificial Neural Networks: General Notions<a class="headerlink" href="#artificial-neural-networks-general-notions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="layers">
 <h3>Layers<a class="headerlink" href="#layers" title="Permalink to this headline">¶</a></h3>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/mlpL3.png" src="https://maucher.home.hdm-stuttgart.de/Pics/mlpL3.png" />
-<p>In Neural Networks neurons are arranged in layers. All Neurons of a single layer are of the same type, i.e. they apply the same activation function on the weighted sum at their input (see previous section). Each Neural Network has at least one input-layer and one output-layer. The number of neurons in the input-layer is determined by the number of features (attributes) in the given Machine-Learning problem. The number of neurons in the output-layer depends on the task. E.g. for <strong>binary-classification</strong> and <strong>regression</strong> only one neuron in the output-layer is requried, for classification into <span class="math notranslate nohighlight">\(K&gt;2\)</span> classes the output-layer consists of <span class="math notranslate nohighlight">\(K\)</span> neurons.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlpL3.png" style="width: 600px;"/><p>In Neural Networks neurons are arranged in layers. All Neurons of a single layer are of the same type, i.e. they apply the same activation function on the weighted sum at their input (see previous section). Each Neural Network has at least one input-layer and one output-layer. The number of neurons in the input-layer is determined by the number of features (attributes) in the given Machine-Learning problem. The number of neurons in the output-layer depends on the task. E.g. for <strong>binary-classification</strong> and <strong>regression</strong> only one neuron in the output-layer is requried, for classification into <span class="math notranslate nohighlight">\(K&gt;2\)</span> classes the output-layer consists of <span class="math notranslate nohighlight">\(K\)</span> neurons.</p>
 <p>Actually, the <strong>input-layer</strong> is not considered as a <em>real</em> layer, since it only takes in the values of the current feature-vector, but does not perform any processing, such as calculating an activation function of a weighted sum. The input layer is ignored when determining the number of layers in a neural-network.</p>
 <p>For <strong>example</strong> for a binary credit-worthiness classification of customers, which are modelled by the numeric features <em>age, annual income, equity</em>, <span class="math notranslate nohighlight">\(3+1=4\)</span> neurons are required at the input (3 neurons <span class="math notranslate nohighlight">\(x_1,x_2,x_3\)</span> for the 3 features plus the constant bias <span class="math notranslate nohighlight">\(x_0=1\)</span>) and one neuron is required at the output. For non-numeric features at the input, the number of neurons in the inut-layer is not directly given by the number of features, since each non-numeric feature must be <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">One-Hot encoded</a> before passing it to the Neural Network.</p>
 <p>Inbetween the input- and the output-layer there may be zero, one or more other layers. The number of layers in a Neural Network is an essential architectural hyperparameter. <strong>Hyperparameters</strong> in Neural Networks, as well as in all other Machine Learning algorithms, are parameters, which are not learned automatically in the training phase, but must be configured from outside. Finding appropriate hyperparameters for the given task and the given data is possibly the most challenging task in machine-learning.</p>
@@ -607,8 +608,7 @@ In a well trained network, the deviation between output and target is as small a
 <div class="math notranslate nohighlight">
 \[T=\lbrace(x_{1,t},x_{2,t}, ,x_{d,t}),r_t \rbrace_{t=1}^N,\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_{j,t}\)</span> is the j.th feature of the t.th training-element and <span class="math notranslate nohighlight">\(r_t\)</span> is the numeric target value of the t.th training-element.</p>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png" style="width: 350px;" /></a>
-<p>As depicted above, for linear regression only a <strong>single neuron in the output-layer</strong> is required. The activation function <span class="math notranslate nohighlight">\(g()\)</span> applied for regression is the <strong>identity function</strong>. The loss-function, which is minimized in the training procedure is the <strong>sum of squared error</strong>:</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png" width="350" class="center"><p>As depicted above, for linear regression only a <strong>single neuron in the output-layer</strong> is required. The activation function <span class="math notranslate nohighlight">\(g()\)</span> applied for regression is the <strong>identity function</strong>. The loss-function, which is minimized in the training procedure is the <strong>sum of squared error</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
 E(T,\Theta)=SSE(T,\Theta)= \frac{1}{2} \sum\limits_{t=1}^N (r_t-y_t)^2 = \frac{1}{2} \sum\limits_{t=1}^N \left( r_t-\sum\limits_{j=0}^d w_j x_{j,t}\right)^2,
@@ -623,8 +623,7 @@ E(T,\Theta)=SSE(T,\Theta)= \frac{1}{2} \sum\limits_{t=1}^N (r_t-y_t)^2 = \frac{1
 <div class="math notranslate nohighlight">
 \[T=\lbrace(x_{1,t},x_{2,t},\ldots,x_{d,t}),r_t \rbrace_{t=1}^N,\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_{j,t}\)</span> is the j.th feature of the t.th training-element and <span class="math notranslate nohighlight">\(r_t \in \lbrace 0,1 \rbrace\)</span> is the class-index of the t.th training-element.</p>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png" style="width: 350px;" /></a>
-<p>As depicted above, for binary classification only a <strong>single neuron in the output-layer</strong> is required. The activation function <span class="math notranslate nohighlight">\(g()\)</span> applied for binary classification is either the <strong>threshold-</strong> or the <strong>sigmoid-function</strong>. The threshold-function output values are either 0 or 1, i.e. this function can provide only a <em>hard</em> classifikcation-decision, with no further information on the certainty of this decision. In contrast the value range of the sigmoid-function covers all floats between 0 and 1. It can be shown that if the weighted-sum is processed by the sigmoid-function the output is an indicator for the a-posteriori propability that the given observation belongs to class <span class="math notranslate nohighlight">\(C_1\)</span>:</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpW0.png" width="350" class="center"><p>As depicted above, for binary classification only a <strong>single neuron in the output-layer</strong> is required. The activation function <span class="math notranslate nohighlight">\(g()\)</span> applied for binary classification is either the <strong>threshold-</strong> or the <strong>sigmoid-function</strong>. The threshold-function output values are either 0 or 1, i.e. this function can provide only a <em>hard</em> classifikcation-decision, with no further information on the certainty of this decision. In contrast the value range of the sigmoid-function covers all floats between 0 and 1. It can be shown that if the weighted-sum is processed by the sigmoid-function the output is an indicator for the a-posteriori propability that the given observation belongs to class <span class="math notranslate nohighlight">\(C_1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[P(C_1|(x_{1},x_{2}, ,x_{d}))=1-P(C_0|(x_{1},x_{2},\ldots,x_{d})).\]</div>
 <p>If the output value</p>
@@ -651,7 +650,7 @@ E(T,\Theta)=  \sum\limits_{t=1}^N r_{t} \log y_{t}+(1-r_{t}) \log(1-y_{t}),
 \[
 b=-\frac{w_0}{w_2}=3. 
 \]</div>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/slpBinaryClassification.png" src="https://maucher.home.hdm-stuttgart.de/Pics/slpBinaryClassification.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpBinaryClassification.png" style="width: 600px;">
 <p>Once this model, i.e. the set of weights, is learned it can be applied for classification as follows: A new observation <span class="math notranslate nohighlight">\(\mathbf{x'}=(x'_1,x'_2)\)</span> is inserted into the learned equation <span class="math notranslate nohighlight">\(w_0 \cdot 1 + w_1 \cdot x'_1 + w_2 \cdot x'_2\)</span>. The result of this linear equation is passed to the sigmoid-function. If sigmoid-function’s output is <span class="math notranslate nohighlight">\(&gt;0.5\)</span> the most probable class is <span class="math notranslate nohighlight">\(C_1\)</span>, otherwise it is <span class="math notranslate nohighlight">\(C_0\)</span>.</p>
 </div>
 <div class="section" id="slp-for-classification-in-k-2-classes">
@@ -680,8 +679,7 @@ E(T,\Theta)= \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\Theta=\lbrace w_0,w_1,\ldots, w_d \rbrace\)</span> is the set of weights, which are adapted in the training process. <span class="math notranslate nohighlight">\(r_{t,k}=1\)</span>, if the t.th training-element belongs to class <span class="math notranslate nohighlight">\(k\)</span>, otherwise it is 0. <span class="math notranslate nohighlight">\(y_{t,k}\)</span> is the output of the k.th neuron for the t.th training-element.</p>
 <p>Each output neuron has its own set of weights, and each weight-set defines a (d-1)-dimensional hyperplane in the d-dimensional space. However, now these hyperplanes are not the class boundary itself, but they determine the class boundaries, which are actually of convex shape as depicted below. In the picture below, the red area indicates the inputs, who yield a maximum output at the neuron, whose weights belong to the red line, the blue area is the of inputs, whose maximum value is at the neuron, which belongs to the blue line and the green area comprises the inputs, whose maximum value is at the neuron, which belongs to the green line.</p>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/slpMultiClassRegions.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/slpMultiClassRegions.png" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/slpMultiClassRegions.png" style="width: 400px;" /></a>
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpMultiClassRegions.png" width="400" class="center"></div>
 </div>
 <div class="section" id="gradient-of-error-function">
 <h2>Gradient of Error Function<a class="headerlink" href="#gradient-of-error-function" title="Permalink to this headline">¶</a></h2>
@@ -744,7 +742,7 @@ In contrast to Batch-Learning this variant is called <strong>Online-Learning</st
 </ul>
 <p>Usually the number of hidden layers is 1,2 or 3. All neurons of a layer are connected to all neurons of the successive layer. A layer with this property is also called a <strong>fully-connected layer</strong> or a <strong>dense layer</strong>.</p>
 <p>An example of a <span class="math notranslate nohighlight">\(L=3\)</span> layer MLP is shown in the following picture.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mlpL3.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlpL3.png" alt="Drawing" style="width: 600px;">
 <p>As in the case of SLPs, the biases in MLP can be modelled implicitily by including to all non-output-layers a constant neuron <span class="math notranslate nohighlight">\(x_0=1\)</span>, or by the explicit bias-vector <span class="math notranslate nohighlight">\(\mathbf{b^l}\)</span> in layer <span class="math notranslate nohighlight">\(l\)</span>. In the picture above, the latter option is applied.</p>
 <p>In order to provide a unified description the following notation is used:</p>
 <ul class="simple">
@@ -773,8 +771,7 @@ In contrast to Batch-Learning this variant is called <strong>Online-Learning</st
 </ul>
 <p>are distinguished. The corresponding MLP output-layer is the same as in the case of a SLP.</p>
 <p>In contrast to SLPs, MLPs are able to <strong>learn non-linear</strong> models. This difference is depicted below: The left hand side shows the linear classification-boundary, as learned by a SLP, whereas on the right-hand side the non-linear boundary, as learned by a MLP from the same training data, is plotted.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/nonlinearClassification.png" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/nonlinearClassification.png" alt="Drawing" style="width: 800px;"/></div>
 </div>
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
@@ -941,7 +938,7 @@ an additional term</p></li>
 <div class="section" id="early-mlp-example-autonomos-driving">
 <h2>Early MLP Example: Autonomos Driving<a class="headerlink" href="#early-mlp-example-autonomos-driving" title="Permalink to this headline">¶</a></h2>
 <p>The ALVINN net is a MLP with one hidden layer. It has been designed and trained for <em>road following</em> in autonomous driving. The input has been provided by a simple <span class="math notranslate nohighlight">\(30 \times 32\)</span> greyscale camera. As shown in the picture below, the hidden layer contains only 4 neurons. In the output-layer each of the 30 neurons belongs to one “steering-wheel-direction”. The training data has been collected by recording videos while an expert driver steers the car. For each frame (input) the steering-wheel-direction (label) has been tracked.</p>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/alvinnNN.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/alvinnNN.jpg" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/alvinnNN.jpg" style="width: 450px;" /></a>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/alvinnNN.jpg" width=450 class="center">
 <p>After training the vehicle cruised autonomously for 90 miles on a highway at a speed of up to 70mph. The test-highway has not been included in the training cruises.</p>
 </div>
 </div>
@@ -968,15 +965,15 @@ an additional term</p></li>
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="../machinelearning/gp.html" title="previous page">Gaussian Process</a>
     <a class='right-next' id="next-link" href="02RecurrentNeuralNetworks.html" title="next page">Recurrent Neural Networks</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -984,7 +981,7 @@ an additional term</p></li>
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -993,11 +990,9 @@ an additional term</p></li>
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>
