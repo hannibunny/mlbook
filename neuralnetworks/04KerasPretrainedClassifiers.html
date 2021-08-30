@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Applying Pretrained Deep Neural Networks for Image Classification &#8212; Machine Learning Lecture</title>
+    <title>13. Applying Pretrained Deep Neural Networks for Image Classification &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Apply Pretrained Neural Networks on new Task" href="05KerasPretrainedCovid.html" />
-    <link rel="prev" title="Implementing Neural Networks with Keras" href="03KerasMLPandCNNcifar.html" />
+    <link rel="next" title="14. Apply Pretrained Neural Networks on new Task" href="05KerasPretrainedCovid.html" />
+    <link rel="prev" title="12. Implementing Neural Networks with Keras" href="03KerasMLPandCNNcifar.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   Basic Concepts of Data Mining and Machine Learning
+   1. Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,32 +111,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/knn.html">
-   K - Nearest Neighbour Classification / Regression
+   2. K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
-   Bayes- and Naive Bayes Classifier
+   3. Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/LinReg.html">
-   Linear Regression
+   4. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/heartRateRegression.html">
-   Example Linear Regression
+   5. Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/svm.html">
-   Support Vector Machines (SVM)
+   6. Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/gp.html">
-   Gaussian Process
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   8. Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -148,32 +153,44 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01NeuralNets.html">
-   Neural Networks Introduction
+   9. Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02RecurrentNeuralNetworks.html">
-   Recurrent Neural Networks
+   10. Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
-   Convolutional Neural Networks
+   11. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03KerasMLPandCNNcifar.html">
-   Implementing Neural Networks with Keras
+   12. Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Applying Pretrained Deep Neural Networks for Image Classification
+   13. Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05KerasPretrainedCovid.html">
-   Apply Pretrained Neural Networks on new Task
+   14. Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   15. Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -185,7 +202,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="04VariationalAutoencoder.html">
-   Variational Autoencoder (VAE) to generate handwritten digits
+   16. Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -197,7 +214,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   Generative Adversarial Nets (GAN)
+   17. Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
@@ -209,7 +226,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   Representations for Words and Texts
+   18. Representations for Words and Texts
   </a>
  </li>
 </ul>
@@ -221,7 +238,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   References
+   19. References
   </a>
  </li>
 </ul>
@@ -314,37 +331,37 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-the-models-from-keras-applications-folder">
-   Load the models from keras applications folder
+   13.1. Load the models from keras applications folder
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#perform-pre-processing-before-feeding-the-image-to-the-network">
-   Perform Pre-processing before feeding the image to the network
+   13.2. Perform Pre-processing before feeding the image to the network
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#predictions-using-the-various-networks">
-   Predictions using the various Networks
+   13.3. Predictions using the various Networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#vgg16-network">
-     VGG16 Network
+     13.3.1. VGG16 Network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#resnet50-network">
-     ResNet50 Network
+     13.3.2. ResNet50 Network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mobilenet-network">
-     MobileNet Network
+     13.3.3. MobileNet Network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inception-v3-network">
-     Inception_V3 Network
+     13.3.4. Inception_V3 Network
     </a>
    </li>
   </ul>
@@ -361,14 +378,14 @@
               <div>
                 
   <div class="section" id="applying-pretrained-deep-neural-networks-for-image-classification">
-<h1>Applying Pretrained Deep Neural Networks for Image Classification<a class="headerlink" href="#applying-pretrained-deep-neural-networks-for-image-classification" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">13. </span>Applying Pretrained Deep Neural Networks for Image Classification<a class="headerlink" href="#applying-pretrained-deep-neural-networks-for-image-classification" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last update: 04.11.2020</p></li>
 </ul>
 <p>This notebook demonstrates the application of pretrained, publicable available neural networks in the task for which these nets have been trained - ImageNet object classification.</p>
 <div class="section" id="load-the-models-from-keras-applications-folder">
-<h2>Load the models from keras applications folder<a class="headerlink" href="#load-the-models-from-keras-applications-folder" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">13.1. </span>Load the models from keras applications folder<a class="headerlink" href="#load-the-models-from-keras-applications-folder" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -400,7 +417,7 @@
 </div>
 </div>
 <div class="section" id="perform-pre-processing-before-feeding-the-image-to-the-network">
-<h2>Perform Pre-processing before feeding the image to the network<a class="headerlink" href="#perform-pre-processing-before-feeding-the-image-to-the-network" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">13.2. </span>Perform Pre-processing before feeding the image to the network<a class="headerlink" href="#perform-pre-processing-before-feeding-the-image-to-the-network" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Keras loads the image using PIL library. This is done using the <strong>load_img</strong> function. The image is in <span class="math notranslate nohighlight">\(width \times height \times channels\)</span> format.</p></li>
 <li><p>Convert the image from PIL format to Numpy format ( <span class="math notranslate nohighlight">\(height \times width \times channels\)</span> ) using <strong>image_to_array</strong> function.</p></li>
@@ -496,14 +513,14 @@
 </div>
 </div>
 <div class="section" id="predictions-using-the-various-networks">
-<h2>Predictions using the various Networks<a class="headerlink" href="#predictions-using-the-various-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">13.3. </span>Predictions using the various Networks<a class="headerlink" href="#predictions-using-the-various-networks" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Preprocess the input by subtracting the mean value from each channel of the images in the batch. Mean is an array of three elements obtained by the average of R, G, B pixels of all images obtained from ImageNet</p></li>
 <li><p>get the probabilities of occurrence for each class</p></li>
 <li><p>convert the probabilities to human-readable labels</p></li>
 </ol>
 <div class="section" id="vgg16-network">
-<h3>VGG16 Network<a class="headerlink" href="#vgg16-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">13.3.1. </span>VGG16 Network<a class="headerlink" href="#vgg16-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare the image for the VGG model</span>
@@ -542,7 +559,7 @@
 </div>
 </div>
 <div class="section" id="resnet50-network">
-<h3>ResNet50 Network<a class="headerlink" href="#resnet50-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">13.3.2. </span>ResNet50 Network<a class="headerlink" href="#resnet50-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare the image for the ResNet50 model</span>
@@ -571,7 +588,7 @@
 </div>
 </div>
 <div class="section" id="mobilenet-network">
-<h3>MobileNet Network<a class="headerlink" href="#mobilenet-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">13.3.3. </span>MobileNet Network<a class="headerlink" href="#mobilenet-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare the image for the MobileNet model</span>
@@ -601,7 +618,7 @@
 </div>
 </div>
 <div class="section" id="inception-v3-network">
-<h3>Inception_V3 Network<a class="headerlink" href="#inception-v3-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">13.3.4. </span>Inception_V3 Network<a class="headerlink" href="#inception-v3-network" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The input size for inception network is different from the other networks. It accepts inputs of size (299, 299).</p></li>
 <li><p>Thus we load the image with target size according to that.</p></li>
@@ -714,8 +731,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="03KerasMLPandCNNcifar.html" title="previous page">Implementing Neural Networks with Keras</a>
-    <a class='right-next' id="next-link" href="05KerasPretrainedCovid.html" title="next page">Apply Pretrained Neural Networks on new Task</a>
+    <a class='left-prev' id="prev-link" href="03KerasMLPandCNNcifar.html" title="previous page"><span class="section-number">12. </span>Implementing Neural Networks with Keras</a>
+    <a class='right-next' id="next-link" href="05KerasPretrainedCovid.html" title="next page"><span class="section-number">14. </span>Apply Pretrained Neural Networks on new Task</a>
 
         </div>
         

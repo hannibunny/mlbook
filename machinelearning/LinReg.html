@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linear Regression &#8212; Machine Learning Lecture</title>
+    <title>4. Linear Regression &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Example Linear Regression" href="heartRateRegression.html" />
-    <link rel="prev" title="Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
+    <link rel="next" title="5. Example Linear Regression" href="heartRateRegression.html" />
+    <link rel="prev" title="3. Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   Basic Concepts of Data Mining and Machine Learning
+   1. Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,32 +111,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="knn.html">
-   K - Nearest Neighbour Classification / Regression
+   2. K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="parametricClassification1D.html">
-   Bayes- and Naive Bayes Classifier
+   3. Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Linear Regression
+   4. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heartRateRegression.html">
-   Example Linear Regression
+   5. Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
-   Support Vector Machines (SVM)
+   6. Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="gp.html">
-   Gaussian Process
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcessRegression.html">
+   8. Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -148,32 +153,32 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
-   Neural Networks Introduction
+   9. Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
-   Recurrent Neural Networks
+   10. Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
-   Convolutional Neural Networks
+   11. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
-   Implementing Neural Networks with Keras
+   12. Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
-   Applying Pretrained Deep Neural Networks for Image Classification
+   13. Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
-   Apply Pretrained Neural Networks on new Task
+   14. Apply Pretrained Neural Networks on new Task
   </a>
  </li>
 </ul>
@@ -203,13 +208,25 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   17. Reinforcement Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Text
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   Representations for Words and Texts
+   18. Representations for Words and Texts
   </a>
  </li>
 </ul>
@@ -221,7 +238,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   References
+   19. References
   </a>
  </li>
 </ul>
@@ -297,32 +314,32 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#maximum-likelihood-estimation">
-   Maximum-Likelihood Estimation
+   4.1. Maximum-Likelihood Estimation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generalized-linear-regression">
-   Generalized Linear Regression
+   4.2. Generalized Linear Regression
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regularisation">
-   Regularisation
+   4.3. Regularisation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ridge-regression">
-     Ridge Regression
+     4.3.1. Ridge Regression
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lasso">
-     Lasso
+     4.3.2. Lasso
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#elastic-net">
-     Elastic-Net
+     4.3.3. Elastic-Net
     </a>
    </li>
   </ul>
@@ -561,8 +578,8 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="parametricClassification1D.html" title="previous page">Bayes- and Naive Bayes Classifier</a>
-    <a class='right-next' id="next-link" href="heartRateRegression.html" title="next page">Example Linear Regression</a>
+    <a class='left-prev' id="prev-link" href="parametricClassification1D.html" title="previous page"><span class="section-number">3. </span>Bayes- and Naive Bayes Classifier</a>
+    <a class='right-next' id="next-link" href="heartRateRegression.html" title="next page"><span class="section-number">5. </span>Example Linear Regression</a>
 
         </div>
         

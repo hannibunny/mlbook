@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Gaussian Process: Implementation in Python &#8212; Machine Learning Lecture</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Neural Networks Introduction" href="../neuralnetworks/01NeuralNets.html" />
+    <link rel="prev" title="7. Gaussian Process" href="gp.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   1. Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="knn.html">
+   2. K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parametricClassification1D.html">
+   3. Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinReg.html">
+   4. Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heartRateRegression.html">
+   5. Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="svm.html">
+   6. Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gp.html">
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Gaussian Process: Implementation in Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   9. Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   10. Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   11. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   12. Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   13. Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   14. Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   15. Reinforcement Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   16. Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   17. Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   18. Representations for Words and Texts
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   19. References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/machinelearning/GaussianProcessRegression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/machinelearning/GaussianProcessRegression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-process-for-regression">
+   8.1. Gaussian Process for Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-optimum-hyperparameters-for-mean-and-covariance-function">
+   8.2. Find optimum hyperparameters for mean- and covariance-function
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="gaussian-process-implementation-in-python">
+<h1><span class="section-number">8. </span>Gaussian Process: Implementation in Python<a class="headerlink" href="#gaussian-process-implementation-in-python" title="Permalink to this headline">¶</a></h1>
+<p>In this section Gaussian Processes regression, as described in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>, is implemented in Python. First the case of predefined mean- and covariance-function is implemented. In the second part these functions are learned from data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">r_</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gaussian-process-for-regression">
+<h2><span class="section-number">8.1. </span>Gaussian Process for Regression<a class="headerlink" href="#gaussian-process-for-regression" title="Permalink to this headline">¶</a></h2>
+<p>Definition of training data. This is the same data as used in the GP regression example in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">yB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">3.9</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xB</span><span class="p">,</span><span class="n">yB</span><span class="p">,</span><span class="s2">&quot;or&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/GaussianProcessRegression_5_0.png" src="../_images/GaussianProcessRegression_5_0.png" />
+</div>
+</div>
+<p>Define the positions at wich the function values shall be predicted. In contrast to the GP regression in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>, below we predict numeric values not only at the three locations <span class="math notranslate nohighlight">\(5,6\)</span> and <span class="math notranslate nohighlight">\(7\)</span>, but at all locations in the range from 0 to 7 with a resolution of <span class="math notranslate nohighlight">\(0.2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xPred</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define the hyperparameters for the mean- and covariance function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2</span><span class="o">=</span><span class="mf">0.25</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
+<span class="n">ell</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># horizontal length scale parameter in the squared exponential function</span>
+<span class="n">sigmaF2</span><span class="o">=</span><span class="mi">2</span> <span class="c1">#sigmaF2 is the variance of the multivariate gaussian distribution</span>
+<span class="n">sigmaN2</span><span class="o">=</span><span class="mf">0.005</span> <span class="c1">#sigmaN2 is the variance of the regression noise-term</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definition of mean- and covariance function. Here, the mean function is a quadratic polynomial and the covariance function is the squared exponential.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">priormean</span><span class="p">(</span><span class="n">xin</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c2</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">corrFunc</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">xb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sigmaF2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">ell</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the values <em>mx</em> of the mean function in the range from 0 to 7. These values are just used for plotting. The values <em>mxB</em> are the mean-function values at the training data x-values, i.e. the <strong>mean-vector</strong>. These values are applied for calculating the prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mx</span><span class="o">=</span><span class="n">priormean</span><span class="p">(</span><span class="n">xPred</span><span class="p">)</span>
+<span class="n">mxB</span><span class="o">=</span><span class="n">priormean</span><span class="p">(</span><span class="n">xB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the covariance matrix by evaluating the covariance function at the training data x-values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+        <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="n">sigmaN2</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">noise</span>
+        <span class="n">KB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+        <span class="n">KB</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>        
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix KB &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">KB</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix KB ----------
+[[2.005 1.213 0.271 0.022]
+ [1.213 2.005 1.213 0.271]
+ [0.271 1.213 2.005 1.213]
+ [0.022 0.271 1.213 2.005]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the inverse of the covariance matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KBInv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">KB</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Inverse of Matrix KB &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">KBInv</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Inverse of Matrix KB ----------
+[[ 0.953 -0.862  0.519 -0.208]
+ [-0.862  1.688 -1.219  0.519]
+ [ 0.519 -1.219  1.688 -0.862]
+ [-0.208  0.519 -0.862  0.953]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the covariance matrix <span class="math notranslate nohighlight">\(K_*\)</span> between training x-values and prediction x-values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xPred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">Ks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix Ks &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ks</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix Ks ----------
+[[1.21306 0.27067 0.02222 0.00067]
+ [1.4523  0.3958  0.03968 0.00146]
+ [1.67054 0.55607 0.06809 0.00307]
+ [1.84623 0.75062 0.11227 0.00618]
+ [1.9604  0.9735  0.17784 0.01195]
+ [2.      1.21306 0.27067 0.02222]
+ [1.9604  1.4523  0.3958  0.03968]
+ [1.84623 1.67054 0.55607 0.06809]
+ [1.67054 1.84623 0.75062 0.11227]
+ [1.4523  1.9604  0.9735  0.17784]
+ [1.21306 2.      1.21306 0.27067]
+ [0.9735  1.9604  1.4523  0.3958 ]
+ [0.75062 1.84623 1.67054 0.55607]
+ [0.55607 1.67054 1.84623 0.75062]
+ [0.3958  1.4523  1.9604  0.9735 ]
+ [0.27067 1.21306 2.      1.21306]
+ [0.17784 0.9735  1.9604  1.4523 ]
+ [0.11227 0.75062 1.84623 1.67054]
+ [0.06809 0.55607 1.67054 1.84623]
+ [0.03968 0.3958  1.4523  1.9604 ]
+ [0.02222 0.27067 1.21306 2.     ]
+ [0.01195 0.17784 0.9735  1.9604 ]
+ [0.00618 0.11227 0.75062 1.84623]
+ [0.00307 0.06809 0.55607 1.67054]
+ [0.00146 0.03968 0.3958  1.4523 ]
+ [0.00067 0.02222 0.27067 1.21306]
+ [0.0003  0.01195 0.17784 0.9735 ]
+ [0.00013 0.00618 0.11227 0.75062]
+ [0.00005 0.00307 0.06809 0.55607]
+ [0.00002 0.00146 0.03968 0.3958 ]
+ [0.00001 0.00067 0.02222 0.27067]
+ [0.      0.0003  0.01195 0.17784]
+ [0.      0.00013 0.00618 0.11227]
+ [0.      0.00005 0.00307 0.06809]
+ [0.      0.00002 0.00146 0.03968]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the covariance matrix <span class="math notranslate nohighlight">\(K_{**}\)</span> between prediction x-values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)):</span>
+        <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="n">sigmaN2</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xPred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xPred</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">noise</span>
+        <span class="n">Kss</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+        <span class="n">Kss</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix Kss &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Kss</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix Kss ----------
+[[2.005 1.96  1.846 ... 0.    0.    0.   ]
+ [1.96  2.005 1.96  ... 0.    0.    0.   ]
+ [1.846 1.96  2.005 ... 0.    0.    0.   ]
+ ...
+ [0.    0.    0.    ... 2.005 1.96  1.846]
+ [0.    0.    0.    ... 1.96  2.005 1.96 ]
+ [0.    0.    0.    ... 1.846 1.96  2.005]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the prediction</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mus</span><span class="o">=</span><span class="n">priormean</span><span class="p">(</span><span class="n">xPred</span><span class="p">)</span>
+<span class="n">ypred</span><span class="o">=</span><span class="n">mus</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ks</span><span class="p">,</span><span class="n">KBInv</span><span class="p">),(</span><span class="n">yB</span><span class="o">-</span><span class="n">mxB</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction: &quot;</span><span class="p">,</span><span class="n">ypred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction:  [ 0.0607   0.07144  0.09576  0.1329   0.18343  0.24955  0.33491  0.44404
+  0.58139  0.75009  0.95099  1.1821   1.43878  1.71466  2.0031   2.29884
+  2.59926  2.90502  3.21986  3.54962  3.90082  4.27924  4.68881  5.13106
+  5.60528  6.10899  6.63886  7.19143  7.76378  8.35385  8.96053  9.58348
+ 10.22295 10.87951 11.55381]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the covariance of the predictions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yvar</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Kss</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ks</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">KBInv</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Ks</span><span class="p">))))</span>
+<span class="n">stds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">yvar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Double Standard Deviation: &quot;</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Standard Deviation:  [2.03145 1.67176 1.25471 0.81683 0.41676 0.19976 0.30632 0.39288 0.36953
+ 0.2698  0.19958 0.25702 0.32803 0.32803 0.25702 0.19958 0.2698  0.36953
+ 0.39288 0.30632 0.19976 0.41676 0.81683 1.25471 1.67176 2.03145 2.31537
+ 2.52119 2.65828 2.74206 2.78897 2.813   2.82426 2.82908 2.83097]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot training data and predicitons:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xPred</span><span class="p">,</span><span class="n">mx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean $m(x)$&quot;</span><span class="p">)</span>
+<span class="c1">#plt.hold(True)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xB</span><span class="p">,</span><span class="n">yB</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xPred</span><span class="p">,</span><span class="n">ypred</span><span class="p">,</span><span class="s1">&#39;--g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="s2">&quot;$m(x)=0.25 \cdot x^2$ </span><span class="se">\n</span><span class="s2">$k(x,x&#39;)=2 \cdot \exp(-0.5\cdot(x-x&#39;)^2)$ </span><span class="se">\n</span><span class="s2"> $\sigma_n^2=0.005$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process Prediction with prior quadratic mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">])</span>
+<span class="c1"># plot 2*standard deviation 95%-confidence interval</span>
+<span class="n">fillx</span> <span class="o">=</span> <span class="n">r_</span><span class="p">[</span><span class="n">xPred</span><span class="p">,</span> <span class="n">xPred</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">filly</span> <span class="o">=</span> <span class="n">r_</span><span class="p">[</span><span class="n">ypred</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">,</span> <span class="n">ypred</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">fillx</span><span class="p">,</span> <span class="n">filly</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/GaussianProcessRegression_27_0.png" src="../_images/GaussianProcessRegression_27_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="find-optimum-hyperparameters-for-mean-and-covariance-function">
+<h2><span class="section-number">8.2. </span>Find optimum hyperparameters for mean- and covariance-function<a class="headerlink" href="#find-optimum-hyperparameters-for-mean-and-covariance-function" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">r_</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">])</span>
+<span class="n">yB</span><span class="o">=</span><span class="n">xB</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1">#Returns Log-Likelihood, which must be optimized</span>
+    <span class="n">mxB</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">xB</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">xB</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">*</span><span class="n">xB</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">*</span><span class="n">xB</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">KB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+            <span class="n">noise</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">k</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="n">noise</span>
+            <span class="n">KB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+            <span class="n">KB</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+    <span class="n">KBinv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">KB</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">KB</span><span class="p">))</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">yB</span><span class="o">-</span><span class="n">mxB</span><span class="p">),</span> \
+<span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">KBinv</span><span class="p">,(</span><span class="n">yB</span><span class="o">-</span><span class="n">mxB</span><span class="p">)))</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Define constraints on the hyperparameters</span>
+<span class="k">def</span> <span class="nf">constr1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span> <span class="c1">#horizontal length-scale &gt; 1</span>
+
+<span class="k">def</span> <span class="nf">constr2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">5</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="c1">#horizontal length-scale &lt; 5</span>
+
+<span class="k">def</span> <span class="nf">constr3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="mf">0.8</span> <span class="c1">#vertical length-scale &gt;0.8</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1">#Startvalues for optimization</span>
+<span class="n">xopt</span><span class="o">=</span><span class="n">opt</span><span class="o">.</span><span class="n">fmin_cobyla</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">cons</span><span class="o">=</span><span class="p">[</span><span class="n">constr1</span><span class="p">,</span><span class="n">constr2</span><span class="p">,</span><span class="n">constr3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s2">&quot;Results of optimisation&quot;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xopt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------Results of optimisation----------
+[-0.23152 -0.31679 -0.29716  2.66767  1.00007  1.12804  0.00994  0.00263]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#####################Definition of hyperparameters#############################</span>
+<span class="n">c4</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
+<span class="n">c3</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
+<span class="n">c2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
+<span class="n">c1</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># constant coefficient of linear term in prior mean function</span>
+<span class="n">c0</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># constant coefficient constant term in prior mean function</span>
+<span class="n">ell</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="c1"># horicontal length scale parameter in the squared exponential function</span>
+<span class="n">sigmaF2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#sigmaF2 is the variance of the multivariate gaussian distribution</span>
+<span class="n">sigmaN2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#sigmaN2 is the variance of the regression noise-term</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###################Definition of mean- and covariance function################# </span>
+<span class="k">def</span> <span class="nf">priormean</span><span class="p">(</span><span class="n">xin</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c4</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">4</span><span class="o">+</span><span class="n">c3</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">c2</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">c1</span><span class="o">*</span><span class="n">xin</span><span class="o">+</span><span class="n">c0</span>
+
+<span class="k">def</span> <span class="nf">corrFunc</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">xb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sigmaF2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">ell</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">mx</span><span class="o">=</span><span class="n">priormean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">mxB</span><span class="o">=</span><span class="n">priormean</span><span class="p">(</span><span class="n">xB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xPred</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+        <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="n">sigmaN2</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">noise</span>
+        <span class="n">KB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+        <span class="n">KB</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>        
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix KB &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">KB</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix KB ----------
+[[8.389 0.963 0.002 0.    0.    0.    0.   ]
+ [0.963 8.389 0.963 0.079 0.002 0.    0.   ]
+ [0.002 0.963 8.389 4.317 0.963 0.079 0.002]
+ [0.    0.079 4.317 8.389 4.317 0.963 0.079]
+ [0.    0.002 0.963 4.317 8.389 4.317 0.963]
+ [0.    0.    0.079 0.963 4.317 8.389 4.317]
+ [0.    0.    0.002 0.079 0.963 4.317 8.389]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KBInv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">KB</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Inverse of Matrix KB &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">KBInv</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Inverse of Matrix KB ----------
+[[ 0.121 -0.014  0.002 -0.001  0.    -0.     0.   ]
+ [-0.014  0.123 -0.019  0.01  -0.004  0.001 -0.   ]
+ [ 0.002 -0.019  0.173 -0.109  0.042 -0.012  0.002]
+ [-0.001  0.01  -0.109  0.239 -0.134  0.049 -0.012]
+ [ 0.    -0.004  0.042 -0.134  0.247 -0.134  0.042]
+ [-0.     0.001 -0.012  0.049 -0.134  0.238 -0.107]
+ [ 0.    -0.     0.002 -0.012  0.042 -0.107  0.17 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xPred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">Ks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix Ks &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ks</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix Ks ----------
+[[4.31663 0.0791  0.00003 0.      0.      0.      0.     ]
+ [5.16783 0.14127 0.00007 0.      0.      0.      0.     ]
+ [5.94431 0.2424  0.00018 0.      0.      0.      0.     ]
+ [6.56939 0.39963 0.00045 0.      0.      0.      0.     ]
+ [6.97556 0.63301 0.00105 0.00001 0.      0.      0.     ]
+ [7.11646 0.96336 0.00239 0.00003 0.      0.      0.     ]
+ [6.97556 1.40864 0.00521 0.00007 0.      0.      0.     ]
+ [6.56939 1.97897 0.01092 0.00018 0.      0.      0.     ]
+ [5.94431 2.67123 0.022   0.00045 0.      0.      0.     ]
+ [5.16783 3.46428 0.04256 0.00105 0.00001 0.      0.     ]
+ [4.31663 4.31663 0.0791  0.00239 0.00003 0.      0.     ]
+ [3.46428 5.16783 0.14127 0.00521 0.00007 0.      0.     ]
+ [2.67123 5.94431 0.2424  0.01092 0.00018 0.      0.     ]
+ [1.97897 6.56939 0.39963 0.022   0.00045 0.      0.     ]
+ [1.40864 6.97556 0.63301 0.04256 0.00105 0.00001 0.     ]
+ [0.96336 7.11646 0.96336 0.0791  0.00239 0.00003 0.     ]
+ [0.63301 6.97556 1.40864 0.14127 0.00521 0.00007 0.     ]
+ [0.39963 6.56939 1.97897 0.2424  0.01092 0.00018 0.     ]
+ [0.2424  5.94431 2.67123 0.39963 0.022   0.00045 0.     ]
+ [0.14127 5.16783 3.46428 0.63301 0.04256 0.00105 0.00001]
+ [0.0791  4.31663 4.31663 0.96336 0.0791  0.00239 0.00003]
+ [0.04256 3.46428 5.16783 1.40864 0.14127 0.00521 0.00007]
+ [0.022   2.67123 5.94431 1.97897 0.2424  0.01092 0.00018]
+ [0.01092 1.97897 6.56939 2.67123 0.39963 0.022   0.00045]
+ [0.00521 1.40864 6.97556 3.46428 0.63301 0.04256 0.00105]
+ [0.00239 0.96336 7.11646 4.31663 0.96336 0.0791  0.00239]
+ [0.00105 0.63301 6.97556 5.16783 1.40864 0.14127 0.00521]
+ [0.00045 0.39963 6.56939 5.94431 1.97897 0.2424  0.01092]
+ [0.00018 0.2424  5.94431 6.56939 2.67123 0.39963 0.022  ]
+ [0.00007 0.14127 5.16783 6.97556 3.46428 0.63301 0.04256]
+ [0.00003 0.0791  4.31663 7.11646 4.31663 0.96336 0.0791 ]
+ [0.00001 0.04256 3.46428 6.97556 5.16783 1.40864 0.14127]
+ [0.      0.022   2.67123 6.56939 5.94431 1.97897 0.2424 ]
+ [0.      0.01092 1.97897 5.94431 6.56939 2.67123 0.39963]
+ [0.      0.00521 1.40864 5.16783 6.97556 3.46428 0.63301]
+ [0.      0.00239 0.96336 4.31663 7.11646 4.31663 0.96336]
+ [0.      0.00105 0.63301 3.46428 6.97556 5.16783 1.40864]
+ [0.      0.00045 0.39963 2.67123 6.56939 5.94431 1.97897]
+ [0.      0.00018 0.2424  1.97897 5.94431 6.56939 2.67123]
+ [0.      0.00007 0.14127 1.40864 5.16783 6.97556 3.46428]
+ [0.      0.00003 0.0791  0.96336 4.31663 7.11646 4.31663]
+ [0.      0.00001 0.04256 0.63301 3.46428 6.97556 5.16783]
+ [0.      0.      0.022   0.39963 2.67123 6.56939 5.94431]
+ [0.      0.      0.01092 0.2424  1.97897 5.94431 6.56939]
+ [0.      0.      0.00521 0.14127 1.40864 5.16783 6.97556]
+ [0.      0.      0.00239 0.0791  0.96336 4.31663 7.11646]
+ [0.      0.      0.00105 0.04256 0.63301 3.46428 6.97556]
+ [0.      0.      0.00045 0.022   0.39963 2.67123 6.56939]
+ [0.      0.      0.00018 0.01092 0.2424  1.97897 5.94431]
+ [0.      0.      0.00007 0.00521 0.14127 1.40864 5.16783]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xPred</span><span class="p">)):</span>
+        <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="n">sigmaN2</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xPred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xPred</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">noise</span>
+        <span class="n">Kss</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+        <span class="n">Kss</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix Kss &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Kss</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix Kss ----------
+[[8.389 6.976 6.569 ... 0.    0.    0.   ]
+ [6.976 8.389 6.976 ... 0.    0.    0.   ]
+ [6.569 6.976 8.389 ... 0.    0.    0.   ]
+ ...
+ [0.    0.    0.    ... 8.389 6.976 6.569]
+ [0.    0.    0.    ... 6.976 8.389 6.976]
+ [0.    0.    0.    ... 6.569 6.976 8.389]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mus</span><span class="o">=</span><span class="n">priormean</span><span class="p">(</span><span class="n">xPred</span><span class="p">)</span>
+<span class="n">ypred</span><span class="o">=</span><span class="n">mus</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ks</span><span class="p">,</span><span class="n">KBInv</span><span class="p">),(</span><span class="n">yB</span><span class="o">-</span><span class="n">mxB</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction: &quot;</span><span class="p">,</span><span class="n">ypred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction:  [ 0.40199  0.48549  0.55464  0.60486  0.63423  0.64447  0.64083  0.63064
+  0.62056  0.61338  0.60508  0.58337  0.52839  0.41573  0.22127 -0.07333
+ -0.4757  -0.97965 -1.56453 -2.19703 -2.8349  -3.43176 -3.9419  -4.32441
+ -4.54613 -4.58326 -4.42177 -4.05692 -3.49237 -2.73943 -1.81699 -0.75222
+  0.41789  1.645    2.86884  4.01901  5.02012  5.80068  6.30469  6.50396
+  6.40789  6.06785  5.57387  5.04363  4.60551  4.37956  4.46071  4.90781
+  5.74058  6.94416]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yvar</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Kss</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ks</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">KBInv</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Ks</span><span class="p">))))</span>
+<span class="n">stds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">yvar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Double Standard Deviation: &quot;</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Standard Deviation:  [4.9584  4.55205 4.07582 3.59388 3.21568 3.06549 3.18956 3.49887 3.84304
+ 4.09708 4.1873  4.09065 3.83298 3.49052 3.18764 3.06328 3.18143 3.47088
+ 3.79093 4.021   4.09326 3.9941  3.75852 3.45967 3.18729 3.01009 2.93954
+ 2.93422 2.94404 2.94475 2.93832 2.93396 2.93363 2.93307 2.93044 2.92882
+ 2.93053 2.93314 2.93363 2.93413 2.93929 2.94707 2.94733 2.9367  2.93976
+ 3.01327 3.21507 3.5562  3.98941 4.44236]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean $m(x)$&quot;</span><span class="p">)</span>
+<span class="c1">#plt.hold(True)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xB</span><span class="p">,</span><span class="n">yB</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xPred</span><span class="p">,</span><span class="n">ypred</span><span class="p">,</span><span class="s1">&#39;--g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;$m(x)=0.25 \cdot x^2$ </span><span class="se">\n</span><span class="s2">$k(x,x&#39;)=2 \cdot \exp(-0.5\cdot(x-x&#39;)^2)$ </span><span class="se">\n</span><span class="s2"> $\sigma_n^2=0.005$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process Prediction with prior quadratic mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="c1"># plot 2*standard deviation 95%-confidence interval</span>
+<span class="n">fillx</span> <span class="o">=</span> <span class="n">r_</span><span class="p">[</span><span class="n">xPred</span><span class="p">,</span> <span class="n">xPred</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">filly</span> <span class="o">=</span> <span class="n">r_</span><span class="p">[</span><span class="n">ypred</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">,</span> <span class="n">ypred</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">stds</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">fillx</span><span class="p">,</span> <span class="n">filly</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/GaussianProcessRegression_44_0.png" src="../_images/GaussianProcessRegression_44_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machinelearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="gp.html" title="previous page"><span class="section-number">7. </span>Gaussian Process</a>
+    <a class='right-next' id="next-link" href="../neuralnetworks/01NeuralNets.html" title="next page"><span class="section-number">9. </span>Neural Networks Introduction</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

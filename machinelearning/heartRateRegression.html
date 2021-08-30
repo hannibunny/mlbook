@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Example Linear Regression &#8212; Machine Learning Lecture</title>
+    <title>5. Example Linear Regression &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Support Vector Machines (SVM)" href="svm.html" />
-    <link rel="prev" title="Linear Regression" href="LinReg.html" />
+    <link rel="next" title="6. Support Vector Machines (SVM)" href="svm.html" />
+    <link rel="prev" title="4. Linear Regression" href="LinReg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   Basic Concepts of Data Mining and Machine Learning
+   1. Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,32 +111,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="knn.html">
-   K - Nearest Neighbour Classification / Regression
+   2. K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="parametricClassification1D.html">
-   Bayes- and Naive Bayes Classifier
+   3. Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LinReg.html">
-   Linear Regression
+   4. Linear Regression
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Example Linear Regression
+   5. Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
-   Support Vector Machines (SVM)
+   6. Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="gp.html">
-   Gaussian Process
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcessRegression.html">
+   8. Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -148,32 +153,44 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
-   Neural Networks Introduction
+   9. Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
-   Recurrent Neural Networks
+   10. Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
-   Convolutional Neural Networks
+   11. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
-   Implementing Neural Networks with Keras
+   12. Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
-   Applying Pretrained Deep Neural Networks for Image Classification
+   13. Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
-   Apply Pretrained Neural Networks on new Task
+   14. Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   15. Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -185,7 +202,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
-   Variational Autoencoder (VAE) to generate handwritten digits
+   16. Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -197,7 +214,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   Generative Adversarial Nets (GAN)
+   17. Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
@@ -209,7 +226,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   Representations for Words and Texts
+   18. Representations for Words and Texts
   </a>
  </li>
 </ul>
@@ -221,7 +238,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   References
+   19. References
   </a>
  </li>
 </ul>
@@ -314,22 +331,22 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learn-linear-function">
-   Learn linear function
+   5.1. Learn linear function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learn-quadratic-function">
-   Learn quadratic function
+   5.2. Learn quadratic function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learn-cubic-function">
-   Learn cubic function
+   5.3. Learn cubic function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#same-solution-now-using-scikit-learn">
-   Same solution, now using Scikit Learn
+   5.4. Same solution, now using Scikit Learn
   </a>
  </li>
 </ul>
@@ -344,7 +361,7 @@
               <div>
                 
   <div class="section" id="example-linear-regression">
-<h1>Example Linear Regression<a class="headerlink" href="#example-linear-regression" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Example Linear Regression<a class="headerlink" href="#example-linear-regression" title="Permalink to this headline">¶</a></h1>
 <p>In this example (generalized) linear regression, as introduced <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">in the previous section</span></a> is implemented and applied for estimating a function <span class="math notranslate nohighlight">\(f()\)</span> that maps the speed of long distance runners to their heartrate.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -597,7 +614,7 @@ w=\left( D^T D\right)^{-1} D^T r
 </div>
 </div>
 <div class="section" id="learn-linear-function">
-<h2>Learn linear function<a class="headerlink" href="#learn-linear-function" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Learn linear function<a class="headerlink" href="#learn-linear-function" title="Permalink to this headline">¶</a></h2>
 <p>First, we learn the best linear function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -673,7 +690,7 @@ MSE =  84.61650344232515
 <p>Note that here the metrics MAD and MSE have been calculated on the training data. Hence, the corresponding values describe how well the model is fitted to training data. But these values are useless for determining how good the model will perform on new data. Usually in Machine Learning performance metrics such as MAD and MSE are calculated on test-data. But in this example we haven’t split the set of labeled data into a training- and a test-partition.</p>
 </div>
 <div class="section" id="learn-quadratic-function">
-<h2>Learn quadratic function<a class="headerlink" href="#learn-quadratic-function" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Learn quadratic function<a class="headerlink" href="#learn-quadratic-function" title="Permalink to this headline">¶</a></h2>
 <p>In order to learn the best quadratic function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -747,7 +764,7 @@ MSE =  74.97805153085808
 </div>
 </div>
 <div class="section" id="learn-cubic-function">
-<h2>Learn cubic function<a class="headerlink" href="#learn-cubic-function" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Learn cubic function<a class="headerlink" href="#learn-cubic-function" title="Permalink to this headline">¶</a></h2>
 <p>In order to learn the best cubic function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -822,7 +839,7 @@ MSE =  72.8395306512783
 </div>
 </div>
 <div class="section" id="same-solution-now-using-scikit-learn">
-<h2>Same solution, now using Scikit Learn<a class="headerlink" href="#same-solution-now-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.4. </span>Same solution, now using Scikit Learn<a class="headerlink" href="#same-solution-now-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span>
@@ -911,8 +928,8 @@ Learned coefficients w0, w1, w2, ....:
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="LinReg.html" title="previous page">Linear Regression</a>
-    <a class='right-next' id="next-link" href="svm.html" title="next page">Support Vector Machines (SVM)</a>
+    <a class='left-prev' id="prev-link" href="LinReg.html" title="previous page"><span class="section-number">4. </span>Linear Regression</a>
+    <a class='right-next' id="next-link" href="svm.html" title="next page"><span class="section-number">6. </span>Support Vector Machines (SVM)</a>
 
         </div>
         
