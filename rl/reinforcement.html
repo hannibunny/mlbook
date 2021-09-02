@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>17. Reinforcement Learning &#8212; Machine Learning Lecture</title>
+    <title>Reinforcement Learning &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="18. Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
-    <link rel="prev" title="16. Generative Adversarial Nets (GAN)" href="../gan/DCGAN.html" />
+    <link rel="prev" title="Generative Adversarial Nets (GAN)" href="../gan/DCGAN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -131,7 +131,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/svm.html">
-   6. Support Vector Machines (SVM)
+   Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
@@ -190,7 +190,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
-   15. Variational Autoencoder (VAE) to generate handwritten digits
+   Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -202,7 +202,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   16. Generative Adversarial Nets (GAN)
+   Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
@@ -214,7 +214,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   17. Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -238,7 +238,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   19. References
+   References
   </a>
  </li>
 </ul>
@@ -307,6 +307,53 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-notions">
+     Basic Notions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     Examples
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#board-games">
+       Board Games
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-deterministic-navigation">
+       Non-deterministic Navigation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#movement-of-simple-robots">
+       Movement of simple Robots
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+   Markov Decision Process (MDP)
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -316,8 +363,114 @@
               <div>
                 
   <div class="section" id="reinforcement-learning">
-<h1><span class="section-number">17. </span>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h1>
-<p>Under construction</p>
+<h1>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-notions">
+<h3>Basic Notions<a class="headerlink" href="#basic-notions" title="Permalink to this headline">¶</a></h3>
+<p>In supervised Machine learning a set of training data <span class="math notranslate nohighlight">\(T=\lbrace (\mathbf{x}_i,r_i) \rbrace_{i=1}^N\)</span> is given and the task is to learn a model <span class="math notranslate nohighlight">\(y=f(\mathbf{x})\)</span>, which maps any input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to the corresponding output <span class="math notranslate nohighlight">\(y\)</span>. This type of learning is also called <em>learning with teacher</em>. The teacher provides the training data in the form that he labels each input <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> with the corresponding output <span class="math notranslate nohighlight">\(r_i\)</span> and the student (the supervised ML algorithm) must learn a general mapping from input to output. This is also called inductive reasoning.</p>
+<p>In reinforcement learning we speak of an <strong>agent</strong> (the AI), which acts in an <strong>environment</strong>. The <strong>actions <span class="math notranslate nohighlight">\(A\)</span></strong> of the agent must be such that in the long-term the agent is successful in the sense that it approximates a pre-defined goal as close and as efficiently as possible.  The environment is modeled by it’s <strong>state <span class="math notranslate nohighlight">\(S\)</span></strong>. Depending on it’s actions in the environment the agent may or may not receive a positive or negative <strong>reward <span class="math notranslate nohighlight">\(R\)</span></strong> <a class="footnote-reference brackets" href="#f1" id="id1">1</a>. Reinforcement learning is also called <em>learning from a critic</em>, because the agent trials different actions and sporadically receives feedback from a critic, which is regarded by the agent for future action decisions.</p>
+<p>Reinforcement Learning refers to <strong>Sequential Decision Making</strong>. This means that we model the agents behaviour over <span class="math notranslate nohighlight">\(time\)</span>. At each <strong>discrete time-step <span class="math notranslate nohighlight">\(t\)</span></strong> the agent perceives the environment state <span class="math notranslate nohighlight">\(S_t\)</span> and  possibly a reward <span class="math notranslate nohighlight">\(R_t\)</span>. Based on these perceptions it must then decide for an action <span class="math notranslate nohighlight">\(A_t\)</span>. This action influences the state of the environment and possibly triggers an award. The new state of the environment is denoted by <span class="math notranslate nohighlight">\(S_{t+1}\)</span> and the new reward is denoted by <span class="math notranslate nohighlight">\(R_{t+1}\)</span>. In the long-term the agents decision-making-process must be such, that a pre-defined target-state of the environment is approximated as efficiently as possible. The proximity of a state <span class="math notranslate nohighlight">\(s\)</span> to the target-state is measured by an <strong>utility function <span class="math notranslate nohighlight">\(U(s)\)</span></strong>.</p>
+<div class="figure align-center" id="rlagent">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png" src="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Interaction of an Agent with it’s environment in a Markov Decision Process (MDP). Image source: <span id="id2">[<a class="reference internal" href="../referenceSection.html#id56">SB18</a>]</span>.</span><a class="headerlink" href="#rlagent" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="board-games">
+<h4>Board Games<a class="headerlink" href="#board-games" title="Permalink to this headline">¶</a></h4>
+<p>Games, in particular board games like chess, checkers or Go are typical applications for reinforcement learning. The agent is the AI, which plays against a human player. The agents’s goal is to win the game. In the most simple setting it perceives a non-zero reward only at the very end of the game. This reward is positive if the AI wins, otherwise it is negative. If the AI is in turn, it first perceives the current state, which is the current board-constellation. Then it has to decide for a new action. This action modifies the state on the board. This new state is the basis for the human players action, which in turn provides a new state to the AI and so on.</p>
+<div class="figure align-center" id="alphago">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg" src="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Deepmind’s AlphaGo (<span id="id3">[<a class="reference internal" href="../referenceSection.html#id60">SHM+16</a>]</span>) combines Reinforcement Learning, Deep Learning and Monte Carlo Tree Search. AlphaGo was able to beat the world champion in Go, Lee Sedol, in 2016.</span><a class="headerlink" href="#alphago" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="non-deterministic-navigation">
+<h4>Non-deterministic Navigation<a class="headerlink" href="#non-deterministic-navigation" title="Permalink to this headline">¶</a></h4>
+<p>Navigation or similarly Pathfinding can be solved by the A*-algorithm, if the environment is <em>deterministic</em>. This means that given the current state <span class="math notranslate nohighlight">\(s_t\)</span> and a selected action <span class="math notranslate nohighlight">\(a_t\)</span>, the successive state <span class="math notranslate nohighlight">\(s_{t+1}\)</span> can uniquely be determined. In a non-deterministic there exist different possible successive states for a given state-action-pair. In such non-deterministic environments Reinforcemt Learning can be applied to learn an optimum strategy. This stategy defines for each state the action, which is best, in the sense that the expected future cumulative reward (the utility) is maximized.</p>
+<p>In the example depicted below the task is to find best path from the field <span class="math notranslate nohighlight">\(Start\)</span> to the field in the upper right corner. The possible actions of the agent are to move <em>upwards, downwards, right</em> or <em>left</em>. The environment is observable in the sense that the agent knows it’s current state. However, the environment is non-deterministic because for a known state-action-pair different successive states are possible. For this uncertainty the following probabilities are assumed to be known:</p>
+<ul class="simple">
+<li><p>Probability that state in the selected direction is actually reached is <span class="math notranslate nohighlight">\(P=0.8\)</span>.</p></li>
+<li><p>Probability for a <span class="math notranslate nohighlight">\(\pm 90°\)</span> deviation is <span class="math notranslate nohighlight">\(P=0.1\)</span> for each.</p></li>
+</ul>
+<p>If selected direction hits a wall, the agent remains in it’s current state. A reward of <span class="math notranslate nohighlight">\(r_t=1\)</span> is provided, if <span class="math notranslate nohighlight">\(a_t\)</span> terminates in field <span class="math notranslate nohighlight">\((4/3)\)</span> (the upper right corner) and a reward of <span class="math notranslate nohighlight">\(r_t=-1\)</span> is provided if <span class="math notranslate nohighlight">\(a_t\)</span> terminates in field <span class="math notranslate nohighlight">\((4/2)\)</span>. For any other action the reward (cost) is <span class="math notranslate nohighlight">\(r_t=-0.04\)</span>.</p>
+<div class="figure align-center" id="rlex1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">Image source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id57">RN10</a>]</span>: Pathfinding in a non-deterministic environment</span><a class="headerlink" href="#rlex1" title="Permalink to this image">¶</a></p>
+</div>
+<p>For this pathfinding scenario, the optimum strategy, learned by the RL agent may look like in the picture below. The strategy is defined by the arrows in the states. These arrows determine in each state the action to take in order to maximize the expected future cumulative reward.</p>
+<div class="figure align-center" id="rlex1strat">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Image source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id57">RN10</a>]</span>: Optimum strategy learned by the RL agent</span><a class="headerlink" href="#rlex1strat" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="movement-of-simple-robots">
+<h4>Movement of simple Robots<a class="headerlink" href="#movement-of-simple-robots" title="Permalink to this headline">¶</a></h4>
+<div class="figure align-center" id="rlex2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Image source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id59">Ert09</a>]</span>: Two simple crawling robots. Each robot has two joints. Each joint can be in two different positions. Hence, there exists 4 different states. The robot shall learn to control the joints such that it efficiently moves from left to right. Whenever the robot moves to the right it perceives a positive reward. Movement to the left is punished with a negative reward. As can easily be verified, a movement of the robot depends not only on a single action but on a state-action-pair.</span><a class="headerlink" href="#rlex2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="rlex2ff">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Image source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id59">Ert09</a>]</span>: State <span class="math notranslate nohighlight">\(s_t\)</span>, action <span class="math notranslate nohighlight">\(a_t\)</span> and reward <span class="math notranslate nohighlight">\(r_t\)</span> for 4 successive time-steps.</span><a class="headerlink" href="#rlex2ff" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="markov-decision-process-mdp">
+<h2>Markov Decision Process (MDP)<a class="headerlink" href="#markov-decision-process-mdp" title="Permalink to this headline">¶</a></h2>
+<p>Formally, Sequential Decision Making is usually described by a <strong>Markov Decision Process (MDP)</strong>. In a <strong>finite MDP</strong> the set of states <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, the set of actions <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> and the set of rewards <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is finite. For MDPs the <em>Markovian property</em> is assumed, which states that for each given state-action-pair, the</p>
+<ul class="simple">
+<li><p>probability distribution of the successive state <span class="math notranslate nohighlight">\(S_t\)</span> and</p></li>
+<li><p>the probability distribution of the successive reward <span class="math notranslate nohighlight">\(R_t\)</span></p></li>
+</ul>
+<p>depends only on the immediate preceding state and all states which lie further back need not be regarded. The function</p>
+<div class="math notranslate nohighlight" id="equation-mdpfull">
+<span class="eqno">(58)<a class="headerlink" href="#equation-mdpfull" title="Permalink to this equation">¶</a></span>\[
+p(s',r \mid s,a) = P(S_t=s',R_t=r \mid S_{t-1}=s, A_{t-1}=a) \quad \forall s`,s \in \mathcal{S}, r \in \mathcal{R} \mbox{ and } a \in \mathcal{A}
+\]</div>
+<p>describes the full dynamics of the MDP. By applying the marginalisation law (see <a class="reference external" href="https://hannibunny.github.io/probability/ProbabilityMultivariate.html">Basics of Probability Theory</a>),</p>
+<ul class="simple">
+<li><p>the <strong>state-transition probability</strong> can be calculated by</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-transmod">
+<span class="eqno">(59)<a class="headerlink" href="#equation-transmod" title="Permalink to this equation">¶</a></span>\[
+p(s' \mid s,a) = P(S_t=s'\mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(s',r \mid s,a)
+\]</div>
+<ul class="simple">
+<li><p>the <strong>expected reward</strong> can be calculated by</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-rewexp">
+<span class="eqno">(60)<a class="headerlink" href="#equation-rewexp" title="Permalink to this equation">¶</a></span>\[
+r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} \sum\limits_{s' \in \mathcal{S}} p(s',r \mid s,a).
+\]</div>
+<p>In a MDP the goal of an agent is always to maximize the expected value of the cumulative sum of received rewards. The cumulative sum of received future rewards at time <span class="math notranslate nohighlight">\(t\)</span> is als called the <strong>return <span class="math notranslate nohighlight">\(G_t\)</span></strong>:</p>
+<div class="math notranslate nohighlight" id="equation-returnfinite">
+<span class="eqno">(61)<a class="headerlink" href="#equation-returnfinite" title="Permalink to this equation">¶</a></span>\[
+G_t= R_{t+1}+R_{t+2}+R_{t+3}+\cdots + R_{T},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the final time step. This formula can only be applied in the cases, where a <em>final time step <span class="math notranslate nohighlight">\(T\)</span></em> can be defined or the entire agent-environment interaction can be partitioned into subsequences, called <em>episodes</em>. Whenever, such a termination can not be defined, the return can not be calculated by equation <span class="xref std std-ref">returnfinite</span>, because <span class="math notranslate nohighlight">\(T=\infty\)</span> and the return could be infinite. In order to cope with this problem a <em>discounting rate <span class="math notranslate nohighlight">\(\gamma\)</span></em> is applied to calculate the return</p>
+<div class="math notranslate nohighlight" id="equation-returninfinite">
+<span class="eqno">(62)<a class="headerlink" href="#equation-returninfinite" title="Permalink to this equation">¶</a></span>\[
+G_t= R_{t+1}+\gamma R_{t+2}+ \gamma^2  R_{t+3}+cdots + \cdots = \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(0&lt; \gamma &lt; 1\)</span>. In this way rewards in the far future are weighted less than rewards immediately ahead and the return value will be finite. Equation <span class="xref std std-ref">returninfinite</span> can easily be turned in a recursive form as follows:</p>
+<div class="math notranslate nohighlight" id="equation-returnrecursive">
+<span class="eqno">(63)<a class="headerlink" href="#equation-returnrecursive" title="Permalink to this equation">¶</a></span>\[
+G_t= R_{t+1}+\gamma G_{t+1}
+\]</div>
+<ul class="simple">
+<li><p>Further reading: <span id="id8">[<a class="reference internal" href="../referenceSection.html#id56">SB18</a>]</span>, <span id="id9">[<a class="reference internal" href="../referenceSection.html#id57">RN10</a>]</span>, <span id="id10">[<a class="reference internal" href="../referenceSection.html#id59">Ert09</a>]</span></p></li>
+<li><p><a class="reference external" href="https://youtu.be/nyjbcRQ-uQ8">RL video tutorial by deeplizard</a></p></li>
+</ul>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><em>Reinforcement</em> is just another word for <em>reward</em>, hence learning from reinforcements.</p>
+</dd>
+</dl>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -345,7 +498,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page"><span class="section-number">16. </span>Generative Adversarial Nets (GAN)</a>
+    <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page">Generative Adversarial Nets (GAN)</a>
     <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page"><span class="section-number">18. </span>Representations for Words and Texts</a>
 
         </div>
