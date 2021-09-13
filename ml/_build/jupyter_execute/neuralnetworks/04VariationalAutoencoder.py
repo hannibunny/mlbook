@@ -54,7 +54,7 @@ from keras.datasets import mnist
 from keras import losses
 
 
-# In[3]:
+# In[2]:
 
 
 from os import environ
@@ -62,7 +62,7 @@ environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
-# In[4]:
+# In[10]:
 
 
 batch_size = 100
@@ -73,7 +73,7 @@ epochs = 50
 epsilon_std = 1.0
 
 
-# In[5]:
+# In[11]:
 
 
 x = Input(shape=(original_dim,))
@@ -82,7 +82,7 @@ z_mean = Dense(latent_dim)(h)
 z_log_var = Dense(latent_dim)(h)
 
 
-# In[6]:
+# In[12]:
 
 
 def sampling(args):
@@ -91,7 +91,7 @@ def sampling(args):
     return z_mean + K.exp(z_log_var / 2) * epsilon
 
 
-# In[7]:
+# In[13]:
 
 
 # note that "output_shape" isn't necessary with the TensorFlow backend
@@ -104,7 +104,7 @@ h_decoded = decoder_h(z)
 x_decoded_mean = decoder_mean(h_decoded)
 
 
-# In[8]:
+# In[14]:
 
 
 # end-to-end autoencoder
@@ -120,7 +120,7 @@ _x_decoded_mean = decoder_mean(_h_decoded)
 generator = Model(decoder_input, _x_decoded_mean)
 
 
-# In[9]:
+# In[15]:
 
 
 # Custom loss layer
@@ -143,7 +143,7 @@ class CustomVariationalLayer(Layer):
         return x
 
 
-# In[10]:
+# In[16]:
 
 
 y = CustomVariationalLayer()([x, x_decoded_mean])
@@ -151,7 +151,7 @@ vae = Model(x, y)
 vae.compile(optimizer='rmsprop', loss=None)
 
 
-# In[11]:
+# In[17]:
 
 
 # train the VAE on MNIST digits
@@ -163,7 +163,7 @@ x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
 x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
 
-# In[12]:
+# In[18]:
 
 
 vae.fit(x_train,

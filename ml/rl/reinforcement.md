@@ -626,7 +626,16 @@ $$
 S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T
 $$
 
-is gathered. At the end of an episode the return $G_t$, i.e. the accumulated rewards, starting from time $t$ up to the end of the episode, can be calculated. Only then the state-values $V(S_t)$ or the action-state values $Q(S_t,A_t)$ can be updated. In contrast **TD methods need not to wait until the end of the episode to update the values.** In TD-methods at time $t$
+is gathered. At the end of an episode the return $G_t$, i.e. the accumulated rewards, starting from time $t$ up to the end of the episode, can be calculated. Only then the state-values $V(S_t)$ or the action-state values $Q(S_t,A_t)$ can be updated. In the case of state-values a simple MC every-visit-update method is
+
+$$
+V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
+$$ (mcvalueupdate)
+
+where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. In deterministic environments $\alpha=1$ is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.$\alpha=0.1/(1+N(s))$, where $N(s)$ is the number of visits to state $s$. 
+
+
+In contrast to MC, **TD methods need not to wait until the end of the episode to update the values.** In TD-methods at time $t$
 1. the agent in state $S_t$ selects and executes an action $a \in \mathcal{A}(S_t)$
 2. after executing action $a$, the agent perceives the successor state $S_{t+1}$ and the reward $R_{t+1}$ 
 3. Then the values are updated, e.g. as follows:
