@@ -1019,14 +1019,20 @@ undoubtedly be temporal-di↵erence (TD) learning.</em> <span id="id12">[<a clas
 \[
 S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T
 \]</div>
-<p>is gathered. At the end of an episode the return <span class="math notranslate nohighlight">\(G_t\)</span>, i.e. the accumulated rewards, starting from time <span class="math notranslate nohighlight">\(t\)</span> up to the end of the episode, can be calculated. Only then the state-values <span class="math notranslate nohighlight">\(V(S_t)\)</span> or the action-state values <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span> can be updated. In contrast <strong>TD methods need not to wait until the end of the episode to update the values.</strong> In TD-methods at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p>is gathered. At the end of an episode the return <span class="math notranslate nohighlight">\(G_t\)</span>, i.e. the accumulated rewards, starting from time <span class="math notranslate nohighlight">\(t\)</span> up to the end of the episode, can be calculated. Only then the state-values <span class="math notranslate nohighlight">\(V(S_t)\)</span> or the action-state values <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span> can be updated. In the case of state-values a simple MC every-visit-update method is</p>
+<div class="math notranslate nohighlight" id="equation-mcvalueupdate">
+<span class="eqno">(80)<a class="headerlink" href="#equation-mcvalueupdate" title="Permalink to this equation">¶</a></span>\[
+V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_t\)</span> is the actual return following time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span> is the <em>step-size</em> or <em>learning-rate</em>. A learning-rate of <span class="math notranslate nohighlight">\(\alpha=0\)</span> yields no learning (adaptation) at all, whereas <span class="math notranslate nohighlight">\(\alpha=1\)</span> means that the old values are not updated, but replaced. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. <span class="math notranslate nohighlight">\(\alpha=0.1\)</span> in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.<span class="math notranslate nohighlight">\(\alpha=0.1/(1+N(s))\)</span>, where <span class="math notranslate nohighlight">\(N(s)\)</span> is the number of visits to state <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<p>In contrast to MC, <strong>TD methods need not to wait until the end of the episode to update the values.</strong> In TD-methods at time <span class="math notranslate nohighlight">\(t\)</span></p>
 <ol class="simple">
 <li><p>the agent in state <span class="math notranslate nohighlight">\(S_t\)</span> selects and executes an action <span class="math notranslate nohighlight">\(a \in \mathcal{A}(S_t)\)</span></p></li>
 <li><p>after executing action <span class="math notranslate nohighlight">\(a\)</span>, the agent perceives the successor state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> and the reward <span class="math notranslate nohighlight">\(R_{t+1}\)</span></p></li>
 <li><p>Then the values are updated, e.g. as follows:</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-tdvalueupdate">
-<span class="eqno">(80)<a class="headerlink" href="#equation-tdvalueupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(81)<a class="headerlink" href="#equation-tdvalueupdate" title="Permalink to this equation">¶</a></span>\[
 V(S_t) := V(S_t) + \alpha \left[R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right]
 \]</div>
 <p>The corresponding algorithm for policy evaluation is:</p>
@@ -1058,21 +1064,21 @@ until <span class="math notranslate nohighlight">\(S\)</span> is terminal state<
 </li>
 </ul>
 </div>
-<p>In the update for the state-values (equation <a class="reference internal" href="#equation-tdvalueupdate">(80)</a>) the term within the square brackets is called the <strong>TD-Error:</strong></p>
+<p>In the update for the state-values (equation <a class="reference internal" href="#equation-tdvalueupdate">(81)</a>) the term within the square brackets is called the <strong>TD-Error:</strong></p>
 <div class="math notranslate nohighlight">
 \[
 \delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t).
 \]</div>
 <p>It measures the difference between the estimate <span class="math notranslate nohighlight">\(V(S_t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> and the better estimate <span class="math notranslate nohighlight">\(R_{t+1} + \gamma V(S_{t+1})\)</span>, which can be calculated after perceiving <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.</p>
 <p>It is proven, that the <a class="reference internal" href="#tabtd0"><span class="std std-ref">TD(0) policy evaluation algorithm</span></a> converges for any policy to <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, if the step-size parameter <span class="math notranslate nohighlight">\(\alpha\)</span> decreases. Moreover, in practice, TD-methods usually converge faster than MC methods.</p>
-<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step for all time-steps of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(80)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
+<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step for all time-steps of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(81)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
 of the step-size parameter, <span class="math notranslate nohighlight">\(\alpha\)</span>, as long as <span class="math notranslate nohighlight">\(\alpha\)</span> is chosen to be sufficiently small (<span id="id13">[<a class="reference internal" href="../referenceSection.html#id56">SB18</a>]</span>).</p>
 <p>Up to now, for TD-learning, we only considered the <strong>prediction problem</strong>, in particular the calculation of the value-state function. Now, we turn to the <strong>control problem</strong>, i.e. the determination of an optimal policy.</p>
 <div class="section" id="sarsa">
 <h4>Sarsa<a class="headerlink" href="#sarsa" title="Permalink to this headline">¶</a></h4>
-<p>As already described in the context of MC methods, in environments of incomplete knowledge, the optimal policy can not easily derived from the optimal state-value function <span class="math notranslate nohighlight">\(v*\)</span>. Instead, the policy can be directly derived from the action-value function <span class="math notranslate nohighlight">\(q*\)</span>. In contrast to equation <a class="reference internal" href="#equation-tdvalueupdate">(80)</a>, we now consider transitions from state-action-pair to state-action-pair and update values of such pairs:</p>
+<p>As already described in the context of MC methods, in environments of incomplete knowledge, the optimal policy can not easily derived from the optimal state-value function <span class="math notranslate nohighlight">\(v*\)</span>. Instead, the policy can be directly derived from the action-value function <span class="math notranslate nohighlight">\(q*\)</span>. In contrast to equation <a class="reference internal" href="#equation-tdvalueupdate">(81)</a>, we now consider transitions from state-action-pair to state-action-pair and update values of such pairs:</p>
 <div class="math notranslate nohighlight" id="equation-tdactionupdate">
-<span class="eqno">(81)<a class="headerlink" href="#equation-tdactionupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(82)<a class="headerlink" href="#equation-tdactionupdate" title="Permalink to this equation">¶</a></span>\[
 Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) - Q(S_t,A_t) \right]
 \]</div>
 <p>Since these updates require <span class="math notranslate nohighlight">\((S_t,A_t,R_{t+1},S_{t+1},A_{t+1})\)</span>, the approach is also called <strong>Sarsa</strong>.</p>
@@ -1110,7 +1116,7 @@ until <span class="math notranslate nohighlight">\(S\)</span> is terminal state<
 <p>Q-Learning is an off-policy TD reinforcement learning method. In contrast to Sarsa the learned action-value function Q directly approximates <span class="math notranslate nohighlight">\(q_*\)</span>, the optimal action-value function, independent of the policy being followed (<span id="id15">[<a class="reference internal" href="../referenceSection.html#id56">SB18</a>]</span>).</p>
 <p>The state-action-value update rule is</p>
 <div class="math notranslate nohighlight" id="equation-qlearnupdate">
-<span class="eqno">(82)<a class="headerlink" href="#equation-qlearnupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(83)<a class="headerlink" href="#equation-qlearnupdate" title="Permalink to this equation">¶</a></span>\[
 Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma \max\limits_a Q(S_{t+1},a) - Q(S_t,A_t) \right]
 \]</div>
 <div class="admonition-q-learning-off-policy-td-control-for-estimating-pi-sim-pi admonition" id="qlearning">
