@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
+    <link rel="next" title="Reinforcement Learning" href="../rl/reinforcement.html" />
     <link rel="prev" title="Variational Autoencoder (VAE) to generate handwritten digits" href="../neuralnetworks/04VariationalAutoencoder.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   Basic Concepts of Data Mining and Machine Learning
+   1. Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,22 +111,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/knn.html">
-   K - Nearest Neighbour Classification / Regression
+   2. K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
-   Bayes- and Naive Bayes Classifier
+   3. Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/LinReg.html">
-   Linear Regression
+   4. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/heartRateRegression.html">
-   Example Linear Regression
+   5. Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
@@ -136,7 +136,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/gp.html">
-   Gaussian Process
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   8. Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -148,32 +153,32 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
-   Neural Networks Introduction
+   9. Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
-   Recurrent Neural Networks
+   10. Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
-   Convolutional Neural Networks
+   11. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
-   Implementing Neural Networks with Keras
+   12. Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
-   Applying Pretrained Deep Neural Networks for Image Classification
+   13. Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
-   Apply Pretrained Neural Networks on new Task
+   14. Apply Pretrained Neural Networks on new Task
   </a>
  </li>
 </ul>
@@ -203,13 +208,25 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Text
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   Representations for Words and Texts
+   18. Representations for Words and Texts
   </a>
  </li>
 </ul>
@@ -737,28 +754,29 @@ Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, fol
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential&quot;
+_________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-dense_3 (Dense)              (None, 6272)              633472    
+dense (Dense)                (None, 6272)              633472    
 _________________________________________________________________
-leaky_re_lu_5 (LeakyReLU)    (None, 6272)              0         
+leaky_re_lu (LeakyReLU)      (None, 6272)              0         
 _________________________________________________________________
-batch_normalization_3 (Batch (None, 6272)              25088     
+batch_normalization (BatchNo (None, 6272)              25088     
 _________________________________________________________________
-reshape_2 (Reshape)          (None, 7, 7, 128)         0         
+reshape (Reshape)            (None, 7, 7, 128)         0         
 _________________________________________________________________
-up_sampling2d_3 (UpSampling2 (None, 14, 14, 128)       0         
+up_sampling2d (UpSampling2D) (None, 14, 14, 128)       0         
 _________________________________________________________________
-conv2d_5 (Conv2D)            (None, 14, 14, 64)        204864    
+conv2d (Conv2D)              (None, 14, 14, 64)        204864    
 _________________________________________________________________
-leaky_re_lu_6 (LeakyReLU)    (None, 14, 14, 64)        0         
+leaky_re_lu_1 (LeakyReLU)    (None, 14, 14, 64)        0         
 _________________________________________________________________
-batch_normalization_4 (Batch (None, 14, 14, 64)        256       
+batch_normalization_1 (Batch (None, 14, 14, 64)        256       
 _________________________________________________________________
-up_sampling2d_4 (UpSampling2 (None, 28, 28, 64)        0         
+up_sampling2d_1 (UpSampling2 (None, 28, 28, 64)        0         
 _________________________________________________________________
-conv2d_6 (Conv2D)            (None, 28, 28, 1)         1601      
+conv2d_1 (Conv2D)            (None, 28, 28, 1)         1601      
 =================================================================
 Total params: 865,281
 Trainable params: 852,609
@@ -798,24 +816,25 @@ The first convolution layer applies 5x5 filters in order to calculate 64 feature
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_1&quot;
+_________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-conv2d_7 (Conv2D)            (None, 14, 14, 64)        1664      
+conv2d_2 (Conv2D)            (None, 14, 14, 64)        1664      
 _________________________________________________________________
-leaky_re_lu_7 (LeakyReLU)    (None, 14, 14, 64)        0         
+leaky_re_lu_2 (LeakyReLU)    (None, 14, 14, 64)        0         
 _________________________________________________________________
-dropout_3 (Dropout)          (None, 14, 14, 64)        0         
+dropout (Dropout)            (None, 14, 14, 64)        0         
 _________________________________________________________________
-conv2d_8 (Conv2D)            (None, 7, 7, 128)         204928    
+conv2d_3 (Conv2D)            (None, 7, 7, 128)         204928    
 _________________________________________________________________
-leaky_re_lu_8 (LeakyReLU)    (None, 7, 7, 128)         0         
+leaky_re_lu_3 (LeakyReLU)    (None, 7, 7, 128)         0         
 _________________________________________________________________
-dropout_4 (Dropout)          (None, 7, 7, 128)         0         
+dropout_1 (Dropout)          (None, 7, 7, 128)         0         
 _________________________________________________________________
-flatten_2 (Flatten)          (None, 6272)              0         
+flatten (Flatten)            (None, 6272)              0         
 _________________________________________________________________
-dense_4 (Dense)              (None, 1)                 6273      
+dense_1 (Dense)              (None, 1)                 6273      
 =================================================================
 Total params: 212,865
 Trainable params: 212,865
@@ -864,14 +883,15 @@ In contrast to standard SGD, Adam applies individual learning-rates for each lea
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model&quot;
+_________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-input_2 (InputLayer)         (None, 100)               0         
+input_1 (InputLayer)         [(None, 100)]             0         
 _________________________________________________________________
-sequential_3 (Sequential)    (None, 28, 28, 1)         865281    
+sequential (Sequential)      (None, 28, 28, 1)         865281    
 _________________________________________________________________
-sequential_4 (Sequential)    (None, 1)                 212865    
+sequential_1 (Sequential)    (None, 1)                 212865    
 =================================================================
 Total params: 1,078,146
 Trainable params: 852,609
@@ -930,36 +950,56 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 468/468 [00:14&lt;00:00, 40.40it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 40.56it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 40.38it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 40.40it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 40.26it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 38.77it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 39.26it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 39.22it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.41it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 39.19it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.90it/s]
-100%|██████████| 468/468 [00:11&lt;00:00, 39.02it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.87it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.21it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.88it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.90it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.90it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.82it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.80it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.79it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.80it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.76it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.79it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.71it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.70it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.75it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.56it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.01it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.56it/s]
-100%|██████████| 468/468 [00:12&lt;00:00, 38.51it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">57</span><span class="n">f9cef8857f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-16-036338951789&gt;</span> in <span class="ni">train</span><span class="nt">(epoch, batch_size)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>             <span class="c1"># train the discriminator</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">---&gt; </span><span class="mi">24</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> 
+<span class="g g-Whitespace">     </span><span class="mi">26</span>             <span class="c1"># train the generator</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ni">train_on_batch</span><span class="nt">(self, x, y, sample_weight, class_weight, reset_metrics, return_dict)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1721</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="o">.</span><span class="n">scope</span><span class="p">(),</span> \
+<span class="g g-Whitespace">   </span><span class="mi">1722</span>          <span class="n">training_utils</span><span class="o">.</span><span class="n">RespectCompiledTrainableState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1723</span>       <span class="n">iterator</span> <span class="o">=</span> <span class="n">data_adapter</span><span class="o">.</span><span class="n">single_batch_iterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1724</span>                                                     <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1725</span>                                                     <span class="n">class_weight</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">single_batch_iterator</span><span class="nt">(strategy, x, y, sample_weight, class_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1511</span>     <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1512</span> 
+<span class="ne">-&gt; </span><span class="mi">1513</span>   <span class="n">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1514</span>   <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_ops</span><span class="o">.</span><span class="n">DatasetV2</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1515</span>   <span class="k">if</span> <span class="n">class_weight</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">_check_data_cardinality</span><span class="nt">(data)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="ne">AttributeError</span>: &#39;int&#39; object has no attribute &#39;shape&#39;
 </pre></div>
 </div>
 </div>
@@ -1116,7 +1156,7 @@ _________________________________________________________________
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../neuralnetworks/04VariationalAutoencoder.html" title="previous page">Variational Autoencoder (VAE) to generate handwritten digits</a>
-    <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page">Representations for Words and Texts</a>
+    <a class='right-next' id="next-link" href="../rl/reinforcement.html" title="next page">Reinforcement Learning</a>
 
         </div>
         

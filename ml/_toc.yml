@@ -1,5 +1,7 @@
-format: jb-book
 root: intro
+format: jb-book
+defaults:
+  numbered: false
 parts:
 - caption: Introduction
   chapters:
@@ -12,6 +14,7 @@ parts:
   - file: machinelearning/heartRateRegression
   - file: machinelearning/svm
   - file: machinelearning/gp
+  - file: machinelearning/GaussianProcessRegression
 - caption: Neural Networks
   chapters:
   - file: neuralnetworks/01NeuralNets
@@ -26,6 +29,9 @@ parts:
 - caption: GAN
   chapters:
   - file: gan/DCGAN
+- caption: Reinforcement Learning
+  chapters:
+  - file: rl/reinforcement
 - caption: Text
   chapters:
   - file: text/01ModellingWordsAndTexts

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Implementing Neural Networks with Keras &#8212; Machine Learning Lecture</title>
+    <title>12. Implementing Neural Networks with Keras &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Applying Pretrained Deep Neural Networks for Image Classification" href="04KerasPretrainedClassifiers.html" />
-    <link rel="prev" title="Convolutional Neural Networks" href="03ConvolutionNeuralNetworks.html" />
+    <link rel="next" title="13. Applying Pretrained Deep Neural Networks for Image Classification" href="04KerasPretrainedClassifiers.html" />
+    <link rel="prev" title="11. Convolutional Neural Networks" href="03ConvolutionNeuralNetworks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   Basic Concepts of Data Mining and Machine Learning
+   1. Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,32 +111,37 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/knn.html">
-   K - Nearest Neighbour Classification / Regression
+   2. K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
-   Bayes- and Naive Bayes Classifier
+   3. Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/LinReg.html">
-   Linear Regression
+   4. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/heartRateRegression.html">
-   Example Linear Regression
+   5. Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/svm.html">
-   Support Vector Machines (SVM)
+   6. Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/gp.html">
-   Gaussian Process
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   8. Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -148,32 +153,44 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01NeuralNets.html">
-   Neural Networks Introduction
+   9. Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02RecurrentNeuralNetworks.html">
-   Recurrent Neural Networks
+   10. Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
-   Convolutional Neural Networks
+   11. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Implementing Neural Networks with Keras
+   12. Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04KerasPretrainedClassifiers.html">
-   Applying Pretrained Deep Neural Networks for Image Classification
+   13. Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05KerasPretrainedCovid.html">
-   Apply Pretrained Neural Networks on new Task
+   14. Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   15. Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -185,7 +202,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="04VariationalAutoencoder.html">
-   Variational Autoencoder (VAE) to generate handwritten digits
+   16. Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -197,7 +214,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   Generative Adversarial Nets (GAN)
+   17. Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
@@ -209,7 +226,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   Representations for Words and Texts
+   18. Representations for Words and Texts
   </a>
  </li>
 </ul>
@@ -221,7 +238,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   References
+   19. References
   </a>
  </li>
 </ul>
@@ -314,125 +331,125 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-you-will-learn">
-   What you will learn:
+   12.1. What you will learn:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports-and-configurations">
-   Imports and Configurations
+   12.2. Imports and Configurations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#access-data">
-   Access Data
+   12.3. Access Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualize-data">
-   Visualize Data
+   12.4. Visualize Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#preprocessing">
-   Preprocessing
+   12.5. Preprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mlp">
-   MLP
+   12.6. MLP
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#architecture">
-     Architecture
+     12.6.1. Architecture
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#network-definition-option1-using-the-sequential-model">
-       Network definition option1: Using the sequential model
+       12.6.1.1. Network definition option1: Using the sequential model
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#network-definition-option-2-using-the-functional-api">
-       Network definition option 2: Using the functional API
+       12.6.1.2. Network definition option 2: Using the functional API
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#define-training-parameters">
-     Define Training Parameters
+     12.6.2. Define Training Parameters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#perform-training">
-     Perform Training
+     12.6.3. Perform Training
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluation">
-     Evaluation
+     12.6.4. Evaluation
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cnn">
-   CNN
+   12.7. CNN
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#define-architecture">
-     Define Architecture
+     12.7.1. Define Architecture
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     Define Training Parameters
+     12.7.2. Define Training Parameters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     Perform Training
+     12.7.3. Perform Training
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     Evaluation
+     12.7.4. Evaluation
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-more-complex-cnn">
-   A more complex CNN
+   12.8. A more complex CNN
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     Architecture
+     12.8.1. Architecture
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
-     Define Training Parameters
+     12.8.2. Define Training Parameters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
-     Perform Training
+     12.8.3. Perform Training
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluate">
-     Evaluate
+     12.8.4. Evaluate
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementation-of-cross-validation-in-keras">
-   Implementation of Cross Validation in Keras
+   12.9. Implementation of Cross Validation in Keras
   </a>
  </li>
 </ul>
@@ -447,13 +464,13 @@
               <div>
                 
   <div class="section" id="implementing-neural-networks-with-keras">
-<h1>Implementing Neural Networks with Keras<a class="headerlink" href="#implementing-neural-networks-with-keras" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">12. </span>Implementing Neural Networks with Keras<a class="headerlink" href="#implementing-neural-networks-with-keras" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 02.11.2020</p></li>
 </ul>
 <div class="section" id="what-you-will-learn">
-<h2>What you will learn:<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.1. </span>What you will learn:<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Define, train and evaluate MLP in Keras</p></li>
 <li><p>Define, train and evaluate CNN in Keras</p></li>
@@ -463,7 +480,7 @@
 </ul>
 </div>
 <div class="section" id="imports-and-configurations">
-<h2>Imports and Configurations<a class="headerlink" href="#imports-and-configurations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.2. </span>Imports and Configurations<a class="headerlink" href="#imports-and-configurations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install Pillow</span>
@@ -570,7 +587,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="section" id="access-data">
-<h2>Access Data<a class="headerlink" href="#access-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.3. </span>Access Data<a class="headerlink" href="#access-data" title="Permalink to this headline">¶</a></h2>
 <p>Load the Cifar10 image dataset from <code class="docutils literal notranslate"><span class="pre">keras.datasets</span></code>. Determine the shape of the training- and the test-partition.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -595,7 +612,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="section" id="visualize-data">
-<h2>Visualize Data<a class="headerlink" href="#visualize-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.4. </span>Visualize Data<a class="headerlink" href="#visualize-data" title="Permalink to this headline">¶</a></h2>
 <p>Viusalize the first 9 images of the training-partition, using function <code class="docutils literal notranslate"><span class="pre">imshow()</span></code> from <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,7 +635,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="section" id="preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.5. </span>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>Scale all images such that all their values are in the range <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -677,9 +694,9 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="section" id="mlp">
-<h2>MLP<a class="headerlink" href="#mlp" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.6. </span>MLP<a class="headerlink" href="#mlp" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="architecture">
-<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.6.1. </span>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
 <p>In Keras the architecture of neural networks can be defined in two different ways:</p>
 <ul class="simple">
 <li><p>Using the <code class="docutils literal notranslate"><span class="pre">Sequential</span></code> model</p></li>
@@ -687,7 +704,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </ul>
 <p>Below the two approaches are demonstrated. The first approach is simpler, but restricted to neural networks which consist of a linear stack of layers. The second approach is more flexible and allows to define quit complex network architectures, e.g. with more than one input, more than one output or with parallel branches.</p>
 <div class="section" id="network-definition-option1-using-the-sequential-model">
-<h4>Network definition option1: Using the sequential model<a class="headerlink" href="#network-definition-option1-using-the-sequential-model" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">12.6.1.1. </span>Network definition option1: Using the sequential model<a class="headerlink" href="#network-definition-option1-using-the-sequential-model" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">MLP_AVAILABLE</span><span class="p">:</span>
@@ -723,7 +740,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="network-definition-option-2-using-the-functional-api">
-<h4>Network definition option 2: Using the functional API<a class="headerlink" href="#network-definition-option-2-using-the-functional-api" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">12.6.1.2. </span>Network definition option 2: Using the functional API<a class="headerlink" href="#network-definition-option-2-using-the-functional-api" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This returns a tensor</span>
@@ -760,7 +777,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="define-training-parameters">
-<h3>Define Training Parameters<a class="headerlink" href="#define-training-parameters" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.6.2. </span>Define Training Parameters<a class="headerlink" href="#define-training-parameters" title="Permalink to this headline">¶</a></h3>
 <p>Apply Stochastic Gradient Descent (SGD) learning, for minimizing the <code class="docutils literal notranslate"><span class="pre">categorical_crossentropy</span></code>. The performance metric shall be <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Train the network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,7 +794,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="perform-training">
-<h3>Perform Training<a class="headerlink" href="#perform-training" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.6.3. </span>Perform Training<a class="headerlink" href="#perform-training" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">MLP_AVAILABLE</span><span class="p">:</span>
@@ -792,7 +809,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="evaluation">
-<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.6.4. </span>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
 <p>Visualize the learning-curve on training- and test-data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -859,9 +876,9 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="cnn">
-<h2>CNN<a class="headerlink" href="#cnn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.7. </span>CNN<a class="headerlink" href="#cnn" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="define-architecture">
-<h3>Define Architecture<a class="headerlink" href="#define-architecture" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.7.1. </span>Define Architecture<a class="headerlink" href="#define-architecture" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">CNN1_AVAILABLE</span><span class="p">:</span>
@@ -912,7 +929,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="id1">
-<h3>Define Training Parameters<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.7.2. </span>Define Training Parameters<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN1_AVAILABLE</span><span class="p">:</span>
@@ -928,7 +945,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="id2">
-<h3>Perform Training<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.7.3. </span>Perform Training<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN1_AVAILABLE</span><span class="p">:</span>
@@ -968,7 +985,7 @@ INFO:tensorflow:Assets written to: models/2conv32-dense512/assets
 </div>
 </div>
 <div class="section" id="id3">
-<h3>Evaluation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.7.4. </span>Evaluation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -1025,9 +1042,9 @@ INFO:tensorflow:Assets written to: models/2conv32-dense512/assets
 </div>
 </div>
 <div class="section" id="a-more-complex-cnn">
-<h2>A more complex CNN<a class="headerlink" href="#a-more-complex-cnn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.8. </span>A more complex CNN<a class="headerlink" href="#a-more-complex-cnn" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id4">
-<h3>Architecture<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.8.1. </span>Architecture<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">createModel</span><span class="p">():</span>
@@ -1118,7 +1135,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="id5">
-<h3>Define Training Parameters<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.8.2. </span>Define Training Parameters<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN2_AVAILABLE</span><span class="p">:</span>
@@ -1131,7 +1148,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="id6">
-<h3>Perform Training<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.8.3. </span>Perform Training<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN2_AVAILABLE</span><span class="p">:</span>
@@ -1151,7 +1168,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="evaluate">
-<h3>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.8.4. </span>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -1206,7 +1223,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="implementation-of-cross-validation-in-keras">
-<h2>Implementation of Cross Validation in Keras<a class="headerlink" href="#implementation-of-cross-validation-in-keras" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.9. </span>Implementation of Cross Validation in Keras<a class="headerlink" href="#implementation-of-cross-validation-in-keras" title="Permalink to this headline">¶</a></h2>
 <p>Here: Cross-Validation of MLP</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1314,8 +1331,8 @@ processing fold # 2
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="03ConvolutionNeuralNetworks.html" title="previous page">Convolutional Neural Networks</a>
-    <a class='right-next' id="next-link" href="04KerasPretrainedClassifiers.html" title="next page">Applying Pretrained Deep Neural Networks for Image Classification</a>
+    <a class='left-prev' id="prev-link" href="03ConvolutionNeuralNetworks.html" title="previous page"><span class="section-number">11. </span>Convolutional Neural Networks</a>
+    <a class='right-next' id="next-link" href="04KerasPretrainedClassifiers.html" title="next page"><span class="section-number">13. </span>Applying Pretrained Deep Neural Networks for Image Classification</a>
 
         </div>
         

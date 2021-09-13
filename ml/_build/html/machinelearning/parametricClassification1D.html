@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bayes- and Naive Bayes Classifier &#8212; Machine Learning Lecture</title>
+    <title>3. Bayes- and Naive Bayes Classifier &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linear Regression" href="LinReg.html" />
-    <link rel="prev" title="K - Nearest Neighbour Classification / Regression" href="knn.html" />
+    <link rel="next" title="4. Linear Regression" href="LinReg.html" />
+    <link rel="prev" title="2. K - Nearest Neighbour Classification / Regression" href="knn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   Basic Concepts of Data Mining and Machine Learning
+   1. Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,32 +111,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="knn.html">
-   K - Nearest Neighbour Classification / Regression
+   2. K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Bayes- and Naive Bayes Classifier
+   3. Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LinReg.html">
-   Linear Regression
+   4. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heartRateRegression.html">
-   Example Linear Regression
+   5. Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
-   Support Vector Machines (SVM)
+   6. Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="gp.html">
-   Gaussian Process
+   7. Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcessRegression.html">
+   8. Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -148,32 +153,44 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
-   Neural Networks Introduction
+   9. Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
-   Recurrent Neural Networks
+   10. Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
-   Convolutional Neural Networks
+   11. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
-   Implementing Neural Networks with Keras
+   12. Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
-   Applying Pretrained Deep Neural Networks for Image Classification
+   13. Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
-   Apply Pretrained Neural Networks on new Task
+   14. Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   15. Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -185,7 +202,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
-   Variational Autoencoder (VAE) to generate handwritten digits
+   16. Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -197,7 +214,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   Generative Adversarial Nets (GAN)
+   17. Generative Adversarial Nets (GAN)
   </a>
  </li>
 </ul>
@@ -209,7 +226,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   Representations for Words and Texts
+   18. Representations for Words and Texts
   </a>
  </li>
 </ul>
@@ -221,7 +238,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   References
+   19. References
   </a>
  </li>
 </ul>
@@ -314,47 +331,47 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#access-labeled-data">
-   Access labeled data
+   3.1. Access labeled data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training">
-   Training
+   3.2. Training
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#classification-inference-phase">
-   Classification (Inference Phase)
+   3.3. Classification (Inference Phase)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#bayesian-classification-with-scikit-learn">
-   Bayesian Classification with Scikit-Learn
+   3.4. Bayesian Classification with Scikit-Learn
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#train-the-naive-bayes-classifier">
-     Train the Naive Bayes Classifier:
+     3.4.1. Train the Naive Bayes Classifier:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#use-the-trained-model-for-predictions">
-     Use the trained model for predictions
+     3.4.2. Use the trained model for predictions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-accuracy-on-training-data">
-     Model Accuracy on training data
+     3.4.3. Model Accuracy on training data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cross-validation">
-     Cross Validation
+     3.4.4. Cross Validation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#naive-bayes-classifier-for-multidimensional-data">
-     Naive Bayes Classifier for Multidimensional data
+     3.4.5. Naive Bayes Classifier for Multidimensional data
     </a>
    </li>
   </ul>
@@ -371,7 +388,7 @@
               <div>
                 
   <div class="section" id="bayes-and-naive-bayes-classifier">
-<h1>Bayes- and Naive Bayes Classifier<a class="headerlink" href="#bayes-and-naive-bayes-classifier" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Bayes- and Naive Bayes Classifier<a class="headerlink" href="#bayes-and-naive-bayes-classifier" title="Permalink to this headline">¶</a></h1>
 <blockquote>
 <div><p>In this section and nearly all other parts of this course basic notions of <strong>probability theory</strong> are required. If you feel unsure about this, it is strongly recommended to study this <a class="reference external" href="https://hannibunny.github.io/probability/intro.html">short intro in probability theory</a>.</p>
 </div></blockquote>
@@ -395,7 +412,7 @@ P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_
 </div>
 </div>
 <div class="section" id="access-labeled-data">
-<h2>Access labeled data<a class="headerlink" href="#access-labeled-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Access labeled data<a class="headerlink" href="#access-labeled-data" title="Permalink to this headline">¶</a></h2>
 <p>Read customer data from file. Each row in the file represents one custoner. The first column is the customer ID, the second column is the annual income of the customer and the third column is the class of car he or she bought:</p>
 <ul class="simple">
 <li><p>0 = Low Class</p></li>
@@ -588,7 +605,7 @@ P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_
 </div>
 </div>
 <div class="section" id="training">
-<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
 <p>In the training-phase for each car-class <span class="math notranslate nohighlight">\(C_i\)</span> the likelihood-function <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori probability <span class="math notranslate nohighlight">\(p(C_i)\)</span> must be determined. It is assumed that the likelihoods are gaussian normal distributions. Hence, for each class the <strong>mean</strong> and the <strong>standard-deviation</strong> must be estimated from the given data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -696,7 +713,7 @@ P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_
 </div>
 </div>
 <div class="section" id="classification-inference-phase">
-<h2>Classification (Inference Phase)<a class="headerlink" href="#classification-inference-phase" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>Classification (Inference Phase)<a class="headerlink" href="#classification-inference-phase" title="Permalink to this headline">¶</a></h2>
 <p>Once the model is trained the likelihood <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori probability <span class="math notranslate nohighlight">\(P(C_i)\)</span> is known for all 3 classes <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
 <p>The most probable class is then calculated as follows:</p>
 <div class="math notranslate nohighlight">
@@ -749,7 +766,7 @@ Most probable class for customer with income 69000.00 Euro is 2
 </div>
 </div>
 <div class="section" id="bayesian-classification-with-scikit-learn">
-<h2>Bayesian Classification with Scikit-Learn<a class="headerlink" href="#bayesian-classification-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Bayesian Classification with Scikit-Learn<a class="headerlink" href="#bayesian-classification-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <p>For Bayesian Classification Scikit-Learn provides Naive Bayes Classifiers for Gaussian-, Bernoulli- and Multinomial distributed data. In the example above 1-dimensional Gaussian distributed input-data has been applied. In this case the Scikit-Learn Naive Bayes Classifier for Gaussian-distributed data, <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> learns the same model as the classifier implemented in the previous sections of this notebook. This is demonstrated in the following code-cells:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -767,7 +784,7 @@ Most probable class for customer with income 69000.00 Euro is 2
 </div>
 </div>
 <div class="section" id="train-the-naive-bayes-classifier">
-<h3>Train the Naive Bayes Classifier:<a class="headerlink" href="#train-the-naive-bayes-classifier" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.1. </span>Train the Naive Bayes Classifier:<a class="headerlink" href="#train-the-naive-bayes-classifier" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">=</span><span class="n">GaussianNB</span><span class="p">()</span>
@@ -806,7 +823,7 @@ Note that std is slightly different as above. This is because std of pandas divi
 </div>
 </div>
 <div class="section" id="use-the-trained-model-for-predictions">
-<h3>Use the trained model for predictions<a class="headerlink" href="#use-the-trained-model-for-predictions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.2. </span>Use the trained model for predictions<a class="headerlink" href="#use-the-trained-model-for-predictions" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Income</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">AnnualIncomeList</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -845,7 +862,7 @@ A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with i
 </div>
 </div>
 <div class="section" id="model-accuracy-on-training-data">
-<h3>Model Accuracy on training data<a class="headerlink" href="#model-accuracy-on-training-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.3. </span>Model Accuracy on training data<a class="headerlink" href="#model-accuracy-on-training-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Income</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">autoDF</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
@@ -907,7 +924,7 @@ A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with i
 <p>In the confusion matrix the entry <span class="math notranslate nohighlight">\(C_{i,j}\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is the number of instances, which are known to be in class <span class="math notranslate nohighlight">\(i\)</span>, but predicted to class <span class="math notranslate nohighlight">\(j\)</span>. For example the confusion matrix above indicates, that 3 elements of true class <span class="math notranslate nohighlight">\(1\)</span> have been predicted as class <span class="math notranslate nohighlight">\(0\)</span>-instances.</p>
 </div>
 <div class="section" id="cross-validation">
-<h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.4. </span>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
 <p>The accuracy on training data should not be applied for model evaluation. Instead a model should be evaluated by determining the accuracy (or other performance figures) on data, which has not been applied for training. Since we have only few labeled data in this example cross-validation is applied for determining the model’s accuracy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -925,7 +942,7 @@ A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with i
 </div>
 </div>
 <div class="section" id="naive-bayes-classifier-for-multidimensional-data">
-<h3>Naive Bayes Classifier for Multidimensional data<a class="headerlink" href="#naive-bayes-classifier-for-multidimensional-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.5. </span>Naive Bayes Classifier for Multidimensional data<a class="headerlink" href="#naive-bayes-classifier-for-multidimensional-data" title="Permalink to this headline">¶</a></h3>
 <p>In the playground-example above the input-features where only one dimensional: The only input feature has been the annual income of a customer. The 1-dimensional case is quite unusual in practice. In the code-cell below a <strong>Naive Bayes Classifier</strong> is evaluated for multidimensional data. This is just to demonstrate that the same process as applied above for the simple dataset, can also be applied for arbitrary complex datasets.</p>
 <p>Again we start from the Bayes Theorem:</p>
 <div class="math notranslate nohighlight">
@@ -1257,8 +1274,8 @@ P(C_i|\mathbf{x})=\frac{p(\mathbf{x}|C_i)}{P(\mathbf{x})}P(C_i) = \frac{\prod_{j
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="knn.html" title="previous page">K - Nearest Neighbour Classification / Regression</a>
-    <a class='right-next' id="next-link" href="LinReg.html" title="next page">Linear Regression</a>
+    <a class='left-prev' id="prev-link" href="knn.html" title="previous page"><span class="section-number">2. </span>K - Nearest Neighbour Classification / Regression</a>
+    <a class='right-next' id="next-link" href="LinReg.html" title="next page"><span class="section-number">4. </span>Linear Regression</a>
 
         </div>
         

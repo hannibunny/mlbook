@@ -696,3 +696,8 @@ name: varC
 Learned SVR models with RBF kernels. Parameter $\epsilon=0.2$ is fixed. Parameter $C$ increases from the upper left to the lower right plot. Higher $C$ increases the chance of overfitting.
 
 ```
+
+
+**Further Reading:**
+
+* {cite}`Alpay10`
