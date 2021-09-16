@@ -13,7 +13,7 @@ Reinforcement Learning refers to **Sequential Decision Making**. This means that
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png
 ---
 align: center
-width: 600pt
+width: 300pt
 name:  rlagent
 ---
 Interaction of an Agent with it's environment in a Markov Decision Process (MDP). Image source: {cite}`Sutton1998`.
@@ -767,6 +767,11 @@ Image source: {cite}`ertel09`
 
 ```
 
+## Deep Reinforcement Learning
+
+UNDER CONSTRUCTION
+
+## References
 
 
 * Further reading: {cite}`Sutton1998`, {cite}`russel2010`, {cite}`ertel09`

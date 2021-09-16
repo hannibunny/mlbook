@@ -35,6 +35,10 @@ parts:
 - caption: Text
   chapters:
   - file: text/01ModellingWordsAndTexts
+  - file: text/02TextClassification
+- caption: Transformer
+  chapters:
+  - file: transformer/attention
 - caption: References
   chapters:
   - file: referenceSection

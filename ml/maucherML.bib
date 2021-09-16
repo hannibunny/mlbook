@@ -443,16 +443,27 @@ title = {{Learning Deep Architectures for AI}},
 volume = {2},
 year = {2009}
 }
-@techreport{Raffel2016,
+
+@misc{raffel2016feedforward,
+title={Feed-Forward Networks with Attention Can Solve Some Long-Term Memory Problems}, 
+author={Colin Raffel and Daniel P. W. Ellis},
+year={2016},
+eprint={1512.08756},
+archivePrefix={arXiv},
+primaryClass={cs.LG}
+}
+
+@inproceedings{Raffel2016,
 abstract = {We propose a simplified model of attention which is applicable to feed-forward neural networks and demonstrate that the resulting model can solve the synthetic "addition" and "multiplication" long-term memory problems for sequence lengths which are both longer and more widely varying than the best published results for these tasks. 1 MODELS FOR SEQUENTIAL DATA Many problems in machine learning are best formulated using sequential data and appropriate models for these tasks must be able to capture temporal dependencies in sequences, potentially of arbitrary length. One such class of models are recurrent neural networks (RNNs), which can be considered a learnable function f whose output h t = f (x t , h t−1) at time t depends on input x t and the model's previous state h t−1. Training of RNNs with backpropagation through time (Werbos, 1990) is hindered by the vanishing and exploding gradient problem (Pascanu et al., 2012; Hochreiter {\&} Schmidhuber, 1997; Bengio et al., 1994), and as a result RNNs are in practice typically only applied in tasks where sequential dependencies span at most hundreds of time steps. Very long sequences can also make training computationally inefficient due to the fact that RNNs must be evaluated sequentially and cannot be fully parallelized. 1.1 ATTENTION A recently proposed method for easier modeling of long-term dependencies is "attention". Attention mechanisms allow for a more direct dependence between the state of the model at different points in time. Following the definition from (Bahdanau et al., 2014), given a model which produces a hidden state h t at each time step, attention-based models compute a "context" vector c t as the weighted mean of the state sequence h by c t = T j=1 $\alpha$ tj h j where T is the total number of time steps in the input sequence and $\alpha$ tj is a weight computed at each time step t for each state h j. These context vectors are then used to compute a new state sequence s, where s t depends on s t−1 , c t and the model's output at t − 1. The weightings $\alpha$ tj are then computed by e tj = a(s t−1 , h j), $\alpha$ tj = exp(e tj) T k=1 exp(e tk) where a is a learned function which can be thought of as computing a scalar importance value for h j given the value of h j and the previous state s t−1. This formulation allows the new state sequence s to have more direct access to the entire state sequence h. Attention-based RNNs have proven effective in a variety of sequence transduction tasks, including machine translation (Bahdanau et al., 2014), image captioning (Xu et al., 2015), and speech recognition (Chan et al., 2015; Bahdanau et al., 2015). Attention can be seen as analogous to the "soft addressing" mechanisms of the recently proposed Neural Turing Machine (Graves et al., 2014) and End-To-End Memory Network (Sukhbaatar et al., 2015) models.},
+title={Feed-Forward Networks with Attention Can Solve Some Long-Term Memory Problems}, 
 archivePrefix = {arXiv},
 arxivId = {1512.08756v5},
 author = {Raffel, Colin and Ellis, Daniel P W},
 eprint = {1512.08756v5},
-file = {:Users/maucher/Library/Application Support/Mendeley Desktop/Downloaded/Raffel, Ellis - 2016 - Workshop track-ICLR 2016 FEED-FORWARD NETWORKS WITH ATTENTION CAN SOLVE SOME LONG-TERM MEMORY PROBLEMS.pdf:pdf},
-title = {{Workshop track-ICLR 2016 FEED-FORWARD NETWORKS WITH ATTENTION CAN SOLVE SOME LONG-TERM MEMORY PROBLEMS}},
+booktitle = {Workshop track-ICLR 2016 FEED-FORWARD NETWORKS WITH ATTENTION CAN SOLVE SOME LONG-TERM MEMORY PROBLEMS.pdf:pdf},
 year = {2016}
 }
+
 @inproceedings{MikolovRNN,
 author = {Mikolov, Tomas and Karafi{\'{a}}t, Martin and Burget, Luk{\'{a}}s and Cernock{\'{y}}, Jan and Khudanpur, Sanjeev},
 booktitle = {{\{}INTERSPEECH{\}} 2010, 11th Annual Conference of the International Speech Communication Association, Makuhari, Chiba, Japan, September 26-30, 2010},
@@ -507,17 +518,23 @@ howpublished = {$\backslash$url{\{}http://deeplearning.net/tutorial/{\}}},
 title = {{Deep Learning Tutorials v0.1}},
 year = {2011}
 }
-@techreport{Devlin,
-abstract = {We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models (Peters et al., 2018a; Rad-ford et al., 2018), BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result , the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5{\%} (7.7{\%} point absolute improvement), MultiNLI accuracy to 86.7{\%} (4.6{\%} absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).},
-archivePrefix = {arXiv},
-arxivId = {1810.04805v2},
-author = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Google, Kristina Toutanova and Language, A I},
-eprint = {1810.04805v2},
-file = {:Users/maucher/Library/Application Support/Mendeley Desktop/Downloaded/Devlin et al. - Unknown - BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.pdf:pdf},
-isbn = {1810.04805v2},
-title = {{BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding}},
-url = {https://github.com/tensorflow/tensor2tensor}
+@inproceedings{Devlin,
+	title = "{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+	author = "Devlin, Jacob  and
+	Chang, Ming-Wei  and
+	Lee, Kenton  and
+	Toutanova, Kristina",
+	booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+	month = jun,
+	year = "2019",
+	address = "Minneapolis, Minnesota",
+	publisher = "Association for Computational Linguistics",
+	url = "https://aclanthology.org/N19-1423",
+	doi = "10.18653/v1/N19-1423",
+	pages = "4171--4186",
+	abstract = "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models (Peters et al., 2018a; Radford et al., 2018), BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5 (7.7 point absolute improvement), MultiNLI accuracy to 86.7{\%} (4.6{\%} absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
 }
+
 @article{Saul96,
 author = {Saul, Lawrence K and Jaakkola, Tommi and Jordan, Michael I},
 journal = {Journal of Artificial Intelligence Research},
@@ -664,4 +681,57 @@ title = {Mastering the Game of Go with Deep Neural Networks and Tree Search},
 username = {flint63},
 volume = 529,
 year = 2016
+}
+
+@misc{cho2014learning,
+	abstract = {In this paper, we propose a novel neural network model called RNN
+	Encoder-Decoder that consists of two recurrent neural networks (RNN). One RNN
+	encodes a sequence of symbols into a fixed-length vector representation, and
+	the other decodes the representation into another sequence of symbols. The
+	encoder and decoder of the proposed model are jointly trained to maximize the
+	conditional probability of a target sequence given a source sequence. The
+	performance of a statistical machine translation system is empirically found to
+	improve by using the conditional probabilities of phrase pairs computed by the
+	RNN Encoder-Decoder as an additional feature in the existing log-linear model.
+	Qualitatively, we show that the proposed model learns a semantically and
+	syntactically meaningful representation of linguistic phrases.},
+	added-at = {2020-03-08T11:41:02.000+0100},
+	author = {Cho, Kyunghyun and van Merrienboer, Bart and Gulcehre, Caglar and Bahdanau, Dzmitry and Bougares, Fethi and Schwenk, Holger and Bengio, Yoshua},
+	biburl = {https://www.bibsonomy.org/bibtex/21b65748e52783133211bce750d8e0361/stdiff},
+	description = {Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation},
+	interhash = {a4bf56db9d1f80d8681c1b47de0569b3},
+	intrahash = {1b65748e52783133211bce750d8e0361},
+	keywords = {neural-network},
+	note = {cite arxiv:1406.1078Comment: EMNLP 2014},
+	timestamp = {2020-03-08T11:41:02.000+0100},
+	title = {Learning Phrase Representations using RNN Encoder-Decoder for
+	Statistical Machine Translation},
+	url = {http://arxiv.org/abs/1406.1078},
+	year = 2014
+}
+
+@article{HeResnet,
+	author    = {Kaiming He and
+	Xiangyu Zhang and
+	Shaoqing Ren and
+	Jian Sun},
+	title     = {Deep Residual Learning for Image Recognition},
+	journal   = {CoRR},
+	volume    = {abs/1512.03385},
+	year      = {2015},
+	url       = {http://arxiv.org/abs/1512.03385},
+	eprinttype = {arXiv},
+	eprint    = {1512.03385},
+	timestamp = {Wed, 17 Apr 2019 17:23:45 +0200},
+	biburl    = {https://dblp.org/rec/journals/corr/HeZRS15.bib},
+	bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@misc{ba2016layer,
+	title={Layer Normalization}, 
+	author={Jimmy Lei Ba and Jamie Ryan Kiros and Geoffrey E. Hinton},
+	year={2016},
+	eprint={1607.06450},
+	archivePrefix={arXiv},
+	primaryClass={stat.ML}
 }

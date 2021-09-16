@@ -53,7 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="18. Representations for Words and Texts" href="text/01ModellingWordsAndTexts.html" />
+    <link rel="prev" title="Sequence-To-Sequence, Attention, Transformer" href="transformer/attention.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -98,7 +98,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="00BasicConcepts.html">
-   1. Basic Concepts of Data Mining and Machine Learning
+   Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -110,22 +110,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/knn.html">
-   2. K - Nearest Neighbour Classification / Regression
+   K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/parametricClassification1D.html">
-   3. Bayes- and Naive Bayes Classifier
+   Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/LinReg.html">
-   4. Linear Regression
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/heartRateRegression.html">
-   5. Example Linear Regression
+   Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
@@ -135,12 +135,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/gp.html">
-   7. Gaussian Process
+   Gaussian Process
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="machinelearning/GaussianProcessRegression.html">
-   8. Gaussian Process: Implementation in Python
+   Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -152,32 +152,32 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/01NeuralNets.html">
-   9. Neural Networks Introduction
+   Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/02RecurrentNeuralNetworks.html">
-   10. Recurrent Neural Networks
+   Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/03ConvolutionNeuralNetworks.html">
-   11. Convolutional Neural Networks
+   Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/03KerasMLPandCNNcifar.html">
-   12. Implementing Neural Networks with Keras
+   Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/04KerasPretrainedClassifiers.html">
-   13. Applying Pretrained Deep Neural Networks for Image Classification
+   Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="neuralnetworks/05KerasPretrainedCovid.html">
-   14. Apply Pretrained Neural Networks on new Task
+   Apply Pretrained Neural Networks on new Task
   </a>
  </li>
 </ul>
@@ -225,7 +225,24 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="text/01ModellingWordsAndTexts.html">
-   18. Representations for Words and Texts
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
   </a>
  </li>
 </ul>
@@ -317,29 +334,53 @@
   <div class="section" id="references">
 <h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
 <p id="id1"><dl class="citation">
-<dt class="label" id="id58"><span class="brackets">Alp10</span></dt>
+<dt class="label" id="id59"><span class="brackets">Alp10</span></dt>
 <dd><p>E Alpaydin. <em>Introduction to Machine Learning</em>. MIT Press, 2 edition, 2010. ISBN 978-0-262-01243-0.</p>
+</dd>
+<dt class="label" id="id64"><span class="brackets">BKH16</span></dt>
+<dd><p>Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E. Hinton. Layer normalization. 2016. <a class="reference external" href="https://arxiv.org/abs/1607.06450">arXiv:1607.06450</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">BCB15</span></dt>
+<dd><p>Dzmitry Bahdanau, Kyung Hyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. In <em>3rd International Conference on Learning Representations, ICLR 2015 - Conference Track Proceedings</em>. International Conference on Learning Representations, ICLR, 2015. <a class="reference external" href="https://arxiv.org/abs/1409.0473">arXiv:1409.0473</a>.</p>
+</dd>
+<dt class="label" id="id62"><span class="brackets">CvMG+14</span></dt>
+<dd><p>Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. 2014. cite arxiv:1406.1078Comment: EMNLP 2014. URL: <a class="reference external" href="http://arxiv.org/abs/1406.1078">http://arxiv.org/abs/1406.1078</a>.</p>
 </dd>
 <dt class="label" id="id8"><span class="brackets">CV95</span></dt>
 <dd><p>C. Cortes and V. Vapnik. Support vector networks. <em>Machine Learning</em>, 20:273–297, 1995.</p>
 </dd>
+<dt class="label" id="id50"><span class="brackets">DCLT19</span></dt>
+<dd><p>Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. BERT: pre-training of deep bidirectional transformers for language understanding. In <em>Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)</em>, 4171–4186. Minneapolis, Minnesota, June 2019. Association for Computational Linguistics. URL: <a class="reference external" href="https://aclanthology.org/N19-1423">https://aclanthology.org/N19-1423</a>, <a class="reference external" href="https://doi.org/10.18653/v1/N19-1423">doi:10.18653/v1/N19-1423</a>.</p>
+</dd>
 <dt class="label" id="id3"><span class="brackets">Ebd15</span></dt>
 <dd><p>Mark Ebden. Gaussian Processes: A Quick Introduction. <em>arxiv</em>, may 2015. URL: <a class="reference external" href="https://arxiv.org/abs/1505.02965v2">https://arxiv.org/abs/1505.02965v2</a>, <a class="reference external" href="https://arxiv.org/abs/1505.02965">arXiv:1505.02965</a>.</p>
 </dd>
-<dt class="label" id="id59"><span class="brackets">Ert09</span></dt>
+<dt class="label" id="id60"><span class="brackets">Ert09</span></dt>
 <dd><p>Wolfgang Ertel. <em>Grundkurs Künstliche Intelligenz: eine praxisorientierte Einführung</em>. Number ISBN 978-3-8348-0783-0. Vieweg + Teubner, Wiesbaden, second edition, 2009. URL: <a class="reference external" href="http://d-nb.info/994758561">http://d-nb.info/994758561</a>.</p>
+</dd>
+<dt class="label" id="id63"><span class="brackets">HZRS15</span></dt>
+<dd><p>Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition. <em>CoRR</em>, 2015. URL: <a class="reference external" href="http://arxiv.org/abs/1512.03385">http://arxiv.org/abs/1512.03385</a>, <a class="reference external" href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>.</p>
+</dd>
+<dt class="label" id="id43"><span class="brackets">RE16</span></dt>
+<dd><p>Colin Raffel and Daniel P W Ellis. Feed-forward networks with attention can solve some long-term memory problems. In <em>Workshop track-ICLR 2016 FEED-FORWARD NETWORKS WITH ATTENTION CAN SOLVE SOME LONG-TERM MEMORY PROBLEMS.pdf:pdf</em>. 2016. <a class="reference external" href="https://arxiv.org/abs/1512.08756v5">arXiv:1512.08756v5</a>.</p>
 </dd>
 <dt class="label" id="id4"><span class="brackets">RW</span></dt>
 <dd><p>C E Rasmussen and C K I Williams. Gaussian Processes for Machine Learning. URL: <a class="reference external" href="www.GaussianProcess.org/gpml">www.GaussianProcess.org/gpml</a>.</p>
 </dd>
-<dt class="label" id="id57"><span class="brackets">RN10</span></dt>
+<dt class="label" id="id58"><span class="brackets">RN10</span></dt>
 <dd><p>Stuart Russell and Peter Norvig. <em>Artificial Intelligence: A Modern Approach</em>. Prentice Hall, 3 edition, 2010.</p>
 </dd>
-<dt class="label" id="id60"><span class="brackets">SHM+16</span></dt>
+<dt class="label" id="id61"><span class="brackets">SHM+16</span></dt>
 <dd><p>David Silver, Aja Huang, Chris J. Maddison, Arthur Guez, Laurent Sifre, George van den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu, Thore Graepel, and Demis Hassabis. Mastering the game of go with deep neural networks and tree search. <em>Nature</em>, 529(7587):484–489, 2016. <a class="reference external" href="https://doi.org/10.1038/nature16961">doi:10.1038/nature16961</a>.</p>
 </dd>
-<dt class="label" id="id56"><span class="brackets">SB18</span></dt>
+<dt class="label" id="id18"><span class="brackets">SVL14</span></dt>
+<dd><p>Ilya Sutskever, Oriol Vinyals, and Quoc V. Le. Sequence to sequence learning with neural networks. In <em>Advances in Neural Information Processing Systems</em>, volume 4, 3104–3112. Neural information processing systems foundation, 2014. <a class="reference external" href="https://arxiv.org/abs/1409.3215">arXiv:1409.3215</a>.</p>
+</dd>
+<dt class="label" id="id57"><span class="brackets">SB18</span></dt>
 <dd><p>Richard S. Sutton and Andrew G. Barto. <em>Reinforcement Learning: An Introduction</em>. The MIT Press, second edition, 2018. URL: <a class="reference external" href="http://incompleteideas.net/book/the-book-2nd.html">http://incompleteideas.net/book/the-book-2nd.html</a>.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">VSP+17</span></dt>
+<dd><p>Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. Attention is All you Need. In Isabelle Guyon, Ulrike von Luxburg, Samy Bengio, Hanna M Wallach, Rob Fergus, S V N Vishwanathan, and Roman Garnett, editors, <em>Advances in Neural Information Processing Systems 30: Annual Conference on Neural Information Processing Systems 2017, 4-9 December 2017, Long Beach, CA, \USA\</em>, 6000–6010. 2017. URL: <a class="reference external" href="http://papers.nips.cc/paper/7181-attention-is-all-you-need">http://papers.nips.cc/paper/7181-attention-is-all-you-need</a>.</p>
 </dd>
 </dl>
 </p>
@@ -370,7 +411,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="text/01ModellingWordsAndTexts.html" title="previous page"><span class="section-number">18. </span>Representations for Words and Texts</a>
+    <a class='left-prev' id="prev-link" href="transformer/attention.html" title="previous page">Sequence-To-Sequence, Attention, Transformer</a>
 
         </div>
         

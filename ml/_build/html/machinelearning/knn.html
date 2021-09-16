@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. K - Nearest Neighbour Classification / Regression &#8212; Machine Learning Lecture</title>
+    <title>K - Nearest Neighbour Classification / Regression &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
-    <link rel="prev" title="1. Basic Concepts of Data Mining and Machine Learning" href="../00BasicConcepts.html" />
+    <link rel="next" title="Bayes- and Naive Bayes Classifier" href="parametricClassification1D.html" />
+    <link rel="prev" title="Basic Concepts of Data Mining and Machine Learning" href="../00BasicConcepts.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   1. Basic Concepts of Data Mining and Machine Learning
+   Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,37 +111,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. K - Nearest Neighbour Classification / Regression
+   K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="parametricClassification1D.html">
-   3. Bayes- and Naive Bayes Classifier
+   Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LinReg.html">
-   4. Linear Regression
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heartRateRegression.html">
-   5. Example Linear Regression
+   Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
-   6. Support Vector Machines (SVM)
+   Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="gp.html">
-   7. Gaussian Process
+   Gaussian Process
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcessRegression.html">
-   8. Gaussian Process: Implementation in Python
+   Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -153,44 +153,32 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
-   9. Neural Networks Introduction
+   Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
-   10. Recurrent Neural Networks
+   Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
-   11. Convolutional Neural Networks
+   Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
-   12. Implementing Neural Networks with Keras
+   Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
-   13. Applying Pretrained Deep Neural Networks for Image Classification
+   Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
-   14. Apply Pretrained Neural Networks on new Task
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Reinforcement Learning
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../rl/reinforcement.html">
-   15. Reinforcement Learning
+   Apply Pretrained Neural Networks on new Task
   </a>
  </li>
 </ul>
@@ -202,7 +190,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
-   16. Variational Autoencoder (VAE) to generate handwritten digits
+   Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -214,7 +202,19 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   17. Generative Adversarial Nets (GAN)
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -226,7 +226,24 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   18. Representations for Words and Texts
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
   </a>
  </li>
 </ul>
@@ -238,7 +255,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   19. References
+   References
   </a>
  </li>
 </ul>
@@ -331,32 +348,32 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#k-nn-classification-demo">
-   2.1. K-NN Classification Demo
+   K-NN Classification Demo
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#generate-set-of-labeled-training-data">
-     2.1.1. Generate set of labeled training data
+     Generate set of labeled training data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#split-labeled-data-in-training-and-test-partition">
-     2.1.2. Split labeled data in training- and test-partition
+     Split labeled data in training- and test-partition
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#train-the-k-nn-classifier">
-     2.1.3. Train the K-NN classifier
+     Train the K-NN classifier
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluate-the-classifier-on-test-data">
-     2.1.4. Evaluate the classifier on Test-data
+     Evaluate the classifier on Test-data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#repeat-training-and-evaluation-for-k-9-neighbors">
-     2.1.5. Repeat Training and Evaluation for
+     Repeat Training and Evaluation for
      <span class="math notranslate nohighlight">
       \(K=9\)
      </span>
@@ -377,7 +394,7 @@
               <div>
                 
   <div class="section" id="k-nearest-neighbour-classification-regression">
-<h1><span class="section-number">2. </span>K - Nearest Neighbour Classification / Regression<a class="headerlink" href="#k-nearest-neighbour-classification-regression" title="Permalink to this headline">¶</a></h1>
+<h1>K - Nearest Neighbour Classification / Regression<a class="headerlink" href="#k-nearest-neighbour-classification-regression" title="Permalink to this headline">¶</a></h1>
 <p>Probably the <strong>simplest supervised Machine Learning algorithm</strong> is K-Nearest Neighbour (K-NN). K-NN can be applied for both, classification and regression. Compared to other ML algorithms, K-NN is special because it is a <strong>non-parameteric ML algorithm</strong>, which actually has no training phase. It is therefore also called a <strong>Lazy Learner</strong>. All other ML algorithms, which will be introduced in this lecture, have a learning-phase during which either a class-specific data-distribution or a class-boundary is learned. After this learning phase the entire knowledge from the training-data set is encoded in some parameters, which uniquely define the class-specific distribution or the class-boundary. Not so with K-NN! In K-NN the entire set of labeled training data is stored. In the inference phase new data is classified by just comparing the new instance with all training-instances and deciding for the class, which most often appears in the set of k nearest training instances.</p>
 <p><strong>K-NN Classifier:</strong></p>
 <ol class="simple">
@@ -410,10 +427,10 @@
 </ul>
 <p>For <span class="math notranslate nohighlight">\(K=1\)</span> the bias is close to 0, but the variance is quite high. With increasing <span class="math notranslate nohighlight">\(K\)</span> bias increases but variance decreases.</p>
 <div class="section" id="k-nn-classification-demo">
-<h2><span class="section-number">2.1. </span>K-NN Classification Demo<a class="headerlink" href="#k-nn-classification-demo" title="Permalink to this headline">¶</a></h2>
+<h2>K-NN Classification Demo<a class="headerlink" href="#k-nn-classification-demo" title="Permalink to this headline">¶</a></h2>
 <p>In the reminder of this section the application of a K-NN classifier is demonstrated.</p>
 <div class="section" id="generate-set-of-labeled-training-data">
-<h3><span class="section-number">2.1.1. </span>Generate set of labeled training data<a class="headerlink" href="#generate-set-of-labeled-training-data" title="Permalink to this headline">¶</a></h3>
+<h3>Generate set of labeled training data<a class="headerlink" href="#generate-set-of-labeled-training-data" title="Permalink to this headline">¶</a></h3>
 <p>In this demo we do not apply a real-world training data set. Instead we generate Gaussian-distributed 2-dimensional training vectors <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2)\)</span> for each of the 2 classes. The distributions of the 2 classes differ in their mean-vector and their covariance matrix. The code cells below implement the generation and visualisation of labeled data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -584,7 +601,7 @@ First samples of pointset:
 </div>
 </div>
 <div class="section" id="split-labeled-data-in-training-and-test-partition">
-<h3><span class="section-number">2.1.2. </span>Split labeled data in training- and test-partition<a class="headerlink" href="#split-labeled-data-in-training-and-test-partition" title="Permalink to this headline">¶</a></h3>
+<h3>Split labeled data in training- and test-partition<a class="headerlink" href="#split-labeled-data-in-training-and-test-partition" title="Permalink to this headline">¶</a></h3>
 <p>The scikit-learn function <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> shuffles the set of all labeled data and returns two partions of input vectors, <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">X_test</span></code> and the corresponding class-labels <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_test</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -643,7 +660,7 @@ First samples of pointset:
 </div>
 </div>
 <div class="section" id="train-the-k-nn-classifier">
-<h3><span class="section-number">2.1.3. </span>Train the K-NN classifier<a class="headerlink" href="#train-the-k-nn-classifier" title="Permalink to this headline">¶</a></h3>
+<h3>Train the K-NN classifier<a class="headerlink" href="#train-the-k-nn-classifier" title="Permalink to this headline">¶</a></h3>
 <p>All machine learning algorithms implemented in <em>scikit-learn</em> provide a <code class="docutils literal notranslate"><span class="pre">.fit(X_train,</span> <span class="pre">y_train)</span></code>-method, in which the training phase, i.e. the fitting of a model to the given training-data, is implemented. As already described above, in the case of the K-NN algorithm, there is no training-phase. Here, <code class="docutils literal notranslate"><span class="pre">fit()</span></code> just saves the given training data accordingly. The model is the set of training data itself. In this example the chosen number of neighbors is <span class="math notranslate nohighlight">\(K=3\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -691,7 +708,7 @@ For plotting the decision boundary a class-specific color will be assigned to ea
 </div>
 </div>
 <div class="section" id="evaluate-the-classifier-on-test-data">
-<h3><span class="section-number">2.1.4. </span>Evaluate the classifier on Test-data<a class="headerlink" href="#evaluate-the-classifier-on-test-data" title="Permalink to this headline">¶</a></h3>
+<h3>Evaluate the classifier on Test-data<a class="headerlink" href="#evaluate-the-classifier-on-test-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -734,7 +751,7 @@ For plotting the decision boundary a class-specific color will be assigned to ea
 <p>As can be seen in the confusion matrix, all class-1 data has been classified correctly. But there are 4 out of 60 class-0 instances, which are assigned to the wrong class. In the visualisation above, these errors are the blue markers in the orange region.</p>
 </div>
 <div class="section" id="repeat-training-and-evaluation-for-k-9-neighbors">
-<h3><span class="section-number">2.1.5. </span>Repeat Training and Evaluation for <span class="math notranslate nohighlight">\(K=9\)</span> neighbors<a class="headerlink" href="#repeat-training-and-evaluation-for-k-9-neighbors" title="Permalink to this headline">¶</a></h3>
+<h3>Repeat Training and Evaluation for <span class="math notranslate nohighlight">\(K=9\)</span> neighbors<a class="headerlink" href="#repeat-training-and-evaluation-for-k-9-neighbors" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="mi">7</span>
@@ -839,8 +856,8 @@ For plotting the decision boundary a class-specific color will be assigned to ea
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../00BasicConcepts.html" title="previous page"><span class="section-number">1. </span>Basic Concepts of Data Mining and Machine Learning</a>
-    <a class='right-next' id="next-link" href="parametricClassification1D.html" title="next page"><span class="section-number">3. </span>Bayes- and Naive Bayes Classifier</a>
+    <a class='left-prev' id="prev-link" href="../00BasicConcepts.html" title="previous page">Basic Concepts of Data Mining and Machine Learning</a>
+    <a class='right-next' id="next-link" href="parametricClassification1D.html" title="next page">Bayes- and Naive Bayes Classifier</a>
 
         </div>
         
