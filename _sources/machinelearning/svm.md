@@ -70,11 +70,11 @@ where $\mathbf{x}_p$ is the p.th input-vector and $r_p$ is the corresponding lab
 	
 The **training goal** is: Determine the weights $\mathbf{w}=(w_1,\ldots,w_d)$ and $w_0$, such that
 
-\begin{eqnarray}
+$$
 \mathbf{w}^T \mathbf{x_p} + w_0 \geq +1 & \mbox{ for } & r_p=+1 \nonumber \\
 \mathbf{w}^T \mathbf{x_p} + w_0 \leq -1 & \mbox{ for } & r_p=-1 \nonumber 
 \label{eq:k2svmklass}
-\end{eqnarray}
+$$
 	
 This goal can equivalently be formulated by imposing the following condition
 	
@@ -208,33 +208,31 @@ $$ (LagrangeOrig)
  
 For this representation without constraints the **partial derivates** w.r.t. all parameters $w_i$ are determined:
 
-\begin{eqnarray} 
+$$
 \frac{\partial L}{\partial w_i} & = & w_i - \, \sum\limits_{p=1}^N \alpha_p r_p x_{p,i} \quad \mbox{  for  } i=1,\ldots,d \\
 \frac{\partial L}{\partial w_0} & = &  - \sum\limits_{p=1}^N \alpha_p r_p 
-\end{eqnarray} 
+$$ 
 
 At the location of the minimum all of these partial derivatives must be 0. Setting all these equations to 0 and resolving them, such that the $w_i$ are in isolated form on the left side of the equations yields 
 
-\begin{eqnarray} 	 
+$$	 
 	\mathbf{w} & = & \sum\limits_{p=1}^N \alpha_p r_p \mathbf{x}_{p} \\
 	0 & = & \sum\limits_{p=1}^N \alpha_p r_p 
-\end{eqnarray} 
+$$ 
 
 The **dual form** can then be obtained by inserting these equations for $w_i$ into equation {eq}`LagrangeOrig`. This dual form is: 
 	  
 Maximize
 
-\begin{equation} 	 
+$$ 
 L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s r_p r_s \mathbf{x}_p^T \mathbf{x}_s \right)+\sum\limits_{p=1}^N \alpha_p 
-	\label{eq:dualopt}
-\end{equation} 
+$$ (eq:dualopt)
 	 
 w.r.t. the Lagrange-Coefficients $\alpha_p$ under the restriction
 	 
-\begin{equation} 	
+$$
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{and} \quad \alpha_p \geq 0 \quad \forall p
-\label{eq:dualoptR}
-\end{equation} 
+$$ (eq:dualoptR) 
 	 
 This dual form can be solved by numeric algorithms for quadratic optimization. The solution reveals, that almost all of the $N$ Lagrange-Coefficients $\alpha_p$ are 0. The training instances $\mathbf{x}_p$, for which $\alpha_p>0$ are called **Support Vectors**.   
 
@@ -367,14 +365,14 @@ However, as we will see later, the transformation to a higher-dimensional space 
 	* Original space $X$: $\mathbb{R}^2$ with $d=2$ basis-functions $x_1$ and $x_2$
 	* High-dimensional space $Z$: $\mathbb{R}^6$ with $r=6$ basis functions
 
-	\begin{eqnarray}
+	$$
 	z_1=\Phi_1(\mathbf{x}) & = & 1 \nonumber\\
 	z_2=\Phi_2(\mathbf{x}) & = & \sqrt{2}x_1 \nonumber\\
 	z_3=\Phi_3(\mathbf{x}) & = & \sqrt{2}x_2 \nonumber\\
 	z_4=\Phi_4(\mathbf{x})& = & \sqrt{2}x_1 x_2 \nonumber\\
 	z_5=\Phi_5(\mathbf{x}) & = & x_1^2 \nonumber\\
 	z_6=\Phi_6(\mathbf{x}) &=& x_2^2 
-	\end{eqnarray} (ex1)
+	$$
 	
  ```
  
@@ -444,15 +442,15 @@ where the degree $q$ is a hyperparameter and helps to control the complexity of 
  :class: tip
  
  
-    For a degree of $d=2$, the polynomial kernel as defined in {eq}`polkernel` is (for a better readability we replaced $\mathbf{x}_p$ by $\mathbf{y}$):  
-	\begin{eqnarray}
-		K(\mathbf{y},\mathbf{x}) & = & \left( \mathbf{x}^T\mathbf{y}+1\right)^2 \nonumber \\
-								 & = & \left( x_1y_1+x_2y_2+1 \right)^2 \nonumber \\
-								 & = & \left( 1+2x_1y_1+2x_2y_2+2x_1x_2y_1y_2+x_1^2y_1^2+x_2^2y_2^2 \right) \nonumber
-		\end{eqnarray}
+For a degree of $d=2$, the polynomial kernel as defined in {eq}`polkernel` is (for a better readability we replaced $\mathbf{x}_p$ by $\mathbf{y}$):  
+	
+$$
+K(\mathbf{y},\mathbf{x}) & = & \left( \mathbf{x}^T\mathbf{y}+1\right)^2  \\
+								 & = & \left( x_1y_1+x_2y_2+1 \right)^2  \\
+								 & = & \left( 1+2x_1y_1+2x_2y_2+2x_1x_2y_1y_2+x_1^2y_1^2+x_2^2y_2^2 \right) 
+$$
 
-	Note that this kernel yields exactly the same result as the scalar product $\Phi(\mathbf{y})^T \Phi(\mathbf{x})$ in the 6-dimensional space, whose dimensions are defined as in 
-	the {ref}`example above <ex1>`.
+ Note that this kernel yields exactly the same result as the scalar product $\Phi(\mathbf{y})^T \Phi(\mathbf{x})$ in the 6-dimensional space, whose dimensions are defined as in the {ref}`example above <ex1>`.
  ```
 
 In {ref}`the image below <vardegree>` it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.
@@ -564,8 +562,8 @@ $$
 E(T)=  \sum\limits_{t=1}^N E_{\epsilon}(g(x_t)-r_t), \mbox{ where }\\
 E_{\epsilon}(g(x_t)-r_t) = \left\{ 
 	\begin{array}{ll}
-	0 & \mbox{ falls }  |g(x_t)-r_t| < \epsilon \\
-	|g(x_t)-r_t| - \epsilon & sonst \\
+	0 & \mbox{ if }  |g(x_t)-r_t| < \epsilon \\
+	|g(x_t)-r_t| - \epsilon & else \\
 	\end{array}
 	\right.
 $$ (epserror)
@@ -607,10 +605,10 @@ $$ (svrsoftopt)
 
 for $\zeta_t \geq 0$ and $\widehat{\zeta_t} > 0$ and
 
-\begin{eqnarray}
+$$
 r_t - g(x_t) & \leq & \epsilon + \zeta_t  \nonumber \\
 g(x_t) - r_t & \leq & \epsilon + \widehat{\zeta}_t. \nonumber \\
-\end{eqnarray}
+$$
 
 The dual form of this optimisation problem is :
 
@@ -623,11 +621,11 @@ $$ (dualoptsvr)
 
 w.r.t. the Langrange coefficients $\alpha_p$ (corresponds to error-margin $\zeta_p$) and $\widehat{\alpha}_p$ (corresponds to error-margin $\widehat{\zeta}_p$) under the constraints
 
-\begin{eqnarray}
+$$
   0 \leq \alpha_p \leq C \\
   0 \leq \widehat{\alpha}_p \leq C \\
   \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) = 0
-\end{eqnarray}
+$$
 
 For the kernel 
 

@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Generative Adversarial Nets (GAN)" href="../gan/DCGAN.html" />
-    <link rel="prev" title="14. Apply Pretrained Neural Networks on new Task" href="05KerasPretrainedCovid.html" />
+    <link rel="prev" title="Apply Pretrained Neural Networks on new Task" href="05KerasPretrainedCovid.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   1. Basic Concepts of Data Mining and Machine Learning
+   Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,22 +111,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/knn.html">
-   2. K - Nearest Neighbour Classification / Regression
+   K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
-   3. Bayes- and Naive Bayes Classifier
+   Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/LinReg.html">
-   4. Linear Regression
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/heartRateRegression.html">
-   5. Example Linear Regression
+   Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
@@ -136,12 +136,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/gp.html">
-   7. Gaussian Process
+   Gaussian Process
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
-   8. Gaussian Process: Implementation in Python
+   Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -153,32 +153,32 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01NeuralNets.html">
-   9. Neural Networks Introduction
+   Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02RecurrentNeuralNetworks.html">
-   10. Recurrent Neural Networks
+   Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
-   11. Convolutional Neural Networks
+   Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03KerasMLPandCNNcifar.html">
-   12. Implementing Neural Networks with Keras
+   Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04KerasPretrainedClassifiers.html">
-   13. Applying Pretrained Deep Neural Networks for Image Classification
+   Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05KerasPretrainedCovid.html">
-   14. Apply Pretrained Neural Networks on new Task
+   Apply Pretrained Neural Networks on new Task
   </a>
  </li>
 </ul>
@@ -226,7 +226,24 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   18. Representations for Words and Texts
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
   </a>
  </li>
 </ul>
@@ -512,12 +529,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from https://s3.amazonaws.com/img-datasets/mnist.npz
-11493376/11490434 [==============================] - 3s 0us/step
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -530,110 +541,120 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train on 60000 samples, validate on 10000 samples
-Epoch 1/50
-60000/60000 [==============================] - 5s 79us/step - loss: 189.2379 - val_loss: 171.2786
-Epoch 2/50
-60000/60000 [==============================] - 3s 52us/step - loss: 169.0933 - val_loss: 167.4049
-Epoch 3/50
-60000/60000 [==============================] - 3s 53us/step - loss: 165.9081 - val_loss: 165.1687
-Epoch 4/50
-60000/60000 [==============================] - 3s 54us/step - loss: 163.7256 - val_loss: 163.1642
-Epoch 5/50
-60000/60000 [==============================] - 3s 53us/step - loss: 161.9783 - val_loss: 161.8192
-Epoch 6/50
-60000/60000 [==============================] - 3s 53us/step - loss: 160.6025 - val_loss: 160.2156
-Epoch 7/50
-60000/60000 [==============================] - 3s 54us/step - loss: 159.4558 - val_loss: 159.2126
-Epoch 8/50
-60000/60000 [==============================] - 3s 53us/step - loss: 158.4971 - val_loss: 158.2707
-Epoch 9/50
-60000/60000 [==============================] - 3s 53us/step - loss: 157.7191 - val_loss: 157.8238
-Epoch 10/50
-60000/60000 [==============================] - 3s 52us/step - loss: 157.0551 - val_loss: 157.1030
-Epoch 11/50
-60000/60000 [==============================] - 3s 54us/step - loss: 156.4636 - val_loss: 156.8189
-Epoch 12/50
-60000/60000 [==============================] - 3s 54us/step - loss: 155.9192 - val_loss: 156.3040
-Epoch 13/50
-60000/60000 [==============================] - 3s 53us/step - loss: 155.4741 - val_loss: 155.6639
-Epoch 14/50
-60000/60000 [==============================] - 3s 53us/step - loss: 155.0399 - val_loss: 155.4391
-Epoch 15/50
-60000/60000 [==============================] - 3s 53us/step - loss: 154.6712 - val_loss: 154.9363
-Epoch 16/50
-60000/60000 [==============================] - 3s 52us/step - loss: 154.3142 - val_loss: 154.7681
-Epoch 17/50
-60000/60000 [==============================] - 3s 53us/step - loss: 154.0002 - val_loss: 154.4382
-Epoch 18/50
-60000/60000 [==============================] - 3s 53us/step - loss: 153.7220 - val_loss: 154.2779
-Epoch 19/50
-60000/60000 [==============================] - 3s 52us/step - loss: 153.4360 - val_loss: 154.1828
-Epoch 20/50
-60000/60000 [==============================] - 3s 53us/step - loss: 153.2164 - val_loss: 154.2420
-Epoch 21/50
-60000/60000 [==============================] - 3s 53us/step - loss: 152.9701 - val_loss: 153.5774
-Epoch 22/50
-60000/60000 [==============================] - 3s 53us/step - loss: 152.7610 - val_loss: 153.5936
-Epoch 23/50
-60000/60000 [==============================] - 3s 54us/step - loss: 152.5162 - val_loss: 153.4056
-Epoch 24/50
-60000/60000 [==============================] - 3s 52us/step - loss: 152.3411 - val_loss: 153.5635
-Epoch 25/50
-60000/60000 [==============================] - 3s 54us/step - loss: 152.1617 - val_loss: 153.3213
-Epoch 26/50
-60000/60000 [==============================] - 3s 53us/step - loss: 151.9644 - val_loss: 153.1773
-Epoch 27/50
-60000/60000 [==============================] - 3s 53us/step - loss: 151.8260 - val_loss: 152.8851
-Epoch 28/50
-60000/60000 [==============================] - 3s 53us/step - loss: 151.6499 - val_loss: 153.0949
-Epoch 29/50
-60000/60000 [==============================] - 3s 53us/step - loss: 151.4841 - val_loss: 153.1720
-Epoch 30/50
-60000/60000 [==============================] - 3s 51us/step - loss: 151.3319 - val_loss: 152.7538
-Epoch 31/50
-60000/60000 [==============================] - 3s 52us/step - loss: 151.1734 - val_loss: 152.4736
-Epoch 32/50
-60000/60000 [==============================] - 3s 53us/step - loss: 151.0579 - val_loss: 152.3837
-Epoch 33/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.9382 - val_loss: 152.2532
-Epoch 34/50
-60000/60000 [==============================] - 3s 55us/step - loss: 150.8057 - val_loss: 152.4886
-Epoch 35/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.6896 - val_loss: 152.2384
-Epoch 36/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.5616 - val_loss: 152.2596
-Epoch 37/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.4410 - val_loss: 152.2015
-Epoch 38/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.3279 - val_loss: 152.6353
-Epoch 39/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.2143 - val_loss: 152.1049
-Epoch 40/50
-60000/60000 [==============================] - 3s 53us/step - loss: 150.1269 - val_loss: 152.1260
-Epoch 41/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.9833 - val_loss: 151.8939
-Epoch 42/50
-60000/60000 [==============================] - 3s 54us/step - loss: 149.9038 - val_loss: 151.6731
-Epoch 43/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.8241 - val_loss: 151.8049
-Epoch 44/50
-60000/60000 [==============================] - 3s 54us/step - loss: 149.7178 - val_loss: 151.8749
-Epoch 45/50
-60000/60000 [==============================] - 3s 52us/step - loss: 149.6311 - val_loss: 151.3597
-Epoch 46/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.5201 - val_loss: 151.4950
-Epoch 47/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.4182 - val_loss: 151.4250
-Epoch 48/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.3500 - val_loss: 151.5788
-Epoch 49/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.2456 - val_loss: 151.9809
-Epoch 50/50
-60000/60000 [==============================] - 3s 53us/step - loss: 149.1801 - val_loss: 151.4172
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x7fa218955b70&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">7119</span><span class="n">ffe563b8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">vae</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>         <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ni">fit</span><span class="nt">(self, x, y, batch_size, epochs, verbose, callbacks, validation_split, validation_data, shuffle, class_weight, sample_weight, initial_epoch, steps_per_epoch, validation_steps, validation_batch_size, validation_freq, max_queue_size, workers, use_multiprocessing)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span>                 <span class="n">_r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1099</span>               <span class="n">callbacks</span><span class="o">.</span><span class="n">on_train_batch_begin</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1100</span>               <span class="n">tmp_logs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_function</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1101</span>               <span class="k">if</span> <span class="n">data_handler</span><span class="o">.</span><span class="n">should_sync</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1102</span>                 <span class="n">context</span><span class="o">.</span><span class="n">async_wait</span><span class="p">()</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">826</span>     <span class="n">tracing_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experimental_get_tracing_count</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">827</span>     <span class="k">with</span> <span class="n">trace</span><span class="o">.</span><span class="n">Trace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">tm</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">828</span>       <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">829</span>       <span class="n">compiler</span> <span class="o">=</span> <span class="s2">&quot;xla&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_experimental_compile</span> <span class="k">else</span> <span class="s2">&quot;nonXla&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">830</span>       <span class="n">new_tracing_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experimental_get_tracing_count</span><span class="p">()</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">_call</span><span class="nt">(self, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>       <span class="c1"># This is the first call of __call__, so we have to initialize.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>       <span class="n">initializers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">871</span>       <span class="bp">self</span><span class="o">.</span><span class="n">_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwds</span><span class="p">,</span> <span class="n">add_initializers_to</span><span class="o">=</span><span class="n">initializers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>     <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">873</span>       <span class="c1"># At this point we know that the initialization is complete (or less</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">_initialize</span><span class="nt">(self, args, kwds, add_initializers_to)</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_graph_deleter</span> <span class="o">=</span> <span class="n">FunctionDeleter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lifted_initializer_graph</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_concrete_stateful_fn</span> <span class="o">=</span> <span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">725</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_stateful_fn</span><span class="o">.</span><span class="n">_get_concrete_function_internal_garbage_collected</span><span class="p">(</span>  <span class="c1"># pylint: disable=protected-access</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span>             <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span> 
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_get_concrete_function_internal_garbage_collected</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2967</span>       <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">2968</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2969</span>       <span class="n">graph_function</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_define_function</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2970</span>     <span class="k">return</span> <span class="n">graph_function</span>
+<span class="g g-Whitespace">   </span><span class="mi">2971</span> 
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_maybe_define_function</span><span class="nt">(self, args, kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3359</span> 
+<span class="g g-Whitespace">   </span><span class="mi">3360</span>           <span class="bp">self</span><span class="o">.</span><span class="n">_function_cache</span><span class="o">.</span><span class="n">missed</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">call_context_key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3361</span>           <span class="n">graph_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_graph_function</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3362</span>           <span class="bp">self</span><span class="o">.</span><span class="n">_function_cache</span><span class="o">.</span><span class="n">primary</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">graph_function</span>
+<span class="g g-Whitespace">   </span><span class="mi">3363</span> 
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_create_graph_function</span><span class="nt">(self, args, kwargs, override_flat_arg_shapes)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3194</span>     <span class="n">arg_names</span> <span class="o">=</span> <span class="n">base_arg_names</span> <span class="o">+</span> <span class="n">missing_arg_names</span>
+<span class="g g-Whitespace">   </span><span class="mi">3195</span>     <span class="n">graph_function</span> <span class="o">=</span> <span class="n">ConcreteFunction</span><span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">3196</span>         <span class="n">func_graph_module</span><span class="o">.</span><span class="n">func_graph_from_py_func</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3197</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3198</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_python_function</span><span class="p">,</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ni">func_graph_from_py_func</span><span class="nt">(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes)</span>
+<span class="g g-Whitespace">    </span><span class="mi">988</span>         <span class="n">_</span><span class="p">,</span> <span class="n">original_func</span> <span class="o">=</span> <span class="n">tf_decorator</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">python_func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">989</span> 
+<span class="ne">--&gt; </span><span class="mi">990</span>       <span class="n">func_outputs</span> <span class="o">=</span> <span class="n">python_func</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span> 
+<span class="g g-Whitespace">    </span><span class="mi">992</span>       <span class="c1"># invariant: `func_outputs` contains only Tensors, CompositeTensors,</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">wrapped_fn</span><span class="nt">(*args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>             <span class="n">xla_context</span><span class="o">.</span><span class="n">Exit</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">634</span>           <span class="n">out</span> <span class="o">=</span> <span class="n">weak_wrapped_fn</span><span class="p">()</span><span class="o">.</span><span class="n">__wrapped__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="k">return</span> <span class="n">out</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span> 
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span>           <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pylint:disable=broad-except</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span>             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;ag_error_metadata&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">977</span>               <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">ag_error_metadata</span><span class="o">.</span><span class="n">to_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">978</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span>               <span class="k">raise</span>
+
+<span class="ne">TypeError</span>: in user code:
+
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">training</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">805</span> <span class="n">train_function</span>  <span class="o">*</span>
+        <span class="k">return</span> <span class="n">step_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterator</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">training</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">795</span> <span class="n">step_function</span>  <span class="o">**</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_step</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">,))</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">distribute</span><span class="o">/</span><span class="n">distribute_lib</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1259</span> <span class="n">run</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extended</span><span class="o">.</span><span class="n">call_for_each_replica</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">distribute</span><span class="o">/</span><span class="n">distribute_lib</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2730</span> <span class="n">call_for_each_replica</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_for_each_replica</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">distribute</span><span class="o">/</span><span class="n">distribute_lib</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3417</span> <span class="n">_call_for_each_replica</span>
+        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">training</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">788</span> <span class="n">run_step</span>  <span class="o">**</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_step</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">training</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">755</span> <span class="n">train_step</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compiled_loss</span><span class="p">(</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">compile_utils</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">237</span> <span class="fm">__call__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_loss_metric</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">metrics_utils</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">90</span> <span class="n">decorated</span>
+        <span class="n">update_op</span> <span class="o">=</span> <span class="n">update_state_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">metrics</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">177</span> <span class="n">update_state_fn</span>
+        <span class="k">return</span> <span class="n">ag_update_state</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">metrics</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">378</span> <span class="n">update_state</span>  <span class="o">**</span>
+        <span class="k">with</span> <span class="n">ops</span><span class="o">.</span><span class="n">control_dependencies</span><span class="p">([</span><span class="n">value_sum</span><span class="p">]):</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">framework</span><span class="o">/</span><span class="n">ops</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5359</span> <span class="n">control_dependencies</span>
+        <span class="k">return</span> <span class="n">get_default_graph</span><span class="p">()</span><span class="o">.</span><span class="n">control_dependencies</span><span class="p">(</span><span class="n">control_inputs</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">framework</span><span class="o">/</span><span class="n">func_graph</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">359</span> <span class="n">control_dependencies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_captures</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">graph_element</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">johannes</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">keras</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">keras_tensor</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">260</span> <span class="fm">__hash__</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Tensors are unhashable. (</span><span class="si">%s</span><span class="s1">)&#39;</span>
+
+    <span class="ne">TypeError</span><span class="p">:</span> <span class="n">Tensors</span> <span class="n">are</span> <span class="n">unhashable</span><span class="o">.</span> <span class="p">(</span><span class="n">KerasTensor</span><span class="p">(</span><span class="n">type_spec</span><span class="o">=</span><span class="n">TensorSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tf.math.reduce_sum_2/Sum:0&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;created by layer &#39;tf.math.reduce_sum_2&#39;&quot;</span><span class="p">))</span><span class="n">Instead</span><span class="p">,</span> <span class="n">use</span> <span class="n">tensor</span><span class="o">.</span><span class="n">ref</span><span class="p">()</span> <span class="k">as</span> <span class="n">the</span> <span class="n">key</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -760,7 +781,7 @@ Epoch 50/50
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="05KerasPretrainedCovid.html" title="previous page"><span class="section-number">14. </span>Apply Pretrained Neural Networks on new Task</a>
+    <a class='left-prev' id="prev-link" href="05KerasPretrainedCovid.html" title="previous page">Apply Pretrained Neural Networks on new Task</a>
     <a class='right-next' id="next-link" href="../gan/DCGAN.html" title="next page">Generative Adversarial Nets (GAN)</a>
 
         </div>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Gaussian Process: Implementation in Python &#8212; Machine Learning Lecture</title>
+    <title>Gaussian Process: Implementation in Python &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Neural Networks Introduction" href="../neuralnetworks/01NeuralNets.html" />
-    <link rel="prev" title="7. Gaussian Process" href="gp.html" />
+    <link rel="next" title="Neural Networks Introduction" href="../neuralnetworks/01NeuralNets.html" />
+    <link rel="prev" title="Gaussian Process" href="gp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,7 +99,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
-   1. Basic Concepts of Data Mining and Machine Learning
+   Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
@@ -111,37 +111,37 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="knn.html">
-   2. K - Nearest Neighbour Classification / Regression
+   K - Nearest Neighbour Classification / Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="parametricClassification1D.html">
-   3. Bayes- and Naive Bayes Classifier
+   Bayes- and Naive Bayes Classifier
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LinReg.html">
-   4. Linear Regression
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="heartRateRegression.html">
-   5. Example Linear Regression
+   Example Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
-   6. Support Vector Machines (SVM)
+   Support Vector Machines (SVM)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="gp.html">
-   7. Gaussian Process
+   Gaussian Process
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Gaussian Process: Implementation in Python
+   Gaussian Process: Implementation in Python
   </a>
  </li>
 </ul>
@@ -153,44 +153,32 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
-   9. Neural Networks Introduction
+   Neural Networks Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
-   10. Recurrent Neural Networks
+   Recurrent Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
-   11. Convolutional Neural Networks
+   Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
-   12. Implementing Neural Networks with Keras
+   Implementing Neural Networks with Keras
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
-   13. Applying Pretrained Deep Neural Networks for Image Classification
+   Applying Pretrained Deep Neural Networks for Image Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
-   14. Apply Pretrained Neural Networks on new Task
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Reinforcement Learning
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../rl/reinforcement.html">
-   15. Reinforcement Learning
+   Apply Pretrained Neural Networks on new Task
   </a>
  </li>
 </ul>
@@ -202,7 +190,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
-   16. Variational Autoencoder (VAE) to generate handwritten digits
+   Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
@@ -214,7 +202,19 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
-   17. Generative Adversarial Nets (GAN)
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -226,7 +226,24 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
-   18. Representations for Words and Texts
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
   </a>
  </li>
 </ul>
@@ -238,7 +255,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
-   19. References
+   References
   </a>
  </li>
 </ul>
@@ -331,12 +348,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gaussian-process-for-regression">
-   8.1. Gaussian Process for Regression
+   Gaussian Process for Regression
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#find-optimum-hyperparameters-for-mean-and-covariance-function">
-   8.2. Find optimum hyperparameters for mean- and covariance-function
+   Find optimum hyperparameters for mean- and covariance-function
   </a>
  </li>
 </ul>
@@ -351,7 +368,7 @@
               <div>
                 
   <div class="section" id="gaussian-process-implementation-in-python">
-<h1><span class="section-number">8. </span>Gaussian Process: Implementation in Python<a class="headerlink" href="#gaussian-process-implementation-in-python" title="Permalink to this headline">¶</a></h1>
+<h1>Gaussian Process: Implementation in Python<a class="headerlink" href="#gaussian-process-implementation-in-python" title="Permalink to this headline">¶</a></h1>
 <p>In this section Gaussian Processes regression, as described in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>, is implemented in Python. First the case of predefined mean- and covariance-function is implemented. In the second part these functions are learned from data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -364,7 +381,7 @@
 </div>
 </div>
 <div class="section" id="gaussian-process-for-regression">
-<h2><span class="section-number">8.1. </span>Gaussian Process for Regression<a class="headerlink" href="#gaussian-process-for-regression" title="Permalink to this headline">¶</a></h2>
+<h2>Gaussian Process for Regression<a class="headerlink" href="#gaussian-process-for-regression" title="Permalink to this headline">¶</a></h2>
 <p>Definition of training data. This is the same data as used in the GP regression example in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -619,7 +636,7 @@
 </div>
 </div>
 <div class="section" id="find-optimum-hyperparameters-for-mean-and-covariance-function">
-<h2><span class="section-number">8.2. </span>Find optimum hyperparameters for mean- and covariance-function<a class="headerlink" href="#find-optimum-hyperparameters-for-mean-and-covariance-function" title="Permalink to this headline">¶</a></h2>
+<h2>Find optimum hyperparameters for mean- and covariance-function<a class="headerlink" href="#find-optimum-hyperparameters-for-mean-and-covariance-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -966,8 +983,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="gp.html" title="previous page"><span class="section-number">7. </span>Gaussian Process</a>
-    <a class='right-next' id="next-link" href="../neuralnetworks/01NeuralNets.html" title="next page"><span class="section-number">9. </span>Neural Networks Introduction</a>
+    <a class='left-prev' id="prev-link" href="gp.html" title="previous page">Gaussian Process</a>
+    <a class='right-next' id="next-link" href="../neuralnetworks/01NeuralNets.html" title="next page">Neural Networks Introduction</a>
 
         </div>
         

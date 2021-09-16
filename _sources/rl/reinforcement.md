@@ -13,7 +13,7 @@ Reinforcement Learning refers to **Sequential Decision Making**. This means that
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png
 ---
 align: center
-width: 600pt
+width: 300pt
 name:  rlagent
 ---
 Interaction of an Agent with it's environment in a Markov Decision Process (MDP). Image source: {cite}`Sutton1998`.
@@ -632,7 +632,7 @@ $$
 V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
 $$ (mcvalueupdate)
 
-where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.$\alpha=0.1/(1+N(s))$, where $N(s)$ is the number of visits to state $s$. 
+where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. In deterministic environments $\alpha=1$ is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.$\alpha=0.1/(1+N(s))$, where $N(s)$ is the number of visits to state $s$. 
 
 
 In contrast to MC, **TD methods need not to wait until the end of the episode to update the values.** In TD-methods at time $t$
@@ -767,6 +767,11 @@ Image source: {cite}`ertel09`
 
 ```
 
+## Deep Reinforcement Learning
+
+UNDER CONSTRUCTION
+
+## References
 
 
 * Further reading: {cite}`Sutton1998`, {cite}`russel2010`, {cite}`ertel09`
