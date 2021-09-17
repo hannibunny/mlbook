@@ -1,0 +1,1159 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example Q-Learning &#8212; Machine Learning Lecture</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
+    <link rel="prev" title="Reinforcement Learning" href="reinforcement.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/rl/QLearnFrozenLake.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/rl/QLearnFrozenLake.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment">
+   Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#actions">
+   Actions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-and-reward-model">
+   Transition- and Reward-Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-functions-of-gym">
+   Some functions of gym
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complete-environment-action-transition-and-reward-model">
+     Complete Environment-, Action-, Transition- and reward-model:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interaction-with-gym-environment">
+     Interaction with gym environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-q-learning-in-table-representation">
+   Simple Q-Learning in Table Representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learned-policy">
+     Learned Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="example-q-learning">
+<h1>Example Q-Learning<a class="headerlink" href="#example-q-learning" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last update: 16.09.2021</p></li>
+</ul>
+<p>This notebook demonstrates Q-Learning by an example, where an agent has to navigate from a start-state to a goal-state. The <a class="reference external" href="https://gym.openai.com/envs/FrozenLake-v0/">Frozen Lake Environment</a>is provided by <a class="reference external" href="https://gym.openai.com">Open AI gym</a></p>
+<div class="section" id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description:</strong> (from <a class="reference external" href="https://gym.openai.com/envs/FrozenLake-v0/">Frozen Lake</a>)</p>
+<p><em>Winter is here. You and your friends were tossing around a frisbee at the park when you made a wild throw that left the frisbee out in the middle of the lake. The water is mostly frozen, but there are a few holes where the ice has melted. If you step into one of those holes, you’ll fall into the freezing water. At this time, there’s an international frisbee shortage, so it’s absolutely imperative that you navigate across the lake and retrieve the disc. However, the ice is slippery, so you won’t always move in the direction you intend.</em></p>
+<p>As depicted below the environment consists of 16 states, indexed by 0 to 15 from the upper right to the lower left corner. There are 4 different types of states:</p>
+<ul class="simple">
+<li><p>S: Start (safe)</p></li>
+<li><p>F: Frozen (safe)</p></li>
+<li><p>H: Hole (Game lost)</p></li>
+<li><p>G: Goal (Game won)</p></li>
+</ul>
+<p>The task is to find a policy for the agent to navigate efficiently from the Start (S) to the Goal (G) state.</p>
+<p><img alt="Frozen Lake pic" src="https://maucher.home.hdm-stuttgart.de/Pics/FrozenWorld.png" /></p>
+</div>
+<div class="section" id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
+<p>The agent can move left (0), down (1), right (2) or up (3). If the agent moves to a wall it remains in the current state.</p>
+</div>
+<div class="section" id="transition-and-reward-model">
+<h2>Transition- and Reward-Model<a class="headerlink" href="#transition-and-reward-model" title="Permalink to this headline">¶</a></h2>
+<p>In states <code class="docutils literal notranslate"><span class="pre">H</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> the game is over. In states <code class="docutils literal notranslate"><span class="pre">S</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code> the transition modell is defined by:</p>
+<ul class="simple">
+<li><p>the probability that the agent actually moves in the direction, defined by the selected action is <span class="math notranslate nohighlight">\(1/3\)</span>.</p></li>
+<li><p>the probability that the agent moves to the field left-perpendicular to the direction given by the selected action is <span class="math notranslate nohighlight">\(1/3\)</span>.</p></li>
+<li><p>the probability that the agent moves to the field right-perpendicular to the direction given by the selected action is <span class="math notranslate nohighlight">\(1/3\)</span>.</p></li>
+</ul>
+<p>The reward for turning into state <code class="docutils literal notranslate"><span class="pre">G</span></code> is 1. Turning in any other state yields no reward (r=0).</p>
+</div>
+<div class="section" id="some-functions-of-gym">
+<h2>Some functions of gym<a class="headerlink" href="#some-functions-of-gym" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install gym</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123456</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;FrozenLake-v1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;human&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-BGRed">S</span>FFF
+FHFH
+FFFH
+HFFG
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">desc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[b&#39;S&#39;, b&#39;F&#39;, b&#39;F&#39;, b&#39;F&#39;],
+       [b&#39;F&#39;, b&#39;H&#39;, b&#39;F&#39;, b&#39;H&#39;],
+       [b&#39;F&#39;, b&#39;F&#39;, b&#39;F&#39;, b&#39;H&#39;],
+       [b&#39;H&#39;, b&#39;F&#39;, b&#39;F&#39;, b&#39;G&#39;]], dtype=&#39;|S1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reward_range</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Discrete(4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Discrete(16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complete-environment-action-transition-and-reward-model">
+<h3>Complete Environment-, Action-, Transition- and reward-model:<a class="headerlink" href="#complete-environment-action-transition-and-reward-model" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">P</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: {0: [(0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 4, 0.0, False)],
+  1: [(0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 4, 0.0, False),
+   (0.3333333333333333, 1, 0.0, False)],
+  2: [(0.3333333333333333, 4, 0.0, False),
+   (0.3333333333333333, 1, 0.0, False),
+   (0.3333333333333333, 0, 0.0, False)],
+  3: [(0.3333333333333333, 1, 0.0, False),
+   (0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 0, 0.0, False)]},
+ 1: {0: [(0.3333333333333333, 1, 0.0, False),
+   (0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True)],
+  1: [(0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 2, 0.0, False)],
+  2: [(0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 1, 0.0, False)],
+  3: [(0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 1, 0.0, False),
+   (0.3333333333333333, 0, 0.0, False)]},
+ 2: {0: [(0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 1, 0.0, False),
+   (0.3333333333333333, 6, 0.0, False)],
+  1: [(0.3333333333333333, 1, 0.0, False),
+   (0.3333333333333333, 6, 0.0, False),
+   (0.3333333333333333, 3, 0.0, False)],
+  2: [(0.3333333333333333, 6, 0.0, False),
+   (0.3333333333333333, 3, 0.0, False),
+   (0.3333333333333333, 2, 0.0, False)],
+  3: [(0.3333333333333333, 3, 0.0, False),
+   (0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 1, 0.0, False)]},
+ 3: {0: [(0.3333333333333333, 3, 0.0, False),
+   (0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 7, 0.0, True)],
+  1: [(0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 7, 0.0, True),
+   (0.3333333333333333, 3, 0.0, False)],
+  2: [(0.3333333333333333, 7, 0.0, True),
+   (0.3333333333333333, 3, 0.0, False),
+   (0.3333333333333333, 3, 0.0, False)],
+  3: [(0.3333333333333333, 3, 0.0, False),
+   (0.3333333333333333, 3, 0.0, False),
+   (0.3333333333333333, 2, 0.0, False)]},
+ 4: {0: [(0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 4, 0.0, False),
+   (0.3333333333333333, 8, 0.0, False)],
+  1: [(0.3333333333333333, 4, 0.0, False),
+   (0.3333333333333333, 8, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True)],
+  2: [(0.3333333333333333, 8, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 0, 0.0, False)],
+  3: [(0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 0, 0.0, False),
+   (0.3333333333333333, 4, 0.0, False)]},
+ 5: {0: [(1.0, 5, 0, True)],
+  1: [(1.0, 5, 0, True)],
+  2: [(1.0, 5, 0, True)],
+  3: [(1.0, 5, 0, True)]},
+ 6: {0: [(0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 10, 0.0, False)],
+  1: [(0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 10, 0.0, False),
+   (0.3333333333333333, 7, 0.0, True)],
+  2: [(0.3333333333333333, 10, 0.0, False),
+   (0.3333333333333333, 7, 0.0, True),
+   (0.3333333333333333, 2, 0.0, False)],
+  3: [(0.3333333333333333, 7, 0.0, True),
+   (0.3333333333333333, 2, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True)]},
+ 7: {0: [(1.0, 7, 0, True)],
+  1: [(1.0, 7, 0, True)],
+  2: [(1.0, 7, 0, True)],
+  3: [(1.0, 7, 0, True)]},
+ 8: {0: [(0.3333333333333333, 4, 0.0, False),
+   (0.3333333333333333, 8, 0.0, False),
+   (0.3333333333333333, 12, 0.0, True)],
+  1: [(0.3333333333333333, 8, 0.0, False),
+   (0.3333333333333333, 12, 0.0, True),
+   (0.3333333333333333, 9, 0.0, False)],
+  2: [(0.3333333333333333, 12, 0.0, True),
+   (0.3333333333333333, 9, 0.0, False),
+   (0.3333333333333333, 4, 0.0, False)],
+  3: [(0.3333333333333333, 9, 0.0, False),
+   (0.3333333333333333, 4, 0.0, False),
+   (0.3333333333333333, 8, 0.0, False)]},
+ 9: {0: [(0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 8, 0.0, False),
+   (0.3333333333333333, 13, 0.0, False)],
+  1: [(0.3333333333333333, 8, 0.0, False),
+   (0.3333333333333333, 13, 0.0, False),
+   (0.3333333333333333, 10, 0.0, False)],
+  2: [(0.3333333333333333, 13, 0.0, False),
+   (0.3333333333333333, 10, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True)],
+  3: [(0.3333333333333333, 10, 0.0, False),
+   (0.3333333333333333, 5, 0.0, True),
+   (0.3333333333333333, 8, 0.0, False)]},
+ 10: {0: [(0.3333333333333333, 6, 0.0, False),
+   (0.3333333333333333, 9, 0.0, False),
+   (0.3333333333333333, 14, 0.0, False)],
+  1: [(0.3333333333333333, 9, 0.0, False),
+   (0.3333333333333333, 14, 0.0, False),
+   (0.3333333333333333, 11, 0.0, True)],
+  2: [(0.3333333333333333, 14, 0.0, False),
+   (0.3333333333333333, 11, 0.0, True),
+   (0.3333333333333333, 6, 0.0, False)],
+  3: [(0.3333333333333333, 11, 0.0, True),
+   (0.3333333333333333, 6, 0.0, False),
+   (0.3333333333333333, 9, 0.0, False)]},
+ 11: {0: [(1.0, 11, 0, True)],
+  1: [(1.0, 11, 0, True)],
+  2: [(1.0, 11, 0, True)],
+  3: [(1.0, 11, 0, True)]},
+ 12: {0: [(1.0, 12, 0, True)],
+  1: [(1.0, 12, 0, True)],
+  2: [(1.0, 12, 0, True)],
+  3: [(1.0, 12, 0, True)]},
+ 13: {0: [(0.3333333333333333, 9, 0.0, False),
+   (0.3333333333333333, 12, 0.0, True),
+   (0.3333333333333333, 13, 0.0, False)],
+  1: [(0.3333333333333333, 12, 0.0, True),
+   (0.3333333333333333, 13, 0.0, False),
+   (0.3333333333333333, 14, 0.0, False)],
+  2: [(0.3333333333333333, 13, 0.0, False),
+   (0.3333333333333333, 14, 0.0, False),
+   (0.3333333333333333, 9, 0.0, False)],
+  3: [(0.3333333333333333, 14, 0.0, False),
+   (0.3333333333333333, 9, 0.0, False),
+   (0.3333333333333333, 12, 0.0, True)]},
+ 14: {0: [(0.3333333333333333, 10, 0.0, False),
+   (0.3333333333333333, 13, 0.0, False),
+   (0.3333333333333333, 14, 0.0, False)],
+  1: [(0.3333333333333333, 13, 0.0, False),
+   (0.3333333333333333, 14, 0.0, False),
+   (0.3333333333333333, 15, 1.0, True)],
+  2: [(0.3333333333333333, 14, 0.0, False),
+   (0.3333333333333333, 15, 1.0, True),
+   (0.3333333333333333, 10, 0.0, False)],
+  3: [(0.3333333333333333, 15, 1.0, True),
+   (0.3333333333333333, 10, 0.0, False),
+   (0.3333333333333333, 13, 0.0, False)]},
+ 15: {0: [(1.0, 15, 0, True)],
+  1: [(1.0, 15, 0, True)],
+  2: [(1.0, 15, 0, True)],
+  3: [(1.0, 15, 0, True)]}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">targetDirection</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># 0:left, 1:down, 2:right, 3:up</span>
+<span class="n">drift</span><span class="o">=</span><span class="mi">1</span>           <span class="c1"># 0:drift to right, 1 no drift, 2: drift to left</span>
+<span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="n">targetDirection</span><span class="p">][</span><span class="n">drift</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.3333333333333333, 4, 0.0, False)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Probability for this drift: </span><span class="si">%1.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">env</span>.env.P[start][targetDirection][drift][0])
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New state: </span><span class="si">%2d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">env</span>.env.P[start][targetDirection][drift][1])
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reward: </span><span class="si">%2.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">env</span>.env.P[start][targetDirection][drift][2])
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Game over?: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">env</span>.env.P[start][targetDirection][drift][3])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Probability for this drift: 0.333
+New state:  4
+Reward: 0.00
+Game over?: False
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="interaction-with-gym-environment">
+<h3>Interaction with gym environment<a class="headerlink" href="#interaction-with-gym-environment" title="Permalink to this headline">¶</a></h3>
+<p>Execute action and obtain new state and reward:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">action</span><span class="o">=</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Old state: &quot;</span><span class="p">,</span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+<span class="n">s1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="c1"># s1 is new state, r is reward and d is True if game is over</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New state: &quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Reward: &quot;</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Game Over?: &quot;</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Old state:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">d</span><span class="o">=</span><span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">d</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Old state: &quot;</span><span class="p">,</span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intended Action: &quot;</span><span class="p">,</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">s1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="c1"># s1 is new state, r is reward and d is True if game is over</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New state: &quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Reward: &quot;</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Game Over?: &quot;</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------
+Old state:  0
+Intended Action:  1
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  2
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  2
+New state:  1 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  1
+Intended Action:  1
+New state:  2 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  2
+Intended Action:  0
+New state:  1 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  1
+Intended Action:  3
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  3
+New state:  1 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  1
+Intended Action:  3
+New state:  2 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  2
+Intended Action:  3
+New state:  2 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  2
+Intended Action:  0
+New state:  1 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  1
+Intended Action:  3
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  2
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  2
+New state:  1 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  1
+Intended Action:  0
+New state:  5 	 Reward:  0.0 	 Game Over?:  True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-q-learning-in-table-representation">
+<h2>Simple Q-Learning in Table Representation<a class="headerlink" href="#simple-q-learning-in-table-representation" title="Permalink to this headline">¶</a></h2>
+<p>In this section Q-learning, as defined in the pseudo code below is implemented:</p>
+<p><img alt="Q Learning Pseudo Code Image" src="https://maucher.home.hdm-stuttgart.de/Pics/QlearningPseudoCode.png" /></p>
+<p>Initialization and hyperparameter setting:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Initialize table with all zeros</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span><span class="p">,</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">])</span>
+<span class="c1"># Set learning parameters</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">.9</span>   <span class="c1"># parameter \alpha  </span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">.95</span> <span class="c1">#discount \nu</span>
+<span class="n">num_episodes</span> <span class="o">=</span> <span class="mi">2000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial Table of Q-values: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial Table of Q-values: 
+ [[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the array above each row belongs to a state and each column belongs to an action. The entry in row i, column j is the <span class="math notranslate nohighlight">\(Q(s,a)\)</span>-value for the j.th action in the i.th state. Initially all these values are zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.1192, -1.0442, -0.8618, -2.1046]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the code-cell below Q-learning is implemented. Note that the action-selection, in particular the Explore/Exploit-Trade-Off, is implemented such that with an increasing number of episodes the random contribution to action-selection decreases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create lists to contain total rewards and steps per episode</span>
+<span class="n">rList</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
+    <span class="c1">#Reset environment and get first new observation</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">rAll</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">#The Q-Table learning algorithm</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="n">j</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="c1">#Choose an action by greedily (with noise) picking from Q table</span>
+        <span class="n">options</span><span class="o">=</span><span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="c1">#Get new state and reward from environment</span>
+        <span class="n">s1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="c1">#print(s,a,s1)</span>
+        <span class="c1">#Update Q-Table with new knowledge</span>
+        <span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">]</span> <span class="o">+</span> <span class="n">lr</span><span class="o">*</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">s1</span><span class="p">,:])</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">])</span>
+        <span class="n">rAll</span> <span class="o">+=</span> <span class="n">r</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s1</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="c1">#jList.append(j)</span>
+    <span class="n">rList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rAll</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Score over time: &quot;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">rList</span><span class="p">)</span><span class="o">/</span><span class="n">num_episodes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score over time: 0.383
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="learned-policy">
+<h3>Learned Policy<a class="headerlink" href="#learned-policy" title="Permalink to this headline">¶</a></h3>
+<p>Final <span class="math notranslate nohighlight">\(Q(s_t,a_t)\)</span>-values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.258 , 0.0013, 0.0019, 0.0015],
+       [0.0001, 0.0001, 0.0001, 0.1572],
+       [0.0014, 0.0002, 0.0015, 0.1045],
+       [0.    , 0.0001, 0.    , 0.0477],
+       [0.5143, 0.    , 0.    , 0.0015],
+       [0.    , 0.    , 0.    , 0.    ],
+       [0.0002, 0.    , 0.0019, 0.    ],
+       [0.    , 0.    , 0.    , 0.    ],
+       [0.0011, 0.0003, 0.    , 0.627 ],
+       [0.0001, 0.372 , 0.0006, 0.0001],
+       [0.081 , 0.0001, 0.0002, 0.0001],
+       [0.    , 0.    , 0.    , 0.    ],
+       [0.    , 0.    , 0.    , 0.    ],
+       [0.0009, 0.0008, 0.5351, 0.001 ],
+       [0.    , 0.    , 0.    , 0.9586],
+       [0.    , 0.    , 0.    , 0.    ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each state (row in the array above) the action of the learned strategy is the positon with the maximal value in the corresponding row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strategy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strategy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3, 3, 3, 0, 0, 2, 0, 3, 1, 0, 0, 0, 2, 3, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actionList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Left&quot;</span><span class="p">,</span><span class="s2">&quot;Down&quot;</span><span class="p">,</span><span class="s2">&quot;Right&quot;</span><span class="p">,</span><span class="s2">&quot;Up&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">strategy</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best action in state </span><span class="si">%2d</span><span class="s2"> is </span><span class="si">%2s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">strategy</span><span class="p">[</span><span class="n">state</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best action in state  0 is  0
+Best action in state  3 is  3
+Best action in state  3 is  3
+Best action in state  3 is  3
+Best action in state  0 is  0
+Best action in state  0 is  0
+Best action in state  2 is  3
+Best action in state  0 is  0
+Best action in state  3 is  3
+Best action in state  1 is  3
+Best action in state  0 is  0
+Best action in state  0 is  0
+Best action in state  0 is  0
+Best action in state  2 is  3
+Best action in state  3 is  3
+Best action in state  0 is  0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">d</span><span class="o">=</span><span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">d</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Old state: &quot;</span><span class="p">,</span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+    <span class="c1">#action=np.random.randint(4)</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">strategy</span><span class="p">[</span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">s</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intended Action: &quot;</span><span class="p">,</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">s1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="c1"># s1 is new state, r is reward and d is True if game is over</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New state: &quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Reward: &quot;</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Game Over?: &quot;</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------
+Old state:  0
+Intended Action:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  9 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  9
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  14 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  14
+Intended Action:  3
+New state:  15 	 Reward:  1.0 	 Game Over?:  True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Game terminated with:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final state: &quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> Reward: &quot;</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Game terminated with:
+Final state:  15 	 Reward:  1.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./rl"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="reinforcement.html" title="previous page">Reinforcement Learning</a>
+    <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page">Representations for Words and Texts</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

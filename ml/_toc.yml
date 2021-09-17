@@ -32,6 +32,7 @@ parts:
 - caption: Reinforcement Learning
   chapters:
   - file: rl/reinforcement
+  - file: rl/QLearnFrozenLake
 - caption: Text
   chapters:
   - file: text/01ModellingWordsAndTexts
