@@ -32,13 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-if FASTTEXT:
-    from gensim.models import KeyedVectors
-    # Creating the model
-    iMacPath="/Users/johannes/DataSets/nlp/wiki-news-300d-1M.vec"
-    pathMacBook='/Users/maucher/DataSets/Gensim/FastText/fasttextEnglish300.vec'
-    pathDeepLearn='../../DataSets/FastText/fasttextEnglish300.vec'
-    w2vmodel = KeyedVectors.load_word2vec_format(iMacPath)
-    EMBEDDING_DIM=w2vmodel.vector_size
+['# now execute the q learning', 'y = 0.95', 'eps = 0.5', 'decay_factor = 0.999', 'num_episodes=5000']
+...
+['        target_vec[a] = target', '        model.fit(np.identity(16)[s:s + 1], target_vec.reshape(-1, 4), epochs=1, verbose=0)', '        s = new_s', '        r_sum += r', '    r_avg_list.append(r_sum)']
 -------------------
 

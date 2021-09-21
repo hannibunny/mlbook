@@ -470,6 +470,15 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow.compat.v1.keras.backend</span> <span class="k">as</span> <span class="nn">K</span> <span class="c1"># see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_eager_execution</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="o">*</span>
@@ -479,6 +488,20 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">0940</span><span class="n">c6084a6d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>  <span class="c1">#this package is used to show progress in training loops</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">keras.layers.advanced_activations</span> <span class="kn">import</span> <span class="n">LeakyReLU</span>
+
+<span class="ne">ImportError</span>: cannot import name &#39;Adam&#39; from &#39;keras.optimizers&#39; (/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras/optimizers.py)
 </pre></div>
 </div>
 </div>
@@ -743,7 +766,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_14_0.png" src="../_images/DCGAN_14_0.png" />
+<img alt="../_images/DCGAN_15_0.png" src="../_images/DCGAN_15_0.png" />
 </div>
 </div>
 <div class="section" id="generator-model">
@@ -776,29 +799,29 @@ Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, fol
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_2&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-dense (Dense)                (None, 6272)              633472    
+dense_2 (Dense)              (None, 6272)              633472    
 _________________________________________________________________
-leaky_re_lu (LeakyReLU)      (None, 6272)              0         
+leaky_re_lu_4 (LeakyReLU)    (None, 6272)              0         
 _________________________________________________________________
-batch_normalization (BatchNo (None, 6272)              25088     
+batch_normalization_2 (Batch (None, 6272)              25088     
 _________________________________________________________________
-reshape (Reshape)            (None, 7, 7, 128)         0         
+reshape_1 (Reshape)          (None, 7, 7, 128)         0         
 _________________________________________________________________
-up_sampling2d (UpSampling2D) (None, 14, 14, 128)       0         
+up_sampling2d_2 (UpSampling2 (None, 14, 14, 128)       0         
 _________________________________________________________________
-conv2d (Conv2D)              (None, 14, 14, 64)        204864    
+conv2d_4 (Conv2D)            (None, 14, 14, 64)        204864    
 _________________________________________________________________
-leaky_re_lu_1 (LeakyReLU)    (None, 14, 14, 64)        0         
+leaky_re_lu_5 (LeakyReLU)    (None, 14, 14, 64)        0         
 _________________________________________________________________
-batch_normalization_1 (Batch (None, 14, 14, 64)        256       
+batch_normalization_3 (Batch (None, 14, 14, 64)        256       
 _________________________________________________________________
-up_sampling2d_1 (UpSampling2 (None, 28, 28, 64)        0         
+up_sampling2d_3 (UpSampling2 (None, 28, 28, 64)        0         
 _________________________________________________________________
-conv2d_1 (Conv2D)            (None, 28, 28, 1)         1601      
+conv2d_5 (Conv2D)            (None, 28, 28, 1)         1601      
 =================================================================
 Total params: 865,281
 Trainable params: 852,609
@@ -838,25 +861,25 @@ The first convolution layer applies 5x5 filters in order to calculate 64 feature
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_1&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_3&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-conv2d_2 (Conv2D)            (None, 14, 14, 64)        1664      
+conv2d_6 (Conv2D)            (None, 14, 14, 64)        1664      
 _________________________________________________________________
-leaky_re_lu_2 (LeakyReLU)    (None, 14, 14, 64)        0         
+leaky_re_lu_6 (LeakyReLU)    (None, 14, 14, 64)        0         
 _________________________________________________________________
-dropout (Dropout)            (None, 14, 14, 64)        0         
+dropout_2 (Dropout)          (None, 14, 14, 64)        0         
 _________________________________________________________________
-conv2d_3 (Conv2D)            (None, 7, 7, 128)         204928    
+conv2d_7 (Conv2D)            (None, 7, 7, 128)         204928    
 _________________________________________________________________
-leaky_re_lu_3 (LeakyReLU)    (None, 7, 7, 128)         0         
+leaky_re_lu_7 (LeakyReLU)    (None, 7, 7, 128)         0         
 _________________________________________________________________
-dropout_1 (Dropout)          (None, 7, 7, 128)         0         
+dropout_3 (Dropout)          (None, 7, 7, 128)         0         
 _________________________________________________________________
-flatten (Flatten)            (None, 6272)              0         
+flatten_1 (Flatten)          (None, 6272)              0         
 _________________________________________________________________
-dense_1 (Dense)              (None, 1)                 6273      
+dense_3 (Dense)              (None, 1)                 6273      
 =================================================================
 Total params: 212,865
 Trainable params: 212,865
@@ -905,15 +928,15 @@ In contrast to standard SGD, Adam applies individual learning-rates for each lea
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_1&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
 input_1 (InputLayer)         [(None, 100)]             0         
 _________________________________________________________________
-sequential (Sequential)      (None, 28, 28, 1)         865281    
+sequential_2 (Sequential)    (None, 28, 28, 1)         865281    
 _________________________________________________________________
-sequential_1 (Sequential)    (None, 1)                 212865    
+sequential_3 (Sequential)    (None, 1)                 212865    
 =================================================================
 Total params: 1,078,146
 Trainable params: 852,609
@@ -972,56 +995,38 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">57</span><span class="n">f9cef8857f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
-
-<span class="nn">&lt;ipython-input-16-036338951789&gt;</span> in <span class="ni">train</span><span class="nt">(epoch, batch_size)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>             <span class="c1"># train the discriminator</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">---&gt; </span><span class="mi">24</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> 
-<span class="g g-Whitespace">     </span><span class="mi">26</span>             <span class="c1"># train the generator</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ni">train_on_batch</span><span class="nt">(self, x, y, sample_weight, class_weight, reset_metrics, return_dict)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1721</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="o">.</span><span class="n">scope</span><span class="p">(),</span> \
-<span class="g g-Whitespace">   </span><span class="mi">1722</span>          <span class="n">training_utils</span><span class="o">.</span><span class="n">RespectCompiledTrainableState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1723</span>       <span class="n">iterator</span> <span class="o">=</span> <span class="n">data_adapter</span><span class="o">.</span><span class="n">single_batch_iterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1724</span>                                                     <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1725</span>                                                     <span class="n">class_weight</span><span class="p">)</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">single_batch_iterator</span><span class="nt">(strategy, x, y, sample_weight, class_weight)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1511</span>     <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1512</span> 
-<span class="ne">-&gt; </span><span class="mi">1513</span>   <span class="n">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1514</span>   <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_ops</span><span class="o">.</span><span class="n">DatasetV2</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span>   <span class="k">if</span> <span class="n">class_weight</span><span class="p">:</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">_check_data_cardinality</span><span class="nt">(data)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="ne">AttributeError</span>: &#39;int&#39; object has no attribute &#39;shape&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:2325: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+  warnings.warn(&#39;`Model.state_updates` will be removed in a future version. &#39;
+100%|██████████| 468/468 [04:44&lt;00:00,  1.64it/s]
+100%|██████████| 468/468 [04:47&lt;00:00,  1.63it/s]
+100%|██████████| 468/468 [04:37&lt;00:00,  1.68it/s]
+100%|██████████| 468/468 [04:24&lt;00:00,  1.77it/s]
+100%|██████████| 468/468 [04:25&lt;00:00,  1.76it/s]
+100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:18&lt;00:00,  1.81it/s]
+100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
+100%|██████████| 468/468 [04:14&lt;00:00,  1.84it/s]
+100%|██████████| 468/468 [04:16&lt;00:00,  1.82it/s]
+100%|██████████| 468/468 [04:23&lt;00:00,  1.78it/s]
+100%|██████████| 468/468 [04:18&lt;00:00,  1.81it/s]
+100%|██████████| 468/468 [04:20&lt;00:00,  1.79it/s]
+100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
+100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
+100%|██████████| 468/468 [04:19&lt;00:00,  1.81it/s]
+100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
+100%|██████████| 468/468 [04:19&lt;00:00,  1.80it/s]
+100%|██████████| 468/468 [04:14&lt;00:00,  1.84it/s]
+100%|██████████| 468/468 [04:13&lt;00:00,  1.85it/s]
+100%|██████████| 468/468 [04:13&lt;00:00,  1.85it/s]
+100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
+100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
 </pre></div>
 </div>
 </div>
@@ -1123,7 +1128,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_40_0.png" src="../_images/DCGAN_40_0.png" />
+<img alt="../_images/DCGAN_41_0.png" src="../_images/DCGAN_41_0.png" />
 </div>
 </div>
 </div>
@@ -1145,7 +1150,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_43_0.png" src="../_images/DCGAN_43_0.png" />
+<img alt="../_images/DCGAN_44_0.png" src="../_images/DCGAN_44_0.png" />
 </div>
 </div>
 </div>

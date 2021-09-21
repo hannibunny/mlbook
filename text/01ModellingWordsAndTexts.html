@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Text classification with CNNs and LSTMs" href="02TextClassification.html" />
-    <link rel="prev" title="Reinforcement Learning" href="../rl/reinforcement.html" />
+    <link rel="prev" title="Example Q-Learning" href="../rl/QLearnFrozenLake.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -215,6 +215,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../rl/reinforcement.html">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
   </a>
  </li>
 </ul>
@@ -429,7 +434,7 @@
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 16.12.2020</p></li>
 </ul>
-<p>In previous sections, e.g. <span class="xref myst">02RegressionPipe.ipynb</span> different types of data, numeric and categorial, have been applied. It has been shown how categorical data is mapped to numeric values or numeric vectors, such that it can be applied as input of a Machine Learning algorithm.</p>
+<p>In previous sections different types of data, numeric and categorial, have been applied. It has been shown how categorical data is mapped to numeric values or numeric vectors, such that it can be applied as input of a Machine Learning algorithm.</p>
 <p>Another type of data is text, either single words, sentences, sections or entire documents. How to map these types to numeric representations?</p>
 <div class="section" id="one-hot-encoding-of-single-words">
 <h2>One-Hot-Encoding of Single Words<a class="headerlink" href="#one-hot-encoding-of-single-words" title="Permalink to this headline">¶</a></h2>
@@ -987,7 +992,7 @@ In order to learn such a predictor a large but unlabeled corpus is required. The
 <span class="n">en_model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s1">&#39;/Users/johannes/DataSets/Gensim/FastText/fasttextEnglish300.vec&#39;</span><span class="p">)</span>
 <span class="c1"># Getting the tokens </span>
 <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">en_model</span><span class="o">.</span><span class="n">vocab</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">en_model</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">:</span>
     <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
 
 <span class="c1"># Printing out number of tokens available</span>
@@ -997,20 +1002,6 @@ In order to learn such a predictor a large but unlabeled corpus is required. The
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dimension of a word vector: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="nb">len</span><span class="p">(</span><span class="n">en_model</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
 <span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">6</span><span class="n">a3718ca176a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Creating the model</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(&#39;/Users/maucher/DataSets/Gensim/FastText/Gensim/FastText/wiki-news-300d-1M.vec&#39;)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(r&#39;C:\Users\maucher\DataSets\Gensim\Data\Fasttext\wiki-news-300d-1M.vec\wiki-news-300d-1M.vec&#39;) #path on surface</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;gensim&#39;
 </pre></div>
 </div>
 </div>
@@ -1041,14 +1032,14 @@ First 10 components of word-vector:
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;cars&#39;, 0.8045914769172668),
  (&#39;automobile&#39;, 0.7667388916015625),
- (&#39;vehicle&#39;, 0.753485918045044),
- (&#39;Car&#39;, 0.7177952527999878),
+ (&#39;vehicle&#39;, 0.7534858584403992),
+ (&#39;Car&#39;, 0.7177953124046326),
  (&#39;truck&#39;, 0.6989946961402893),
- (&#39;SUV&#39;, 0.689612865447998),
+ (&#39;SUV&#39;, 0.6896128058433533),
  (&#39;automobiles&#39;, 0.6783526539802551),
- (&#39;dealership&#39;, 0.6682884097099304),
+ (&#39;dealership&#39;, 0.6682883501052856),
  (&#39;garage&#39;, 0.6681075096130371),
- (&#39;driver&#39;, 0.6541328430175781)]
+ (&#39;driver&#39;, 0.6541329026222229)]
 </pre></div>
 </div>
 </div>
@@ -1082,6 +1073,12 @@ First 10 components of word-vector:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-32-b7985f974e25&gt;:8: DeprecationWarning: Call to deprecated `glove2word2vec` (KeyedVectors.load_word2vec_format(.., binary=False, no_header=True) loads GLoVE text vectors.).
+  _ = glove2word2vec(glove_file, tmp_file)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1090,16 +1087,16 @@ First 10 components of word-vector:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;vehicle&#39;, 0.8630838394165039),
- (&#39;truck&#39;, 0.8597878217697144),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;vehicle&#39;, 0.8630837798118591),
+ (&#39;truck&#39;, 0.8597878813743591),
  (&#39;cars&#39;, 0.837166965007782),
  (&#39;driver&#39;, 0.8185911178588867),
  (&#39;driving&#39;, 0.781263530254364),
- (&#39;motorcycle&#39;, 0.7553157210350037),
- (&#39;vehicles&#39;, 0.7462255954742432),
- (&#39;parked&#39;, 0.7459464073181152),
- (&#39;bus&#39;, 0.7372706532478333),
- (&#39;taxi&#39;, 0.7155268788337708)]
+ (&#39;motorcycle&#39;, 0.7553156614303589),
+ (&#39;vehicles&#39;, 0.7462257146835327),
+ (&#39;parked&#39;, 0.74594646692276),
+ (&#39;bus&#39;, 0.737270712852478),
+ (&#39;taxi&#39;, 0.7155269384384155)]
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1130,7 @@ First 10 components of word-vector:
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../rl/reinforcement.html" title="previous page">Reinforcement Learning</a>
+    <a class='left-prev' id="prev-link" href="../rl/QLearnFrozenLake.html" title="previous page">Example Q-Learning</a>
     <a class='right-next' id="next-link" href="02TextClassification.html" title="next page">Text classification with CNNs and LSTMs</a>
 
         </div>

@@ -217,6 +217,11 @@
    Reinforcement Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -442,7 +447,7 @@
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../Data/cat.jpg&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;cat.jpg&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -459,32 +464,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">3</span><span class="n">d3b443d6550</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># load an image in PIL format</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">original</span> <span class="o">=</span> <span class="n">load_img</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">original</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PIL image size&#39;</span><span class="p">,</span><span class="n">original</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/preprocessing/image.py</span> in <span class="ni">load_img</span><span class="nt">(path, grayscale, color_mode, target_size, interpolation)</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span>       <span class="ne">ValueError</span><span class="p">:</span> <span class="k">if</span> <span class="n">interpolation</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span><span class="o">.</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span>   <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">299</span><span class="s2">   return image.load_img(path, grayscale=grayscale, color_mode=color_mode,</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span><span class="s2">                         target_size=target_size, interpolation=interpolation)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span><span class="s2"> </span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras_preprocessing/image/utils.py</span> in <span class="ni">load_img</span><span class="nt">(path, grayscale, color_mode, target_size, interpolation)</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="s2">         raise ImportError(&#39;Could not import PIL.Image. &#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span><span class="s2">                           &#39;The use of `load_img` requires PIL.&#39;)</span>
-<span class="ne">--&gt; </span><span class="mi">113</span><span class="s2">     with open(path, &#39;rb&#39;) as f:</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="s2">         img = pil_image.open(io.BytesIO(f.read()))</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="s2">         if color_mode == &#39;grayscale&#39;:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../Data/cat.jpg&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;PIL.Image.Image&#39;&gt;
+PIL image size (224, 224)
 </pre></div>
 </div>
+<img alt="../_images/04KerasPretrainedClassifiers_6_1.png" src="../_images/04KerasPretrainedClassifiers_6_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -522,7 +506,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image batch size (1, 224, 224, 3)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f9acef04d50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd7a34b8eb0&gt;
 </pre></div>
 </div>
 <img alt="../_images/04KerasPretrainedClassifiers_8_2.png" src="../_images/04KerasPretrainedClassifiers_8_2.png" />
@@ -546,11 +530,6 @@
 <span class="c1"># get the predicted probabilities for each class</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">vgg_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">processed_image</span><span class="p">)</span>
 <span class="c1">#print(predictions)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7f9b2812db90&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/tutorials/customization/performance#python_or_tensor_args and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -593,9 +572,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7f9ac78554d0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/tutorials/customization/performance#python_or_tensor_args and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.1573761),
   (&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.14362858),
   (&#39;n03223299&#39;, &#39;doormat&#39;, 0.14099422)]]
@@ -621,9 +597,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:7 out of the last 7 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7f9ac7f08320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/tutorials/customization/performance#python_or_tensor_args and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.15703687),
   (&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.11697365),
   (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.10532726),
@@ -664,9 +637,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:8 out of the last 8 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7f9ac9bd5cb0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/tutorials/customization/performance#python_or_tensor_args and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.66225827),
   (&#39;n02123045&#39;, &#39;tabby&#39;, 0.05028518),
   (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.036381554),
