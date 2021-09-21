@@ -217,6 +217,11 @@
    Reinforcement Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -491,17 +496,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__array_function__ internals&gt;:5: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/datasets/imdb.py:159: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
-  x_train, y_train = np.array(xs[:idx]), np.array(labels[:idx])
-/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/datasets/imdb.py:160: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
-  x_test, y_test = np.array(xs[idx:]), np.array(labels[idx:])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -716,20 +710,6 @@ Test data shape:  (25000, 600)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">077664</span><span class="n">b32087</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">if</span> <span class="n">FASTTEXT</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="c1"># Creating the model</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">iMacPath</span><span class="o">=</span><span class="s2">&quot;/Users/johannes/DataSets/nlp/wiki-news-300d-1M.vec&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">pathMacBook</span><span class="o">=</span><span class="s1">&#39;/Users/maucher/DataSets/Gensim/FastText/fasttextEnglish300.vec&#39;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;gensim&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>As described above, if either <code class="docutils literal notranslate"><span class="pre">GLOVE</span></code> or <code class="docutils literal notranslate"><span class="pre">FASTTEXT</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then a pretrained word-embedding shall be applied in the Neural Networks, which are configured below. In this case an <code class="docutils literal notranslate"><span class="pre">embedding_matrix</span></code> must be prepared, which is applied in the <code class="docutils literal notranslate"><span class="pre">Embedding</span></code>-layer of the Neural Networks:</p>
 <div class="cell docutils container">
@@ -820,27 +800,27 @@ In row</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;functional_3&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-input_2 (InputLayer)         [(None, 600)]             0         
+input_1 (InputLayer)         [(None, 600)]             0         
 _________________________________________________________________
-embedding_1 (Embedding)      (None, 600, 300)          6000000   
+embedding (Embedding)        (None, 600, 300)          6000000   
 _________________________________________________________________
-conv1d_1 (Conv1D)            (None, 596, 128)          192128    
+conv1d (Conv1D)              (None, 596, 128)          192128    
 _________________________________________________________________
-max_pooling1d_1 (MaxPooling1 (None, 119, 128)          0         
+max_pooling1d (MaxPooling1D) (None, 119, 128)          0         
 _________________________________________________________________
-flatten_1 (Flatten)          (None, 15232)             0         
+flatten (Flatten)            (None, 15232)             0         
 _________________________________________________________________
-dropout_2 (Dropout)          (None, 15232)             0         
+dropout (Dropout)            (None, 15232)             0         
 _________________________________________________________________
-dense_2 (Dense)              (None, 180)               2741940   
+dense (Dense)                (None, 180)               2741940   
 _________________________________________________________________
-dropout_3 (Dropout)          (None, 180)               0         
+dropout_1 (Dropout)          (None, 180)               0         
 _________________________________________________________________
-dense_3 (Dense)              (None, 1)                 181       
+dense_1 (Dense)              (None, 1)                 181       
 =================================================================
 Total params: 8,934,249
 Trainable params: 8,934,249
@@ -862,11 +842,11 @@ _________________________________________________________________
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model fitting - simplified convolutional neural network
 Epoch 1/3
-196/196 [==============================] - 101s 513ms/step - loss: 0.6747 - accuracy: 0.5606 - val_loss: 0.5163 - val_accuracy: 0.7536
+196/196 [==============================] - 99s 496ms/step - loss: 0.7062 - accuracy: 0.5146 - val_loss: 0.4971 - val_accuracy: 0.7536
 Epoch 2/3
-196/196 [==============================] - 96s 490ms/step - loss: 0.3074 - accuracy: 0.8711 - val_loss: 0.3019 - val_accuracy: 0.8722
+196/196 [==============================] - 98s 499ms/step - loss: 0.3541 - accuracy: 0.8470 - val_loss: 0.3387 - val_accuracy: 0.8528
 Epoch 3/3
-196/196 [==============================] - ETA: 0s - loss: 0.1283 - accuracy: 0.9548
+196/196 [==============================] - 98s 500ms/step - loss: 0.1340 - accuracy: 0.9522 - val_loss: 0.3855 - val_accuracy: 0.8493
 </pre></div>
 </div>
 </div>
@@ -890,6 +870,9 @@ Epoch 3/3
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02TextClassification_45_0.png" src="../_images/02TextClassification_45_0.png" />
 </div>
 </div>
 </div>
@@ -934,29 +917,29 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;functional_7&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_1&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-input_4 (InputLayer)         [(None, 600)]             0         
+input_2 (InputLayer)         [(None, 600)]             0         
 _________________________________________________________________
-embedding_2 (Embedding)      (None, 600, 300)          6000000   
+embedding_1 (Embedding)      (None, 600, 300)          6000000   
 _________________________________________________________________
-conv1d_3 (Conv1D)            (None, 598, 64)           57664     
+conv1d_1 (Conv1D)            (None, 598, 64)           57664     
 _________________________________________________________________
-conv1d_4 (Conv1D)            (None, 596, 32)           6176      
+conv1d_2 (Conv1D)            (None, 596, 32)           6176      
 _________________________________________________________________
-conv1d_5 (Conv1D)            (None, 594, 16)           1552      
+conv1d_3 (Conv1D)            (None, 594, 16)           1552      
 _________________________________________________________________
-flatten_3 (Flatten)          (None, 9504)              0         
+flatten_1 (Flatten)          (None, 9504)              0         
 _________________________________________________________________
-dropout_6 (Dropout)          (None, 9504)              0         
+dropout_2 (Dropout)          (None, 9504)              0         
 _________________________________________________________________
-dense_6 (Dense)              (None, 180)               1710900   
+dense_2 (Dense)              (None, 180)               1710900   
 _________________________________________________________________
-dropout_7 (Dropout)          (None, 180)               0         
+dropout_3 (Dropout)          (None, 180)               0         
 _________________________________________________________________
-dense_7 (Dense)              (None, 1)                 181       
+dense_3 (Dense)              (None, 1)                 181       
 =================================================================
 Total params: 7,776,473
 Trainable params: 7,776,473
@@ -977,11 +960,11 @@ _________________________________________________________________
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model fitting - simplified convolutional neural network
 Epoch 1/3
-196/196 [==============================] - 75s 383ms/step - loss: 0.6938 - accuracy: 0.5025 - val_loss: 0.6931 - val_accuracy: 0.5011
+196/196 [==============================] - 73s 371ms/step - loss: 0.6934 - accuracy: 0.5080 - val_loss: 0.5995 - val_accuracy: 0.6633
 Epoch 2/3
-196/196 [==============================] - 72s 367ms/step - loss: 0.5320 - accuracy: 0.6862 - val_loss: 0.3102 - val_accuracy: 0.8666
+196/196 [==============================] - 71s 362ms/step - loss: 0.3671 - accuracy: 0.8338 - val_loss: 0.3212 - val_accuracy: 0.8644
 Epoch 3/3
-196/196 [==============================] - 75s 384ms/step - loss: 0.2134 - accuracy: 0.9186 - val_loss: 0.3194 - val_accuracy: 0.8690
+196/196 [==============================] - 71s 360ms/step - loss: 0.1414 - accuracy: 0.9485 - val_loss: 0.3417 - val_accuracy: 0.8664
 </pre></div>
 </div>
 </div>
@@ -1074,54 +1057,54 @@ Epoch 3/3
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model fitting - more complex convolutional neural network
-Model: &quot;functional_13&quot;
+Model: &quot;model_2&quot;
 __________________________________________________________________________________________________
 Layer (type)                    Output Shape         Param #     Connected to                     
 ==================================================================================================
-input_6 (InputLayer)            [(None, 600)]        0                                            
+input_3 (InputLayer)            [(None, 600)]        0                                            
 __________________________________________________________________________________________________
-embedding_5 (Embedding)         (None, 600, 300)     6000000     input_6[0][0]                    
+embedding_2 (Embedding)         (None, 600, 300)     6000000     input_3[0][0]                    
 __________________________________________________________________________________________________
-conv1d_14 (Conv1D)              (None, 598, 128)     115328      embedding_5[0][0]                
+conv1d_4 (Conv1D)               (None, 598, 128)     115328      embedding_2[0][0]                
 __________________________________________________________________________________________________
-conv1d_15 (Conv1D)              (None, 597, 128)     153728      embedding_5[0][0]                
+conv1d_5 (Conv1D)               (None, 597, 128)     153728      embedding_2[0][0]                
 __________________________________________________________________________________________________
-conv1d_16 (Conv1D)              (None, 596, 128)     192128      embedding_5[0][0]                
+conv1d_6 (Conv1D)               (None, 596, 128)     192128      embedding_2[0][0]                
 __________________________________________________________________________________________________
-max_pooling1d_11 (MaxPooling1D) (None, 119, 128)     0           conv1d_14[0][0]                  
+max_pooling1d_1 (MaxPooling1D)  (None, 119, 128)     0           conv1d_4[0][0]                   
 __________________________________________________________________________________________________
-max_pooling1d_12 (MaxPooling1D) (None, 119, 128)     0           conv1d_15[0][0]                  
+max_pooling1d_2 (MaxPooling1D)  (None, 119, 128)     0           conv1d_5[0][0]                   
 __________________________________________________________________________________________________
-max_pooling1d_13 (MaxPooling1D) (None, 119, 128)     0           conv1d_16[0][0]                  
+max_pooling1d_3 (MaxPooling1D)  (None, 119, 128)     0           conv1d_6[0][0]                   
 __________________________________________________________________________________________________
-concatenate_1 (Concatenate)     (None, 357, 128)     0           max_pooling1d_11[0][0]           
-                                                                 max_pooling1d_12[0][0]           
-                                                                 max_pooling1d_13[0][0]           
+concatenate (Concatenate)       (None, 357, 128)     0           max_pooling1d_1[0][0]            
+                                                                 max_pooling1d_2[0][0]            
+                                                                 max_pooling1d_3[0][0]            
 __________________________________________________________________________________________________
-conv1d_17 (Conv1D)              (None, 353, 128)     82048       concatenate_1[0][0]              
+conv1d_7 (Conv1D)               (None, 353, 128)     82048       concatenate[0][0]                
 __________________________________________________________________________________________________
-max_pooling1d_14 (MaxPooling1D) (None, 70, 128)      0           conv1d_17[0][0]                  
+max_pooling1d_4 (MaxPooling1D)  (None, 70, 128)      0           conv1d_7[0][0]                   
 __________________________________________________________________________________________________
-conv1d_18 (Conv1D)              (None, 66, 128)      82048       max_pooling1d_14[0][0]           
+conv1d_8 (Conv1D)               (None, 66, 128)      82048       max_pooling1d_4[0][0]            
 __________________________________________________________________________________________________
-max_pooling1d_15 (MaxPooling1D) (None, 2, 128)       0           conv1d_18[0][0]                  
+max_pooling1d_5 (MaxPooling1D)  (None, 2, 128)       0           conv1d_8[0][0]                   
 __________________________________________________________________________________________________
-flatten_6 (Flatten)             (None, 256)          0           max_pooling1d_15[0][0]           
+flatten_2 (Flatten)             (None, 256)          0           max_pooling1d_5[0][0]            
 __________________________________________________________________________________________________
-dense_12 (Dense)                (None, 128)          32896       flatten_6[0][0]                  
+dense_4 (Dense)                 (None, 128)          32896       flatten_2[0][0]                  
 __________________________________________________________________________________________________
-dense_13 (Dense)                (None, 1)            129         dense_12[0][0]                   
+dense_5 (Dense)                 (None, 1)            129         dense_4[0][0]                    
 ==================================================================================================
 Total params: 6,658,305
 Trainable params: 6,658,305
 Non-trainable params: 0
 __________________________________________________________________________________________________
 Epoch 1/3
-196/196 [==============================] - 284s 1s/step - loss: 0.6087 - accuracy: 0.6074 - val_loss: 0.3395 - val_accuracy: 0.8499
+196/196 [==============================] - 259s 1s/step - loss: 0.6787 - accuracy: 0.5269 - val_loss: 0.3261 - val_accuracy: 0.8576
 Epoch 2/3
-196/196 [==============================] - 281s 1s/step - loss: 0.2365 - accuracy: 0.9060 - val_loss: 0.3092 - val_accuracy: 0.8708
+196/196 [==============================] - 253s 1s/step - loss: 0.2464 - accuracy: 0.9005 - val_loss: 0.3160 - val_accuracy: 0.8661
 Epoch 3/3
-196/196 [==============================] - 286s 1s/step - loss: 0.0976 - accuracy: 0.9680 - val_loss: 0.3947 - val_accuracy: 0.8575
+196/196 [==============================] - 259s 1s/step - loss: 0.0991 - accuracy: 0.9678 - val_loss: 0.4194 - val_accuracy: 0.8430
 </pre></div>
 </div>
 </div>
@@ -1158,16 +1141,33 @@ Epoch 3/3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EMBEDDING_DIM</span><span class="o">=</span><span class="mi">300</span>
-<span class="n">embedding_layer</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">MAX_NB_WORDS</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embedding_layer</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">MAX_NB_WORDS</span><span class="p">,</span>
                             <span class="n">EMBEDDING_DIM</span><span class="p">,</span>
-                            <span class="c1">#weights=[embedding_matrix], #if the weights-argument is not assigned, the word embedding is learned from the training-data</span>
+                            <span class="c1">#weights= [embedding_matrix] if USE_PRETRAINED else None,</span>
                             <span class="n">input_length</span><span class="o">=</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">,</span>
                             <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of words in each input: &quot;</span><span class="p">,</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of words in each input: &quot;</span><span class="p">,</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">)</span>
 <span class="c1"># train a 1D convnet with global maxpooling</span>
+
 <span class="n">sequence_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span>
 <span class="n">embedded_sequences</span> <span class="o">=</span> <span class="n">embedding_layer</span><span class="p">(</span><span class="n">sequence_input</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">)(</span><span class="n">embedded_sequences</span><span class="p">)</span>
+
+
+<span class="n">sequence_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span>
+<span class="n">embedded_sequences</span> <span class="o">=</span> <span class="n">embedding_layer</span><span class="p">(</span><span class="n">sequence_input</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">32</span><span class="p">)(</span><span class="n">embedded_sequences</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">preds</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">sequence_input</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
@@ -1177,19 +1177,19 @@ Epoch 3/3
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of words in each input:  600
-Model: &quot;functional_15&quot;
+Model: &quot;model&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-input_7 (InputLayer)         [(None, 600)]             0         
+input_2 (InputLayer)         [(None, 600)]             0         
 _________________________________________________________________
-embedding_6 (Embedding)      (None, 600, 300)          6000000   
+embedding (Embedding)        (None, 600, 300)          6000000   
 _________________________________________________________________
 lstm (LSTM)                  (None, 32)                42624     
 _________________________________________________________________
-dropout_8 (Dropout)          (None, 32)                0         
+dropout (Dropout)            (None, 32)                0         
 _________________________________________________________________
-dense_14 (Dense)             (None, 1)                 33        
+dense (Dense)                (None, 1)                 33        
 =================================================================
 Total params: 6,042,657
 Trainable params: 6,042,657
@@ -1220,11 +1220,11 @@ _________________________________________________________________
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/3
-196/196 [==============================] - 120s 610ms/step - loss: 0.4899 - accuracy: 0.7628 - val_loss: 0.3567 - val_accuracy: 0.8534
+196/196 [==============================] - 114s 578ms/step - loss: 0.4650 - accuracy: 0.7738 - val_loss: 0.4584 - val_accuracy: 0.7820
 Epoch 2/3
-196/196 [==============================] - 113s 575ms/step - loss: 0.2495 - accuracy: 0.9067 - val_loss: 0.4793 - val_accuracy: 0.8379
+196/196 [==============================] - 113s 578ms/step - loss: 0.2274 - accuracy: 0.9160 - val_loss: 0.3440 - val_accuracy: 0.8649
 Epoch 3/3
-196/196 [==============================] - 114s 583ms/step - loss: 0.1720 - accuracy: 0.9408 - val_loss: 0.3753 - val_accuracy: 0.8580
+196/196 [==============================] - 114s 580ms/step - loss: 0.1464 - accuracy: 0.9507 - val_loss: 0.4074 - val_accuracy: 0.8451
 </pre></div>
 </div>
 </div>
@@ -1250,7 +1250,7 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02TextClassification_64_0.png" src="../_images/02TextClassification_64_0.png" />
+<img alt="../_images/02TextClassification_66_0.png" src="../_images/02TextClassification_66_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1260,7 +1260,7 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum accuracy:  0.8579999804496765
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum accuracy:  0.8649200201034546
 </pre></div>
 </div>
 </div>
@@ -1297,8 +1297,8 @@ Epoch 3/3
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">()</span>
-<span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-<span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">textcorpus</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">textcorpus</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1321,7 +1321,7 @@ Epoch 3/3
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">How many documents are there?&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">document_count</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">BoW matrix:&quot;</span><span class="p">)</span>
-<span class="n">encoded_text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_matrix</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">encoded_text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_matrix</span><span class="p">(</span><span class="n">textcorpus</span><span class="p">)</span>
 <span class="n">encoded_text</span>
 </pre></div>
 </div>
@@ -1331,7 +1331,7 @@ Epoch 3/3
 OrderedDict([(&#39;this&#39;, 2), (&#39;is&#39;, 2), (&#39;the&#39;, 2), (&#39;first&#39;, 1), (&#39;document&#39;, 3), (&#39;second&#39;, 1), (&#39;contains&#39;, 1), (&#39;text&#39;, 1), (&#39;and&#39;, 1), (&#39;here&#39;, 1), (&#39;a&#39;, 1), (&#39;third&#39;, 1)])
 
 In how much documents do the individual terms occur? :
-defaultdict(&lt;class &#39;int&#39;&gt;, {&#39;first&#39;: 1, &#39;is&#39;: 2, &#39;this&#39;: 2, &#39;document&#39;: 3, &#39;the&#39;: 2, &#39;second&#39;: 1, &#39;contains&#39;: 1, &#39;text&#39;: 1, &#39;here&#39;: 1, &#39;a&#39;: 1, &#39;and&#39;: 1, &#39;third&#39;: 1})
+defaultdict(&lt;class &#39;int&#39;&gt;, {&#39;the&#39;: 2, &#39;this&#39;: 2, &#39;is&#39;: 2, &#39;first&#39;: 1, &#39;document&#39;: 3, &#39;second&#39;: 1, &#39;contains&#39;: 1, &#39;text&#39;: 1, &#39;third&#39;: 1, &#39;here&#39;: 1, &#39;a&#39;: 1, &#39;and&#39;: 1})
 
 The word index:
 {&#39;document&#39;: 1, &#39;this&#39;: 2, &#39;is&#39;: 3, &#39;the&#39;: 4, &#39;first&#39;: 5, &#39;second&#39;: 6, &#39;contains&#39;: 7, &#39;text&#39;: 8, &#39;and&#39;: 9, &#39;here&#39;: 10, &#39;a&#39;: 11, &#39;third&#39;: 12}

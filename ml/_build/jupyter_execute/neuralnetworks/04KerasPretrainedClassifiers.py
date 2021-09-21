@@ -45,7 +45,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # In[4]:
 
 
-filename = '../Data/cat.jpg'
+filename = 'cat.jpg'
 
 
 # In[5]:
@@ -59,7 +59,7 @@ plt.imshow(original)
 plt.show()
 
 
-# In[24]:
+# In[6]:
 
 
 # convert the PIL image to a numpy array
@@ -71,7 +71,7 @@ plt.show()
 print('numpy array size',numpy_image.shape)
 
 
-# In[26]:
+# In[7]:
 
 
 # Convert the image / images into batch format
@@ -91,7 +91,7 @@ plt.imshow(np.uint8(image_batch[0]))
 
 # ### VGG16 Network
 
-# In[27]:
+# In[8]:
 
 
 # prepare the image for the VGG model
@@ -102,7 +102,7 @@ predictions = vgg_model.predict(processed_image)
 #print(predictions)
 
 
-# In[28]:
+# In[9]:
 
 
 # convert the probabilities to class labels
@@ -113,7 +113,7 @@ label_vgg
 
 # ### ResNet50 Network
 
-# In[29]:
+# In[10]:
 
 
 # prepare the image for the ResNet50 model
@@ -130,7 +130,7 @@ label_resnet
 
 # ### MobileNet Network
 
-# In[30]:
+# In[11]:
 
 
 # prepare the image for the MobileNet model
@@ -149,7 +149,7 @@ label_mobilenet
 # + The input size for inception network is different from the other networks. It accepts inputs of size (299, 299).
 # + Thus we load the image with target size according to that.
 
-# In[31]:
+# In[12]:
 
 
 # load an image in PIL format
@@ -172,13 +172,13 @@ label_inception = decode_predictions(predictions)
 label_inception
 
 
-# In[32]:
+# In[13]:
 
 
 #!pip install opencv-python
 
 
-# In[33]:
+# In[14]:
 
 
 import cv2
@@ -193,16 +193,10 @@ numpy_image = cv2.resize(numpy_image, (700,700))
 cv2.imwrite("images/{}_output.jpg".format(filename.split('/')[-1].split('.')[0]),cv2.cvtColor(numpy_image, cv2.COLOR_RGB2BGR))
 
 
-# In[34]:
+# In[15]:
 
 
 plt.figure(figsize=[10,10])
 plt.imshow(numpy_image)
 plt.axis('off')
-
-
-# In[ ]:
-
-
-
 

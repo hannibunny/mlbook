@@ -57,6 +57,14 @@
 # In[2]:
 
 
+import tensorflow.compat.v1.keras.backend as K # see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
+
+
+# In[3]:
+
+
 from keras.datasets import mnist
 from keras.models import Model, Sequential
 from keras.layers import *
@@ -70,19 +78,19 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 # The MNIST-handwritten digits dataset is available in the Keras datasets module and can be accessed as follows:
 
-# In[3]:
+# In[20]:
 
 
 (X_train, Y_train), (X_test, Y_test) = mnist.load_data()
 
 
-# In[4]:
+# In[21]:
 
 
 X_train.shape, Y_train.shape, X_test.shape, Y_test.shape
 
 
-# In[5]:
+# In[22]:
 
 
 X_train = X_train.reshape(X_train.shape[0], 28, 28, 1)
@@ -96,7 +104,7 @@ print(X_train[0,:,:,0])
 
 # The values of all input-images range from 0 to 255. Next, a rescaling to the range $[-1,1]$ is performed. This is necesarry, because the output-layer of the Generator model applies a tanh-activation, which has a value rane of $[-1,1]$. 
 
-# In[6]:
+# In[23]:
 
 
 X_train = (X_train - 127.5) / 127.5
@@ -106,7 +114,7 @@ print(X_train[0,:,:,0])
 
 # The first 9 real images in the training dataset are plotted below: 
 
-# In[7]:
+# In[24]:
 
 
 #plt.subplot(3,3,1)
@@ -122,7 +130,7 @@ for i in range (9):
 # 
 # In between layers, batch normalization stabilizes learning. The activation function after the dense- and the first deconvolution-layer is a LeakyReLU. The output deconvolution-layer applies tanh- activation.
 
-# In[8]:
+# In[25]:
 
 
 generator = Sequential([
@@ -139,7 +147,7 @@ generator = Sequential([
     ])
 
 
-# In[9]:
+# In[26]:
 
 
 generator.summary()
@@ -152,7 +160,7 @@ generator.summary()
 # 
 # The difference from a typical CNN is the absence of max-pooling in between layers. Instead, a strided convolution is used for downsampling. The activation function used in each CNN layer is a leaky ReLU. A dropout of 0.3 between layers is used to prevent overfitting and memorization. 
 
-# In[10]:
+# In[27]:
 
 
 discriminator = Sequential([
@@ -167,7 +175,7 @@ discriminator = Sequential([
     ])
 
 
-# In[11]:
+# In[28]:
 
 
 discriminator.summary()
@@ -176,13 +184,13 @@ discriminator.summary()
 # Next for the Generator- and the Discriminator the training algorithm is defined. Both models are trained by minimizing the *binary cross-entropy* loss. For both models the [*Adam* algorithm](https://arxiv.org/pdf/1412.6980.pdf) is applied. 
 # In contrast to standard SGD, Adam applies individual learning-rates for each learnable parameter and adpats these learning-rates individually during training.
 
-# In[12]:
+# In[29]:
 
 
 generator.compile(loss='binary_crossentropy', optimizer=Adam())
 
 
-# In[13]:
+# In[30]:
 
 
 discriminator.compile(loss='binary_crossentropy', optimizer=Adam())
@@ -191,7 +199,7 @@ discriminator.compile(loss='binary_crossentropy', optimizer=Adam())
 # ### Build GAN by combining Generator and Discriminator
 # Now, since Generator- and Discriminator models are defined, the overall adversarial model can be build, by simply stacking these models together. The output of the generator is passed to the input of the discriminator:
 
-# In[14]:
+# In[31]:
 
 
 discriminator.trainable = False
@@ -202,7 +210,7 @@ gan = Model(inputs=ganInput, outputs=ganOutput)
 gan.compile(loss='binary_crossentropy', optimizer=Adam())
 
 
-# In[15]:
+# In[32]:
 
 
 gan.summary()
@@ -213,7 +221,7 @@ gan.summary()
 # 
 # ![GANtrainingProcess](./Pics/GANtrainingProcess.png)
 
-# In[16]:
+# In[33]:
 
 
 def train(epoch=10, batch_size=128):
@@ -250,7 +258,7 @@ def train(epoch=10, batch_size=128):
 
 # Train for 30 epochs. Depending on your hardware this process may take a long time. In my experiments on CPU about 20min per epoch and on GPU 12-15sec per epoch.
 
-# In[17]:
+# In[34]:
 
 
 train(30, 128)
@@ -258,7 +266,7 @@ train(30, 128)
 
 # Save the weights, learned after these 30 epochs.
 
-# In[41]:
+# In[35]:
 
 
 generator.save_weights('gen_30_scaled_images.h5')

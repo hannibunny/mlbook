@@ -46,6 +46,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
+import tensorflow.compat.v1.keras.backend as K # see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
+
 from keras.layers import Input, Dense, Lambda, Layer
 from keras.models import Model
 from keras import backend as K
@@ -173,14 +177,14 @@ vae.fit(x_train,
         validation_data=(x_test, None))
 
 
-# In[19]:
+# In[24]:
 
 
 # build a model to project inputs on the latent space
 encoder = Model(x, z_mean)
 
 
-# In[20]:
+# In[25]:
 
 
 # display a 2D plot of the digit classes in the latent space
@@ -191,7 +195,7 @@ plt.colorbar()
 plt.show()
 
 
-# In[21]:
+# In[26]:
 
 
 # build a digit generator that can sample from the learned distribution
@@ -201,7 +205,7 @@ _x_decoded_mean = decoder_mean(_h_decoded)
 generator = Model(decoder_input, _x_decoded_mean)
 
 
-# In[22]:
+# In[27]:
 
 
 # display a 2D manifold of the digits
@@ -226,7 +230,7 @@ plt.imshow(figure, cmap='Greys_r')
 plt.show()
 
 
-# In[16]:
+# In[28]:
 
 
 import numpy as np

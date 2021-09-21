@@ -282,6 +282,100 @@ print("Game terminated with:")
 print("Final state: ",s1, "\t Reward: ",r)
 
 
+# In[27]:
+
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import InputLayer, Dense
+
+
+# In[28]:
+
+
+model = Sequential()
+model.add(InputLayer(batch_input_shape=(1, 16)))
+model.add(Dense(50, activation='sigmoid',use_bias=False))
+model.add(Dense(4, activation='linear',use_bias=False))
+model.compile(loss='mse', optimizer='adam', metrics=['mae'])
+
+
+# In[29]:
+
+
+# now execute the q learning
+y = 0.95
+eps = 0.5
+decay_factor = 0.999
+num_episodes=5000
+r_avg_list = []
+for i in range(num_episodes):
+    s = env.reset()
+    eps *= decay_factor
+    if i % 100 == 0:
+        print("Episode {} of {}".format(i + 1, num_episodes))
+    done = False
+    r_sum = 0
+    while not done:
+        if np.random.random() < eps:
+            a = np.random.randint(0, 4)
+        else:
+            a = np.argmax(model.predict(np.identity(16)[s:s + 1]))
+        new_s, r, done, _ = env.step(a)
+        target = r + y * np.max(model.predict(np.identity(16)[new_s:new_s + 1]))
+        target_vec = model.predict(np.identity(16)[s:s + 1])[0]
+        target_vec[a] = target
+        model.fit(np.identity(16)[s:s + 1], target_vec.reshape(-1, 4), epochs=1, verbose=0)
+        s = new_s
+        r_sum += r
+    r_avg_list.append(r_sum)
+
+
+# In[59]:
+
+
+winrate=[np.sum(r_avg_list[:count])/count for count in range(len(r_avg_list))]
+
+
+# In[60]:
+
+
+from matplotlib import pyplot as plt
+plt.plot(np.arange(len(winrate)),winrate)
+plt.show()
+
+
+# In[48]:
+
+
+np.identity(16)[s:s+1]
+
+
+# In[47]:
+
+
+s
+
+
+# In[50]:
+
+
+target_vec
+
+
+# In[58]:
+
+
+0.999**1000
+
+
+# In[61]:
+
+
+from matplotlib import pyplot as plt
+plt.plot(np.arange(len(r_avg_list)),r_avg_list)
+plt.show()
+
+
 # In[ ]:
 
 

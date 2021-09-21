@@ -224,7 +224,7 @@ if FASTTEXT:
 
 # As described above, if either `GLOVE` or `FASTTEXT` is `True`, then a pretrained word-embedding shall be applied in the Neural Networks, which are configured below. In this case an `embedding_matrix` must be prepared, which is applied in the `Embedding`-layer of the Neural Networks:
 
-# In[50]:
+# In[18]:
 
 
 if USE_PRETRAINED:
@@ -243,7 +243,7 @@ if USE_PRETRAINED:
             continue
 
 
-# In[51]:
+# In[19]:
 
 
 print("Number of word-embeddings with no vector in the given embedding:   ",count)
@@ -259,7 +259,7 @@ print("Number of word-embeddings with no vector in the given embedding:   ",coun
 # the embedding-layer is defined such that a pretrained embedding_matrix is applied, if either `GLOVE` or `FASTTEXT` is `True`. Otherwise the embedding is learned from scratch in the document-classification task. In both cases the weights in this layer are learned, because `trainable` is set to be `True`.
 # 
 
-# In[52]:
+# In[20]:
 
 
 embedding_layer = Embedding(MAX_NB_WORDS,
@@ -279,7 +279,7 @@ embedding_layer = Embedding(MAX_NB_WORDS,
 # 
 # 
 
-# In[53]:
+# In[21]:
 
 
 sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
@@ -297,7 +297,7 @@ model = Model(sequence_input, preds)
 
 # Compile the model by defining training-parameters and display a summary of the architecture:
 
-# In[54]:
+# In[22]:
 
 
 model.compile(loss='binary_crossentropy',
@@ -308,7 +308,7 @@ model.summary()
 
 # Perform training:
 
-# In[ ]:
+# In[23]:
 
 
 print("model fitting - simplified convolutional neural network")
@@ -316,7 +316,7 @@ print("model fitting - simplified convolutional neural network")
 history=model.fit(x_train, y_train, validation_data=(x_test, y_test),epochs=3, batch_size=128)
 
 
-# In[ ]:
+# In[24]:
 
 
 acc = history.history['accuracy']
@@ -338,7 +338,7 @@ plt.show()
 
 # ## CNN with 3 Convolutional Layers
 
-# In[110]:
+# In[25]:
 
 
 embedding_layer = Embedding(MAX_NB_WORDS,
@@ -348,7 +348,7 @@ embedding_layer = Embedding(MAX_NB_WORDS,
                             trainable=True)
 
 
-# In[111]:
+# In[26]:
 
 
 sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
@@ -365,7 +365,7 @@ preds = Dense(1, activation='sigmoid')(l_drop2)
 model = Model(sequence_input, preds)
 
 
-# In[112]:
+# In[27]:
 
 
 model.compile(loss='binary_crossentropy',
@@ -374,7 +374,7 @@ model.compile(loss='binary_crossentropy',
 model.summary()
 
 
-# In[113]:
+# In[28]:
 
 
 print("model fitting - simplified convolutional neural network")
@@ -382,7 +382,7 @@ print("model fitting - simplified convolutional neural network")
 history=model.fit(x_train, y_train, validation_data=(x_test, y_test),epochs=3, batch_size=128)
 
 
-# In[114]:
+# In[29]:
 
 
 acc = history.history['accuracy']
@@ -409,7 +409,7 @@ plt.show()
 # 
 # Source: [Y. Kim; Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882v2.pdf)
 
-# In[125]:
+# In[30]:
 
 
 embedding_layer = Embedding(MAX_NB_WORDS,
@@ -419,7 +419,7 @@ embedding_layer = Embedding(MAX_NB_WORDS,
                             trainable=True)
 
 
-# In[126]:
+# In[31]:
 
 
 convs = []
@@ -445,7 +445,7 @@ preds = Dense(1, activation='sigmoid')(l_dense)
 model = Model(sequence_input, preds)
 
 
-# In[127]:
+# In[32]:
 
 
 model.compile(loss='binary_crossentropy',
@@ -453,7 +453,7 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 
 
-# In[128]:
+# In[33]:
 
 
 print("model fitting - more complex convolutional neural network")
@@ -462,7 +462,7 @@ history=model.fit(x_train, y_train, validation_data=(x_test, y_test),
           epochs=3, batch_size=128)
 
 
-# In[129]:
+# In[34]:
 
 
 acc = history.history['accuracy']
@@ -485,20 +485,35 @@ plt.show()
 # ## LSTM text classification
 # ### Define LSTM architecture
 
-# In[130]:
+# In[17]:
 
 
 EMBEDDING_DIM=300
+
+
+# In[18]:
+
+
 embedding_layer = Embedding(MAX_NB_WORDS,
                             EMBEDDING_DIM,
-                            #weights=[embedding_matrix], #if the weights-argument is not assigned, the word embedding is learned from the training-data
+                            #weights= [embedding_matrix] if USE_PRETRAINED else None,
                             input_length=MAX_SEQUENCE_LENGTH,
                             trainable=True)
+
+
+# In[19]:
+
+
 print("Number of words in each input: ",MAX_SEQUENCE_LENGTH)
 # train a 1D convnet with global maxpooling
+
 sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 embedded_sequences = embedding_layer(sequence_input)
-x = LSTM(32)(embedded_sequences)
+
+
+sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
+embedded_sequences = embedding_layer(sequence_input)
+x = LSTM(units=32)(embedded_sequences)
 x = Dropout(0.3)(x)
 preds = Dense(1,activation='sigmoid')(x)
 model = Model(sequence_input, preds)
@@ -507,13 +522,13 @@ model.summary()
 
 # ### Training
 
-# In[131]:
+# In[20]:
 
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 
-# In[132]:
+# In[21]:
 
 
 history=model.fit(x_train, y_train,
@@ -522,7 +537,7 @@ history=model.fit(x_train, y_train,
           validation_data=(x_test, y_test))
 
 
-# In[133]:
+# In[22]:
 
 
 acc = history.history['accuracy']
@@ -542,7 +557,7 @@ plt.legend()
 plt.show()
 
 
-# In[134]:
+# In[23]:
 
 
 print("Maximum accuracy: ",max_val_acc)
@@ -558,7 +573,7 @@ print("Maximum accuracy: ",max_val_acc)
 # 
 # In real applications text corpora are usually provided as lists of strings. For example:
 
-# In[10]:
+# In[24]:
 
 
 textcorpus = ["This is the first document",
@@ -571,19 +586,19 @@ textcorpus
 # 
 # This transformation can efficiently be implemented by the [Tokenizer](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/text/Tokenizer)-class of the `tensorflow.keras.preprocessing.text`-module as shown below:
 
-# In[11]:
+# In[26]:
 
 
 from tensorflow.keras.preprocessing.text import Tokenizer
 
 tokenizer = Tokenizer()
-tokenizer.fit_on_texts(text)
-tokenizer.texts_to_sequences(text)
+tokenizer.fit_on_texts(textcorpus)
+tokenizer.texts_to_sequences(textcorpus)
 
 
 # Below other useful attributes and methods, provided by the trained `Tokenizer`-class are demonstrated:
 
-# In[13]:
+# In[28]:
 
 
 # print the attributes for the text and encode the doucment
@@ -596,14 +611,6 @@ print(tokenizer.word_index)
 print("\nHow many documents are there?")
 print(tokenizer.document_count)
 print("\nBoW matrix:")
-encoded_text = tokenizer.texts_to_matrix(text)
+encoded_text = tokenizer.texts_to_matrix(textcorpus)
 encoded_text
-
-
-# 
-
-# In[ ]:
-
-
-
 

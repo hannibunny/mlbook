@@ -5,7 +5,7 @@
 # * Author: Johannes Maucher
 # * Last Update: 16.12.2020
 
-# In previous sections, e.g. [02RegressionPipe.ipynb](02RegressionPipe.ipynb) different types of data, numeric and categorial, have been applied. It has been shown how categorical data is mapped to numeric values or numeric vectors, such that it can be applied as input of a Machine Learning algorithm.
+# In previous sections different types of data, numeric and categorial, have been applied. It has been shown how categorical data is mapped to numeric values or numeric vectors, such that it can be applied as input of a Machine Learning algorithm.
 # 
 # Another type of data is text, either single words, sentences, sections or entire documents. How to map these types to numeric representations?
 
@@ -200,7 +200,7 @@ from gensim.models import KeyedVectors
 en_model = KeyedVectors.load_word2vec_format('/Users/johannes/DataSets/Gensim/FastText/fasttextEnglish300.vec')
 # Getting the tokens 
 words = []
-for word in en_model.vocab:
+for word in en_model.key_to_index:
     words.append(word)
 
 # Printing out number of tokens available
@@ -212,7 +212,7 @@ print("Dimension of a word vector: {}".format(
 ))
 
 
-# In[23]:
+# In[29]:
 
 
 print(words[100])
@@ -221,7 +221,7 @@ print("First 10 components of word-vector: \n",en_model[words[100]][:10])
 
 # The `KeyedVectors`-class provides many interesting methods on word-embeddings. For example the `most_similar(w)`-methode returns the words, whose word-vectors match best with the word-vector of `w`:
 
-# In[24]:
+# In[30]:
 
 
 en_model.most_similar("car")
@@ -230,7 +230,7 @@ en_model.most_similar("car")
 # ### Glove Word-Embeddings
 # After downloading word-embeddings from [Glove](https://nlp.stanford.edu/projects/glove/), they can be imported as follows:
 
-# In[1]:
+# In[31]:
 
 
 import os
@@ -240,7 +240,7 @@ import numpy as np
 GLOVE_DIR = '/Users/johannes/DataSets/Gensim/glove/'
 
 
-# In[2]:
+# In[32]:
 
 
 from gensim.test.utils import datapath, get_tmpfile
@@ -254,7 +254,7 @@ _ = glove2word2vec(glove_file, tmp_file)
 model = KeyedVectors.load_word2vec_format(tmp_file)
 
 
-# In[3]:
+# In[33]:
 
 
 model.most_similar("car")
