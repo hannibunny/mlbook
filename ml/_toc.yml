@@ -40,6 +40,7 @@ parts:
 - caption: Transformer
   chapters:
   - file: transformer/attention
+  - file: transformer/intent_classification_with_bert
 - caption: References
   chapters:
   - file: referenceSection

@@ -62,7 +62,7 @@ import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 
 
-# In[3]:
+# In[19]:
 
 
 from keras.datasets import mnist
