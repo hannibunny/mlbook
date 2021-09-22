@@ -26,11 +26,11 @@
 
 ### Conventional ML Algorithms
     
-2. [Support Vector Machines (SVM)](./machinelearning/svm.md)
-    * SVM
-    
-2. [Gaussian Process](./machinelearning/gp.md)
-    * GP
+1. [K-Nearest Neighbours](./machinelearning/knn.ipynb)
+2. [Bayes Classification](./machinelearning/parametricClassification1D.ipynb)
+3. [Linear Regression](./machinelearning/LinReg.md)
+4. [Support Vector Machines (SVM)](./machinelearning/svm.md)
+5. [Gaussian Process](./machinelearning/gp.md)
     
     
 ### Neural Networks and Deep Neural Networks
@@ -84,16 +84,19 @@
 
 ### Autoencoder
 
-14. [Autoencoder](neuralnetworks/04VariationalAutoencoder.ipynb)
-    * AE    
+14. [Autoencoder](neuralnetworks/04VariationalAutoencoder.ipynb) 
 
 ### GAN
 
 15. [Generative Adversarial Networks](gan/DCGAN.ipynb)
 
+
+### Reinforcement Learning
+
+1. [Reinforcement Learning](rl/reinforcement.md)
+
 ### Modelling of Text
-    
-    
+     
     
 16. [Modelling of Words and Texts / Word Embeddings](text/01ModellingWordsAndTexts.ipynb) 
     * Concept of Word-Embeddings
@@ -109,5 +112,7 @@
     * News classification with CNN
     * News classification with LSTM
     
+### Attention, Transformer, BERT
 
+1. [Attention, Transformer, BERT](transformer/attention.md)
 
