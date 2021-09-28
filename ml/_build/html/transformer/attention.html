@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="References" href="../referenceSection.html" />
+    <link rel="next" title="Intent Classification with BERT" href="intent_classification_with_bert.html" />
     <link rel="prev" title="Text classification with CNNs and LSTMs" href="../text/02TextClassification.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -217,6 +217,11 @@
    Reinforcement Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -244,6 +249,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -439,7 +449,7 @@
 <h1>Sequence-To-Sequence, Attention, Transformer<a class="headerlink" href="#sequence-to-sequence-attention-transformer" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="sequence-to-sequence">
 <h2>Sequence-To-Sequence<a class="headerlink" href="#sequence-to-sequence" title="Permalink to this headline">¶</a></h2>
-<p>In the context of Machine Learning a sequence is an ordered data structure, whose successive elements are correlated.</p>
+<p>In the context of Machine Learning a sequence is an ordered data structure, whose successive elements are somehow correlated.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
 <li><p>Univariate Time Series Data:</p>
@@ -864,9 +874,9 @@ These masked tokens are predicted by passing the final hidden vectors, which bel
 <li><p>A sentence embedding indicating Sentence <span class="math notranslate nohighlight">\(A\)</span> or Sentence <span class="math notranslate nohighlight">\(B\)</span> is added to each token. These sentence embeddings are similar in concept to token embeddings with a vocabulary of 2.</p></li>
 <li><p>A positional embedding is added to each token to indicate its position in the sequence.</p></li>
 </ul>
-<div class="figure align-center" id="id17">
+<div class="figure align-center" id="berttraining2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTinput.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTinput.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTinput.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Input of sentence pairs to BERT Encoder stack. Segment Embedding is applied to indicate first or second sentence. Image source: <span id="id16">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Input of sentence pairs to BERT Encoder stack. Segment Embedding is applied to indicate first or second sentence. Image source: <span id="id16">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#berttraining2" title="Permalink to this image">¶</a></p>
 </div>
 <p>For the NSP task a classifier is trained, which distinguishes <em>successive sentences</em> and <em>non-successive sentences</em>. For this the output of the <span class="math notranslate nohighlight">\([CLS]\)</span> token is passed to a binary classification layer. The purpose of adding such Pre-Training is that many NLP tasks such as Question-Answering (QA) and Natural Language Inference (NLI) need to understand relationships between sentences.</p>
 </div>
@@ -880,15 +890,15 @@ These masked tokens are predicted by passing the final hidden vectors, which bel
 </ul>
 <div class="figure align-center" id="bertfinetune">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTfinetuning.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTfinetuning.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTfinetuning.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">BERT Fine-Tuning. Image source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">BERT Fine-Tuning. Image source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="contextual-embeddings-from-bert">
 <h3>Contextual Embeddings from BERT<a class="headerlink" href="#contextual-embeddings-from-bert" title="Permalink to this headline">¶</a></h3>
 <p>Instead of fine-tuning, the pretrained token representations from any level of the BERT-Stack can be applied as <strong>contextual word embedding</strong> in any NLP task. Which representation is best depends on the concrete task.</p>
-<div class="figure align-center" id="id20">
+<div class="figure align-center" id="bertfinetune2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTfeatureExtraction.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTfeatureExtraction.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTfeatureExtraction.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">Contextual Embeddings from BERT. Image source: <span id="id19">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">Contextual Embeddings from BERT. Image source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune2" title="Permalink to this image">¶</a></p>
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
@@ -932,7 +942,7 @@ These masked tokens are predicted by passing the final hidden vectors, which bel
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../text/02TextClassification.html" title="previous page">Text classification with CNNs and LSTMs</a>
-    <a class='right-next' id="next-link" href="../referenceSection.html" title="next page">References</a>
+    <a class='right-next' id="next-link" href="intent_classification_with_bert.html" title="next page">Intent Classification with BERT</a>
 
         </div>
         

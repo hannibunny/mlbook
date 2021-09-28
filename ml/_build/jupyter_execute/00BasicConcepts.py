@@ -37,7 +37,7 @@
 # * an intelligent search-engine, which provides individual results on queries
 # * a recommender-system for an online-shop
 
-# ### Categories
+# ### Categorisation of Machine Learning Approaches
 # 
 # The field of Machine Learning is usually categorized with respect to two dimensions: The first dimension is the question *What shall be learned?* and the second asks for *How shall be learned?*. The resulting 2-dimensional matrix is depicted below:
 # 
@@ -88,6 +88,32 @@
 # As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, ...) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, ...): 
 # 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/>
+
+# ### Further Categories
+# Even though Machine Learning showed amazing accuracy in a wide range of tasks such as object classification, machine translation and automated content generation, many experts are convinced that in order to create human-level AI new approaches to ML and AI must be invented. The current methods, in particular supervised learning, is supposed to get stuck in a suboptimum, far from human-level AI. The reason for these doubts is that supervised ML requires large amounts of labeled data and in general labeling is expensive. On the other hand a main factor of human intelligence is **common sense**, i.e. knowledge on general concepts such as *gravity* or *object permanence*. Human's create *common sense* from their birth on, mainly by unsupervised observation of the world. It is because of this understanding of common concepts that makes our learning of specific things efficient. For example, based on the knowledge of *gravity*, we do not need much specific training samples in order to predict the trajectory of a stone, which is thrown away. 
+# 
+# It is clear that supervised learning alone will not be sufficient to teach machines something like common sense, since it is impossible to label everything. Therefore, recent ML research has a strong focus on finding new methods for learning from unlabeled data. In particular concepts that exploit both, a relatively small set of labeled data and a large set of unlabeled data, are investigated. Two main categories of this type are *self-supervised learning* and *semi-supervised learning*.
+# 
+# 
+# #### Self-Supervised Learning
+# 
+# Self-supervised learning consists of 2 stages: First large amounts of unlabeled data are applied to *learn a feature-extractor, which  provides a good representation of the given data domain*. This feature-extractor is passed to stage 2, where it can be applied for many different tasks with the same input data domain. In order to learn these task-specific models in the 2nd stage only relatively small amounts of task-specific labeled data is required. This concept is depicted in the image below. Examples are e.g. [Word2Vec](./text/01ModellingWordsAndTexts) or transformers like [BERT](./transformer/attention). In both examples unlabeled text data (e.g. the entire Wikipedia, or tons of books) are applied for pretraining. During pretraining the feature-extractor is trained such that it predicts masked words (target) from the surrounding words (input).
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/self_supervised_learning" alt="Drawing" style="width: 800px;"/>
+# 
+# Self-supervised learning is only applicable, if there exist semantic relations between the elements $x_i$ of the unlabeled data. This is true e.g. for text (words within sentences are related), images (neighbouring pixels are correlated) and video (successive frames within the video are correlated). 
+# 
+# #### Semi-Supervised Learning
+# 
+# Semi-supervised learning is another approach to learn models from relatively small amounts of labeled data and large amounts of unlabeled data. The trick in self-supervised learning was to apply in stage 1 a supervised-learning approach on unlabeled data. This is feasible only if there exists semantic relations between the elements of the input-data-vectors. Now, in semi-supervised learning, we do not have to impose this hard restriction on the structure of data. However, there exist other assumptions, which must be fullfilled (at least one), e.g. the
+# * **Continuity Assumption:** Input-vectors, which are close to each other, likely share the same label.
+# * **Cluster Assumption:** The set of all input-vectors is grouped in different clusters and vectors within the same cluster likely share the same label.
+# * **Manifold-Assumption:** Input vectors lie approximately on a manifold (subspace) of much lower dimension than the input space.
+# 
+# Semi-supervised learning may refer to either **transductive learning** or **inductive learning**.The goal of transductive learning is to infer the correct labels *for the given unlabeled data only*. The goal of inductive learning is to infer the *correct mapping from input data to target in general*. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Semi-supervised_learning)). 
+# 
+# There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers. 
+# 
 
 # ### Cross Validation
 
