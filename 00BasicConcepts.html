@@ -217,6 +217,11 @@
    Reinforcement Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -244,6 +249,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -362,8 +372,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#categories">
-     Categories
+    <a class="reference internal nav-link" href="#categorisation-of-machine-learning-approaches">
+     Categorisation of Machine Learning Approaches
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -387,6 +397,23 @@
     <a class="reference internal nav-link" href="#general-scheme-for-machine-learning">
      General Scheme for Machine Learning
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-categories">
+     Further Categories
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#self-supervised-learning">
+       Self-Supervised Learning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#semi-supervised-learning">
+       Semi-Supervised Learning
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cross-validation">
@@ -455,8 +482,8 @@
 <li><p>a recommender-system for an online-shop</p></li>
 </ul>
 </div>
-<div class="section" id="categories">
-<h3>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="categorisation-of-machine-learning-approaches">
+<h3>Categorisation of Machine Learning Approaches<a class="headerlink" href="#categorisation-of-machine-learning-approaches" title="Permalink to this headline">¶</a></h3>
 <p>The field of Machine Learning is usually categorized with respect to two dimensions: The first dimension is the question <em>What shall be learned?</em> and the second asks for <em>How shall be learned?</em>. The resulting 2-dimensional matrix is depicted below:</p>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" style="width:800px" align="center"><p>On an abstract level there exist 4 answers on the first question. One can either learn</p>
 <ul class="simple">
@@ -498,6 +525,28 @@
 <p>Training and test are shown in the image below. In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be tested. In the case of supervised learning testing compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" alt="Drawing" style="width: 800px;"/><p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …):</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/></div>
+<div class="section" id="further-categories">
+<h3>Further Categories<a class="headerlink" href="#further-categories" title="Permalink to this headline">¶</a></h3>
+<p>Even though Machine Learning showed amazing accuracy in a wide range of tasks such as object classification, machine translation and automated content generation, many experts are convinced that in order to create human-level AI new approaches to ML and AI must be invented. The current methods, in particular supervised learning, is supposed to get stuck in a suboptimum, far from human-level AI. The reason for these doubts is that supervised ML requires large amounts of labeled data and in general labeling is expensive. On the other hand a main factor of human intelligence is <strong>common sense</strong>, i.e. knowledge on general concepts such as <em>gravity</em> or <em>object permanence</em>. Human’s create <em>common sense</em> from their birth on, mainly by unsupervised observation of the world. It is because of this understanding of common concepts that makes our learning of specific things efficient. For example, based on the knowledge of <em>gravity</em>, we do not need much specific training samples in order to predict the trajectory of a stone, which is thrown away.</p>
+<p>It is clear that supervised learning alone will not be sufficient to teach machines something like common sense, since it is impossible to label everything. Therefore, recent ML research has a strong focus on finding new methods for learning from unlabeled data. In particular concepts that exploit both, a relatively small set of labeled data and a large set of unlabeled data, are investigated. Two main categories of this type are <em>self-supervised learning</em> and <em>semi-supervised learning</em>.</p>
+<div class="section" id="self-supervised-learning">
+<h4>Self-Supervised Learning<a class="headerlink" href="#self-supervised-learning" title="Permalink to this headline">¶</a></h4>
+<p>Self-supervised learning consists of 2 stages: First large amounts of unlabeled data are applied to <em>learn a feature-extractor, which  provides a good representation of the given data domain</em>. This feature-extractor is passed to stage 2, where it can be applied for many different tasks with the same input data domain. In order to learn these task-specific models in the 2nd stage only relatively small amounts of task-specific labeled data is required. This concept is depicted in the image below. Examples are e.g. <a class="reference internal" href="text/01ModellingWordsAndTexts.html"><span class="doc std std-doc">Word2Vec</span></a> or transformers like <a class="reference internal" href="transformer/attention.html"><span class="doc std std-doc">BERT</span></a>. In both examples unlabeled text data (e.g. the entire Wikipedia, or tons of books) are applied for pretraining. During pretraining the feature-extractor is trained such that it predicts masked words (target) from the surrounding words (input).</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/self_supervised_learning" alt="Drawing" style="width: 800px;"/>
+<p>Self-supervised learning is only applicable, if there exist semantic relations between the elements <span class="math notranslate nohighlight">\(x_i\)</span> of the unlabeled data. This is true e.g. for text (words within sentences are related), images (neighbouring pixels are correlated) and video (successive frames within the video are correlated).</p>
+</div>
+<div class="section" id="semi-supervised-learning">
+<h4>Semi-Supervised Learning<a class="headerlink" href="#semi-supervised-learning" title="Permalink to this headline">¶</a></h4>
+<p>Semi-supervised learning is another approach to learn models from relatively small amounts of labeled data and large amounts of unlabeled data. The trick in self-supervised learning was to apply in stage 1 a supervised-learning approach on unlabeled data. This is feasible only if there exists semantic relations between the elements of the input-data-vectors. Now, in semi-supervised learning, we do not have to impose this hard restriction on the structure of data. However, there exist other assumptions, which must be fullfilled (at least one), e.g. the</p>
+<ul class="simple">
+<li><p><strong>Continuity Assumption:</strong> Input-vectors, which are close to each other, likely share the same label.</p></li>
+<li><p><strong>Cluster Assumption:</strong> The set of all input-vectors is grouped in different clusters and vectors within the same cluster likely share the same label.</p></li>
+<li><p><strong>Manifold-Assumption:</strong> Input vectors lie approximately on a manifold (subspace) of much lower dimension than the input space.</p></li>
+</ul>
+<p>Semi-supervised learning may refer to either <strong>transductive learning</strong> or <strong>inductive learning</strong>.The goal of transductive learning is to infer the correct labels <em>for the given unlabeled data only</em>. The goal of inductive learning is to infer the <em>correct mapping from input data to target in general</em>. (Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Semi-supervised_learning">Wikipedia</a>).</p>
+<p>There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers.</p>
+</div>
+</div>
 <div class="section" id="cross-validation">
 <h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
 <p>K-fold cross-Validation is the standard validation method if labeled data is rare. The entire set of labeled data is partitioned into k (<span class="math notranslate nohighlight">\(k=10\)</span> in the example below) disjoint subsets. The entire evaluation consists of k iterations. In the i.th iteration, the i.th partition (subset) is applied for validation, all other partitions are applied for training the model. In each iteration the model’s performance, e.g. accuracy, is determined on the validation-partition. Finally, the overall performance is the average performance over all k performance values.</p>

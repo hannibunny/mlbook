@@ -2,7 +2,7 @@
 
 ## Sequence-To-Sequence
 
-In the context of Machine Learning a sequence is an ordered data structure, whose successive elements are correlated. 
+In the context of Machine Learning a sequence is an ordered data structure, whose successive elements are somehow correlated. 
 
 **Examples:**
 - Univariate Time Series Data:
@@ -584,6 +584,7 @@ Prediction of the 4.th target word, given the 3 previously predictions. Image so
 
 ```
 
+
 BERT training is separated into 2 stages: Pre-Training and Fine-Tuning. During Pre-Training, the model is trained on unlabeled data for the tasks Masked Language Model (MLM) and Next Sentence Prediction (NSP). Fine-Tuning starts with the parameters, that have been learned in Pre-Training. There exists different downstream tasks such as *Question-Answering, Named-Entity-Recognition* or *Multi Natural Language Inference*, for which BERT's parameters can be fine-tuned. Depending on the Downstream task, the BERT architecutre must be slightly adapted for Fine-Tuning.  
 
 
@@ -598,6 +599,7 @@ BERT: Pretraining on tasks Masked Language Model and Next Sentence Prediction, f
 ```
 
 In BERT, tokens are not words, but word-pieces. This yields a better *out-of-vocabulary-robustness*.
+
 
 ### BERT Pre-Training
 
@@ -620,7 +622,7 @@ $B$ is a randomly selected sentence, independent of sentence $A$. The BERT archi
 ---
 align: center
 width: 400pt
-name:  berttraining
+name:  berttraining2
 ---
 Input of sentence pairs to BERT Encoder stack. Segment Embedding is applied to indicate first or second sentence. Image source: {cite}`Devlin`
 
@@ -655,11 +657,13 @@ Instead of fine-tuning, the pretrained token representations from any level of t
 ---
 align: center
 width: 400pt
-name:  bertfinetune
+name:  bertfinetune2
 ---
 Contextual Embeddings from BERT. Image source: {cite}`Devlin`
 
 ```
+
+
 
 [^fa1]: An overview for other scoring functions is provided [here](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html).
 [^fa2]: The reason for this is that the Decoder caluclates its output (e.g. the translated sentence) iteratievely. In iteration $i$ the $i.th$ output of the current sequence (e.g. the i.th translated word) is estimated. The already estimated tokens at positions $1,2,\ldots, i-1$ are applied as inputs to the Decoder stack in iteration $i$, i.e. future tokens at positions $i+1, \ldots$ are not known at this time.
