@@ -746,7 +746,7 @@ name: qlearning
 		- Set
 		 
 		$$
-		Q(S,A) := Q(S,A) + \alpha \left[R + \gamma \max\limits_a Q(S',a - Q(S,A) \right]
+		Q(S,A) := Q(S,A) + \alpha \left[R + \gamma \max\limits_a Q(S',a) - Q(S,A) \right]
 		$$
 		
 		- Set $S:=S'$

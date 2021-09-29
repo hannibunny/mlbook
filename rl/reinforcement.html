@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
+    <link rel="next" title="Example Q-Learning" href="QLearnFrozenLake.html" />
     <link rel="prev" title="Generative Adversarial Nets (GAN)" href="../gan/DCGAN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -217,6 +217,11 @@
    Reinforcement Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -244,6 +249,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -1162,7 +1172,7 @@ Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma \max\limits_a Q(S_{t+1}
 </ul>
 <div class="math notranslate nohighlight">
 \[
-		Q(S,A) := Q(S,A) + \alpha \left[R + \gamma \max\limits_a Q(S',a - Q(S,A) \right]
+		Q(S,A) := Q(S,A) + \alpha \left[R + \gamma \max\limits_a Q(S',a) - Q(S,A) \right]
 		\]</div>
 <ul class="simple">
 <li><p>Set <span class="math notranslate nohighlight">\(S:=S'\)</span>
@@ -1229,7 +1239,7 @@ Image source: <span id="id16">[<a class="reference internal" href="../referenceS
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page">Generative Adversarial Nets (GAN)</a>
-    <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page">Representations for Words and Texts</a>
+    <a class='right-next' id="next-link" href="QLearnFrozenLake.html" title="next page">Example Q-Learning</a>
 
         </div>
         
