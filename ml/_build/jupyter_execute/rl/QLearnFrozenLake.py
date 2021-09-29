@@ -330,13 +330,13 @@ for i in range(num_episodes):
     r_avg_list.append(r_sum)
 
 
-# In[59]:
+# In[31]:
 
 
 winrate=[np.sum(r_avg_list[:count])/count for count in range(len(r_avg_list))]
 
 
-# In[60]:
+# In[32]:
 
 
 from matplotlib import pyplot as plt
@@ -344,31 +344,7 @@ plt.plot(np.arange(len(winrate)),winrate)
 plt.show()
 
 
-# In[48]:
-
-
-np.identity(16)[s:s+1]
-
-
-# In[47]:
-
-
-s
-
-
-# In[50]:
-
-
-target_vec
-
-
-# In[58]:
-
-
-0.999**1000
-
-
-# In[61]:
+# In[33]:
 
 
 from matplotlib import pyplot as plt

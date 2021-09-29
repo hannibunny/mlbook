@@ -399,6 +399,11 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-concept-of-supervised-learning">
+     General Concept of Supervised Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#further-categories">
      Further Categories
     </a>
@@ -438,6 +443,11 @@
     </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-problems-challenges-of-ai-and-ml">
+   Current Problems/Challenges of AI and ML
+  </a>
  </li>
 </ul>
 
@@ -524,7 +534,24 @@
 </ul>
 <p>Training and test are shown in the image below. In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be tested. In the case of supervised learning testing compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" alt="Drawing" style="width: 800px;"/><p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …):</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/></div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/>
+<p>The image below depicts such a 2-dimensional array of training-data for the applications <em>Object Recognition, Document Classification, Personality Classification, Temperature Prediction</em> and <em>Recommender System</em>.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataExamples.png" alt="Drawing" style="width: 800px;"/>
+</div>
+<div class="section" id="general-concept-of-supervised-learning">
+<h3>General Concept of Supervised Learning<a class="headerlink" href="#general-concept-of-supervised-learning" title="Permalink to this headline">¶</a></h3>
+<p>The general concept of supervised learning is sketched in the image below. This concept is realized by almost all algorithms for supervised machine learning, in particular all neural networks learn according to this approach. In the following description it is assumed that the ML algorithm is a Neural Network.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/learnGradientDescent.png" alt="Drawing" style="width: 600px;"/>
+<p><strong>General concept of iterative supervised learning:</strong></p>
+<ol class="simple">
+<li><p>The network parameters <span class="math notranslate nohighlight">\(\Theta\)</span> are initialized randomly</p></li>
+<li><p>Apply the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> of one or more training instances to the input of the network</p></li>
+<li><p>Calculate the corresponding output of the network <span class="math notranslate nohighlight">\(y=f(\mathbf{x}_p,\Theta)\)</span></p></li>
+<li><p>Calculate the error between the calulated outputs <span class="math notranslate nohighlight">\(y\)</span> and the corresponding target labels <span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p>Depending on the calculated errors, adjust the network weights <span class="math notranslate nohighlight">\(\Theta\)</span>, such that in the sequel the network outputs are closer to the targets (i.e. the error decreases).</p></li>
+<li><p>Repeat this until the calculated error is small enough.</p></li>
+</ol>
+</div>
 <div class="section" id="further-categories">
 <h3>Further Categories<a class="headerlink" href="#further-categories" title="Permalink to this headline">¶</a></h3>
 <p>Even though Machine Learning showed amazing accuracy in a wide range of tasks such as object classification, machine translation and automated content generation, many experts are convinced that in order to create human-level AI new approaches to ML and AI must be invented. The current methods, in particular supervised learning, is supposed to get stuck in a suboptimum, far from human-level AI. The reason for these doubts is that supervised ML requires large amounts of labeled data and in general labeling is expensive. On the other hand a main factor of human intelligence is <strong>common sense</strong>, i.e. knowledge on general concepts such as <em>gravity</em> or <em>object permanence</em>. Human’s create <em>common sense</em> from their birth on, mainly by unsupervised observation of the world. It is because of this understanding of common concepts that makes our learning of specific things efficient. For example, based on the knowledge of <em>gravity</em>, we do not need much specific training samples in order to predict the trajectory of a stone, which is thrown away.</p>
@@ -584,6 +611,17 @@ y=f(x)+\epsilon.
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/></div>
 </div>
 </div>
+<div class="section" id="current-problems-challenges-of-ai-and-ml">
+<h2>Current Problems/Challenges of AI and ML<a class="headerlink" href="#current-problems-challenges-of-ai-and-ml" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Data efficiency:</strong> In order to learn complex tasks large amounts of training data are required</p></li>
+<li><p><strong>Explainability/Interpretability:</strong> Models generate/predict an output for a given input, but they don’t explain why</p></li>
+<li><p><strong>Confidence:</strong> Many applications require that the model outputs not only a prediction but also confidence-measure.</p></li>
+<li><p><strong>Integrate Domain Knowledge:</strong> Neural Networks currently learn from data, but they are not able to integrate domain knowledge from experts. Integration of data- and expert-knowledge is desired.</p></li>
+<li><p><strong>Common Sense</strong> makes human learning efficient. It is hard to learn common sense knowledge in ML.</p></li>
+<li><p>ML models usually learn correlations but not <strong>Causality</strong>.</p></li>
+</ul>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/captionbotexample.png" alt="Drawing" style="width: 800px;"/></div>
 </div>
 
     <script type="text/x-thebe-config">

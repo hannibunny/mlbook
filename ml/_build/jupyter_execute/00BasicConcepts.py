@@ -88,6 +88,26 @@
 # As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, ...) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, ...): 
 # 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/>
+# 
+# The image below depicts such a 2-dimensional array of training-data for the applications *Object Recognition, Document Classification, Personality Classification, Temperature Prediction* and *Recommender System*.
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataExamples.png" alt="Drawing" style="width: 800px;"/>
+# 
+# 
+
+# ### General Concept of Supervised Learning
+# 
+# The general concept of supervised learning is sketched in the image below. This concept is realized by almost all algorithms for supervised machine learning, in particular all neural networks learn according to this approach. In the following description it is assumed that the ML algorithm is a Neural Network.
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/learnGradientDescent.png" alt="Drawing" style="width: 600px;"/>
+# 
+# **General concept of iterative supervised learning:**
+# 1. The network parameters $\Theta$ are initialized randomly
+# 2. Apply the input vectors $\mathbf{x}_p$ of one or more training instances to the input of the network
+# 3. Calculate the corresponding output of the network $y=f(\mathbf{x}_p,\Theta)$
+# 4. Calculate the error between the calulated outputs $y$ and the corresponding target labels $r$
+# 5. Depending on the calculated errors, adjust the network weights $\Theta$, such that in the sequel the network outputs are closer to the targets (i.e. the error decreases). 
+# 6. Repeat this until the calculated error is small enough.
 
 # ### Further Categories
 # Even though Machine Learning showed amazing accuracy in a wide range of tasks such as object classification, machine translation and automated content generation, many experts are convinced that in order to create human-level AI new approaches to ML and AI must be invented. The current methods, in particular supervised learning, is supposed to get stuck in a suboptimum, far from human-level AI. The reason for these doubts is that supervised ML requires large amounts of labeled data and in general labeling is expensive. On the other hand a main factor of human intelligence is **common sense**, i.e. knowledge on general concepts such as *gravity* or *object permanence*. Human's create *common sense* from their birth on, mainly by unsupervised observation of the world. It is because of this understanding of common concepts that makes our learning of specific things efficient. For example, based on the knowledge of *gravity*, we do not need much specific training samples in order to predict the trajectory of a stone, which is thrown away. 
@@ -165,8 +185,12 @@
 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/>
 
-# In[ ]:
-
-
-
-
+# ## Current Problems/Challenges of AI and ML
+# * **Data efficiency:** In order to learn complex tasks large amounts of training data are required
+# * **Explainability/Interpretability:** Models generate/predict an output for a given input, but they don't explain why
+# * **Confidence:** Many applications require that the model outputs not only a prediction but also confidence-measure.
+# * **Integrate Domain Knowledge:** Neural Networks currently learn from data, but they are not able to integrate domain knowledge from experts. Integration of data- and expert-knowledge is desired.
+# * **Common Sense** makes human learning efficient. It is hard to learn common sense knowledge in ML.
+# * ML models usually learn correlations but not **Causality**. 
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/captionbotexample.png" alt="Drawing" style="width: 800px;"/>
