@@ -217,6 +217,11 @@
    Reinforcement Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -244,6 +249,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -438,7 +448,7 @@
 <h3>Univariate<a class="headerlink" href="#univariate" title="Permalink to this headline">¶</a></h3>
 <p>The Power Density Function (PDF) of a <strong>Gaussian distribed random variable <span class="math notranslate nohighlight">\(X\)</span></strong> is:</p>
 <div class="math notranslate nohighlight" id="equation-gausspdfuni">
-<span class="eqno">(42)<a class="headerlink" href="#equation-gausspdfuni" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(43)<a class="headerlink" href="#equation-gausspdfuni" title="Permalink to this equation">¶</a></span>\[
 p_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the mean and <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation. This distribution is plotted below for two different standard deviations.</p>
@@ -457,7 +467,7 @@ name:  gausspdf</span><a class="headerlink" href="#id5" title="Permalink to this
 X \sim \mathcal{N}(\mu,\sigma^2)
 \]</div>
 <p><strong>Estimate parameters from data:</strong></p>
-<p>The univariate Gaussian distribution, as defined in equation <a class="reference internal" href="#equation-gausspdfuni">(42)</a> is completely defined by the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. If a sample of <span class="math notranslate nohighlight">\(Z\)</span> values <span class="math notranslate nohighlight">\(x_i\)</span> of a univariate random variable <span class="math notranslate nohighlight">\(X\)</span> are given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.</p>
+<p>The univariate Gaussian distribution, as defined in equation <a class="reference internal" href="#equation-gausspdfuni">(43)</a> is completely defined by the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. If a sample of <span class="math notranslate nohighlight">\(Z\)</span> values <span class="math notranslate nohighlight">\(x_i\)</span> of a univariate random variable <span class="math notranslate nohighlight">\(X\)</span> are given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.</p>
 <p>Estimate for <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -473,7 +483,7 @@ s=\sqrt{\frac{1}{Z-1}\sum_{i=1}^Z (x_i-m)^2}.
 <h3>Multivariate<a class="headerlink" href="#multivariate" title="Permalink to this headline">¶</a></h3>
 <p>The Power Density Function (PDF) of a <strong>Multidimensional Gaussian Distribution</strong> is:</p>
 <div class="math notranslate nohighlight" id="equation-gausspdfmulti">
-<span class="eqno">(43)<a class="headerlink" href="#equation-gausspdfmulti" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(44)<a class="headerlink" href="#equation-gausspdfmulti" title="Permalink to this equation">¶</a></span>\[
   p(\mathbf{x})=\frac{1}{(2 \pi)^{d/2} |\Sigma|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}- \boldsymbol\mu)^T \Sigma^{-1}(\mathbf{x}-\boldsymbol\mu)\right] , \quad -\infty &lt; x &lt; \infty 
 \]</div>
 <p>Here</p>
@@ -481,13 +491,13 @@ s=\sqrt{\frac{1}{Z-1}\sum_{i=1}^Z (x_i-m)^2}.
 <li><p><span class="math notranslate nohighlight">\(\mathbf{x}=\left[x_1,x_2,\ldots,x_d \right]\)</span> are the values of <span class="math notranslate nohighlight">\(d\)</span> random variables, which are jointly Gaussian distributed.</p></li>
 <li><p>the <strong>mean-value-vektor</strong> is</p>
 <div class="math notranslate nohighlight" id="equation-meanvec">
-<span class="eqno">(44)<a class="headerlink" href="#equation-meanvec" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(45)<a class="headerlink" href="#equation-meanvec" title="Permalink to this equation">¶</a></span>\[
 	\mathbf{\mu}=[\mu_1,\mu_2,\ldots, \mu_d]
 	\]</div>
 </li>
 <li><p>the <strong>covariance matrix</strong> is</p>
 <div class="math notranslate nohighlight" id="equation-covmat">
-<span class="eqno">(45)<a class="headerlink" href="#equation-covmat" title="Permalink to this equation">¶</a></span>\[\begin{split} 
+<span class="eqno">(46)<a class="headerlink" href="#equation-covmat" title="Permalink to this equation">¶</a></span>\[\begin{split} 
 	\Sigma = \left(
 	\begin{array}{cccc}
 	\sigma_{11}^2 &amp; \sigma_{12} &amp;\cdots &amp; \sigma_{1d} \\
@@ -498,7 +508,7 @@ s=\sqrt{\frac{1}{Z-1}\sum_{i=1}^Z (x_i-m)^2}.
 	\end{split}\]</div>
 <p>In this matrix the elements on the principal diagonal <span class="math notranslate nohighlight">\(\sigma_{ii}^2\)</span> are the variances along the corresponding axis. All other elements are covariances, which describe the correlation between the axes. If <span class="math notranslate nohighlight">\(\sigma_{ij}=0\)</span>, then the random variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> are not correlated. The higher the absolute value of <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span>, the stronger the correlation. From the variances and the covariances the <strong>linear correlation-coefficient <span class="math notranslate nohighlight">\(\rho_{ij}\)</span></strong> can be calculated as follows:</p>
 <div class="math notranslate nohighlight" id="equation-corr">
-<span class="eqno">(46)<a class="headerlink" href="#equation-corr" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(47)<a class="headerlink" href="#equation-corr" title="Permalink to this equation">¶</a></span>\[
 	\rho_{ij}=\frac{\sigma_{ij}}{\sigma_{ii} \sigma_{jj}}
 	\]</div>
 <p>The correlation coefficient has a value-range from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(1\)</span> and helps to better <em>quantify</em> the correlation between the axis.</p>
@@ -620,7 +630,7 @@ f \sim \mathcal{GP}(m,k)
 <h3>Covariance Function<a class="headerlink" href="#covariance-function" title="Permalink to this headline">¶</a></h3>
 <p>The most common covariance-function <span class="math notranslate nohighlight">\(k(x,x')\)</span> is the **squared exponential$$</p>
 <div class="math notranslate nohighlight" id="equation-squaredexp">
-<span class="eqno">(47)<a class="headerlink" href="#equation-squaredexp" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(48)<a class="headerlink" href="#equation-squaredexp" title="Permalink to this equation">¶</a></span>\[
 k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
 \]</div>
 <p>Parameters and characteristics of this covariance function are</p>
@@ -662,10 +672,10 @@ k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
 </div>
 <div class="section" id="generate-samples-of-gaussian-process">
 <h3>Generate Samples of Gaussian Process<a class="headerlink" href="#generate-samples-of-gaussian-process" title="Permalink to this headline">¶</a></h3>
-<p>Even though functions assign one function value to each argument of a possibly <strong>infinite domain</strong>, in computer programs functions are evaluated always at a finite set of arguments. Therefore, in computer programs one can think of functions as tables, in which to each domain value <span class="math notranslate nohighlight">\(x\)</span> a corresponding function value <span class="math notranslate nohighlight">\(f(x)\)</span> is mapped. <strong>Since in computer programs we always have finite subsets and any finite subset of a Gaussian Process is a Multidimensional Gaussisan Distribution, we can generate samples of a Gaussian Process in exactly the same was as we generate samples of a Multidimensional Gaussian Distribution.</strong> For generating samples of a Multidimensional Gaussian Distribution we have to specify the mean vector (<a class="reference internal" href="#equation-meanvec">(44)</a>) and the covariance matrix (<a class="reference internal" href="#equation-covmat">(45)</a>).</p>
+<p>Even though functions assign one function value to each argument of a possibly <strong>infinite domain</strong>, in computer programs functions are evaluated always at a finite set of arguments. Therefore, in computer programs one can think of functions as tables, in which to each domain value <span class="math notranslate nohighlight">\(x\)</span> a corresponding function value <span class="math notranslate nohighlight">\(f(x)\)</span> is mapped. <strong>Since in computer programs we always have finite subsets and any finite subset of a Gaussian Process is a Multidimensional Gaussisan Distribution, we can generate samples of a Gaussian Process in exactly the same was as we generate samples of a Multidimensional Gaussian Distribution.</strong> For generating samples of a Multidimensional Gaussian Distribution we have to specify the mean vector (<a class="reference internal" href="#equation-meanvec">(45)</a>) and the covariance matrix (<a class="reference internal" href="#equation-covmat">(46)</a>).</p>
 <p>The mean-value vector is obtained by evaluating the mean function <span class="math notranslate nohighlight">\(m(x)\)</span> at all <span class="math notranslate nohighlight">\(x_i\)</span> of the domain.</p>
 <div class="math notranslate nohighlight" id="equation-kmue">
-<span class="eqno">(48)<a class="headerlink" href="#equation-kmue" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(49)<a class="headerlink" href="#equation-kmue" title="Permalink to this equation">¶</a></span>\[
 \boldsymbol\mu=[\mu_1,\mu_2,\ldots, \mu_N]= [m(x_1), m(x_2), \ldots m(x_N)]
 \]</div>
 <p>The covariance matrix <span class="math notranslate nohighlight">\(K\)</span> is obtained by evaluating the covariance function <span class="math notranslate nohighlight">\(k(x,x')\)</span> at all possible pairs of arguments, i.e. the entry in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the covariance matrix is <span class="math notranslate nohighlight">\(k(x_i,x_j)\)</span>.</p>
@@ -826,7 +836,7 @@ g(x)=w_0+w_1x_1+w_2x_2+\ldots+w_dx_d
 <p>for the determinisic part <span class="math notranslate nohighlight">\(f(x)\)</span>. This approximation <span class="math notranslate nohighlight">\(g(x)\)</span> minimizes the Mean Squared Error between the given labels <span class="math notranslate nohighlight">\(y\)</span> and the model’s prediction <span class="math notranslate nohighlight">\(g(x)\)</span> on the training data.</p>
 <p><strong>Now in Gaussian Process Regression</strong> we assume that training data constitutes support-points on a sample of a Gaussian Process with predefined mean- and covariance function. In contrast to Linear Regression now the assumption is</p>
 <div class="math notranslate nohighlight" id="equation-gpass">
-<span class="eqno">(49)<a class="headerlink" href="#equation-gpass" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(50)<a class="headerlink" href="#equation-gpass" title="Permalink to this equation">¶</a></span>\[
 y_t=f(x_t)+n_t+z_t,
 \]</div>
 <p><strong>where <span class="math notranslate nohighlight">\(z_t\)</span> is considered to be a component of a sample of an N-dimensional Gaussian Distribution with zero mean.</strong> As in Linear Regression <span class="math notranslate nohighlight">\(n_t\)</span> is assumed to be a sample of a 1-dimensional Gaussian distribution with zero mean and variance <span class="math notranslate nohighlight">\(\sigma_n^2\)</span>. It is independent of all other training instances. The independent noise term <span class="math notranslate nohighlight">\(n_t\)</span> and the correlated noise term <span class="math notranslate nohighlight">\(z_t\)</span> can be integrated into a single Multidimensional Gaussian distribution by adding the term</p>
@@ -844,9 +854,9 @@ y_t=f(x_t)+n_t+z_t,
 \end{array}
 \right.
 \end{split}\]</div>
-<p>For example if the original covariance function is the squared exponential, as definied in equation <a class="reference internal" href="#equation-squaredexp">(47)</a> the new covariance function which integrates the noise term is</p>
+<p>For example if the original covariance function is the squared exponential, as definied in equation <a class="reference internal" href="#equation-squaredexp">(48)</a> the new covariance function which integrates the noise term is</p>
 <div class="math notranslate nohighlight" id="equation-squaredexpex">
-<span class="eqno">(50)<a class="headerlink" href="#equation-squaredexpex" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(51)<a class="headerlink" href="#equation-squaredexpex" title="Permalink to this equation">¶</a></span>\[
 k_n(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}} + \sigma_n^2 \delta(x,x')
 \]</div>
 <p>If the covariance-matrix is calculated with this noise-integrating covariance function the difference to the covariance matrix without noise-integration is, that now the values of the main diagonal are <span class="math notranslate nohighlight">\(\sigma_f^2+\sigma_n^2\)</span>, rather than <span class="math notranslate nohighlight">\(\sigma_f^2\)</span>.</p>
@@ -855,7 +865,7 @@ k_n(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}} + \sigma_n^2 \delta(x
 <li><p>in GP Regression the covariances between the training-instances are regarded, i.e. dependecies between neighboring training instances are taken into account.</p></li>
 <li><p>in GP Regression the goal is not to learn an approximation for <span class="math notranslate nohighlight">\(f(x)\)</span>. Instead, the values <span class="math notranslate nohighlight">\(y_*\)</span> at the arguments of interest <span class="math notranslate nohighlight">\(x_*\)</span> are estimated directly.</p></li>
 </ol>
-<p>The first difference has already been discussed in the context of the assumption stated in equation <a class="reference internal" href="#equation-gpass">(49)</a>. In the sequel we will take a look on the second difference. In particular it will be described how the predictions <span class="math notranslate nohighlight">\(y_*\)</span> will be calculated for new inputs <span class="math notranslate nohighlight">\(x_*\)</span>:</p>
+<p>The first difference has already been discussed in the context of the assumption stated in equation <a class="reference internal" href="#equation-gpass">(50)</a>. In the sequel we will take a look on the second difference. In particular it will be described how the predictions <span class="math notranslate nohighlight">\(y_*\)</span> will be calculated for new inputs <span class="math notranslate nohighlight">\(x_*\)</span>:</p>
 <p>As we already know, the mean vector <span class="math notranslate nohighlight">\(\boldsymbol\mu\)</span> and the covariance matrix <span class="math notranslate nohighlight">\(K\)</span> can be calculated from the training dataset <span class="math notranslate nohighlight">\(T=\{x_t,y_t \}_{t=1}^N\)</span>. The targets of the training dataset <span class="math notranslate nohighlight">\(\mathbf{y} = [y_1, y_2, \ldots y_N]\)</span> constitute a sample of an <span class="math notranslate nohighlight">\(N-\)</span>dimensional Gaussian Distribution</p>
 <div class="math notranslate nohighlight">
 \[
@@ -868,12 +878,12 @@ k_n(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}} + \sigma_n^2 \delta(x
 \]</div>
 <p>is a sample of an <span class="math notranslate nohighlight">\((N+1)-\)</span>dimensional Gaussian Distribution with mean vector</p>
 <div class="math notranslate nohighlight" id="equation-meanext">
-<span class="eqno">(51)<a class="headerlink" href="#equation-meanext" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(52)<a class="headerlink" href="#equation-meanext" title="Permalink to this equation">¶</a></span>\[
 [\mu_1,\mu_2,\ldots, \mu_N,  \mu_*]= [m(x_1), m(x_2), \ldots ,m(x_N),m(x_*)]
 \]</div>
 <p>and covariance matrix</p>
 <div class="math notranslate nohighlight" id="equation-kext">
-<span class="eqno">(52)<a class="headerlink" href="#equation-kext" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(53)<a class="headerlink" href="#equation-kext" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \left(
 \begin{array}{cc}
 K &amp; K_*^T \\
@@ -888,7 +898,7 @@ K_*=[k(x_*,x_1), k(x_*,x_2), \ldots, k(x_*,x_N)] \quad \mbox{und} \quad K_{**}=k
 \]</div>
 <p>The corresponding notation is</p>
 <div class="math notranslate nohighlight" id="equation-sampleext">
-<span class="eqno">(53)<a class="headerlink" href="#equation-sampleext" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(54)<a class="headerlink" href="#equation-sampleext" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \left[ \begin{array}{c}
 \mathbf{y}\\
 y_*
@@ -923,20 +933,20 @@ y_*|\mathbf{y} \sim \mathcal{N} \left(\mu_* + K_*K^{-1}(\mathbf{y}-\boldsymbol\m
 <p class="admonition-title">GP Regression: predict target <span class="math notranslate nohighlight">\(y_*\)</span> at input <span class="math notranslate nohighlight">\(x_*\)</span></p>
 <p>The prediction <span class="math notranslate nohighlight">\(y_*\)</span> is the mean</p>
 <div class="math notranslate nohighlight" id="equation-estmean">
-<span class="eqno">(54)<a class="headerlink" href="#equation-estmean" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(55)<a class="headerlink" href="#equation-estmean" title="Permalink to this equation">¶</a></span>\[
 \overline{y_*}= \mu_* + K_*K^{-1}(\mathbf{y}-\boldsymbol\mu)
 \]</div>
 <p>The corresponding variance of the prediction is</p>
 <div class="math notranslate nohighlight" id="equation-estvar">
-<span class="eqno">(55)<a class="headerlink" href="#equation-estvar" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(56)<a class="headerlink" href="#equation-estvar" title="Permalink to this equation">¶</a></span>\[
 var(y_*)=diag\left( K_{**} - K_*K^{-1}K_*^T \right)
 \]</div>
 <p>and the standard-deviation of the prediction <span class="math notranslate nohighlight">\(y_*\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-eststd">
-<span class="eqno">(56)<a class="headerlink" href="#equation-eststd" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(57)<a class="headerlink" href="#equation-eststd" title="Permalink to this equation">¶</a></span>\[
 std(y_*)=\sqrt(var(y_*))
 \]</div>
-<p>Here <span class="math notranslate nohighlight">\(diag(X)\)</span> is the main-diagonal of matrix <span class="math notranslate nohighlight">\(X\)</span>. In equation <a class="reference internal" href="#equation-estvar">(55)</a> the argument of <span class="math notranslate nohighlight">\(diag()\)</span> is a single value, if the prediction <span class="math notranslate nohighlight">\(y_*\)</span> has been calculated only at a single input <span class="math notranslate nohighlight">\(x_*\)</span>, but it is a matrix <span class="math notranslate nohighlight">\(Z \times Z\)</span> matrix, if predictions are calculated at <span class="math notranslate nohighlight">\(Z\)</span> inputs.</p>
+<p>Here <span class="math notranslate nohighlight">\(diag(X)\)</span> is the main-diagonal of matrix <span class="math notranslate nohighlight">\(X\)</span>. In equation <a class="reference internal" href="#equation-estvar">(56)</a> the argument of <span class="math notranslate nohighlight">\(diag()\)</span> is a single value, if the prediction <span class="math notranslate nohighlight">\(y_*\)</span> has been calculated only at a single input <span class="math notranslate nohighlight">\(x_*\)</span>, but it is a matrix <span class="math notranslate nohighlight">\(Z \times Z\)</span> matrix, if predictions are calculated at <span class="math notranslate nohighlight">\(Z\)</span> inputs.</p>
 </div>
 <p>The standard deviations <span class="math notranslate nohighlight">\(std(y_*)\)</span> indicate, that the confidence that the true prediction lies within an interval <span class="math notranslate nohighlight">\(y_* \pm 2 \cdot std(y_*)\)</span> is <span class="math notranslate nohighlight">\(95\%\)</span>.</p>
 <div class="figure align-center" id="condprob">
@@ -945,14 +955,14 @@ std(y_*)=\sqrt(var(y_*))
 </div>
 <div class="admonition-gp-regression-predict-target-mathbf-y-y-1-y-2-ldots-y-z-at-many-inputs-mathbf-x-x-1-x-2-ldots-x-z admonition">
 <p class="admonition-title">GP Regression: predict target <span class="math notranslate nohighlight">\(\mathbf{y_*}=[y_{*1},y_{*2},\ldots, y_{*Z} ]\)</span> at many inputs <span class="math notranslate nohighlight">\(\mathbf{x_*}=[x_{*1},x_{*2},\ldots, x_{*Z} ]\)</span></p>
-<p>Calculation of <span class="math notranslate nohighlight">\(\boldsymbol\mu_*\)</span> (to be used in <a class="reference internal" href="#equation-meanext">(51)</a>):</p>
+<p>Calculation of <span class="math notranslate nohighlight">\(\boldsymbol\mu_*\)</span> (to be used in <a class="reference internal" href="#equation-meanext">(52)</a>):</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol\mu_*= [ \mu_{*1}, \ldots ,\mu_{*Z} ] \; = \; [m(x_{*1}), \ldots, m(x_{*Z})]
 \]</div>
-<p>Calculation of <span class="math notranslate nohighlight">\(K_*\)</span> (to be used in <a class="reference internal" href="#equation-kext">(52)</a>)</p>
+<p>Calculation of <span class="math notranslate nohighlight">\(K_*\)</span> (to be used in <a class="reference internal" href="#equation-kext">(53)</a>)</p>
 <div class="math notranslate nohighlight" id="equation-k">
-<span class="eqno">(58)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(59)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
 K_*= \left( 
 \begin{array}{ccc}
 k(x_{*1},x_1) &amp; \ldots &amp; k(x_{*1},x_N) \\
@@ -962,9 +972,9 @@ k(x_{*Z},x_1) &amp; \ldots &amp; k(x_{*Z},x_N) \\
 \end{array}
 \right)
 \end{split}\]</div>
-<p>Calculation of <span class="math notranslate nohighlight">\(K_{**}\)</span> (to be used in <a class="reference internal" href="#equation-kext">(52)</a>)</p>
+<p>Calculation of <span class="math notranslate nohighlight">\(K_{**}\)</span> (to be used in <a class="reference internal" href="#equation-kext">(53)</a>)</p>
 <div class="math notranslate nohighlight" id="equation-k">
-<span class="eqno">(58)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(59)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
 K_{**}= \left( 
 \begin{array}{ccc}
 k(x_{*1},x_{*1}) &amp; \ldots &amp; k(x_{*1},x_{*Z}) \\
@@ -974,7 +984,7 @@ k(x_{*Z},x_{*1}) &amp; \ldots &amp; k(x_{*Z},x_{*Z}) \\
 \end{array}
 \right)
 \end{split}\]</div>
-<p>Apply <span class="math notranslate nohighlight">\(\boldsymbol\mu_*\)</span>, <span class="math notranslate nohighlight">\(K_*\)</span> and <span class="math notranslate nohighlight">\(K_{**}\)</span> in equations <a class="reference internal" href="#equation-estmean">(54)</a> and <a class="reference internal" href="#equation-estvar">(55)</a> in order to compute all <span class="math notranslate nohighlight">\(Z\)</span> predictions in one step.</p>
+<p>Apply <span class="math notranslate nohighlight">\(\boldsymbol\mu_*\)</span>, <span class="math notranslate nohighlight">\(K_*\)</span> and <span class="math notranslate nohighlight">\(K_{**}\)</span> in equations <a class="reference internal" href="#equation-estmean">(55)</a> and <a class="reference internal" href="#equation-estvar">(56)</a> in order to compute all <span class="math notranslate nohighlight">\(Z\)</span> predictions in one step.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Example: GP Regression</p>
@@ -994,7 +1004,7 @@ m(x)=\frac{x^2}{4}
 k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
 \]</div>
 <p><strong>Solution:</strong></p>
-<p>In order to calculate equations <a class="reference internal" href="#equation-estmean">(54)</a> and <a class="reference internal" href="#equation-estvar">(55)</a>, first the required matrices must be determined:</p>
+<p>In order to calculate equations <a class="reference internal" href="#equation-estmean">(55)</a> and <a class="reference internal" href="#equation-estvar">(56)</a>, first the required matrices must be determined:</p>
 <ul>
 <li><p>Covariance Matrix of training data (equation <code class="xref eq docutils literal notranslate"><span class="pre">kk</span></code>):</p>
 <div class="math notranslate nohighlight">
@@ -1022,7 +1032,7 @@ k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
    \right)
    \end{split}\]</div>
 </li>
-<li><p>Covariance between training data inputs <span class="math notranslate nohighlight">\(x\)</span> and inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(58)</a>):</p>
+<li><p>Covariance between training data inputs <span class="math notranslate nohighlight">\(x\)</span> and inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(59)</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
    K_{*}=\left( 
@@ -1034,7 +1044,7 @@ k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
    \right)
    \end{split}\]</div>
 </li>
-<li><p>Covariance between different inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(58)</a>):</p></li>
+<li><p>Covariance between different inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(59)</a>):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1046,12 +1056,12 @@ k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
  \end{array}
  \right)
  \end{split}\]</div>
-<p>Applying equation <a class="reference internal" href="#equation-estmean">(54)</a> the estimation <span class="math notranslate nohighlight">\(\mathbf{y_*}=[y_{5},y_{6},y_{7} ]\)</span> at the inputs <span class="math notranslate nohighlight">\(\mathbf{x_*}=[5,6,7]\)</span> can be calculated to be:</p>
+<p>Applying equation <a class="reference internal" href="#equation-estmean">(55)</a> the estimation <span class="math notranslate nohighlight">\(\mathbf{y_*}=[y_{5},y_{6},y_{7} ]\)</span> at the inputs <span class="math notranslate nohighlight">\(\mathbf{x_*}=[5,6,7]\)</span> can be calculated to be:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{y_*}=[5.495, 8.781, 12.230]
 \]</div>
-<p>The standard deviation of the predictions is, according to equations <a class="reference internal" href="#equation-estvar">(55)</a> and <a class="reference internal" href="#equation-eststd">(56)</a></p>
+<p>The standard deviation of the predictions is, according to equations <a class="reference internal" href="#equation-estvar">(56)</a> and <a class="reference internal" href="#equation-eststd">(57)</a></p>
 <div class="math notranslate nohighlight">
 \[
 std(y_*)=[ 1.016 , 1.394 , 1.416 ]
@@ -1102,10 +1112,10 @@ L=\log\left(p(\mathbf{y}|\mathbf{x},\theta\right)
 <p>This yields a simplification of the following calculations.</p>
 <p>In the case of multivariate Gaussian distributed data this logartihmic probability is</p>
 <div class="math notranslate nohighlight" id="equation-loglike">
-<span class="eqno">(59)<a class="headerlink" href="#equation-loglike" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(60)<a class="headerlink" href="#equation-loglike" title="Permalink to this equation">¶</a></span>\[
 L=\log\left(p(\mathbf{y}|\mathbf{x},\theta\right)=-\frac{1}{2} \log|K| - \frac{1}{2}(\mathbf{y}-\boldsymbol\mu)^T K^{-1} (\mathbf{y}-\boldsymbol\mu) - \frac{N}{2} \log(2 \pi),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol\mu\)</span> is the mean vector according to equation <a class="reference internal" href="#equation-kmue">(48)</a>, <span class="math notranslate nohighlight">\(K\)</span> is the covariance matrix according to equation <code class="xref eq docutils literal notranslate"><span class="pre">KK</span></code> and <span class="math notranslate nohighlight">\(N\)</span> is the number of training-instances. The hyperparameters are part of <span class="math notranslate nohighlight">\(\boldsymbol\mu\)</span> and <span class="math notranslate nohighlight">\(K\)</span>. In order to find the hyperparameters, which maximize equation <a class="reference internal" href="#equation-loglike">(59)</a> one must apply a numeric optimisation algorithm. (see e.g. <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html">numeric optimisation with scipy</a>). The application of such a numeric optimisation process is demonstrated in the <a class="reference internal" href="GaussianProcessRegression.html"><span class="doc std std-doc">next section</span></a>. The numeric optimisation process, e.g. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cobyla.html">COBYLA</a>, requires</p>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol\mu\)</span> is the mean vector according to equation <a class="reference internal" href="#equation-kmue">(49)</a>, <span class="math notranslate nohighlight">\(K\)</span> is the covariance matrix according to equation <code class="xref eq docutils literal notranslate"><span class="pre">KK</span></code> and <span class="math notranslate nohighlight">\(N\)</span> is the number of training-instances. The hyperparameters are part of <span class="math notranslate nohighlight">\(\boldsymbol\mu\)</span> and <span class="math notranslate nohighlight">\(K\)</span>. In order to find the hyperparameters, which maximize equation <a class="reference internal" href="#equation-loglike">(60)</a> one must apply a numeric optimisation algorithm. (see e.g. <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html">numeric optimisation with scipy</a>). The application of such a numeric optimisation process is demonstrated in the <a class="reference internal" href="GaussianProcessRegression.html"><span class="doc std std-doc">next section</span></a>. The numeric optimisation process, e.g. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cobyla.html">COBYLA</a>, requires</p>
 <ul class="simple">
 <li><p>the function, which must be minimized<a class="footnote-reference brackets" href="#fn1" id="id2">1</a> in parametric form</p></li>
 <li><p>a list of start-values for all parameters</p></li>
@@ -1150,7 +1160,7 @@ k(x,x')= \sigma_{f}^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}} + e^{-2 \sin^2(\nu \p
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="fn1"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>In scipy all optimisation algorithms are implemented sucht that they find minimas. Maximisation of equation <a class="reference internal" href="#equation-loglike">(59)</a> is the same as minimisation of the negative of this function. I.e. one minimzes <span class="math notranslate nohighlight">\(-L\)</span>.</p>
+<dd><p>In scipy all optimisation algorithms are implemented sucht that they find minimas. Maximisation of equation <a class="reference internal" href="#equation-loglike">(60)</a> is the same as minimisation of the negative of this function. I.e. one minimzes <span class="math notranslate nohighlight">\(-L\)</span>.</p>
 </dd>
 </dl>
 </div>

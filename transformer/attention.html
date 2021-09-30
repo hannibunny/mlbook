@@ -723,7 +723,7 @@ v_i=W_q x_i
 \]</div>
 <p>Applying these three representations the outputs <span class="math notranslate nohighlight">\(y_i\)</span> are calculated as follows:</p>
 <div class="math notranslate nohighlight" id="equation-qkv1">
-<span class="eqno">(86)<a class="headerlink" href="#equation-qkv1" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(87)<a class="headerlink" href="#equation-qkv1" title="Permalink to this equation">¶</a></span>\[\begin{split}
 a'_{i,j} &amp; = &amp; q_i^T k_j \\
 a_{i,j} &amp; = &amp; softmax(a'_{i,j})  \\
 y_i &amp; = &amp; \sum_j a_{i,j} v_j  
@@ -733,7 +733,7 @@ y_i &amp; = &amp; \sum_j a_{i,j} v_j
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/selfAttention1qkv.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/selfAttention1qkv.png" src="https://maucher.home.hdm-stuttgart.de/Pics/selfAttention1qkv.png" style="width: 400pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Calculation of Self-Attention outputs <span class="math notranslate nohighlight">\(y_1\)</span> from queries, keys and values of the input-sequence</span><a class="headerlink" href="#selfattentionqkv" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the calculation, defined in <a class="reference internal" href="#equation-qkv1">(86)</a>, the problem is that the softmax-function is sensitive to large input values in the sense that for large inputs most of the softmax outputs are close to 0 and the corresponding gradients are also very small. The effect is very slow learning adaptations. In order to circumvent this, the inputs to the softmax are normalized:</p>
+<p>In the calculation, defined in <a class="reference internal" href="#equation-qkv1">(87)</a>, the problem is that the softmax-function is sensitive to large input values in the sense that for large inputs most of the softmax outputs are close to 0 and the corresponding gradients are also very small. The effect is very slow learning adaptations. In order to circumvent this, the inputs to the softmax are normalized:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 a'_{i,j} &amp; = &amp; \frac{q_i^T k_j}{\sqrt{d}} \\

@@ -48,14 +48,14 @@ In general, in order to find the value $x$, at which a function $f(x)$ is minima
 
 Here we have an error function $E(\Theta | T)$, which depends not only on a single variable, but on all weights $w_i \in \Theta$. Hence, we have to determine all partial derivatives
 
-\begin{eqnarray}
-\frac{\partial E}{\partial w_0} &=& \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -1 \nonumber \\
-\frac{\partial E}{\partial w_1} &=& \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{1,t} \nonumber \\
+$$
+\frac{\partial E}{\partial w_0} &=& \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -1 \\
+\frac{\partial E}{\partial w_1} &=& \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{1,t} \\
 \vdots							&=&	\vdots \nonumber \\
-\frac{\partial E}{\partial w_d} &=& \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{d,t} \nonumber 
-\end{eqnarray}
+\frac{\partial E}{\partial w_d} &=& \sum\limits_{t=1}^N \left[r_t-(w_0 + w_1 x_{1,t} + \cdots + w_d x_{d,t})\right] \cdot -x_{d,t}  
+$$
 
-and set them equal to zero. This yields a system of $d+1$ linear equations, which can be written a matrix-multiplication
+and set them equal to zero. This yields a system of $d+1$ linear equations, which can be written as a matrix-multiplication
 
 $$
 \mathbf{y}=\mathbf{A} \cdot \mathbf{w},
@@ -98,10 +98,11 @@ $$
 
 For an efficient solution one usually calulates $\mathbf{A}$ and $\mathbf{y}$ as follows:
 
-\begin{eqnarray}
+$$
 \mathbf{A} & = & \mathbf{D}^T \mathbf{D} \nonumber \\
 \mathbf{y} & = & \mathbf{D}^T \mathbf{r} \nonumber
-\end{eqnarray}
+$$
+
 
 where
 
@@ -114,7 +115,7 @@ $$
 1 & x_{1,N} & x_{2,N} & \cdots & x_{d,N} \\
 \end{array}
 \right]
-	\qquad \mbox{und} \qquad
+	\qquad \mbox{and} \qquad
 \mathbf{r} = \left[ \begin{array}{c}
 r_1 \\
 r_2 \\
@@ -148,13 +149,13 @@ can be learned. Note that this is still called **linear** regression, because we
 
  Assume that the input vectors are of dimension $d=2$, i.e. $\mathbf{x}=(x_1,x_2)$ and we like to learn a quadratic function. For this we can define a set of functions $\Phi_i$:  
 
-	\begin{eqnarray}
-	\Phi_1(\mathbf{x}) & = & x_1 \nonumber\\
-	\Phi_2(\mathbf{x}) & = & x_2 \nonumber\\
-	\Phi_3(\mathbf{x})& = & x_1 x_2 \nonumber\\
-	\Phi_5(\mathbf{x}) & = & x_1^2 \nonumber\\
-	\Phi_6(\mathbf{x}) &=& x_2^2 
-	\end{eqnarray} (ex1)
+ $$
+ \Phi_1(\mathbf{x}) & = & x_1 \\
+ \Phi_2(\mathbf{x}) & = & x_2 \\
+ \Phi_3(\mathbf{x})& = & x_1 x_2 \\
+ \Phi_5(\mathbf{x}) & = & x_1^2 \\
+ \Phi_6(\mathbf{x}) &=& x_2^2 
+ $$ (ex1)
 	
  The learning task is then to determine the weights $w_i$ of the polynomial
  
