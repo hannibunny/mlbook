@@ -32,8 +32,10 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['import numpy as np', 'import matplotlib.pyplot as plt', 'from scipy.stats import norm', '', 'import tensorflow.compat.v1.keras.backend as K # see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras']
-...
-['from keras.models import Model', 'from keras import backend as K', 'from keras import metrics', 'from keras.datasets import mnist', 'from keras import losses']
+vae.fit(x_train,
+        shuffle=True,
+        epochs=epochs,
+        batch_size=batch_size,
+        validation_data=(x_test, None))
 -------------------
 
