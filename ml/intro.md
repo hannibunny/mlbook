@@ -2,15 +2,19 @@
 
 * Author: Prof. Dr. Johannes Maucher
 * Email: maucher@hdm-stuttgart.de
-* Last Update: June, 25th 2021
+* Last Update: October, 4th 2021
 
 ## Goals of this Lecture
 
 **Goals of this lecture are:**
 
 
-* Understand Neural Networks, in particular Deep Neural Networks
-* Learn how to implement neural network- and deep neural network applications with [Keras](https://keras.io/).
+* Understand the basic concepts, procedures and categories of Machine Learning
+* For any task or problem: Know, which algorithm-type is suitable for this task
+* **Understand** conventional ML-algorithms
+* **Understand** Deep Learning
+* **Understand** the currently most important types of Deep Neural Networks   
+* **Implementations** are provided in order to support understanding
 
 <a id='data_mining'></a>
 ## Contents
