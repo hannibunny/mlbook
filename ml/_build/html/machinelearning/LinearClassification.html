@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Classification &#8212; Machine Learning Lecture</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Support Vector Machines (SVM)" href="svm.html" />
+    <link rel="prev" title="Example Linear Regression" href="heartRateRegression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Machine Learning Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gp.html">
+   Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/machinelearning/LinearClassification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/machinelearning/LinearClassification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-linear-classification">
+   Simple Linear Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binary-linear-classification-by-example">
+     Binary linear Classification by example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-ary-linear-classification-in-d-dimensional-space">
+     K-ary linear classification in
+     <span class="math notranslate nohighlight">
+      \(d\)
+     </span>
+     -dimensional space
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-logistic-regression">
+   Binary Logistic Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-ary-logistic-regression">
+   K-ary logistic Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-of-linear-classifiers">
+   Training of Linear Classifiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-linear-classification">
+   Generalized Linear Classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-remarks">
+   Final Remarks
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linear-classification">
+<h1>Linear Classification<a class="headerlink" href="#linear-classification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-linear-classification">
+<h2>Simple Linear Classification<a class="headerlink" href="#simple-linear-classification" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="binary-linear-classification-by-example">
+<h3>Binary linear Classification by example<a class="headerlink" href="#binary-linear-classification-by-example" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given labeled training-data T:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">T</span><span class="p">[:</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;ob&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span><span class="mi">0</span><span class="p">],</span><span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;xr&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/LinearClassification_5_0.png" src="../_images/LinearClassification_5_0.png" />
+</div>
+</div>
+<p>The task is to learn a discrimant</p>
+<div class="math notranslate nohighlight" id="equation-discriminant">
+<span class="eqno">(15)<a class="headerlink" href="#equation-discriminant" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2
+\]</div>
+<p>such that</p>
+<div class="math notranslate nohighlight" id="equation-disccond">
+<span class="eqno">(16)<a class="headerlink" href="#equation-disccond" title="Permalink to this equation">¶</a></span>\[\begin{split}
+g(\mathbf{x}) = \left\{ 
+\begin{array}{ll}
+&gt; 0 &amp; \mbox{ for all }\mathbf{x}_t \mbox{ with } r_t=1 \\
+&lt; 0 &amp; \mbox{ for all }\mathbf{x}_t \mbox{ with } r_t=0 \\
+\end{array}
+\right.
+\end{split}\]</div>
+<p>All datapoints <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which fulfill <span class="math notranslate nohighlight">\(g(\mathbf{x}) = 0\)</span> lie on the discriminator line. I.e.</p>
+<div class="math notranslate nohighlight" id="equation-linedef">
+<span class="eqno">(17)<a class="headerlink" href="#equation-linedef" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 =0
+\]</div>
+<p>is the <strong>implicit definiton of the discriminator line</strong>.</p>
+<p>This implicit line-definition can easily be transformed to the more common line definition of type <span class="math notranslate nohighlight">\(y=mx+b\)</span>.
+Equation <a class="reference internal" href="#equation-linedef">(17)</a> is rearranged such that <span class="math notranslate nohighlight">\(x_2\)</span> is isolated:</p>
+<div class="math notranslate nohighlight">
+\[
+x_2 = - \frac{w_1}{w_2} x_1 - \frac{w_0}{w_2}
+\]</div>
+<p>In the given example <span class="math notranslate nohighlight">\(x_2\)</span> corresponds to <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x_1\)</span> corresponds to <span class="math notranslate nohighlight">\(x\)</span>. Hence the slope of the line is</p>
+<div class="math notranslate nohighlight">
+\[
+m = - \frac{w_1}{w_2}
+\]</div>
+<p>and its intersection with the <span class="math notranslate nohighlight">\(x_2\)</span>-axis is:</p>
+<div class="math notranslate nohighlight">
+\[
+b= - \frac{w_0}{w_2}
+\]</div>
+<p>A line, which separates the training data, given in this example is:</p>
+<div class="math notranslate nohighlight">
+\[
+x_2= 5 - 1.43 x_1
+\]</div>
+<p>This line is visualized below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">T</span><span class="p">[:</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;ob&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span><span class="mi">0</span><span class="p">],</span><span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;xr&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.5</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/LinearClassification_9_0.png" src="../_images/LinearClassification_9_0.png" />
+</div>
+</div>
+<p>For this line we have a slope of</p>
+<div class="math notranslate nohighlight" id="equation-slope">
+<span class="eqno">(18)<a class="headerlink" href="#equation-slope" title="Permalink to this equation">¶</a></span>\[
+\frac{-5}{3.5} = -1.43 = - \frac{w_1}{w_2}
+\]</div>
+<p>and an intersection with the <span class="math notranslate nohighlight">\(x_2\)</span>-axis of</p>
+<div class="math notranslate nohighlight" id="equation-intercept">
+<span class="eqno">(19)<a class="headerlink" href="#equation-intercept" title="Permalink to this equation">¶</a></span>\[
+5= - \frac{w_0}{w_2}
+\]</div>
+<p>In order to determine the corresponding weights <span class="math notranslate nohighlight">\(w_i\)</span> one can freely choose one arbitrary <span class="math notranslate nohighlight">\(w_i\)</span>, e.g. we set</p>
+<div class="math notranslate nohighlight">
+\[
+w_2 =1.0
+\]</div>
+<p>Given this selection we can derive</p>
+<div class="math notranslate nohighlight">
+\[
+w_1 = 1.43
+\]</div>
+<p>from equation <a class="reference internal" href="#equation-slope">(18)</a> and</p>
+<div class="math notranslate nohighlight">
+\[
+w_0 = -5
+\]</div>
+<p>from equation <a class="reference internal" href="#equation-intercept">(19)</a>.</p>
+<p>We can check, if these weights actually fullfill the conditions, given in equation <a class="reference internal" href="#equation-disccond">(16)</a> for all elements of the given training data <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>First we evaluate <span class="math notranslate nohighlight">\(g(\mathbf{x})= w_0+w_1 x_1 + w_2 x_2\)</span> for the first 4 training elements, which have a label <span class="math notranslate nohighlight">\(r_t=0\)</span> and we obtain, that for all of them <span class="math notranslate nohighlight">\(g(\mathbf{x})&lt;0\)</span>.`</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">T</span><span class="p">[:</span><span class="mi">4</span><span class="p">,:</span><span class="mi">2</span><span class="p">]:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">+</span><span class="mf">1.43</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.5700000000000003
+-0.5700000000000003
+-1.1400000000000001
+-0.71
+</pre></div>
+</div>
+</div>
+</div>
+<p>The last 3 training samples have <span class="math notranslate nohighlight">\(r_t=1\)</span>, and as shown below for all of them we yield <span class="math notranslate nohighlight">\(g(\mathbf{x})&gt;0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">T</span><span class="p">[</span><span class="mi">4</span><span class="p">:,:</span><span class="mi">2</span><span class="p">]:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">+</span><span class="mf">1.43</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29000000000000004
+1.29
+1.7199999999999998
+0.8599999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now assume, that we have a new datapoint</p>
+<div class="math notranslate nohighlight">
+\[
+x=[2,2.5],
+\]</div>
+<p>which must be classified. For this we just insert this point into <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="o">=-</span><span class="mi">5</span><span class="o">+</span><span class="mf">1.43</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.14000000000000012
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we obtain <span class="math notranslate nohighlight">\(g(\mathbf{x})&lt;0\)</span>, this datapoint can be assigned to the class with label <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</div>
+<div class="section" id="k-ary-linear-classification-in-d-dimensional-space">
+<h3>K-ary linear classification in <span class="math notranslate nohighlight">\(d\)</span>-dimensional space<a class="headerlink" href="#k-ary-linear-classification-in-d-dimensional-space" title="Permalink to this headline">¶</a></h3>
+<p>In the example above binary linear classification of 2-dimensional input data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> has been demonstrated. In the <strong>general case of <span class="math notranslate nohighlight">\(d\)</span>-dimensional input data</strong>, the discriminator equation (<a class="reference internal" href="#equation-discriminant">(15)</a> for the 2-dimensional case) is:</p>
+<div class="math notranslate nohighlight" id="equation-discd">
+<span class="eqno">(20)<a class="headerlink" href="#equation-discd" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d
+\]</div>
+<p>The discriminator conditions remain the same as in equation <code class="xref eq docutils literal notranslate"><span class="pre">disccont</span></code> and the equation</p>
+<div class="math notranslate nohighlight" id="equation-discplane">
+<span class="eqno">(21)<a class="headerlink" href="#equation-discplane" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d = 0
+\]</div>
+<p>now defines a <span class="math notranslate nohighlight">\(d-1\)</span> dimensional hyperplane, which discriminates the classes in the <span class="math notranslate nohighlight">\(d\)</span>-dimensional space.</p>
+<p>The generalisation from binary classification to <strong><span class="math notranslate nohighlight">\(K\)</span>-ary classification</strong> is realized by applying for each of the <span class="math notranslate nohighlight">\(K\)</span> classes one individual equation of type <a class="reference internal" href="#equation-discd">(20)</a>:</p>
+<div class="math notranslate nohighlight" id="equation-kdisc">
+<span class="eqno">(22)<a class="headerlink" href="#equation-kdisc" title="Permalink to this equation">¶</a></span>\[\begin{split}
+g_1(\mathbf{x})  =  w_{1,0} + w_{1,1} x_1 + w_{1,2} x_2 + \cdots + w_{1,d} x_d \\
+g_2(\mathbf{x})  =  w_{2,0} + w_{2,1} x_1 + w_{2,2} x_2 + \cdots + w_{2,d} x_d \\
+\vdots  \\
+g_K(\mathbf{x})  =  w_{K,0} + w_{K,1} x_1 + w_{K,2} x_2 + \cdots + w_{K,d} x_d \\
+\end{split}\]</div>
+<p>In this case <span class="math notranslate nohighlight">\(K \cdot (d+1)\)</span> weights <span class="math notranslate nohighlight">\(w_{i,j}\)</span> must be learned. The class labels are <span class="math notranslate nohighlight">\(r_p \in [ 1,2,\ldots K ]\)</span>. The weights are learned such that for each training element <span class="math notranslate nohighlight">\((\mathbf{x}_p,r_p)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+r_p= \mbox{ argmax}_{j} \; g_j(\mathbf{x}_p),
+\]</div>
+<p>i.e. if the current target label is <span class="math notranslate nohighlight">\(r_p=k\)</span>, then the output of <span class="math notranslate nohighlight">\(g_k(\mathbf{x}_p)\)</span> must be larger than the output of all other <span class="math notranslate nohighlight">\(K-1\)</span> <span class="math notranslate nohighlight">\(g_i(\mathbf{x}_p)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="binary-logistic-regression">
+<h2>Binary Logistic Regression<a class="headerlink" href="#binary-logistic-regression" title="Permalink to this headline">¶</a></h2>
+<p>Despite the name Logistic Regression is a binary linear classification as introduced above. The only difference is that in Logistic Regression the output of the discriminator <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> is passed to a sigmoid-function. In general, the sigmoid function is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+sigmoid(x)=\frac{1}{1+e^{-x}}.
+\]</div>
+<p>The graph of this function is depicted below. As can be seen, the functions value range is <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;sigmoid(x)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;sigmoid function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/LinearClassification_22_0.png" src="../_images/LinearClassification_22_0.png" />
+</div>
+</div>
+<p>I.e. the output of the Logistic Regression is:</p>
+<div class="math notranslate nohighlight">
+\[
+y=sigmoid(g(\mathbf{x}))=\frac{1}{1+e^{-g(\mathbf{x})}}.
+\]</div>
+<p>Note that this post-processing by the sigmoid-function has no influcence on the class-boundary. The discriminator line in the 2-dimensional space (in general: the <span class="math notranslate nohighlight">\(d-1\)</span>-dimensional discriminator hyperplane in <span class="math notranslate nohighlight">\(d\)</span>-dimensional space) is still defined by the weights <span class="math notranslate nohighlight">\(w_i\)</span>, only. The application of the sigmoid function just scales the output values of <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> into the range <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<p>Due to this rescaling the classification criteria must be adapted as follows:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(y=sigmoid(g(\mathbf{x})) &gt; 0.5\)</span> then assign class-label <span class="math notranslate nohighlight">\(1\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(y=sigmoid(g(\mathbf{x}))  &lt; 0.5\)</span> then assign class-label <span class="math notranslate nohighlight">\(0\)</span></p></li>
+</ul>
+<p>Moreover:</p>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(y\)</span> is close to <span class="math notranslate nohighlight">\(0\)</span>, then we have a<strong>high confidence</strong> for the decision for class-label 0.</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(y\)</span> is close to <span class="math notranslate nohighlight">\(1\)</span>, then we have a <strong>high confidence</strong> for the decision for class-label 1.</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(y\)</span> approximates <span class="math notranslate nohighlight">\(0.5\)</span> from below, then we have a <strong>low confidence</strong> for the decision for class-label 0.</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(y\)</span> approximates <span class="math notranslate nohighlight">\(0.5\)</span> from above, then we have a <strong>low confidence</strong> for the decision for class-label 1.</p></li>
+</ul>
+<p>This additional confidence-information, provided by Logistic Regression, constitutes a often required advantage with respect to simple linear regression. If data in both classes is Gaussian distributed with the same covariance-matrix. The the ouput value <span class="math notranslate nohighlight">\(y\)</span> is actually the A-posteriori <span class="math notranslate nohighlight">\(P(C_1|x)\)</span> for class 1.</p>
+</div>
+<div class="section" id="k-ary-logistic-regression">
+<h2>K-ary logistic Regression<a class="headerlink" href="#k-ary-logistic-regression" title="Permalink to this headline">¶</a></h2>
+<p>K-ary logisitic regression (or MaxEnt-Classification or Softmax-Classification) is the extension of Logistic Regression to the case where <span class="math notranslate nohighlight">\(K&gt;2\)</span> classes must be distinguished. As in Logistic Regression now the outputs of the discriminator functions <span class="math notranslate nohighlight">\(g_i(\mathbf{x})\)</span></p>
+<ul class="simple">
+<li><p>are post-processed by a function, whose output-value range is <span class="math notranslate nohighlight">\([0,1]\)</span></p></li>
+<li><p>are estimates of the a-posteriori <span class="math notranslate nohighlight">\(P(C_i|\mathbf{x})\)</span>.</p></li>
+</ul>
+<p>The applied post-processing function is the softmax-function. It calculates the classifier outputs as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i =\frac{e^{g_i(\mathbf{x})}}{\sum_{j=1}^K e^{g_j(\mathbf{x})}} \quad \forall i \in [1,\ldots,K].
+\]</div>
+</div>
+<div class="section" id="training-of-linear-classifiers">
+<h2>Training of Linear Classifiers<a class="headerlink" href="#training-of-linear-classifiers" title="Permalink to this headline">¶</a></h2>
+<p>Classifiers are usually trained by minimzing an error function. For binary classification the most common error function is <strong>binary cross-entropy</strong>, which is defined as follows</p>
+<div class="math notranslate nohighlight">
+\[
+E(T,\Theta)=  \sum\limits_{t=1}^N r_{t} \log y_{t}+(1-r_{t}) \log(1-y_{t}),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r_t\)</span> is the target class-label of the <span class="math notranslate nohighlight">\(t.th\)</span> training-element and <span class="math notranslate nohighlight">\(y_t\)</span> is the output for the input <span class="math notranslate nohighlight">\(x_t\)</span>.</p>
+<p>For K-ary classification the common error function is <strong>cross-entropy</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+E(T,\Theta)= \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}).
+\]</div>
+<p>There exists different methods to adapt the weights <span class="math notranslate nohighlight">\(w_i\)</span> such that the error-function is minimized. The most popular approaches are <strong>Coordinate Descent</strong>, <strong>Gradient Descent</strong> or <strong>Stochastic Gradient Descent (SGD)</strong>. These approaches are described in the section on <a class="reference internal" href="../neuralnetworks/01NeuralNets.html"><span class="doc std std-doc">conventional neural networks</span></a>. In this section it is also shown how linear classifiers can be realized by Single Layer Perceptrons (SLP).</p>
+<p>As already described in section <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a>, <strong>Regularisation</strong> terms can be added to the error function in order to reduce overfitting (see also <a class="reference external" href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">Logistic Regression in scikit-learn</a>).</p>
+</div>
+<div class="section" id="generalized-linear-classification">
+<h2>Generalized Linear Classification<a class="headerlink" href="#generalized-linear-classification" title="Permalink to this headline">¶</a></h2>
+<p>With <strong>Linear Classification</strong> one can not only learn linear discriminators <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-discriminant">(15)</a>. Instead the same trick as already introduced in section <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a> can be applied to learn nonlinear discriminator surfaces: Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Classifier</strong> with discriminator(s) of type</p>
+<div class="math notranslate nohighlight" id="equation-genlin">
+<span class="eqno">(23)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">¶</a></span>\[
+g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + \Phi_2(\mathbf{x}) + \cdots + \Phi_z(\mathbf{x})
+\]</div>
+<p>can be learned. This type of generalization can be applied to binary- and non-binary- and to simple and logistic classification.</p>
+</div>
+<div class="section" id="final-remarks">
+<h2>Final Remarks<a class="headerlink" href="#final-remarks" title="Permalink to this headline">¶</a></h2>
+<p>In contrast to Bayesian Classification, as introduced in <a class="reference internal" href="parametricClassification1D.html"><span class="doc std std-doc">section Bayes- and Naive Bayes Classification</span></a>, in Linear Classification we do not learn class-specific probability distributions, but class boundaries. In general all classifiers, which learn a class-specific probability distributions are called <strong>Generative Models</strong>, because these distributions can be applied to generate new data of this type. On the other side, methods which directly learn discriminators, are called <strong>Discriminative Models</strong>. For Generative Models one must assume a certain type of data-distribution (e.g. Gaussian), whereas in Discriminative Models one must assume a certain type of class-boundary. For real-world data Discriminative Models are more robust, than Generative Models, because the assumption of a class-boundary type is usually more realistic than the assumption of a data distribution.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./machinelearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="heartRateRegression.html" title="previous page">Example Linear Regression</a>
+    <a class='right-next' id="next-link" href="svm.html" title="next page">Support Vector Machines (SVM)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

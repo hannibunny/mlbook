@@ -12,6 +12,7 @@ parts:
   - file: machinelearning/parametricClassification1D
   - file: machinelearning/LinReg
   - file: machinelearning/heartRateRegression
+  - file: machinelearning/LinearClassification
   - file: machinelearning/svm
   - file: machinelearning/gp
   - file: machinelearning/GaussianProcessRegression
