@@ -33,8 +33,9 @@
 1. [K-Nearest Neighbours](./machinelearning/knn.ipynb)
 2. [Bayes Classification](./machinelearning/parametricClassification1D.ipynb)
 3. [Linear Regression](./machinelearning/LinReg.md)
-4. [Support Vector Machines (SVM)](./machinelearning/svm.md)
-5. [Gaussian Process](./machinelearning/gp.md)
+4. [Linear Classification](./machinelearning/LinearClassification.ipynb)
+5. [Support Vector Machines (SVM)](./machinelearning/svm.md)
+6. [Gaussian Process](./machinelearning/gp.md)
     
     
 ### Neural Networks and Deep Neural Networks
