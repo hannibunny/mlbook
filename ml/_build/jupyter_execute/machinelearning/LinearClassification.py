@@ -184,7 +184,7 @@ print(output)
 # g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d
 # $$ (discd)
 # 
-# The discriminator conditions remain the same as in equation {eq}`disccont` and the equation 
+# The discriminator conditions remain the same as in equation {eq}`disscond` and the equation 
 # 
 # $$
 # g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d = 0
