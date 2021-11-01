@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Example Q-Learning" href="QLearnFrozenLake.html" />
+    <link rel="next" title="Deep Reinforcement Learning" href="DQN.html" />
     <link rel="prev" title="Generative Adversarial Nets (GAN)" href="../gan/DCGAN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -220,6 +220,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DQN.html">
+   Deep Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
@@ -1066,7 +1071,12 @@ S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T
 <span class="eqno">(92)<a class="headerlink" href="#equation-mcvalueupdate" title="Permalink to this equation">¶</a></span>\[
 V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(G_t\)</span> is the actual return following time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span> is the <em>step-size</em> or <em>learning-rate</em>. A learning-rate of <span class="math notranslate nohighlight">\(\alpha=0\)</span> yields no learning (adaptation) at all, whereas <span class="math notranslate nohighlight">\(\alpha=1\)</span> means that the old values are not updated, but replaced. In deterministic environments <span class="math notranslate nohighlight">\(\alpha=1\)</span> is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. <span class="math notranslate nohighlight">\(\alpha=0.1\)</span> in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.<span class="math notranslate nohighlight">\(\alpha=0.1/(1+N(s))\)</span>, where <span class="math notranslate nohighlight">\(N(s)\)</span> is the number of visits to state <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(G_t\)</span> is the actual return following time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span> is the <em>step-size</em> or <em>learning-rate</em>. A learning-rate of <span class="math notranslate nohighlight">\(\alpha=0\)</span> yields no learning (adaptation) at all, whereas <span class="math notranslate nohighlight">\(\alpha=1\)</span> means that the old values are not updated, but replaced. In deterministic environments <span class="math notranslate nohighlight">\(\alpha=1\)</span> is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. <span class="math notranslate nohighlight">\(\alpha=0.1\)</span> in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha=0.1/(1+N(s)),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(N(s)\)</span> is the number of visits to state <span class="math notranslate nohighlight">\(s\)</span>.</p>
 <p>In contrast to MC, <strong>TD methods need not to wait until the end of the episode to update the values.</strong> In TD-methods at time <span class="math notranslate nohighlight">\(t\)</span></p>
 <ol class="simple">
 <li><p>the agent in state <span class="math notranslate nohighlight">\(S_t\)</span> selects and executes an action <span class="math notranslate nohighlight">\(a \in \mathcal{A}(S_t)\)</span></p></li>
@@ -1113,7 +1123,7 @@ until <span class="math notranslate nohighlight">\(S\)</span> is terminal state<
 \]</div>
 <p>It measures the difference between the estimate <span class="math notranslate nohighlight">\(V(S_t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> and the better estimate <span class="math notranslate nohighlight">\(R_{t+1} + \gamma V(S_{t+1})\)</span>, which can be calculated after perceiving <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.</p>
 <p>It is proven, that the <a class="reference internal" href="#tabtd0"><span class="std std-ref">TD(0) policy evaluation algorithm</span></a> converges for any policy to <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, if the step-size parameter <span class="math notranslate nohighlight">\(\alpha\)</span> decreases. Moreover, in practice, TD-methods usually converge faster than MC methods.</p>
-<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step for all time-steps of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(93)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
+<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(93)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
 of the step-size parameter, <span class="math notranslate nohighlight">\(\alpha\)</span>, as long as <span class="math notranslate nohighlight">\(\alpha\)</span> is chosen to be sufficiently small (<span id="id13">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span>).</p>
 <p>Up to now, for TD-learning, we only considered the <strong>prediction problem</strong>, in particular the calculation of the value-state function. Now, we turn to the <strong>control problem</strong>, i.e. the determination of an optimal policy.</p>
 <div class="section" id="sarsa">
@@ -1132,11 +1142,11 @@ Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) - Q(
 <li><p>Loop for each episode:</p>
 <ul>
 <li><p>Initialize S</p></li>
-<li><p>Choose <span class="math notranslate nohighlight">\(A\)</span> from <span class="math notranslate nohighlight">\(S\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. \epsilon-greedy)</p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\(A\)</span> from <span class="math notranslate nohighlight">\(S\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy)</p></li>
 <li><p>Loop for each step within episode:</p>
 <ul class="simple">
 <li><p>Execute action <span class="math notranslate nohighlight">\(A\)</span> and observe reward <span class="math notranslate nohighlight">\(R\)</span> and successor state <span class="math notranslate nohighlight">\(S'\)</span></p></li>
-<li><p>Choose <span class="math notranslate nohighlight">\(A'\)</span> from <span class="math notranslate nohighlight">\(S'\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. \epsilon-greedy)</p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\(A'\)</span> from <span class="math notranslate nohighlight">\(S'\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy)</p></li>
 <li><p>Set</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -1171,7 +1181,7 @@ Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma \max\limits_a Q(S_{t+1}
 <li><p>Initialize S</p></li>
 <li><p>Loop for each step within episode:</p>
 <ul class="simple">
-<li><p>Choose <span class="math notranslate nohighlight">\(A\)</span> from <span class="math notranslate nohighlight">\(S\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. \epsilon-greedy)</p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\(A\)</span> from <span class="math notranslate nohighlight">\(S\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy)</p></li>
 <li><p>Execute action <span class="math notranslate nohighlight">\(A\)</span> and observe reward <span class="math notranslate nohighlight">\(R\)</span> and successor state <span class="math notranslate nohighlight">\(S'\)</span></p></li>
 <li><p>Set</p></li>
 </ul>
@@ -1244,7 +1254,7 @@ Image source: <span id="id16">[<a class="reference internal" href="../referenceS
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page">Generative Adversarial Nets (GAN)</a>
-    <a class='right-next' id="next-link" href="QLearnFrozenLake.html" title="next page">Example Q-Learning</a>
+    <a class='right-next' id="next-link" href="DQN.html" title="next page">Deep Reinforcement Learning</a>
 
         </div>
         

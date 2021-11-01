@@ -522,7 +522,7 @@ In this function, the case
 The goal of SVR training is not to find the $g(\mathbf{x}|\Theta)$, which minimizes any variant of equation {eq}`elasticnet2`. Instead a $g(\mathbf{x}|\Theta)$ has to be determined, for which the relation
 
 $$
-g(\mathbf{x}_t|\Theta) < \epsilon
+\mid g(\mathbf{x}_t|\Theta) - r_t \mid < \epsilon
 $$ (epscond)
 
 is true for all $(\mathbf{x}_t,r_t) \in T$. This means that all training instances must be located within a region of radius $\epsilon$ around $g(\mathbf{x}|\Theta)$. This region will be called the **$\epsilon$-tube** of $g(\mathbf{x}|\Theta)$. The radius $\epsilon$ of the tube is a hyperparameter, which is configured by the user.
@@ -650,7 +650,7 @@ $$
 yields
 
 $$
-g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) k(\mathbf{x},\mathbf{x}_p)+w_0
+g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) K(\mathbf{x},\mathbf{x}_p)+w_0
 $$ (svrpartw)
 
 The training inputs $\mathbf{x}_p$ with $\alpha_p \neq 0 \vee \widehat{\alpha}_p \neq 0$ are the support vectors. Only the support vectors determine the learned function. It can be shown, that all training instances $(\mathbf{x}_t,r_t)$, which lie
@@ -666,7 +666,7 @@ I.e. the support vectors are all input-vectors, which do not lie within the $\ep
 In equation {eq}`svrpartw` the weight $w_0$ is still unknown. It can be calculated for example by choosing a training instance $(\mathbf{x}_t,r_t)$ for which the corresponding Lagrange coefficient fulfills $0 < \alpha_p < C$. This training instance lies on the upper boundary of the $\epsilon$-tube, i.e. $\zeta=0$ and therefore
 
 $$
-w_0 = r_p - \epsilon - \sum\limits_{m=1}^N (\alpha_m-\widehat{\alpha}_m) k(\mathbf{x_p},\mathbf{x}_m).
+w_0 = r_p - \epsilon - \sum\limits_{m=1}^N (\alpha_m-\widehat{\alpha}_m) K(\mathbf{x_p},\mathbf{x}_m).
 $$
 
 ### Influence of the hyperparameters

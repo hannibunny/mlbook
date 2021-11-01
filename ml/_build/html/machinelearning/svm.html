@@ -223,6 +223,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../rl/QLearnFrozenLake.html">
    Example Q-Learning
   </a>
@@ -823,7 +828,7 @@ K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x
 <p>The goal of SVR training is not to find the <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>, which minimizes any variant of equation <a class="reference internal" href="#equation-elasticnet2">(43)</a>. Instead a <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> has to be determined, for which the relation</p>
 <div class="math notranslate nohighlight" id="equation-epscond">
 <span class="eqno">(44)<a class="headerlink" href="#equation-epscond" title="Permalink to this equation">¶</a></span>\[
-g(\mathbf{x}_t|\Theta) &lt; \epsilon
+\mid g(\mathbf{x}_t|\Theta) - r_t \mid &lt; \epsilon
 \]</div>
 <p>is true for all <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t) \in T\)</span>. This means that all training instances must be located within a region of radius <span class="math notranslate nohighlight">\(\epsilon\)</span> around <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>. This region will be called the <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-tube</strong> of <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>. The radius <span class="math notranslate nohighlight">\(\epsilon\)</span> of the tube is a hyperparameter, which is configured by the user.</p>
 <p>In the image below a <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>, which fulfills the condition that all training instances are located within it’s <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube is shown.</p>
@@ -910,7 +915,7 @@ g(\mathbf{x})= \mathbf{w}^T \Phi(\mathbf{x}) +w_0
 <p>yields</p>
 <div class="math notranslate nohighlight" id="equation-svrpartw">
 <span class="eqno">(51)<a class="headerlink" href="#equation-svrpartw" title="Permalink to this equation">¶</a></span>\[
-g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) k(\mathbf{x},\mathbf{x}_p)+w_0
+g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) K(\mathbf{x},\mathbf{x}_p)+w_0
 \]</div>
 <p>The training inputs <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> with <span class="math notranslate nohighlight">\(\alpha_p \neq 0 \vee \widehat{\alpha}_p \neq 0\)</span> are the support vectors. Only the support vectors determine the learned function. It can be shown, that all training instances <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t)\)</span>, which lie</p>
 <ul class="simple">
@@ -924,7 +929,7 @@ g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) k(\mathbf{x},\m
 <p>In equation <a class="reference internal" href="#equation-svrpartw">(51)</a> the weight <span class="math notranslate nohighlight">\(w_0\)</span> is still unknown. It can be calculated for example by choosing a training instance <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t)\)</span> for which the corresponding Lagrange coefficient fulfills <span class="math notranslate nohighlight">\(0 &lt; \alpha_p &lt; C\)</span>. This training instance lies on the upper boundary of the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube, i.e. <span class="math notranslate nohighlight">\(\zeta=0\)</span> and therefore</p>
 <div class="math notranslate nohighlight">
 \[
-w_0 = r_p - \epsilon - \sum\limits_{m=1}^N (\alpha_m-\widehat{\alpha}_m) k(\mathbf{x_p},\mathbf{x}_m).
+w_0 = r_p - \epsilon - \sum\limits_{m=1}^N (\alpha_m-\widehat{\alpha}_m) K(\mathbf{x_p},\mathbf{x}_m).
 \]</div>
 </div>
 <div class="section" id="influence-of-the-hyperparameters">
