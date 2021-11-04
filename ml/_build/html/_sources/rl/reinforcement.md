@@ -773,9 +773,6 @@ Image source: {cite}`ertel09`
 
 ```
 
-## Deep Reinforcement Learning
-
-UNDER CONSTRUCTION
 
 ## References
 

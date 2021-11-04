@@ -349,22 +349,22 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Deep Reinforcement Learning
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-q-network-dqn">
+   Deep Q-Network (DQN)
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deep-q-network-dqn-under-construction">
-     Deep Q-Network (DQN) - Under Construction
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dqn-architecture-and-preprocessing">
+     DQN Architecture and Preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dqn-learning">
+     DQN Learning
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#under-constuction">
-   Under Constuction !!!
-  </a>
  </li>
 </ul>
 
@@ -387,10 +387,10 @@
 <p>The problem, that a multiple traversion of all state action pairs is not feasible, is solved by learning a regression model, i.e. a function, which maps Q-Values to each possible state-action pair. In this approach <strong>Reinforcement-Learning and Supervised Learning are combined</strong> in the way that e.g. Q-Learning is applied to provide <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values for a limited set of state-action pairs. Then a supervised ML-algorithm, e.g. a MLP, is applied to learn a function</p>
 <div class="math notranslate nohighlight">
 \[
-f: (S,A) \rightarrow Q(S,a).
+f: (S,A) \rightarrow Q(S,A).
 \]</div>
-<div class="section" id="deep-q-network-dqn-under-construction">
-<h2>Deep Q-Network (DQN) - Under Construction<a class="headerlink" href="#deep-q-network-dqn-under-construction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="deep-q-network-dqn">
+<h2>Deep Q-Network (DQN)<a class="headerlink" href="#deep-q-network-dqn" title="Permalink to this headline">¶</a></h2>
 <p>Before the invention of Deep Q-Network (DQN) in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span>, either linear regression models or non-linear conventional neural networks (MLPs) have been applied for learning a good approximation. Training linear models turned out to be stabel, in the sense of convergence. However, they often lacked sufficient accuracy. On the other hand non-linear models turned out to have weak convergence behaviour. This is because ML-algorithms usually assume <strong>i.i.d</strong> (independent and identical distributed data). However, data provided by the reinforcement-algorithm is sequentially strongly correlated. Moreover, the distribution of data may change abruptly, because a relatively small adaption of the <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values may yield a totally different policy.</p>
 <p>The publication <em>Human-level control through deep reinforcement learning</em> (<span id="id2">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span>) constituted a breakthrough in the combination of Reinforcement Learning and Deep Neural Networks. For some retro Atari computer games such as <em>Pong</em>, <em>Breakout</em>, <em>Seaquest</em> or <em>Space Invaders</em> , the authors managed to learn a good non-linear <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function with a Convolutional Neural Network (CNN).</p>
 <p>In their experiments, the authors applied their DQN to a range of <em>Atari 2600</em> games implemented in the <em>Arcade Learning Environment</em><a class="footnote-reference brackets" href="#f1" id="id3">1</a>. <em>Atari 2600</em> is a challenging RL testbed that presents agents with a high dimensional visual input: <span class="math notranslate nohighlight">\(210 \times 160\)</span> RGB video at 60Hz. The only information provided to the DQN has been the screencasts of the computer games.</p>
@@ -399,30 +399,91 @@ f: (S,A) \rightarrow Q(S,a).
 <p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Screenshots of some classical Atari computer games, for which DQN has been applied to learn a good <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function.</span><a class="headerlink" href="#atariscreenshots" title="Permalink to this image">¶</a></p>
 </div>
 <p>In this subsection the concept of DQN, as developed in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span>, will be described.</p>
+<div class="section" id="dqn-architecture-and-preprocessing">
+<h3>DQN Architecture and Preprocessing<a class="headerlink" href="#dqn-architecture-and-preprocessing" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-center" id="statetoactionvalue">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" style="width: 600pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Predicting a Q-value for each state-action pair at the input of a network is conceptionally the same as predicting for a given input state a Q-value for each possible action. Image Source: <a class="reference external" href="http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf">http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf</a></span><a class="headerlink" href="#statetoactionvalue" title="Permalink to this image">¶</a></p>
 </div>
-<p>The input to the CNN represents the current game state. The output of the DQN has as much elements as the maximal number of actions available. Atari classical games have been controlled by a joystick, which provides 15 different postions. For each of these 15 actions one Q-value is estimated for the current input state.</p>
-<p>The input to the network represents the current game state. In general a <em>state</em> should always contain as much as possible relevant information. In computer games <strong>movement</strong> is obviously a relevant information. Since movement can not be obtained by observing only a single frame of the screencast, four successive frames are applied to the input of the network. However, these frames are not directly passed to the first layer of the CNN, instead a <strong>preprocessed version of 4 successive frames of the screencast</strong> are used.</p>
+<p>The input to the CNN represents the current game state. The output of the DQN has as much elements as the maximal number of actions available. Atari classical games have been controlled by a joystick, which provides 18 different postions. For each of these 18 actions one Q-value is estimated for the current input state.</p>
 <div class="figure align-center" id="dqnarchitecture">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" style="width: 600pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Architectur of the DQN CNN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnarchitecture" title="Permalink to this image">¶</a></p>
 </div>
+<p>The input to the network represents the current game state. In general a <em>state</em> should always contain as much as relevant information as possible. In computer games <strong>movement</strong> is obviously a relevant information. Since movement can not be obtained by observing only a single frame of the screencast, four successive frames are applied to the input of the network. However, these frames are not directly passed to the first layer of the CNN, instead a <strong>preprocessed version of 4 successive frames of the screencast</strong> are used.</p>
+<p>The preprocessing function takes <span class="math notranslate nohighlight">\(m=4\)</span> successive RGB-frames of size <span class="math notranslate nohighlight">\(210 \times 160\)</span> from the <em>Atari 2600</em> emulator. Next, for any pair of 2 successive frames at each pixel-position the maximum value within this pair of frames is determined. The smaller value is ignored in the sequel. This maximum-operation is necessary, because in the videos some objects are represented only in the even frames, others only in the odd frames. The RGB-frames are then transformed to <em>YCrCb</em> and only the luminance channel <em>Y</em> is regarded in the sequel, whereas the two chromatic channels are ignored. The <em>Y</em>-channel frames are then rescaled to a size of <span class="math notranslate nohighlight">\(84 \times 84\)</span>. The resulting tensor of size <span class="math notranslate nohighlight">\(84 \times 84 \times 3\)</span> constitutes the input to the first layer of the CNN. The details of the CNN, containing 3 convolutional and 2 fully connected layers, are given in the table below.</p>
 <div class="figure align-center" id="dqnparams">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" style="width: 400pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Hyperparameters of the DQN CNN. Image Source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnparams" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+<div class="section" id="dqn-learning">
+<h3>DQN Learning<a class="headerlink" href="#dqn-learning" title="Permalink to this headline">¶</a></h3>
+<p>As already mentioned above, the idea of the Deep Q-Network in general is to</p>
+<ol class="simple">
+<li><p>Apply an emulator, which models the environment. The emulator provides for each state <span class="math notranslate nohighlight">\(s\)</span> the set of possible actions <span class="math notranslate nohighlight">\(A(s)\)</span>. Moreover, the emulator allows to select for the given state <span class="math notranslate nohighlight">\(s\)</span> a corresponding action <span class="math notranslate nohighlight">\(a \in A(s)\)</span> and the possibility to execute this action. For action-selection e.g. the <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy policy an be applied (see <a class="reference internal" href="reinforcement.html"><span class="doc std std-doc">previous page</span></a>). After the execution of <span class="math notranslate nohighlight">\(a\)</span> the emulator returns the obtained reward <span class="math notranslate nohighlight">\(r\)</span> and the new state <span class="math notranslate nohighlight">\(s'\)</span>. Starting from an arbitrary initial state one can thus select a set <span class="math notranslate nohighlight">\(D\)</span> of quadruples <span class="math notranslate nohighlight">\((s,a,r,s')\)</span>. The quadruple set <strong><span class="math notranslate nohighlight">\(D\)</span> is called Replay Memory</strong>.</p></li>
+<li><p>Apply the quadruple-set <span class="math notranslate nohighlight">\(D\)</span> as training-data for the deep neural network, which learns a function <span class="math notranslate nohighlight">\(f: (S,A) \rightarrow Q(S,A)\)</span>.</p></li>
+</ol>
+<p>During training, the weights <span class="math notranslate nohighlight">\(\Theta\)</span> of the DQN are iteratively adapted such that a Loss-Function is minimzed (this learning-approach is called <em>(Stochastic) Gradient Descent</em>). The loss-function in general somehow measures the <strong>difference between the current network output and the corresponding target value</strong>. For the given DQN the <strong>network outputs</strong> are <span class="math notranslate nohighlight">\(Q(s,a,\Theta)\)</span>-values for a given quadruple <span class="math notranslate nohighlight">\((s,a,r,s')\)</span> at the input with the current network-weights <span class="math notranslate nohighlight">\(\Theta\)</span>. <strong>But what are the target values?</strong> In Q-learning the state-action-value-update rule, as already defined in equation <a class="reference internal" href="reinforcement.html#equation-qlearnupdate">(95)</a>, is</p>
+<div class="math notranslate nohighlight">
+\[
+Q(s,a) := Q(s,a) + \alpha \left[r + \gamma \max\limits_{a'} Q(s',a') - Q(s,a) \right],
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the current state, <span class="math notranslate nohighlight">\(a\)</span> is the chosen action, <span class="math notranslate nohighlight">\(r\)</span> is the obtained reward, <span class="math notranslate nohighlight">\(s'\)</span> is the obtained successor state, and <span class="math notranslate nohighlight">\(a'\)</span> is a possible action in the successor state <span class="math notranslate nohighlight">\(s'\)</span>. In this iterative update-process old values <span class="math notranslate nohighlight">\(Q(s,a)\)</span> are updated by new experiences <span class="math notranslate nohighlight">\(r + \gamma \max\limits_a' Q(s',a')\)</span>. These new experiences are applied as target-values. For computing these target values <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(s'\)</span> are given from the current quadruple <span class="math notranslate nohighlight">\((s,a,r,s')\)</span>, but what about <span class="math notranslate nohighlight">\(\max\limits_a' Q(s',a')\)</span>? The answer is to calculate the <span class="math notranslate nohighlight">\(Q(s',a')\)</span> with the DQN, however not with the current weights <span class="math notranslate nohighlight">\(\Theta\)</span>, but with an older version <span class="math notranslate nohighlight">\(\Theta^{-}\)</span>. The values of this older version are denoted by <span class="math notranslate nohighlight">\(\hat{Q}(s',a')\)</span>. This older version is only applied to calculate the targets. The weights of the older version are updated from time to time. <strong>In this way DQN-learning realizes the same concept as the state-action-value-update rule of Q-learning: in both algorithms <span class="math notranslate nohighlight">\(Q(s,a)\)</span> are iteratively updated by the experienced reward <span class="math notranslate nohighlight">\(r\)</span> and the best <span class="math notranslate nohighlight">\(Q(s',a')\)</span>-value in the experienced successor state <span class="math notranslate nohighlight">\(s'\)</span> and both algorithms apply older <span class="math notranslate nohighlight">\(\hat{Q}(s',a')\)</span>-values for this update.</strong> In DQN the weights are updated per minibatch, where a minibatch is a random sample from the Replay Memory <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<div class="admonition-deep-q-learning-algorithm admonition" id="deepqlearning">
+<p class="admonition-title">Deep Q-Learning Algorithm</p>
+<ul class="simple">
+<li><p>Initialize Replay Memory <span class="math notranslate nohighlight">\(D\)</span> to capacity <span class="math notranslate nohighlight">\(N\)</span></p></li>
+<li><p>Initialize action-value-function <span class="math notranslate nohighlight">\(Q\)</span> with random weights <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p>Initialize target action-value-function <span class="math notranslate nohighlight">\(\hat{Q}\)</span> with weights <span class="math notranslate nohighlight">\(\theta^{-}=\theta\)</span></p></li>
+</ul>
+<ol>
+<li><p>For episode from 1 to M do</p>
+<ol>
+<li><p>Initialize sequence <span class="math notranslate nohighlight">\(s_1=\{x_1\}\)</span> and preprocess sequence <span class="math notranslate nohighlight">\(\phi_1=\phi(s_1)\)</span></p></li>
+<li><p>For t from 1 to T do</p>
+<ol>
+<li><p>With probability <span class="math notranslate nohighlight">\(\epsilon\)</span> select a random action <span class="math notranslate nohighlight">\(a_t\)</span>, otherwise select <span class="math notranslate nohighlight">\(a_t=argmax_a(Q(\phi(s_t),a;\theta))\)</span></p></li>
+<li><p>Execute <span class="math notranslate nohighlight">\(a_t\)</span> in emulator, observe reward <span class="math notranslate nohighlight">\(r_t\)</span> and image <span class="math notranslate nohighlight">\(x_{t+1}\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(s_{t+1}=s_t,a_t,x_{t+1}\)</span> and preprocess <span class="math notranslate nohighlight">\(\phi_{t+1}=\phi(s_{t+1})\)</span></p></li>
+<li><p>Store transitition <span class="math notranslate nohighlight">\((\phi_t,a_t,r_t,\phi_{t+1})\)</span> in <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Sample random minibatch of transititions <span class="math notranslate nohighlight">\((\phi_j,a_j,r_j,\phi_{j+1})\)</span> from <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Set</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+            y_j=\left\{ \begin{array}{ll}
+            r_j &amp; \mbox{if episode terminates at step } j+1 \\
+            r_j + \gamma \max_{a'} \hat{Q}(\phi_{j+1},a';\theta^-) &amp; \mbox{ otherwise } \\
+            \end{array}
+            \right.
+            \end{split}\]</div>
+</li>
+<li><p>Perform a gradient descent step on <span class="math notranslate nohighlight">\(\left(y_j-Q(\phi_j,a_j;\theta)  \right)^2\)</span>} w.r.t. <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p>Every C steps update <span class="math notranslate nohighlight">\(\hat{Q}=Q\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 </div>
-<div class="section" id="under-constuction">
-<h1>Under Constuction !!!<a class="headerlink" href="#under-constuction" title="Permalink to this headline">¶</a></h1>
+<p>In the figure below, the score, achieved by DQN w.r.t. human players is shown for classic Atari games. This score has been calculated by</p>
+<div class="math notranslate nohighlight">
+\[
+100*\frac{Score_{DQN}-Score_{randomPlay}}{Score_{ProfHuman}-Score_{randomPlay}},
+\]</div>
+<p>i.e. a score of 100 corresponds to the score achieved by <strong>professional</strong> human players. An <strong>average</strong> human player has a score of <span class="math notranslate nohighlight">\(76\%\)</span>.</p>
+<div class="figure align-center" id="dqnscores">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">DQN performance compared to human players. Image Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnscores" title="Permalink to this image">¶</a></p>
+</div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
 <dd><p><a class="reference external" href="https://github.com/mgbellemare/Arcade-Learning-Environment">Arcade Learning environment</a></p>
 </dd>
 </dl>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
