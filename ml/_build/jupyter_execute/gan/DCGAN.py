@@ -1,50 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# #  Generative Adversarial Nets (GAN)
+# #  DCGAN Keras Implementation
 # * Author: Johannes Maucher
-# * Last Update: 07.01.2019
-# 
-# References:
-# 
-# 1. [Ian Goodfellow et al: Generative Adversarial Nets](https://arxiv.org/pdf/1406.2661.pdf)
-# 2. [A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs](https://arxiv.org/pdf/1511.06434.pdf)
-
-# ## Idea GANs
-# 
-# In 2014 GANs have been introduced by [Ian Goodfellow et al](https://arxiv.org/pdf/1406.2661.pdf). Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated. 
-# 
-# On an abstract level the idea of GANs can be described as follows: A counterfeiter produces fake banknotes. The police is able to discriminate the fake banknotes from real ones and it provides feedback to the counterfeiter on why the banknotes can be detected as fake. This feedback is used by the counterfeiter in order to produce fake, which is less distinguishable from real bankotes. After some iterations of producing better but not sufficiently good fake the counterfeiter is able to produce fake, which can not be discriminated from real banknotes.
-# 
-# A GAN consists of two models: 
-# 
-# 1. The **discriminator** is the police. It learns to discriminate real data from artificially generated fake data.
-# 2. The **generator** is the counterfeiter, which learns to generate data, that is indistinguishable from real data.
-# 
-# 
-# ![GAN](./Pics/GAN.png)
-
-# ## Example Applications of GANs
-# ### Image-to-Image Translation
-# 
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG" width="450" class="center">
-# 
-# 
-# 
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG" width="450" class="center">
-# 
-# ### Automatic Anime Character Creation
-# 
-# [Y. Jin et al: Towards the Automatic Anime Characters Creation with Generative Adversarial Networks](https://arxiv.org/pdf/1708.05509.pdf)
-# 
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png" width="450" class="center">
-# 
+# * Last Update: 04.11.2021
 
 # In this notebook a GAN is designed, which learns to generate handwritten numbers between 0 and 9, like the ones, given in the MNIST dataset. In this case the real data is the MNIST dataset, which contains 70000 greyscale images of size 28x28, 7000 images for each of the 10 digits.
 # 
 # The Discriminator model is just a binary classifier, whose task is to distinguish fake, from real images. The fake images are produced by the Generator model. At it's input the Generator model receives 1-dimensional vectors of length 100, whose components are uniformly distributed random float-values between -1 and 1. The discriminator model is learned such that the *cross-entropy-loss* for discrimating real from fake images is minimized by Stochastic Gradient Descent (SGD). The Generator model is learned such that the generated fake data is classified as real-data by the discriminator.
-
-# ## Keras implementation of GAN, which generates MNIST-type handwritten digits 
 # 
 # Below a Deep Convolutional GAN (DCGAN) as introduced in [A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs](https://arxiv.org/pdf/1511.06434.pdf) is implemented. This type of GAN applies a Convolutional Neural Net (CNN) for the Generator- and the Discriminator model.
 
@@ -219,7 +182,7 @@ gan.summary()
 # ### Train GAN
 # Finally, a function `train()` is implemented, which defines the overall training process. The flow-chart of this function is depicted below: 
 # 
-# ![GANtrainingProcess](./Pics/GANtrainingProcess.png)
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess.png" width="400" class="center">
 
 # In[33]:
 

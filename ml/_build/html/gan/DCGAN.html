@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generative Adversarial Nets (GAN) &#8212; Machine Learning Lecture</title>
+    <title>DCGAN Keras Implementation &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reinforcement Learning" href="../rl/reinforcement.html" />
-    <link rel="prev" title="Variational Autoencoder (VAE) to generate handwritten digits" href="../neuralnetworks/04VariationalAutoencoder.html" />
+    <link rel="prev" title="Generative Adversarial Nets (GAN)" href="GAN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -205,9 +205,14 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Generative Adversarial Nets (GAN)
+   DCGAN Keras Implementation
   </a>
  </li>
 </ul>
@@ -367,63 +372,34 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#idea-gans">
-   Idea GANs
+  <a class="reference internal nav-link" href="#generator-model">
+   Generator Model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-applications-of-gans">
-   Example Applications of GANs
+  <a class="reference internal nav-link" href="#discriminator-model">
+   Discriminator Model
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#image-to-image-translation">
-     Image-to-Image Translation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#automatic-anime-character-creation">
-     Automatic Anime Character Creation
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits">
-   Keras implementation of GAN, which generates MNIST-type handwritten digits
+  <a class="reference internal nav-link" href="#build-gan-by-combining-generator-and-discriminator">
+   Build GAN by combining Generator and Discriminator
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generator-model">
-     Generator Model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#discriminator-model">
-     Discriminator Model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-gan-by-combining-generator-and-discriminator">
-     Build GAN by combining Generator and Discriminator
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#train-gan">
-     Train GAN
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-30-epochs">
-     Generate new numbers from GAN learned over 30 epochs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-60-epochs">
-     Generate new numbers from GAN learned over 60 epochs
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-gan">
+   Train GAN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-30-epochs">
+   Generate new numbers from GAN learned over 30 epochs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-60-epochs">
+   Generate new numbers from GAN learned over 60 epochs
+  </a>
  </li>
 </ul>
 
@@ -436,45 +412,14 @@
         
               <div>
                 
-  <div class="section" id="generative-adversarial-nets-gan">
-<h1>Generative Adversarial Nets (GAN)<a class="headerlink" href="#generative-adversarial-nets-gan" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dcgan-keras-implementation">
+<h1>DCGAN Keras Implementation<a class="headerlink" href="#dcgan-keras-implementation" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last Update: 07.01.2019</p></li>
+<li><p>Last Update: 04.11.2021</p></li>
 </ul>
-<p>References:</p>
-<ol class="simple">
-<li><p><a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al: Generative Adversarial Nets</a></p></li>
-<li><p><a class="reference external" href="https://arxiv.org/pdf/1511.06434.pdf">A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs</a></p></li>
-</ol>
-<div class="section" id="idea-gans">
-<h2>Idea GANs<a class="headerlink" href="#idea-gans" title="Permalink to this headline">¶</a></h2>
-<p>In 2014 GANs have been introduced by <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>. Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
-<p>On an abstract level the idea of GANs can be described as follows: A counterfeiter produces fake banknotes. The police is able to discriminate the fake banknotes from real ones and it provides feedback to the counterfeiter on why the banknotes can be detected as fake. This feedback is used by the counterfeiter in order to produce fake, which is less distinguishable from real bankotes. After some iterations of producing better but not sufficiently good fake the counterfeiter is able to produce fake, which can not be discriminated from real banknotes.</p>
-<p>A GAN consists of two models:</p>
-<ol class="simple">
-<li><p>The <strong>discriminator</strong> is the police. It learns to discriminate real data from artificially generated fake data.</p></li>
-<li><p>The <strong>generator</strong> is the counterfeiter, which learns to generate data, that is indistinguishable from real data.</p></li>
-</ol>
-<p><img alt="GAN" src="gan/./Pics/GAN.png" /></p>
-</div>
-<div class="section" id="example-applications-of-gans">
-<h2>Example Applications of GANs<a class="headerlink" href="#example-applications-of-gans" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="image-to-image-translation">
-<h3>Image-to-Image Translation<a class="headerlink" href="#image-to-image-translation" title="Permalink to this headline">¶</a></h3>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG" width="450" class="center">
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG" width="450" class="center">
-</div>
-<div class="section" id="automatic-anime-character-creation">
-<h3>Automatic Anime Character Creation<a class="headerlink" href="#automatic-anime-character-creation" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://arxiv.org/pdf/1708.05509.pdf">Y. Jin et al: Towards the Automatic Anime Characters Creation with Generative Adversarial Networks</a></p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png" width="450" class="center">
 <p>In this notebook a GAN is designed, which learns to generate handwritten numbers between 0 and 9, like the ones, given in the MNIST dataset. In this case the real data is the MNIST dataset, which contains 70000 greyscale images of size 28x28, 7000 images for each of the 10 digits.</p>
 <p>The Discriminator model is just a binary classifier, whose task is to distinguish fake, from real images. The fake images are produced by the Generator model. At it’s input the Generator model receives 1-dimensional vectors of length 100, whose components are uniformly distributed random float-values between -1 and 1. The discriminator model is learned such that the <em>cross-entropy-loss</em> for discrimating real from fake images is minimized by Stochastic Gradient Descent (SGD). The Generator model is learned such that the generated fake data is classified as real-data by the discriminator.</p>
-</div>
-</div>
-<div class="section" id="keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits">
-<h2>Keras implementation of GAN, which generates MNIST-type handwritten digits<a class="headerlink" href="#keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits" title="Permalink to this headline">¶</a></h2>
 <p>Below a Deep Convolutional GAN (DCGAN) as introduced in <a class="reference external" href="https://arxiv.org/pdf/1511.06434.pdf">A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs</a> is implemented. This type of GAN applies a Convolutional Neural Net (CNN) for the Generator- and the Discriminator model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -781,11 +726,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_15_0.png" src="../_images/DCGAN_15_0.png" />
+<img alt="../_images/DCGAN_12_0.png" src="../_images/DCGAN_12_0.png" />
 </div>
 </div>
 <div class="section" id="generator-model">
-<h3>Generator Model<a class="headerlink" href="#generator-model" title="Permalink to this headline">¶</a></h3>
+<h2>Generator Model<a class="headerlink" href="#generator-model" title="Permalink to this headline">¶</a></h2>
 <p>The Generator model receives 1-dimensional vectors of length 100 with uniformly distributed float values from -1 to 1 at it’s input. The first layer is a dense layer with 128x7x7 neurons. The output of this dense layer is reshaped into 128 channels, each of size 7x7.
 Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, followed by a Conv2D-layer) 64 channels of size 14x14 are generated in the next layer. Finally, these 64 channels are processed by another deconvolution layer with filters of size 5x5 into a single-channel output of size 28x28.</p>
 <p>In between layers, batch normalization stabilizes learning. The activation function after the dense- and the first deconvolution-layer is a LeakyReLU. The output deconvolution-layer applies tanh- activation.</p>
@@ -848,7 +793,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="discriminator-model">
-<h3>Discriminator Model<a class="headerlink" href="#discriminator-model" title="Permalink to this headline">¶</a></h3>
+<h2>Discriminator Model<a class="headerlink" href="#discriminator-model" title="Permalink to this headline">¶</a></h2>
 <p>The discriminator is also a CNN. For this experiment on the MNIST dataset, the input is an image (single channel) of size 28x28. The sigmoid output is an indicator for the probability that the input is a real image.
 I.e. if the output value is close to 1, the input is likely a real image, if the output is close to 0, the input is likely a fake.
 The first convolution layer applies 5x5 filters in order to calculate 64 features. The second convolution layer applies 5x5 filters to the 64 input channels and calculates 128 feature maps. The last dense layer has a single neuron with a sigmoid activation for binary classification.</p>
@@ -922,7 +867,7 @@ In contrast to standard SGD, Adam applies individual learning-rates for each lea
 </div>
 </div>
 <div class="section" id="build-gan-by-combining-generator-and-discriminator">
-<h3>Build GAN by combining Generator and Discriminator<a class="headerlink" href="#build-gan-by-combining-generator-and-discriminator" title="Permalink to this headline">¶</a></h3>
+<h2>Build GAN by combining Generator and Discriminator<a class="headerlink" href="#build-gan-by-combining-generator-and-discriminator" title="Permalink to this headline">¶</a></h2>
 <p>Now, since Generator- and Discriminator models are defined, the overall adversarial model can be build, by simply stacking these models together. The output of the generator is passed to the input of the discriminator:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,10 +908,9 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="train-gan">
-<h3>Train GAN<a class="headerlink" href="#train-gan" title="Permalink to this headline">¶</a></h3>
+<h2>Train GAN<a class="headerlink" href="#train-gan" title="Permalink to this headline">¶</a></h2>
 <p>Finally, a function <code class="docutils literal notranslate"><span class="pre">train()</span></code> is implemented, which defines the overall training process. The flow-chart of this function is depicted below:</p>
-<p><img alt="GANtrainingProcess" src="gan/./Pics/GANtrainingProcess.png" /></p>
-<div class="cell docutils container">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess.png" width="400" class="center"><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
     <span class="n">batch_count</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">batch_size</span>
@@ -1108,7 +1052,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="generate-new-numbers-from-gan-learned-over-30-epochs">
-<h3>Generate new numbers from GAN learned over 30 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h3>
+<h2>Generate new numbers from GAN learned over 30 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h2>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1143,12 +1087,12 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_41_0.png" src="../_images/DCGAN_41_0.png" />
+<img alt="../_images/DCGAN_38_0.png" src="../_images/DCGAN_38_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="generate-new-numbers-from-gan-learned-over-60-epochs">
-<h3>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h3>
+<h2>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h2>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1165,8 +1109,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_44_0.png" src="../_images/DCGAN_44_0.png" />
-</div>
+<img alt="../_images/DCGAN_41_0.png" src="../_images/DCGAN_41_0.png" />
 </div>
 </div>
 </div>
@@ -1197,7 +1140,7 @@ _________________________________________________________________
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../neuralnetworks/04VariationalAutoencoder.html" title="previous page">Variational Autoencoder (VAE) to generate handwritten digits</a>
+    <a class='left-prev' id="prev-link" href="GAN.html" title="previous page">Generative Adversarial Nets (GAN)</a>
     <a class='right-next' id="next-link" href="../rl/reinforcement.html" title="next page">Reinforcement Learning</a>
 
         </div>
