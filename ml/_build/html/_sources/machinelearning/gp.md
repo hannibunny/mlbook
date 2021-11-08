@@ -13,8 +13,6 @@ kernelspec:
   name: python3
 ---
 
-
-
 ---
 
 # Gaussian Process
@@ -241,7 +239,7 @@ $$
 
 ### Covariance Function
 
-The most common covariance-function $k(x,x')$ is the **squared exponential$$
+The most common covariance-function $k(x,x')$ is the **squared exponential**
 
 $$
 k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
@@ -251,7 +249,7 @@ Parameters and characteristics of this covariance function are
 
 * The correlation between $f(x)$ and $f(x')$ decreases with increasing distance between $x$ and $x'$.
 * **Length-Scale $\ell$**: The higher $\ell$ the slower the decrease of the correlation between $f(x)$ and $f(x')$ with increasing distance between $x$ and $x'$. A high value $\ell$ means strong correlation between neighbouring function-values. This yields *smooth* curves. Small values for $\ell$ means less correlation and the potential for high differences in neighbouring function-values.
-* **Variance $\sigma_f^2$**. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.  
+* **Variance $\sigma_f^2$**. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.
 
 +++
 
@@ -344,8 +342,8 @@ $$
 Below it is shown how samples of a Gaussian Process can be generated.
 
 Generate domain, mean-vector and covariance-matrix:
- 
-```{code-cell}
+
+```{code-cell} ipython3
 import numpy as np
 x=np.linspace(0,7,35) 
 mx=0.5+x*np.sin(x)    
@@ -356,22 +354,19 @@ for i in range(len(x)):
         K[i][j]=k
         K[j][i]=k
 ```
-+++
-Generate 3 samples of a Multidimensional Gausian Distribution
-+++
 
-```{code-cell}
-:tags: ["output_scroll",]
+Generate 3 samples of a Multidimensional Gausian Distribution
+
+```{code-cell} ipython3
+:tags: [output_scroll]
+
 pointset=np.random.multivariate_normal(mx,K,3) #Erzeugt 3 Samples einer multivariaten
 print(pointset)
 ```
-+++
 
 Visualize the generated samples and the mean-function:
 
-+++
-
-```{code-cell}
+```{code-cell} ipython3
 from matplotlib import pyplot as plt
 from scipy import r_
 plt.figure(figsize=(10,10))
@@ -390,10 +385,6 @@ filly = r_[mx+2*stds, mx[::-1]-2*stds[::-1]]
 plt.fill(fillx, filly, facecolor='gray', edgecolor='white', alpha=0.3)
 plt.show()
 ```
-
-+++
-
-
 
 ## Gaussian Process Regression
 

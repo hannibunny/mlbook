@@ -225,7 +225,7 @@
 # 
 # ### Covariance Function
 # 
-# The most common covariance-function $k(x,x')$ is the **squared exponential$$
+# The most common covariance-function $k(x,x')$ is the **squared exponential**
 # 
 # $$
 # k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
