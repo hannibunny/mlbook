@@ -201,7 +201,7 @@ def objective(x): #Returns Log-Likelihood, which must be optimized
     for i in range(len(xB)):
         for j in range(i,len(xB)):
             noise=x[5]**2
-            k=x[3]**2*np.exp(-((xB[i]-xB[j])**2)/(2.0*x[4]**2))+noise
+            k=x[3]**2*np.exp(-((xB[i]-xB[j])**2)/(2.0*x[4]**2))+noise**2
             KB[i][j]=k
             KB[j][i]=k
     KBinv=np.linalg.inv(KB)
@@ -235,17 +235,24 @@ print(xopt)
 
 
 #####################Definition of hyperparameters#############################
-c4=xopt[7] # constant coefficient of quadratic term in prior mean function
-c3=xopt[6] # constant coefficient of quadratic term in prior mean function
+c4=xopt[7] # constant coefficient of biquadratic term in prior mean function
+c3=xopt[6] # constant coefficient of cubic term in prior mean function
 c2=xopt[0] # constant coefficient of quadratic term in prior mean function
 c1=xopt[1] # constant coefficient of linear term in prior mean function
 c0=xopt[2] # constant coefficient constant term in prior mean function
 ell=xopt[4] # horicontal length scale parameter in the squared exponential function
-sigmaF2=xopt[3]**2 #sigmaF2 is the variance of the multivariate gaussian distribution
-sigmaN2=xopt[5]**2 #sigmaN2 is the variance of the regression noise-term
+sigmaF2=xopt[3] #sigmaF2 is the standard deviation of the multivariate gaussian distribution
+sigmaN2=xopt[5] #sigmaN2 is the standard deviation of the regression noise-term
 
 
 # In[21]:
+
+
+print("Learned mean function m(x) = %1.3f*x^4 + %1.3f*x^3 + %1.3f*x^2+ %1.3f*x + %1.3f"%(c4,c3,c2,c1,c0))
+print("Learned cov. function m(x) = (%1.3f)^2 *exp(-(x-x')^2 / (2 * (%1.3f)^2))+ %1.3f^2"%(sigmaF2,ell,sigmaN2))
+
+
+# In[22]:
 
 
 ###################Definition of mean- and covariance function################# 
@@ -253,10 +260,10 @@ def priormean(xin):
     return c4*xin**4+c3*xin**3+c2*xin**2+c1*xin+c0
 
 def corrFunc(xa,xb):
-    return sigmaF2*np.exp(-((xa-xb)**2)/(2.0*ell**2))
+    return sigmaF2**2*np.exp(-((xa-xb)**2)/(2.0*ell**2))
 
 
-# In[22]:
+# In[23]:
 
 
 x=np.arange(0,10,0.1)
@@ -264,27 +271,27 @@ mx=priormean(x)
 mxB=priormean(xB)
 
 
-# In[23]:
+# In[24]:
 
 
 xPred=np.arange(0,10,0.2)
 
 
-# In[24]:
+# In[25]:
 
 
 KB=np.zeros((len(xB),len(xB)))
 for i in range(len(xB)):
     for j in range(i,len(xB)):
-        noise=(sigmaN2 if i==j else 0)
-        k=corrFunc(xB[i],xB[j])+noise
+        noise=(sigmaN2**2 if i==j else 0)
+        k=corrFunc(xB[i],xB[j])+noise**2
         KB[i][j]=k
         KB[j][i]=k        
 print('-'*10+' Matrix KB '+'-'*10)
 print(KB.round(decimals=3))
 
 
-# In[25]:
+# In[26]:
 
 
 KBInv=np.linalg.inv(KB)
@@ -292,7 +299,7 @@ print('-'*10+' Inverse of Matrix KB '+'-'*10)
 print(KBInv.round(decimals=3))
 
 
-# In[26]:
+# In[27]:
 
 
 Ks=np.zeros((len(xPred),len(xB)))
@@ -304,7 +311,7 @@ print('-'*10+' Matrix Ks '+'-'*10)
 print(Ks.round(decimals=5))
 
 
-# In[27]:
+# In[28]:
 
 
 Kss=np.zeros((len(xPred),len(xPred)))
@@ -318,7 +325,7 @@ print('-'*10+' Matrix Kss '+'-'*10)
 print(Kss.round(decimals=3))
 
 
-# In[28]:
+# In[29]:
 
 
 mus=priormean(xPred)
@@ -326,7 +333,7 @@ ypred=mus+np.dot(np.dot(Ks,KBInv),(yB-mxB))
 print("Prediction: ",ypred)
 
 
-# In[29]:
+# In[30]:
 
 
 yvar=np.diag(Kss-np.dot(Ks,np.dot(KBInv,np.transpose(Ks))))
@@ -334,7 +341,7 @@ stds=np.sqrt(yvar)
 print("Double Standard Deviation: ",2*stds)
 
 
-# In[30]:
+# In[31]:
 
 
 plt.figure(figsize=(12, 10))
@@ -342,7 +349,6 @@ plt.plot(x,mx,label="mean $m(x)$")
 #plt.hold(True)
 plt.plot(xB,yB,'or',label="training data")
 plt.plot(xPred,ypred,'--g',label="predictions")
-plt.text(0.5,6,"$m(x)=0.25 \cdot x^2$ \n$k(x,x')=2 \cdot \exp(-0.5\cdot(x-x')^2)$ \n $\sigma_n^2=0.005$",fontsize=14)
 plt.legend(loc=2,numpoints=1)
 plt.title('Gaussian Process Prediction with prior quadratic mean')
 plt.xlabel('x')
