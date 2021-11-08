@@ -544,7 +544,7 @@ plt.show()
 # std(y_*)=\sqrt(var(y_*))
 # $$ (eststd)
 # 
-# Here $diag(X)$ is the main-diagonal of matrix $X$. In equation {eq}`estvar` the argument of $diag()$ is a single value, if the prediction $y_*$ has been calculated only at a single input $x_*$, but it is a matrix $Z \times Z$ matrix, if predictions are calculated at $Z$ inputs.
+# Here $diag(X)$ is the main-diagonal of matrix $X$. In equation {eq}`estvar` the argument of $diag()$ is a single value, if the prediction $y_*$ has been calculated only at a single input $x_*$, but it is a $Z \times Z$ matrix, if predictions are calculated at $Z$ inputs.
 # 
 # ```
 # 
