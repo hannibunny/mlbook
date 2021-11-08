@@ -423,7 +423,7 @@
 </ul>
 <p>In this phase the weight in the discriminator are adapted such that the Minmax-Loss</p>
 <div class="math notranslate nohighlight" id="equation-minmax">
-<span class="eqno">(70)<a class="headerlink" href="#equation-minmax" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(71)<a class="headerlink" href="#equation-minmax" title="Permalink to this equation">¶</a></span>\[
 	E_x \left[ \log(D(x)) \right] +  E_z \left[ log(1-D(G(z)))  \right]
 	\]</div>
 <p><strong>is maximized</strong>. In this equation</p>
@@ -434,15 +434,15 @@
 <li><p><span class="math notranslate nohighlight">\(D(G(z))\)</span> is the Discriminator’s estimate of the probability that a fake instance is real.</p></li>
 <li><p><span class="math notranslate nohighlight">\(E_z\)</span> is the Expected value over all random inputs to the generator.</p></li>
 </ul>
-<p>For a minibatch of <span class="math notranslate nohighlight">\(m\)</span> real-data samples <span class="math notranslate nohighlight">\(\lbrace x^{(1)}, \ldots, x^{(m)} \rbrace\)</span>  and <span class="math notranslate nohighlight">\(m\)</span> random samples <span class="math notranslate nohighlight">\(\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace\)</span>, the expected values in equation <a class="reference internal" href="#equation-minmax">(70)</a>are calculated by</p>
+<p>For a minibatch of <span class="math notranslate nohighlight">\(m\)</span> real-data samples <span class="math notranslate nohighlight">\(\lbrace x^{(1)}, \ldots, x^{(m)} \rbrace\)</span>  and <span class="math notranslate nohighlight">\(m\)</span> random samples <span class="math notranslate nohighlight">\(\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace\)</span>, the expected values in equation <a class="reference internal" href="#equation-minmax">(71)</a>are calculated by</p>
 <div class="math notranslate nohighlight" id="equation-minmaxdisc">
-<span class="eqno">(71)<a class="headerlink" href="#equation-minmaxdisc" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(72)<a class="headerlink" href="#equation-minmaxdisc" title="Permalink to this equation">¶</a></span>\[
 	\frac{1}{m} \sum\limits_{i=1}^m \left[ \log(D(x^{(i)})) + log(1-D(G(z^{(i)})))  \right]
 	\]</div>
 </li>
-<li><p>the weights of the Discrimator are being frozen and the Generator is trained. For this a a minibatch of <span class="math notranslate nohighlight">\(m\)</span> random-noise vectors <span class="math notranslate nohighlight">\(\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace\)</span> is sampled and passed to the generator. The Generator outputs <span class="math notranslate nohighlight">\(G(z^{(i)})\)</span> are now labeled by 1 and passed to the Discriminator. In this phase only the weights of the Generator are adapted. They are adapted such that the Minmax-loss of equation <a class="reference internal" href="#equation-minmax">(70)</a> is <strong>minimized</strong>. For a minibatch of <span class="math notranslate nohighlight">\(m\)</span> random samples <span class="math notranslate nohighlight">\(\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace\)</span>, the following Loss is <strong>minimized</strong> during Generator training:</p>
+<li><p>the weights of the Discrimator are being frozen and the Generator is trained. For this a a minibatch of <span class="math notranslate nohighlight">\(m\)</span> random-noise vectors <span class="math notranslate nohighlight">\(\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace\)</span> is sampled and passed to the generator. The Generator outputs <span class="math notranslate nohighlight">\(G(z^{(i)})\)</span> are now labeled by 1 and passed to the Discriminator. In this phase only the weights of the Generator are adapted. They are adapted such that the Minmax-loss of equation <a class="reference internal" href="#equation-minmax">(71)</a> is <strong>minimized</strong>. For a minibatch of <span class="math notranslate nohighlight">\(m\)</span> random samples <span class="math notranslate nohighlight">\(\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace\)</span>, the following Loss is <strong>minimized</strong> during Generator training:</p>
 <div class="math notranslate nohighlight" id="equation-minmaxgen">
-<span class="eqno">(72)<a class="headerlink" href="#equation-minmaxgen" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(73)<a class="headerlink" href="#equation-minmaxgen" title="Permalink to this equation">¶</a></span>\[
 	\frac{1}{m} \sum\limits_{i=1}^m log(1-D(G(z^{(i)}))).
 	\]</div>
 </li>
@@ -466,7 +466,7 @@
 </div>
 <p>For conditional GANs the Minmax-Loss Function, which is maximized by the Discriminator- and minimized by the Generator-training is</p>
 <div class="math notranslate nohighlight" id="equation-minmaxcgan">
-<span class="eqno">(73)<a class="headerlink" href="#equation-minmaxcgan" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(74)<a class="headerlink" href="#equation-minmaxcgan" title="Permalink to this equation">¶</a></span>\[
 E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ log(1-D(G(z  \mid y)))  \right]
 \]</div>
 <p>In the MNIST-example <span class="math notranslate nohighlight">\(y\)</span> represents the concrete number, e.g. it is the one-hot-encoding of the digit that shall be generated. In general, <span class="math notranslate nohighlight">\(y\)</span> can be any kind of auxillary information, such as a class-label or data from other modalities, e.g. word-vectors.</p>

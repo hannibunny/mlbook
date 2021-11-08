@@ -289,8 +289,8 @@ k(x_2,x_1) & k(x_2,x_2) & \ldots & k(x_2,x_N) \\
 \vdots     & \vdots     & \ddots & \vdots     \\
 k(x_N,x_1) & k(x_N,x_2) & \ldots & k(x_N,x_N) \\ 
 \end{array}
-\right) (KK)
-$$
+\right)
+$$ (KK)
 
 
  ```{admonition} Example: Calculation of mean-vector and covariance matrix

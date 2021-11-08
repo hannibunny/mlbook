@@ -549,7 +549,7 @@
 </ul>
 <p>depends only on the immediate preceding state and all states which lie further back need not be regarded. The function</p>
 <div class="math notranslate nohighlight" id="equation-mdpfull">
-<span class="eqno">(74)<a class="headerlink" href="#equation-mdpfull" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(75)<a class="headerlink" href="#equation-mdpfull" title="Permalink to this equation">¶</a></span>\[
 p(s',r \mid s,a) = P(S_t=s',R_t=r \mid S_{t-1}=s, A_{t-1}=a) \quad \forall s`,s \in \mathcal{S}, r \in \mathcal{R} \mbox{ and } a \in \mathcal{A}
 \]</div>
 <p>describes the full dynamics of the MDP. By applying the marginalisation law (see <a class="reference external" href="https://hannibunny.github.io/probability/ProbabilityMultivariate.html">Basics of Probability Theory</a>),</p>
@@ -557,21 +557,21 @@ p(s',r \mid s,a) = P(S_t=s',R_t=r \mid S_{t-1}=s, A_{t-1}=a) \quad \forall s`,s 
 <li><p>the <strong>state-transition probability</strong> can be calculated by</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-transmod">
-<span class="eqno">(75)<a class="headerlink" href="#equation-transmod" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(76)<a class="headerlink" href="#equation-transmod" title="Permalink to this equation">¶</a></span>\[
 p(s' \mid s,a) = P(S_t=s'\mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(s',r \mid s,a)
 \]</div>
 <ul class="simple">
 <li><p>the <strong>reward probability</strong> can be calculated by</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-rewmod">
-<span class="eqno">(76)<a class="headerlink" href="#equation-rewmod" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(77)<a class="headerlink" href="#equation-rewmod" title="Permalink to this equation">¶</a></span>\[
 p(r \mid s,a) = P(R_t=r \mid S_{t-1}=s, A_{t-1}=a) =  \sum\limits_{s' \in \mathcal{S}} p(s',r \mid s,a).
 \]</div>
 <ul class="simple">
 <li><p>the <strong>expected reward</strong> can be calculated by</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-rewexp">
-<span class="eqno">(77)<a class="headerlink" href="#equation-rewexp" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(78)<a class="headerlink" href="#equation-rewexp" title="Permalink to this equation">¶</a></span>\[
 r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(r \mid s,a).
 \]</div>
 <div class="admonition-markov-decision-process-mdp admonition">
@@ -580,8 +580,8 @@ r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal
 <ul class="simple">
 <li><p>a set of states <span class="math notranslate nohighlight">\(\mathcal{S}\)</span></p></li>
 <li><p>a set of actions <span class="math notranslate nohighlight">\(\mathcal{A}\)</span></p></li>
-<li><p>a state-transition-model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> (equation <a class="reference internal" href="#equation-transmod">(75)</a>)</p></li>
-<li><p>a reward-model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> (equation <a class="reference internal" href="#equation-rewmod">(76)</a>)</p></li>
+<li><p>a state-transition-model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> (equation <a class="reference internal" href="#equation-transmod">(76)</a>)</p></li>
+<li><p>a reward-model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> (equation <a class="reference internal" href="#equation-rewmod">(77)</a>)</p></li>
 </ul>
 <p>In a MDP the goal of an agent is to find an optimal <em>policy</em> <span class="math notranslate nohighlight">\(\pi_*\)</span>, which assigns to each state <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> an action <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span>, such that the expected value of the cumulative sum of future received rewards is maximized. Such a policy can be determined by Reinforcement Learning.</p>
 </div>
@@ -591,25 +591,25 @@ r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal
 </div>
 <p>The cumulative sum of received future rewards at time <span class="math notranslate nohighlight">\(t\)</span> is als called the <strong>return <span class="math notranslate nohighlight">\(G_t\)</span></strong>:</p>
 <div class="math notranslate nohighlight" id="equation-returnfinite">
-<span class="eqno">(78)<a class="headerlink" href="#equation-returnfinite" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(79)<a class="headerlink" href="#equation-returnfinite" title="Permalink to this equation">¶</a></span>\[
 G_t= R_{t+1}+R_{t+2}+R_{t+3}+\cdots + R_{T},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(T\)</span> is the final time step. This formula can only be applied in the cases, where a <em>final time step <span class="math notranslate nohighlight">\(T\)</span></em> can be defined or the entire agent-environment interaction can be partitioned into subsequences, called <em>episodes</em>. Whenever, such a termination can not be defined, the return can not be calculated by equation <a class="reference internal" href="#equation-returnfinite">(78)</a>, because <span class="math notranslate nohighlight">\(T=\infty\)</span> and the return could be infinite. In order to cope with this problem a <em>discounting rate <span class="math notranslate nohighlight">\(\gamma\)</span></em> is applied to calculate the return</p>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the final time step. This formula can only be applied in the cases, where a <em>final time step <span class="math notranslate nohighlight">\(T\)</span></em> can be defined or the entire agent-environment interaction can be partitioned into subsequences, called <em>episodes</em>. Whenever, such a termination can not be defined, the return can not be calculated by equation <a class="reference internal" href="#equation-returnfinite">(79)</a>, because <span class="math notranslate nohighlight">\(T=\infty\)</span> and the return could be infinite. In order to cope with this problem a <em>discounting rate <span class="math notranslate nohighlight">\(\gamma\)</span></em> is applied to calculate the return</p>
 <div class="math notranslate nohighlight" id="equation-returninfinite">
-<span class="eqno">(79)<a class="headerlink" href="#equation-returninfinite" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(80)<a class="headerlink" href="#equation-returninfinite" title="Permalink to this equation">¶</a></span>\[
 G_t= R_{t+1}+\gamma R_{t+2}+ \gamma^2  R_{t+3}+ \cdots = \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1},
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(0&lt; \gamma &lt; 1\)</span>. In this way rewards in the far future are weighted less than rewards immediately ahead and the return value will be finite. Equation <a class="reference internal" href="#equation-returninfinite">(79)</a> can easily be turned in a recursive form as follows:</p>
+<p>with <span class="math notranslate nohighlight">\(0&lt; \gamma &lt; 1\)</span>. In this way rewards in the far future are weighted less than rewards immediately ahead and the return value will be finite. Equation <a class="reference internal" href="#equation-returninfinite">(80)</a> can easily be turned in a recursive form as follows:</p>
 <div class="math notranslate nohighlight" id="equation-returnrecursive">
-<span class="eqno">(80)<a class="headerlink" href="#equation-returnrecursive" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(81)<a class="headerlink" href="#equation-returnrecursive" title="Permalink to this equation">¶</a></span>\[
 G_t= R_{t+1}+\gamma G_{t+1}
 \]</div>
 </div>
 <div class="section" id="finding-the-optimal-policy">
 <h2>Finding the Optimal Policy<a class="headerlink" href="#finding-the-optimal-policy" title="Permalink to this headline">¶</a></h2>
-<p>As mentioned above the goal of Reinforcement Learning is to <strong>find an optimal policy <span class="math notranslate nohighlight">\(\pi_*(a\mid s)\)</span>, which maximizes the expected return</strong>. The <em>return</em> has been defined in equations <a class="reference internal" href="#equation-returnfinite">(78)</a> and <a class="reference internal" href="#equation-returninfinite">(79)</a>, respectively. A policy</p>
+<p>As mentioned above the goal of Reinforcement Learning is to <strong>find an optimal policy <span class="math notranslate nohighlight">\(\pi_*(a\mid s)\)</span>, which maximizes the expected return</strong>. The <em>return</em> has been defined in equations <a class="reference internal" href="#equation-returnfinite">(79)</a> and <a class="reference internal" href="#equation-returninfinite">(80)</a>, respectively. A policy</p>
 <div class="math notranslate nohighlight" id="equation-policy">
-<span class="eqno">(81)<a class="headerlink" href="#equation-policy" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(82)<a class="headerlink" href="#equation-policy" title="Permalink to this equation">¶</a></span>\[
 \pi(a\mid s) = P(A_t=a \mid S_t=s)
 \]</div>
 <p>is a function that maps to each state <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> a probability for each action <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span>, which is available in this state. Simply put, a strategy dictates what to do in each state.</p>
@@ -618,14 +618,14 @@ G_t= R_{t+1}+\gamma G_{t+1}
 <li><p>how good it is for the agent to be in a given state. This quality is dependent of the policy <span class="math notranslate nohighlight">\(\pi\)</span>. The <em>state-value function for policy <span class="math notranslate nohighlight">\(\pi\)</span></em> is the expected value of return, if the agent follows strategy <span class="math notranslate nohighlight">\(\pi\)</span>, starting from state <span class="math notranslate nohighlight">\(s\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-statevalue">
-<span class="eqno">(82)<a class="headerlink" href="#equation-statevalue" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(83)<a class="headerlink" href="#equation-statevalue" title="Permalink to this equation">¶</a></span>\[
 v_{\pi}(s)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s \right] = \mathbb{E}_{\pi} \left[ \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t=s \right]
 \]</div>
 <ul class="simple">
 <li><p>how good a action <span class="math notranslate nohighlight">\(a\)</span> is in state <span class="math notranslate nohighlight">\(s\)</span>. This <em>action-value function for policy <span class="math notranslate nohighlight">\(\pi\)</span></em> measures the expected return, if the agent starts from state <span class="math notranslate nohighlight">\(s\)</span>, takes action <span class="math notranslate nohighlight">\(a\)</span> in this state and then follows strategy <span class="math notranslate nohighlight">\(\pi\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-actionvalue">
-<span class="eqno">(83)<a class="headerlink" href="#equation-actionvalue" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(84)<a class="headerlink" href="#equation-actionvalue" title="Permalink to this equation">¶</a></span>\[
 q_{\pi}(s,a)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s, A_t=a \right] = \mathbb{E}_{\pi} \left[ \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t=s , A_t=a \right]
 \]</div>
 <p>The task of estimating a value function is also called the <strong>prediction problem</strong>, since the value of a state or a state-action-pair is predicted. The task of finding a good policy from the previously predicted values is called <strong>control problem</strong>, since the policy defines the control of the agents actions.</p>
@@ -633,38 +633,38 @@ q_{\pi}(s,a)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s, A_t=a \right] = \mathbb{E}
 let an agent follow policy <span class="math notranslate nohighlight">\(\pi\)</span>. When it passes state <span class="math notranslate nohighlight">\(s\)</span>, the future return, gained by the agent is determined. This is done for many times and in the end all these returns, which have been gathered whenever the agent passed state <span class="math notranslate nohighlight">\(s\)</span> are averaged. In the same way, the action-value function <span class="math notranslate nohighlight">\(q_{\pi}\)</span> can be estimated. In both cases the estimate approximates the true functions if the number of times, each state is visited, is large enough. However, in practise this Monte Carlo approach is not feasible, if the state-space, i.e. the number of different states, is large. In this case the functions can be approximated e.g. by regression. This is actually done in Deep Reinforcement Learning, where Deep Learning algorithms for regression are applied to learn good state-value- or action-value-functions from relatively few examples, gathered by the RL agent.</p>
 <div class="section" id="bellmann-optimality-equations">
 <h3>Bellmann Optimality Equations<a class="headerlink" href="#bellmann-optimality-equations" title="Permalink to this headline">¶</a></h3>
-<p>As seen in equation <a class="reference internal" href="#equation-returnrecursive">(80)</a> the return can be calculated recursively. Same is true for the state-value function:</p>
+<p>As seen in equation <a class="reference internal" href="#equation-returnrecursive">(81)</a> the return can be calculated recursively. Same is true for the state-value function:</p>
 <div class="math notranslate nohighlight" id="equation-statevaluerec">
-<span class="eqno">(84)<a class="headerlink" href="#equation-statevaluerec" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(85)<a class="headerlink" href="#equation-statevaluerec" title="Permalink to this equation">¶</a></span>\[\begin{split}
 v_{\pi}(s) &amp; = &amp;  \mathbb{E}_{\pi} \left[ G_t \mid S_t=s \right] \\
            &amp; = &amp;  \mathbb{E}_{\pi} \left[ R_{t+1} + \gamma G_{t+1} \mid S_t=s \right] \\
 \end{split}\]</div>
 <p>In order to calculate this expected value for a concrete state <span class="math notranslate nohighlight">\(s\)</span> and a concrete policy <span class="math notranslate nohighlight">\(\pi\)</span>, one must sum up for all possible triples of <span class="math notranslate nohighlight">\((a,s',r)\)</span> the reward <span class="math notranslate nohighlight">\(r\)</span> and the discounted state-value <span class="math notranslate nohighlight">\(v_{\pi}(s')\)</span> of a successor state, weighted by the probability of this triple, which is given by <span class="math notranslate nohighlight">\(\pi(a\mid s)p(s',r \mid s,a)\)</span>. This yields the **Bellman equation for <span class="math notranslate nohighlight">\(v_{\pi}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-statevaluerec2">
-<span class="eqno">(85)<a class="headerlink" href="#equation-statevaluerec2" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(86)<a class="headerlink" href="#equation-statevaluerec2" title="Permalink to this equation">¶</a></span>\[\begin{split}
 v_{\pi}(s) &amp; = &amp;  \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a)  \left[ r + \gamma \mathbb{E}_{\pi} \left[ G_{t+1} \mid S_{t+1}=s' \right] \right] \\
            &amp; = &amp;  \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a)  \left[ r + \gamma v_{\pi}(s') \right], \quad \forall s \in \mathcal{S}
 \end{split}\]</div>
 <p>The components of this equation are visualized in the picture below. Note that this equation constitutes a relation between the value function of a state and the value-function of all successor states.</p>
 <div class="figure align-center" id="statevalueviz">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png" src="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png" style="width: 500pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text"><em>Visualization</em> of Bellman-equation <a class="reference internal" href="#equation-statevaluerec2">(85)</a>: For a given state <span class="math notranslate nohighlight">\(s\)</span> and policy <span class="math notranslate nohighlight">\(\pi\)</span>, the policy defines the probability of actions, available in <span class="math notranslate nohighlight">\(s\)</span>. For a given state-action pair <span class="math notranslate nohighlight">\((s,a)\)</span> the transition model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> defines the probability of successive states and the reward model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> defines the probability of a reward <span class="math notranslate nohighlight">\(r\)</span>. For each of the possible succesive states <span class="math notranslate nohighlight">\(s'\)</span> the sum <span class="math notranslate nohighlight">\(r\)</span> + \gamma <span class="math notranslate nohighlight">\(v_{\pi}(s')\)</span> is calculated, and weighted by the probability of this <span class="math notranslate nohighlight">\((a,s',r)\)</span>-triple.</span><a class="headerlink" href="#statevalueviz" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text"><em>Visualization</em> of Bellman-equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a>: For a given state <span class="math notranslate nohighlight">\(s\)</span> and policy <span class="math notranslate nohighlight">\(\pi\)</span>, the policy defines the probability of actions, available in <span class="math notranslate nohighlight">\(s\)</span>. For a given state-action pair <span class="math notranslate nohighlight">\((s,a)\)</span> the transition model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> defines the probability of successive states and the reward model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> defines the probability of a reward <span class="math notranslate nohighlight">\(r\)</span>. For each of the possible succesive states <span class="math notranslate nohighlight">\(s'\)</span> the sum <span class="math notranslate nohighlight">\(r\)</span> + \gamma <span class="math notranslate nohighlight">\(v_{\pi}(s')\)</span> is calculated, and weighted by the probability of this <span class="math notranslate nohighlight">\((a,s',r)\)</span>-triple.</span><a class="headerlink" href="#statevalueviz" title="Permalink to this image">¶</a></p>
 </div>
-<p>The state-value function of equation <a class="reference internal" href="#equation-statevaluerec2">(85)</a> defines an ordering of policies in the sense that one can say that policy <span class="math notranslate nohighlight">\(\pi\)</span> is better than policy <span class="math notranslate nohighlight">\(|pi'\)</span>, if and only if <span class="math notranslate nohighlight">\(v_{\pi}(s) \geq v_{\pi'}(s)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>. Moreover, there exists at least one optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>, which is better than all other policies. The goal of an RL agent is to find a good approximation to this optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>.</p>
+<p>The state-value function of equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a> defines an ordering of policies in the sense that one can say that policy <span class="math notranslate nohighlight">\(\pi\)</span> is better than policy <span class="math notranslate nohighlight">\(|pi'\)</span>, if and only if <span class="math notranslate nohighlight">\(v_{\pi}(s) \geq v_{\pi'}(s)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>. Moreover, there exists at least one optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>, which is better than all other policies. The goal of an RL agent is to find a good approximation to this optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>.</p>
 <p>The state-value function of the optimal strategy is denoted by <span class="math notranslate nohighlight">\(v_*(s)\)</span> and defined by:</p>
 <div class="math notranslate nohighlight" id="equation-vopt">
-<span class="eqno">(86)<a class="headerlink" href="#equation-vopt" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(87)<a class="headerlink" href="#equation-vopt" title="Permalink to this equation">¶</a></span>\[
 v_*(s) =  \max\limits_{\pi} v_{\pi}(s) \quad \forall s \in \mathcal{S}
 \]</div>
 <p>Optimal policies also share the same optimal action-value function <span class="math notranslate nohighlight">\(q_*\)</span> (<span id="id8">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span>), defined by:</p>
 <div class="math notranslate nohighlight" id="equation-qopt">
-<span class="eqno">(87)<a class="headerlink" href="#equation-qopt" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(88)<a class="headerlink" href="#equation-qopt" title="Permalink to this equation">¶</a></span>\[\begin{split}
 q_*(s,a) &amp; = &amp; \max\limits_{\pi} q_{\pi}(s,a) \quad \forall s \in \mathcal{S}, a \in \mathcal{A} \\
          &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma v_{*}(S_{t+1}) \mid S_t=s, A_t=a \right].
 \end{split}\]</div>
-<p>Combining equations <a class="reference internal" href="#equation-statevaluerec2">(85)</a>, <a class="reference internal" href="#equation-vopt">(86)</a> and <a class="reference internal" href="#equation-qopt">(87)</a> yields the so called <strong>Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span></strong>:</p>
+<p>Combining equations <a class="reference internal" href="#equation-statevaluerec2">(86)</a>, <a class="reference internal" href="#equation-vopt">(87)</a> and <a class="reference internal" href="#equation-qopt">(88)</a> yields the so called <strong>Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span></strong>:</p>
 <div class="math notranslate nohighlight" id="equation-bellopt">
-<span class="eqno">(88)<a class="headerlink" href="#equation-bellopt" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(89)<a class="headerlink" href="#equation-bellopt" title="Permalink to this equation">¶</a></span>\[\begin{split}
 v_* (s) &amp; = &amp;  \max\limits_{a \in \mathcal{A}(s)} q_{\pi_*}(s,a) \\
     &amp; = &amp;  \max\limits_{a} \mathbb{E}_{\pi_*} \left[ G_t \mid S_t = s, A_t=a \right] \\
 	&amp; = &amp;  \max\limits_{a} \mathbb{E}_{\pi_*} \left[ R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t=a \right] \\
@@ -674,31 +674,31 @@ v_* (s) &amp; = &amp;  \max\limits_{a \in \mathcal{A}(s)} q_{\pi_*}(s,a) \\
 <p>This equation can be visualized as follows:</p>
 <div class="figure align-center" id="statevaluevizopt">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png" src="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(88)</a>.</span><a class="headerlink" href="#statevaluevizopt" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(89)</a>.</span><a class="headerlink" href="#statevaluevizopt" title="Permalink to this image">¶</a></p>
 </div>
-<p>From equation <a class="reference internal" href="#equation-bellopt">(88)</a> the optimum strategy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be optained by just taking <span class="math notranslate nohighlight">\(argmax\)</span> instead of <span class="math notranslate nohighlight">\(max\)</span>. The best action in state <span class="math notranslate nohighlight">\(s\)</span> is</p>
+<p>From equation <a class="reference internal" href="#equation-bellopt">(89)</a> the optimum strategy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be optained by just taking <span class="math notranslate nohighlight">\(argmax\)</span> instead of <span class="math notranslate nohighlight">\(max\)</span>. The best action in state <span class="math notranslate nohighlight">\(s\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-optstratv">
-<span class="eqno">(89)<a class="headerlink" href="#equation-optstratv" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(90)<a class="headerlink" href="#equation-optstratv" title="Permalink to this equation">¶</a></span>\[
 \pi_*(s) = \underset{a}{\operatorname{argmax}} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_*(s')  \right].
 \]</div>
 <p>The optimum strategy is definded by <span class="math notranslate nohighlight">\(\pi_*(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>.</p>
 <p>Similarly the <strong>Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span></strong> is:</p>
 <div class="math notranslate nohighlight" id="equation-belloptq">
-<span class="eqno">(90)<a class="headerlink" href="#equation-belloptq" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(91)<a class="headerlink" href="#equation-belloptq" title="Permalink to this equation">¶</a></span>\[\begin{split}
 q_*(s,a) &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma \max\limits_{a'} q_*(S_{t+1},a') \mid S_t = s, A_t=a \right] \\ 
          &amp; = &amp; \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma \max\limits_{a'} q_*(s',a') \right].
 \end{split}\]</div>
 <p>This equation can be visualized as follows:</p>
 <div class="figure align-center" id="actionvaluevizopt">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png" src="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span> <a class="reference internal" href="#equation-belloptq">(90)</a>.</span><a class="headerlink" href="#actionvaluevizopt" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span> <a class="reference internal" href="#equation-belloptq">(91)</a>.</span><a class="headerlink" href="#actionvaluevizopt" title="Permalink to this image">¶</a></p>
 </div>
-<p>From equation <a class="reference internal" href="#equation-belloptq">(90)</a> the optimum strategy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be obtained, since in a given state the best action <span class="math notranslate nohighlight">\(a\)</span> is</p>
+<p>From equation <a class="reference internal" href="#equation-belloptq">(91)</a> the optimum strategy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be obtained, since in a given state the best action <span class="math notranslate nohighlight">\(a\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
 \pi_*(s) = \max\limits_{a \in \mathcal{A}(s)} q_*(s,a).
 \]</div>
-<p>Note that the Bellman optimality equations <a class="reference internal" href="#equation-bellopt">(88)</a> and <a class="reference internal" href="#equation-belloptq">(90)</a> are actually systems of non-linear equations, because such an equation exists for each state and each state-action-pair, respectively. In principle any method to solve systems of non-linear equations can be applied to calculate the solution. However, in practice the exact solution of these systems of equations is hardly feasible, because of the following reasons:</p>
+<p>Note that the Bellman optimality equations <a class="reference internal" href="#equation-bellopt">(89)</a> and <a class="reference internal" href="#equation-belloptq">(91)</a> are actually systems of non-linear equations, because such an equation exists for each state and each state-action-pair, respectively. In principle any method to solve systems of non-linear equations can be applied to calculate the solution. However, in practice the exact solution of these systems of equations is hardly feasible, because of the following reasons:</p>
 <ul class="simple">
 <li><p>the dynamics of the system, i.e. <span class="math notranslate nohighlight">\(p(r',s' \mid s,a)\)</span>, and thus the transition-model <span class="math notranslate nohighlight">\(p(s'\mid s,a)\)</span> and the reward model <span class="math notranslate nohighlight">\(p(r\mid s,a)\)</span> must be known</p></li>
 <li><p>In practice systems can have many states. Then the solution of the system of non-linear equations is computational exhaustive</p></li>
@@ -713,7 +713,7 @@ q_*(s,a) &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma \max\limits_{a'} q_*(S
 </div>
 <div class="section" id="dynamic-programming-dp-in-the-case-of-complete-knowledge">
 <h2>Dynamic Programming (DP) in the case of complete knowledge<a class="headerlink" href="#dynamic-programming-dp-in-the-case-of-complete-knowledge" title="Permalink to this headline">¶</a></h2>
-<p>In this section we assume <strong>complete knowledge</strong>, i.e. the environment is perfectly and completely known in terms of a finite MDP. Methods, which can be applied to calculate optimal strategies under these conditions are summarized under the term <strong>Dynamic Programming</strong>. Algorithms of this type apply utility functions such as the Bellman optimality function for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(88)</a> and <span class="math notranslate nohighlight">\(q_*\)</span> <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-belloptq">(90)</a>, respectively. They calculate approximations of these optimality functions by an <strong>iterative update-process</strong>. Below two famous DP algorithms, <em>policy iteration</em> and <em>value iteration</em> are described. Both of them belong to the general category of <strong>Generalized Policy Iteration</strong>, since they both iteratively evaluate and improve policies.</p>
+<p>In this section we assume <strong>complete knowledge</strong>, i.e. the environment is perfectly and completely known in terms of a finite MDP. Methods, which can be applied to calculate optimal strategies under these conditions are summarized under the term <strong>Dynamic Programming</strong>. Algorithms of this type apply utility functions such as the Bellman optimality function for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(89)</a> and <span class="math notranslate nohighlight">\(q_*\)</span> <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-belloptq">(91)</a>, respectively. They calculate approximations of these optimality functions by an <strong>iterative update-process</strong>. Below two famous DP algorithms, <em>policy iteration</em> and <em>value iteration</em> are described. Both of them belong to the general category of <strong>Generalized Policy Iteration</strong>, since they both iteratively evaluate and improve policies.</p>
 <div class="section" id="policy-iteration">
 <h3>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline">¶</a></h3>
 <p>The general approach of the DP methods presented here consists of:</p>
@@ -724,18 +724,18 @@ q_*(s,a) &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma \max\limits_{a'} q_*(S
 </ul>
 <p>Starting from an initial policy <span class="math notranslate nohighlight">\(\pi_0\)</span>, the value function <span class="math notranslate nohighlight">\(v_{\pi_0}\)</span> of this policy is <strong>evaluated (E)</strong>. Based on this evaluation the policy is <strong>improved (I)</strong>. In the next iteration, the value <span class="math notranslate nohighlight">\(v_{\pi_1}\)</span> is evaluated for the improved policy <span class="math notranslate nohighlight">\(\pi_1\)</span> and this value is again applied to calculate the new policy improvement <span class="math notranslate nohighlight">\(\pi_2\)</span>… and so on:</p>
 <div class="math notranslate nohighlight" id="equation-gpi">
-<span class="eqno">(91)<a class="headerlink" href="#equation-gpi" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(92)<a class="headerlink" href="#equation-gpi" title="Permalink to this equation">¶</a></span>\[
 \pi_0 \xrightarrow{E} v_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} v_{\pi_2} \xrightarrow{I}  \cdots \xrightarrow{I} \pi_* \xrightarrow{E} v_{\pi_*}
 \]</div>
-<p><strong>Policy Evaluation</strong> is based on the Bellman equation for <span class="math notranslate nohighlight">\(v_{\pi}\)</span> (equation <a class="reference internal" href="#equation-statevaluerec2">(85)</a>) and turns this equation into an iterative update rule. In iteration <span class="math notranslate nohighlight">\(k+1\)</span> a new update <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> is calculated from the old <span class="math notranslate nohighlight">\(v_{k}(s')\)</span> of the successor-states <span class="math notranslate nohighlight">\(s'\)</span>:</p>
+<p><strong>Policy Evaluation</strong> is based on the Bellman equation for <span class="math notranslate nohighlight">\(v_{\pi}\)</span> (equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a>) and turns this equation into an iterative update rule. In iteration <span class="math notranslate nohighlight">\(k+1\)</span> a new update <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> is calculated from the old <span class="math notranslate nohighlight">\(v_{k}(s')\)</span> of the successor-states <span class="math notranslate nohighlight">\(s'\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-evaluationit">
-<span class="eqno">(92)<a class="headerlink" href="#equation-evaluationit" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(93)<a class="headerlink" href="#equation-evaluationit" title="Permalink to this equation">¶</a></span>\[
 v_{k+1}(s)  =   \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_k(s')  \right], \quad \forall s \in \mathcal{S},
 \]</div>
 <p>The initial values <span class="math notranslate nohighlight">\(v_0\)</span> are chosen arbitrarily.</p>
-<p><strong>Policy Improvement:</strong> The reason for calculating the value function for a policy is to improve the policy. In accordance to equations <a class="reference internal" href="#equation-bellopt">(88)</a> and <a class="reference internal" href="#equation-optstratv">(89)</a>, from the previous policy <span class="math notranslate nohighlight">\(\pi\)</span> and the state evaluations <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, the new policy <span class="math notranslate nohighlight">\(\pi'\)</span> can be calculated by</p>
+<p><strong>Policy Improvement:</strong> The reason for calculating the value function for a policy is to improve the policy. In accordance to equations <a class="reference internal" href="#equation-bellopt">(89)</a> and <a class="reference internal" href="#equation-optstratv">(90)</a>, from the previous policy <span class="math notranslate nohighlight">\(\pi\)</span> and the state evaluations <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, the new policy <span class="math notranslate nohighlight">\(\pi'\)</span> can be calculated by</p>
 <div class="math notranslate nohighlight" id="equation-policyimprove">
-<span class="eqno">(93)<a class="headerlink" href="#equation-policyimprove" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(94)<a class="headerlink" href="#equation-policyimprove" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \pi'(s) &amp; = &amp;  \underset{a}{\operatorname{argmax}} q_{\pi}(s,a) \\
 	&amp; = &amp;  \underset{a}{\operatorname{argmax}} \mathbb{E} \left[ R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s, A_t=a \right] \\
 	&amp; = &amp;  \underset{a}{\operatorname{argmax}} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_{\pi}(s')  \right].
@@ -791,7 +791,7 @@ v_{k+1}(s)  =   \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r
 <p>The drawback of the Policy-Iteration algorithm, as given above, is that in each iteration a specific policy must be evaluated. In this evaluation <span class="math notranslate nohighlight">\(V(s)\)</span> of each state <span class="math notranslate nohighlight">\(s\)</span> is updated in many (infinite) Loop-iterations. Only after this infinite iterations the true <span class="math notranslate nohighlight">\(v_{\pi}(s)\)</span> is availabe and can be applied for policy improvement. Tne improved policy <span class="math notranslate nohighlight">\(\pi'\)</span> is then applied for calculating <span class="math notranslate nohighlight">\(v_{\pi}(s)\)</span> and so on.</p>
 <p>Value iterations simplifies this process, by just calculating <span class="math notranslate nohighlight">\(V(s)\)</span> in only one sweep and <em>implicitely updating the policy</em> after only one such sweep. By <em>implicitely updating the policy</em>, we mean (as shown in the <a class="reference internal" href="#valueit"><span class="std std-ref">Value iteration algorithm</span></a>), that in each iteration within the loop no explicit updated policy <span class="math notranslate nohighlight">\(\pi\)</span> is calculated. Instead the policy is updated implicitly by the way the values <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> in iteration <span class="math notranslate nohighlight">\(k+1\)</span> are calculated from the old <span class="math notranslate nohighlight">\(v_{k}(s')\)</span> of the successor-states <span class="math notranslate nohighlight">\(s'\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-valueit">
-<span class="eqno">(94)<a class="headerlink" href="#equation-valueit" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(95)<a class="headerlink" href="#equation-valueit" title="Permalink to this equation">¶</a></span>\[
 v_{k+1}(s)  =   \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_k(s')  \right], \quad \forall s \in \mathcal{S}.
 \]</div>
 <p>In the policy-iteration-algorithm the new values <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> have been calculated in dependance of the policy <span class="math notranslate nohighlight">\(\pi\)</span>. In the value-iteration algorithm these value-updates have been calculated in dependence of the best action available in the current state.</p>
@@ -850,10 +850,10 @@ v_{k+1}(s)  =   \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) 
 <li><p>In a given state <span class="math notranslate nohighlight">\(s\)</span> the agent somehow selects and executes an available action <span class="math notranslate nohighlight">\(a\)</span></p></li>
 <li><p>Only <strong>after executing the action</strong> the agents perceives the reward <span class="math notranslate nohighlight">\(r \mid s,a\)</span> and the successive state <span class="math notranslate nohighlight">\(s' \mid s,a\)</span>.</p></li>
 </ol>
-<p>The approaches described below, <em>Monte Carlo</em> and <em>Temporal Difference</em>, both can be considered as Generalized Policy Iteration, as sketched in <a class="reference internal" href="#equation-gpi">(91)</a>.</p>
+<p>The approaches described below, <em>Monte Carlo</em> and <em>Temporal Difference</em>, both can be considered as Generalized Policy Iteration, as sketched in <a class="reference internal" href="#equation-gpi">(92)</a>.</p>
 <div class="section" id="monte-carlo-mc-methods">
 <h3>Monte Carlo (MC) Methods<a class="headerlink" href="#monte-carlo-mc-methods" title="Permalink to this headline">¶</a></h3>
-<p>In this context we refer by <em>Monte Carlo</em> to methods, based on <em>averaging complete returns</em> over random samples (<em>return</em> as defined in equations <a class="reference internal" href="#equation-returnfinite">(78)</a> and <a class="reference internal" href="#equation-returninfinite">(79)</a>, respectively). In contrast to MC-methods, TD-learning methods, which are described in the next subsection, learn from <em>partial returns</em>.</p>
+<p>In this context we refer by <em>Monte Carlo</em> to methods, based on <em>averaging complete returns</em> over random samples (<em>return</em> as defined in equations <a class="reference internal" href="#equation-returnfinite">(79)</a> and <a class="reference internal" href="#equation-returninfinite">(80)</a>, respectively). In contrast to MC-methods, TD-learning methods, which are described in the next subsection, learn from <em>partial returns</em>.</p>
 <div class="section" id="estimation-of-state-value-function">
 <h4>Estimation of State Value Function<a class="headerlink" href="#estimation-of-state-value-function" title="Permalink to this headline">¶</a></h4>
 <p>As in the previous sections, the value of a state <span class="math notranslate nohighlight">\(V(s)\)</span> is the <em>expected return</em>, which is defined to be the expected cumulative future discounted reward, starting from this state <span class="math notranslate nohighlight">\(s\)</span>. In order to estimate this value from experience, an obvious approach is to just generate many <em>random finite walks (episods)</em> of the agent. Whenever a given state <span class="math notranslate nohighlight">\(s\)</span> is visited, the return for this state is available at the end of the episode. The expected return, i.e. the <em>value</em> of this state, is then just the average of all returns gathered over all episodes for this state.</p>
@@ -907,9 +907,9 @@ v_{k+1}(s)  =   \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) 
 </div>
 <div class="section" id="monte-carlo-control">
 <h4>Monte Carlo Control<a class="headerlink" href="#monte-carlo-control" title="Permalink to this headline">¶</a></h4>
-<p>In order to find good policies the generalized concept of iteratively executing policy evaluation and policy improvement (GPI) is adopted from <a class="reference internal" href="#equation-gpi">(91)</a>:</p>
+<p>In order to find good policies the generalized concept of iteratively executing policy evaluation and policy improvement (GPI) is adopted from <a class="reference internal" href="#equation-gpi">(92)</a>:</p>
 <div class="math notranslate nohighlight" id="equation-gpiq">
-<span class="eqno">(95)<a class="headerlink" href="#equation-gpiq" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(96)<a class="headerlink" href="#equation-gpiq" title="Permalink to this equation">¶</a></span>\[
 \pi_0 \xrightarrow{E} q_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} q_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} q_{\pi_2} \xrightarrow{I}  \cdots \xrightarrow{I} \pi_* \xrightarrow{E} q_{\pi_*}
 \]</div>
 <p><em>Policy Evaluation (E)</em> can be done by adopting the MC <a class="reference internal" href="#first-visit"><span class="std std-ref">First-visit algorithm</span></a> to state-action-pairs <span class="math notranslate nohighlight">\((s,a)\)</span>. If the number of episodes is infinite and the <em>Exploring Starts (ES)</em> approach, as defined above, is implemented, the algorithms finds the true state-action-values <span class="math notranslate nohighlight">\(q_{\pi}\)</span> for all arbitrary <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
@@ -1052,7 +1052,7 @@ v_{k+1}(s)  =   \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) 
 \[
 Q(S_t,A_t) := Q(S_t,A_t) + \frac{W}{C(S_t,A_t)}\left[ G - Q(S_t,A_t) \right].
 \]</div>
-<p>This is derived from the fact, that state-action-values are the expectations of the returns, as defined recursively in equation <a class="reference internal" href="#equation-returnrecursive">(80)</a>. However, now we have instead of the discount-factor <span class="math notranslate nohighlight">\(\gamma\)</span> the term <span class="math notranslate nohighlight">\(W/C(S_t,A_t)\)</span>. The reason for this term is that the <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span>-values shall be the expectation of the returns of the <em>target policy <span class="math notranslate nohighlight">\(\pi\)</span></em>, but we collected the rewards of the behaviour policy <span class="math notranslate nohighlight">\(b\)</span>. As shown in <span id="id11">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span> the term <span class="math notranslate nohighlight">\(W/C(S_t,A_t)\)</span> allows to map the behaviour-policy returns to the target-policy returns.</p>
+<p>This is derived from the fact, that state-action-values are the expectations of the returns, as defined recursively in equation <a class="reference internal" href="#equation-returnrecursive">(81)</a>. However, now we have instead of the discount-factor <span class="math notranslate nohighlight">\(\gamma\)</span> the term <span class="math notranslate nohighlight">\(W/C(S_t,A_t)\)</span>. The reason for this term is that the <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span>-values shall be the expectation of the returns of the <em>target policy <span class="math notranslate nohighlight">\(\pi\)</span></em>, but we collected the rewards of the behaviour policy <span class="math notranslate nohighlight">\(b\)</span>. As shown in <span id="id11">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span> the term <span class="math notranslate nohighlight">\(W/C(S_t,A_t)\)</span> allows to map the behaviour-policy returns to the target-policy returns.</p>
 </div>
 </div>
 <div class="section" id="temporal-difference-td-learning">
@@ -1068,7 +1068,7 @@ S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T
 \]</div>
 <p>is gathered. At the end of an episode the return <span class="math notranslate nohighlight">\(G_t\)</span>, i.e. the accumulated rewards, starting from time <span class="math notranslate nohighlight">\(t\)</span> up to the end of the episode, can be calculated. Only then the state-values <span class="math notranslate nohighlight">\(V(S_t)\)</span> or the action-state values <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span> can be updated. In the case of state-values a simple MC every-visit-update method is</p>
 <div class="math notranslate nohighlight" id="equation-mcvalueupdate">
-<span class="eqno">(96)<a class="headerlink" href="#equation-mcvalueupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(97)<a class="headerlink" href="#equation-mcvalueupdate" title="Permalink to this equation">¶</a></span>\[
 V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(G_t\)</span> is the actual return following time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span> is the <em>step-size</em> or <em>learning-rate</em>. A learning-rate of <span class="math notranslate nohighlight">\(\alpha=0\)</span> yields no learning (adaptation) at all, whereas <span class="math notranslate nohighlight">\(\alpha=1\)</span> means that the old values are not updated, but replaced. In deterministic environments <span class="math notranslate nohighlight">\(\alpha=1\)</span> is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. <span class="math notranslate nohighlight">\(\alpha=0.1\)</span> in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.</p>
@@ -1084,7 +1084,7 @@ V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
 <li><p>Then the values are updated, e.g. as follows:</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-tdvalueupdate">
-<span class="eqno">(97)<a class="headerlink" href="#equation-tdvalueupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(98)<a class="headerlink" href="#equation-tdvalueupdate" title="Permalink to this equation">¶</a></span>\[
 V(S_t) := V(S_t) + \alpha \left[R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right]
 \]</div>
 <p>The corresponding algorithm for policy evaluation is:</p>
@@ -1116,21 +1116,21 @@ until <span class="math notranslate nohighlight">\(S\)</span> is terminal state<
 </li>
 </ul>
 </div>
-<p>In the update for the state-values (equation <a class="reference internal" href="#equation-tdvalueupdate">(97)</a>) the term within the square brackets is called the <strong>TD-Error:</strong></p>
+<p>In the update for the state-values (equation <a class="reference internal" href="#equation-tdvalueupdate">(98)</a>) the term within the square brackets is called the <strong>TD-Error:</strong></p>
 <div class="math notranslate nohighlight">
 \[
 \delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t).
 \]</div>
 <p>It measures the difference between the estimate <span class="math notranslate nohighlight">\(V(S_t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> and the better estimate <span class="math notranslate nohighlight">\(R_{t+1} + \gamma V(S_{t+1})\)</span>, which can be calculated after perceiving <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.</p>
 <p>It is proven, that the <a class="reference internal" href="#tabtd0"><span class="std std-ref">TD(0) policy evaluation algorithm</span></a> converges for any policy to <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, if the step-size parameter <span class="math notranslate nohighlight">\(\alpha\)</span> decreases. Moreover, in practice, TD-methods usually converge faster than MC methods.</p>
-<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(97)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
+<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(98)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
 of the step-size parameter, <span class="math notranslate nohighlight">\(\alpha\)</span>, as long as <span class="math notranslate nohighlight">\(\alpha\)</span> is chosen to be sufficiently small (<span id="id13">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span>).</p>
 <p>Up to now, for TD-learning, we only considered the <strong>prediction problem</strong>, in particular the calculation of the value-state function. Now, we turn to the <strong>control problem</strong>, i.e. the determination of an optimal policy.</p>
 <div class="section" id="sarsa">
 <h4>Sarsa<a class="headerlink" href="#sarsa" title="Permalink to this headline">¶</a></h4>
-<p>As already described in the context of MC methods, in environments of incomplete knowledge, the optimal policy can not easily derived from the optimal state-value function <span class="math notranslate nohighlight">\(v*\)</span>. Instead, the policy can be directly derived from the action-value function <span class="math notranslate nohighlight">\(q*\)</span>. In contrast to equation <a class="reference internal" href="#equation-tdvalueupdate">(97)</a>, we now consider transitions from state-action-pair to state-action-pair and update values of such pairs:</p>
+<p>As already described in the context of MC methods, in environments of incomplete knowledge, the optimal policy can not easily derived from the optimal state-value function <span class="math notranslate nohighlight">\(v*\)</span>. Instead, the policy can be directly derived from the action-value function <span class="math notranslate nohighlight">\(q*\)</span>. In contrast to equation <a class="reference internal" href="#equation-tdvalueupdate">(98)</a>, we now consider transitions from state-action-pair to state-action-pair and update values of such pairs:</p>
 <div class="math notranslate nohighlight" id="equation-tdactionupdate">
-<span class="eqno">(98)<a class="headerlink" href="#equation-tdactionupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(99)<a class="headerlink" href="#equation-tdactionupdate" title="Permalink to this equation">¶</a></span>\[
 Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) - Q(S_t,A_t) \right]
 \]</div>
 <p>Since these updates require <span class="math notranslate nohighlight">\((S_t,A_t,R_{t+1},S_{t+1},A_{t+1})\)</span>, the approach is also called <strong>Sarsa</strong>.</p>
@@ -1168,7 +1168,7 @@ until <span class="math notranslate nohighlight">\(S\)</span> is terminal state<
 <p>Q-Learning is an off-policy TD reinforcement learning method. In contrast to Sarsa the learned action-value function Q directly approximates <span class="math notranslate nohighlight">\(q_*\)</span>, the optimal action-value function, independent of the policy being followed (<span id="id15">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span>).</p>
 <p>The state-action-value update rule is</p>
 <div class="math notranslate nohighlight" id="equation-qlearnupdate">
-<span class="eqno">(99)<a class="headerlink" href="#equation-qlearnupdate" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(100)<a class="headerlink" href="#equation-qlearnupdate" title="Permalink to this equation">¶</a></span>\[
 Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma \max\limits_a Q(S_{t+1},a) - Q(S_t,A_t) \right]
 \]</div>
 <div class="admonition-q-learning-off-policy-td-control-for-estimating-pi-sim-pi admonition" id="qlearning">
