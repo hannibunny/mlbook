@@ -769,24 +769,24 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.99054538  0.90901504  0.84637037  0.81877363  0.83606853  0.90233964
-   1.0166781   1.1720693   1.35329444  1.53652765  1.69212793  1.78949941
-   1.80161426  1.70790151  1.49608548  1.16404105  0.72159742  0.19112223
-  -0.39399187 -0.99269645 -1.56075346 -2.05592672 -2.44357525 -2.70119193
-  -2.81924846 -2.79659053 -2.63190462 -2.31600794 -1.82993219 -1.15057006
-  -0.26156855  0.83500494  2.11027877  3.50586077  4.93759317]
- [ 2.26453074  2.62842732  2.89090617  3.02337351  3.0277227   2.93694538
-   2.80479875  2.68561     2.61099529  2.57373458  2.52701219  2.3999865
-   2.12223492  1.64535276  0.95275731  0.0566737  -1.01114664 -2.20628704
-  -3.47147941 -4.73128321 -5.88781175 -6.82368944 -7.41537075 -7.55587761
-  -7.18189845 -6.29660144 -4.97820953 -3.36769459 -1.63700805  0.05165845
-   1.58052264  2.89268122  3.98689348  4.89626448  5.66156764]
- [-1.73725888 -2.08657209 -2.30143995 -2.31238226 -2.07959816 -1.60905001
-  -0.95254279 -0.19314007  0.57547508  1.26591652  1.80553547  2.13831475
-   2.22536143  2.04734527  1.60813101  0.93642348  0.08313805 -0.88496382
-  -1.89274482 -2.86283975 -3.72016922 -4.39656631 -4.83724966 -5.00842104
-  -4.90235589 -4.53585879 -3.94091976 -3.15091168 -2.18848854 -1.06082283
-   0.23529818  1.6998997   3.31253103  5.01809019  6.72246939]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.43194797  0.2615454   0.32475747  0.60751471  1.04688784  1.54921602
+   2.01765296  2.37865979  2.59747951  2.67782558  2.64805652  2.54119934
+   2.37721387  2.15344504  1.84529622  1.41558865  0.82872632  0.06512615
+  -0.86760344 -1.92832906 -3.04129417 -4.10109066 -4.98551793 -5.57711898
+  -5.78988035 -5.59230261 -5.01634562 -4.14646346 -3.09208072 -1.9547488
+  -0.80299279  0.33680429  1.47239986  2.62509991  3.80373195]
+ [ 0.11309636  0.29719104  0.61663252  1.01389175  1.44049844  1.8640839
+   2.26653387  2.63500907  2.9507058   3.18133943  3.28154293  3.20163845
+   2.90163712  2.36534877  1.60937113  0.68329846 -0.33928108 -1.37527433
+  -2.34557542 -3.18217212 -3.82837953 -4.23695597 -4.37218596 -4.21807497
+  -3.78844471 -3.13081947 -2.31789661 -1.42738446 -0.51867907  0.38206486
+   1.28089988  2.20018565  3.15661095  4.1438482   5.12629303]
+ [ 2.20147648  2.43620779  2.80744011  3.29706878  3.84179409  4.34647943
+   4.71018708  4.85425961  4.74278372  4.38968906  3.85137843  3.20798716
+   2.53961802  1.90545691  1.33270598  0.81860064  0.34351936 -0.11147176
+  -0.5510837  -0.96243326 -1.32243567 -1.61052616 -1.81824579 -1.94930322
+  -2.0098893  -1.99535186 -1.88163372 -1.62680931 -1.18221229 -0.50824174
+   0.41072453  1.55586204  2.86944174  4.25745041  5.60039747]]
 </pre></div>
 </div>
 </div>
@@ -961,7 +961,7 @@ var(y_*)=diag\left( K_{**} - K_*K^{-1}K_*^T \right)
 <span class="eqno">(67)<a class="headerlink" href="#equation-eststd" title="Permalink to this equation">¶</a></span>\[
 std(y_*)=\sqrt(var(y_*))
 \]</div>
-<p>Here <span class="math notranslate nohighlight">\(diag(X)\)</span> is the main-diagonal of matrix <span class="math notranslate nohighlight">\(X\)</span>. In equation <a class="reference internal" href="#equation-estvar">(66)</a> the argument of <span class="math notranslate nohighlight">\(diag()\)</span> is a single value, if the prediction <span class="math notranslate nohighlight">\(y_*\)</span> has been calculated only at a single input <span class="math notranslate nohighlight">\(x_*\)</span>, but it is a matrix <span class="math notranslate nohighlight">\(Z \times Z\)</span> matrix, if predictions are calculated at <span class="math notranslate nohighlight">\(Z\)</span> inputs.</p>
+<p>Here <span class="math notranslate nohighlight">\(diag(X)\)</span> is the main-diagonal of matrix <span class="math notranslate nohighlight">\(X\)</span>. In equation <a class="reference internal" href="#equation-estvar">(66)</a> the argument of <span class="math notranslate nohighlight">\(diag()\)</span> is a single value, if the prediction <span class="math notranslate nohighlight">\(y_*\)</span> has been calculated only at a single input <span class="math notranslate nohighlight">\(x_*\)</span>, but it is a <span class="math notranslate nohighlight">\(Z \times Z\)</span> matrix, if predictions are calculated at <span class="math notranslate nohighlight">\(Z\)</span> inputs.</p>
 </div>
 <p>The standard deviations <span class="math notranslate nohighlight">\(std(y_*)\)</span> indicate, that the confidence that the true prediction lies within an interval <span class="math notranslate nohighlight">\(y_* \pm 2 \cdot std(y_*)\)</span> is <span class="math notranslate nohighlight">\(95\%\)</span>.</p>
 <div class="figure align-center" id="condprob">
