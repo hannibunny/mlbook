@@ -130,6 +130,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
    Support Vector Machines (SVM)
   </a>
@@ -201,8 +206,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../gan/DCGAN.html">
+  <a class="reference internal" href="../gan/GAN.html">
    Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
   </a>
  </li>
 </ul>
@@ -215,6 +225,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../rl/reinforcement.html">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
   </a>
  </li>
 </ul>
@@ -244,6 +264,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -663,7 +688,7 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
             <span class="n">noise</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
-            <span class="n">k</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="n">noise</span>
+            <span class="n">k</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="n">noise</span><span class="o">**</span><span class="mi">2</span>
             <span class="n">KB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
             <span class="n">KB</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
     <span class="n">KBinv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">KB</span><span class="p">)</span>
@@ -699,7 +724,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------Results of optimisation----------
-[-0.23152 -0.31679 -0.29716  2.66767  1.00007  1.12804  0.00994  0.00263]
+[-0.23166 -0.31688 -0.29713  2.66702  1.       1.12786  0.00837  0.00272]
 </pre></div>
 </div>
 </div>
@@ -707,14 +732,28 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#####################Definition of hyperparameters#############################</span>
-<span class="n">c4</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
-<span class="n">c3</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
+<span class="n">c4</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="c1"># constant coefficient of biquadratic term in prior mean function</span>
+<span class="n">c3</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="c1"># constant coefficient of cubic term in prior mean function</span>
 <span class="n">c2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># constant coefficient of quadratic term in prior mean function</span>
 <span class="n">c1</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># constant coefficient of linear term in prior mean function</span>
 <span class="n">c0</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># constant coefficient constant term in prior mean function</span>
 <span class="n">ell</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="c1"># horicontal length scale parameter in the squared exponential function</span>
-<span class="n">sigmaF2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#sigmaF2 is the variance of the multivariate gaussian distribution</span>
-<span class="n">sigmaN2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#sigmaN2 is the variance of the regression noise-term</span>
+<span class="n">sigmaF2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1">#sigmaF2 is the standard deviation of the multivariate gaussian distribution</span>
+<span class="n">sigmaN2</span><span class="o">=</span><span class="n">xopt</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="c1">#sigmaN2 is the standard deviation of the regression noise-term</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Learned mean function m(x) = </span><span class="si">%1.3f</span><span class="s2">*x^4 + </span><span class="si">%1.3f</span><span class="s2">*x^3 + </span><span class="si">%1.3f</span><span class="s2">*x^2+ </span><span class="si">%1.3f</span><span class="s2">*x + </span><span class="si">%1.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">c4</span><span class="p">,</span><span class="n">c3</span><span class="p">,</span><span class="n">c2</span><span class="p">,</span><span class="n">c1</span><span class="p">,</span><span class="n">c0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Learned cov. function m(x) = (</span><span class="si">%1.3f</span><span class="s2">)^2 *exp(-(x-x&#39;)^2 / (2 * (</span><span class="si">%1.3f</span><span class="s2">)^2))+ </span><span class="si">%1.3f</span><span class="s2">^2&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">sigmaF2</span><span class="p">,</span><span class="n">ell</span><span class="p">,</span><span class="n">sigmaN2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Learned mean function m(x) = 0.003*x^4 + 0.008*x^3 + -0.232*x^2+ -0.317*x + -0.297
+Learned cov. function m(x) = (2.667)^2 *exp(-(x-x&#39;)^2 / (2 * (1.000)^2))+ 1.128^2
 </pre></div>
 </div>
 </div>
@@ -726,7 +765,7 @@
     <span class="k">return</span> <span class="n">c4</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">4</span><span class="o">+</span><span class="n">c3</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">c2</span><span class="o">*</span><span class="n">xin</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">c1</span><span class="o">*</span><span class="n">xin</span><span class="o">+</span><span class="n">c0</span>
 
 <span class="k">def</span> <span class="nf">corrFunc</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">xb</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">sigmaF2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">ell</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">sigmaF2</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">ell</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -752,8 +791,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KB</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xB</span><span class="p">)):</span>
-        <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="n">sigmaN2</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">noise</span>
+        <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="n">sigmaN2</span><span class="o">**</span><span class="mi">2</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">=</span><span class="n">corrFunc</span><span class="p">(</span><span class="n">xB</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xB</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">noise</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">KB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
         <span class="n">KB</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>        
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39; Matrix KB &#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
@@ -763,13 +802,13 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix KB ----------
-[[8.389 0.963 0.002 0.    0.    0.    0.   ]
- [0.963 8.389 0.963 0.079 0.002 0.    0.   ]
- [0.002 0.963 8.389 4.317 0.963 0.079 0.002]
- [0.    0.079 4.317 8.389 4.317 0.963 0.079]
- [0.    0.002 0.963 4.317 8.389 4.317 0.963]
- [0.    0.    0.079 0.963 4.317 8.389 4.317]
- [0.    0.    0.002 0.079 0.963 4.317 8.389]]
+[[8.731 0.963 0.002 0.    0.    0.    0.   ]
+ [0.963 8.731 0.963 0.079 0.002 0.    0.   ]
+ [0.002 0.963 8.731 4.314 0.963 0.079 0.002]
+ [0.    0.079 4.314 8.731 4.314 0.963 0.079]
+ [0.    0.002 0.963 4.314 8.731 4.314 0.963]
+ [0.    0.    0.079 0.963 4.314 8.731 4.314]
+ [0.    0.    0.002 0.079 0.963 4.314 8.731]]
 </pre></div>
 </div>
 </div>
@@ -784,13 +823,13 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Inverse of Matrix KB ----------
-[[ 0.121 -0.014  0.002 -0.001  0.    -0.     0.   ]
- [-0.014  0.123 -0.019  0.01  -0.004  0.001 -0.   ]
- [ 0.002 -0.019  0.173 -0.109  0.042 -0.012  0.002]
- [-0.001  0.01  -0.109  0.239 -0.134  0.049 -0.012]
- [ 0.    -0.004  0.042 -0.134  0.247 -0.134  0.042]
- [-0.     0.001 -0.012  0.049 -0.134  0.238 -0.107]
- [ 0.    -0.     0.002 -0.012  0.042 -0.107  0.17 ]]
+[[ 0.116 -0.013  0.002 -0.001  0.    -0.     0.   ]
+ [-0.013  0.118 -0.017  0.009 -0.003  0.001 -0.   ]
+ [ 0.002 -0.017  0.159 -0.094  0.032 -0.008  0.001]
+ [-0.001  0.009 -0.094  0.212 -0.111  0.036 -0.008]
+ [ 0.    -0.003  0.032 -0.111  0.218 -0.111  0.032]
+ [-0.     0.001 -0.008  0.036 -0.111  0.211 -0.092]
+ [ 0.    -0.     0.001 -0.008  0.032 -0.092  0.157]]
 </pre></div>
 </div>
 </div>
@@ -809,56 +848,56 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix Ks ----------
-[[4.31663 0.0791  0.00003 0.      0.      0.      0.     ]
- [5.16783 0.14127 0.00007 0.      0.      0.      0.     ]
- [5.94431 0.2424  0.00018 0.      0.      0.      0.     ]
- [6.56939 0.39963 0.00045 0.      0.      0.      0.     ]
- [6.97556 0.63301 0.00105 0.00001 0.      0.      0.     ]
- [7.11646 0.96336 0.00239 0.00003 0.      0.      0.     ]
- [6.97556 1.40864 0.00521 0.00007 0.      0.      0.     ]
- [6.56939 1.97897 0.01092 0.00018 0.      0.      0.     ]
- [5.94431 2.67123 0.022   0.00045 0.      0.      0.     ]
- [5.16783 3.46428 0.04256 0.00105 0.00001 0.      0.     ]
- [4.31663 4.31663 0.0791  0.00239 0.00003 0.      0.     ]
- [3.46428 5.16783 0.14127 0.00521 0.00007 0.      0.     ]
- [2.67123 5.94431 0.2424  0.01092 0.00018 0.      0.     ]
- [1.97897 6.56939 0.39963 0.022   0.00045 0.      0.     ]
- [1.40864 6.97556 0.63301 0.04256 0.00105 0.00001 0.     ]
- [0.96336 7.11646 0.96336 0.0791  0.00239 0.00003 0.     ]
- [0.63301 6.97556 1.40864 0.14127 0.00521 0.00007 0.     ]
- [0.39963 6.56939 1.97897 0.2424  0.01092 0.00018 0.     ]
- [0.2424  5.94431 2.67123 0.39963 0.022   0.00045 0.     ]
- [0.14127 5.16783 3.46428 0.63301 0.04256 0.00105 0.00001]
- [0.0791  4.31663 4.31663 0.96336 0.0791  0.00239 0.00003]
- [0.04256 3.46428 5.16783 1.40864 0.14127 0.00521 0.00007]
- [0.022   2.67123 5.94431 1.97897 0.2424  0.01092 0.00018]
- [0.01092 1.97897 6.56939 2.67123 0.39963 0.022   0.00045]
- [0.00521 1.40864 6.97556 3.46428 0.63301 0.04256 0.00105]
- [0.00239 0.96336 7.11646 4.31663 0.96336 0.0791  0.00239]
- [0.00105 0.63301 6.97556 5.16783 1.40864 0.14127 0.00521]
- [0.00045 0.39963 6.56939 5.94431 1.97897 0.2424  0.01092]
- [0.00018 0.2424  5.94431 6.56939 2.67123 0.39963 0.022  ]
- [0.00007 0.14127 5.16783 6.97556 3.46428 0.63301 0.04256]
- [0.00003 0.0791  4.31663 7.11646 4.31663 0.96336 0.0791 ]
- [0.00001 0.04256 3.46428 6.97556 5.16783 1.40864 0.14127]
- [0.      0.022   2.67123 6.56939 5.94431 1.97897 0.2424 ]
- [0.      0.01092 1.97897 5.94431 6.56939 2.67123 0.39963]
- [0.      0.00521 1.40864 5.16783 6.97556 3.46428 0.63301]
- [0.      0.00239 0.96336 4.31663 7.11646 4.31663 0.96336]
- [0.      0.00105 0.63301 3.46428 6.97556 5.16783 1.40864]
- [0.      0.00045 0.39963 2.67123 6.56939 5.94431 1.97897]
- [0.      0.00018 0.2424  1.97897 5.94431 6.56939 2.67123]
- [0.      0.00007 0.14127 1.40864 5.16783 6.97556 3.46428]
- [0.      0.00003 0.0791  0.96336 4.31663 7.11646 4.31663]
- [0.      0.00001 0.04256 0.63301 3.46428 6.97556 5.16783]
- [0.      0.      0.022   0.39963 2.67123 6.56939 5.94431]
- [0.      0.      0.01092 0.2424  1.97897 5.94431 6.56939]
- [0.      0.      0.00521 0.14127 1.40864 5.16783 6.97556]
- [0.      0.      0.00239 0.0791  0.96336 4.31663 7.11646]
- [0.      0.      0.00105 0.04256 0.63301 3.46428 6.97556]
- [0.      0.      0.00045 0.022   0.39963 2.67123 6.56939]
- [0.      0.      0.00018 0.01092 0.2424  1.97897 5.94431]
- [0.      0.      0.00007 0.00521 0.14127 1.40864 5.16783]]
+[[4.31426 0.07902 0.00003 0.      0.      0.      0.     ]
+ [5.1651  0.14113 0.00007 0.      0.      0.      0.     ]
+ [5.94128 0.24218 0.00018 0.      0.      0.      0.     ]
+ [6.56613 0.39929 0.00044 0.      0.      0.      0.     ]
+ [6.97216 0.6325  0.00105 0.00001 0.      0.      0.     ]
+ [7.11301 0.96264 0.00239 0.00003 0.      0.      0.     ]
+ [6.97216 1.40765 0.00521 0.00007 0.      0.      0.     ]
+ [6.56613 1.97768 0.01091 0.00018 0.      0.      0.     ]
+ [5.94128 2.66959 0.02197 0.00044 0.      0.      0.     ]
+ [5.1651  3.46227 0.04251 0.00105 0.00001 0.      0.     ]
+ [4.31426 4.31426 0.07902 0.00239 0.00003 0.      0.     ]
+ [3.46227 5.1651  0.14113 0.00521 0.00007 0.      0.     ]
+ [2.66959 5.94128 0.24218 0.01091 0.00018 0.      0.     ]
+ [1.97768 6.56613 0.39929 0.02197 0.00044 0.      0.     ]
+ [1.40765 6.97216 0.6325  0.04251 0.00105 0.00001 0.     ]
+ [0.96264 7.11301 0.96264 0.07902 0.00239 0.00003 0.     ]
+ [0.6325  6.97216 1.40765 0.14113 0.00521 0.00007 0.     ]
+ [0.39929 6.56613 1.97768 0.24218 0.01091 0.00018 0.     ]
+ [0.24218 5.94128 2.66959 0.39929 0.02197 0.00044 0.     ]
+ [0.14113 5.1651  3.46227 0.6325  0.04251 0.00105 0.00001]
+ [0.07902 4.31426 4.31426 0.96264 0.07902 0.00239 0.00003]
+ [0.04251 3.46227 5.1651  1.40765 0.14113 0.00521 0.00007]
+ [0.02197 2.66959 5.94128 1.97768 0.24218 0.01091 0.00018]
+ [0.01091 1.97768 6.56613 2.66959 0.39929 0.02197 0.00044]
+ [0.00521 1.40765 6.97216 3.46227 0.6325  0.04251 0.00105]
+ [0.00239 0.96264 7.11301 4.31426 0.96264 0.07902 0.00239]
+ [0.00105 0.6325  6.97216 5.1651  1.40765 0.14113 0.00521]
+ [0.00044 0.39929 6.56613 5.94128 1.97768 0.24218 0.01091]
+ [0.00018 0.24218 5.94128 6.56613 2.66959 0.39929 0.02197]
+ [0.00007 0.14113 5.1651  6.97216 3.46227 0.6325  0.04251]
+ [0.00003 0.07902 4.31426 7.11301 4.31426 0.96264 0.07902]
+ [0.00001 0.04251 3.46227 6.97216 5.1651  1.40765 0.14113]
+ [0.      0.02197 2.66959 6.56613 5.94128 1.97768 0.24218]
+ [0.      0.01091 1.97768 5.94128 6.56613 2.66959 0.39929]
+ [0.      0.00521 1.40765 5.1651  6.97216 3.46227 0.6325 ]
+ [0.      0.00239 0.96264 4.31426 7.11301 4.31426 0.96264]
+ [0.      0.00105 0.6325  3.46227 6.97216 5.1651  1.40765]
+ [0.      0.00044 0.39929 2.66959 6.56613 5.94128 1.97768]
+ [0.      0.00018 0.24218 1.97768 5.94128 6.56613 2.66959]
+ [0.      0.00007 0.14113 1.40765 5.1651  6.97216 3.46227]
+ [0.      0.00003 0.07902 0.96264 4.31426 7.11301 4.31426]
+ [0.      0.00001 0.04251 0.6325  3.46227 6.97216 5.1651 ]
+ [0.      0.      0.02197 0.39929 2.66959 6.56613 5.94128]
+ [0.      0.      0.01091 0.24218 1.97768 5.94128 6.56613]
+ [0.      0.      0.00521 0.14113 1.40765 5.1651  6.97216]
+ [0.      0.      0.00239 0.07902 0.96264 4.31426 7.11301]
+ [0.      0.      0.00105 0.04251 0.6325  3.46227 6.97216]
+ [0.      0.      0.00044 0.02197 0.39929 2.66959 6.56613]
+ [0.      0.      0.00018 0.01091 0.24218 1.97768 5.94128]
+ [0.      0.      0.00007 0.00521 0.14113 1.40765 5.1651 ]]
 </pre></div>
 </div>
 </div>
@@ -879,13 +918,13 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- Matrix Kss ----------
-[[8.389 6.976 6.569 ... 0.    0.    0.   ]
- [6.976 8.389 6.976 ... 0.    0.    0.   ]
- [6.569 6.976 8.389 ... 0.    0.    0.   ]
+[[8.241 6.972 6.566 ... 0.    0.    0.   ]
+ [6.972 8.241 6.972 ... 0.    0.    0.   ]
+ [6.566 6.972 8.241 ... 0.    0.    0.   ]
  ...
- [0.    0.    0.    ... 8.389 6.976 6.569]
- [0.    0.    0.    ... 6.976 8.389 6.976]
- [0.    0.    0.    ... 6.569 6.976 8.389]]
+ [0.    0.    0.    ... 8.241 6.972 6.566]
+ [0.    0.    0.    ... 6.972 8.241 6.972]
+ [0.    0.    0.    ... 6.566 6.972 8.241]]
 </pre></div>
 </div>
 </div>
@@ -899,13 +938,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction:  [ 0.40199  0.48549  0.55464  0.60486  0.63423  0.64447  0.64083  0.63064
-  0.62056  0.61338  0.60508  0.58337  0.52839  0.41573  0.22127 -0.07333
- -0.4757  -0.97965 -1.56453 -2.19703 -2.8349  -3.43176 -3.9419  -4.32441
- -4.54613 -4.58326 -4.42177 -4.05692 -3.49237 -2.73943 -1.81699 -0.75222
-  0.41789  1.645    2.86884  4.01901  5.02012  5.80068  6.30469  6.50396
-  6.40789  6.06785  5.57387  5.04363  4.60551  4.37956  4.46071  4.90781
-  5.74058  6.94416]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction:  [ 0.38157  0.46039  0.5246   0.56966  0.59363  0.59809  0.5881   0.57076
+  0.55258  0.53637  0.5184   0.48704  0.42336  0.30413  0.10641 -0.18711
+ -0.58346 -1.07636 -1.64573 -2.25943 -2.87689 -3.45366 -3.94595 -4.31448
+ -4.52718 -4.56071 -4.40093 -4.04266 -3.48915 -2.75167 -1.8496  -0.81108
+  0.326    1.51312  2.69135  3.79373  4.75039  5.49668  5.98351  6.18783
+  6.12083  5.83129  5.40228  4.94115  4.56462  4.38199  4.48043  4.9154
+  5.70787  6.84816]
 </pre></div>
 </div>
 </div>
@@ -919,12 +958,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Standard Deviation:  [4.9584  4.55205 4.07582 3.59388 3.21568 3.06549 3.18956 3.49887 3.84304
- 4.09708 4.1873  4.09065 3.83298 3.49052 3.18764 3.06328 3.18143 3.47088
- 3.79093 4.021   4.09326 3.9941  3.75852 3.45967 3.18729 3.01009 2.93954
- 2.93422 2.94404 2.94475 2.93832 2.93396 2.93363 2.93307 2.93044 2.92882
- 2.93053 2.93314 2.93363 2.93413 2.93929 2.94707 2.94733 2.9367  2.93976
- 3.01327 3.21507 3.5562  3.98941 4.44236]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Standard Deviation:  [4.93583 4.54478 4.08802 3.62796 3.26874 3.12563 3.24058 3.53169 3.85821
+ 4.10058 4.18716 4.09535 3.85021 3.52547 3.23962 3.12263 3.23387 3.50846
+ 3.8152  4.03888 4.11295 4.02237 3.79841 3.50874 3.23767 3.05236 2.96927
+ 2.95456 2.96164 2.96433 2.96054 2.95694 2.95585 2.9546  2.95204 2.95059
+ 2.95208 2.95462 2.95585 2.95722 2.96163 2.96663 2.9646  2.95651 2.96932
+ 3.05652 3.26759 3.60697 4.02773 4.46227]
 </pre></div>
 </div>
 </div>
@@ -936,7 +975,6 @@
 <span class="c1">#plt.hold(True)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xB</span><span class="p">,</span><span class="n">yB</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xPred</span><span class="p">,</span><span class="n">ypred</span><span class="p">,</span><span class="s1">&#39;--g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;$m(x)=0.25 \cdot x^2$ </span><span class="se">\n</span><span class="s2">$k(x,x&#39;)=2 \cdot \exp(-0.5\cdot(x-x&#39;)^2)$ </span><span class="se">\n</span><span class="s2"> $\sigma_n^2=0.005$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process Prediction with prior quadratic mean&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -952,7 +990,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/GaussianProcessRegression_44_0.png" src="../_images/GaussianProcessRegression_44_0.png" />
+<img alt="../_images/GaussianProcessRegression_45_0.png" src="../_images/GaussianProcessRegression_45_0.png" />
 </div>
 </div>
 </div>
