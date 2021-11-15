@@ -546,7 +546,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:Output custom_variational_layer_1 missing from loss dictionary. We assume this was done on purpose. The fit and evaluate APIs will not be expecting any data to be passed to custom_variational_layer_1.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:Output custom_variational_layer missing from loss dictionary. We assume this was done on purpose. The fit and evaluate APIs will not be expecting any data to be passed to custom_variational_layer.
 </pre></div>
 </div>
 </div>
@@ -577,115 +577,2618 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train on 60000 samples, validate on 10000 samples
 Epoch 1/50
-60000/60000 [==============================] - 3s 42us/sample - loss: 190.1123 - val_loss: 172.2831
-Epoch 2/50
- 1600/60000 [..............................] - ETA: 2s - loss: 173.0964
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:2325: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  100/60000 [..............................] - ETA: 10:39 - loss: 544.5136
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 36s - loss: 339.3044  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3500/60000 [&gt;.............................] - ETA: 18s - loss: 291.8937
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5200/60000 [=&gt;............................] - ETA: 12s - loss: 268.4053
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7000/60000 [==&gt;...........................] - ETA: 9s - loss: 253.0317 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8800/60000 [===&gt;..........................] - ETA: 7s - loss: 242.5485
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10600/60000 [====&gt;.........................] - ETA: 6s - loss: 234.8704
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12300/60000 [=====&gt;........................] - ETA: 5s - loss: 229.0058
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14000/60000 [======&gt;.......................] - ETA: 4s - loss: 224.2937
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15800/60000 [======&gt;.......................] - ETA: 4s - loss: 220.6115
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17600/60000 [=======&gt;......................] - ETA: 3s - loss: 217.2946
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19400/60000 [========&gt;.....................] - ETA: 3s - loss: 214.6381
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21100/60000 [=========&gt;....................] - ETA: 3s - loss: 212.3401
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22800/60000 [==========&gt;...................] - ETA: 2s - loss: 210.3482
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24600/60000 [===========&gt;..................] - ETA: 2s - loss: 208.4726
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26400/60000 [============&gt;.................] - ETA: 2s - loss: 206.7495
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28200/60000 [=============&gt;................] - ETA: 2s - loss: 205.1433
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29900/60000 [=============&gt;................] - ETA: 1s - loss: 203.6802
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31600/60000 [==============&gt;...............] - ETA: 1s - loss: 202.3076
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33300/60000 [===============&gt;..............] - ETA: 1s - loss: 201.1880
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35000/60000 [================&gt;.............] - ETA: 1s - loss: 200.1644
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36700/60000 [=================&gt;............] - ETA: 1s - loss: 199.1109
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+38400/60000 [==================&gt;...........] - ETA: 1s - loss: 198.2094
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40100/60000 [===================&gt;..........] - ETA: 1s - loss: 197.3795
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41900/60000 [===================&gt;..........] - ETA: 0s - loss: 196.5001
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43700/60000 [====================&gt;.........] - ETA: 0s - loss: 195.7441
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45500/60000 [=====================&gt;........] - ETA: 0s - loss: 194.9272
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47300/60000 [======================&gt;.......] - ETA: 0s - loss: 194.2096
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49100/60000 [=======================&gt;......] - ETA: 0s - loss: 193.5186
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51000/60000 [========================&gt;.....] - ETA: 0s - loss: 192.7938
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52800/60000 [=========================&gt;....] - ETA: 0s - loss: 192.1942
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54600/60000 [==========================&gt;...] - ETA: 0s - loss: 191.6431
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56400/60000 [===========================&gt;..] - ETA: 0s - loss: 191.0735
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58200/60000 [============================&gt;.] - ETA: 0s - loss: 190.5101
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - ETA: 0s - loss: 190.0532
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 3s 49us/sample - loss: 190.0532 - val_loss: 173.0635
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 171.6908
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 174.2145
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras/engine/training.py:2470: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
   warnings.warn(&#39;`Model.state_updates` will be removed in a future version. &#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60000/60000 [==============================] - 2s 37us/sample - loss: 169.8918 - val_loss: 167.5543
-Epoch 3/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 166.4956 - val_loss: 165.8234
-Epoch 4/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 164.5012 - val_loss: 164.3141
-Epoch 5/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 163.0578 - val_loss: 162.7638
-Epoch 6/50
-60000/60000 [==============================] - 2s 35us/sample - loss: 161.8541 - val_loss: 161.4722
-Epoch 7/50
-60000/60000 [==============================] - 2s 38us/sample - loss: 160.7503 - val_loss: 160.9534
-Epoch 8/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 159.7430 - val_loss: 159.5836
-Epoch 9/50
-60000/60000 [==============================] - 2s 32us/sample - loss: 158.8051 - val_loss: 158.5463
-Epoch 10/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 157.9484 - val_loss: 158.0287
-Epoch 11/50
-60000/60000 [==============================] - 2s 35us/sample - loss: 157.2035 - val_loss: 157.4577
-Epoch 12/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 156.6268 - val_loss: 156.8387
-Epoch 13/50
-60000/60000 [==============================] - 2s 37us/sample - loss: 156.0872 - val_loss: 157.0645
-Epoch 14/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 155.6449 - val_loss: 155.9814
-Epoch 15/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 155.2430 - val_loss: 155.6910
-Epoch 16/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 154.8365 - val_loss: 155.3740
-Epoch 17/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 154.5050 - val_loss: 155.6464
-Epoch 18/50
-60000/60000 [==============================] - 2s 40us/sample - loss: 154.1809 - val_loss: 154.7711
-Epoch 19/50
-60000/60000 [==============================] - 2s 36us/sample - loss: 153.8817 - val_loss: 154.6100
-Epoch 20/50
-60000/60000 [==============================] - 2s 37us/sample - loss: 153.6125 - val_loss: 154.8499
-Epoch 21/50
-60000/60000 [==============================] - 2s 40us/sample - loss: 153.3313 - val_loss: 154.2980
-Epoch 22/50
-60000/60000 [==============================] - 2s 38us/sample - loss: 153.1088 - val_loss: 153.9127
-Epoch 23/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 152.9314 - val_loss: 153.7506
-Epoch 24/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 152.6730 - val_loss: 153.8405
-Epoch 25/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 152.4740 - val_loss: 153.3315
-Epoch 26/50
-60000/60000 [==============================] - 2s 31us/sample - loss: 152.2897 - val_loss: 153.0857
-Epoch 27/50
-60000/60000 [==============================] - 2s 32us/sample - loss: 152.0929 - val_loss: 153.1513
-Epoch 28/50
-60000/60000 [==============================] - 2s 32us/sample - loss: 151.9361 - val_loss: 153.1151
-Epoch 29/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 151.7808 - val_loss: 153.4719
-Epoch 30/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 151.6246 - val_loss: 153.2551
-Epoch 31/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 151.4593 - val_loss: 153.4976
-Epoch 32/50
-60000/60000 [==============================] - 2s 39us/sample - loss: 151.3604 - val_loss: 152.7027
-Epoch 33/50
-60000/60000 [==============================] - 2s 38us/sample - loss: 151.1961 - val_loss: 152.6126
-Epoch 34/50
-60000/60000 [==============================] - 2s 40us/sample - loss: 151.0774 - val_loss: 152.7157
-Epoch 35/50
-60000/60000 [==============================] - 2s 39us/sample - loss: 150.9494 - val_loss: 152.3224
-Epoch 36/50
-60000/60000 [==============================] - 3s 42us/sample - loss: 150.8336 - val_loss: 152.2298
-Epoch 37/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 150.7078 - val_loss: 152.2306
-Epoch 38/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 150.5628 - val_loss: 152.2956
-Epoch 39/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 150.4876 - val_loss: 152.1619
-Epoch 40/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 150.3640 - val_loss: 152.1534
-Epoch 41/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 150.2565 - val_loss: 152.3277
-Epoch 42/50
-60000/60000 [==============================] - 2s 37us/sample - loss: 150.1418 - val_loss: 151.9473
-Epoch 43/50
-60000/60000 [==============================] - 2s 35us/sample - loss: 150.0423 - val_loss: 151.6289
-Epoch 44/50
-60000/60000 [==============================] - 2s 35us/sample - loss: 149.9660 - val_loss: 153.1326
-Epoch 45/50
-60000/60000 [==============================] - 2s 32us/sample - loss: 149.8773 - val_loss: 151.8143
-Epoch 46/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 149.7542 - val_loss: 151.9940
-Epoch 47/50
-60000/60000 [==============================] - 2s 32us/sample - loss: 149.6915 - val_loss: 152.0849
-Epoch 48/50
-60000/60000 [==============================] - 2s 33us/sample - loss: 149.6066 - val_loss: 152.1654
-Epoch 49/50
-60000/60000 [==============================] - 2s 37us/sample - loss: 149.5009 - val_loss: 151.4190
-Epoch 50/50
-60000/60000 [==============================] - 2s 34us/sample - loss: 149.4195 - val_loss: 151.4915
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3700/60000 [&gt;.............................] - ETA: 1s - loss: 173.5302
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tensorflow.python.keras.callbacks.History at 0x7fad2d3146d0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5500/60000 [=&gt;............................] - ETA: 1s - loss: 173.0440
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7300/60000 [==&gt;...........................] - ETA: 1s - loss: 172.6095
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9100/60000 [===&gt;..........................] - ETA: 1s - loss: 172.5935
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10900/60000 [====&gt;.........................] - ETA: 1s - loss: 172.6270
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12700/60000 [=====&gt;........................] - ETA: 1s - loss: 172.7003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14500/60000 [======&gt;.......................] - ETA: 1s - loss: 172.5086
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16300/60000 [=======&gt;......................] - ETA: 1s - loss: 172.2577
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18100/60000 [========&gt;.....................] - ETA: 1s - loss: 172.2657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19800/60000 [========&gt;.....................] - ETA: 1s - loss: 172.1522
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21600/60000 [=========&gt;....................] - ETA: 1s - loss: 172.0383
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23400/60000 [==========&gt;...................] - ETA: 1s - loss: 171.9908
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25100/60000 [===========&gt;..................] - ETA: 0s - loss: 171.7391
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26900/60000 [============&gt;.................] - ETA: 0s - loss: 171.7357
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28600/60000 [=============&gt;................] - ETA: 0s - loss: 171.6747
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30400/60000 [==============&gt;...............] - ETA: 0s - loss: 171.5271
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32100/60000 [===============&gt;..............] - ETA: 0s - loss: 171.4976
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33800/60000 [===============&gt;..............] - ETA: 0s - loss: 171.3762
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35600/60000 [================&gt;.............] - ETA: 0s - loss: 171.3709
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37400/60000 [=================&gt;............] - ETA: 0s - loss: 171.2822
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39200/60000 [==================&gt;...........] - ETA: 0s - loss: 171.1835
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41000/60000 [===================&gt;..........] - ETA: 0s - loss: 171.0991
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42800/60000 [====================&gt;.........] - ETA: 0s - loss: 171.0395
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44700/60000 [=====================&gt;........] - ETA: 0s - loss: 171.0731
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46600/60000 [======================&gt;.......] - ETA: 0s - loss: 171.0393
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48400/60000 [=======================&gt;......] - ETA: 0s - loss: 170.9506
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50000/60000 [========================&gt;.....] - ETA: 0s - loss: 170.8555
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51700/60000 [========================&gt;.....] - ETA: 0s - loss: 170.7902
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53500/60000 [=========================&gt;....] - ETA: 0s - loss: 170.7015
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55300/60000 [==========================&gt;...] - ETA: 0s - loss: 170.6294
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57100/60000 [===========================&gt;..] - ETA: 0s - loss: 170.5771
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58900/60000 [============================&gt;.] - ETA: 0s - loss: 170.5119
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 170.4569 - val_loss: 168.3746
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 167.1187
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 169.6742
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3700/60000 [&gt;.............................] - ETA: 1s - loss: 168.2752
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5500/60000 [=&gt;............................] - ETA: 1s - loss: 168.1107
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7300/60000 [==&gt;...........................] - ETA: 1s - loss: 168.3539
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9100/60000 [===&gt;..........................] - ETA: 1s - loss: 168.1811
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10900/60000 [====&gt;.........................] - ETA: 1s - loss: 168.0981
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12700/60000 [=====&gt;........................] - ETA: 1s - loss: 167.9782
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14500/60000 [======&gt;.......................] - ETA: 1s - loss: 167.9316
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16300/60000 [=======&gt;......................] - ETA: 1s - loss: 167.9098
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17800/60000 [=======&gt;......................] - ETA: 1s - loss: 167.7561
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19600/60000 [========&gt;.....................] - ETA: 1s - loss: 167.8234
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21400/60000 [=========&gt;....................] - ETA: 1s - loss: 167.7859
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23200/60000 [==========&gt;...................] - ETA: 1s - loss: 167.7790
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25000/60000 [===========&gt;..................] - ETA: 1s - loss: 167.7183
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26800/60000 [============&gt;.................] - ETA: 0s - loss: 167.7431
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28600/60000 [=============&gt;................] - ETA: 0s - loss: 167.5509
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30400/60000 [==============&gt;...............] - ETA: 0s - loss: 167.5069
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32100/60000 [===============&gt;..............] - ETA: 0s - loss: 167.4572
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33800/60000 [===============&gt;..............] - ETA: 0s - loss: 167.3880
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35500/60000 [================&gt;.............] - ETA: 0s - loss: 167.3244
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37200/60000 [=================&gt;............] - ETA: 0s - loss: 167.3448
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+38900/60000 [==================&gt;...........] - ETA: 0s - loss: 167.4191
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40700/60000 [===================&gt;..........] - ETA: 0s - loss: 167.3765
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42500/60000 [====================&gt;.........] - ETA: 0s - loss: 167.3073
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44300/60000 [=====================&gt;........] - ETA: 0s - loss: 167.2900
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46100/60000 [======================&gt;.......] - ETA: 0s - loss: 167.2314
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47900/60000 [======================&gt;.......] - ETA: 0s - loss: 167.1759
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49700/60000 [=======================&gt;......] - ETA: 0s - loss: 167.1449
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51500/60000 [========================&gt;.....] - ETA: 0s - loss: 167.1669
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53300/60000 [=========================&gt;....] - ETA: 0s - loss: 167.1717
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55100/60000 [==========================&gt;...] - ETA: 0s - loss: 167.1788
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56900/60000 [===========================&gt;..] - ETA: 0s - loss: 167.0947
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58700/60000 [============================&gt;.] - ETA: 0s - loss: 166.9995
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 167.0303 - val_loss: 166.1375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 4/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 171.1284
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 166.0706
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3700/60000 [&gt;.............................] - ETA: 1s - loss: 165.7826
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5500/60000 [=&gt;............................] - ETA: 1s - loss: 165.3922
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7300/60000 [==&gt;...........................] - ETA: 1s - loss: 165.4958
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9100/60000 [===&gt;..........................] - ETA: 1s - loss: 165.7226
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10900/60000 [====&gt;.........................] - ETA: 1s - loss: 165.9494
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12700/60000 [=====&gt;........................] - ETA: 1s - loss: 165.7187
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14500/60000 [======&gt;.......................] - ETA: 1s - loss: 165.6219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16200/60000 [=======&gt;......................] - ETA: 1s - loss: 165.4357
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17800/60000 [=======&gt;......................] - ETA: 1s - loss: 165.5194
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19600/60000 [========&gt;.....................] - ETA: 1s - loss: 165.5016
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21400/60000 [=========&gt;....................] - ETA: 1s - loss: 165.4922
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23200/60000 [==========&gt;...................] - ETA: 1s - loss: 165.3480
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25000/60000 [===========&gt;..................] - ETA: 1s - loss: 165.3787
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26800/60000 [============&gt;.................] - ETA: 0s - loss: 165.3682
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28500/60000 [=============&gt;................] - ETA: 0s - loss: 165.2289
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30300/60000 [==============&gt;...............] - ETA: 0s - loss: 165.2082
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32100/60000 [===============&gt;..............] - ETA: 0s - loss: 165.2034
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33900/60000 [===============&gt;..............] - ETA: 0s - loss: 165.2240
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35700/60000 [================&gt;.............] - ETA: 0s - loss: 165.1513
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37500/60000 [=================&gt;............] - ETA: 0s - loss: 165.1771
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39300/60000 [==================&gt;...........] - ETA: 0s - loss: 165.1779
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41100/60000 [===================&gt;..........] - ETA: 0s - loss: 165.1507
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43000/60000 [====================&gt;.........] - ETA: 0s - loss: 165.1560
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44700/60000 [=====================&gt;........] - ETA: 0s - loss: 165.1105
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46500/60000 [======================&gt;.......] - ETA: 0s - loss: 165.0696
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48300/60000 [=======================&gt;......] - ETA: 0s - loss: 165.0174
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50100/60000 [========================&gt;.....] - ETA: 0s - loss: 164.9473
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51900/60000 [========================&gt;.....] - ETA: 0s - loss: 164.9522
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53700/60000 [=========================&gt;....] - ETA: 0s - loss: 164.9060
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55500/60000 [==========================&gt;...] - ETA: 0s - loss: 164.9012
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57200/60000 [===========================&gt;..] - ETA: 0s - loss: 164.8848
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58900/60000 [============================&gt;.] - ETA: 0s - loss: 164.9068
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 164.9017 - val_loss: 164.4726
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 5/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 167.9980
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 163.1853
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3700/60000 [&gt;.............................] - ETA: 1s - loss: 163.7325
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5500/60000 [=&gt;............................] - ETA: 1s - loss: 164.0950
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7300/60000 [==&gt;...........................] - ETA: 1s - loss: 164.2006
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9100/60000 [===&gt;..........................] - ETA: 1s - loss: 163.8886
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10900/60000 [====&gt;.........................] - ETA: 1s - loss: 163.6751
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12700/60000 [=====&gt;........................] - ETA: 1s - loss: 163.7040
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14500/60000 [======&gt;.......................] - ETA: 1s - loss: 163.8644
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16300/60000 [=======&gt;......................] - ETA: 1s - loss: 163.9411
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18100/60000 [========&gt;.....................] - ETA: 1s - loss: 163.8712
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19900/60000 [========&gt;.....................] - ETA: 1s - loss: 163.8570
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21700/60000 [=========&gt;....................] - ETA: 1s - loss: 163.7218
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23500/60000 [==========&gt;...................] - ETA: 1s - loss: 163.7156
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25300/60000 [===========&gt;..................] - ETA: 0s - loss: 163.6013
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27100/60000 [============&gt;.................] - ETA: 0s - loss: 163.5245
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28900/60000 [=============&gt;................] - ETA: 0s - loss: 163.5716
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30700/60000 [==============&gt;...............] - ETA: 0s - loss: 163.6264
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32500/60000 [===============&gt;..............] - ETA: 0s - loss: 163.6540
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34300/60000 [================&gt;.............] - ETA: 0s - loss: 163.5695
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36100/60000 [=================&gt;............] - ETA: 0s - loss: 163.5849
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37900/60000 [=================&gt;............] - ETA: 0s - loss: 163.5721
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39700/60000 [==================&gt;...........] - ETA: 0s - loss: 163.5524
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41500/60000 [===================&gt;..........] - ETA: 0s - loss: 163.5956
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43300/60000 [====================&gt;.........] - ETA: 0s - loss: 163.5673
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45100/60000 [=====================&gt;........] - ETA: 0s - loss: 163.5631
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46900/60000 [======================&gt;.......] - ETA: 0s - loss: 163.5535
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48700/60000 [=======================&gt;......] - ETA: 0s - loss: 163.5135
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50500/60000 [========================&gt;.....] - ETA: 0s - loss: 163.4947
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52200/60000 [=========================&gt;....] - ETA: 0s - loss: 163.4375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54000/60000 [==========================&gt;...] - ETA: 0s - loss: 163.4128
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55800/60000 [==========================&gt;...] - ETA: 0s - loss: 163.4025
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57600/60000 [===========================&gt;..] - ETA: 0s - loss: 163.4057
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59400/60000 [============================&gt;.] - ETA: 0s - loss: 163.3802
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 163.3640 - val_loss: 162.8733
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 6/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 161.0182
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 162.8881
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3800/60000 [&gt;.............................] - ETA: 1s - loss: 162.5490
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5600/60000 [=&gt;............................] - ETA: 1s - loss: 162.1204
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7400/60000 [==&gt;...........................] - ETA: 1s - loss: 161.4632
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9200/60000 [===&gt;..........................] - ETA: 1s - loss: 161.5267
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11100/60000 [====&gt;.........................] - ETA: 1s - loss: 161.8413
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12900/60000 [=====&gt;........................] - ETA: 1s - loss: 161.6627
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14700/60000 [======&gt;.......................] - ETA: 1s - loss: 161.7886
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16500/60000 [=======&gt;......................] - ETA: 1s - loss: 162.0104
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18300/60000 [========&gt;.....................] - ETA: 1s - loss: 162.0484
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+20100/60000 [=========&gt;....................] - ETA: 1s - loss: 162.1612
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21900/60000 [=========&gt;....................] - ETA: 1s - loss: 162.2109
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23700/60000 [==========&gt;...................] - ETA: 1s - loss: 162.1544
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25500/60000 [===========&gt;..................] - ETA: 0s - loss: 162.2098
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27300/60000 [============&gt;.................] - ETA: 0s - loss: 162.1543
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29100/60000 [=============&gt;................] - ETA: 0s - loss: 162.1142
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30800/60000 [==============&gt;...............] - ETA: 0s - loss: 162.1459
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32500/60000 [===============&gt;..............] - ETA: 0s - loss: 162.1438
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34200/60000 [================&gt;.............] - ETA: 0s - loss: 162.1446
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36000/60000 [=================&gt;............] - ETA: 0s - loss: 162.1127
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37800/60000 [=================&gt;............] - ETA: 0s - loss: 162.1348
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39600/60000 [==================&gt;...........] - ETA: 0s - loss: 162.1870
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41400/60000 [===================&gt;..........] - ETA: 0s - loss: 162.1273
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43200/60000 [====================&gt;.........] - ETA: 0s - loss: 162.1466
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45000/60000 [=====================&gt;........] - ETA: 0s - loss: 162.1726
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46800/60000 [======================&gt;.......] - ETA: 0s - loss: 162.2323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48600/60000 [=======================&gt;......] - ETA: 0s - loss: 162.1646
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50400/60000 [========================&gt;.....] - ETA: 0s - loss: 162.1633
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52200/60000 [=========================&gt;....] - ETA: 0s - loss: 162.1121
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53900/60000 [=========================&gt;....] - ETA: 0s - loss: 162.1360
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55700/60000 [==========================&gt;...] - ETA: 0s - loss: 162.1310
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57500/60000 [===========================&gt;..] - ETA: 0s - loss: 162.1003
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59300/60000 [============================&gt;.] - ETA: 0s - loss: 162.1099
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 162.0620 - val_loss: 161.8001
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 7/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 165.2833
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 1s - loss: 162.8452
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3600/60000 [&gt;.............................] - ETA: 1s - loss: 160.9478
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5400/60000 [=&gt;............................] - ETA: 1s - loss: 161.4154
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7200/60000 [==&gt;...........................] - ETA: 1s - loss: 161.5557
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9000/60000 [===&gt;..........................] - ETA: 1s - loss: 161.2540
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10800/60000 [====&gt;.........................] - ETA: 1s - loss: 161.2666
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12600/60000 [=====&gt;........................] - ETA: 1s - loss: 161.2056
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14400/60000 [======&gt;.......................] - ETA: 1s - loss: 161.2664
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16200/60000 [=======&gt;......................] - ETA: 1s - loss: 161.2684
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18000/60000 [========&gt;.....................] - ETA: 1s - loss: 161.3960
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19800/60000 [========&gt;.....................] - ETA: 1s - loss: 161.2012
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21700/60000 [=========&gt;....................] - ETA: 1s - loss: 161.1065
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23500/60000 [==========&gt;...................] - ETA: 1s - loss: 161.0707
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25300/60000 [===========&gt;..................] - ETA: 0s - loss: 161.1727
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27100/60000 [============&gt;.................] - ETA: 0s - loss: 161.2879
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28900/60000 [=============&gt;................] - ETA: 0s - loss: 161.1993
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30700/60000 [==============&gt;...............] - ETA: 0s - loss: 161.1042
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32400/60000 [===============&gt;..............] - ETA: 0s - loss: 161.0768
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34200/60000 [================&gt;.............] - ETA: 0s - loss: 161.0489
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36000/60000 [=================&gt;............] - ETA: 0s - loss: 161.0088
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37800/60000 [=================&gt;............] - ETA: 0s - loss: 161.0875
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39600/60000 [==================&gt;...........] - ETA: 0s - loss: 161.1144
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41400/60000 [===================&gt;..........] - ETA: 0s - loss: 161.1129
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43200/60000 [====================&gt;.........] - ETA: 0s - loss: 161.0682
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45000/60000 [=====================&gt;........] - ETA: 0s - loss: 161.0759
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46800/60000 [======================&gt;.......] - ETA: 0s - loss: 161.0942
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48500/60000 [=======================&gt;......] - ETA: 0s - loss: 161.0384
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50300/60000 [========================&gt;.....] - ETA: 0s - loss: 160.9982
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52100/60000 [=========================&gt;....] - ETA: 0s - loss: 160.9855
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53900/60000 [=========================&gt;....] - ETA: 0s - loss: 160.9679
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55600/60000 [==========================&gt;...] - ETA: 0s - loss: 160.9372
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57300/60000 [===========================&gt;..] - ETA: 0s - loss: 160.9206
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59000/60000 [============================&gt;.] - ETA: 0s - loss: 160.8782
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 160.8824 - val_loss: 160.8385
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 8/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 154.0657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 1s - loss: 157.8582
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3600/60000 [&gt;.............................] - ETA: 1s - loss: 159.5474
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5400/60000 [=&gt;............................] - ETA: 1s - loss: 159.6658
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7200/60000 [==&gt;...........................] - ETA: 1s - loss: 160.0410
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9000/60000 [===&gt;..........................] - ETA: 1s - loss: 160.1960
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10800/60000 [====&gt;.........................] - ETA: 1s - loss: 160.0938
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12600/60000 [=====&gt;........................] - ETA: 1s - loss: 160.3496
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14400/60000 [======&gt;.......................] - ETA: 1s - loss: 160.3603
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16200/60000 [=======&gt;......................] - ETA: 1s - loss: 160.3344
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18000/60000 [========&gt;.....................] - ETA: 1s - loss: 160.1881
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19800/60000 [========&gt;.....................] - ETA: 1s - loss: 160.2708
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21600/60000 [=========&gt;....................] - ETA: 1s - loss: 160.1758
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23400/60000 [==========&gt;...................] - ETA: 1s - loss: 160.3084
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25200/60000 [===========&gt;..................] - ETA: 1s - loss: 160.3019
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27000/60000 [============&gt;.................] - ETA: 0s - loss: 160.5094
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28800/60000 [=============&gt;................] - ETA: 0s - loss: 160.3716
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30500/60000 [==============&gt;...............] - ETA: 0s - loss: 160.3489
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32200/60000 [===============&gt;..............] - ETA: 0s - loss: 160.3400
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34000/60000 [================&gt;.............] - ETA: 0s - loss: 160.2929
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35700/60000 [================&gt;.............] - ETA: 0s - loss: 160.2533
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37400/60000 [=================&gt;............] - ETA: 0s - loss: 160.1927
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39100/60000 [==================&gt;...........] - ETA: 0s - loss: 160.1699
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40900/60000 [===================&gt;..........] - ETA: 0s - loss: 160.1149
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42700/60000 [====================&gt;.........] - ETA: 0s - loss: 160.1238
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44500/60000 [=====================&gt;........] - ETA: 0s - loss: 160.1013
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46200/60000 [======================&gt;.......] - ETA: 0s - loss: 160.0426
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47800/60000 [======================&gt;.......] - ETA: 0s - loss: 160.0434
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49500/60000 [=======================&gt;......] - ETA: 0s - loss: 160.0192
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51300/60000 [========================&gt;.....] - ETA: 0s - loss: 159.9928
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53000/60000 [=========================&gt;....] - ETA: 0s - loss: 159.9410
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54800/60000 [==========================&gt;...] - ETA: 0s - loss: 159.9504
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56600/60000 [===========================&gt;..] - ETA: 0s - loss: 159.9179
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58400/60000 [============================&gt;.] - ETA: 0s - loss: 159.8670
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 31us/sample - loss: 159.8168 - val_loss: 159.9701
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 9/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 161.6048
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 159.5060
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3600/60000 [&gt;.............................] - ETA: 1s - loss: 160.2381
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5200/60000 [=&gt;............................] - ETA: 1s - loss: 159.4979
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7000/60000 [==&gt;...........................] - ETA: 1s - loss: 159.3588
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8800/60000 [===&gt;..........................] - ETA: 1s - loss: 159.2528
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10700/60000 [====&gt;.........................] - ETA: 1s - loss: 159.2211
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12500/60000 [=====&gt;........................] - ETA: 1s - loss: 159.0898
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14300/60000 [======&gt;.......................] - ETA: 1s - loss: 158.9044
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16100/60000 [=======&gt;......................] - ETA: 1s - loss: 158.8812
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17900/60000 [=======&gt;......................] - ETA: 1s - loss: 158.9480
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19600/60000 [========&gt;.....................] - ETA: 1s - loss: 158.9180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21500/60000 [=========&gt;....................] - ETA: 1s - loss: 158.9055
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23300/60000 [==========&gt;...................] - ETA: 1s - loss: 158.9186
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25100/60000 [===========&gt;..................] - ETA: 1s - loss: 158.8707
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26900/60000 [============&gt;.................] - ETA: 0s - loss: 158.9193
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28700/60000 [=============&gt;................] - ETA: 0s - loss: 158.9878
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30600/60000 [==============&gt;...............] - ETA: 0s - loss: 158.9865
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32400/60000 [===============&gt;..............] - ETA: 0s - loss: 158.8780
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34200/60000 [================&gt;.............] - ETA: 0s - loss: 159.0022
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36000/60000 [=================&gt;............] - ETA: 0s - loss: 158.9256
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37800/60000 [=================&gt;............] - ETA: 0s - loss: 158.8692
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39600/60000 [==================&gt;...........] - ETA: 0s - loss: 158.8867
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41400/60000 [===================&gt;..........] - ETA: 0s - loss: 158.9413
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43100/60000 [====================&gt;.........] - ETA: 0s - loss: 158.8685
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44900/60000 [=====================&gt;........] - ETA: 0s - loss: 158.9081
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46500/60000 [======================&gt;.......] - ETA: 0s - loss: 158.8726
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48200/60000 [=======================&gt;......] - ETA: 0s - loss: 158.9507
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50000/60000 [========================&gt;.....] - ETA: 0s - loss: 158.9157
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51700/60000 [========================&gt;.....] - ETA: 0s - loss: 158.9578
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53400/60000 [=========================&gt;....] - ETA: 0s - loss: 158.8903
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55100/60000 [==========================&gt;...] - ETA: 0s - loss: 158.8828
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56800/60000 [===========================&gt;..] - ETA: 0s - loss: 158.9135
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58500/60000 [============================&gt;.] - ETA: 0s - loss: 158.8494
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 30us/sample - loss: 158.8381 - val_loss: 158.7518
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 10/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 154.2397
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 1s - loss: 157.0362
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3400/60000 [&gt;.............................] - ETA: 1s - loss: 158.0511
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5100/60000 [=&gt;............................] - ETA: 1s - loss: 158.4678
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 6800/60000 [==&gt;...........................] - ETA: 1s - loss: 158.6749
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8500/60000 [===&gt;..........................] - ETA: 1s - loss: 158.3961
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10200/60000 [====&gt;.........................] - ETA: 1s - loss: 158.1531
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11900/60000 [====&gt;.........................] - ETA: 1s - loss: 158.0484
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+13600/60000 [=====&gt;........................] - ETA: 1s - loss: 158.1274
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15100/60000 [======&gt;.......................] - ETA: 1s - loss: 158.5573
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16400/60000 [=======&gt;......................] - ETA: 1s - loss: 158.3717
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18000/60000 [========&gt;.....................] - ETA: 1s - loss: 158.4215
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19500/60000 [========&gt;.....................] - ETA: 1s - loss: 158.3857
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21100/60000 [=========&gt;....................] - ETA: 1s - loss: 158.1026
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22500/60000 [==========&gt;...................] - ETA: 1s - loss: 158.2020
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24000/60000 [===========&gt;..................] - ETA: 1s - loss: 158.1641
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25500/60000 [===========&gt;..................] - ETA: 1s - loss: 158.1953
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27100/60000 [============&gt;.................] - ETA: 1s - loss: 158.2351
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28600/60000 [=============&gt;................] - ETA: 1s - loss: 158.1538
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30100/60000 [==============&gt;...............] - ETA: 0s - loss: 158.1622
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31700/60000 [==============&gt;...............] - ETA: 0s - loss: 158.1582
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33200/60000 [===============&gt;..............] - ETA: 0s - loss: 158.1204
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34700/60000 [================&gt;.............] - ETA: 0s - loss: 158.1135
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36200/60000 [=================&gt;............] - ETA: 0s - loss: 158.2020
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37800/60000 [=================&gt;............] - ETA: 0s - loss: 158.1956
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39400/60000 [==================&gt;...........] - ETA: 0s - loss: 158.2537
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40900/60000 [===================&gt;..........] - ETA: 0s - loss: 158.2809
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42400/60000 [====================&gt;.........] - ETA: 0s - loss: 158.2714
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43900/60000 [====================&gt;.........] - ETA: 0s - loss: 158.2333
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45400/60000 [=====================&gt;........] - ETA: 0s - loss: 158.1764
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47100/60000 [======================&gt;.......] - ETA: 0s - loss: 158.1849
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48800/60000 [=======================&gt;......] - ETA: 0s - loss: 158.1658
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50500/60000 [========================&gt;.....] - ETA: 0s - loss: 158.1277
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52200/60000 [=========================&gt;....] - ETA: 0s - loss: 158.1659
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53900/60000 [=========================&gt;....] - ETA: 0s - loss: 158.1771
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55600/60000 [==========================&gt;...] - ETA: 0s - loss: 158.0872
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57300/60000 [===========================&gt;..] - ETA: 0s - loss: 158.1029
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59000/60000 [============================&gt;.] - ETA: 0s - loss: 158.0709
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 34us/sample - loss: 158.0467 - val_loss: 158.0067
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 11/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 163.8781
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1600/60000 [..............................] - ETA: 2s - loss: 156.6443
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3200/60000 [&gt;.............................] - ETA: 1s - loss: 156.6253
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 4800/60000 [=&gt;............................] - ETA: 1s - loss: 157.2227
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 6400/60000 [==&gt;...........................] - ETA: 1s - loss: 156.9272
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8100/60000 [===&gt;..........................] - ETA: 1s - loss: 157.2955
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9800/60000 [===&gt;..........................] - ETA: 1s - loss: 157.4466
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11500/60000 [====&gt;.........................] - ETA: 1s - loss: 157.0253
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+13300/60000 [=====&gt;........................] - ETA: 1s - loss: 157.1765
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15100/60000 [======&gt;.......................] - ETA: 1s - loss: 157.0073
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16900/60000 [=======&gt;......................] - ETA: 1s - loss: 157.1157
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18700/60000 [========&gt;.....................] - ETA: 1s - loss: 157.1154
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+20500/60000 [=========&gt;....................] - ETA: 1s - loss: 157.0469
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22300/60000 [==========&gt;...................] - ETA: 1s - loss: 157.1083
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24100/60000 [===========&gt;..................] - ETA: 1s - loss: 157.2323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25900/60000 [===========&gt;..................] - ETA: 1s - loss: 157.2299
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27600/60000 [============&gt;.................] - ETA: 0s - loss: 157.2384
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29400/60000 [=============&gt;................] - ETA: 0s - loss: 157.1662
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31200/60000 [==============&gt;...............] - ETA: 0s - loss: 157.1899
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33000/60000 [===============&gt;..............] - ETA: 0s - loss: 157.1809
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34800/60000 [================&gt;.............] - ETA: 0s - loss: 157.2506
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36600/60000 [=================&gt;............] - ETA: 0s - loss: 157.2839
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+38300/60000 [==================&gt;...........] - ETA: 0s - loss: 157.2871
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40000/60000 [===================&gt;..........] - ETA: 0s - loss: 157.2548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41700/60000 [===================&gt;..........] - ETA: 0s - loss: 157.2624
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43400/60000 [====================&gt;.........] - ETA: 0s - loss: 157.3306
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45100/60000 [=====================&gt;........] - ETA: 0s - loss: 157.3247
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46800/60000 [======================&gt;.......] - ETA: 0s - loss: 157.2965
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47900/60000 [======================&gt;.......] - ETA: 0s - loss: 157.3168
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49500/60000 [=======================&gt;......] - ETA: 0s - loss: 157.3319
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51100/60000 [========================&gt;.....] - ETA: 0s - loss: 157.2829
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52700/60000 [=========================&gt;....] - ETA: 0s - loss: 157.2847
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54300/60000 [==========================&gt;...] - ETA: 0s - loss: 157.2969
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55900/60000 [==========================&gt;...] - ETA: 0s - loss: 157.3323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57500/60000 [===========================&gt;..] - ETA: 0s - loss: 157.3644
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59100/60000 [============================&gt;.] - ETA: 0s - loss: 157.3890
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 32us/sample - loss: 157.3590 - val_loss: 157.5367
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 12/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 158.7338
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 1s - loss: 157.9658
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3000/60000 [&gt;.............................] - ETA: 2s - loss: 157.2057
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 4700/60000 [=&gt;............................] - ETA: 1s - loss: 157.4725
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 6100/60000 [==&gt;...........................] - ETA: 1s - loss: 157.2173
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7600/60000 [==&gt;...........................] - ETA: 1s - loss: 157.2833
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9100/60000 [===&gt;..........................] - ETA: 1s - loss: 157.0763
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10400/60000 [====&gt;.........................] - ETA: 1s - loss: 157.0813
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12000/60000 [=====&gt;........................] - ETA: 1s - loss: 157.1466
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+13500/60000 [=====&gt;........................] - ETA: 1s - loss: 157.1075
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15100/60000 [======&gt;.......................] - ETA: 1s - loss: 156.9087
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16600/60000 [=======&gt;......................] - ETA: 1s - loss: 156.7606
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18200/60000 [========&gt;.....................] - ETA: 1s - loss: 156.8311
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19900/60000 [========&gt;.....................] - ETA: 1s - loss: 156.9336
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21600/60000 [=========&gt;....................] - ETA: 1s - loss: 157.0491
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23200/60000 [==========&gt;...................] - ETA: 1s - loss: 157.0121
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24900/60000 [===========&gt;..................] - ETA: 1s - loss: 156.9442
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26500/60000 [============&gt;.................] - ETA: 1s - loss: 156.9461
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28000/60000 [=============&gt;................] - ETA: 1s - loss: 156.9416
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29600/60000 [=============&gt;................] - ETA: 1s - loss: 156.9514
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31200/60000 [==============&gt;...............] - ETA: 0s - loss: 156.8968
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32900/60000 [===============&gt;..............] - ETA: 0s - loss: 156.8769
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34400/60000 [================&gt;.............] - ETA: 0s - loss: 156.7711
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36000/60000 [=================&gt;............] - ETA: 0s - loss: 156.7976
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37600/60000 [=================&gt;............] - ETA: 0s - loss: 156.7665
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39200/60000 [==================&gt;...........] - ETA: 0s - loss: 156.6944
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40600/60000 [===================&gt;..........] - ETA: 0s - loss: 156.7456
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42100/60000 [====================&gt;.........] - ETA: 0s - loss: 156.7477
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43600/60000 [====================&gt;.........] - ETA: 0s - loss: 156.7890
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45100/60000 [=====================&gt;........] - ETA: 0s - loss: 156.8340
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46500/60000 [======================&gt;.......] - ETA: 0s - loss: 156.7789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48000/60000 [=======================&gt;......] - ETA: 0s - loss: 156.8025
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49100/60000 [=======================&gt;......] - ETA: 0s - loss: 156.7705
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50200/60000 [========================&gt;.....] - ETA: 0s - loss: 156.7384
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51600/60000 [========================&gt;.....] - ETA: 0s - loss: 156.7592
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53000/60000 [=========================&gt;....] - ETA: 0s - loss: 156.7761
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54300/60000 [==========================&gt;...] - ETA: 0s - loss: 156.7638
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55600/60000 [==========================&gt;...] - ETA: 0s - loss: 156.7603
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57000/60000 [===========================&gt;..] - ETA: 0s - loss: 156.7954
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58400/60000 [============================&gt;.] - ETA: 0s - loss: 156.7826
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59800/60000 [============================&gt;.] - ETA: 0s - loss: 156.7968
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 37us/sample - loss: 156.8183 - val_loss: 157.1521
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 13/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 152.9259
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 1s - loss: 155.6530
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3200/60000 [&gt;.............................] - ETA: 1s - loss: 155.7340
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 4500/60000 [=&gt;............................] - ETA: 2s - loss: 155.8579
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5900/60000 [=&gt;............................] - ETA: 1s - loss: 156.0718
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7500/60000 [==&gt;...........................] - ETA: 1s - loss: 155.8991
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9000/60000 [===&gt;..........................] - ETA: 1s - loss: 156.1453
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10500/60000 [====&gt;.........................] - ETA: 1s - loss: 156.0036
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12000/60000 [=====&gt;........................] - ETA: 1s - loss: 156.2229
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+13600/60000 [=====&gt;........................] - ETA: 1s - loss: 156.1787
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15100/60000 [======&gt;.......................] - ETA: 1s - loss: 156.2632
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16500/60000 [=======&gt;......................] - ETA: 1s - loss: 156.2697
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18100/60000 [========&gt;.....................] - ETA: 1s - loss: 156.4201
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19700/60000 [========&gt;.....................] - ETA: 1s - loss: 156.2820
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21200/60000 [=========&gt;....................] - ETA: 1s - loss: 156.2491
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22600/60000 [==========&gt;...................] - ETA: 1s - loss: 156.2506
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23900/60000 [==========&gt;...................] - ETA: 1s - loss: 156.0866
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25400/60000 [===========&gt;..................] - ETA: 1s - loss: 156.2394
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26900/60000 [============&gt;.................] - ETA: 1s - loss: 156.2432
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28500/60000 [=============&gt;................] - ETA: 1s - loss: 156.1829
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30100/60000 [==============&gt;...............] - ETA: 1s - loss: 156.3542
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31600/60000 [==============&gt;...............] - ETA: 0s - loss: 156.3515
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33100/60000 [===============&gt;..............] - ETA: 0s - loss: 156.4872
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34700/60000 [================&gt;.............] - ETA: 0s - loss: 156.4218
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36200/60000 [=================&gt;............] - ETA: 0s - loss: 156.3440
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37800/60000 [=================&gt;............] - ETA: 0s - loss: 156.3111
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39300/60000 [==================&gt;...........] - ETA: 0s - loss: 156.2693
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40700/60000 [===================&gt;..........] - ETA: 0s - loss: 156.2595
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42000/60000 [====================&gt;.........] - ETA: 0s - loss: 156.2796
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43400/60000 [====================&gt;.........] - ETA: 0s - loss: 156.2265
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44800/60000 [=====================&gt;........] - ETA: 0s - loss: 156.2889
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46300/60000 [======================&gt;.......] - ETA: 0s - loss: 156.2152
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47900/60000 [======================&gt;.......] - ETA: 0s - loss: 156.2724
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49500/60000 [=======================&gt;......] - ETA: 0s - loss: 156.3083
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51000/60000 [========================&gt;.....] - ETA: 0s - loss: 156.2994
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52600/60000 [=========================&gt;....] - ETA: 0s - loss: 156.2643
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54200/60000 [==========================&gt;...] - ETA: 0s - loss: 156.2490
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55800/60000 [==========================&gt;...] - ETA: 0s - loss: 156.2346
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57400/60000 [===========================&gt;..] - ETA: 0s - loss: 156.2742
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58900/60000 [============================&gt;.] - ETA: 0s - loss: 156.3050
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 36us/sample - loss: 156.3069 - val_loss: 156.9158
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 14/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 164.9164
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1700/60000 [..............................] - ETA: 1s - loss: 155.9802
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3300/60000 [&gt;.............................] - ETA: 1s - loss: 155.9607
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5000/60000 [=&gt;............................] - ETA: 1s - loss: 156.1530
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 6500/60000 [==&gt;...........................] - ETA: 1s - loss: 156.0622
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8000/60000 [===&gt;..........................] - ETA: 1s - loss: 155.5150
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9500/60000 [===&gt;..........................] - ETA: 1s - loss: 155.5648
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11100/60000 [====&gt;.........................] - ETA: 1s - loss: 155.5923
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12700/60000 [=====&gt;........................] - ETA: 1s - loss: 155.7012
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14300/60000 [======&gt;.......................] - ETA: 1s - loss: 155.6292
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15800/60000 [======&gt;.......................] - ETA: 1s - loss: 155.7434
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17200/60000 [=======&gt;......................] - ETA: 1s - loss: 155.8359
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18800/60000 [========&gt;.....................] - ETA: 1s - loss: 155.9991
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+20300/60000 [=========&gt;....................] - ETA: 1s - loss: 156.0805
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21800/60000 [=========&gt;....................] - ETA: 1s - loss: 156.2727
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23300/60000 [==========&gt;...................] - ETA: 1s - loss: 156.2986
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24800/60000 [===========&gt;..................] - ETA: 1s - loss: 156.2212
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26400/60000 [============&gt;.................] - ETA: 1s - loss: 156.1009
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27800/60000 [============&gt;.................] - ETA: 1s - loss: 156.1430
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29400/60000 [=============&gt;................] - ETA: 1s - loss: 156.2095
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30900/60000 [==============&gt;...............] - ETA: 0s - loss: 156.2215
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32400/60000 [===============&gt;..............] - ETA: 0s - loss: 156.1774
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33900/60000 [===============&gt;..............] - ETA: 0s - loss: 156.2618
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35300/60000 [================&gt;.............] - ETA: 0s - loss: 156.2393
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36700/60000 [=================&gt;............] - ETA: 0s - loss: 156.0947
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+38200/60000 [==================&gt;...........] - ETA: 0s - loss: 156.0208
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39500/60000 [==================&gt;...........] - ETA: 0s - loss: 155.9864
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41000/60000 [===================&gt;..........] - ETA: 0s - loss: 155.9810
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42600/60000 [====================&gt;.........] - ETA: 0s - loss: 156.0248
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44200/60000 [=====================&gt;........] - ETA: 0s - loss: 156.0193
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45700/60000 [=====================&gt;........] - ETA: 0s - loss: 155.9763
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46900/60000 [======================&gt;.......] - ETA: 0s - loss: 155.9442
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48400/60000 [=======================&gt;......] - ETA: 0s - loss: 155.8970
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49800/60000 [=======================&gt;......] - ETA: 0s - loss: 155.9337
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51300/60000 [========================&gt;.....] - ETA: 0s - loss: 155.9631
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52700/60000 [=========================&gt;....] - ETA: 0s - loss: 155.9463
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53700/60000 [=========================&gt;....] - ETA: 0s - loss: 155.9738
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55300/60000 [==========================&gt;...] - ETA: 0s - loss: 155.9073
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56700/60000 [===========================&gt;..] - ETA: 0s - loss: 155.8542
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58100/60000 [============================&gt;.] - ETA: 0s - loss: 155.8405
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59100/60000 [============================&gt;.] - ETA: 0s - loss: 155.8467
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 37us/sample - loss: 155.8405 - val_loss: 156.1981
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 15/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 163.7927
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1600/60000 [..............................] - ETA: 2s - loss: 155.0419
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3100/60000 [&gt;.............................] - ETA: 1s - loss: 154.4170
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 4400/60000 [=&gt;............................] - ETA: 2s - loss: 154.6214
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5800/60000 [=&gt;............................] - ETA: 1s - loss: 154.7507
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7300/60000 [==&gt;...........................] - ETA: 1s - loss: 155.1403
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8900/60000 [===&gt;..........................] - ETA: 1s - loss: 155.1246
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10400/60000 [====&gt;.........................] - ETA: 1s - loss: 155.0567
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+11900/60000 [====&gt;.........................] - ETA: 1s - loss: 155.0860
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+13400/60000 [=====&gt;........................] - ETA: 1s - loss: 155.1092
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15000/60000 [======&gt;.......................] - ETA: 1s - loss: 154.9932
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+16700/60000 [=======&gt;......................] - ETA: 1s - loss: 155.0473
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+18400/60000 [========&gt;.....................] - ETA: 1s - loss: 155.0062
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+20100/60000 [=========&gt;....................] - ETA: 1s - loss: 155.0095
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21800/60000 [=========&gt;....................] - ETA: 1s - loss: 154.9525
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+23100/60000 [==========&gt;...................] - ETA: 1s - loss: 155.0860
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24300/60000 [===========&gt;..................] - ETA: 1s - loss: 155.1222
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25900/60000 [===========&gt;..................] - ETA: 1s - loss: 155.0161
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27600/60000 [============&gt;.................] - ETA: 1s - loss: 154.9706
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29300/60000 [=============&gt;................] - ETA: 1s - loss: 155.0398
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31000/60000 [==============&gt;...............] - ETA: 0s - loss: 155.1277
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+32800/60000 [===============&gt;..............] - ETA: 0s - loss: 155.2214
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34500/60000 [================&gt;.............] - ETA: 0s - loss: 155.1365
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36100/60000 [=================&gt;............] - ETA: 0s - loss: 155.2025
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37800/60000 [=================&gt;............] - ETA: 0s - loss: 155.1444
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39400/60000 [==================&gt;...........] - ETA: 0s - loss: 155.1682
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40800/60000 [===================&gt;..........] - ETA: 0s - loss: 155.2168
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42300/60000 [====================&gt;.........] - ETA: 0s - loss: 155.1794
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43700/60000 [====================&gt;.........] - ETA: 0s - loss: 155.1649
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45200/60000 [=====================&gt;........] - ETA: 0s - loss: 155.2784
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46700/60000 [======================&gt;.......] - ETA: 0s - loss: 155.2987
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48200/60000 [=======================&gt;......] - ETA: 0s - loss: 155.2435
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+49800/60000 [=======================&gt;......] - ETA: 0s - loss: 155.2861
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51500/60000 [========================&gt;.....] - ETA: 0s - loss: 155.3231
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53200/60000 [=========================&gt;....] - ETA: 0s - loss: 155.3412
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54900/60000 [==========================&gt;...] - ETA: 0s - loss: 155.4323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56300/60000 [===========================&gt;..] - ETA: 0s - loss: 155.4685
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57800/60000 [===========================&gt;..] - ETA: 0s - loss: 155.4706
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59200/60000 [============================&gt;.] - ETA: 0s - loss: 155.5050
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 35us/sample - loss: 155.4755 - val_loss: 155.8318
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 16/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 158.6350
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1800/60000 [..............................] - ETA: 1s - loss: 155.0900
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3500/60000 [&gt;.............................] - ETA: 1s - loss: 155.0365
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5200/60000 [=&gt;............................] - ETA: 1s - loss: 154.2692
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7000/60000 [==&gt;...........................] - ETA: 1s - loss: 154.6906
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8700/60000 [===&gt;..........................] - ETA: 1s - loss: 154.7034
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10500/60000 [====&gt;.........................] - ETA: 1s - loss: 154.5970
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12300/60000 [=====&gt;........................] - ETA: 1s - loss: 154.7000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14100/60000 [======&gt;.......................] - ETA: 1s - loss: 155.0275
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15900/60000 [======&gt;.......................] - ETA: 1s - loss: 155.0078
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17600/60000 [=======&gt;......................] - ETA: 1s - loss: 154.9868
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19300/60000 [========&gt;.....................] - ETA: 1s - loss: 155.0969
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+20900/60000 [=========&gt;....................] - ETA: 1s - loss: 155.0614
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22400/60000 [==========&gt;...................] - ETA: 1s - loss: 154.9600
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24000/60000 [===========&gt;..................] - ETA: 1s - loss: 154.9169
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+25600/60000 [===========&gt;..................] - ETA: 1s - loss: 154.8196
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+27200/60000 [============&gt;.................] - ETA: 0s - loss: 154.8842
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28700/60000 [=============&gt;................] - ETA: 0s - loss: 154.9150
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+30200/60000 [==============&gt;...............] - ETA: 0s - loss: 154.9715
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31800/60000 [==============&gt;...............] - ETA: 0s - loss: 154.9578
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33200/60000 [===============&gt;..............] - ETA: 0s - loss: 154.9431
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34700/60000 [================&gt;.............] - ETA: 0s - loss: 154.8517
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+36400/60000 [=================&gt;............] - ETA: 0s - loss: 154.8466
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+38000/60000 [==================&gt;...........] - ETA: 0s - loss: 154.8561
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+39700/60000 [==================&gt;...........] - ETA: 0s - loss: 154.8393
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+41200/60000 [===================&gt;..........] - ETA: 0s - loss: 154.8028
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42600/60000 [====================&gt;.........] - ETA: 0s - loss: 154.8615
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+44100/60000 [=====================&gt;........] - ETA: 0s - loss: 154.9229
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45600/60000 [=====================&gt;........] - ETA: 0s - loss: 154.8433
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+47100/60000 [======================&gt;.......] - ETA: 0s - loss: 154.9760
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48700/60000 [=======================&gt;......] - ETA: 0s - loss: 154.9396
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50500/60000 [========================&gt;.....] - ETA: 0s - loss: 154.9363
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+52100/60000 [=========================&gt;....] - ETA: 0s - loss: 154.9516
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53400/60000 [=========================&gt;....] - ETA: 0s - loss: 154.9830
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+54800/60000 [==========================&gt;...] - ETA: 0s - loss: 155.0164
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+56200/60000 [===========================&gt;..] - ETA: 0s - loss: 155.0611
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57700/60000 [===========================&gt;..] - ETA: 0s - loss: 155.0301
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+59300/60000 [============================&gt;.] - ETA: 0s - loss: 155.0839
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 34us/sample - loss: 155.1019 - val_loss: 155.7881
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 17/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 155.6577
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1600/60000 [..............................] - ETA: 2s - loss: 153.5311
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3100/60000 [&gt;.............................] - ETA: 1s - loss: 154.0947
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 4700/60000 [=&gt;............................] - ETA: 1s - loss: 154.2757
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 6400/60000 [==&gt;...........................] - ETA: 1s - loss: 153.9873
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7900/60000 [==&gt;...........................] - ETA: 1s - loss: 153.9564
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 9400/60000 [===&gt;..........................] - ETA: 1s - loss: 154.0267
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10900/60000 [====&gt;.........................] - ETA: 1s - loss: 154.2652
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12400/60000 [=====&gt;........................] - ETA: 1s - loss: 154.3365
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+13900/60000 [=====&gt;........................] - ETA: 1s - loss: 154.4843
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15600/60000 [======&gt;.......................] - ETA: 1s - loss: 154.4273
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17400/60000 [=======&gt;......................] - ETA: 1s - loss: 154.6249
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19200/60000 [========&gt;.....................] - ETA: 1s - loss: 154.5250
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+20900/60000 [=========&gt;....................] - ETA: 1s - loss: 154.5905
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22600/60000 [==========&gt;...................] - ETA: 1s - loss: 154.6781
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+24500/60000 [===========&gt;..................] - ETA: 1s - loss: 154.6405
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+26400/60000 [============&gt;.................] - ETA: 1s - loss: 154.6540
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+28200/60000 [=============&gt;................] - ETA: 0s - loss: 154.6093
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+29900/60000 [=============&gt;................] - ETA: 0s - loss: 154.5948
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+31500/60000 [==============&gt;...............] - ETA: 0s - loss: 154.6405
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+33000/60000 [===============&gt;..............] - ETA: 0s - loss: 154.6596
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+34300/60000 [================&gt;.............] - ETA: 0s - loss: 154.6558
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+35700/60000 [================&gt;.............] - ETA: 0s - loss: 154.6942
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+37100/60000 [=================&gt;............] - ETA: 0s - loss: 154.6600
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+38600/60000 [==================&gt;...........] - ETA: 0s - loss: 154.6385
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+40200/60000 [===================&gt;..........] - ETA: 0s - loss: 154.6686
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+42000/60000 [====================&gt;.........] - ETA: 0s - loss: 154.7091
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+43700/60000 [====================&gt;.........] - ETA: 0s - loss: 154.6658
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+45400/60000 [=====================&gt;........] - ETA: 0s - loss: 154.6133
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+46900/60000 [======================&gt;.......] - ETA: 0s - loss: 154.5958
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+48400/60000 [=======================&gt;......] - ETA: 0s - loss: 154.6399
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+50200/60000 [========================&gt;.....] - ETA: 0s - loss: 154.6384
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+51800/60000 [========================&gt;.....] - ETA: 0s - loss: 154.6880
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+53500/60000 [=========================&gt;....] - ETA: 0s - loss: 154.7300
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+55200/60000 [==========================&gt;...] - ETA: 0s - loss: 154.7747
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+57000/60000 [===========================&gt;..] - ETA: 0s - loss: 154.7746
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+58800/60000 [============================&gt;.] - ETA: 0s - loss: 154.7553
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+60000/60000 [==============================] - 2s 33us/sample - loss: 154.7380 - val_loss: 155.4452
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 18/50
+
+  100/60000 [..............................] - ETA: 2s - loss: 150.3624
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 1900/60000 [..............................] - ETA: 1s - loss: 154.4041
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 3700/60000 [&gt;.............................] - ETA: 1s - loss: 155.0616
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 5400/60000 [=&gt;............................] - ETA: 1s - loss: 154.5331
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 7100/60000 [==&gt;...........................] - ETA: 1s - loss: 154.6023
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+ 8800/60000 [===&gt;..........................] - ETA: 1s - loss: 154.7698
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+10600/60000 [====&gt;.........................] - ETA: 1s - loss: 154.9218
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+12400/60000 [=====&gt;........................] - ETA: 1s - loss: 154.8487
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+14200/60000 [======&gt;.......................] - ETA: 1s - loss: 154.7536
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+15900/60000 [======&gt;.......................] - ETA: 1s - loss: 154.4806
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+17700/60000 [=======&gt;......................] - ETA: 1s - loss: 154.4506
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+19400/60000 [========&gt;.....................] - ETA: 1s - loss: 154.5324
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+21000/60000 [=========&gt;....................] - ETA: 1s - loss: 154.5132
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+22600/60000 [==========&gt;...................] - ETA: 1s - loss: 154.5615
 </pre></div>
 </div>
 </div>
