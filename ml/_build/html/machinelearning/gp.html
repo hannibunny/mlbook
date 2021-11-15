@@ -769,24 +769,24 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.43194797  0.2615454   0.32475747  0.60751471  1.04688784  1.54921602
-   2.01765296  2.37865979  2.59747951  2.67782558  2.64805652  2.54119934
-   2.37721387  2.15344504  1.84529622  1.41558865  0.82872632  0.06512615
-  -0.86760344 -1.92832906 -3.04129417 -4.10109066 -4.98551793 -5.57711898
-  -5.78988035 -5.59230261 -5.01634562 -4.14646346 -3.09208072 -1.9547488
-  -0.80299279  0.33680429  1.47239986  2.62509991  3.80373195]
- [ 0.11309636  0.29719104  0.61663252  1.01389175  1.44049844  1.8640839
-   2.26653387  2.63500907  2.9507058   3.18133943  3.28154293  3.20163845
-   2.90163712  2.36534877  1.60937113  0.68329846 -0.33928108 -1.37527433
-  -2.34557542 -3.18217212 -3.82837953 -4.23695597 -4.37218596 -4.21807497
-  -3.78844471 -3.13081947 -2.31789661 -1.42738446 -0.51867907  0.38206486
-   1.28089988  2.20018565  3.15661095  4.1438482   5.12629303]
- [ 2.20147648  2.43620779  2.80744011  3.29706878  3.84179409  4.34647943
-   4.71018708  4.85425961  4.74278372  4.38968906  3.85137843  3.20798716
-   2.53961802  1.90545691  1.33270598  0.81860064  0.34351936 -0.11147176
-  -0.5510837  -0.96243326 -1.32243567 -1.61052616 -1.81824579 -1.94930322
-  -2.0098893  -1.99535186 -1.88163372 -1.62680931 -1.18221229 -0.50824174
-   0.41072453  1.55586204  2.86944174  4.25745041  5.60039747]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.82466462  2.17001132  2.43122139  2.59804976  2.69040236  2.73971949
+   2.7694886   2.78542938  2.77859153  2.73555186  2.6458309   2.5004225
+   2.28355889  1.96577638  1.5056911   0.86213533  0.01248551 -1.02945716
+  -2.20240995 -3.39868149 -4.48055464 -5.31021814 -5.78435438 -5.85974512
+  -5.55864935 -4.9520752  -4.1298114  -3.17160731 -2.13155987 -1.0397956
+   0.08340106  1.21145677  2.30349766  3.30844133  4.17662094]
+ [ 0.38028688  0.19880771  0.12944809  0.15351484  0.2324797   0.31683711
+   0.35712441  0.31711364  0.18574834 -0.01874969 -0.25705302 -0.48643246
+  -0.67879906 -0.82999307 -0.95770122 -1.09237385 -1.2674939  -1.5122672
+  -1.84565812 -2.26982302 -2.76370205 -3.28060189 -3.75357541 -4.10859621
+  -4.28065774 -4.22594625 -3.92589354 -3.38412193 -2.62081523 -1.66831273
+  -0.56805541  0.63375091  1.89333964  3.1768769   4.46215626]
+ [ 0.52117668  0.9877036   1.52055885  2.11072297  2.72893338  3.31473067
+   3.77882602  4.02291201  3.97162557  3.60358755  2.96695023  2.17072904
+   1.35339802  0.6397709   0.10183314 -0.26247053 -0.52510028 -0.79978925
+  -1.19926097 -1.79210366 -2.57394541 -3.46281956 -4.31998877 -4.98804874
+  -5.33188503 -5.26812602 -4.77536473 -3.88706903 -2.67603786 -1.23946029
+   0.31201447  1.86389482  3.31014095  4.56798967  5.58996168]]
 </pre></div>
 </div>
 </div>
@@ -1147,7 +1147,7 @@ L=\log\left(p(\mathbf{y}|\mathbf{x},\theta\right)=-\frac{1}{2} \log|K| - \frac{1
 <p>In the examples above covariance functions of type <em>squared exponential</em> have been applied. A crucial hyperparameter for this type of function is the horizontal length-scale <span class="math notranslate nohighlight">\(\ell\)</span>. The figure below demonstrates the influence of this parameter.</p>
 <div class="figure align-center" id="lengthscale">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/04NoisySinNoTrainZeroMeanVaryTheta.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/04NoisySinNoTrainZeroMeanVaryTheta.png" src="https://maucher.home.hdm-stuttgart.de/Pics/04NoisySinNoTrainZeroMeanVaryTheta.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Decreasing horizontal length-scale <span class="math notranslate nohighlight">\(\ell\)</span> from top right to bottom left</span><a class="headerlink" href="#lengthscale" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Decreasing horizontal length-scale <span class="math notranslate nohighlight">\(\ell\)</span> from top left to bottom right</span><a class="headerlink" href="#lengthscale" title="Permalink to this image">¶</a></p>
 </div>
 <p>As can be seen a decreasing length-scale <span class="math notranslate nohighlight">\(\ell\)</span> yields</p>
 <ul class="simple">

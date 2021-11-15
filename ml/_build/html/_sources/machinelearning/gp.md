@@ -786,7 +786,7 @@ align: center
 width: 600pt
 name:  lengthscale
 ---
-Decreasing horizontal length-scale $\ell$ from top right to bottom left
+Decreasing horizontal length-scale $\ell$ from top left to bottom right
 
 ```
 
