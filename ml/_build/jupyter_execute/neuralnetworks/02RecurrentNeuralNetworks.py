@@ -19,9 +19,9 @@
 
 # If the output of the neurons in layer $k$ are denoted by
 # 
-# \begin{equation}
+# $$
 # \mathbf{h}^k=(h_1^k,h_2^k,\ldots,h_{z_k}^k),
-# \end{equation}
+# $$
 # 
 # the input to the network is $\mathbf{h}^0=\mathbf{x}$ and the bias values of the $z_k$ neurons in layer $k$ are arranged in the vector
 # 
@@ -31,9 +31,9 @@
 # 
 # then the output at each layer $k$ can be calculated by
 # 
-# \begin{equation}
+# $$
 # \mathbf{h}^k = g(\mathbf{b}^k + W^k \mathbf{h}^{k-1}), 
-# \end{equation}  
+# $$
 # 
 # where $g(\cdot)$ is the *activation-function*. Typical activation-functions are e.g. sigmoid-, tanh-, softmax- or the identity-function. The weight matrix $W^k$ of layer $k$ consists of $z_k$ rows and $z_{k-1}$ columns. The entry $W_{ij}^k$ in row $i$, column $j$ is the weight of the connection from neuron $j$ in layer $k-1$ to neuron $i$ in layer $k$. 
 
@@ -51,10 +51,10 @@
 
 # The recurrent-layer's output $\mathbf{h}^1(t)$ from the current input $\mathbf{x}(t)$ and the previous output $\mathbf{h}^1(t-1)$, can equivalently be realized by a single matrix multiplication, if the weight matrices $W^1 $ and $R^{1}$ are stacked horizontally and the column-vectors $\mathbf{x}(t)$ and $\mathbf{h}^1(t-1)$ are stacked vertically:  
 
-# \begin{eqnarray}
-# 	\mathbf{h}^1(t) &=& g\left(W^1 \mathbf{x}(t)+R^{1} \mathbf{h}^1(t-1)+\mathbf{b}^1\right) \nonumber\\
-# 	&=& g\left( (W^1 \mid R^{1}) \left(\begin{array}{c}\mathbf{x}(t) \\ \mathbf{h}^1(t-1) \end{array} \right)+\mathbf{b}^1 \right)
-# \end{eqnarray}
+# $$
+# 	\mathbf{h}^1(t) = g\left(W^1 \mathbf{x}(t)+R^{1} \mathbf{h}^1(t-1)+\mathbf{b}^1\right)
+# 	= g\left( (W^1 \mid R^{1}) \left(\begin{array}{c}\mathbf{x}(t) \\ \mathbf{h}^1(t-1) \end{array} \right)+\mathbf{b}^1 \right)
+# $$
 # 
 # For simple recurrent layers of this type, typically the **tanh activation function is applied**.
 

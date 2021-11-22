@@ -130,6 +130,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/svm.html">
    Support Vector Machines (SVM)
   </a>
@@ -201,8 +206,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../gan/DCGAN.html">
+  <a class="reference internal" href="../gan/GAN.html">
    Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
   </a>
  </li>
 </ul>
@@ -215,6 +225,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../rl/reinforcement.html">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
   </a>
  </li>
 </ul>
@@ -244,6 +264,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -425,18 +450,20 @@
 <p>The picture below contains another representation of the MLP, which hides the details of the topology, while emphasizing the algebraic operations:</p>
 <p><img alt="abstractmlp" src="http://maucher.home.hdm-stuttgart.de/Pics/abstrmlp.png" /></p>
 <p>If the output of the neurons in layer <span class="math notranslate nohighlight">\(k\)</span> are denoted by</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \mathbf{h}^k=(h_1^k,h_2^k,\ldots,h_{z_k}^k),
-\end{equation}</p>
+\]</div>
 <p>the input to the network is <span class="math notranslate nohighlight">\(\mathbf{h}^0=\mathbf{x}\)</span> and the bias values of the <span class="math notranslate nohighlight">\(z_k\)</span> neurons in layer <span class="math notranslate nohighlight">\(k\)</span> are arranged in the vector</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{b}^k=(b_1^k,b_2^k,\ldots,b_{z_k}^k),
 \]</div>
 <p>then the output at each layer <span class="math notranslate nohighlight">\(k\)</span> can be calculated by</p>
-<p>\begin{equation}
-\mathbf{h}^k = g(\mathbf{b}^k + W^k \mathbf{h}^{k-1}),
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{h}^k = g(\mathbf{b}^k + W^k \mathbf{h}^{k-1}), 
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(g(\cdot)\)</span> is the <em>activation-function</em>. Typical activation-functions are e.g. sigmoid-, tanh-, softmax- or the identity-function. The weight matrix <span class="math notranslate nohighlight">\(W^k\)</span> of layer <span class="math notranslate nohighlight">\(k\)</span> consists of <span class="math notranslate nohighlight">\(z_k\)</span> rows and <span class="math notranslate nohighlight">\(z_{k-1}\)</span> columns. The entry <span class="math notranslate nohighlight">\(W_{ij}^k\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is the weight of the connection from neuron <span class="math notranslate nohighlight">\(j\)</span> in layer <span class="math notranslate nohighlight">\(k-1\)</span> to neuron <span class="math notranslate nohighlight">\(i\)</span> in layer <span class="math notranslate nohighlight">\(k\)</span>.</p>
 </div>
 <div class="section" id="id1">
@@ -448,10 +475,11 @@
 <p><a id=abstrnn></a>
 <img alt="abstrRNN" src="http://maucher.home.hdm-stuttgart.de/Pics/abstrrnn.png" /></p>
 <p>The recurrent-layer’s output <span class="math notranslate nohighlight">\(\mathbf{h}^1(t)\)</span> from the current input <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> and the previous output <span class="math notranslate nohighlight">\(\mathbf{h}^1(t-1)\)</span>, can equivalently be realized by a single matrix multiplication, if the weight matrices <span class="math notranslate nohighlight">\(W^1 \)</span> and <span class="math notranslate nohighlight">\(R^{1}\)</span> are stacked horizontally and the column-vectors <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> and <span class="math notranslate nohighlight">\(\mathbf{h}^1(t-1)\)</span> are stacked vertically:</p>
-<p>\begin{eqnarray}
-\mathbf{h}^1(t) &amp;=&amp; g\left(W^1 \mathbf{x}(t)+R^{1} \mathbf{h}^1(t-1)+\mathbf{b}^1\right) \nonumber\
-&amp;=&amp; g\left( (W^1 \mid R^{1}) \left(\begin{array}{c}\mathbf{x}(t) \ \mathbf{h}^1(t-1) \end{array} \right)+\mathbf{b}^1 \right)
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	\mathbf{h}^1(t) = g\left(W^1 \mathbf{x}(t)+R^{1} \mathbf{h}^1(t-1)+\mathbf{b}^1\right)
+	= g\left( (W^1 \mid R^{1}) \left(\begin{array}{c}\mathbf{x}(t) \\ \mathbf{h}^1(t-1) \end{array} \right)+\mathbf{b}^1 \right)
+\end{split}\]</div>
 <p>For simple recurrent layers of this type, typically the <strong>tanh activation function is applied</strong>.</p>
 <p>The picture above depicts a single recurrent layer. In a (deep) neural network several recurrent layers can be stacked togehter. A convenient architecture-type for sequence-classification (e.g. text-classification) contains one or more recurrent layers and one or more dense layers at the output. In this constellation the dense layers at the output serve as classifier and the recurrent layers at the input generate a meaningful representation of the input-sequence. However, sequence-classification (<em>many-to-one</em>) is only one application category of recurrent neural networks. Other categories are described in <a class="reference external" href="#appcat">subsection Application Categories</a>.</p>
 <p><a id="appcat"></a></p>
