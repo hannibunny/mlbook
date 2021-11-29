@@ -29,8 +29,7 @@
 # 
 # The weights of the encoder and decoder-module are learned such that the output of the decoder is as close as possible to input - like in the case of an autoencoder, but now with the new process in the latent layer: parameter estimation and sampling.
 # 
-# ![Variational Autoencoder](./Pics/variationalAutoencoder.png)
-# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/variationalAutoencoder.png" width="550" class="center">
 #   
 
 # In[1]:
@@ -58,7 +57,7 @@ from keras.datasets import mnist
 from keras import losses
 
 
-# In[14]:
+# In[3]:
 
 
 from os import environ
@@ -66,7 +65,7 @@ environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
-# In[15]:
+# In[4]:
 
 
 batch_size = 100
@@ -77,7 +76,7 @@ epochs = 50
 epsilon_std = 1.0
 
 
-# In[16]:
+# In[5]:
 
 
 x = Input(shape=(original_dim,))
@@ -86,7 +85,7 @@ z_mean = Dense(latent_dim)(h)
 z_log_var = Dense(latent_dim)(h)
 
 
-# In[17]:
+# In[6]:
 
 
 def sampling(args):
@@ -95,7 +94,7 @@ def sampling(args):
     return z_mean + K.exp(z_log_var / 2) * epsilon
 
 
-# In[18]:
+# In[7]:
 
 
 # note that "output_shape" isn't necessary with the TensorFlow backend
@@ -108,7 +107,7 @@ h_decoded = decoder_h(z)
 x_decoded_mean = decoder_mean(h_decoded)
 
 
-# In[19]:
+# In[8]:
 
 
 # end-to-end autoencoder
@@ -124,7 +123,7 @@ _x_decoded_mean = decoder_mean(_h_decoded)
 generator = Model(decoder_input, _x_decoded_mean)
 
 
-# In[20]:
+# In[9]:
 
 
 # Custom loss layer
@@ -147,7 +146,7 @@ class CustomVariationalLayer(Layer):
         return x
 
 
-# In[21]:
+# In[10]:
 
 
 y = CustomVariationalLayer()([x, x_decoded_mean])
@@ -155,7 +154,7 @@ vae = Model(x, y)
 vae.compile(optimizer='rmsprop', loss=None)
 
 
-# In[22]:
+# In[11]:
 
 
 # train the VAE on MNIST digits
@@ -167,7 +166,7 @@ x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
 x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
 
-# In[23]:
+# In[12]:
 
 
 vae.fit(x_train,

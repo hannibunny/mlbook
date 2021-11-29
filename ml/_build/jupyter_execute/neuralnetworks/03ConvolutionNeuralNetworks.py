@@ -277,7 +277,7 @@ plt.show()
 
 
 from PIL import Image
-im = np.array(Image.open("../Data/a4weiss.jpg").convert('L'))
+im = np.array(Image.open("a4weiss.jpg").convert('L'))
 plt.imshow(im,cmap='Greys_r')
 
 
