@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
-    <link rel="prev" title="Reinforcement Learning" href="reinforcement.html" />
+    <link rel="prev" title="Deep Reinforcement Learning" href="DQN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -130,6 +130,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/svm.html">
    Support Vector Machines (SVM)
   </a>
@@ -201,8 +206,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../gan/DCGAN.html">
+  <a class="reference internal" href="../gan/GAN.html">
    Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
   </a>
  </li>
 </ul>
@@ -215,6 +225,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="reinforcement.html">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DQN.html">
+   Deep Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -776,7 +791,7 @@ Game over?: False
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Old state:  0
-New state:  0 	 Reward:  0.0 	 Game Over?:  False
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
 </pre></div>
 </div>
 </div>
@@ -799,11 +814,23 @@ New state:  0 	 Reward:  0.0 	 Game Over?:  False
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------
 Old state:  0
 Intended Action:  1
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  2
 New state:  1 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  1
 Intended Action:  2
-New state:  5 	 Reward:  0.0 	 Game Over?:  True
+New state:  2 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  2
+Intended Action:  1
+New state:  3 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  3
+Intended Action:  0
+New state:  7 	 Reward:  0.0 	 Game Over?:  True
 </pre></div>
 </div>
 </div>
@@ -863,7 +890,7 @@ New state:  5 	 Reward:  0.0 	 Game Over?:  True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.2543,  0.8196, -0.5899, -1.9868]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.9742, 0.7191, 0.1848, 0.6193]])
 </pre></div>
 </div>
 </div>
@@ -907,7 +934,7 @@ New state:  5 	 Reward:  0.0 	 Game Over?:  True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score over time: 0.5245
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score over time: 0.5515
 </pre></div>
 </div>
 </div>
@@ -922,21 +949,21 @@ New state:  5 	 Reward:  0.0 	 Game Over?:  True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.267 , 0.0047, 0.0033, 0.0034],
-       [0.    , 0.0003, 0.    , 0.3868],
-       [0.0016, 0.0009, 0.0009, 0.0837],
-       [0.0017, 0.    , 0.    , 0.0719],
-       [0.4691, 0.    , 0.    , 0.0005],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.293 , 0.0022, 0.0013, 0.0016],
+       [0.0003, 0.0001, 0.0001, 0.2058],
+       [0.0032, 0.3453, 0.0003, 0.0016],
+       [0.0001, 0.0001, 0.    , 0.048 ],
+       [0.3731, 0.0002, 0.    , 0.0002],
        [0.    , 0.    , 0.    , 0.    ],
-       [0.0002, 0.    , 0.0376, 0.    ],
+       [0.182 , 0.0001, 0.    , 0.    ],
        [0.    , 0.    , 0.    , 0.    ],
-       [0.0002, 0.0008, 0.    , 0.3892],
-       [0.0002, 0.7382, 0.0008, 0.0008],
-       [0.886 , 0.0001, 0.    , 0.0004],
+       [0.    , 0.    , 0.0001, 0.3371],
+       [0.    , 0.5407, 0.0008, 0.0003],
+       [0.6891, 0.0001, 0.0002, 0.    ],
        [0.    , 0.    , 0.    , 0.    ],
        [0.    , 0.    , 0.    , 0.    ],
-       [0.0028, 0.0028, 0.9363, 0.0032],
-       [0.    , 0.9912, 0.    , 0.    ],
+       [0.    , 0.    , 0.8817, 0.0001],
+       [0.    , 0.9962, 0.    , 0.    ],
        [0.    , 0.    , 0.    , 0.    ]])
 </pre></div>
 </div>
@@ -957,7 +984,7 @@ New state:  5 	 Reward:  0.0 	 Game Over?:  True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3, 3, 3, 0, 0, 2, 0, 3, 1, 0, 0, 0, 2, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3, 1, 3, 0, 0, 0, 0, 3, 1, 0, 0, 0, 2, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -973,18 +1000,18 @@ New state:  5 	 Reward:  0.0 	 Game Over?:  True
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best action in state  0 is  0
 Best action in state  3 is  3
-Best action in state  3 is  3
+Best action in state  1 is  3
 Best action in state  3 is  3
 Best action in state  0 is  0
 Best action in state  0 is  0
-Best action in state  2 is  3
+Best action in state  0 is  0
 Best action in state  0 is  0
 Best action in state  3 is  3
 Best action in state  1 is  3
 Best action in state  0 is  0
 Best action in state  0 is  0
 Best action in state  0 is  0
-Best action in state  2 is  3
+Best action in state  2 is  1
 Best action in state  1 is  3
 Best action in state  0 is  0
 </pre></div>
@@ -1010,6 +1037,122 @@ Best action in state  0 is  0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------
 Old state:  0
 Intended Action:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  9 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  9
+Intended Action:  1
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  8 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  8
+Intended Action:  3
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  4 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  4
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
+New state:  0 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  0
+Intended Action:  0
 New state:  0 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  0
@@ -1026,34 +1169,70 @@ New state:  4 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  4
 Intended Action:  0
-New state:  0 	 Reward:  0.0 	 Game Over?:  False
-----------
-Old state:  0
-Intended Action:  0
-New state:  0 	 Reward:  0.0 	 Game Over?:  False
-----------
-Old state:  0
-Intended Action:  0
-New state:  4 	 Reward:  0.0 	 Game Over?:  False
-----------
-Old state:  4
-Intended Action:  0
 New state:  8 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  8
 Intended Action:  3
-New state:  8 	 Reward:  0.0 	 Game Over?:  False
+New state:  9 	 Reward:  0.0 	 Game Over?:  False
 ----------
-Old state:  8
-Intended Action:  3
-New state:  8 	 Reward:  0.0 	 Game Over?:  False
+Old state:  9
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
 ----------
-Old state:  8
-Intended Action:  3
-New state:  8 	 Reward:  0.0 	 Game Over?:  False
+Old state:  13
+Intended Action:  2
+New state:  14 	 Reward:  0.0 	 Game Over?:  False
 ----------
-Old state:  8
-Intended Action:  3
+Old state:  14
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  9 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  9
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  14 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  14
+Intended Action:  1
+New state:  14 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  14
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  14 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  14
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  9 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  9
+Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
 New state:  9 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  9
@@ -1066,18 +1245,26 @@ New state:  14 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  14
 Intended Action:  1
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  13 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  13
+Intended Action:  2
+New state:  9 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  9
+Intended Action:  1
+New state:  10 	 Reward:  0.0 	 Game Over?:  False
+----------
+Old state:  10
+Intended Action:  0
 New state:  14 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  14
 Intended Action:  1
-New state:  13 	 Reward:  0.0 	 Game Over?:  False
-----------
-Old state:  13
-Intended Action:  2
-New state:  13 	 Reward:  0.0 	 Game Over?:  False
-----------
-Old state:  13
-Intended Action:  2
 New state:  14 	 Reward:  0.0 	 Game Over?:  False
 ----------
 Old state:  14
@@ -1223,7 +1410,7 @@ Final state:  15 	 Reward:  1.0
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="reinforcement.html" title="previous page">Reinforcement Learning</a>
+    <a class='left-prev' id="prev-link" href="DQN.html" title="previous page">Deep Reinforcement Learning</a>
     <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page">Representations for Words and Texts</a>
 
         </div>

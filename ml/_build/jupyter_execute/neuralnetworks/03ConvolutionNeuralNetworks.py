@@ -684,6 +684,8 @@ plt.show()
 # ![Dropout](https://maucher.home.hdm-stuttgart.de/Pics/dropout.PNG)
 
 # ### Batch-Normalization
+# 
+# #### Normalization in general
 # Many Machine-Learning algorithms require a normalized input. This is particular true for algorithms, which apply (stochastic) gradient descent training, such as neural networks. Normalization means, that data is transformed such that each feature has a mean of 0 and a variance of 1.
 # 
 # For example in the following dataset, mean and standard-deviation of the three features (columns) columns differ strongly. In a neural network, the effect of this difference is that weightadaptations for features with high values are much stronger, than for features with low values.  
@@ -703,7 +705,10 @@ print(rawdata)
 
 
 # For normalization, first the mean and the standard-variation is calculated for each feature. Then from each value $x_{i,j}$ in the datamatrix, the column-mean $mean_j$ is subtracted and the result is divided by the column-standard-deviation $std_j$:
-# $$x'_{i,j}=\frac{x_{i,j}-mean_j}{std_j}$$
+# 
+# $$
+# x'_{i,j}=\frac{x_{i,j}-mean_j}{std_j}
+# $$
 
 # In[23]:
 
@@ -728,8 +733,146 @@ print("Mean of normalized data:\n",normalizeddata.mean(axis=0))
 print("Standard-deviation of normalized data:\n",normalizeddata.std(axis=0))
 
 
-# **Batch-Normalization**, means 
-# 1. that training-data is normalized for each batch individually,
-# 2. batch-wise normalization is not only performed before feeding data into a neural network, but can be applied at the output of any convolutional layer in the CNN. If it is applied, it is performed at the output of a convolutional layer, **before** this output is processed by the activation-function.
+# As can be seen in the previous output, after normalisation all features have a mean of 0 and a standard deviation of 1.
 # 
-# The benefits of Batch-Normalization is a more stable training-process and a faster convergence. 
+# As mentioned above, data shall be normalized before it is passed to a neural network. However, it may also be helpfull to normalize data within a neural network. This is particularly advisable, if unbounded activation functions, such as ReLu are applied. In order to limit the unbounded activation from increasing the output layer values, normalization is used **before the activation function**. 
+# 
+# In the following two subsections 2 different types of normalisation within neural networks are described: *Local Response Normalisation* and *Batch Normalisation*. 
+
+# #### Local Response Normalisation
+# 
+# Local Response Normalisation (LRN) has been applied in {cite}`KrizhevskySutskeverHinton` in order to limit activation values. Moreover, LRN models [lateral inhibition](https://en.wikipedia.org/wiki/Lateral_inhibition). In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors. 
+# 
+# 
+# 
+# As depicted in the image below, two variants of LRN exist:
+# 
+# ![Semantic Segmentation Net](https://maucher.home.hdm-stuttgart.de/Pics/channelCubeLRN.png)
+# 
+# **Inter-Channel LRN:**
+# 
+# In this variant the averaging is performed along the channel-dimension (see left-hand-side in the image above). For channel $i$ the new value $b^i_{x,y}$ at the spatial position $(x,y)$ is calculated from the original values $a^j_{x,y}$ as follows:
+# 
+# $$
+# b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{j=\max(0,i-n/2)}^{\min(d-1,i+n/2)}(a^j_{x,y})^2 \right)^{\beta}}
+# $$
+# Here, $k, \alpha, \beta$ and $n$ are hyperparameters. In the picture above $n/2=1$ and the input size is $d=4,r=4,c=5$.
+# 
+# **Intra-Channel LRN:**
+# 
+# In this variant the averaging is performed within a single channel over a spatial neighborhood (see right-hand-side in the image above). 
+# For channel $i$ the new value $b^i_{x,y}$ at the spatial position $(x,y)$ is calculated from the original values $a^i_{x,y}$ as follows:
+# 
+# $$
+# b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{u=\max(0,x-n/2)}^{\min(c,x+n/2)}\sum\limits_{v=\max(0,y-n/2)}^{\min(r,y+n/2)}(a^i_{u,v})^2 \right)^{\beta}}
+# $$
+# 
+# As can be seen in the LRN-equations above the transformation depends only on hyperparameters and the values of the current input, i.e. no parameters must be learned for a LRN-layer.
+
+# #### Batch-Normalization
+# 
+# In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in {cite}`Ioffe`. It helps to mitigate the **Internal Covariate Shift (ICA)** problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the **vanishing gradient problem** causes ineffective learning in the case of very deep networks).[^1]  
+# 
+# Batch-normalisation is performerd for each single neuron in the layer individually. I.e. for each single element $x$ at a concrete position within the 3-dimensional neuron-cube (as depicted in the pictures above) normalisation is performed as follows:
+# 
+# 1. Determine the mean $\mu_B$ by averaging the activation of the concrete neuron over the entire minibatch $B$ of size $m$:
+# 
+#     $$
+#     \mu_B = \frac{1}{m}\sum\limits_{i=1}^m x_i
+#     $$
+# 
+# 2. Determine the corresponding variance $\sigma^2$
+# 
+#     $$
+#     \sigma^2_B=\frac{1}{m}\sum\limits_{i=1}^m (x_i - \mu_B)^2
+#     $$
+# 
+# 3. Noramlize the value at the given neuron by
+# 
+#     $$
+#     \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma^2_B + \epsilon}}
+#     $$
+# 
+# 4. Scale and shift the normalized value by:
+# 
+#     $$
+#     y_i = \gamma \hat{x}_i + \beta
+#     $$
+#     
+#     Parameters $\gamma$ and $\beta$ are learned during training. 
+# 
+# Instead of the values $x_i$ the normalized values $y_i$ are passed to the activation function of the layer. Note that for each neuron in the layer two parameters $\gamma$ and $\beta$ must be learned.
+# 
+# 
+# [^1]: The ICA problem is nicely explained in [https://learnopencv.com/batch-normalization-in-deep-networks/](https://learnopencv.com/batch-normalization-in-deep-networks/).
+
+# ### 1x1 Convolution
+# 
+# As described above, convolution-filtering provides the possibility to extract spatially extended features. The size of the filter defines the size of the feature, that can be extracted. A feature which is stretched over $p \times p$ pixels requires a filter of at least this size to extract it. In this view a $1 \times 1$-filter sounds impractical. 
+# 
+# A *usual* filter-size of $3 \times 3$ and a filter of size $1 \times 1$ is visualized in the image below.
+# 
+# ![Semantic Segmentation Net](https://maucher.home.hdm-stuttgart.de/Pics/channelCube1x1.png)
+# 
+# A $1 \times 1$-convolution can be viewed as an Dense-layer operated over all channels at a specific pixel location. As such it is often applied to reduce the number of channels (**dimensionality-reduction**), while keeping the spatial resolution constant. For this purpose $1 \times 1$-convolution is applied e.g. in [inception modules (GoogLeNet)](cnns.md).
+# 
+# 
+
+# #### Fully Convolutional Networks
+# 
+# In Fully Convolutional Networks (FCN) Dense Layers are replaced by $1 \times 1$ - convolutional filters. The fact, that no dense-layers are required provides the possibility to apply images of different size to the input of the network. In convolutional-layers varying input size yields varying output size, but in contrast to dense layers it does not apply varying weight-matrices!
+# As depicted in the image below, in a FCN not only one class per input is calculated. Instead, the output is a **classification map**, which defines in which region which class is most likely. Such classification maps are applied e.g. for **semantic segmentation** (e.g. [Shelhamer et al; Fully Convolutional Networks for Semantic Image Segmentaion](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf))
+# 
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFullyConvolutional.png" width="800" align="center">
+
+# ### Inception Layer / GoogLeNet
+# 
+# The crucial feature of an inception layer is that it allows multiple filters of different size within a single layer. The different filters are applied in parallel. Hence features, which are spatially spread over different region sizes, can be learned within one layer. Two typical inception modules with parallel filters in one layer are depcited below. Within GoogLeNet such inception modules are stacked on top of each other. 
+# 
+# <figure align="center">
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/inceptionModule.png" style="width:600px" align="center">
+# </figure>
+# 
+# The inception module on the left-hand-side in the picture above has been the original (or *naive*) version. The problem with this version is that particularly in the case of filters of larger size ($5 \times 5$) and a high-dimensional input[^1], the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size ($5 \times 5$), which operates on a 128-dimensional input has $5 \cdot 5 \cdot 128 = 3200$ parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains [$1 \times 1$-convolution](ConvolutionNeuralNetworks) for dimensionality reduction.
+# 
+# The configuration of the GoogLeNet, as introduced in {cite}`szegedy2014` is given in the table below:
+# 
+# <figure align="center">
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/googleNet.png" style="width:600px" align="center">
+# </figure>
+
+# ### Residual Blocks / ResNet
+# 
+# ResNet has been introduced 2015 in {cite}`HeZhangRenEtAl2016`. It's crucial propery are **residual blocks with short-cut connections**. In general a single residual block calculates $\mathbf{y}$ from it's input $\mathbf{x}$ by:
+# 
+# $$
+# \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + \mathbf{x},
+# $$
+# 
+# where $W_i$ and $b_i$ are the weights-matrix and the bias-vector in the i.th layer of this block. In this case the dimensions of the output $\mathbf{y}$ and the input $\mathbf{x}$ must be the same. **If the output and input shall have different dimensions**, the input can be transformed by $W_s$:
+# 
+# $$
+# \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + W_s\mathbf{x},
+# $$
+# 
+# For the design of $W_s$ the following options exist:
+# 
+# * *Option A:* Use zero-padding shortcuts for increasing dimensions
+# * *Option B:* Projection shortcuts are used for increasing dimensions and identity for the others
+# * *Option C:* All shortcuts are projections
+# 
+# In the ResNet architecture-figure below, such dimension-modifying shortcuts are represented by dotted lines.
+# 
+# <figure align="center">
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetArchitecture.PNG" style="width:700px" align="center">
+# </figure>
+# <figcaption>
+# VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
+# </figcaption>
+
+# In[ ]:
+
+
+
+

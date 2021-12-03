@@ -21,6 +21,7 @@ parts:
   - file: neuralnetworks/01NeuralNets
   - file: neuralnetworks/02RecurrentNeuralNetworks
   - file: neuralnetworks/03ConvolutionNeuralNetworks
+  - file: convolutionDemos
   - file: neuralnetworks/03KerasMLPandCNNcifar
   - file: neuralnetworks/04KerasPretrainedClassifiers
   - file: neuralnetworks/05KerasPretrainedCovid
