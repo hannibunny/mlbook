@@ -130,6 +130,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/svm.html">
    Support Vector Machines (SVM)
   </a>
@@ -201,8 +206,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../gan/DCGAN.html">
+  <a class="reference internal" href="../gan/GAN.html">
    Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
   </a>
  </li>
 </ul>
@@ -215,6 +225,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../rl/reinforcement.html">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
@@ -249,6 +264,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -506,7 +526,7 @@ PIL image size (224, 224)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image batch size (1, 224, 224, 3)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd7a34b8eb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f9e58de8a60&gt;
 </pre></div>
 </div>
 <img alt="../_images/04KerasPretrainedClassifiers_8_2.png" src="../_images/04KerasPretrainedClassifiers_8_2.png" />
@@ -572,9 +592,9 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.1573761),
-  (&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.14362858),
-  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.14099422)]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.15737607),
+  (&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.14362855),
+  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.14099433)]]
 </pre></div>
 </div>
 </div>
@@ -597,11 +617,11 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.15703687),
-  (&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.11697365),
-  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.10532726),
-  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.07564851),
-  (&#39;n02909870&#39;, &#39;bucket&#39;, 0.05468151)]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.15703699),
+  (&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.11697364),
+  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.10532724),
+  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.075648494),
+  (&#39;n02909870&#39;, &#39;bucket&#39;, 0.054681525)]]
 </pre></div>
 </div>
 </div>
@@ -637,11 +657,11 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.66225827),
-  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.05028518),
-  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.036381554),
-  (&#39;n02123159&#39;, &#39;tiger_cat&#39;, 0.023522448),
-  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.015205734)]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.6622583),
+  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.050285112),
+  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.036381558),
+  (&#39;n02123159&#39;, &#39;tiger_cat&#39;, 0.023522463),
+  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.015205721)]]
 </pre></div>
 </div>
 </div>

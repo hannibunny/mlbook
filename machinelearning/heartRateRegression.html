@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Support Vector Machines (SVM)" href="svm.html" />
+    <link rel="next" title="Linear Classification" href="LinearClassification.html" />
     <link rel="prev" title="Linear Regression" href="LinReg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -130,6 +130,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="svm.html">
    Support Vector Machines (SVM)
   </a>
@@ -201,8 +206,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../gan/DCGAN.html">
+  <a class="reference internal" href="../gan/GAN.html">
    Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
   </a>
  </li>
 </ul>
@@ -215,6 +225,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../rl/reinforcement.html">
    Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
   </a>
  </li>
 </ul>
@@ -244,6 +264,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../transformer/attention.html">
    Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
   </a>
  </li>
 </ul>
@@ -697,9 +722,9 @@ w1 = 20.93
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.544456857402351
-MAD =  7.544456857402351
-MSE =  84.61650344232515
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.544456857402341
+MAD =  7.544456857402341
+MSE =  84.6165034423252
 </pre></div>
 </div>
 </div>
@@ -772,9 +797,9 @@ w2 = 17.04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.914621088469685
-MAD =  6.914621088469685
-MSE =  74.97805153085808
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.914621088475273
+MAD =  6.914621088475273
+MSE =  74.97805153085774
 </pre></div>
 </div>
 </div>
@@ -847,9 +872,9 @@ w3 = 17.44
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.950713112061212
-MAD =  6.950713112061212
-MSE =  72.8395306512783
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.950713123482488
+MAD =  6.950713123482488
+MSE =  72.83953065127791
 </pre></div>
 </div>
 </div>
@@ -946,7 +971,7 @@ Learned coefficients w0, w1, w2, ....:
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="LinReg.html" title="previous page">Linear Regression</a>
-    <a class='right-next' id="next-link" href="svm.html" title="next page">Support Vector Machines (SVM)</a>
+    <a class='right-next' id="next-link" href="LinearClassification.html" title="next page">Linear Classification</a>
 
         </div>
         
