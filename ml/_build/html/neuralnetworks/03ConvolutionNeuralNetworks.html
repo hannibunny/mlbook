@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Implementing Neural Networks with Keras" href="03KerasMLPandCNNcifar.html" />
+    <link rel="next" title="Animations of Convolution and Deconvolution" href="convolutionDemos.html" />
     <link rel="prev" title="Recurrent Neural Networks" href="02RecurrentNeuralNetworks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -169,6 +169,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolutionDemos.html">
+   Animations of Convolution and Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -512,8 +517,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#batch-normalization">
-     Batch-Normalization
+    <a class="reference internal nav-link" href="#normalization">
+     Normalization
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -527,7 +532,7 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
+      <a class="reference internal nav-link" href="#batch-normalization">
        Batch-Normalization
       </a>
      </li>
@@ -572,7 +577,7 @@
 <h1>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last Update: 30.10.2020</p></li>
+<li><p>Last Update: 03.12.2021</p></li>
 </ul>
 <p>There exists different types of deep neural networks, e.g.</p>
 <ul class="simple">
@@ -876,7 +881,7 @@ o=\frac{r-a+2p}{s}+1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fde6ceefee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f958f31f7c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/03ConvolutionNeuralNetworks_37_1.png" src="../_images/03ConvolutionNeuralNetworks_37_1.png" />
@@ -1273,8 +1278,8 @@ o=\frac{r-a+2p}{s}+1.
 <p>Dropout is a technique to prevent Neural Networks, such as MLPs, CNNs, LSTMs from overfitting. The key idea is to randomly drop units along with their connections from the neural network during training. This prevents units from co-adapting too much. The drop of a defined ratio (0.1-0.5) of random neurons is valid only for one iteration. During this iteration the weights of the droped units are not adapted. In the next iteration another set of units, which are dropped temporarily is randomly selected. Dropout is only applied in the training-phase.<br />
 <img alt="Dropout" src="https://maucher.home.hdm-stuttgart.de/Pics/dropout.PNG" /></p>
 </div>
-<div class="section" id="batch-normalization">
-<h3>Batch-Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="normalization">
+<h3>Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="normalization-in-general">
 <h4>Normalization in general<a class="headerlink" href="#normalization-in-general" title="Permalink to this headline">¶</a></h4>
 <p>Many Machine-Learning algorithms require a normalized input. This is particular true for algorithms, which apply (stochastic) gradient descent training, such as neural networks. Normalization means, that data is transformed such that each feature has a mean of 0 and a variance of 1.</p>
@@ -1367,7 +1372,7 @@ Standard-deviation of normalized data:
 </div>
 <div class="section" id="local-response-normalisation">
 <h4>Local Response Normalisation<a class="headerlink" href="#local-response-normalisation" title="Permalink to this headline">¶</a></h4>
-<p>Local Response Normalisation (LRN) has been applied in <span id="id1">[]</span> in order to limit activation values. Moreover, LRN models <a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">lateral inhibition</a>. In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors.</p>
+<p>Local Response Normalisation (LRN) has been applied in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id67">KSH</a>]</span> in order to limit activation values. Moreover, LRN models <a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">lateral inhibition</a>. In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors.</p>
 <p>As depicted in the image below, two variants of LRN exist:</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/channelCubeLRN.png" /></p>
 <p><strong>Inter-Channel LRN:</strong></p>
@@ -1386,9 +1391,9 @@ b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{u=\max(0,x-n/2)}^{\mi
 \]</div>
 <p>As can be seen in the LRN-equations above the transformation depends only on hyperparameters and the values of the current input, i.e. no parameters must be learned for a LRN-layer.</p>
 </div>
-<div class="section" id="id2">
-<h4>Batch-Normalization<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p>In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in <span id="id3">[]</span>. It helps to mitigate the <strong>Internal Covariate Shift (ICA)</strong> problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the <strong>vanishing gradient problem</strong> causes ineffective learning in the case of very deep networks).<a class="footnote-reference brackets" href="#id8" id="id4">1</a></p>
+<div class="section" id="batch-normalization">
+<h4>Batch-Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h4>
+<p>In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in <span id="id2">[<a class="reference internal" href="../referenceSection.html#id66">IS15</a>]</span>. It helps to mitigate the <strong>Internal Covariate Shift (ICA)</strong> problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the <strong>vanishing gradient problem</strong> causes ineffective learning in the case of very deep networks).<a class="footnote-reference brackets" href="#id7" id="id3">1</a></p>
 <p>Batch-normalisation is performerd for each single neuron in the layer individually. I.e. for each single element <span class="math notranslate nohighlight">\(x\)</span> at a concrete position within the 3-dimensional neuron-cube (as depicted in the pictures above) normalisation is performed as follows:</p>
 <ol>
 <li><p>Determine the mean <span class="math notranslate nohighlight">\(\mu_B\)</span> by averaging the activation of the concrete neuron over the entire minibatch <span class="math notranslate nohighlight">\(B\)</span> of size <span class="math notranslate nohighlight">\(m\)</span>:</p>
@@ -1438,14 +1443,14 @@ As depicted in the image below, in a FCN not only one class per input is calcula
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/inceptionModule.png" style="width:600px" align="center">
 </figure>
-<p>The inception module on the left-hand-side in the picture above has been the original (or <em>naive</em>) version. The problem with this version is that particularly in the case of filters of larger size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>) and a high-dimensional input<a class="footnote-reference brackets" href="#id8" id="id5">1</a>, the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>), which operates on a 128-dimensional input has <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 128 = 3200\)</span> parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains <span class="xref myst"><span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution</span> for dimensionality reduction.</p>
-<p>The configuration of the GoogLeNet, as introduced in <span id="id6">[]</span> is given in the table below:</p>
+<p>The inception module on the left-hand-side in the picture above has been the original (or <em>naive</em>) version. The problem with this version is that particularly in the case of filters of larger size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>) and a high-dimensional input<a class="footnote-reference brackets" href="#id7" id="id4">1</a>, the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>), which operates on a 128-dimensional input has <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 128 = 3200\)</span> parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains <span class="xref myst"><span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution</span> for dimensionality reduction.</p>
+<p>The configuration of the GoogLeNet, as introduced in <span id="id5">[<a class="reference internal" href="../referenceSection.html#id68">SLJ+14</a>]</span> is given in the table below:</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/googleNet.png" style="width:600px" align="center">
 </figure></div>
 <div class="section" id="residual-blocks-resnet">
 <h3>Residual Blocks / ResNet<a class="headerlink" href="#residual-blocks-resnet" title="Permalink to this headline">¶</a></h3>
-<p>ResNet has been introduced 2015 in <span id="id7">[]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. In general a single residual block calculates <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> from it’s input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by:</p>
+<p>ResNet has been introduced 2015 in <span id="id6">[<a class="reference internal" href="../referenceSection.html#id65">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. In general a single residual block calculates <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> from it’s input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + \mathbf{x},
@@ -1469,7 +1474,7 @@ As depicted in the image below, in a FCN not only one class per input is calcula
 VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
 </figcaption><hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id8"><span class="brackets">1</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
+<dt class="label" id="id7"><span class="brackets">1</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
 <dd><p>The ICA problem is nicely explained in <a class="reference external" href="https://learnopencv.com/batch-normalization-in-deep-networks/">https://learnopencv.com/batch-normalization-in-deep-networks/</a>.</p>
 </dd>
 </dl>
@@ -1503,7 +1508,7 @@ VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="02RecurrentNeuralNetworks.html" title="previous page">Recurrent Neural Networks</a>
-    <a class='right-next' id="next-link" href="03KerasMLPandCNNcifar.html" title="next page">Implementing Neural Networks with Keras</a>
+    <a class='right-next' id="next-link" href="convolutionDemos.html" title="next page">Animations of Convolution and Deconvolution</a>
 
         </div>
         

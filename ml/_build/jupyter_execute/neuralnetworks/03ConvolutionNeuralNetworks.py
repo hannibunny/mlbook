@@ -4,7 +4,7 @@
 # # Convolutional Neural Networks
 # 
 # * Author: Johannes Maucher
-# * Last Update: 30.10.2020
+# * Last Update: 03.12.2021
 # 
 # There exists different types of deep neural networks, e.g.
 # * Convolutional Neural Networks (CNNs)
@@ -683,7 +683,7 @@ plt.show()
 # Dropout is a technique to prevent Neural Networks, such as MLPs, CNNs, LSTMs from overfitting. The key idea is to randomly drop units along with their connections from the neural network during training. This prevents units from co-adapting too much. The drop of a defined ratio (0.1-0.5) of random neurons is valid only for one iteration. During this iteration the weights of the droped units are not adapted. In the next iteration another set of units, which are dropped temporarily is randomly selected. Dropout is only applied in the training-phase.  
 # ![Dropout](https://maucher.home.hdm-stuttgart.de/Pics/dropout.PNG)
 
-# ### Batch-Normalization
+# ### Normalization
 # 
 # #### Normalization in general
 # Many Machine-Learning algorithms require a normalized input. This is particular true for algorithms, which apply (stochastic) gradient descent training, such as neural networks. Normalization means, that data is transformed such that each feature has a mean of 0 and a variance of 1.
