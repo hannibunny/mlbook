@@ -3,22 +3,26 @@
 
 # # Variational Autoencoder (VAE) to generate handwritten digits
 # * Author: Johannes Maucher - adapted from [keras autoencoder tutorial](https://blog.keras.io/building-autoencoders-in-keras.html).
-# * Last Update: 14.01.2018
+# * Last Update: 10.12.2021
 # * Reference: [D.P. Kingma, M. Welling: Autoencoder Variational Bayes](https://arxiv.org/abs/1312.6114)
 
 # ## Autoencoder
 # 
-# An autoencoder consists of an encoder- and a decoder-module. The encoder maps each input $\mathbf{x}$ to a latent representation $\mathbf{y}$, such that the decoder network is able to calculate a reconstruction $\mathbf{z}$ from $\mathbf{y}$, whereby $\mathbf{z}$ must be as close as possible to the input $\mathbf{x}$. The weights of the encoder- and decoder- module are learned by minimizing a loss-function, which measures the difference between the reconstruction $\mathbf{z}$ and the original $\mathbf{x}$. For this standard gradient descent supervised learning algorithms, such as backpropagation can be applied. Even though the inputs must not be labeled (the target ist the input itself)! 
+# An autoencoder consists of an encoder- and a decoder-module. The encoder maps each input $\mathbf{x}$ to a latent representation $\mathbf{y}$, such that the decoder network is able to calculate a reconstruction $\mathbf{z}$ from $\mathbf{y}$, whereby $\mathbf{z}$ must be as close as possible to the input $\mathbf{x}$. The weights of the encoder- and decoder- module are learned by minimizing a loss-function, which measures the difference between the reconstruction $\mathbf{z}$ and the original $\mathbf{x}$. For this, standard gradient descent supervised learning algorithms, such as backpropagation can be applied. Even though the inputs must not be labeled (the target ist the input itself)! 
 # 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/autoencoder.png" width="450" class="center">
 # 
-# Usually the latent representation $\mathbf{y}$ is much smaller, than the original $\mathbf{x}$ and it's reconstruction $\mathbf{z}$. Hence, the entire process realizes a standard lossy compression, such as e.g. jpeg-encoding of images.
+# Usually the latent representation $\mathbf{y}$ is much smaller, than the original $\mathbf{x}$ and its reconstruction $\mathbf{z}$. Hence, the entire process realizes a standard lossy compression, such as e.g. jpeg-encoding of images.
 # 
-# After training of an autoencoder, all inputs, which are similar to inputs seen in the training phase, will be reconstructed well. However, inputs, which are totally different from the training-samples won't be reconstructed well.  
+# After training an autoencoder, all inputs, which are similar to inputs seen in the training phase, will be reconstructed well. However, inputs, which are totally different from the training-samples won't be reconstructed well.  
 # 
-# For example, if the autoencoder has been trained with many images from rabbits and geese, these two types of animals will be reconstructed well, but if no elephants has been in the training data, the trained network won't be able to reconstruct elephants sufficiently.
+# For example, if the autoencoder has been trained with many images from rabbits and geese, these two types of animals will be reconstructed well, but if no elephants has been in the training data, the trained network won't be able to reconstruct elephants sufficiently. 
 # 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/autoencoderGans.png" width="450" class="center">
+# 
+# Two import application categories of autoencoders are:
+# * **Representation Learning** The latent representation $\mathbf{y}$ can be considered to be a meaningful and efficient representation of the input $\mathbf{x}$. This compressed representation contains all relevant information, since otherwise the original could not be reconstructed sufficiently.
+# * **Anomaly Detection**: The autoencoder is trained only with normal cases. In the inference phase normal cases at the input yield a small error between the input and its reconstruction. However, non-normal cases can not be reconstructed well. Hence, a high reconstruction error is an indicator for anomalies. 
 
 # ## Variational Autoencoder
 # An autoencoder, as shortly described above, is not a generative model. It just tries to reconstruct the input, but it is not able to generate new data, e.g. new rabbit images or new geese images. This is where the **Variational Autoencoder (VAE)** comes in. A variational autoencoder is a generative model. A VAE, which has been trained with rabbit and geese-images is able to generate new rabbit- and geese images. A VAE, which has been trained with handwritten digit images is able to write new handwritten digits, etc. 
@@ -31,6 +35,8 @@
 # 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/variationalAutoencoder.png" width="550" class="center">
 #   
+
+# ## Implementation of Variational Autoencoder
 
 # In[1]:
 
@@ -55,6 +61,7 @@ from keras import backend as K
 from keras import metrics
 from keras.datasets import mnist
 from keras import losses
+from keras.utils.vis_utils import plot_model
 
 
 # In[3]:
@@ -76,16 +83,10 @@ epochs = 50
 epsilon_std = 1.0
 
 
+# ### Define Architecture
+# #### Encoder Model
+
 # In[5]:
-
-
-x = Input(shape=(original_dim,))
-h = Dense(intermediate_dim, activation='relu')(x)
-z_mean = Dense(latent_dim)(h)
-z_log_var = Dense(latent_dim)(h)
-
-
-# In[6]:
 
 
 def sampling(args):
@@ -94,43 +95,98 @@ def sampling(args):
     return z_mean + K.exp(z_log_var / 2) * epsilon
 
 
+# In[6]:
+
+
+x = Input(shape=(original_dim,))
+h = Dense(intermediate_dim, activation='relu')(x)
+z_mean = Dense(latent_dim)(h)
+z_log_var = Dense(latent_dim)(h)
+
+
 # In[7]:
 
 
-# note that "output_shape" isn't necessary with the TensorFlow backend
 z = Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
 
-# we instantiate these layers separately so as to reuse them later
+
+# In[8]:
+
+
+encoderModel=Model(inputs=x, outputs=[z_mean, z_log_var])
+
+
+# In[9]:
+
+
+encoderModel.summary()
+
+
+# In[10]:
+
+
+plot_model(encoderModel, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
+
+
+# #### Decoder Model
+
+# In[11]:
+
+
+#instantiate these layers separately so as to reuse them later
 decoder_h = Dense(intermediate_dim, activation='relu')
 decoder_mean = Dense(original_dim, activation='sigmoid')
 h_decoded = decoder_h(z)
 x_decoded_mean = decoder_mean(h_decoded)
 
 
-# In[8]:
+# In[12]:
 
-
-# end-to-end autoencoder
-vae = Model(x, x_decoded_mean)
-
-# encoder, from inputs to latent space
-encoder = Model(x, z_mean)
 
 # generator, from latent space to reconstructed inputs
 decoder_input = Input(shape=(latent_dim,))
 _h_decoded = decoder_h(decoder_input)
 _x_decoded_mean = decoder_mean(_h_decoded)
-generator = Model(decoder_input, _x_decoded_mean)
+generatorModel = Model(decoder_input, _x_decoded_mean)
 
 
-# In[9]:
+# In[13]:
 
 
-# Custom loss layer
-class CustomVariationalLayer(Layer):
+generatorModel.summary()
+
+
+# In[14]:
+
+
+plot_model(generatorModel, to_file='decoder_model_plot.png', show_shapes=True, show_layer_names=True)
+
+
+# #### End-to-End Autoencoder
+
+# In[15]:
+
+
+# end-to-end autoencoder
+vae = Model(x, x_decoded_mean)
+vae.summary()
+
+
+# In[16]:
+
+
+plot_model(vae, to_file='vae_plot.png', show_shapes=True, show_layer_names=True)
+
+
+# ### Define Layer for Custom Loss
+
+# In[17]:
+
+
+class KLDivergenceLayer(Layer):
     def __init__(self, **kwargs):
         self.is_placeholder = True
-        super(CustomVariationalLayer, self).__init__(**kwargs)
+        super(KLDivergenceLayer, self).__init__(**kwargs)
 
     def vae_loss(self, x, x_decoded_mean):
         xent_loss = original_dim * metrics.binary_crossentropy(x, x_decoded_mean)
@@ -146,15 +202,23 @@ class CustomVariationalLayer(Layer):
         return x
 
 
-# In[10]:
+# In[18]:
 
 
-y = CustomVariationalLayer()([x, x_decoded_mean])
+y = KLDivergenceLayer()([x, x_decoded_mean])
 vae = Model(x, y)
 vae.compile(optimizer='rmsprop', loss=None)
 
 
-# In[11]:
+# In[19]:
+
+
+plot_model(vae, to_file='vae_kl_plot.png', show_shapes=True, show_layer_names=True)
+
+
+# ### Training VAE
+
+# In[20]:
 
 
 # train the VAE on MNIST digits
@@ -166,45 +230,65 @@ x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
 x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
 
-# In[12]:
+# In[21]:
 
 
-vae.fit(x_train,
+hist=vae.fit(x_train,
         shuffle=True,
         epochs=epochs,
         batch_size=batch_size,
-        validation_data=(x_test, None))
+        validation_data=(x_test, None),
+        verbose=False)
 
 
-# In[24]:
+# In[27]:
 
 
-# build a model to project inputs on the latent space
+loss = hist.history['loss']
+val_loss = hist.history['val_loss']
+max_val_acc=np.max(val_loss)
+epochs = range(1, len(loss) + 1)
+plt.figure(figsize=(10,8))
+plt.plot(epochs, loss, 'r', label='Training Loss')
+plt.plot(epochs, val_loss, 'b', label='Validation Loss')
+plt.title('Training and validation Loss')
+plt.legend()
+plt.show()
+
+
+# ### Project Inputs to latent space
+
+# In[28]:
+
+
 encoder = Model(x, z_mean)
 
 
-# In[25]:
+# In[31]:
 
 
 # display a 2D plot of the digit classes in the latent space
-x_test_encoded = encoder.predict(x_test, batch_size=batch_size)
-plt.figure(figsize=(6, 6))
+x_test_encoded,_ = encoderModel.predict(x_test, batch_size=batch_size)
+plt.figure(figsize=(10, 10))
 plt.scatter(x_test_encoded[:, 0], x_test_encoded[:, 1], c=y_test)
 plt.colorbar()
 plt.show()
 
 
-# In[26]:
+# ### Build Digit Generator
+# 
+# Next, a digit generator, which samples from the learned distribution is build.
+
+# In[34]:
 
 
-# build a digit generator that can sample from the learned distribution
 decoder_input = Input(shape=(latent_dim,))
 _h_decoded = decoder_h(decoder_input)
 _x_decoded_mean = decoder_mean(_h_decoded)
 generator = Model(decoder_input, _x_decoded_mean)
 
 
-# In[27]:
+# In[35]:
 
 
 # display a 2D manifold of the digits
@@ -227,30 +311,6 @@ for i, yi in enumerate(grid_x):
 plt.figure(figsize=(10, 10))
 plt.imshow(figure, cmap='Greys_r')
 plt.show()
-
-
-# In[28]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import norm
-
-# Plot between -10 and 10 with .001 steps.
-plt.figure(figsize=(10,5))
-x_axis = np.arange(-10, 10, 0.001)
-Mean1 = -4
-SD1 = 1.
-plt.plot(x_axis, norm.pdf(x_axis,Mean1,SD1))
-Mean2 = 1
-SD2 = 1.
-plt.plot(x_axis, norm.pdf(x_axis,Mean2,SD2))
-Mean3 = 4
-SD3 = 1.
-plt.plot(x_axis, norm.pdf(x_axis,Mean3,SD3))
-plt.grid(True)
-plt.show()
-plt.savefig('mixtureOfgaussians0.png')
 
 
 # In[ ]:

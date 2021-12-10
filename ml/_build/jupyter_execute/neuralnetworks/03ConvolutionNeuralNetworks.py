@@ -844,7 +844,22 @@ print("Standard-deviation of normalized data:\n",normalizeddata.std(axis=0))
 
 # ### Residual Blocks / ResNet
 # 
-# ResNet has been introduced 2015 in {cite}`HeZhangRenEtAl2016`. It's crucial propery are **residual blocks with short-cut connections**. In general a single residual block calculates $\mathbf{y}$ from it's input $\mathbf{x}$ by:
+# ResNet has been introduced 2015 in {cite}`HeZhangRenEtAl2016`. It's crucial propery are **residual blocks with short-cut connections**. The paper shows, that it might be easier to learn a **residual mapping $F(\mathbf{x})=H(\mathbf{x})-\mathbf{x}$** instead of the target mapping $y=H(\mathbf{x})$ itself. For this they introduced the residual block as shown in the image below:
+# 
+# <figure align="center">
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetResidual.png" style="width:500px" align="center">
+# </figure>
+# 
+# Residual blocks contain short-cut connections and learn $F(\mathbf{x})$ instead of $H(\mathbf{x})$. Shortcut-connections do not contain learnable parameters. Stochastic Gradient Descent (SGD) and backpropagation can be applied for residual blocks in the same way as for conventional nets.
+# 
+# A Residual block can consist of an arbitrary number of layers (2 or 3 layers are convenient) of arbitrary type (FC,Conv) and arbitrary activation functions:
+# 
+# <figure align="center">
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetResidual2layers.png" style="width:500px" align="center">
+# </figure>
+# 
+# 
+# In general a single residual block calculates $\mathbf{y}$ from it's input $\mathbf{x}$ by:
 # 
 # $$
 # \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + \mathbf{x},

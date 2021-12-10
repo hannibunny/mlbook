@@ -881,7 +881,7 @@ o=\frac{r-a+2p}{s}+1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f958f31f7c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7e87c247f0&gt;
 </pre></div>
 </div>
 <img alt="../_images/03ConvolutionNeuralNetworks_37_1.png" src="../_images/03ConvolutionNeuralNetworks_37_1.png" />
@@ -1450,7 +1450,16 @@ As depicted in the image below, in a FCN not only one class per input is calcula
 </figure></div>
 <div class="section" id="residual-blocks-resnet">
 <h3>Residual Blocks / ResNet<a class="headerlink" href="#residual-blocks-resnet" title="Permalink to this headline">¶</a></h3>
-<p>ResNet has been introduced 2015 in <span id="id6">[<a class="reference internal" href="../referenceSection.html#id65">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. In general a single residual block calculates <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> from it’s input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by:</p>
+<p>ResNet has been introduced 2015 in <span id="id6">[<a class="reference internal" href="../referenceSection.html#id65">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. The paper shows, that it might be easier to learn a <strong>residual mapping <span class="math notranslate nohighlight">\(F(\mathbf{x})=H(\mathbf{x})-\mathbf{x}\)</span></strong> instead of the target mapping <span class="math notranslate nohighlight">\(y=H(\mathbf{x})\)</span> itself. For this they introduced the residual block as shown in the image below:</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetResidual.png" style="width:500px" align="center">
+</figure>
+<p>Residual blocks contain short-cut connections and learn <span class="math notranslate nohighlight">\(F(\mathbf{x})\)</span> instead of <span class="math notranslate nohighlight">\(H(\mathbf{x})\)</span>. Shortcut-connections do not contain learnable parameters. Stochastic Gradient Descent (SGD) and backpropagation can be applied for residual blocks in the same way as for conventional nets.</p>
+<p>A Residual block can consist of an arbitrary number of layers (2 or 3 layers are convenient) of arbitrary type (FC,Conv) and arbitrary activation functions:</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetResidual2layers.png" style="width:500px" align="center">
+</figure>
+<p>In general a single residual block calculates <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> from it’s input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + \mathbf{x},
