@@ -922,7 +922,7 @@ Preprocess model auto-selected: https://tfhub.dev/tensorflow/bert_en_uncased_pre
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Keys       : [&#39;input_word_ids&#39;, &#39;input_mask&#39;, &#39;input_type_ids&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Keys       : [&#39;input_mask&#39;, &#39;input_word_ids&#39;, &#39;input_type_ids&#39;]
 Shape      : (1, 128)
 Word Ids   : [  101  4952  2000  2225  3676  2213  2632 25438 27395  2006  8224  2189]
 Input Mask : [1 1 1 1 1 1 1 1 1 1 1 1]
@@ -1023,8 +1023,8 @@ Sequence Outputs Values:[[-0.10247643  0.2220486   0.5988388  ... -0.25584024  0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor(
-[[0.22685575 0.03356409 0.10497405 0.05173786 0.09339922 0.34481406
-  0.14465508]], shape=(1, 7), dtype=float32)
+[[0.1474502  0.11482984 0.1045227  0.07725529 0.13800487 0.17250754
+  0.24542952]], shape=(1, 7), dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1044,9 +1044,9 @@ Layer (type)                    Output Shape         Param #     Connected to
 ==================================================================================================
 text (InputLayer)               [(None,)]            0                                            
 __________________________________________________________________________________________________
-preprocessing (KerasLayer)      {&#39;input_mask&#39;: (None 0           text[0][0]                       
+preprocessing (KerasLayer)      {&#39;input_type_ids&#39;: ( 0           text[0][0]                       
 __________________________________________________________________________________________________
-BERT_encoder (KerasLayer)       {&#39;sequence_output&#39;:  41373185    preprocessing[0][0]              
+BERT_encoder (KerasLayer)       {&#39;pooled_output&#39;: (N 41373185    preprocessing[0][0]              
                                                                  preprocessing[0][1]              
                                                                  preprocessing[0][2]              
 __________________________________________________________________________________________________
@@ -1105,15 +1105,23 @@ ________________________________________________________________________________
 Epoch 1/5
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1/409 [..............................] - ETA: 1:47:24 - loss: 2.1665 - categorical_accuracy: 0.1250
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1/409 [..............................] - ETA: 1:24:14 - loss: 2.0768 - categorical_accuracy: 0.1250
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-  2/409 [..............................] - ETA: 45:31 - loss: 2.1370 - categorical_accuracy: 0.1094  
+  2/409 [..............................] - ETA: 31:05 - loss: 2.1107 - categorical_accuracy: 0.1094  
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-  3/409 [..............................] - ETA: 44:00 - loss: 2.0874 - categorical_accuracy: 0.1354
+  3/409 [..............................] - ETA: 30:53 - loss: 2.0564 - categorical_accuracy: 0.1042
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  4/409 [..............................] - ETA: 31:12 - loss: 2.0149 - categorical_accuracy: 0.1406
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+  5/409 [..............................] - ETA: 31:07 - loss: 1.9973 - categorical_accuracy: 0.1625
 </pre></div>
 </div>
 </div>

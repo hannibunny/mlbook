@@ -1030,57 +1030,6 @@ In order to learn such a predictor a large but unlabeled corpus is required. The
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="n">f7ca27df6c4c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Creating the model</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(&#39;/Users/maucher/DataSets/Gensim/FastText/Gensim/FastText/wiki-news-300d-1M.vec&#39;)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(r&#39;C:\Users\maucher\DataSets\Gensim\Data\Fasttext\wiki-news-300d-1M.vec\wiki-news-300d-1M.vec&#39;) #path on surface</span>
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">gensim</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">logging</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> 
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">gensim</span> <span class="kn">import</span> <span class="n">parsing</span><span class="p">,</span> <span class="n">corpora</span><span class="p">,</span> <span class="n">matutils</span><span class="p">,</span> <span class="n">interfaces</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">similarities</span><span class="p">,</span> <span class="n">utils</span>  <span class="c1"># noqa:F401</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">gensim</span><span class="o">/</span><span class="n">corpora</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># bring corpus classes directly into package namespace, to save some typing</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">.indexedcorpus</span> <span class="kn">import</span> <span class="n">IndexedCorpus</span>  <span class="c1"># noqa:F401 must appear before the other classes</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">.mmcorpus</span> <span class="kn">import</span> <span class="n">MmCorpus</span>  <span class="c1"># noqa:F401</span>
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">gensim</span><span class="o">/</span><span class="n">corpora</span><span class="o">/</span><span class="n">indexedcorpus</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">import</span> <span class="nn">numpy</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="kn">from</span> <span class="nn">gensim</span> <span class="kn">import</span> <span class="n">interfaces</span><span class="p">,</span> <span class="n">utils</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">gensim</span><span class="o">/</span><span class="n">interfaces</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span> <span class="nn">logging</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> 
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">gensim</span> <span class="kn">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">matutils</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> 
-<span class="g g-Whitespace">     </span><span class="mi">21</span> 
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">gensim</span><span class="o">/</span><span class="n">matutils</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1022</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1023</span>     <span class="c1"># try to load fast, cythonized code if possible</span>
-<span class="ne">-&gt; </span><span class="mi">1024</span>     <span class="kn">from</span> <span class="nn">gensim._matutils</span> <span class="kn">import</span> <span class="n">logsumexp</span><span class="p">,</span> <span class="n">mean_absolute_difference</span><span class="p">,</span> <span class="n">dirichlet_expectation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1025</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1026</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/_matutils.pyx</span> in <span class="ni">init gensim._matutils</span><span class="nt">()</span>
-
-<span class="ne">ValueError</span>: numpy.ndarray size changed, may indicate binary incompatibility. Expected 88 from C header, got 80 from PyObject
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
