@@ -402,6 +402,11 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sampling">
+       Sampling
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#decoder-model">
        Decoder Model
       </a>
@@ -532,16 +537,6 @@
 <h4>Encoder Model<a class="headerlink" href="#encoder-model" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sampling</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-    <span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span> <span class="o">=</span> <span class="n">args</span>
-    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">z_mean</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">latent_dim</span><span class="p">),</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">stddev</span><span class="o">=</span><span class="n">epsilon_std</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">z_mean</span> <span class="o">+</span> <span class="n">K</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z_log_var</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">original_dim</span><span class="p">,))</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">intermediate_dim</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">z_mean</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">)(</span><span class="n">h</span><span class="p">)</span>
@@ -550,13 +545,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span><span class="n">sampling</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,))([</span><span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Note, that the encoder outputs are interpreted to be the <strong>values</strong> and the <strong>logarithmic variance</strong> values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoderModel</span><span class="o">=</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span><span class="p">])</span>
@@ -598,7 +587,31 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_14_0.png" src="../_images/04VariationalAutoencoder_14_0.png" />
+<img alt="../_images/04VariationalAutoencoder_13_0.png" src="../_images/04VariationalAutoencoder_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="sampling">
+<h4>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">¶</a></h4>
+<p>Define function for sampling from a Gaussian Distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sampling</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">z_mean</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">latent_dim</span><span class="p">),</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">stddev</span><span class="o">=</span><span class="n">epsilon_std</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z_mean</span> <span class="o">+</span> <span class="n">K</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z_log_var</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the sampling function defined above, <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> is an array of samples from a Gaussian Normal Distribution with mean 0 and standard-deviation 1. In order to transform this sample into a sample with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>, epsilon must be multiplied with the standard-deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and added to mean <span class="math notranslate nohighlight">\(\mu\)</span>. Since we do not have <span class="math notranslate nohighlight">\(\sigma\)</span> but only <span class="math notranslate nohighlight">\(t=\log(\sigma^2)\)</span>
+Multiplication  with <span class="math notranslate nohighlight">\(\sigma\)</span> is the same as multiplication with <span class="math notranslate nohighlight">\(e^{t/2}\)</span>.</p>
+<p>Implementation of the sampling function, as defined above, as a Keras layer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span><span class="n">sampling</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,))([</span><span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span><span class="p">])</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -615,52 +628,6 @@ ________________________________________________________________________________
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generator, from latent space to reconstructed inputs</span>
-<span class="n">decoder_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,))</span>
-<span class="n">_h_decoded</span> <span class="o">=</span> <span class="n">decoder_h</span><span class="p">(</span><span class="n">decoder_input</span><span class="p">)</span>
-<span class="n">_x_decoded_mean</span> <span class="o">=</span> <span class="n">decoder_mean</span><span class="p">(</span><span class="n">_h_decoded</span><span class="p">)</span>
-<span class="n">generatorModel</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">decoder_input</span><span class="p">,</span> <span class="n">_x_decoded_mean</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generatorModel</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_1&quot;
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-input_2 (InputLayer)         [(None, 2)]               0         
-_________________________________________________________________
-dense_3 (Dense)              (None, 256)               768       
-_________________________________________________________________
-dense_4 (Dense)              (None, 784)               201488    
-=================================================================
-Total params: 202,256
-Trainable params: 202,256
-Non-trainable params: 0
-_________________________________________________________________
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_model</span><span class="p">(</span><span class="n">generatorModel</span><span class="p">,</span> <span class="n">to_file</span><span class="o">=</span><span class="s1">&#39;decoder_model_plot.png&#39;</span><span class="p">,</span> <span class="n">show_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_layer_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_19_0.png" src="../_images/04VariationalAutoencoder_19_0.png" />
-</div>
-</div>
 </div>
 <div class="section" id="end-to-end-autoencoder">
 <h4>End-to-End Autoencoder<a class="headerlink" href="#end-to-end-autoencoder" title="Permalink to this headline">¶</a></h4>
@@ -673,7 +640,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_2&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_1&quot;
 __________________________________________________________________________________________________
 Layer (type)                    Output Shape         Param #     Connected to                     
 ==================================================================================================
@@ -707,13 +674,19 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_22_0.png" src="../_images/04VariationalAutoencoder_22_0.png" />
+<img alt="../_images/04VariationalAutoencoder_23_0.png" src="../_images/04VariationalAutoencoder_23_0.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="define-layer-for-custom-loss">
 <h3>Define Layer for Custom Loss<a class="headerlink" href="#define-layer-for-custom-loss" title="Permalink to this headline">¶</a></h3>
+<p>The parameters of the model are trained by minizing a loss function, which consists of two terms:</p>
+<ul class="simple">
+<li><p>a <strong>reconstruction loss</strong> forcing the decoded samples to match the initial inputs. For this reconstruction loss <em>binary crossentropy</em> is applied.</p></li>
+<li><p>the KL divergence between the learned latent distribution and the prior distribution. This term acts as a <strong>regularization term</strong>.</p></li>
+</ul>
+<p>In order to implement this custom loss function a corresponding layer is defined as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KLDivergenceLayer</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
@@ -722,8 +695,8 @@ ________________________________________________________________________________
         <span class="nb">super</span><span class="p">(</span><span class="n">KLDivergenceLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">vae_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_decoded_mean</span><span class="p">):</span>
-        <span class="n">xent_loss</span> <span class="o">=</span> <span class="n">original_dim</span> <span class="o">*</span> <span class="n">metrics</span><span class="o">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_decoded_mean</span><span class="p">)</span>
-        <span class="n">kl_loss</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">K</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">z_log_var</span> <span class="o">-</span> <span class="n">K</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">z_mean</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z_log_var</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">xent_loss</span> <span class="o">=</span> <span class="n">original_dim</span> <span class="o">*</span> <span class="n">metrics</span><span class="o">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_decoded_mean</span><span class="p">)</span> <span class="c1"># reconstruction loss</span>
+        <span class="n">kl_loss</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">K</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">z_log_var</span> <span class="o">-</span> <span class="n">K</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">z_mean</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z_log_var</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># regularisation term</span>
         <span class="k">return</span> <span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xent_loss</span> <span class="o">+</span> <span class="n">kl_loss</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
@@ -758,7 +731,7 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_26_0.png" src="../_images/04VariationalAutoencoder_26_0.png" />
+<img alt="../_images/04VariationalAutoencoder_29_0.png" src="../_images/04VariationalAutoencoder_29_0.png" />
 </div>
 </div>
 </div>
@@ -811,7 +784,7 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_30_0.png" src="../_images/04VariationalAutoencoder_30_0.png" />
+<img alt="../_images/04VariationalAutoencoder_33_0.png" src="../_images/04VariationalAutoencoder_33_0.png" />
 </div>
 </div>
 </div>
@@ -836,7 +809,7 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_33_0.png" src="../_images/04VariationalAutoencoder_33_0.png" />
+<img alt="../_images/04VariationalAutoencoder_36_0.png" src="../_images/04VariationalAutoencoder_36_0.png" />
 </div>
 </div>
 </div>
@@ -879,7 +852,7 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04VariationalAutoencoder_36_0.png" src="../_images/04VariationalAutoencoder_36_0.png" />
+<img alt="../_images/04VariationalAutoencoder_39_0.png" src="../_images/04VariationalAutoencoder_39_0.png" />
 </div>
 </div>
 </div>
