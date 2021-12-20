@@ -260,8 +260,6 @@ model = KeyedVectors.load_word2vec_format(tmp_file)
 model.most_similar("car")
 
 
-# In[ ]:
-
-
-
-
+# ## Comparision: BoW vs. Sequence of Word-Embeddings
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/bowVsEmbedding.png" alt="Drawing" style="width: 600px;"/>

@@ -397,14 +397,21 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-30-epochs">
-   Generate new numbers from GAN learned over 30 epochs
+  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan">
+   Generate new numbers from GAN
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-60-epochs">
-   Generate new numbers from GAN learned over 60 epochs
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gan-learned-over-30-epochs">
+     GAN learned over 30 epochs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-60-epochs">
+     Generate new numbers from GAN learned over 60 epochs
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -446,27 +453,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>  <span class="c1">#this package is used to show progress in training loops</span>
-<span class="kn">from</span> <span class="nn">keras.layers.advanced_activations</span> <span class="kn">import</span> <span class="n">LeakyReLU</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">LeakyReLU</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">0940</span><span class="n">c6084a6d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>  <span class="c1">#this package is used to show progress in training loops</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">keras.layers.advanced_activations</span> <span class="kn">import</span> <span class="n">LeakyReLU</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;Adam&#39; from &#39;keras.optimizers&#39; (/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras/optimizers.py)
 </pre></div>
 </div>
 </div>
@@ -756,6 +749,13 @@ Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, fol
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras/layers/normalization/batch_normalization.py:520: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -764,29 +764,29 @@ Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, fol
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_2&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-dense_2 (Dense)              (None, 6272)              633472    
+dense (Dense)                (None, 6272)              633472    
 _________________________________________________________________
-leaky_re_lu_4 (LeakyReLU)    (None, 6272)              0         
+leaky_re_lu (LeakyReLU)      (None, 6272)              0         
 _________________________________________________________________
-batch_normalization_2 (Batch (None, 6272)              25088     
+batch_normalization (BatchNo (None, 6272)              25088     
 _________________________________________________________________
-reshape_1 (Reshape)          (None, 7, 7, 128)         0         
+reshape (Reshape)            (None, 7, 7, 128)         0         
 _________________________________________________________________
-up_sampling2d_2 (UpSampling2 (None, 14, 14, 128)       0         
+up_sampling2d (UpSampling2D) (None, 14, 14, 128)       0         
 _________________________________________________________________
-conv2d_4 (Conv2D)            (None, 14, 14, 64)        204864    
+conv2d (Conv2D)              (None, 14, 14, 64)        204864    
 _________________________________________________________________
-leaky_re_lu_5 (LeakyReLU)    (None, 14, 14, 64)        0         
+leaky_re_lu_1 (LeakyReLU)    (None, 14, 14, 64)        0         
 _________________________________________________________________
-batch_normalization_3 (Batch (None, 14, 14, 64)        256       
+batch_normalization_1 (Batch (None, 14, 14, 64)        256       
 _________________________________________________________________
-up_sampling2d_3 (UpSampling2 (None, 28, 28, 64)        0         
+up_sampling2d_1 (UpSampling2 (None, 28, 28, 64)        0         
 _________________________________________________________________
-conv2d_5 (Conv2D)            (None, 28, 28, 1)         1601      
+conv2d_1 (Conv2D)            (None, 28, 28, 1)         1601      
 =================================================================
 Total params: 865,281
 Trainable params: 852,609
@@ -826,25 +826,25 @@ The first convolution layer applies 5x5 filters in order to calculate 64 feature
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_3&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential_1&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
-conv2d_6 (Conv2D)            (None, 14, 14, 64)        1664      
+conv2d_2 (Conv2D)            (None, 14, 14, 64)        1664      
 _________________________________________________________________
-leaky_re_lu_6 (LeakyReLU)    (None, 14, 14, 64)        0         
+leaky_re_lu_2 (LeakyReLU)    (None, 14, 14, 64)        0         
 _________________________________________________________________
-dropout_2 (Dropout)          (None, 14, 14, 64)        0         
+dropout (Dropout)            (None, 14, 14, 64)        0         
 _________________________________________________________________
-conv2d_7 (Conv2D)            (None, 7, 7, 128)         204928    
+conv2d_3 (Conv2D)            (None, 7, 7, 128)         204928    
 _________________________________________________________________
-leaky_re_lu_7 (LeakyReLU)    (None, 7, 7, 128)         0         
+leaky_re_lu_3 (LeakyReLU)    (None, 7, 7, 128)         0         
 _________________________________________________________________
-dropout_3 (Dropout)          (None, 7, 7, 128)         0         
+dropout_1 (Dropout)          (None, 7, 7, 128)         0         
 _________________________________________________________________
-flatten_1 (Flatten)          (None, 6272)              0         
+flatten (Flatten)            (None, 6272)              0         
 _________________________________________________________________
-dense_3 (Dense)              (None, 1)                 6273      
+dense_1 (Dense)              (None, 1)                 6273      
 =================================================================
 Total params: 212,865
 Trainable params: 212,865
@@ -893,15 +893,15 @@ In contrast to standard SGD, Adam applies individual learning-rates for each lea
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_1&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
 input_1 (InputLayer)         [(None, 100)]             0         
 _________________________________________________________________
-sequential_2 (Sequential)    (None, 28, 28, 1)         865281    
+sequential (Sequential)      (None, 28, 28, 1)         865281    
 _________________________________________________________________
-sequential_3 (Sequential)    (None, 1)                 212865    
+sequential_1 (Sequential)    (None, 1)                 212865    
 =================================================================
 Total params: 1,078,146
 Trainable params: 852,609
@@ -959,38 +959,152 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:2325: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras/engine/training.py:2470: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
   warnings.warn(&#39;`Model.state_updates` will be removed in a future version. &#39;
-100%|██████████| 468/468 [04:44&lt;00:00,  1.64it/s]
-100%|██████████| 468/468 [04:47&lt;00:00,  1.63it/s]
-100%|██████████| 468/468 [04:37&lt;00:00,  1.68it/s]
-100%|██████████| 468/468 [04:24&lt;00:00,  1.77it/s]
-100%|██████████| 468/468 [04:25&lt;00:00,  1.76it/s]
-100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:18&lt;00:00,  1.81it/s]
-100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
-100%|██████████| 468/468 [04:14&lt;00:00,  1.84it/s]
-100%|██████████| 468/468 [04:16&lt;00:00,  1.82it/s]
-100%|██████████| 468/468 [04:23&lt;00:00,  1.78it/s]
-100%|██████████| 468/468 [04:18&lt;00:00,  1.81it/s]
-100%|██████████| 468/468 [04:20&lt;00:00,  1.79it/s]
-100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
-100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
-100%|██████████| 468/468 [04:19&lt;00:00,  1.81it/s]
-100%|██████████| 468/468 [04:17&lt;00:00,  1.82it/s]
-100%|██████████| 468/468 [04:19&lt;00:00,  1.80it/s]
-100%|██████████| 468/468 [04:14&lt;00:00,  1.84it/s]
-100%|██████████| 468/468 [04:13&lt;00:00,  1.85it/s]
-100%|██████████| 468/468 [04:13&lt;00:00,  1.85it/s]
-100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:15&lt;00:00,  1.83it/s]
-100%|██████████| 468/468 [04:16&lt;00:00,  1.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 1/468 [00:04&lt;33:27,  4.30s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 2/468 [00:04&lt;16:40,  2.15s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 3/468 [00:05&lt;11:22,  1.47s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 4/468 [00:06&lt;08:59,  1.16s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 5/468 [00:06&lt;07:37,  1.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏         | 6/468 [00:07&lt;06:43,  1.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏         | 7/468 [00:08&lt;06:16,  1.23it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 8/468 [00:08&lt;05:54,  1.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 9/468 [00:09&lt;05:39,  1.35it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 10/468 [00:10&lt;05:24,  1.41it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 11/468 [00:10&lt;05:17,  1.44it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 12/468 [00:11&lt;05:11,  1.46it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 13/468 [00:12&lt;05:06,  1.48it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 14/468 [00:12&lt;05:06,  1.48it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 15/468 [00:13&lt;05:06,  1.48it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 16/468 [00:14&lt;05:03,  1.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▎         | 17/468 [00:14&lt;05:03,  1.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 18/468 [00:15&lt;04:59,  1.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 19/468 [00:16&lt;04:58,  1.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 20/468 [00:16&lt;04:52,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 21/468 [00:17&lt;04:51,  1.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▍         | 22/468 [00:18&lt;04:49,  1.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▍         | 23/468 [00:18&lt;04:47,  1.55it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 24/468 [00:19&lt;04:51,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 25/468 [00:20&lt;04:49,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 26/468 [00:20&lt;04:47,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 27/468 [00:21&lt;04:49,  1.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 28/468 [00:22&lt;04:47,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 29/468 [00:22&lt;04:46,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▋         | 30/468 [00:23&lt;04:46,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 31/468 [00:24&lt;04:44,  1.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 32/468 [00:24&lt;04:57,  1.47it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 33/468 [00:25&lt;04:55,  1.47it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 34/468 [00:26&lt;04:52,  1.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 35/468 [00:26&lt;04:49,  1.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 36/468 [00:27&lt;04:47,  1.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 37/468 [00:28&lt;04:48,  1.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 38/468 [00:28&lt;04:48,  1.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 39/468 [00:29&lt;04:47,  1.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▊         | 40/468 [00:30&lt;04:45,  1.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 41/468 [00:30&lt;04:41,  1.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 42/468 [00:31&lt;04:39,  1.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 43/468 [00:32&lt;04:37,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 44/468 [00:32&lt;04:38,  1.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|▉         | 45/468 [00:33&lt;04:37,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|▉         | 46/468 [00:34&lt;04:35,  1.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 47/468 [00:34&lt;04:35,  1.53it/s]
 </pre></div>
 </div>
 </div>
@@ -1056,8 +1170,10 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-<div class="section" id="generate-new-numbers-from-gan-learned-over-30-epochs">
-<h2>Generate new numbers from GAN learned over 30 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="generate-new-numbers-from-gan">
+<h2>Generate new numbers from GAN<a class="headerlink" href="#generate-new-numbers-from-gan" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gan-learned-over-30-epochs">
+<h3>GAN learned over 30 epochs<a class="headerlink" href="#gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h3>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1097,7 +1213,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="generate-new-numbers-from-gan-learned-over-60-epochs">
-<h2>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h2>
+<h3>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h3>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1115,6 +1231,7 @@ _________________________________________________________________
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/DCGAN_41_0.png" src="../_images/DCGAN_41_0.png" />
+</div>
 </div>
 </div>
 </div>

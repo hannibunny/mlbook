@@ -7,6 +7,10 @@
 # 
 # The main goal of the notebook is to demonstrate how different CNN- and LSTM architectures can be defined, trained and evaluated in tensorflow/keras. Hyperparameter-optimisation is not regarded, here.
 
+# **Overview: BoW + Conventional ML versus Embeddings + Deep ML**
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/overAllPicture.png" alt="Drawing" style="width: 800px;"/>
+
 # In[1]:
 
 

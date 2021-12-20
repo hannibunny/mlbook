@@ -25,7 +25,7 @@ GAN: Generator-Network tries to produce data, such that the Discriminator-Networ
 
 ## Architecture and Training
 
-As depicted in image {ref}`GAN overall picture<ganidea>` the overall GAN consists of a Generator and a Discriminator. Both of them are usually neural networks of any type. In the initial work {ref}`GAN overall picture<ganidea>` MLPs has been applied for both components. Later, it has been shown in {cite}`Radford`, that GANs, which apply CNNs for both components are much easier to configure and bahve in a more stable manner. The CNN, which has been applied as Generator in {cite}`Radford`, is depicted below:
+As depicted in image {ref}`GAN overall picture<ganidea>` the overall GAN consists of a Generator and a Discriminator. Both of them are usually neural networks of any type. In the initial work {cite}`Goodfellow` MLPs have been applied for both components. Later, it has been shown in {cite}`Radford`, that GANs, which apply CNNs for both components are much easier to configure and behave in a more stable manner. The CNN, which has been applied as Generator in {cite}`Radford`, is depicted below:
 	
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png
 ---
@@ -33,16 +33,16 @@ align: center
 width: 600pt
 name:  dcgangen
 ---
-Generator of the DCGAN. Image Source: {cite}`Radford`
+Generator of the DCGAN. Image Source: {cite}`Radford`. The upsizing of the feature maps is realized by *fractional-strided convolution*. This is what has be denoted by Deconvolution with a stride $>2$ in notebook [Animations of Convolution and Deconvolution](../neuralnetworks/convolutionDemos)
 
 ``` 
 	
 
-The task of the GAN is to generate fake-data at the output of the Generator. This fake data shall be indistinguishable from the real-data $\mathbf{x}$, which is passed to the Discriminator input. The input to the Generator is usually a random noise vector $\mathbf{z}$, drawn e.g. from a multivariate Gaussian distribution. The Generator must be designed such that it's output $G(\mathbf{z})$ has the same format as the real-data at the input of the discriminator. The Discriminator is a binary classification network, which receives real-data $\mathbf{x}$ and fake-data $G(\mathbf{z})$, provided by the Generator. The Discriminator is trained such, that it can discriminate fake-data from real-data. The Generator is trained such, that it's output $G(\mathbf{z})$ is not distinguishable from real-data, i.e. both networks have adversarial training goals. 
+The task of the GAN is to generate fake-data at the output of the Generator. This fake data shall be indistinguishable from the real-data $\mathbf{x}$, which is passed to the Discriminator input. The input to the Generator is usually a random noise vector $\mathbf{z}$, drawn e.g. from a multivariate Gaussian distribution. The Generator must be designed such that it's output $G(\mathbf{z})$ has the same format as the real-data at the input of the discriminator. The Discriminator is a binary classification network, which receives real-data $\mathbf{x}$ and fake-data $G(\mathbf{z})$, provided by the Generator. The Discriminator is trained such, that it can discriminate fake-data from real-data. The Generator is trained such, that its output $G(\mathbf{z})$ is not distinguishable from real-data, i.e. both networks have adversarial training goals. 
 	
 The adversarial training process is depcited in {ref}`the flow-chart below<gantraining>`. In each epoch 
 
-1. first the discriminator is trained with a batch of real- and fake-data. For this 
+1. **First the discriminator is trained** with a batch of real- and fake-data. For this 
 	* real-data $x$ is labeled by $1$
 	* fake-data $G(z)$ is labeled by $0$
     
@@ -65,7 +65,7 @@ The adversarial training process is depcited in {ref}`the flow-chart below<gantr
 	\frac{1}{m} \sum\limits_{i=1}^m \left[ \log(D(x^{(i)})) + log(1-D(G(z^{(i)})))  \right]
 	$$ (minmaxdisc)
 
-2. the weights of the Discrimator are being frozen and the Generator is trained. For this a a minibatch of $m$ random-noise vectors $\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace$ is sampled and passed to the generator. The Generator outputs $G(z^{(i)})$ are now labeled by 1 and passed to the Discriminator. In this phase only the weights of the Generator are adapted. They are adapted such that the Minmax-loss of equation {eq}`minmax` is **minimized**. For a minibatch of $m$ random samples $\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace$, the following Loss is **minimized** during Generator training:
+2. **The weights of the Discrimator are being frozen and the Generator is trained**. For this a minibatch of $m$ random-noise vectors $\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace$ is sampled and passed to the generator. **The Generator outputs $G(z^{(i)})$ are now labeled by 1** and passed to the Discriminator. In this phase only the weights of the Generator are adapted. They are adapted such that the Minmax-loss of equation {eq}`minmax` is **minimized**. For a minibatch of $m$ random samples $\lbrace z^{(1)}, \ldots, z^{(m)} \rbrace$, the following Loss is **minimized** during Generator training:
 	
 	$$
 	\frac{1}{m} \sum\limits_{i=1}^m log(1-D(G(z^{(i)}))).
@@ -97,7 +97,7 @@ Source: {cite}`Radford`
 
 ## Conditional GAN
 
-In {cite}`Mirza` conditional GANs (cGAN) has been introduced. cGANs allow to control different different variants of the generated fake-data. For example if MNIST-like handwritten digits shall be generated by the GAN one can control which concrete digit shall be generated. The control is realized by passing additional information $y$ to both, the input of the Generator and the input of the Discriminator. 
+In {cite}`Mirza` conditional GANs (cGAN) has been introduced. cGANs allow to control different variants of the generated fake-data. For example, if MNIST-like handwritten digits shall be generated by the GAN one can control which concrete digit shall be generated. The control is realized by passing additional information $y$ to both, the input of the Generator and the input of the Discriminator. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png
 ---
@@ -131,7 +131,7 @@ Source: {cite}`Mirza`
 
 ## Cycle GAN: Transform from one domain to another
 
-Image-to-image translation (see picture below for examples) is a class of vision and graphics problems where the goal is to learn the mapping between an input image and an output image using a training set of aligned image pairs. However, for many tasks, paired training data will not be available {cite}`Zhu`.
+Image-to-image translation (see picture below for examples) is a class of vision- and graphics-problems, where the goal is to learn the mapping between an input image and an output image using a training set of aligned image pairs. However, for many tasks, paired training data may not be available {cite}`Zhu`.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png
 ---
@@ -170,7 +170,7 @@ F : Y \rightarrow  X
 $$
 
 
-Both mappings, $G$ and $F$ are learned using a **adversarial loss**.
+Both mappings, $G$ and $F$ are learned using an **adversarial loss**.
 
 Moreover, a **cycle consistency loss** to enforce 
 
@@ -190,7 +190,7 @@ Learned mappings between source domain $X$ and target domain $Y$. Source: {cite}
 
 ```
 
-**Adversarial Loss:**
+**Adversarial Loss function,** to be minimized by $G$ and $F$, respectively:
 
 $$
 L_{adv}(G,D_y,X) & = & \frac{1}{m} \sum\limits_{i=1}^m (1-D_y(G(x_i)))^2 \\
@@ -249,7 +249,7 @@ Source: [towards data science](https://towardsdatascience.com/cyclegan-learning-
 
 **Cycle GAN Strengths and Limitations:**
 
-Cycle GAN works well on tasks that involve color or texture changes, e.g. day-to-night translations, photo-to-painting transformation or style transfer. This can be seen e.g. in this [video on Cityscape to GTA5-Style transfer](https://youtu.be/lCR9sT9mbis) or this [video on day- to night-drive transformation](https://youtu.be/N7KbfWodXJE).
+Cycle GAN works well on tasks, which involve color- or texture-changes, e.g. day-to-night translations, photo-to-painting transformation or style transfer. This can be seen e.g. in this [video on Cityscape to GTA5-Style transfer](https://youtu.be/lCR9sT9mbis) or this [video on day- to night-drive transformation](https://youtu.be/N7KbfWodXJE).
 
 However, Cycle GAN often fails for tasks, that require substantial geometric changes, as can be seen in the image below.
 
@@ -303,7 +303,7 @@ Source: {cite}`Choi`.
 
 **Adversarial Loss:**
 
-Discriminator $D$ tries to maximize $L_{adv}$, whereas the Generator $G$ tries to it.
+Discriminator $D$ tries to maximize $L_{adv}$, whereas the Generator $G$ tries to minimize it.
 
 
 $$
