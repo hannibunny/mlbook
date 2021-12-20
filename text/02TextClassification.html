@@ -460,7 +460,8 @@
 <h1>Text classification with CNNs and LSTMs<a class="headerlink" href="#text-classification-with-cnns-and-lstms" title="Permalink to this headline">¶</a></h1>
 <p>In this notebook CNNs and LSTMs are applied for document classification. Here, the documents are IMDB movie reviews. The IMDB Movie Review corpus is a standard dataset for the evaluation of text-classifiers. It consists of 25000 movies reviews from IMDB, labeled by sentiment (positive/negative).</p>
 <p>The main goal of the notebook is to demonstrate how different CNN- and LSTM architectures can be defined, trained and evaluated in tensorflow/keras. Hyperparameter-optimisation is not regarded, here.</p>
-<div class="cell docutils container">
+<p><strong>Overview: BoW + Conventional ML versus Embeddings + Deep ML</strong></p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/overAllPicture.png" alt="Drawing" style="width: 800px;"/><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
@@ -660,7 +661,7 @@ All sequences must be padded to a unique length. This means, that longer sequenc
 Documents in category general:  12500
 </pre></div>
 </div>
-<img alt="../_images/02TextClassification_23_1.png" src="../_images/02TextClassification_23_1.png" />
+<img alt="../_images/02TextClassification_24_1.png" src="../_images/02TextClassification_24_1.png" />
 </div>
 </div>
 </div>
@@ -897,7 +898,7 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02TextClassification_45_0.png" src="../_images/02TextClassification_45_0.png" />
+<img alt="../_images/02TextClassification_46_0.png" src="../_images/02TextClassification_46_0.png" />
 </div>
 </div>
 </div>
@@ -1015,7 +1016,7 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02TextClassification_51_0.png" src="../_images/02TextClassification_51_0.png" />
+<img alt="../_images/02TextClassification_52_0.png" src="../_images/02TextClassification_52_0.png" />
 </div>
 </div>
 </div>
@@ -1155,7 +1156,7 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02TextClassification_58_0.png" src="../_images/02TextClassification_58_0.png" />
+<img alt="../_images/02TextClassification_59_0.png" src="../_images/02TextClassification_59_0.png" />
 </div>
 </div>
 </div>
@@ -1275,7 +1276,7 @@ Epoch 3/3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02TextClassification_66_0.png" src="../_images/02TextClassification_66_0.png" />
+<img alt="../_images/02TextClassification_67_0.png" src="../_images/02TextClassification_67_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
