@@ -112,7 +112,7 @@ Conditional GAN: The condition $y$ is added to the Generator- and Discriminator 
 For conditional GANs the Minmax-Loss Function, which is maximized by the Discriminator- and minimized by the Generator-training is 
 
 $$
-E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ log(1-D(G(z  \mid y)))  \right]
+E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ \log(1-D(G(z  \mid y)))  \right]
 $$ (minmaxcgan)  
 
 
@@ -190,17 +190,18 @@ Learned mappings between source domain $X$ and target domain $Y$. Source: {cite}
 
 ```
 
-**Adversarial Loss function,** to be minimized by $G$ and $F$, respectively:
+**Adversarial Loss function,** to be minimized by $G$ and $F$ and to be maximized by $D_Y$ and $D_X$, respectively:
 
 $$
-L_{adv}(G,D_y,X) & = & \frac{1}{m} \sum\limits_{i=1}^m (1-D_y(G(x_i)))^2 \\
-L_{adv}(F,D_x,Y) & = & \frac{1}{m} \sum\limits_{i=1}^m (1-D_x(F(y_i)))^2 
+L_{adv}(G,D_y,X,Y) & = & \frac{1}{m} \sum\limits_{i=1}^m \log(D_Y(y))  + \frac{1}{m} \sum\limits_{i=1}^m \log(1-D_y(G(x_i))) \\
+L_{adv}(F,D_x,Y,X) & = & \frac{1}{m} \sum\limits_{i=1}^m \log(D_X(x))  + \frac{1}{m} \sum\limits_{i=1}^m \log(1-D_x(F(y_i)))
 $$
 
 * The Generator $G$ is trained, such that it converts $x$ to something that the Discriminator $D_y$ can not distinguish from $y$.
 * The Generator $F$ is trained, such that it converts $y$ to something that the Discriminator $D_x$ can not distinguish from $x$.
 
-The adversarial loss-functions above are not derived from *binary-crossentropy* but from *least-square-loss*. In {cite}`Mao2016` it has been shown, that this-loss is better in the context of the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem).
+<!-- The adversarial loss-functions above are not derived from *binary-crossentropy* but from *least-square-loss*. In {cite}`Mao2016` it has been shown, that this-loss is better in the context of the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem).
+-->
 
 **Cycle Consitency Loss:**
 
@@ -209,13 +210,13 @@ The *cycle consistency loss* enforces the requirement, that if an input-image is
 The minimization of $L_{cyc}(G,F,X,Y)$  enforces that $F(G(x)) \approx x$ and $G(F(y)) \approx y$.
 	
 $$
-L_{cyc}(G,F,X,Y) =  \frac{1}{m} \sum\limits_{i=1}^m \left[ F(G(x_i))-x_i \right] + \left[ G(F(y_i))-y_i)   \right].
+L_{cyc}(G,F,X,Y) =  \frac{1}{m} \sum\limits_{i=1}^m || F(G(x_i))-x_i ||_1 + || G(F(y_i))-y_i) ||_1 .
 $$
 	
 **Overall Loss-Function:**
 
 $$
-L_{full} = L_{adv}(G,D_y,X) + L_{adv}(F,D_x,Y) + L_{cyc}(G,F,X,Y)
+L_{full} = L_{adv}(G,D_y,X,Y) + L_{adv}(F,D_x,Y,X) + L_{cyc}(G,F,X,Y)
 $$
 
 
