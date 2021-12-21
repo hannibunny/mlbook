@@ -472,7 +472,7 @@
 <p>For conditional GANs the Minmax-Loss Function, which is maximized by the Discriminator- and minimized by the Generator-training is</p>
 <div class="math notranslate nohighlight" id="equation-minmaxcgan">
 <span class="eqno">(74)<a class="headerlink" href="#equation-minmaxcgan" title="Permalink to this equation">¶</a></span>\[
-E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ log(1-D(G(z  \mid y)))  \right]
+E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ \log(1-D(G(z  \mid y)))  \right]
 \]</div>
 <p>In the MNIST-example <span class="math notranslate nohighlight">\(y\)</span> represents the concrete number, e.g. it is the one-hot-encoding of the digit that shall be generated. In general, <span class="math notranslate nohighlight">\(y\)</span> can be any kind of auxillary information, such as a class-label or data from other modalities, e.g. word-vectors.</p>
 <div class="figure align-center" id="cganmnist">
@@ -513,28 +513,29 @@ F(G(X)) \approx X
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png" style="width: 600pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Learned mappings between source domain <span class="math notranslate nohighlight">\(X\)</span> and target domain <span class="math notranslate nohighlight">\(Y\)</span>. Source: <span id="id15">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </div>
-<p><strong>Adversarial Loss function,</strong> to be minimized by <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span>, respectively:</p>
+<p><strong>Adversarial Loss function,</strong> to be minimized by <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span> and to be maximized by <span class="math notranslate nohighlight">\(D_Y\)</span> and <span class="math notranslate nohighlight">\(D_X\)</span>, respectively:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-L_{adv}(G,D_y,X) &amp; = &amp; \frac{1}{m} \sum\limits_{i=1}^m (1-D_y(G(x_i)))^2 \\
-L_{adv}(F,D_x,Y) &amp; = &amp; \frac{1}{m} \sum\limits_{i=1}^m (1-D_x(F(y_i)))^2 
+L_{adv}(G,D_y,X,Y) &amp; = &amp; \frac{1}{m} \sum\limits_{i=1}^m \log(D_Y(y))  + \frac{1}{m} \sum\limits_{i=1}^m \log(1-D_y(G(x_i))) \\
+L_{adv}(F,D_x,Y,X) &amp; = &amp; \frac{1}{m} \sum\limits_{i=1}^m \log(D_X(x))  + \frac{1}{m} \sum\limits_{i=1}^m \log(1-D_x(F(y_i)))
 \end{split}\]</div>
 <ul class="simple">
 <li><p>The Generator <span class="math notranslate nohighlight">\(G\)</span> is trained, such that it converts <span class="math notranslate nohighlight">\(x\)</span> to something that the Discriminator <span class="math notranslate nohighlight">\(D_y\)</span> can not distinguish from <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 <li><p>The Generator <span class="math notranslate nohighlight">\(F\)</span> is trained, such that it converts <span class="math notranslate nohighlight">\(y\)</span> to something that the Discriminator <span class="math notranslate nohighlight">\(D_x\)</span> can not distinguish from <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 </ul>
-<p>The adversarial loss-functions above are not derived from <em>binary-crossentropy</em> but from <em>least-square-loss</em>. In <span id="id17">[<a class="reference internal" href="../referenceSection.html#id34">MLX+16</a>]</span> it has been shown, that this-loss is better in the context of the <a class="reference external" href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient problem</a>.</p>
+<p>&lt;– The adversarial loss-functions above are not derived from <em>binary-crossentropy</em> but from <em>least-square-loss</em>. In <span id="id17">[<a class="reference internal" href="../referenceSection.html#id34">MLX+16</a>]</span> it has been shown, that this-loss is better in the context of the <a class="reference external" href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient problem</a>.
+!–&gt;</p>
 <p><strong>Cycle Consitency Loss:</strong></p>
 <p>The <em>cycle consistency loss</em> enforces the requirement, that if an input-image is converted to the other domain and back again, by feeding it through both generators, the result should be similar to the input-image.</p>
 <p>The minimization of <span class="math notranslate nohighlight">\(L_{cyc}(G,F,X,Y)\)</span>  enforces that <span class="math notranslate nohighlight">\(F(G(x)) \approx x\)</span> and <span class="math notranslate nohighlight">\(G(F(y)) \approx y\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
-L_{cyc}(G,F,X,Y) =  \frac{1}{m} \sum\limits_{i=1}^m \left[ F(G(x_i))-x_i \right] + \left[ G(F(y_i))-y_i)   \right].
+L_{cyc}(G,F,X,Y) =  \frac{1}{m} \sum\limits_{i=1}^m || F(G(x_i))-x_i ||_1 + || G(F(y_i))-y_i) ||_1 .
 \]</div>
 <p><strong>Overall Loss-Function:</strong></p>
 <div class="math notranslate nohighlight">
 \[
-L_{full} = L_{adv}(G,D_y,X) + L_{adv}(F,D_x,Y) + L_{cyc}(G,F,X,Y)
+L_{full} = L_{adv}(G,D_y,X,Y) + L_{adv}(F,D_x,Y,X) + L_{cyc}(G,F,X,Y)
 \]</div>
 <p><strong>Architecture of the Generators <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span>:</strong></p>
 <div class="figure align-center" id="cyclegangen">
