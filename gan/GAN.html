@@ -523,8 +523,8 @@ L_{adv}(F,D_x,Y,X) &amp; = &amp; \frac{1}{m} \sum\limits_{i=1}^m \log(D_X(x))  +
 <li><p>The Generator <span class="math notranslate nohighlight">\(G\)</span> is trained, such that it converts <span class="math notranslate nohighlight">\(x\)</span> to something that the Discriminator <span class="math notranslate nohighlight">\(D_y\)</span> can not distinguish from <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 <li><p>The Generator <span class="math notranslate nohighlight">\(F\)</span> is trained, such that it converts <span class="math notranslate nohighlight">\(y\)</span> to something that the Discriminator <span class="math notranslate nohighlight">\(D_x\)</span> can not distinguish from <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 </ul>
-<p>&lt;– The adversarial loss-functions above are not derived from <em>binary-crossentropy</em> but from <em>least-square-loss</em>. In <span id="id17">[<a class="reference internal" href="../referenceSection.html#id34">MLX+16</a>]</span> it has been shown, that this-loss is better in the context of the <a class="reference external" href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient problem</a>.
-!–&gt;</p>
+<!-- The adversarial loss-functions above are not derived from *binary-crossentropy* but from *least-square-loss*. In {cite}`Mao2016` it has been shown, that this-loss is better in the context of the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem).
+-->
 <p><strong>Cycle Consitency Loss:</strong></p>
 <p>The <em>cycle consistency loss</em> enforces the requirement, that if an input-image is converted to the other domain and back again, by feeding it through both generators, the result should be similar to the input-image.</p>
 <p>The minimization of <span class="math notranslate nohighlight">\(L_{cyc}(G,F,X,Y)\)</span>  enforces that <span class="math notranslate nohighlight">\(F(G(x)) \approx x\)</span> and <span class="math notranslate nohighlight">\(G(F(y)) \approx y\)</span>.</p>
@@ -552,23 +552,23 @@ L_{full} = L_{adv}(G,D_y,X,Y) + L_{adv}(F,D_x,Y,X) + L_{cyc}(G,F,X,Y)
 <p>However, Cycle GAN often fails for tasks, that require substantial geometric changes, as can be seen in the image below.</p>
 <div class="figure align-center" id="badexample">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#badexample" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#badexample" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="star-gan-multi-domain-transformations">
 <h2>Star GAN: Multi-domain transformations<a class="headerlink" href="#star-gan-multi-domain-transformations" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center" id="starganceleb">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Example: Transformations between multiple domains. Source: <span id="id19">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#starganceleb" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Example: Transformations between multiple domains. Source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#starganceleb" title="Permalink to this image">¶</a></p>
 </div>
 <p>In Cycle GAN transformations from a source domain <span class="math notranslate nohighlight">\(X\)</span> to a target domain <span class="math notranslate nohighlight">\(Y\)</span> has been addressed. For transformations between multiple domains, Cycle GAN can also be applied, as shown in image <a class="reference internal" href="#stargancross"><span class="std std-ref">Comparison between Cycle- and Star-GAN for multi-domain transformations</span></a>. However, in this case for each possible pair of domains an individual Generator pair has to be trained. With Star GAN transformations between multiple domains can be realized using only a single Generator.</p>
 <div class="figure align-center" id="stargancross">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png" src="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Source: <span id="id20">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargancross" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Source: <span id="id19">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargancross" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-center" id="stargantrain">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png" src="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Source: <span id="id21">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrain" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Source: <span id="id20">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrain" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Adversarial Loss:</strong></p>
 <p>Discriminator <span class="math notranslate nohighlight">\(D\)</span> tries to maximize <span class="math notranslate nohighlight">\(L_{adv}\)</span>, whereas the Generator <span class="math notranslate nohighlight">\(G\)</span> tries to minimize it.</p>
@@ -627,19 +627,19 @@ L_G=L_{adv}+\lambda_{cls} L_{cls}^f + \lambda_{rec} L_{rec}.
 \]</div>
 <div class="figure align-center" id="stargantrainceleb">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Source: <span id="id22">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrainceleb" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Source: <span id="id21">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrainceleb" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Architecture of Star GAN Generator:</strong></p>
 <p>The Generator archictecture is similar to the one used in Cycle GAN:</p>
 <div class="figure align-center" id="stargangenar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargangenar" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Source: <span id="id22">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargangenar" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Architecture of Star GAN Discriminator:</strong></p>
 <p>The Discriminator <span class="math notranslate nohighlight">\(D\)</span> classifies per patch. For this a Fully Convolutional Neural Network, like in PatchGAN is applied:</p>
 <div class="figure align-center" id="stargandiscar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Source: <span id="id24">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargandiscar" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargandiscar" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Final Remark on Fully Convolutional Network:</strong></p>
 <p>In a Fully Convolutional Network (FCNN) dense layers at the output are replaced by convolutional layers, by rearranging the neurons in the dense layer into the channel-dimension of a convolutional layer. In this way images of variable size can be passed to the network and the corresponding output has also a variable size. Each output neuron belongs to one region in the image.</p>

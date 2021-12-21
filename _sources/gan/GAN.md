@@ -200,8 +200,8 @@ $$
 * The Generator $G$ is trained, such that it converts $x$ to something that the Discriminator $D_y$ can not distinguish from $y$.
 * The Generator $F$ is trained, such that it converts $y$ to something that the Discriminator $D_x$ can not distinguish from $x$.
 
-<-- The adversarial loss-functions above are not derived from *binary-crossentropy* but from *least-square-loss*. In {cite}`Mao2016` it has been shown, that this-loss is better in the context of the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem).
-!-->
+<!-- The adversarial loss-functions above are not derived from *binary-crossentropy* but from *least-square-loss*. In {cite}`Mao2016` it has been shown, that this-loss is better in the context of the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem).
+-->
 
 **Cycle Consitency Loss:**
 
