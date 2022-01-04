@@ -485,7 +485,7 @@ width: 800pt
 
 ```
 
-In {ref}`the image below <vargamma>` for 4 different values of $\gamma$ the discriminant learned from the given training data is shown. As can be seen, the smaller the value of $\gamma$, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller $\gamma$ reduces the potentential for overfitting.  
+In {ref}`the image below <svcgammainfluence>` for 4 different values of $\gamma$ the discriminant learned from the given training data is shown. As can be seen, the smaller the value of $\gamma$, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller $\gamma$ reduces the potentential for overfitting.  
 
  
 

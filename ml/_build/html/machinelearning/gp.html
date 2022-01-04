@@ -472,14 +472,9 @@
 p_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the mean and <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation. This distribution is plotted below for two different standard deviations.</p>
-<div class="figure align-default" id="id5">
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png" src="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png" />
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">align: center
-width: 600pt
-name:  gausspdf</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-<div class="legend">
-<p>PDFs of univariate Gaussian distribution with different standard deviations.</p>
-</div>
+<div class="figure align-center" id="gausspdf">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png" src="https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">PDFs of univariate Gaussian distribution with different standard deviations.</span><a class="headerlink" href="#gausspdf" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the sequel a Gaussian distributed random variable <span class="math notranslate nohighlight">\(X\)</span> with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> is denoted by</p>
 <div class="math notranslate nohighlight">
@@ -551,9 +546,9 @@ s=\sqrt{\frac{1}{Z-1}\sum_{i=1}^Z (x_i-m)^2}.
 	\end{array} \right)
 \end{split}\]</div>
 <p>is plotted.</p>
-<div class="figure align-center" id="gausspdf">
+<div class="figure align-center" id="gausspdf2dim">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gauss2dimpdf.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gauss2dimpdf.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gauss2dimpdf.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">PDF of a 2-dimensional Gaussian distribution.</span><a class="headerlink" href="#gausspdf" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">PDF of a 2-dimensional Gaussian distribution.</span><a class="headerlink" href="#gausspdf2dim" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Estimate parameters from data:</strong></p>
 <p>In order to estimate a multi-dimensional Gaussian distribution from a dataset <span class="math notranslate nohighlight">\(T\)</span>, the mean-value-vektor <span class="math notranslate nohighlight">\(\mathbf{\mu}\)</span> and the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> must be estimated.</p>
@@ -667,9 +662,9 @@ k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
 <p class="card-text">Length-scale <span class="math notranslate nohighlight">\(\ell=1.0\)</span></p>
 </div>
 <div class="card-body docutils">
-<div class="figure align-default" id="id6">
+<div class="figure align-default" id="id5">
 <img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png" />
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">High length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">High length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -680,9 +675,9 @@ k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
 <p class="card-text">Length-scale <span class="math notranslate nohighlight">\(\ell=0.408\)</span></p>
 </div>
 <div class="card-body docutils">
-<div class="figure align-default" id="id7">
+<div class="figure align-default" id="id6">
 <img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png" />
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Smaller length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Smaller length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -774,24 +769,33 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.54027242  1.76048874  2.00491668  2.23107281  2.42603769  2.60014035
-   2.76747691  2.92645275  3.0517938   3.10146836  3.03321733  2.82088566
-   2.46230134  1.9762509   1.3922605   0.73985412  0.04257636 -0.6819736
-  -1.41833385 -2.14856287 -2.84825195 -3.48322203 -4.00738347 -4.36362313
-  -4.4896482  -4.3285432  -3.84104605 -3.01563567 -1.87398413 -0.47141197
-   1.10716319  2.75569974  4.35999634  5.81399539  7.03606692]
- [-0.97194541 -0.85825396 -0.50521377  0.03264014  0.66984002  1.29493088
-   1.7833814   2.02014871  1.92633763  1.48026863  0.72510416 -0.23955942
-  -1.28009747 -2.26049443 -3.07605735 -3.67935289 -4.0880845  -4.36967865
-  -4.6072958  -4.86135538 -5.14324584 -5.41176903 -5.59176933 -5.6045907
-  -5.39608457 -4.95089014 -4.28942556 -3.45248287 -2.48327889 -1.41591101
-  -0.27357277  0.9261506   2.16402836  3.41344108  4.63690566]
- [-0.52563715 -0.18522723  0.28864203  0.83159417  1.37452955  1.85428363
-   2.22372722  2.45739977  2.55031446  2.51058327  2.34960841  2.07503339
-   1.6902748   1.20058313  0.62132969 -0.01759752 -0.67520595 -1.30943998
-  -1.88809287 -2.39411392 -2.82254509 -3.17164319 -3.43366566 -3.5895871
-  -3.60858918 -3.45105235 -3.07452326 -2.44368033 -1.54435127 -0.3974723
-   0.9348691   2.35767474  3.76433325  5.06106698  6.18199884]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-4.38486022e-01 -1.32434310e-03  6.16831677e-01  1.35182908e+00
+   2.12744852e+00  2.86632190e+00  3.50254665e+00  3.99271973e+00
+   4.32040240e+00  4.49071972e+00  4.51663595e+00  4.40368975e+00
+   4.14202222e+00  3.71125254e+00  3.09642451e+00  2.30618503e+00
+   1.38227429e+00  3.94029798e-01 -5.79661688e-01 -1.47117931e+00
+  -2.23674683e+00 -2.85556760e+00 -3.31919316e+00 -3.62056996e+00
+  -3.75075757e+00 -3.70394506e+00 -3.48407446e+00 -3.10507275e+00
+  -2.58244004e+00 -1.92206473e+00 -1.11603659e+00 -1.51624369e-01
+   9.69200945e-01  2.21028028e+00  3.49403150e+00]
+ [ 3.01932279e-01  1.23770354e-01 -5.44295549e-02 -1.75459918e-01
+  -1.66367703e-01  3.45490485e-02  4.52266154e-01  1.06149692e+00
+   1.78923597e+00  2.52967982e+00  3.16404255e+00  3.57955178e+00
+   3.68585002e+00  3.42888738e+00  2.80128208e+00  1.84655486e+00
+   6.55133501e-01 -6.47703570e-01 -1.91985564e+00 -3.02382965e+00
+  -3.84876274e+00 -4.32883432e+00 -4.45220935e+00 -4.25569299e+00
+  -3.80555596e+00 -3.17211210e+00 -2.40942046e+00 -1.54859016e+00
+  -6.05255888e-01  4.05704045e-01  1.45765898e+00  2.50852706e+00
+   3.50723794e+00  4.40705868e+00  5.17962378e+00]
+ [ 1.25094231e+00  1.06249116e+00  9.19562145e-01  8.32485299e-01
+   8.15492234e-01  8.82151878e-01  1.03167648e+00  1.23566686e+00
+   1.43686561e+00  1.56469702e+00  1.56121477e+00  1.40355968e+00
+   1.11059363e+00  7.30630957e-01  3.17489027e-01 -9.29051974e-02
+  -4.95000191e-01 -9.10701809e-01 -1.37268170e+00 -1.90023945e+00
+  -2.47721190e+00 -3.04221768e+00 -3.49802546e+00 -3.73862297e+00
+  -3.68317142e+00 -3.30146397e+00 -2.61952543e+00 -1.70453213e+00
+  -6.38627005e-01  5.04823198e-01  1.67294884e+00  2.83173654e+00
+   3.95657052e+00  5.02244433e+00  5.99862216e+00]]
 </pre></div>
 </div>
 </div>
@@ -982,7 +986,7 @@ std(y_*)=\sqrt(var(y_*))
 \]</div>
 <p>Calculation of <span class="math notranslate nohighlight">\(K_*\)</span> (to be used in <a class="reference internal" href="#equation-kext">(63)</a>)</p>
 <div class="math notranslate nohighlight" id="equation-k">
-<span class="eqno">(69)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(68)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
 K_*= \left( 
 \begin{array}{ccc}
 k(x_{*1},x_1) &amp; \ldots &amp; k(x_{*1},x_N) \\
@@ -993,8 +997,8 @@ k(x_{*Z},x_1) &amp; \ldots &amp; k(x_{*Z},x_N) \\
 \right)
 \end{split}\]</div>
 <p>Calculation of <span class="math notranslate nohighlight">\(K_{**}\)</span> (to be used in <a class="reference internal" href="#equation-kext">(63)</a>)</p>
-<div class="math notranslate nohighlight" id="equation-k">
-<span class="eqno">(69)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-k2">
+<span class="eqno">(69)<a class="headerlink" href="#equation-k2" title="Permalink to this equation">¶</a></span>\[\begin{split}
 K_{**}= \left( 
 \begin{array}{ccc}
 k(x_{*1},x_{*1}) &amp; \ldots &amp; k(x_{*1},x_{*Z}) \\
@@ -1026,7 +1030,7 @@ k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
 <p><strong>Solution:</strong></p>
 <p>In order to calculate equations <a class="reference internal" href="#equation-estmean">(65)</a> and <a class="reference internal" href="#equation-estvar">(66)</a>, first the required matrices must be determined:</p>
 <ul>
-<li><p>Covariance Matrix of training data (equation <code class="xref eq docutils literal notranslate"><span class="pre">kk</span></code>):</p>
+<li><p>Covariance Matrix of training data (equation <a class="reference internal" href="#equation-kk">(59)</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
    K=\left( 
@@ -1052,7 +1056,7 @@ k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
    \right)
    \end{split}\]</div>
 </li>
-<li><p>Covariance between training data inputs <span class="math notranslate nohighlight">\(x\)</span> and inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(69)</a>):</p>
+<li><p>Covariance between training data inputs <span class="math notranslate nohighlight">\(x\)</span> and inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(68)</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
    K_{*}=\left( 
@@ -1064,7 +1068,7 @@ k(x,x')= 2 \cdot \exp(-0.5(x-x')^2)+0.005 \cdot \delta(x,x')
    \right)
    \end{split}\]</div>
 </li>
-<li><p>Covariance between different inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k">(69)</a>):</p></li>
+<li><p>Covariance between different inputs <span class="math notranslate nohighlight">\(x_*\)</span>, for which predictions <span class="math notranslate nohighlight">\(y_*\)</span> shall be calculated (equation <a class="reference internal" href="#equation-k2">(69)</a>):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}

@@ -43,10 +43,11 @@ $$ (gausspdfuni)
 where $\mu$ is the mean and $\sigma$ is the standard deviation. This distribution is plotted below for two different standard deviations. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/univariateGaussPDF.png
+---
 align: center
 width: 600pt
 name:  gausspdf
-
+---
 PDFs of univariate Gaussian distribution with different standard deviations.  
 ```
 
@@ -138,7 +139,7 @@ is plotted.
 ---
 align: center
 width: 400pt
-name:  gausspdf
+name:  gausspdf2dim
 ---
 PDF of a 2-dimensional Gaussian distribution.  
 ```
@@ -605,7 +606,7 @@ k(x_{*2},x_{*1}) & \ldots & k(x_{*2},x_{*Z}) \\
 k(x_{*Z},x_{*1}) & \ldots & k(x_{*Z},x_{*Z}) \\ 
 \end{array}
 \right)
-$$ (k**)
+$$ (k2*)
 
 Apply $\boldsymbol\mu_*$, $K_*$ and $K_{**}$ in equations {eq}`estmean` and {eq}`estvar` in order to compute all $Z$ predictions in one step.
 ```
@@ -636,7 +637,7 @@ Apply $\boldsymbol\mu_*$, $K_*$ and $K_{**}$ in equations {eq}`estmean` and {eq}
  
  In order to calculate equations {eq}`estmean` and {eq}`estvar`, first the required matrices must be determined:
  
- * Covariance Matrix of training data (equation {eq}`kk`):
+ * Covariance Matrix of training data (equation {eq}`KK`):
  
 	$$
 	K=\left( 
@@ -674,7 +675,7 @@ Apply $\boldsymbol\mu_*$, $K_*$ and $K_{**}$ in equations {eq}`estmean` and {eq}
 	\right)
 	$$
 	
-* Covariance between different inputs $x_*$, for which predictions $y_*$ shall be calculated (equation {eq}`k**`):
+* Covariance between different inputs $x_*$, for which predictions $y_*$ shall be calculated (equation {eq}`k2*`):
 
   $$
   K_{**}=\left( 
