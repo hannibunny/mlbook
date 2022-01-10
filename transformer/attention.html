@@ -498,14 +498,14 @@
 <li><p>the contextual information, provided by the neighbours</p></li>
 </ul>
 <p>For this type of sequential data, Machine Learning algorithms should learn models, which regard not only individual feature vectors, but also contextual information. For example <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html"><span class="doc std std-doc">Recurrent Networks (RNN)</span></a> are capable to do so. In this section more complex ML architectures, suitable for sequential data will be described. Some of these architectures integrate RNNs. More recent architectures, <em>Transformers</em>, model the correlations within sequences not by RNNs but by <em>Attention</em>. Both, Attention and the integration of Attention in Transformers will be described in this section.</p>
-<p>As already mentioned in section <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html"><span class="doc std std-doc">Recurrent Networks (RNN)</span></a>, ML algorithms, which take sequential data at their input, either output one element per sequence (many-to-one) or a sequence of elements (many-to-many). The latter is the same as sSequence-To-Sequence learning.</p>
+<p>As already mentioned in section <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html"><span class="doc std std-doc">Recurrent Networks (RNN)</span></a>, ML algorithms, which take sequential data at their input, either output one element per sequence (many-to-one) or a sequence of elements (many-to-many). The latter is the same as Sequence-To-Sequence learning.</p>
 <p>Sequence-To-Sequence (Seq2Seq) models (<span id="id1">[<a class="reference internal" href="../referenceSection.html#id62">CvMG+14</a>]</span>, <span id="id2">[<a class="reference internal" href="../referenceSection.html#id18">SVL14</a>]</span>) map</p>
 <ul class="simple">
 <li><p>input sequences <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2,\ldots x_{T_x})\)</span></p></li>
 <li><p>to output sequences <span class="math notranslate nohighlight">\(\mathbf{y}=(y_1,y_2,\ldots y_{T_y})\)</span></p></li>
 </ul>
 <p>The lengths of input- and output sequence need not be the same.</p>
-<p>Applications of Seq2Seq models are e.g. Language Models (LM) of Machine Translation.</p>
+<p>Applications of Seq2Seq models are e.g. Language Models (LM) or Machine Translation.</p>
 <div class="section" id="simple-architecture-for-aligned-sequences">
 <h3>Simple Architecture for aligned Sequences<a class="headerlink" href="#simple-architecture-for-aligned-sequences" title="Permalink to this headline">¶</a></h3>
 <p>The simplest architecture for a Sequence-To-Sequence consists of an input layer, an RNN layer and a Dense layer (with a softmax activation). Such an architecture is depicted in the time-unfolded representation in figure <a class="reference internal" href="#simplernn"><span class="std std-ref">Simple architecture for aligned sequences</span></a>.</p>
@@ -538,7 +538,7 @@ p(x_t \mid x_{t-1}, \ldots , x_1).
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/manyToManyAutoencoderV2.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/manyToManyAutoencoderV2.png" src="https://maucher.home.hdm-stuttgart.de/Pics/manyToManyAutoencoderV2.png" style="width: 400pt;" /></a>
 <p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">Seq2Seq Architecture as introduced in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id62">CvMG+14</a>]</span>. Applicable e.g. for Machine Translation.</span><a class="headerlink" href="#seqmt" title="Permalink to this image">¶</a></p>
 </div>
-<p>As depicted in <a class="reference internal" href="#seqmt"><span class="std std-ref">image Seq2Seq-Encoder-Decoder</span></a>, the encoder processes the input sequence and compresses the information into a fixed-length <strong>context vector c</strong>. For example if the input-sequence are the words of a sentence, the context vector is also called sentence embedding. In general the context-vector is calculated by</p>
+<p>As depicted in <a class="reference internal" href="#seqmt"><span class="std std-ref">image Seq2Seq-Encoder-Decoder</span></a>, the encoder processes the input sequence and compresses the information into a fixed-length <strong>context vector c</strong>. For example if the input-sequence are the words of a sentence, the context vector is also called <strong>sentence embedding</strong>. In general the context-vector is calculated by</p>
 <div class="math notranslate nohighlight">
 \[
 c=h_{e,T}, \quad \mbox{where} \quad h_{e,i} = f(x_i,h_{e,i-1}) \quad  \forall i \in [1,T],
@@ -560,7 +560,7 @@ p(y_i|\lbrace y_1,\ldots,y_{i-1}\rbrace,c) = g(y_{i-1},h_{d,i},c),
 h_{d,i} = k(y_{i-1},h_{d,i-1},c) \quad  \forall i \in [1,T],
 \]</div>
 <p>where the functions <span class="math notranslate nohighlight">\(g()\)</span> and <span class="math notranslate nohighlight">\(k()\)</span> are realized by Vanilla RNN, LSTM, GRU, etc. Since <span class="math notranslate nohighlight">\(g()\)</span> must output a probability distribution, it shall apply softmax-activation.</p>
-<p>This Seq2Seq-Encoder-Decoder architecture has been proposed for Machine Translation. In this application a single sentence of the source language is the input sequence and the corresponding sentence in the target language is the output sequence. Translation can either be done on character or on word level. On character-level the elements of the sequences are characters, on word-level the sequence elements are words. Here, we assume translation on word-level.</p>
+<p>This Seq2Seq-Encoder-Decoder architecture has been proposed for Machine Translation. In this application a single sentence of the source language is the input sequence and the corresponding sentence in the target language is the output sequence. Translation can either be done on character- or on word-level. On character-level the elements of the sequences are characters, on word-level the sequence elements are words. Here, we assume translation on word-level.</p>
 <p><strong>Training the Encoder-Decoder architecture for machine translation:</strong></p>
 <p>Training data consists of <span class="math notranslate nohighlight">\(N\)</span> pairs <span class="math notranslate nohighlight">\(T=\lbrace(\mathbf{x}^{(j)}, \mathbf{y}^{(j)}) \rbrace_{j=1}^N\)</span> of sentences in the source language <span class="math notranslate nohighlight">\(\mathbf{x}^{(j)}\)</span> and the true translation into the target language <span class="math notranslate nohighlight">\(\mathbf{y}^{(j)}\)</span>.</p>
 <ol class="simple">
@@ -590,7 +590,7 @@ h_{d,i} = k(y_{i-1},h_{d,i-1},c) \quad  \forall i \in [1,T],
 </ol>
 <p><strong>Drawbacks of Seq2Seq Encoder-Decoder:</strong>
 The Decoder estimates one word after another and applies the estimated word at time <span class="math notranslate nohighlight">\(i\)</span> as an input for estimating the next word at time <span class="math notranslate nohighlight">\(i+1\)</span>. As soon as one estimate is wrong, the successive step perceives an erroneous input, which may cause the next erroneous output and so on. Such error-propagations can not be avoided in this type of Seq2Seq Encoder-Decoder architectures.
-Moreover, for long sequences, the single fixed length context vextor \textbf{c} encodes information from the last part of the sequence quite well, but may have <strong>forgotten</strong> information from the early parts.</p>
+Moreover, for long sequences, the single fixed length context vextor <strong>c</strong> encodes information from the last part of the sequence quite well, but may have <strong>forgotten</strong> information from the early parts.</p>
 <p>These drawbacks motivated the concept of <strong>Attention</strong>.</p>
 </div>
 </div>

@@ -32,13 +32,14 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-if FASTTEXT:
-    from gensim.models import KeyedVectors
-    # Creating the model
-    iMacPath="/Users/johannes/DataSets/nlp/wiki-news-300d-1M.vec"
-    pathMacBook='/Users/maucher/DataSets/Gensim/FastText/fasttextEnglish300.vec'
-    pathDeepLearn='../../DataSets/FastText/fasttextEnglish300.vec'
-    w2vmodel = KeyedVectors.load_word2vec_format(iMacPath)
-    EMBEDDING_DIM=w2vmodel.vector_size
+import numpy as np
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.layers import Embedding
+from tensorflow.keras.layers import Dense, Input, Flatten, LSTM
+from tensorflow.keras.layers import Conv1D, MaxPooling1D, GlobalMaxPooling1D, Embedding, Dropout, Concatenate
+from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.datasets import imdb
 -------------------
 

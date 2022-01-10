@@ -31,7 +31,7 @@ The crucial property of sequences is the correlation between the individual data
 
 For this type of sequential data, Machine Learning algorithms should learn models, which regard not only individual feature vectors, but also contextual information. For example [Recurrent Networks (RNN)](../neuralnetworks/02RecurrentNeuralNetworks) are capable to do so. In this section more complex ML architectures, suitable for sequential data will be described. Some of these architectures integrate RNNs. More recent architectures, *Transformers*, model the correlations within sequences not by RNNs but by *Attention*. Both, Attention and the integration of Attention in Transformers will be described in this section.
 
-As already mentioned in section [Recurrent Networks (RNN)](../neuralnetworks/02RecurrentNeuralNetworks), ML algorithms, which take sequential data at their input, either output one element per sequence (many-to-one) or a sequence of elements (many-to-many). The latter is the same as sSequence-To-Sequence learning. 
+As already mentioned in section [Recurrent Networks (RNN)](../neuralnetworks/02RecurrentNeuralNetworks), ML algorithms, which take sequential data at their input, either output one element per sequence (many-to-one) or a sequence of elements (many-to-many). The latter is the same as Sequence-To-Sequence learning. 
 
 Sequence-To-Sequence (Seq2Seq) models ({cite}`cho2014learning`, {cite}`Sutskever2014`) map 
 
@@ -40,7 +40,7 @@ Sequence-To-Sequence (Seq2Seq) models ({cite}`cho2014learning`, {cite}`Sutskever
 
 The lengths of input- and output sequence need not be the same. 
 
-Applications of Seq2Seq models are e.g. Language Models (LM) of Machine Translation. 
+Applications of Seq2Seq models are e.g. Language Models (LM) or Machine Translation. 
 
 ### Simple Architecture for aligned Sequences
 
@@ -96,7 +96,7 @@ Seq2Seq Architecture as introduced in {cite}`cho2014learning`. Applicable e.g. f
 ```
 
 
-As depicted in {ref}`image Seq2Seq-Encoder-Decoder<seqMT>`, the encoder processes the input sequence and compresses the information into a fixed-length **context vector c**. For example if the input-sequence are the words of a sentence, the context vector is also called sentence embedding. In general the context-vector is calculated by
+As depicted in {ref}`image Seq2Seq-Encoder-Decoder<seqMT>`, the encoder processes the input sequence and compresses the information into a fixed-length **context vector c**. For example if the input-sequence are the words of a sentence, the context vector is also called **sentence embedding**. In general the context-vector is calculated by
 	
 $$
 c=h_{e,T}, \quad \mbox{where} \quad h_{e,i} = f(x_i,h_{e,i-1}) \quad  \forall i \in [1,T],
@@ -122,7 +122,7 @@ $$
 
 where the functions $g()$ and $k()$ are realized by Vanilla RNN, LSTM, GRU, etc. Since $g()$ must output a probability distribution, it shall apply softmax-activation. 
 
-This Seq2Seq-Encoder-Decoder architecture has been proposed for Machine Translation. In this application a single sentence of the source language is the input sequence and the corresponding sentence in the target language is the output sequence. Translation can either be done on character or on word level. On character-level the elements of the sequences are characters, on word-level the sequence elements are words. Here, we assume translation on word-level. 
+This Seq2Seq-Encoder-Decoder architecture has been proposed for Machine Translation. In this application a single sentence of the source language is the input sequence and the corresponding sentence in the target language is the output sequence. Translation can either be done on character- or on word-level. On character-level the elements of the sequences are characters, on word-level the sequence elements are words. Here, we assume translation on word-level. 
 
 **Training the Encoder-Decoder architecture for machine translation:**
 
@@ -149,7 +149,7 @@ Training data consists of $N$ pairs $T=\lbrace(\mathbf{x}^{(j)}, \mathbf{y}^{(j)
 
 **Drawbacks of Seq2Seq Encoder-Decoder:**
 The Decoder estimates one word after another and applies the estimated word at time $i$ as an input for estimating the next word at time $i+1$. As soon as one estimate is wrong, the successive step perceives an erroneous input, which may cause the next erroneous output and so on. Such error-propagations can not be avoided in this type of Seq2Seq Encoder-Decoder architectures. 
-Moreover, for long sequences, the single fixed length context vextor \textbf{c} encodes information from the last part of the sequence quite well, but may have **forgotten** information from the early parts.
+Moreover, for long sequences, the single fixed length context vextor **c** encodes information from the last part of the sequence quite well, but may have **forgotten** information from the early parts.
 
 These drawbacks motivated the concept of **Attention**.
 
