@@ -95,7 +95,13 @@ wordIndex=imdb.get_word_index()
 inverseWordIndex=dict([(value,key) for (key,value) in wordIndex.items()])
 
 
-# In[8]:
+# In[16]:
+
+
+inverseWordIndex[1]
+
+
+# In[9]:
 
 
 len(wordIndex)
@@ -103,7 +109,7 @@ len(wordIndex)
 
 # First 10 entries of the word-index:
 
-# In[9]:
+# In[10]:
 
 
 import operator
@@ -113,7 +119,7 @@ print(wordIndexList[:10])
 
 # Determine the words of the first training-document:
 
-# In[10]:
+# In[11]:
 
 
 print(x_train[0])
@@ -126,7 +132,7 @@ print(decodedText)
 
 # Determine the words of the second training-document:
 
-# In[11]:
+# In[12]:
 
 
 print(x_train[1])
@@ -147,7 +153,7 @@ print(decodedText)
 # ### Determine appropriate value for fixed sequence length
 # In order to determine an appropriate value for `MAX_SEQUENCE_LENGTH` the distributions of sequence lengths for both categories are calculated below: 
 
-# In[12]:
+# In[13]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -168,20 +174,20 @@ plt.show()
 
 # From the length-distribution above, we infer that a `MAX_SEQUENCE_LENGTH` of 600 may be appropriate.
 
-# In[13]:
+# In[14]:
 
 
 MAX_SEQUENCE_LENGTH = 600  # all text-sequences are padded to this length
 
 
-# In[14]:
+# In[15]:
 
 
 x_train = pad_sequences(x_train, maxlen=MAX_SEQUENCE_LENGTH)
 x_test = pad_sequences(x_test, maxlen=MAX_SEQUENCE_LENGTH)
 
 
-# In[15]:
+# In[16]:
 
 
 print("Training data shape: ",x_train.shape)
