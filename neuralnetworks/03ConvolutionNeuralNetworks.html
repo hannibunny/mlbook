@@ -882,7 +882,7 @@ o=\frac{r-a+2p}{s}+1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc34bbe2520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fdc28058820&gt;
 </pre></div>
 </div>
 <img alt="../_images/03ConvolutionNeuralNetworks_37_1.png" src="../_images/03ConvolutionNeuralNetworks_37_1.png" />
@@ -1270,16 +1270,8 @@ o=\frac{r-a+2p}{s}+1.
 <h3>Dilated Convolution<a class="headerlink" href="#dilated-convolution" title="Permalink to this headline">¶</a></h3>
 <p>In the convolution operation as introduced above, the input to the filter at a given position is a small contiguous field within the input-array, e.g. an area of <span class="math notranslate nohighlight">\((3 \times 3)\)</span> pixels. This area of contiguous values, which influence the output at a given position of the filter is also called <strong>local receptive field</strong>. In a dilated convolution the local receptive field of a filter need not be a contiguous area. Instead, a <strong>dilation rate of <span class="math notranslate nohighlight">\(d\)</span></strong> defines, that there are <span class="math notranslate nohighlight">\(d-1\)</span> gaps inbetween the elements, which constitute the local receptive field. The lower part in the picture below shows a dilated convolutional filtering with <span class="math notranslate nohighlight">\(d=2\)</span>.</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvDilated.png" /></p>
-<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is</p>
-<div class="math notranslate nohighlight">
-\[
-(a-1)d+1.
-\]</div>
-<p>The side-length of the filter-result is then</p>
-<div class="math notranslate nohighlight">
-\[
-o=\frac{r+2p-(a-1)d-1}{s}+1.
-\]</div>
+<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is <span class="math notranslate nohighlight">\((a-1)(d-1)\)</span>. The side-length of the filter-result is then</p>
+<p>$<span class="math notranslate nohighlight">\(o=\frac{r-a+2p+(a-1)(d-1)}{s}+1\)</span>$.</p>
 <p>Dilation allows the extraction of features, from a larger input area, without increasing the filter-width and thus the number of parameters, which must be learned. Simultaneously it implies a stronger subsampling, thus pooling may be not required.</p>
 </section>
 <section id="dropout">
