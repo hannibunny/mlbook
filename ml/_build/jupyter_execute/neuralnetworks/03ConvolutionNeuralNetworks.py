@@ -672,9 +672,17 @@ plt.show()
 # 
 # ![Semantic Segmentation Net](https://maucher.home.hdm-stuttgart.de/Pics/ConvDilated.png)
 
-# If the width of a filter without dilation is $a$, the corresponding area covered by this filter with a dilation rate of $d$ is $(a-1)(d-1)$. The side-length of the filter-result is then
+# If the width of a filter without dilation is $a$, the corresponding area covered by this filter with a dilation rate of $d$ is 
 # 
-# $$o=\frac{r-a+2p+(a-1)(d-1)}{s}+1$$.
+# $$
+# (a-1)(d-1).
+# $$
+# 
+# The side-length of the filter-result is then
+# 
+# $$
+# o=\frac{r+2p-(a-1)d-1}{s}+1.
+# $$
 # 
 # Dilation allows the extraction of features, from a larger input area, without increasing the filter-width and thus the number of parameters, which must be learned. Simultaneously it implies a stronger subsampling, thus pooling may be not required.
 

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Example Linear Regression &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -91,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +151,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +193,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +261,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Transformer
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   References
  </span>
@@ -407,7 +408,7 @@
         
               <div>
                 
-  <div class="section" id="example-linear-regression">
+  <section id="example-linear-regression">
 <h1>Example Linear Regression<a class="headerlink" href="#example-linear-regression" title="Permalink to this headline">¶</a></h1>
 <p>In this example (generalized) linear regression, as introduced <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">in the previous section</span></a> is implemented and applied for estimating a function <span class="math notranslate nohighlight">\(f()\)</span> that maps the speed of long distance runners to their heartrate.</p>
 <div class="math notranslate nohighlight">
@@ -660,7 +661,7 @@ w=\left( D^T D\right)^{-1} D^T r
 </div>
 </div>
 </div>
-<div class="section" id="learn-linear-function">
+<section id="learn-linear-function">
 <h2>Learn linear function<a class="headerlink" href="#learn-linear-function" title="Permalink to this headline">¶</a></h2>
 <p>First, we learn the best linear function</p>
 <div class="math notranslate nohighlight">
@@ -727,16 +728,16 @@ w1 = 20.93
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.544456857402341
-MAD =  7.544456857402341
-MSE =  84.6165034423252
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.544456857402351
+MAD =  7.544456857402351
+MSE =  84.61650344232515
 </pre></div>
 </div>
 </div>
 </div>
 <p>Note that here the metrics MAD and MSE have been calculated on the training data. Hence, the corresponding values describe how well the model is fitted to training data. But these values are useless for determining how good the model will perform on new data. Usually in Machine Learning performance metrics such as MAD and MSE are calculated on test-data. But in this example we haven’t split the set of labeled data into a training- and a test-partition.</p>
-</div>
-<div class="section" id="learn-quadratic-function">
+</section>
+<section id="learn-quadratic-function">
 <h2>Learn quadratic function<a class="headerlink" href="#learn-quadratic-function" title="Permalink to this headline">¶</a></h2>
 <p>In order to learn the best quadratic function</p>
 <div class="math notranslate nohighlight">
@@ -802,15 +803,15 @@ w2 = 17.04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.914621088475273
-MAD =  6.914621088475273
-MSE =  74.97805153085774
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.914621088469685
+MAD =  6.914621088469685
+MSE =  74.97805153085808
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="learn-cubic-function">
+</section>
+<section id="learn-cubic-function">
 <h2>Learn cubic function<a class="headerlink" href="#learn-cubic-function" title="Permalink to this headline">¶</a></h2>
 <p>In order to learn the best cubic function</p>
 <div class="math notranslate nohighlight">
@@ -877,15 +878,15 @@ w3 = 17.44
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.950713123482488
-MAD =  6.950713123482488
-MSE =  72.83953065127791
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.950713112061212
+MAD =  6.950713112061212
+MSE =  72.8395306512783
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="same-solution-now-using-scikit-learn">
+</section>
+<section id="same-solution-now-using-scikit-learn">
 <h2>Same solution, now using Scikit Learn<a class="headerlink" href="#same-solution-now-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -947,8 +948,8 @@ Learned coefficients w0, w1, w2, ....:
 <img alt="../_images/heartRateRegression_28_0.png" src="../_images/heartRateRegression_28_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

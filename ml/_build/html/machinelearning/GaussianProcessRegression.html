@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Gaussian Process: Implementation in Python &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -91,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +151,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +193,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +261,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Transformer
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   References
  </span>
@@ -397,7 +398,7 @@
         
               <div>
                 
-  <div class="section" id="gaussian-process-implementation-in-python">
+  <section id="gaussian-process-implementation-in-python">
 <h1>Gaussian Process: Implementation in Python<a class="headerlink" href="#gaussian-process-implementation-in-python" title="Permalink to this headline">¶</a></h1>
 <p>In this section Gaussian Processes regression, as described in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>, is implemented in Python. First the case of predefined mean- and covariance-function is implemented. In the second part these functions are learned from data.</p>
 <div class="cell docutils container">
@@ -410,7 +411,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="gaussian-process-for-regression">
+<section id="gaussian-process-for-regression">
 <h2>Gaussian Process for Regression<a class="headerlink" href="#gaussian-process-for-regression" title="Permalink to this headline">¶</a></h2>
 <p>Definition of training data. This is the same data as used in the GP regression example in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>.</p>
 <div class="cell docutils container">
@@ -664,8 +665,8 @@
 <img alt="../_images/GaussianProcessRegression_27_0.png" src="../_images/GaussianProcessRegression_27_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="find-optimum-hyperparameters-for-mean-and-covariance-function">
+</section>
+<section id="find-optimum-hyperparameters-for-mean-and-covariance-function">
 <h2>Find optimum hyperparameters for mean- and covariance-function<a class="headerlink" href="#find-optimum-hyperparameters-for-mean-and-covariance-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,7 +730,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------Results of optimisation----------
-[-0.23166 -0.31688 -0.29713  2.66702  1.       1.12786  0.00837  0.00272]
+[-0.23166 -0.31688 -0.29713  2.66702  1.       1.12786  0.00837  0.00273]
 </pre></div>
 </div>
 </div>
@@ -944,12 +945,12 @@ Learned cov. function m(x) = (2.667)^2 *exp(-(x-x&#39;)^2 / (2 * (1.000)^2))+ 1.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction:  [ 0.38157  0.46039  0.5246   0.56966  0.59363  0.59809  0.5881   0.57076
-  0.55258  0.53637  0.5184   0.48704  0.42336  0.30413  0.10641 -0.18711
- -0.58346 -1.07636 -1.64573 -2.25943 -2.87689 -3.45366 -3.94595 -4.31448
- -4.52718 -4.56071 -4.40093 -4.04266 -3.48915 -2.75167 -1.8496  -0.81108
-  0.326    1.51312  2.69135  3.79373  4.75039  5.49668  5.98351  6.18783
-  6.12083  5.83129  5.40228  4.94115  4.56462  4.38199  4.48043  4.9154
-  5.70787  6.84816]
+  0.55258  0.53637  0.5184   0.48703  0.42336  0.30413  0.10642 -0.18711
+ -0.58345 -1.07636 -1.64572 -2.25942 -2.87688 -3.45365 -3.94594 -4.31447
+ -4.52717 -4.5607  -4.40092 -4.04265 -3.48914 -2.75165 -1.84959 -0.81106
+  0.32603  1.51315  2.69139  3.79378  4.75044  5.49673  5.98355  6.18785
+  6.12084  5.83129  5.40229  4.9412   4.56473  4.3822   4.48079  4.91594
+  5.70863  6.84916]
 </pre></div>
 </div>
 </div>
@@ -963,12 +964,12 @@ Learned cov. function m(x) = (2.667)^2 *exp(-(x-x&#39;)^2 / (2 * (1.000)^2))+ 1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Standard Deviation:  [4.93583 4.54478 4.08802 3.62796 3.26874 3.12563 3.24058 3.53169 3.85821
- 4.10058 4.18716 4.09535 3.85021 3.52547 3.23962 3.12263 3.23387 3.50846
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Standard Deviation:  [4.93583 4.54478 4.08801 3.62796 3.26874 3.12563 3.24058 3.53169 3.85821
+ 4.10058 4.18716 4.09535 3.85021 3.52546 3.23962 3.12263 3.23387 3.50846
  3.8152  4.03888 4.11295 4.02237 3.79841 3.50874 3.23767 3.05236 2.96927
- 2.95456 2.96164 2.96433 2.96054 2.95694 2.95585 2.9546  2.95204 2.95059
- 2.95208 2.95462 2.95585 2.95722 2.96163 2.96663 2.9646  2.95651 2.96932
- 3.05652 3.26759 3.60697 4.02773 4.46227]
+ 2.95456 2.96164 2.96433 2.96054 2.95694 2.95585 2.9546  2.95203 2.95059
+ 2.95208 2.95462 2.95585 2.95722 2.96163 2.96662 2.9646  2.95651 2.96932
+ 3.05652 3.26759 3.60697 4.02772 4.46227]
 </pre></div>
 </div>
 </div>
@@ -998,8 +999,8 @@ Learned cov. function m(x) = (2.667)^2 *exp(-(x-x&#39;)^2 / (2 * (1.000)^2))+ 1.
 <img alt="../_images/GaussianProcessRegression_45_0.png" src="../_images/GaussianProcessRegression_45_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

@@ -44,13 +44,13 @@ from tensorflow.keras.backend import set_image_data_format
 import os
 
 
-# In[4]:
+# In[43]:
 
 
 set_image_data_format("channels_last")
 
 
-# In[5]:
+# In[44]:
 
 
 import warnings
@@ -59,7 +59,7 @@ warnings.filterwarnings("ignore")
 
 # The following code-cell is just relevant if notebook is executed on a computer with multiple GPUs. It allows to select the GPU. 
 
-# In[6]:
+# In[45]:
 
 
 #from os import environ
@@ -70,7 +70,7 @@ warnings.filterwarnings("ignore")
 # In this notebook the neural network shall not learn models, which already exists. This is implemented as follows. The three models (MLP and two different CNNs) are saved to the files, whose name is assigned to the variables `mlpmodelname`, `cnnsimplemodelname` and `cnnadvancedmodelname`, respectively. 
 # If these files exist (checked by `os.path.isfile(filename)`) a corresponding AVAILABLE-Flag is set. If this flag is `False`, the corresponding model will be learned and saved, otherwise the existing model will be loaded from disc.
 
-# In[7]:
+# In[67]:
 
 
 modeldirectory="models/"
@@ -79,7 +79,7 @@ cnnsimplemodelname=modeldirectory+"2conv32-dense512"
 cnnadvancedmodelname=modeldirectory+"2conv32-4conv64-dense512"
 
 
-# In[8]:
+# In[68]:
 
 
 import os.path
@@ -100,7 +100,7 @@ else:
     CNN2_AVAILABLE=False
 
 
-# In[9]:
+# In[69]:
 
 
 CNN1_AVAILABLE
@@ -110,13 +110,13 @@ CNN1_AVAILABLE
 # 
 # Load the Cifar10 image dataset from `keras.datasets`. Determine the shape of the training- and the test-partition.
 
-# In[10]:
+# In[49]:
 
 
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
 
-# In[11]:
+# In[50]:
 
 
 print(np.shape(X_train))
@@ -127,7 +127,7 @@ print(np.shape(X_test))
 # 
 # Viusalize the first 9 images of the training-partition, using function `imshow()` from `matplotlib.pyplot`.
 
-# In[12]:
+# In[51]:
 
 
 # create a grid of 3x3 images
@@ -145,7 +145,7 @@ plt.show()
 # ## Preprocessing 
 # Scale all images such that all their values are in the range $[0,1]$.
 
-# In[13]:
+# In[52]:
 
 
 X_train = X_train.astype('float32')
@@ -156,7 +156,7 @@ X_test = X_test / 255.0
 
 # Labels of the first 9 training images:
 
-# In[14]:
+# In[53]:
 
 
 print(y_train[:9])
@@ -164,7 +164,7 @@ print(y_train[:9])
 
 # **Label-Encoding:** Transform the labels of the train- and test-partition into a one-hot-encoded representation. 
 
-# In[15]:
+# In[54]:
 
 
 y_train=to_categorical(y_train)
@@ -184,7 +184,7 @@ print(y_train[:9,:])
 
 # #### Network definition option1: Using the sequential model
 
-# In[16]:
+# In[60]:
 
 
 if MLP_AVAILABLE:
@@ -200,7 +200,7 @@ model.summary()
 
 # #### Network definition option 2: Using the functional API
 
-# In[17]:
+# In[16]:
 
 
 # This returns a tensor
@@ -215,7 +215,7 @@ model2.summary()
 # ### Define Training Parameters 
 # Apply Stochastic Gradient Descent (SGD) learning, for minimizing the `categorical_crossentropy`. The performance metric shall be `accuracy`. Train the network.
 
-# In[18]:
+# In[61]:
 
 
 if not MLP_AVAILABLE:
@@ -229,7 +229,7 @@ if not MLP_AVAILABLE:
 
 # ### Perform Training
 
-# In[19]:
+# In[62]:
 
 
 if not MLP_AVAILABLE:

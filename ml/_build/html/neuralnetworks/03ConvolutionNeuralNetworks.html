@@ -882,7 +882,7 @@ o=\frac{r-a+2p}{s}+1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fdc28058820&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7faadf4297c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/03ConvolutionNeuralNetworks_37_1.png" src="../_images/03ConvolutionNeuralNetworks_37_1.png" />
@@ -1270,8 +1270,16 @@ o=\frac{r-a+2p}{s}+1.
 <h3>Dilated Convolution<a class="headerlink" href="#dilated-convolution" title="Permalink to this headline">¶</a></h3>
 <p>In the convolution operation as introduced above, the input to the filter at a given position is a small contiguous field within the input-array, e.g. an area of <span class="math notranslate nohighlight">\((3 \times 3)\)</span> pixels. This area of contiguous values, which influence the output at a given position of the filter is also called <strong>local receptive field</strong>. In a dilated convolution the local receptive field of a filter need not be a contiguous area. Instead, a <strong>dilation rate of <span class="math notranslate nohighlight">\(d\)</span></strong> defines, that there are <span class="math notranslate nohighlight">\(d-1\)</span> gaps inbetween the elements, which constitute the local receptive field. The lower part in the picture below shows a dilated convolutional filtering with <span class="math notranslate nohighlight">\(d=2\)</span>.</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvDilated.png" /></p>
-<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is <span class="math notranslate nohighlight">\((a-1)(d-1)\)</span>. The side-length of the filter-result is then</p>
-<p>$<span class="math notranslate nohighlight">\(o=\frac{r-a+2p+(a-1)(d-1)}{s}+1\)</span>$.</p>
+<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+(a-1)(d-1).
+\]</div>
+<p>The side-length of the filter-result is then</p>
+<div class="math notranslate nohighlight">
+\[
+o=\frac{r+2p-(a-1)d-1}{s}+1.
+\]</div>
 <p>Dilation allows the extraction of features, from a larger input area, without increasing the filter-width and thus the number of parameters, which must be learned. Simultaneously it implies a stronger subsampling, thus pooling may be not required.</p>
 </section>
 <section id="dropout">
@@ -1373,7 +1381,7 @@ Standard-deviation of normalized data:
 </section>
 <section id="local-response-normalisation">
 <h4>Local Response Normalisation<a class="headerlink" href="#local-response-normalisation" title="Permalink to this headline">¶</a></h4>
-<p>Local Response Normalisation (LRN) has been applied in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#id67">KSH</a>]</span> in order to limit activation values. Moreover, LRN models <a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">lateral inhibition</a>. In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors.</p>
+<p>Local Response Normalisation (LRN) has been applied in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-66">KSH</a>]</span> in order to limit activation values. Moreover, LRN models <a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">lateral inhibition</a>. In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors.</p>
 <p>As depicted in the image below, two variants of LRN exist:</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/channelCubeLRN.png" /></p>
 <p><strong>Inter-Channel LRN:</strong></p>
@@ -1394,7 +1402,7 @@ b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{u=\max(0,x-n/2)}^{\mi
 </section>
 <section id="batch-normalization">
 <h4>Batch-Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h4>
-<p>In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#id66">IS15</a>]</span>. It helps to mitigate the <strong>Internal Covariate Shift (ICA)</strong> problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the <strong>vanishing gradient problem</strong> causes ineffective learning in the case of very deep networks).<a class="footnote-reference brackets" href="#footnote-1" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-65">IS15</a>]</span>. It helps to mitigate the <strong>Internal Covariate Shift (ICA)</strong> problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the <strong>vanishing gradient problem</strong> causes ineffective learning in the case of very deep networks).<a class="footnote-reference brackets" href="#footnote-1" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 <p>Batch-normalisation is performerd for each single neuron in the layer individually. I.e. for each single element <span class="math notranslate nohighlight">\(x\)</span> at a concrete position within the 3-dimensional neuron-cube (as depicted in the pictures above) normalisation is performed as follows:</p>
 <ol>
 <li><p>Determine the mean <span class="math notranslate nohighlight">\(\mu_B\)</span> by averaging the activation of the concrete neuron over the entire minibatch <span class="math notranslate nohighlight">\(B\)</span> of size <span class="math notranslate nohighlight">\(m\)</span>:</p>
@@ -1445,13 +1453,13 @@ As depicted in the image below, in a FCN not only one class per input is calcula
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/inceptionModule.png" style="width:600px" align="center">
 </figure>
 <p>The inception module on the left-hand-side in the picture above has been the original (or <em>naive</em>) version. The problem with this version is that particularly in the case of filters of larger size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>) and a high-dimensional input<a class="footnote-reference brackets" href="#footnote-1" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>), which operates on a 128-dimensional input has <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 128 = 3200\)</span> parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains <span class="xref myst"><span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution</span> for dimensionality reduction.</p>
-<p>The configuration of the GoogLeNet, as introduced in <span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#id68">SLJ+14</a>]</span> is given in the table below:</p>
+<p>The configuration of the GoogLeNet, as introduced in <span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#citation-67">SLJ+14</a>]</span> is given in the table below:</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/googleNet.png" style="width:600px" align="center">
 </figure></section>
 <section id="residual-blocks-resnet">
 <h3>Residual Blocks / ResNet<a class="headerlink" href="#residual-blocks-resnet" title="Permalink to this headline">¶</a></h3>
-<p>ResNet has been introduced 2015 in <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#id65">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. The paper shows, that it might be easier to learn a <strong>residual mapping <span class="math notranslate nohighlight">\(F(\mathbf{x})=H(\mathbf{x})-\mathbf{x}\)</span></strong> instead of the target mapping <span class="math notranslate nohighlight">\(y=H(\mathbf{x})\)</span> itself. For this they introduced the residual block as shown in the image below:</p>
+<p>ResNet has been introduced 2015 in <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-64">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. The paper shows, that it might be easier to learn a <strong>residual mapping <span class="math notranslate nohighlight">\(F(\mathbf{x})=H(\mathbf{x})-\mathbf{x}\)</span></strong> instead of the target mapping <span class="math notranslate nohighlight">\(y=H(\mathbf{x})\)</span> itself. For this they introduced the residual block as shown in the image below:</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetResidual.png" style="width:500px" align="center">
 </figure>

@@ -64,7 +64,7 @@ from keras import losses
 from keras.utils.vis_utils import plot_model
 
 
-# In[3]:
+# In[6]:
 
 
 from os import environ
@@ -72,7 +72,7 @@ environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
-# In[4]:
+# In[7]:
 
 
 batch_size = 100
@@ -86,7 +86,7 @@ epsilon_std = 1.0
 # ### Define Architecture
 # #### Encoder Model
 
-# In[5]:
+# In[8]:
 
 
 x = Input(shape=(original_dim,))
@@ -97,19 +97,19 @@ z_log_var = Dense(latent_dim)(h)
 
 # Note, that the encoder outputs are interpreted to be the **values** and the **logarithmic variance** values.
 
-# In[6]:
+# In[9]:
 
 
 encoderModel=Model(inputs=x, outputs=[z_mean, z_log_var])
 
 
-# In[7]:
+# In[10]:
 
 
 encoderModel.summary()
 
 
-# In[8]:
+# In[11]:
 
 
 plot_model(encoderModel, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
@@ -118,7 +118,7 @@ plot_model(encoderModel, to_file='model_plot.png', show_shapes=True, show_layer_
 # #### Sampling
 # Define function for sampling from a Gaussian Distribution:
 
-# In[9]:
+# In[12]:
 
 
 def sampling(args):
@@ -132,7 +132,7 @@ def sampling(args):
 
 # Implementation of the sampling function, as defined above, as a Keras layer:
 
-# In[10]:
+# In[13]:
 
 
 z = Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
@@ -140,7 +140,7 @@ z = Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
 
 # #### Decoder Model
 
-# In[11]:
+# In[14]:
 
 
 #instantiate these layers separately so as to reuse them later
@@ -152,7 +152,7 @@ x_decoded_mean = decoder_mean(h_decoded)
 
 # #### End-to-End Autoencoder
 
-# In[12]:
+# In[18]:
 
 
 # end-to-end autoencoder
@@ -160,7 +160,7 @@ vae = Model(x, x_decoded_mean)
 vae.summary()
 
 
-# In[13]:
+# In[19]:
 
 
 plot_model(vae, to_file='vae_plot.png', show_shapes=True, show_layer_names=True)
@@ -174,7 +174,7 @@ plot_model(vae, to_file='vae_plot.png', show_shapes=True, show_layer_names=True)
 
 # In order to implement this custom loss function a corresponding layer is defined as follows:
 
-# In[14]:
+# In[30]:
 
 
 class KLDivergenceLayer(Layer):
@@ -196,7 +196,7 @@ class KLDivergenceLayer(Layer):
         return x
 
 
-# In[15]:
+# In[21]:
 
 
 y = KLDivergenceLayer()([x, x_decoded_mean])
@@ -204,7 +204,7 @@ vae = Model(x, y)
 vae.compile(optimizer='rmsprop', loss=None)
 
 
-# In[16]:
+# In[22]:
 
 
 plot_model(vae, to_file='vae_kl_plot.png', show_shapes=True, show_layer_names=True)
@@ -212,7 +212,7 @@ plot_model(vae, to_file='vae_kl_plot.png', show_shapes=True, show_layer_names=Tr
 
 # ### Training VAE
 
-# In[17]:
+# In[23]:
 
 
 # train the VAE on MNIST digits
@@ -224,7 +224,7 @@ x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
 x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
 
-# In[18]:
+# In[24]:
 
 
 hist=vae.fit(x_train,

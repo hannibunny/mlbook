@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Support Vector Machines (SVM) &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -91,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +151,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +193,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +261,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Transformer
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   References
  </span>
@@ -450,16 +451,16 @@
         
               <div>
                 
-  <div class="section" id="support-vector-machines-svm">
+  <section id="support-vector-machines-svm">
 <h1>Support Vector Machines (SVM)<a class="headerlink" href="#support-vector-machines-svm" title="Permalink to this headline">¶</a></h1>
-<p>Support Vector Machines (SVM) have been introduced in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id8">CV95</a>]</span>. They can be applied for supervised machine learning, both for classification and regression tasks. Depending on the selected hyperparameter <code class="docutils literal notranslate"><span class="pre">kernel</span></code> (linear, polynomial or rbf), SVMs can learn linear or non-linear models. Other positive features of SVMs are</p>
+<p>Support Vector Machines (SVM) have been introduced in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-7">CV95</a>]</span>. They can be applied for supervised machine learning, both for classification and regression tasks. Depending on the selected hyperparameter <code class="docutils literal notranslate"><span class="pre">kernel</span></code> (linear, polynomial or rbf), SVMs can learn linear or non-linear models. Other positive features of SVMs are</p>
 <ul class="simple">
 <li><p>many different types of functions can be learned by SVMs, i.e. they have a low bias (for non-linear kernels)</p></li>
 <li><p>they scale good with high-dimensional data</p></li>
 <li><p>only a small set of hyperparameters must be configured</p></li>
 <li><p>overfitting/generalisation can easily be controlled, regularisation is inherent</p></li>
 </ul>
-<div class="section" id="svms-for-classification">
+<section id="svms-for-classification">
 <h2>SVMs for Classification<a class="headerlink" href="#svms-for-classification" title="Permalink to this headline">¶</a></h2>
 <p>SVMs learn class boundaries, which discriminate a pair of classes. In the case of non-binary classification with <span class="math notranslate nohighlight">\(K\)</span> classes, <span class="math notranslate nohighlight">\(K\)</span> class boundaries are learned. Each of which discriminates one class from all others. In any case, the learned class-boundaries are linear hyperplanes.</p>
 <ul class="simple">
@@ -467,22 +468,28 @@
 <li><p>In the case of a <strong>non-linear kernel</strong>, the original d-dimensional input data is virtually transformed into a higher-dimensional space with <span class="math notranslate nohighlight">\(m &gt; d\)</span> dimensions. In this m-dimensional space training data is hopefully linear-separable. The learnd (m-1)-dimensional hyperplane linearly discriminates the m-dimensional space. But the back-transformation of this hyperplane is a non-linear discrimator in the original d-dimensional space.</p></li>
 </ul>
 <p>The picture below sketches data, which is not linear-separable in the original 2-dimensional space. However, there exists a transformation into a 3-dimensional space, in which the given training data can be discriminated by a 2-dimensional hyperplane.</p>
-<div class="figure align-center" id="transformhigh">
+<figure class="align-center" id="transformhigh">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmtransform.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmtransform.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/svmtransform.jpg" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Data, which is not linear-separable in the original 2-dimensional space may be linear separable in a higher dimensional space.</span><a class="headerlink" href="#transformhigh" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Data, which is not linear-separable in the original 2-dimensional space may be linear separable in a higher dimensional space.</span><a class="headerlink" href="#transformhigh" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Another important property of SVM classifiers is that <strong>they found good class-boundaries</strong>. In order to understand what is meant by <em>good class-boundary</em> take a look at the picture below. The 4 subplots contain the same training-data but four different class-boundaries, each of which discriminates the given training data error-free. The question is <em>which of these discriminantes is the best?</em> The discriminantes in the right column are not robust, because in some regions the datapoints are quite close to the boundary. The discriminant in the top left subplot is the most robust, i.e. the one which generalizes best, because the training-data-free range around the discriminant is maximal. <strong>A SVM classifier actually finds such robust class-boundaries by maximizing the training-data-free range around the discriminant.</strong></p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="figure-1">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/bestdisk.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/bestdisk.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/bestdisk.jpg" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">The discriminant in the top left subplot is the most robust one, because it has a maximal training-data-free range around it.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="finding-robust-linear-discriminants">
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">The discriminant in the top left subplot is the most robust one, because it has a maximal training-data-free range around it.</span><a class="headerlink" href="#figure-1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="finding-robust-linear-discriminants">
 <h3>Finding Robust Linear Discriminants<a class="headerlink" href="#finding-robust-linear-discriminants" title="Permalink to this headline">¶</a></h3>
 <p>As mentioned above, SVM classifiers find robust discriminants in the sense that the discriminant is determined such that it not only separates the given training-data well, but also has a maximal training-data free range around it. In this subsection it is shown, how such discriminantes are learned from data. To illustrate this we apply the example depicted below. We have a set of 8 training-instances, partitioned into 2 classes. The task is to find a robust discriminant with the properties mentioned above.</p>
-<div class="figure align-center" id="id4">
+<figure class="align-center" id="figure-2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleIntro.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleIntro.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleIntro.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Example: Learn a good discriminant from the set of 8 training-instances.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Example: Learn a good discriminant from the set of 8 training-instances.</span><a class="headerlink" href="#figure-2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>As ususal in supervised machine learning, we start from a set of <span class="math notranslate nohighlight">\(N\)</span> labeled training instances</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -511,10 +518,12 @@ r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 1
 r_p (\mathbf{w}^T \mathbf{x_p} + w_0 ) \geq 0
 \]</div>
 <p>The difference between the two conditions is visualized in the following picture. The plot on the left refers to condition <a class="reference internal" href="#equation-condline">(25)</a>. With this condition a discriminant is learned such that it separates the training-instances of the two classes. The plot on the right refers to condition <a class="reference internal" href="#equation-condregion">(24)</a>. Here, the discriminant is learned such that the two classes are separated and the training-data-free range around the discriminant is as large as possible. The discriminant learned in this way generalizes better (less overfitting). The vectors, which ly on the region-boundary are called <strong>support vectors</strong>.</p>
-<div class="figure align-center" id="id5">
+<figure class="align-center" id="figure-3">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/svmcomb.jpg" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Left: Other linear classification algorithms learn discriminantes, which separate the classes with as less as possible errors. Right: Discriminantes learned by SVMs have the additional property, that the training-data-free range around them is maximized.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Left: Other linear classification algorithms learn discriminantes, which separate the classes with as less as possible errors. Right: Discriminantes learned by SVMs have the additional property, that the training-data-free range around them is maximized.</span><a class="headerlink" href="#figure-3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The distance of training-instance <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> to the discriminant is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -572,13 +581,15 @@ print &quot;Found weights of the optimal discriminant:    &quot;,res
 </pre></div>
 </div>
 <p>The figure below visualizes the discriminant, as learned in the code-cell above.</p>
-<div class="figure align-center" id="id6">
+<figure class="align-center" id="figure-4">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/nonlinsep8pointsDiscriminant.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/nonlinsep8pointsDiscriminant.png" src="https://maucher.home.hdm-stuttgart.de/Pics/nonlinsep8pointsDiscriminant.png" style="width: 500pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The learned discriminant is characterised by having a maximum training-data free margin around it.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The learned discriminant is characterised by having a maximum training-data free margin around it.</span><a class="headerlink" href="#figure-4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The complexity of the numeric solution of the quadratic minimization problem with constraints increases strongly with the dimension the underlying space. This is a problem for high-dimensional data, such as text and images. However, even if the input data contains only a moderate number of features, the space in which the optimisation problem must be solved can be extremly high-dimensional. This is because non-linear SVMs transform the given data in a high-dimensional space, where it is hopefully linear separable (as mentioned above).</p>
 <p>This drawback of dimension-dependent complexity can be circumvented by transforming the optimisation problem into it’s <strong>dual form</strong> and solving this dual optimisation problem. The complexity of solving the dual form scales with the number of training-instances <span class="math notranslate nohighlight">\(N\)</span>, but not with the dimensionality. Another crucial advantage of the dual form is that it allows the application of the <strong>kernel trick</strong> (see below).</p>
-<div class="section" id="dual-form">
+<section id="dual-form">
 <h4>Dual Form<a class="headerlink" href="#dual-form" title="Permalink to this headline">¶</a></h4>
 <p>A function <span class="math notranslate nohighlight">\(f(x)\)</span>, such as <a class="reference internal" href="#equation-optw">(26)</a>, that shall be minimized w.r.t. a set of <span class="math notranslate nohighlight">\(N\)</span> constraints, such as <a class="reference internal" href="#equation-optwr">(27)</a>, can always be formulated as an optimisation problems without constraints as follows:</p>
 <ol>
@@ -632,8 +643,8 @@ r_p(\mathbf{w}^T\mathbf{x}_p+w_0) = 1.
 \]</div>
 <p>Since we already know <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> and we also know the Support Vectors, <span class="math notranslate nohighlight">\(w_0\)</span> can be calculated from this equation. Depending on which Support Vector is inserted in the equation above, the resulting <span class="math notranslate nohighlight">\(w_0\)</span> may vary. It is recommended to calculate for each Support Vector the corresponding <span class="math notranslate nohighlight">\(w_0\)</span> and choose the mean over all this values to be the final <span class="math notranslate nohighlight">\(w_0\)</span>. Together, <span class="math notranslate nohighlight">\(w_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>, define the discriminant, which is called <strong>Supported Vector Machine</strong>.</p>
 <p>As already mentioned above, in the case of non-binary classification <span class="math notranslate nohighlight">\(K\)</span> discriminantes must be learned. Each of which discriminates one class from all others.</p>
-</div>
-<div class="section" id="inference">
+</section>
+<section id="inference">
 <h4>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h4>
 <p>Once the Support Vector Machine is trained, for a new input vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> the discriminant-equation</p>
 <div class="math notranslate nohighlight">
@@ -646,14 +657,16 @@ g(\mathbf{x})=\mathbf{w}^T \mathbf{x} +w_0
 g_j(\mathbf{x})=\mathbf{w}_j^T \mathbf{x} +w_{0,j}
 \]</div>
 <p>are evaluated, and the class for which the resulting value is maximal is selected.</p>
-</div>
-<div class="section" id="training-data-can-not-be-separated-error-free">
+</section>
+<section id="training-data-can-not-be-separated-error-free">
 <h4>Training-Data can not be separated error-free<a class="headerlink" href="#training-data-can-not-be-separated-error-free" title="Permalink to this headline">¶</a></h4>
 <p>In the entire description above, it was assumed, that the given training-data can be separated by a linear discriminant in an error-free manner. I.e. a discriminant can be found, such that all training-data of one class lies on one side of the discriminant and all training data of the other class lies on the other side of the discriminant. This assumption usually does not hold for real-world datasets. In this section SVM training is described for the general case, where training data is not linearly separable, as depicted in the image below. Again, we like to find a good discrimator for the given training-data:</p>
-<div class="figure align-center" id="id7">
+<figure class="align-center" id="figure-5">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleNonSep.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleNonSep.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svmExampleNonSep.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Example: Learn a good linear discriminant from the set of 8 training-instances. Now training-data of the two classes is not linearly separable.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Example: Learn a good linear discriminant from the set of 8 training-instances. Now training-data of the two classes is not linearly separable.</span><a class="headerlink" href="#figure-5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>If training-data is not linear-separabel, the goal is to determine the boundary-region, which yields a minimum amount of errors on the training-data. For this to each training-instance <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> an error-margin <span class="math notranslate nohighlight">\(\zeta_p\)</span> is assigned. The error-margin <span class="math notranslate nohighlight">\(\zeta_p\)</span> is</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\zeta_p = 0\)</span> if <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> lies on the correct side of the discriminant and outside the boundary region</p></li>
@@ -687,20 +700,24 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{und} \quad  0 \leq \alpha_p \leq C \quad \forall p.
 \]</div>
 <p>The parameter <span class="math notranslate nohighlight">\(C\)</span> in equation <a class="reference internal" href="#equation-minsofterror">(32)</a> is an important hyperparameter, which can be configured to control overfitting. A large value for <span class="math notranslate nohighlight">\(C\)</span> means that in the minimization process the minimization of the soft-error is more important than the minimization of the weights <span class="math notranslate nohighlight">\(||\mathbf{w}||^2\)</span> (i.e. the regularisation). On the other hand, a small value for <span class="math notranslate nohighlight">\(C\)</span> yields a discriminant with a wider margin around it and therefore a better generalizing model. This is visualized in the two plots of the figure below.</p>
-<div class="figure align-center" id="id8">
+<figure class="align-center" id="figure-6">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmsoftmarg.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmsoftmarg.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/svmsoftmarg.jpg" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Left: A high value for C implies that in the minimization process the minimization of the soft-error is more important than the maximisation of the margin around the discriminant. This yields a model, which is stronger fitted to the trainng-data than the model on the right hand side. Here a smaller value of C yields more regularisation and a thus a smaller risk of overfitting.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Left: A high value for C implies that in the minimization process the minimization of the soft-error is more important than the maximisation of the margin around the discriminant. This yields a model, which is stronger fitted to the trainng-data than the model on the right hand side. Here a smaller value of C yields more regularisation and a thus a smaller risk of overfitting.</span><a class="headerlink" href="#figure-6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Again, the training instances <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span>, for which <span class="math notranslate nohighlight">\(\alpha_p&gt;0\)</span> are called <strong>Support Vectors</strong>. They lie either on the boundary of the margin around the discriminant or inside this margin.</p>
-</div>
-</div>
-<div class="section" id="non-linear-svm-classification">
+</section>
+</section>
+<section id="non-linear-svm-classification">
 <h3>Non-linear SVM classification<a class="headerlink" href="#non-linear-svm-classification" title="Permalink to this headline">¶</a></h3>
 <p>SVMs, as described in the previous subsections, find robust linear discriminants. These SVMs are said to have a <em>linear kernel</em>. In particular,the scalar product <span class="math notranslate nohighlight">\(\mathbf{x}_p^T \mathbf{x}_s\)</span> in equation <a class="reference internal" href="#equation-linmax">(33)</a> constitutes the linear kernel. In the sequel non-linear kernels will be introduced. The idea is to transform the inputs <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> into a higher-dimensional space, where this input data is linear-separable. This idea has already been sketched in the <a class="reference internal" href="#transformhigh"><span class="std std-ref">figure above</span></a>. In the figure below a concrete transformation is shown.</p>
-<div class="figure align-center" id="id9">
+<figure class="align-center" id="figure-7">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmTransformedData.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmTransformedData.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svmTransformedData.png" style="width: 800pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Left: Original 2-dimensional space. As can be seen the two classes are not linearly separable in this space. Right: After a non-linear transformation into a new space, in this case also a 2-dimensional space, data is linearly separable. A SVM with a non-linear kernel, learns a linear discriminant into a new space, which corrsponds to a non-linear class-boundary in the original space. The transformation applied here is defined by <span class="math notranslate nohighlight">\(z_1 = \Phi_1(x_1)=x_1^3\)</span> and <span class="math notranslate nohighlight">\(z_2 = \Phi_2(x_2)=x_2\)</span></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Left: Original 2-dimensional space. As can be seen the two classes are not linearly separable in this space. Right: After a non-linear transformation into a new space, in this case also a 2-dimensional space, data is linearly separable. A SVM with a non-linear kernel, learns a linear discriminant into a new space, which corrsponds to a non-linear class-boundary in the original space. The transformation applied here is defined by <span class="math notranslate nohighlight">\(z_1 = \Phi_1(x_1)=x_1^3\)</span> and <span class="math notranslate nohighlight">\(z_2 = \Phi_2(x_2)=x_2\)</span></span><a class="headerlink" href="#figure-7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>However, as we will see later, the transformation to a higher-dimensional space need not be performed explicitely, because we can apply a <em>kernel-trick</em>. This kernel-trick yields the same result as the one we will get, if we would actually transform the data in a higher-dimensional space.</p>
 <div class="admonition-general-notation admonition">
 <p class="admonition-title">General Notation</p>
@@ -710,7 +727,7 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 <li><p><span class="math notranslate nohighlight">\(\Phi: X \rightarrow Z\)</span> is the transformation from the original space <span class="math notranslate nohighlight">\(X\)</span> to the high-dimensional space <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{z}_p = \Phi(\mathbf{x}_p)\)</span> is the representation of <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span> in <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
 </ul>
-</div>
+</aside>
 <div class="tip admonition" id="ex1">
 <p class="admonition-title">Example Transformation</p>
 <ul class="simple">
@@ -726,13 +743,13 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
    z_5=\Phi_5(\mathbf{x}) &amp; = &amp; x_1^2 \nonumber\\
    z_6=\Phi_6(\mathbf{x}) &amp;=&amp; x_2^2 
    \end{split}\]</div>
-</div>
+</aside>
 <p>The linear discriminant in the high-dimensional space <span class="math notranslate nohighlight">\(Z\)</span> is defined by:</p>
 <div class="math notranslate nohighlight" id="equation-diskz">
 <span class="eqno">(34)<a class="headerlink" href="#equation-diskz" title="Permalink to this equation">¶</a></span>\[
 g(\mathbf{z})=\mathbf{w}^T\mathbf{z} +w_0 \quad = \mathbf{w}^T \Phi(\mathbf{x}) +w_0 \quad = \sum\limits_{j=1}^6 w_j \Phi_j (\mathbf{x}) +w_0
 \]</div>
-<div class="section" id="kernel-trick">
+<section id="kernel-trick">
 <h4>Kernel Trick<a class="headerlink" href="#kernel-trick" title="Permalink to this headline">¶</a></h4>
 <p>In the example above the number of dimensions in the high-dimensional space, in which the discriminant is determined, has been <span class="math notranslate nohighlight">\(r=6\)</span>. In practical cases however, the dimensionality of the new space can be extremely large, such that it would be computational infeasible to transform data in this space and calculate the discriminant there. The transformation can be avoided by applying the <em>kernel-trick</em>, which is described here:</p>
 <p>As in equation <a class="reference internal" href="#equation-sumofsupport">(31)</a>, we assume that the weights can be obtained as a weighted sum of support vectors. The only difference is that now we sum up the transformations of the support vectors:</p>
@@ -761,7 +778,7 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 \sum\limits_{p=1}^N \alpha_p r_p = 0 \quad \mbox{and} \quad  0 \leq \alpha_p \leq C \quad \forall p .
 \]</div>
 <p>This already describes the entire training-process for non-linear SVM classifiers. However, you may wonder how to find a suitable transformation <span class="math notranslate nohighlight">\(\Phi\)</span> and a corresponding kernel <span class="math notranslate nohighlight">\(K(\mathbf{x}_p^T, \mathbf{x}_s)\)</span>? Actually, in practical SVMs we do not take care about a concrete transformation. Instead we select a type of kernel (linear, polynomial or RBF). The selected kernel corresponds to a transformation into a higher-dimensional space, but we do not have to care about this transformation. We just need the kernel-function.</p>
-<div class="section" id="linear-kernel">
+<section id="linear-kernel">
 <h5>Linear Kernel<a class="headerlink" href="#linear-kernel" title="Permalink to this headline">¶</a></h5>
 <p>The linear kernel is just the scalar-product of the input vectors:</p>
 <div class="math notranslate nohighlight" id="equation-linkernel">
@@ -769,8 +786,8 @@ L_d=-\frac{1}{2}\sum\limits_{p=1}^N \sum\limits_{s=1}^N \left( \alpha_p \alpha_s
 K_{lin}(\mathbf{x}_p,\mathbf{x}) = \mathbf{x}_p^T \mathbf{x}
 \]</div>
 <p>By inserting this linear kernel into equation <a class="reference internal" href="#equation-ldnonlinear">(38)</a> we obtain equation <a class="reference internal" href="#equation-linmax">(33)</a>. I.e. by applying the linear kernel no transform to a higher-dimensional space is performed. Instead just a linear discriminant is learned in the original space, as described in previous section.</p>
-</div>
-<div class="section" id="polynomial-kernel">
+</section>
+<section id="polynomial-kernel">
 <h5>Polynomial Kernel<a class="headerlink" href="#polynomial-kernel" title="Permalink to this headline">¶</a></h5>
 <p>Polynomial kernels are defined by</p>
 <div class="math notranslate nohighlight" id="equation-polkernel">
@@ -788,14 +805,16 @@ K(\mathbf{y},\mathbf{x}) &amp; = &amp; \left( \mathbf{x}^T\mathbf{y}+1\right)^2 
    							 &amp; = &amp; \left( 1+2x_1y_1+2x_2y_2+2x_1x_2y_1y_2+x_1^2y_1^2+x_2^2y_2^2 \right) 
 \end{split}\]</div>
 <p>Note that this kernel yields exactly the same result as the scalar product <span class="math notranslate nohighlight">\(\Phi(\mathbf{y})^T \Phi(\mathbf{x})\)</span> in the 6-dimensional space, whose dimensions are defined as in the <a class="reference internal" href="#ex1"><span class="std std-ref">example above</span></a>.</p>
-</div>
+</aside>
 <p>In <a class="reference internal" href="#vardegree"><span class="std std-ref">the image below</span></a> it is shown how the different kernels (linear or polynomial) and different degrees, influence the type of discriminant. The higher the degree, the better fit to the training data but the higher the potential for overfitting.</p>
-<div class="figure align-center" id="vardegree">
+<figure class="align-center" id="vardegree">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/svmPolyDegree.PNG" style="width: 800pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Linear kernel vs. polynomial kernel of degree 2 versus polynomial kernel of degree 5. The corresponding discriminant in the original space can be complexer for increasing degree.</span><a class="headerlink" href="#vardegree" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="rbf-kernel">
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Linear kernel vs. polynomial kernel of degree 2 versus polynomial kernel of degree 5. The corresponding discriminant in the original space can be complexer for increasing degree.</span><a class="headerlink" href="#vardegree" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="rbf-kernel">
 <h5>RBF Kernel<a class="headerlink" href="#rbf-kernel" title="Permalink to this headline">¶</a></h5>
 <p>An important non-linear kernel type is the <strong>Radial Basis Function (RBF)</strong>, which is defined as follows:</p>
 <div class="math notranslate nohighlight" id="equation-rbfkernel">
@@ -803,22 +822,26 @@ K(\mathbf{y},\mathbf{x}) &amp; = &amp; \left( \mathbf{x}^T\mathbf{y}+1\right)^2 
 K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x}    ||^2   \right]
 \]</div>
 <p>This function defines a spherical kernel around the support vector <span class="math notranslate nohighlight">\(\mathbf{x}_p\)</span>. The hyperparameter <span class="math notranslate nohighlight">\(\gamma\)</span> determines the <em>width</em> of the spherical kernel. Each of the 4 plots in the image below sketches 3 RBF-kernels around different centers (support vectors) and their sum. In each of the 4 plots a different hyperparameter <span class="math notranslate nohighlight">\(\gamma\)</span> has been applied.</p>
-<div class="figure align-center" id="id10">
+<figure class="align-center" id="figure-8">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png" src="https://maucher.home.hdm-stuttgart.de/Pics/1dimensionalRBFs.png" style="width: 800pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">1-dimensional RBFs of different degrees and different parameters <span class="math notranslate nohighlight">\(\gamma\)</span>. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">1-dimensional RBFs of different degrees and different parameters <span class="math notranslate nohighlight">\(\gamma\)</span>. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line.</span><a class="headerlink" href="#figure-8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>In <a class="reference internal" href="#svcgammainfluence"><span class="std std-ref">the image below</span></a> for 4 different values of <span class="math notranslate nohighlight">\(\gamma\)</span> the discriminant learned from the given training data is shown. As can be seen, the smaller the value of <span class="math notranslate nohighlight">\(\gamma\)</span>, the wider the spherical kernel and the smoother the sum of the kernels and the corresponding discriminant. I.e. a smaller <span class="math notranslate nohighlight">\(\gamma\)</span> reduces the potentential for overfitting.</p>
-<div class="figure align-center" id="svcgammainfluence">
+<figure class="align-center" id="svcgammainfluence">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/svmRbfGamma.PNG" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">1-dimensional RBFs of different degrees and different parameters <span class="math notranslate nohighlight">\(\gamma\)</span>. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line.</span><a class="headerlink" href="#svcgammainfluence" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="svm-for-regression-svr">
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">1-dimensional RBFs of different degrees and different parameters <span class="math notranslate nohighlight">\(\gamma\)</span>. In each of the 4 plots the sum of the 3 kernel-functions is plotted as a dashed-line.</span><a class="headerlink" href="#svcgammainfluence" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+</section>
+<section id="svm-for-regression-svr">
 <h2>SVM for Regression (SVR)<a class="headerlink" href="#svm-for-regression-svr" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="recap-linear-regression">
+<section id="recap-linear-regression">
 <h3>Recap Linear Regression<a class="headerlink" href="#recap-linear-regression" title="Permalink to this headline">¶</a></h3>
 <p>The supervised learning category regression has already been introduced in section <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a>. Recall that in linear regression during training in general the weights <span class="math notranslate nohighlight">\(w_i \in \Theta\)</span> are determined, which minimize the regularized loss function:</p>
 <div class="math notranslate nohighlight" id="equation-elasticnet2">
@@ -832,8 +855,8 @@ K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x
 <li><p><span class="math notranslate nohighlight">\(\lambda &gt; 0 \mbox{ and } \rho=1\)</span> refers to <em>Lasso Regression</em></p></li>
 <li><p><span class="math notranslate nohighlight">\(\lambda &gt; 0 \mbox{ and } 0&lt; \rho &lt; 1\)</span> refers to <em>Elastic Net Regression</em></p></li>
 </ul>
-</div>
-<div class="section" id="optimisation-objective-in-svr-training">
+</section>
+<section id="optimisation-objective-in-svr-training">
 <h3>Optimisation Objective in SVR training<a class="headerlink" href="#optimisation-objective-in-svr-training" title="Permalink to this headline">¶</a></h3>
 <p>The goal of SVR training is not to find the <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>, which minimizes any variant of equation <a class="reference internal" href="#equation-elasticnet2">(43)</a>. Instead a <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> has to be determined, for which the relation</p>
 <div class="math notranslate nohighlight" id="equation-epscond">
@@ -842,10 +865,12 @@ K_{rbf}(\mathbf{x}_p,\mathbf{x})=\exp \left[ - \gamma ||\mathbf{x}_p - \mathbf{x
 \]</div>
 <p>is true for all <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t) \in T\)</span>. This means that all training instances must be located within a region of radius <span class="math notranslate nohighlight">\(\epsilon\)</span> around <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>. This region will be called the <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-tube</strong> of <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>. The radius <span class="math notranslate nohighlight">\(\epsilon\)</span> of the tube is a hyperparameter, which is configured by the user.</p>
 <p>In the image below a <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>, which fulfills the condition that all training instances are located within it’s <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube is shown.</p>
-<div class="figure align-center" id="svrlineps">
+<figure class="align-center" id="svrlineps">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svrLinEps08.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svrLinEps08.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svrLinEps08.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">For the configured <span class="math notranslate nohighlight">\(\epsilon\)</span> a <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> has been determined, which fulfills condition <a class="reference internal" href="#equation-epscond">(44)</a> for all training elements. I.e. all training instances lie within the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube.</span><a class="headerlink" href="#svrlineps" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">For the configured <span class="math notranslate nohighlight">\(\epsilon\)</span> a <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> has been determined, which fulfills condition <a class="reference internal" href="#equation-epscond">(44)</a> for all training elements. I.e. all training instances lie within the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube.</span><a class="headerlink" href="#svrlineps" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>In order to find a regularized <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>, which fulfills condition <a class="reference internal" href="#equation-epscond">(44)</a> the following quadratic optimisation problem with constraints is solved:
 Find</p>
 <div class="math notranslate nohighlight" id="equation-svrminweight">
@@ -871,15 +896,19 @@ E_{\epsilon}(g(x_t)-r_t) = \left\{
 	\right.
 \end{split}\]</div>
 <p>Besides the property that deviations within the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube are ignored, there is another crucial difference compared to the MSE: The difference between the model’s prediction and the target contributes only linearly to the entire soft-error. This linear increase of the error, compared to the quadratic-increase of the MSE, is depicted in the image below. Because of these properties SVR regression is more robust in the presence of outliers.</p>
-<div class="figure align-center" id="svrerrorfunction">
+<figure class="align-center" id="svrerrorfunction">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svmErrorFunc.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svmErrorFunc.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svmErrorFunc.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Linear Increase of <span class="math notranslate nohighlight">\(\epsilon\)</span>-sensitive error (red) compared to quadratic increase of MSE (blue).</span><a class="headerlink" href="#svrerrorfunction" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Linear Increase of <span class="math notranslate nohighlight">\(\epsilon\)</span>-sensitive error (red) compared to quadratic increase of MSE (blue).</span><a class="headerlink" href="#svrerrorfunction" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>As already mentioned, the soft-error of a single training instance <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t)\)</span> is defined to be the distance between the target <span class="math notranslate nohighlight">\(r_t\)</span> and the boundary of the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube around <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span>. For training instances <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t)\)</span> above the <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-tube</strong>, the error-margin is denoted by <span class="math notranslate nohighlight">\(\zeta_t\)</span>. For training instances <span class="math notranslate nohighlight">\((\mathbf{x}_t,r_t)\)</span> below the <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-tube</strong>, the error-margin is denoted by <span class="math notranslate nohighlight">\(\widehat{\zeta}_t\)</span>.</p>
-<div class="figure align-center" id="svrnonlinreg">
+<figure class="align-center" id="svrnonlinreg">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinReg011.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinReg011.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinReg011.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Only the training instances outside the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube contibute to the soft-error. For instances below the tube the error margin is denoted by <span class="math notranslate nohighlight">\(\widehat{\zeta}_t\)</span>, for instances above the tube the margin is denoted by <span class="math notranslate nohighlight">\(\zeta_t\)</span>.</span><a class="headerlink" href="#svrnonlinreg" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Only the training instances outside the <span class="math notranslate nohighlight">\(\epsilon\)</span>-tube contibute to the soft-error. For instances below the tube the error margin is denoted by <span class="math notranslate nohighlight">\(\widehat{\zeta}_t\)</span>, for instances above the tube the margin is denoted by <span class="math notranslate nohighlight">\(\zeta_t\)</span>.</span><a class="headerlink" href="#svrnonlinreg" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Similar as in equation <a class="reference internal" href="#equation-minsofterror">(32)</a> for SVM classification, the optimisation problem, which accepts error-margins is now:</p>
 <p>Minimize</p>
 <div class="math notranslate nohighlight" id="equation-svrsoftopt">
@@ -941,26 +970,30 @@ g(\mathbf{x})= \sum\limits_{p=1}^N (\alpha_p-\widehat{\alpha}_p) K(\mathbf{x},\m
 \[
 w_0 = r_p - \epsilon - \sum\limits_{m=1}^N (\alpha_m-\widehat{\alpha}_m) K(\mathbf{x_p},\mathbf{x}_m).
 \]</div>
-</div>
-<div class="section" id="influence-of-the-hyperparameters">
+</section>
+<section id="influence-of-the-hyperparameters">
 <h3>Influence of the hyperparameters<a class="headerlink" href="#influence-of-the-hyperparameters" title="Permalink to this headline">¶</a></h3>
 <p>Besides the kernel-function the most important hyperparameters of SVRs are the radius of the tube <span class="math notranslate nohighlight">\(\epsilon\)</span> and the parameter <span class="math notranslate nohighlight">\(C\)</span>. As can be seen in equation <a class="reference internal" href="#equation-svrsoftopt">(48)</a> a higher value of <span class="math notranslate nohighlight">\(C\)</span> yields less importance on weight-minimmisation and therefore a stronger fit to the training data. The hyperparameter <span class="math notranslate nohighlight">\(\epsilon\)</span> also influences underfitting and overfitting, respectively. A large radius of the tube (large <span class="math notranslate nohighlight">\(\epsilon\)</span>) implies that many training-instances lie within the tube. Accordingly the number of support-vectors is small and it’s relatively easy to achieve a small overall soft-error. With wide tubes that easily cover all training elements weight-minimizsation gets easier and the chance for underfitting increases.</p>
 <p>The influence of <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(C\)</span> is visualized in the images below.</p>
-<div class="figure align-center" id="varepsilon">
+<figure class="align-center" id="varepsilon">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryEps.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryEps.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryEps.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Learned SVR models with RBF kernels. Parameter <span class="math notranslate nohighlight">\(C=10\)</span> is fixed. Parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> increases from the upper left to the lower right plot. Smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> increases the chance of overfitting.</span><a class="headerlink" href="#varepsilon" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-center" id="varc">
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Learned SVR models with RBF kernels. Parameter <span class="math notranslate nohighlight">\(C=10\)</span> is fixed. Parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> increases from the upper left to the lower right plot. Smaller <span class="math notranslate nohighlight">\(\epsilon\)</span> increases the chance of overfitting.</span><a class="headerlink" href="#varepsilon" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="varc">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryC.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryC.png" src="https://maucher.home.hdm-stuttgart.de/Pics/svrNonLinRBFvaryC.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Learned SVR models with RBF kernels. Parameter <span class="math notranslate nohighlight">\(\epsilon=0.2\)</span> is fixed. Parameter <span class="math notranslate nohighlight">\(C\)</span> increases from the upper left to the lower right plot. Higher <span class="math notranslate nohighlight">\(C\)</span> increases the chance of overfitting.</span><a class="headerlink" href="#varc" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Learned SVR models with RBF kernels. Parameter <span class="math notranslate nohighlight">\(\epsilon=0.2\)</span> is fixed. Parameter <span class="math notranslate nohighlight">\(C\)</span> increases from the upper left to the lower right plot. Higher <span class="math notranslate nohighlight">\(C\)</span> increases the chance of overfitting.</span><a class="headerlink" href="#varc" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p><strong>Further Reading:</strong></p>
 <ul class="simple">
-<li><p><span id="id2">[<a class="reference internal" href="../referenceSection.html#id59">Alp10</a>]</span></p></li>
+<li><p><span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-58">Alp10</a>]</span></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

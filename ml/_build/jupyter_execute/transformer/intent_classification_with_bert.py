@@ -32,7 +32,7 @@
 get_ipython().system('pip install -q tensorflow-text==2.6.0')
 
 
-# In[2]:
+# In[23]:
 
 
 import os
@@ -69,13 +69,13 @@ warnings.filterwarnings("ignore")
 
 # Data can be downloaded from a Google Drive by applying [gdown](https://pypi.org/project/gdown/). In the following code cells the download is invoked only if the corresponding file, does not yet exist at the corresponding location.
 
-# In[3]:
+# In[24]:
 
 
 datafolder="/Users/johannes/DataSets/IntentClassification/"
 
 
-# In[4]:
+# In[25]:
 
 
 trainfile=datafolder+"train.csv"
@@ -83,13 +83,13 @@ testfile=datafolder+"test.csv"
 validfile=datafolder+"valid.csv"
 
 
-# In[5]:
+# In[26]:
 
 
 #!pip install gdown
 
 
-# In[6]:
+# In[27]:
 
 
 if not os.path.exists(trainfile):
@@ -102,7 +102,7 @@ if not os.path.exists(testfile):
 
 # Next, the downloaded .csv-files for training, validation and test are imported into pandas dataframes:
 
-# In[7]:
+# In[28]:
 
 
 traindf = pd.read_csv(trainfile)
@@ -110,7 +110,7 @@ validdf = pd.read_csv(validfile)
 testdf = pd.read_csv(testfile)
 
 
-# In[8]:
+# In[29]:
 
 
 traindf.head()
@@ -118,20 +118,20 @@ traindf.head()
 
 # Training data contains 13084 instructions:
 
-# In[9]:
+# In[30]:
 
 
 traindf.shape
 
 
-# In[10]:
+# In[31]:
 
 
 trainfeatures=traindf.copy()
 trainlabels=trainfeatures.pop("intent")
 
 
-# In[11]:
+# In[32]:
 
 
 trainfeatures=trainfeatures.values
@@ -139,7 +139,7 @@ trainfeatures=trainfeatures.values
 
 # Distribution of class-labels in training-data:
 
-# In[12]:
+# In[33]:
 
 
 chart = sns.countplot(trainlabels, palette=HAPPY_COLORS_PALETTE)
@@ -149,20 +149,20 @@ chart.set_xticklabels(chart.get_xticklabels(), rotation=30, horizontalalignment=
 
 # One-Hot-Encoding of class-labels:
 
-# In[13]:
+# In[34]:
 
 
 from sklearn.preprocessing import LabelBinarizer
 
 
-# In[14]:
+# In[35]:
 
 
 binarizer=LabelBinarizer()
 trainlabels=binarizer.fit_transform(trainlabels.values)
 
 
-# In[15]:
+# In[36]:
 
 
 trainlabels.shape
@@ -170,7 +170,7 @@ trainlabels.shape
 
 # Preprocess test- and validation data in the same way as it has been done for training-data:
 
-# In[16]:
+# In[37]:
 
 
 testfeatures=testdf.copy()
@@ -207,7 +207,7 @@ validlabels=binarizer.transform(validlabels.values)
 # 
 # You'll see in the code below that switching the tfhub.dev URL is enough to try any of these models, because all the differences between them are encapsulated in the SavedModels from TF Hub.
 
-# In[17]:
+# In[51]:
 
 
 bert_model_name = 'small_bert/bert_en_uncased_L-8_H-512_A-8' 
@@ -364,7 +364,7 @@ print(f'Preprocess model auto-selected: {tfhub_handle_preprocess}')
 # 
 # Note: You will load the preprocessing model into a [hub.KerasLayer](https://www.tensorflow.org/hub/api_docs/python/hub/KerasLayer) to compose your fine-tuned model. This is the preferred API to load a TF2-style SavedModel from TF Hub into a Keras model.
 
-# In[18]:
+# In[52]:
 
 
 bert_preprocess_model = hub.KerasLayer(tfhub_handle_preprocess)
@@ -372,13 +372,13 @@ bert_preprocess_model = hub.KerasLayer(tfhub_handle_preprocess)
 
 # Let's try the preprocessing model on some text and see the output:
 
-# In[19]:
+# In[53]:
 
 
 trainfeatures[0]
 
 
-# In[20]:
+# In[54]:
 
 
 text_test = trainfeatures[0]
@@ -403,13 +403,13 @@ print(f'Type Ids   : {text_preprocessed["input_type_ids"][0, :12]}')
 # 
 # Before putting BERT into an own model, let's take a look at its outputs. You will load it from TF Hub and see the returned values.
 
-# In[21]:
+# In[55]:
 
 
 bert_model = hub.KerasLayer(tfhub_handle_encoder)
 
 
-# In[22]:
+# In[56]:
 
 
 bert_results = bert_model(text_preprocessed)
@@ -436,7 +436,7 @@ print(f'Sequence Outputs Values:{bert_results["sequence_output"][0, :12]}')
 # Note: for more information about the base model's input and output you can use just follow the model's url for documentation. Here specifically you don't need to worry about it because the preprocessing model will take care of that for you.
 # 
 
-# In[23]:
+# In[57]:
 
 
 def build_classifier_model():
@@ -453,7 +453,7 @@ def build_classifier_model():
 
 # Let's check that the model runs with the output of the preprocessing model.
 
-# In[24]:
+# In[58]:
 
 
 classifier_model = build_classifier_model()
@@ -465,7 +465,7 @@ print(tf.keras.activations.softmax(bert_raw_result))
 # 
 # Let's take a look at the model's structure.
 
-# In[25]:
+# In[59]:
 
 
 classifier_model.summary()
@@ -478,7 +478,7 @@ classifier_model.summary()
 # Since this is a non-binary classification problem and the model outputs probabilities, you'll use `losses.CategoricalCrossentropy` loss function.
 # 
 
-# In[26]:
+# In[60]:
 
 
 loss = tf.keras.losses.CategoricalCrossentropy(from_logits=True)
@@ -489,7 +489,7 @@ metrics = tf.metrics.CategoricalAccuracy()
 # 
 # Using the `classifier_model` you created earlier, you can compile the model with the loss, metric and optimizer.
 
-# In[27]:
+# In[61]:
 
 
 epochs=5
@@ -501,7 +501,7 @@ classifier_model.compile(optimizer=optimizer,
 
 # Note: training time will vary depending on the complexity of the BERT model you have selected.
 
-# In[28]:
+# In[62]:
 
 
 print(f'Training model with {tfhub_handle_encoder}')

@@ -43,7 +43,7 @@ import os
 
 # ### Define training parameters
 
-# In[3]:
+# In[38]:
 
 
 INIT_LR = 1e-3 #Initial Learning Rate
@@ -55,7 +55,7 @@ BS = 10 #Training Batch Size
 
 # Grab the list of images in the dataset directory. Then initialize the list of data and class images
 
-# In[4]:
+# In[39]:
 
 
 print("[INFO] loading images...")
@@ -66,7 +66,7 @@ labels = []
 
 # Plot first three imagepaths:
 
-# In[5]:
+# In[40]:
 
 
 imagePaths[:3]
@@ -74,13 +74,13 @@ imagePaths[:3]
 
 # Plot last three imagepaths:
 
-# In[6]:
+# In[41]:
 
 
 imagePaths[-3:]
 
 
-# In[7]:
+# In[42]:
 
 
 # loop over the image paths
@@ -99,7 +99,7 @@ for imagePath in imagePaths:
         labels.append(label)
 
 
-# In[8]:
+# In[43]:
 
 
 len(labels),len(data)
@@ -107,7 +107,7 @@ len(labels),len(data)
 
 # Below a x-ray image of a healthy  and a x-ray image of a covid infected lung is shown:
 
-# In[9]:
+# In[47]:
 
 
 plt.figure(figsize=(12,8))
@@ -126,7 +126,7 @@ plt.show()
 # 
 # Convert the data and labels to NumPy arrays while scaling the pixel intensities to the range $[0,1]$
 
-# In[10]:
+# In[48]:
 
 
 data = np.array(data) / 255.0
@@ -135,7 +135,7 @@ labels = np.array(labels)
 
 # Perform one-hot encoding on the labels:
 
-# In[11]:
+# In[49]:
 
 
 lb = LabelBinarizer()
@@ -146,13 +146,13 @@ labels = to_categorical(labels)
 # ## Split into training- and test-partition
 # Partition the data into training and testing splits using 60% of the data for training and the remaining 40% for testing
 
-# In[12]:
+# In[51]:
 
 
 (trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.40, stratify=labels, random_state=42)
 
 
-# In[13]:
+# In[52]:
 
 
 print(trainX.shape)
@@ -164,7 +164,7 @@ print(testX.shape)
 # The [ImageDataGenerator](https://keras.io/api/preprocessing/image/) is an easy way to load and augment images in batches for image classification tasks. Together with the method `fit_generator()` (see below), it provides the possibility, that not all of the training data must be kept in the memory. Instead only the current batch is loaded. Moreover, the `ImageDataGenerator`-class provides methods to modify images, e.g. by shift, rotation, flipping, color-transform etc. 
 # In the code cell below an object of this class is instantiated, which will randomly rotate images within an angle of 15°.
 
-# In[14]:
+# In[53]:
 
 
 trainAug = ImageDataGenerator(rotation_range=15, fill_mode="nearest")
@@ -172,7 +172,7 @@ trainAug = ImageDataGenerator(rotation_range=15, fill_mode="nearest")
 
 # ## Load Feature Extractor Part of pretrained VGG16 Net
 
-# In[15]:
+# In[54]:
 
 
 baseModel = VGG16(weights="imagenet", include_top=False,input_tensor=Input(shape=(224, 224, 3)))
@@ -180,7 +180,7 @@ baseModel = VGG16(weights="imagenet", include_top=False,input_tensor=Input(shape
 
 # ## Construct the new Classifier that will be placed on top of the Feature Extractor
 
-# In[16]:
+# In[29]:
 
 
 headModel = baseModel.output
@@ -195,14 +195,14 @@ model = Model(inputs=baseModel.input, outputs=headModel)
 
 # Loop over all layers in the base model and freeze them so that they will **not** be updated during the training process
 
-# In[17]:
+# In[30]:
 
 
 for layer in baseModel.layers:
     layer.trainable = False
 
 
-# In[18]:
+# In[31]:
 
 
 model.summary()
@@ -210,7 +210,7 @@ model.summary()
 
 # ## Compile and train Network
 
-# In[19]:
+# In[22]:
 
 
 print("[INFO] compiling model...")
@@ -218,7 +218,7 @@ opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
 model.compile(loss="binary_crossentropy", optimizer=opt,metrics=["accuracy"])
 
 
-# In[20]:
+# In[23]:
 
 
 print("[INFO] training classifier part of the network...")
