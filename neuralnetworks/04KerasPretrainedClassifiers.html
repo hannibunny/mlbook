@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Applying Pretrained Deep Neural Networks for Image Classification &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -91,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +151,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +193,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +261,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Transformer
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   References
  </span>
@@ -424,19 +425,56 @@
         
               <div>
                 
-  <div class="section" id="applying-pretrained-deep-neural-networks-for-image-classification">
+  <section id="applying-pretrained-deep-neural-networks-for-image-classification">
 <h1>Applying Pretrained Deep Neural Networks for Image Classification<a class="headerlink" href="#applying-pretrained-deep-neural-networks-for-image-classification" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last update: 04.11.2020</p></li>
 </ul>
 <p>This notebook demonstrates the application of pretrained, publicable available neural networks in the task for which these nets have been trained - ImageNet object classification.</p>
-<div class="section" id="load-the-models-from-keras-applications-folder">
+<section id="load-the-models-from-keras-applications-folder">
 <h2>Load the models from keras applications folder<a class="headerlink" href="#load-the-models-from-keras-applications-folder" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="kn">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_33151</span><span class="o">/</span><span class="mf">762832329.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="kn">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="kn">import</span> <span class="nn">sys</span> <span class="k">as</span> <span class="nn">_sys</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> 
+<span class="ne">---&gt; </span><span class="mi">41</span> <span class="kn">from</span> <span class="nn">tensorflow.python.tools</span> <span class="kn">import</span> <span class="n">module_util</span> <span class="k">as</span> <span class="n">_module_util</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="kn">from</span> <span class="nn">tensorflow.python.util.lazy_loader</span> <span class="kn">import</span> <span class="n">LazyLoader</span> <span class="k">as</span> <span class="n">_LazyLoader</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> 
+
+<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="kn">from</span> <span class="nn">tensorflow.python.ops</span> <span class="kn">import</span> <span class="n">gen_cudnn_rnn_ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="kn">from</span> <span class="nn">tensorflow.python.ops</span> <span class="kn">import</span> <span class="n">gen_rnn_ops</span>
+<span class="ne">---&gt; </span><span class="mi">91</span> <span class="kn">from</span> <span class="nn">tensorflow.python.ops</span> <span class="kn">import</span> <span class="n">gen_sendrecv_ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span> <span class="kn">from</span> <span class="nn">tensorflow.python.ops</span> <span class="kn">import</span> <span class="n">gen_tpu_ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span> 
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/importlib/_bootstrap.py</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/importlib/_bootstrap.py</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/importlib/_bootstrap.py</span> in <span class="ni">_load_unlocked</span><span class="nt">(spec)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/importlib/_bootstrap_external.py</span> in <span class="ni">exec_module</span><span class="nt">(self, module)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/importlib/_bootstrap_external.py</span> in <span class="ni">get_code</span><span class="nt">(self, fullname)</span>
+
+<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/importlib/_bootstrap_external.py</span> in <span class="ni">get_data</span><span class="nt">(self, path)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -462,8 +500,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="perform-pre-processing-before-feeding-the-image-to-the-network">
+</section>
+<section id="perform-pre-processing-before-feeding-the-image-to-the-network">
 <h2>Perform Pre-processing before feeding the image to the network<a class="headerlink" href="#perform-pre-processing-before-feeding-the-image-to-the-network" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Keras loads the image using PIL library. This is done using the <strong>load_img</strong> function. The image is in <span class="math notranslate nohighlight">\(width \times height \times channels\)</span> format.</p></li>
@@ -531,21 +569,21 @@ PIL image size (224, 224)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image batch size (1, 224, 224, 3)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f90603f78e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fbc5ce224c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/04KerasPretrainedClassifiers_8_2.png" src="../_images/04KerasPretrainedClassifiers_8_2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="predictions-using-the-various-networks">
+</section>
+<section id="predictions-using-the-various-networks">
 <h2>Predictions using the various Networks<a class="headerlink" href="#predictions-using-the-various-networks" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Preprocess the input by subtracting the mean value from each channel of the images in the batch. Mean is an array of three elements obtained by the average of R, G, B pixels of all images obtained from ImageNet</p></li>
 <li><p>get the probabilities of occurrence for each class</p></li>
 <li><p>convert the probabilities to human-readable labels</p></li>
 </ol>
-<div class="section" id="vgg16-network">
+<section id="vgg16-network">
 <h3>VGG16 Network<a class="headerlink" href="#vgg16-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -578,8 +616,8 @@ PIL image size (224, 224)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="resnet50-network">
+</section>
+<section id="resnet50-network">
 <h3>ResNet50 Network<a class="headerlink" href="#resnet50-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -597,15 +635,15 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.15737607),
-  (&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.14362855),
-  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.14099433)]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.1573761),
+  (&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.14362858),
+  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.14099422)]]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="mobilenet-network">
+</section>
+<section id="mobilenet-network">
 <h3>MobileNet Network<a class="headerlink" href="#mobilenet-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -622,17 +660,17 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.15703699),
-  (&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.11697364),
-  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.10532724),
-  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.075648494),
-  (&#39;n02909870&#39;, &#39;bucket&#39;, 0.054681525)]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n03958227&#39;, &#39;plastic_bag&#39;, 0.15703687),
+  (&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.11697365),
+  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.10532726),
+  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.07564851),
+  (&#39;n02909870&#39;, &#39;bucket&#39;, 0.05468151)]]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="inception-v3-network">
+</section>
+<section id="inception-v3-network">
 <h3>Inception_V3 Network<a class="headerlink" href="#inception-v3-network" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The input size for inception network is different from the other networks. It accepts inputs of size (299, 299).</p></li>
@@ -662,11 +700,11 @@ PIL image size (224, 224)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.6622583),
-  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.050285112),
-  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.036381558),
-  (&#39;n02123159&#39;, &#39;tiger_cat&#39;, 0.023522463),
-  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.015205721)]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;n02124075&#39;, &#39;Egyptian_cat&#39;, 0.66225827),
+  (&#39;n02123045&#39;, &#39;tabby&#39;, 0.05028518),
+  (&#39;n02123597&#39;, &#39;Siamese_cat&#39;, 0.036381554),
+  (&#39;n02123159&#39;, &#39;tiger_cat&#39;, 0.023522448),
+  (&#39;n03223299&#39;, &#39;doormat&#39;, 0.015205734)]]
 </pre></div>
 </div>
 </div>
@@ -714,9 +752,9 @@ PIL image size (224, 224)
 <img alt="../_images/04KerasPretrainedClassifiers_21_1.png" src="../_images/04KerasPretrainedClassifiers_21_1.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Text classification with CNNs and LSTMs &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -91,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +151,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +193,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +261,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Transformer
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   References
  </span>
@@ -456,7 +457,7 @@
         
               <div>
                 
-  <div class="section" id="text-classification-with-cnns-and-lstms">
+  <section id="text-classification-with-cnns-and-lstms">
 <h1>Text classification with CNNs and LSTMs<a class="headerlink" href="#text-classification-with-cnns-and-lstms" title="Permalink to this headline">¶</a></h1>
 <p>In this notebook CNNs and LSTMs are applied for document classification. Here, the documents are IMDB movie reviews. The IMDB Movie Review corpus is a standard dataset for the evaluation of text-classifiers. It consists of 25000 movies reviews from IMDB, labeled by sentiment (positive/negative).</p>
 <p>The main goal of the notebook is to demonstrate how different CNN- and LSTM architectures can be defined, trained and evaluated in tensorflow/keras. Hyperparameter-optimisation is not regarded, here.</p>
@@ -485,7 +486,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="configure-word-embedding-option">
+<section id="configure-word-embedding-option">
 <h2>Configure Word-Embedding Option<a class="headerlink" href="#configure-word-embedding-option" title="Permalink to this headline">¶</a></h2>
 <p>The text-classification algorithms applied in this notebook, CNNs and LSTMs, apply word-embeddings at their input. Concerning the word-embeddings, there are basically two options:</p>
 <ul class="simple">
@@ -509,8 +510,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="access-imdb-dataset">
+</section>
+<section id="access-imdb-dataset">
 <h2>Access IMDB dataset<a class="headerlink" href="#access-imdb-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://keras.io/datasets/">IMDB dataset</a> is already available in Keras and can easily be accessed by</p>
 <p><code class="docutils literal notranslate"><span class="pre">imdb.load_data(num_words,skip_top)</span></code>.</p>
@@ -643,12 +644,12 @@ Class-index:  0
 </div>
 </div>
 <p>Note that the above word sequences do not contain the <code class="docutils literal notranslate"><span class="pre">skip_top</span></code> most frequent words, which are considered to be stop-words.</p>
-</div>
-<div class="section" id="pad-sequences-to-fixed-length">
+</section>
+<section id="pad-sequences-to-fixed-length">
 <h2>Pad sequences to fixed length<a class="headerlink" href="#pad-sequences-to-fixed-length" title="Permalink to this headline">¶</a></h2>
 <p>The reviews are already represented as sequences of integer word-indices. These sequences actually contain only indices of those words, which belong to the <code class="docutils literal notranslate"><span class="pre">MAX_NB_WORDS</span></code> most frequent words in the corpus.
 All sequences must be padded to a unique length. This means, that longer sequences are cut and shorter sequences are filled with zeroes.</p>
-<div class="section" id="determine-appropriate-value-for-fixed-sequence-length">
+<section id="determine-appropriate-value-for-fixed-sequence-length">
 <h3>Determine appropriate value for fixed sequence length<a class="headerlink" href="#determine-appropriate-value-for-fixed-sequence-length" title="Permalink to this headline">¶</a></h3>
 <p>In order to determine an appropriate value for <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span></code> the distributions of sequence lengths for both categories are calculated below:</p>
 <div class="cell docutils container">
@@ -676,8 +677,8 @@ Documents in category general:  12500
 <img alt="../_images/02TextClassification_25_1.png" src="../_images/02TextClassification_25_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="padding">
+</section>
+<section id="padding">
 <h3>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h3>
 <p>From the length-distribution above, we infer that a <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span></code> of 600 may be appropriate.</p>
 <div class="cell docutils container">
@@ -709,9 +710,9 @@ Test data shape:  (25000, 600)
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="load-glove-word-embeddings">
+</section>
+</section>
+<section id="load-glove-word-embeddings">
 <h2>Load Glove word-embeddings<a class="headerlink" href="#load-glove-word-embeddings" title="Permalink to this headline">¶</a></h2>
 <p>Glove word embeddings can be downloaded from <a class="reference external" href="https://nlp.stanford.edu/projects/glove/">https://nlp.stanford.edu/projects/glove/</a>. In the following code-cell the variable <code class="docutils literal notranslate"><span class="pre">GLOVE_DIR</span></code> points to the directory, to which the downloaded embeddings has been extracted. The embeddings are loaded only if the <code class="docutils literal notranslate"><span class="pre">GLOVE</span></code>-parameter has been set to <code class="docutils literal notranslate"><span class="pre">True</span></code> before:</p>
 <div class="cell docutils container">
@@ -782,8 +783,8 @@ Test data shape:  (25000, 600)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="cnn-with-only-one-layer">
+</section>
+<section id="cnn-with-only-one-layer">
 <h2>CNN with only one layer<a class="headerlink" href="#cnn-with-only-one-layer" title="Permalink to this headline">¶</a></h2>
 <p>In the following code-cell the embedding layer is defined. This layer is then applied as first layer in the Neural Networks below.
 In row</p>
@@ -913,8 +914,8 @@ Epoch 3/3
 <img alt="../_images/02TextClassification_47_0.png" src="../_images/02TextClassification_47_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="cnn-with-3-convolutional-layers">
+</section>
+<section id="cnn-with-3-convolutional-layers">
 <h2>CNN with 3 Convolutional Layers<a class="headerlink" href="#cnn-with-3-convolutional-layers" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1031,8 +1032,8 @@ Epoch 3/3
 <img alt="../_images/02TextClassification_53_0.png" src="../_images/02TextClassification_53_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="cnn-with-different-filter-sizes-in-one-layer">
+</section>
+<section id="cnn-with-different-filter-sizes-in-one-layer">
 <h2>CNN with different filter sizes in one layer<a class="headerlink" href="#cnn-with-different-filter-sizes-in-one-layer" title="Permalink to this headline">¶</a></h2>
 <p>In <a class="reference external" href="https://arxiv.org/pdf/1408.5882v2.pdf">Y. Kim; Convolutional Neural Networks for Sentence Classification</a> a CNN with different filter-sizes in one layer has been proposed. This CNN is implemented below:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/cnnSentenceClassification.PNG" alt="Drawing" style="width: 600px;"/>
@@ -1171,10 +1172,10 @@ Epoch 3/3
 <img alt="../_images/02TextClassification_60_0.png" src="../_images/02TextClassification_60_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="lstm-text-classification">
+</section>
+<section id="lstm-text-classification">
 <h2>LSTM text classification<a class="headerlink" href="#lstm-text-classification" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="define-lstm-architecture">
+<section id="define-lstm-architecture">
 <h3>Define LSTM architecture<a class="headerlink" href="#define-lstm-architecture" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1237,8 +1238,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="training">
+</section>
+<section id="training">
 <h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1305,9 +1306,9 @@ Epoch 3/3
 </div>
 <p><strong>Result:</strong></p>
 <p>In this task all the Neural Network architectures, which have implemented in this notebook, yield similar accuracy-values. However, in this notebook training has been limited to 3 epochs. Actually the networks should be trained longer. Moreover, no optimisation of hyperparameters (e.g. training-parameters) has been employed here.</p>
-</div>
-</div>
-<div class="section" id="appendix-text-preprocessing-with-keras">
+</section>
+</section>
+<section id="appendix-text-preprocessing-with-keras">
 <h2>Appendix: Text Preprocessing with Keras<a class="headerlink" href="#appendix-text-preprocessing-with-keras" title="Permalink to this headline">¶</a></h2>
 <p>In the example of this notebook text access and preprocessing has been simple, because a corpus from keras in which texts are already presented in a format, which can directly be passed to the input of Keras Neural Networks.</p>
 <p>In real applications text corpora are usually provided as lists of strings. For example:</p>
@@ -1387,8 +1388,8 @@ BoW matrix:
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>K - Nearest Neighbour Classification / Regression &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -91,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +151,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +193,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +261,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Transformer
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   References
  </span>
@@ -423,7 +424,7 @@
         
               <div>
                 
-  <div class="section" id="k-nearest-neighbour-classification-regression">
+  <section id="k-nearest-neighbour-classification-regression">
 <h1>K - Nearest Neighbour Classification / Regression<a class="headerlink" href="#k-nearest-neighbour-classification-regression" title="Permalink to this headline">¶</a></h1>
 <p>Probably the <strong>simplest supervised Machine Learning algorithm</strong> is K-Nearest Neighbour (K-NN). K-NN can be applied for both, classification and regression. Compared to other ML algorithms, K-NN is special because it is a <strong>non-parameteric ML algorithm</strong>, which actually has no training phase. It is therefore also called a <strong>Lazy Learner</strong>. All other ML algorithms, which will be introduced in this lecture, have a learning-phase during which either a class-specific data-distribution or a class-boundary is learned. After this learning phase the entire knowledge from the training-data set is encoded in some parameters, which uniquely define the class-specific distribution or the class-boundary. Not so with K-NN! In K-NN the entire set of labeled training data is stored. In the inference phase new data is classified by just comparing the new instance with all training-instances and deciding for the class, which most often appears in the set of k nearest training instances.</p>
 <p><strong>K-NN Classifier:</strong></p>
@@ -456,10 +457,10 @@
 <li><p>long inference time, since each new instance must be compared to all training instances in order to determine the nearest neighbours</p></li>
 </ul>
 <p>For <span class="math notranslate nohighlight">\(K=1\)</span> the bias is close to 0, but the variance is quite high. With increasing <span class="math notranslate nohighlight">\(K\)</span> bias increases but variance decreases.</p>
-<div class="section" id="k-nn-classification-demo">
+<section id="k-nn-classification-demo">
 <h2>K-NN Classification Demo<a class="headerlink" href="#k-nn-classification-demo" title="Permalink to this headline">¶</a></h2>
 <p>In the reminder of this section the application of a K-NN classifier is demonstrated.</p>
-<div class="section" id="generate-set-of-labeled-training-data">
+<section id="generate-set-of-labeled-training-data">
 <h3>Generate set of labeled training data<a class="headerlink" href="#generate-set-of-labeled-training-data" title="Permalink to this headline">¶</a></h3>
 <p>In this demo we do not apply a real-world training data set. Instead we generate Gaussian-distributed 2-dimensional training vectors <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2)\)</span> for each of the 2 classes. The distributions of the 2 classes differ in their mean-vector and their covariance matrix. The code cells below implement the generation and visualisation of labeled data.</p>
 <div class="cell docutils container">
@@ -629,8 +630,8 @@ First samples of pointset:
 <img alt="../_images/knn_13_0.png" src="../_images/knn_13_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="split-labeled-data-in-training-and-test-partition">
+</section>
+<section id="split-labeled-data-in-training-and-test-partition">
 <h3>Split labeled data in training- and test-partition<a class="headerlink" href="#split-labeled-data-in-training-and-test-partition" title="Permalink to this headline">¶</a></h3>
 <p>The scikit-learn function <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> shuffles the set of all labeled data and returns two partions of input vectors, <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">X_test</span></code> and the corresponding class-labels <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_test</span></code>.</p>
 <div class="cell docutils container">
@@ -688,8 +689,8 @@ First samples of pointset:
 <img alt="../_images/knn_20_0.png" src="../_images/knn_20_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="train-the-k-nn-classifier">
+</section>
+<section id="train-the-k-nn-classifier">
 <h3>Train the K-NN classifier<a class="headerlink" href="#train-the-k-nn-classifier" title="Permalink to this headline">¶</a></h3>
 <p>All machine learning algorithms implemented in <em>scikit-learn</em> provide a <code class="docutils literal notranslate"><span class="pre">.fit(X_train,</span> <span class="pre">y_train)</span></code>-method, in which the training phase, i.e. the fitting of a model to the given training-data, is implemented. As already described above, in the case of the K-NN algorithm, there is no training-phase. Here, <code class="docutils literal notranslate"><span class="pre">fit()</span></code> just saves the given training data accordingly. The model is the set of training data itself. In this example the chosen number of neighbors is <span class="math notranslate nohighlight">\(K=3\)</span>.</p>
 <div class="cell docutils container">
@@ -736,8 +737,8 @@ For plotting the decision boundary a class-specific color will be assigned to ea
 <img alt="../_images/knn_24_0.png" src="../_images/knn_24_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-the-classifier-on-test-data">
+</section>
+<section id="evaluate-the-classifier-on-test-data">
 <h3>Evaluate the classifier on Test-data<a class="headerlink" href="#evaluate-the-classifier-on-test-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -779,8 +780,8 @@ For plotting the decision boundary a class-specific color will be assigned to ea
 </div>
 </div>
 <p>As can be seen in the confusion matrix, all class-1 data has been classified correctly. But there are 4 out of 60 class-0 instances, which are assigned to the wrong class. In the visualisation above, these errors are the blue markers in the orange region.</p>
-</div>
-<div class="section" id="repeat-training-and-evaluation-for-k-9-neighbors">
+</section>
+<section id="repeat-training-and-evaluation-for-k-9-neighbors">
 <h3>Repeat Training and Evaluation for <span class="math notranslate nohighlight">\(K=9\)</span> neighbors<a class="headerlink" href="#repeat-training-and-evaluation-for-k-9-neighbors" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -857,9 +858,9 @@ For plotting the decision boundary a class-specific color will be assigned to ea
 </div>
 </div>
 <p>As the plot above shows, for the increased <span class="math notranslate nohighlight">\(K\)</span> the class-boundary becomes smoother. But there are still 4 misclassified instances in the test-partition.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
