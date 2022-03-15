@@ -388,8 +388,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definition">
-     Definition
+    <a class="reference internal nav-link" href="#definition-machine-learning">
+     Definition Machine Learning
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -466,6 +466,11 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-ml-applications">
+   Some ML Applications
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#current-problems-challenges-of-ai-and-ml">
    Current Problems/Challenges of AI and ML
   </a>
@@ -485,7 +490,7 @@
 <h1>Basic Concepts of Data Mining and Machine Learning<a class="headerlink" href="#basic-concepts-of-data-mining-and-machine-learning" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last Update: 13.07.2021</p></li>
+<li><p>Last Update: 15.03.2022</p></li>
 </ul>
 <section id="overview-data-mining-process">
 <h2>Overview Data Mining Process<a class="headerlink" href="#overview-data-mining-process" title="Permalink to this headline">¶</a></h2>
@@ -499,8 +504,13 @@
 </section>
 <section id="machine-learning-definition-concepts-categories">
 <h2>Machine Learning: Definition, Concepts, Categories<a class="headerlink" href="#machine-learning-definition-concepts-categories" title="Permalink to this headline">¶</a></h2>
-<section id="definition">
-<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h3>
+<p>Machine Learning constitutes one of the 4 categories of Artificial Intelligence (AI). As shown in the image below, the other categories are <em>Search and Planning</em>, <em>Knowledge and Inference</em> and <em>Modelling of Uncertainty</em>.</p>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/categoriesEnglish.png" alt="Drawing" width="600">
+<p>Currently, Machine Learning is by far the most important AI category.</p>
+<p>The following cartoon depicts the idea of supervised learning. A teacher provides labels for the input and a relation (model) between input and label is learned. Actually, the cartoon sketches a crucial problem of supervised Machine Learning: If we have only a small amount of training data, the learned model is overfits to a probably irrelevant feature.</p>
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/MLcartoon.JPG" alt="Drawing" width="300">
+<section id="definition-machine-learning">
+<h3>Definition Machine Learning<a class="headerlink" href="#definition-machine-learning" title="Permalink to this headline">¶</a></h3>
 <p>There is no unique definition of Machine Learning. One of the most famous definitions has been formulated in <a class="reference external" href="http://www.cs.cmu.edu/~tom/mlbook.html">Tom Mitchell, Machine Learning</a>:</p>
 <ul class="simple">
 <li><p>A computer is said to learn from <strong>experience E</strong> with respect to some <strong>task T</strong> and some <strong>performance measure P</strong> , if its performance on T, as measured by P, improves with experience E.</p></li>
@@ -592,6 +602,7 @@
 <li><p><strong>Manifold-Assumption:</strong> Input vectors lie approximately on a manifold (subspace) of much lower dimension than the input space.</p></li>
 </ul>
 <p>Semi-supervised learning may refer to either <strong>transductive learning</strong> or <strong>inductive learning</strong>.The goal of transductive learning is to infer the correct labels <em>for the given unlabeled data only</em>. The goal of inductive learning is to infer the <em>correct mapping from input data to target in general</em>. (Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Semi-supervised_learning">Wikipedia</a>).</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/SemiSupervised.png" alt="Drawing" style="width: 800px;"/>
 <p>There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers.</p>
 </section>
 </section>
@@ -631,6 +642,11 @@ y=f(x)+\epsilon.
 <p>The image below sketches the relation between bias, variance, over- and underfitting (Image source: <a class="reference external" href="https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229">https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229</a>)</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/></section>
 </section>
+</section>
+<section id="some-ml-applications">
+<h2>Some ML Applications<a class="headerlink" href="#some-ml-applications" title="Permalink to this headline">¶</a></h2>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/aiUseCases.png" alt="Drawing" style="width: 800px;"/>
+<p>Image Source: <a class="reference external" href="https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families">https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families</a></p>
 </section>
 <section id="current-problems-challenges-of-ai-and-ml">
 <h2>Current Problems/Challenges of AI and ML<a class="headerlink" href="#current-problems-challenges-of-ai-and-ml" title="Permalink to this headline">¶</a></h2>

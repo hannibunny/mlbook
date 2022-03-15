@@ -3,7 +3,7 @@
 
 # # Basic Concepts of Data Mining and Machine Learning 
 # * Author: Johannes Maucher
-# * Last Update: 13.07.2021
+# * Last Update: 15.03.2022
 
 # ## Overview Data Mining Process
 # The **Cross-industry standard process for data mining (CRISP)** proposes a common approach for realizing data mining projects: 
@@ -23,7 +23,19 @@
 
 # ## Machine Learning: Definition, Concepts, Categories
 # 
-# ### Definition
+# Machine Learning constitutes one of the 4 categories of Artificial Intelligence (AI). As shown in the image below, the other categories are *Search and Planning*, *Knowledge and Inference* and *Modelling of Uncertainty*.  
+# 
+# <img src="http://maucher.home.hdm-stuttgart.de/Pics/categoriesEnglish.png" alt="Drawing" width="600">
+# 
+# Currently, Machine Learning is by far the most important AI category.
+# 
+# The following cartoon depicts the idea of supervised learning. A teacher provides labels for the input and a relation (model) between input and label is learned. Actually, the cartoon sketches a crucial problem of supervised Machine Learning: If we have only a small amount of training data, the learned model is overfits to a probably irrelevant feature.
+# 
+# <img src="http://maucher.home.hdm-stuttgart.de/Pics/MLcartoon.JPG" alt="Drawing" width="300">
+# 
+# 
+# 
+# ### Definition Machine Learning
 # There is no unique definition of Machine Learning. One of the most famous definitions has been formulated in [Tom Mitchell, Machine Learning](http://www.cs.cmu.edu/~tom/mlbook.html):
 # 
 # 
@@ -132,6 +144,9 @@
 # 
 # Semi-supervised learning may refer to either **transductive learning** or **inductive learning**.The goal of transductive learning is to infer the correct labels *for the given unlabeled data only*. The goal of inductive learning is to infer the *correct mapping from input data to target in general*. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Semi-supervised_learning)). 
 # 
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/SemiSupervised.png" alt="Drawing" style="width: 800px;"/>
+# 
 # There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers. 
 # 
 
@@ -184,6 +199,12 @@
 # The image below sketches the relation between bias, variance, over- and underfitting (Image source: [https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229](https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229))
 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/>
+
+# ## Some ML Applications
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/aiUseCases.png" alt="Drawing" style="width: 800px;"/>
+# 
+# Image Source: [https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families](https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families)
 
 # ## Current Problems/Challenges of AI and ML
 # * **Data efficiency:** In order to learn complex tasks large amounts of training data are required
