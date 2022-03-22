@@ -3,7 +3,7 @@
 
 # # Basic Concepts of Data Mining and Machine Learning 
 # * Author: Johannes Maucher
-# * Last Update: 15.03.2022
+# * Last Update: 22.03.2022
 
 # ## Overview Data Mining Process
 # The **Cross-industry standard process for data mining (CRISP)** proposes a common approach for realizing data mining projects: 
@@ -121,6 +121,24 @@
 # 5. Depending on the calculated errors, adjust the network weights $\Theta$, such that in the sequel the network outputs are closer to the targets (i.e. the error decreases). 
 # 6. Repeat this until the calculated error is small enough.
 
+# ### Required Amount of data (supervised learning)
+# 
+# One of the crucial questions at the beginning of each ML-procect is 
+# 
+# *How much labeled data is required?*
+# 
+# The answer is: *It depends!*
+# 
+# Unfortunately one calculate the required amount of labeled data for
+# 
+# * training
+# * validation 
+# * test.
+# 
+# However, the main factors, which influence the amount of labeled data, are known and depicted below:
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/amountDataNew.png" alt="Drawing" style="width: 600px;"/>
+
 # ### Further Categories
 # Even though Machine Learning showed amazing accuracy in a wide range of tasks such as object classification, machine translation and automated content generation, many experts are convinced that in order to create human-level AI new approaches to ML and AI must be invented. The current methods, in particular supervised learning, is supposed to get stuck in a suboptimum, far from human-level AI. The reason for these doubts is that supervised ML requires large amounts of labeled data and in general labeling is expensive. On the other hand a main factor of human intelligence is **common sense**, i.e. knowledge on general concepts such as *gravity* or *object permanence*. Human's create *common sense* from their birth on, mainly by unsupervised observation of the world. It is because of this understanding of common concepts that makes our learning of specific things efficient. For example, based on the knowledge of *gravity*, we do not need much specific training samples in order to predict the trajectory of a stone, which is thrown away. 
 # 
@@ -155,6 +173,89 @@
 # K-fold cross-Validation is the standard validation method if labeled data is rare. The entire set of labeled data is partitioned into k ($k=10$ in the example below) disjoint subsets. The entire evaluation consists of k iterations. In the i.th iteration, the i.th partition (subset) is applied for validation, all other partitions are applied for training the model. In each iteration the model's performance, e.g. accuracy, is determined on the validation-partition. Finally, the overall performance is the average performance over all k performance values.  
 # 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/CrossValidation.jpg" alt="Drawing" style="width: 800px;"/>
+
+# ### Performance Metrics
+# 
+# Below $r_i$ denotes the true label, given in the labeled dataset and $y_i$ denotes the corresponding label as predicted by the learned model. Obviously the goal is to learn a model, whose predictions $y_i$ are as close as possible to the true labels $r_i$. For classification and regression there exists different metrics to measure the difference between true and predicted labels. The most important metrics are summarized below. Metrics, provided by scikit-learn, can be found here: [Scores in scikit-learn](http://scikit-learn.org/stable/modules/model_evaluation.html). 
+# 
+# #### Classification
+# 
+# For classification the most prominent metric is **accuracy**, which is just the rate of correct classifications. For the analysis of a classifier, determination of accuracy alone is not sufficient. The metrics defined below provide more subtle information on correct and erroneous events. All of the defined evaluation metrics can be obtained from the confusion matrix. For a binary classifier, the **confusion matrix** is depicted below. For a *K*-class classifier, the confusion matrix has size $K \times K$. The rows correspond to the true labels, the columns to the predicted labels.
+
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/confusionMat.png" style="width:300px" align="center">
+
+# **Accuracy:** The rate of overall correct classifications: 
+# 
+# $$
+# ACC=\frac{TP+TN}{FP+FN+TP+TN}
+# $$
+# 
+# **Error Rate:** The rate of overall erroneous classifications: 
+# 
+# $$
+# ERR=\frac{FP+FN}{FP+FN+TP+TN}
+# $$
+# 
+# **False Positive Rate:** 
+# 
+# $$
+# FPR=\frac{FP}{FP+TN}
+# $$
+# 
+# **True Positive Rate:** 
+# 
+# $$
+# TPR=\frac{TP}{FN+TP}
+# $$
+# 
+# **Precision:** How much of the samples, which have been classified as *positive* are actual *positive* 
+# 
+# $$
+# PRE=\frac{TP}{FP+TP}
+# $$ 
+# 
+# **Recall:**(=TPR): How much of the true *positive* samples has been classified as *positive* 
+# 
+# $$
+# REC=\frac{TP}{FN+TP}
+# $$
+# 
+# **F1-Score:** Harmonic mean of Precision and Recall 
+# 
+# $$
+# F1=2\frac{PRE \cdot REC }{PRE + REC}
+# $$
+
+# #### Regression
+# 
+# Also regression models can be scored by a variety of metrics. The most prominent are 
+# 
+# * mean absolute error (MAE)
+# * mean squared error (MSE)
+# * median absolute error (MEDE)
+# * coefficient of determination ($R^2$) 
+# 
+# If $y_i$ is the predicted value for the i.th element and $r_i$ is it's true value, then these metrics are defined as follows:
+# 
+# $$
+# \begin{array}[lcl]
+#  NMAE & = &   \frac{1}{N}\sum\limits_{i=1}^N |y_i-r_i| \\
+#  MSE & = &   \frac{1}{N}\sum\limits_{i=1}^N (y_i-r_i)^2  \\
+#  MEDE & = &  median\left( \; |y_i-r_i|, \; \forall \; i \; \in [1,..,N]\right) \\
+# \end{array}
+# $$
+# 
+# $$
+# R^2  =  1- \frac{SS_e}{SS_r}, \quad \mbox{ with } SS_e=\sum_{i=1}^N(r_i-y_i)^2, \quad  SS_r=\sum_{i=1}^N(r_i-\overline{r})^2 \quad \mbox { and } \quad \overline{r}=\frac{1}{N} \sum_{i=1}^N r_i
+# $$
+# 
+# Another frequently used regression metric is the **Root Mean Squared Logarithmic Error (RMSLE)**, which is caluclated as follows:
+# 
+# $$
+# RMSLE = \sqrt{\frac{1}{N} \sum\limits_{i=1}^N(\ln(r_i)-\ln(y_i))^2}
+# $$
+# 
+# For RMSLE there is no explicit scoring function in scikit-learn, but it can be easily computed via the NMSE-function. The RMSLE is well suited for the case that the error (i.e. the difference between $y_i$ and $r_i$) increases with the values of $r_i$. Then large errors at high values of $r_i$ are weighted less by RMSLE.
 
 # ### Bias and Variance, Overfitting and Underfitting
 # 
