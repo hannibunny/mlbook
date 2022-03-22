@@ -36,8 +36,8 @@
 4. [Linear Classification](./machinelearning/LinearClassification.ipynb)
 5. [Support Vector Machines (SVM)](./machinelearning/svm.md)
 6. [Gaussian Process](./machinelearning/gp.md)
-    
-    
+
+
 ### Neural Networks and Deep Neural Networks
 
 11. [Conventional Neural Networks](neuralnetworks/01NeuralNets.ipynb) 
@@ -49,7 +49,7 @@
     * Gradient Descent- and Stochastic Gradient Descent Learning
     * Multilayer Perceptron (MLP) Architectures for Regression and Classification
     * Backpropagation-Algorithm for Learning
-    
+
 
 12. [Recurrent Neural Networks (RNN)](neuralnetworks/02RecurrentNeuralNetworks.ipynb) 
     * Simple Recurrent Neural Networks (RNNs)
@@ -71,21 +71,21 @@
     * Image Representation in numpy
     * Define, train and evaluate MLP in Keras
     * Define, train and evaluate CNN in Keras 
-    
-    
+
+
 19. [Apply pretrained CNNs for object classification - original task](neuralnetworks/04KerasPretrainedClassifiers.ipynb)
     * Access image from local file system
     * Download and apply pretrained CNNs for object recognition in arbitrary images
     
 
-    
+
 20. [Use of pretrained CNNs for object classification - new task: Classify x-ray images of lungs into healthy and covid-19](neuralnetworks/05KerasPretrainedCovid.ipynb)
     * Download pretrained feature-extractor (CNN without the classifier part)
     * Define new classifier architecture and concatenate it with pretrained classifier
     * Fine-tune network with task-specific data
     * Apply the fine-tuned network for object-recognition
     
-    
+
 
 ### Autoencoder
 
@@ -101,15 +101,15 @@
 1. [Reinforcement Learning](rl/reinforcement.md)
 
 ### Modelling of Text
-     
-    
+
+
 16. [Modelling of Words and Texts / Word Embeddings](text/01ModellingWordsAndTexts.ipynb) 
     * Concept of Word-Embeddings
     * Skip-Gram and CBOW
     * Working with pretrained word-embeddings
     
-    
-    
+
+
 14. [Text Classification with CNNs and LSTMs](text/02TextClassification.ipynb)
     * Example Data: IMDB-Movie Reviews for Sentiment Classification
     * Text preprocessing and representation with Keras
