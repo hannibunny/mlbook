@@ -606,18 +606,18 @@ x=[2,2.5],
 <p>which must be classified. For this we just insert this point into <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="o">=-</span><span class="mi">5</span><span class="o">+</span><span class="mf">1.43</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="o">=-</span><span class="mi">5</span><span class="o">+</span><span class="mf">1.43</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="mf">2.5</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.14000000000000012
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3599999999999999
 </pre></div>
 </div>
 </div>
 </div>
-<p>Since we obtain <span class="math notranslate nohighlight">\(g(\mathbf{x})&lt;0\)</span>, this datapoint can be assigned to the class with label <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>Since we obtain <span class="math notranslate nohighlight">\(g(\mathbf{x})&gt;0\)</span>, this datapoint can be assigned to the class with label <span class="math notranslate nohighlight">\(1\)</span>.</p>
 </section>
 <section id="k-ary-linear-classification-in-d-dimensional-space">
 <h3>K-ary linear classification in <span class="math notranslate nohighlight">\(d\)</span>-dimensional space<a class="headerlink" href="#k-ary-linear-classification-in-d-dimensional-space" title="Permalink to this headline">¶</a></h3>
@@ -686,7 +686,7 @@ y=sigmoid(g(\mathbf{x}))=\frac{1}{1+e^{-g(\mathbf{x})}}.
 </ul>
 <p>Moreover:</p>
 <ul class="simple">
-<li><p>if <span class="math notranslate nohighlight">\(y\)</span> is close to <span class="math notranslate nohighlight">\(0\)</span>, then we have a<strong>high confidence</strong> for the decision for class-label 0.</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(y\)</span> is close to <span class="math notranslate nohighlight">\(0\)</span>, then we have a <strong>high confidence</strong> for the decision for class-label 0.</p></li>
 <li><p>if <span class="math notranslate nohighlight">\(y\)</span> is close to <span class="math notranslate nohighlight">\(1\)</span>, then we have a <strong>high confidence</strong> for the decision for class-label 1.</p></li>
 <li><p>if <span class="math notranslate nohighlight">\(y\)</span> approximates <span class="math notranslate nohighlight">\(0.5\)</span> from below, then we have a <strong>low confidence</strong> for the decision for class-label 0.</p></li>
 <li><p>if <span class="math notranslate nohighlight">\(y\)</span> approximates <span class="math notranslate nohighlight">\(0.5\)</span> from above, then we have a <strong>low confidence</strong> for the decision for class-label 1.</p></li>
@@ -727,7 +727,7 @@ E(T,\Theta)= \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}).
 <p>With <strong>Linear Classification</strong> one can not only learn linear discriminators <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-discriminant">(15)</a>. Instead the same trick as already introduced in section <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a> can be applied to learn nonlinear discriminator surfaces: Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Classifier</strong> with discriminator(s) of type</p>
 <div class="math notranslate nohighlight" id="equation-genlin">
 <span class="eqno">(23)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">¶</a></span>\[
-g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + \Phi_2(\mathbf{x}) + \cdots + \Phi_z(\mathbf{x})
+g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w_z \Phi_z(\mathbf{x})
 \]</div>
 <p>can be learned. This type of generalization can be applied to binary- and non-binary- and to simple and logistic classification.</p>
 </section>

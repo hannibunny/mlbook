@@ -1,3 +1,4 @@
+---
 # Linear Regression
 
 For a given set of labeled training data
@@ -9,7 +10,6 @@ where the targets $r_t$ are numeric values, usually from $\mathcal{R}$ and the i
 
 
 We usually assume that the targets $r$ can be calculated as a sum of a determinisitc function $f(\mathbf{x})$ and a non-determininstic noise $n$
-
 
 $$
 r=f(\mathbf{x})+n,

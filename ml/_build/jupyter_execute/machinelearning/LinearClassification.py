@@ -170,11 +170,11 @@ for x in T[4:,:2]:
 # In[7]:
 
 
-output=-5+1.43*2+1*2
+output=-5+1.43*2+1*2.5
 print(output)
 
 
-# Since we obtain $g(\mathbf{x})<0$, this datapoint can be assigned to the class with label $0$.
+# Since we obtain $g(\mathbf{x})>0$, this datapoint can be assigned to the class with label $1$.
 
 # ### K-ary linear classification in $d$-dimensional space
 # 
@@ -247,7 +247,7 @@ plt.show()
 # * If $y=sigmoid(g(\mathbf{x}))  < 0.5$ then assign class-label $0$
 # 
 # Moreover:
-# * if $y$ is close to $0$, then we have a**high confidence** for the decision for class-label 0.
+# * if $y$ is close to $0$, then we have a **high confidence** for the decision for class-label 0.
 # * if $y$ is close to $1$, then we have a **high confidence** for the decision for class-label 1.
 # * if $y$ approximates $0.5$ from below, then we have a **low confidence** for the decision for class-label 0.
 # * if $y$ approximates $0.5$ from above, then we have a **low confidence** for the decision for class-label 1. 
@@ -290,7 +290,7 @@ plt.show()
 # With **Linear Classification** one can not only learn linear discriminators $g(\mathbf{x})$ of type {eq}`discriminant`. Instead the same trick as already introduced in section [Linear Regression](LinReg.md) can be applied to learn nonlinear discriminator surfaces: Since we are free to preprocess the input vectors $\mathbf{x}$ with an arbitrary aomount $z$ of preprocessing functions $\Phi_i$ of arbitrary type (linear and non-linear), a **Generlized Linear Classifier** with discriminator(s) of type 
 # 
 # $$
-# g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + \Phi_2(\mathbf{x}) + \cdots + \Phi_z(\mathbf{x})
+# g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w_z \Phi_z(\mathbf{x})
 # $$ (genlin)
 # 
 # can be learned. This type of generalization can be applied to binary- and non-binary- and to simple and logistic classification.

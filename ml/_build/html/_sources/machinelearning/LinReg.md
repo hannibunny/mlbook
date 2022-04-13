@@ -10,6 +10,7 @@ where the targets $r_t$ are numeric values, usually from $\mathcal{R}$ and the i
 
 We usually assume that the targets $r$ can be calculated as a sum of a determinisitc function $f(\mathbf{x})$ and a non-determininstic noise $n$
 
+
 $$
 r=f(\mathbf{x})+n,
 $$
@@ -137,7 +138,7 @@ $$ (minweights)
 With **Linear Regression** one can not only learn linear functions $g(\mathbf{x})$ of type {eq}`linfunction`. Since we are free to preprocess the input vectors $\mathbf{x}$ with an arbitrary aomount $z$ of preprocessing functions $\Phi_i$ of arbitrary type (linear and non-linear), a **Generlized Linear Regression** of type 
 
 $$
-g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + \Phi_2(\mathbf{x}) + \cdots + \Phi_z(\mathbf{x})
+g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w_z \Phi_z(\mathbf{x})
 $$ (genlin)
 
 can be learned. Note that this is still called **linear** regression, because we are still linear in the variable's $w_i$.
@@ -194,7 +195,6 @@ The different techniques described below all perform linear regression, but diff
 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png
----
 align: center
 width: 800pt
 name: regular
