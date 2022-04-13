@@ -32,7 +32,7 @@
 get_ipython().system('pip install -q tensorflow-text==2.6.0')
 
 
-# In[23]:
+# In[2]:
 
 
 import os

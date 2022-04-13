@@ -1042,57 +1042,62 @@ In order to learn such a predictor a large but unlabeled corpus is required. The
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">68</span><span class="o">/</span><span class="mi">9</span><span class="n">tltm6l520v0stj3qjlc5v9w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_33255</span><span class="o">/</span><span class="mf">3940196898.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Creating the model</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(&#39;/Users/maucher/DataSets/Gensim/FastText/Gensim/FastText/wiki-news-300d-1M.vec&#39;)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(r&#39;C:\Users\maucher\DataSets\Gensim\Data\Fasttext\wiki-news-300d-1M.vec\wiki-news-300d-1M.vec&#39;) #path on surface</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">en_model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s1">&#39;/Users/johannes/DataSets/Gensim/FastText/fasttextEnglish300.vec&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Getting the tokens</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Getting the tokens </span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1627</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1628</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1629</span><span class="sd">         return _load_word2vec_format(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1630</span><span class="sd">             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode_errors=unicode_errors,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1631</span><span class="sd">             limit=limit, datatype=datatype, no_header=no_header,</span>
+<span class="nn">File ~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py:1629,</span> in <span class="ni">KeyedVectors.load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1582</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">1583</span> <span class="k">def</span> <span class="nf">load_word2vec_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1584</span>         <span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">fvocab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1585</span>         <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">REAL</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1586</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1587</span>     <span class="sd">&quot;&quot;&quot;Load KeyedVectors from a file produced by the original C word2vec-tool format.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1588</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span><span class="sd">     Warnings</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1627</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1628</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1629</span>     <span class="k">return</span> <span class="n">_load_word2vec_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1630</span>         <span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">fvocab</span><span class="o">=</span><span class="n">fvocab</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="o">=</span><span class="n">unicode_errors</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1631</span>         <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">datatype</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="n">no_header</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span>     <span class="p">)</span>
 
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1974</span><span class="sd">             )</span>
-<span class="g g-Whitespace">   </span><span class="mi">1975</span><span class="sd">         else:</span>
-<span class="ne">-&gt; </span><span class="mi">1976</span><span class="sd">             _word2vec_read_text(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, encoding)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1977</span><span class="sd">     if kv.vectors.shape[0] != len(kv):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1978</span><span class="sd">         logger.info(</span>
+<span class="nn">File ~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py:1955,</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1952</span>             <span class="n">counts</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1954</span> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;loading projection weights from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1955</span> <span class="k">with</span> <span class="n">utils</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1956</span>     <span class="k">if</span> <span class="n">no_header</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1957</span>         <span class="c1"># deduce both vocab_size &amp; vector_size from 1st pass over file</span>
+<span class="g g-Whitespace">   </span><span class="mi">1958</span>         <span class="k">if</span> <span class="n">binary</span><span class="p">:</span>
 
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_word2vec_read_text</span><span class="nt">(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, encoding)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1880</span><span class="sd">             raise EOFError(&quot;unexpected end of input; is count incorrect or file otherwise damaged?&quot;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1881</span><span class="sd">         word, weights = _word2vec_line_to_vector(line, datatype, unicode_errors, encoding)</span>
-<span class="ne">-&gt; </span><span class="mi">1882</span><span class="sd">         _add_word_to_kv(kv, counts, word, weights, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1883</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1884</span><span class="sd"> </span>
+<span class="nn">File ~/opt/anaconda3/envs/books/lib/python3.8/site-packages/smart_open/smart_open_lib.py:188,</span> in <span class="ni">open</span><span class="nt">(uri, mode, buffering, encoding, errors, newline, closefd, opener, ignore_ext, compression, transport_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="k">if</span> <span class="n">transport_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="n">transport_params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">188</span> <span class="n">fobj</span> <span class="o">=</span> <span class="n">_shortcut_open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span>     <span class="n">uri</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span>     <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="n">buffering</span><span class="o">=</span><span class="n">buffering</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>     <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span> <span class="k">if</span> <span class="n">fobj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span>     <span class="k">return</span> <span class="n">fobj</span>
 
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1831</span><span class="sd">         logger.warning(&quot;vocabulary file is incomplete: &#39;%s&#39; is missing&quot;, word)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1832</span><span class="sd">         word_count = None</span>
-<span class="ne">-&gt; </span><span class="mi">1833</span><span class="sd">     kv.set_vecattr(word, &#39;count&#39;, word_count)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1834</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1835</span><span class="sd"> </span>
+<span class="nn">File ~/opt/anaconda3/envs/books/lib/python3.8/site-packages/smart_open/smart_open_lib.py:361,</span> in <span class="ni">_shortcut_open</span><span class="nt">(uri, mode, compression, buffering, encoding, errors, newline)</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="k">if</span> <span class="n">errors</span> <span class="ow">and</span> <span class="s1">&#39;b&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="n">open_kwargs</span><span class="p">[</span><span class="s1">&#39;errors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">errors</span>
+<span class="ne">--&gt; </span><span class="mi">361</span> <span class="k">return</span> <span class="n">_builtin_open</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=</span><span class="n">buffering</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
 
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">set_vecattr</span><span class="nt">(self, key, attr, val)</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">345</span>         <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
-<span class="g g-Whitespace">    </span><span class="mi">346</span>         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">allocate_vecattrs</span><span class="nt">(self, attrs, types)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>             <span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">target_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index_to_key</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">304</span>         <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span>             <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>                 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span>  <span class="c1"># ensure &#39;int&#39; type 64-bit (numpy-on-Windows https://github.com/numpy/numpy/issues/9464)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/johannes/DataSets/Gensim/FastText/fasttextEnglish300.vec&#39;
 </pre></div>
 </div>
 </div>

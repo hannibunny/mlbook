@@ -121,6 +121,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/heartRateRegression.html">
    Example Linear Regression
   </a>
@@ -389,7 +394,7 @@
 <figure class="align-center" id="backgammon">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 60 </span><span class="caption-text">In Backgammon alone the number of states is estimated to be in the range of <span class="math notranslate nohighlight">\(10^{20}.\)</span></span><a class="headerlink" href="#backgammon" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 61 </span><span class="caption-text">In Backgammon alone the number of states is estimated to be in the range of <span class="math notranslate nohighlight">\(10^{20}.\)</span></span><a class="headerlink" href="#backgammon" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The problem, that a multiple traversion of all state action pairs is not feasible, is solved by learning a regression model, i.e. a function, which maps Q-Values to each possible state-action pair. In this approach <strong>Reinforcement-Learning and Supervised Learning are combined</strong> in the way that e.g. Q-Learning is applied to provide <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values for a limited set of state-action pairs. Then a supervised ML-algorithm, e.g. a MLP, is applied to learn a function</p>
@@ -405,7 +410,7 @@ f: (S,A) \rightarrow Q(S,A).
 <figure class="align-center" id="atariscreenshots">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 61 </span><span class="caption-text">Screenshots of some classical Atari computer games, for which DQN has been applied to learn a good <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function.</span><a class="headerlink" href="#atariscreenshots" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 62 </span><span class="caption-text">Screenshots of some classical Atari computer games, for which DQN has been applied to learn a good <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function.</span><a class="headerlink" href="#atariscreenshots" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>In this subsection the concept of DQN, as developed in <span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span>, will be described.</p>
@@ -414,14 +419,14 @@ f: (S,A) \rightarrow Q(S,A).
 <figure class="align-center" id="statetoactionvalue">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 62 </span><span class="caption-text">Predicting a Q-value for each state-action pair at the input of a network is conceptionally the same as predicting for a given input state a Q-value for each possible action. Image Source: <a class="reference external" href="http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf">http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf</a></span><a class="headerlink" href="#statetoactionvalue" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 63 </span><span class="caption-text">Predicting a Q-value for each state-action pair at the input of a network is conceptionally the same as predicting for a given input state a Q-value for each possible action. Image Source: <a class="reference external" href="http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf">http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf</a></span><a class="headerlink" href="#statetoactionvalue" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The input to the CNN represents the current game state. The output of the DQN has as much elements as the maximal number of actions available. Atari classical games have been controlled by a joystick, which provides 18 different postions. For each of these 18 actions one Q-value is estimated for the current input state.</p>
 <figure class="align-center" id="dqnarchitecture">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 63 </span><span class="caption-text">Architectur of the DQN CNN. Image Source: <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span></span><a class="headerlink" href="#dqnarchitecture" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 64 </span><span class="caption-text">Architectur of the DQN CNN. Image Source: <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span></span><a class="headerlink" href="#dqnarchitecture" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The input to the network represents the current game state. In general a <em>state</em> should always contain as much as relevant information as possible. In computer games <strong>movement</strong> is obviously a relevant information. Since movement can not be obtained by observing only a single frame of the screencast, four successive frames are applied to the input of the network. However, these frames are not directly passed to the first layer of the CNN, instead a <strong>preprocessed version of 4 successive frames of the screencast</strong> are used.</p>
@@ -429,7 +434,7 @@ f: (S,A) \rightarrow Q(S,A).
 <figure class="align-center" id="dqnparams">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 64 </span><span class="caption-text">Hyperparameters of the DQN CNN. Image Source: <span id="pending-xref-5">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span></span><a class="headerlink" href="#dqnparams" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 65 </span><span class="caption-text">Hyperparameters of the DQN CNN. Image Source: <span id="pending-xref-5">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span></span><a class="headerlink" href="#dqnparams" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -440,7 +445,7 @@ f: (S,A) \rightarrow Q(S,A).
 <li><p>Apply an emulator, which models the environment. The emulator provides for each state <span class="math notranslate nohighlight">\(s\)</span> the set of possible actions <span class="math notranslate nohighlight">\(A(s)\)</span>. Moreover, the emulator allows to select for the given state <span class="math notranslate nohighlight">\(s\)</span> a corresponding action <span class="math notranslate nohighlight">\(a \in A(s)\)</span> and the possibility to execute this action. For action-selection e.g. the <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy policy an be applied (see <a class="reference internal" href="reinforcement.html"><span class="doc std std-doc">previous page</span></a>). After the execution of <span class="math notranslate nohighlight">\(a\)</span> the emulator returns the obtained reward <span class="math notranslate nohighlight">\(r\)</span> and the new state <span class="math notranslate nohighlight">\(s'\)</span>. Starting from an arbitrary initial state one can thus select a set <span class="math notranslate nohighlight">\(D\)</span> of quadruples <span class="math notranslate nohighlight">\((s,a,r,s')\)</span>. The quadruple set <strong><span class="math notranslate nohighlight">\(D\)</span> is called Replay Memory</strong>.</p></li>
 <li><p>Apply the quadruple-set <span class="math notranslate nohighlight">\(D\)</span> as training-data for the deep neural network, which learns a function <span class="math notranslate nohighlight">\(f: (S,A) \rightarrow Q(S,A)\)</span>.</p></li>
 </ol>
-<p>During training, the weights <span class="math notranslate nohighlight">\(\Theta\)</span> of the DQN are iteratively adapted such that a Loss-Function is minimzed (this learning-approach is called <em>(Stochastic) Gradient Descent</em>). The loss-function in general somehow measures the <strong>difference between the current network output and the corresponding target value</strong>. For the given DQN the <strong>network outputs</strong> are <span class="math notranslate nohighlight">\(Q(s,a,\Theta)\)</span>-values for a given quadruple <span class="math notranslate nohighlight">\((s,a,r,s')\)</span> at the input with the current network-weights <span class="math notranslate nohighlight">\(\Theta\)</span>. <strong>But what are the target values?</strong> In Q-learning the state-action-value-update rule, as already defined in equation <a class="reference internal" href="reinforcement.html#equation-qlearnupdate">(86)</a>, is</p>
+<p>During training, the weights <span class="math notranslate nohighlight">\(\Theta\)</span> of the DQN are iteratively adapted such that a Loss-Function is minimzed (this learning-approach is called <em>(Stochastic) Gradient Descent</em>). The loss-function in general somehow measures the <strong>difference between the current network output and the corresponding target value</strong>. For the given DQN the <strong>network outputs</strong> are <span class="math notranslate nohighlight">\(Q(s,a,\Theta)\)</span>-values for a given quadruple <span class="math notranslate nohighlight">\((s,a,r,s')\)</span> at the input with the current network-weights <span class="math notranslate nohighlight">\(\Theta\)</span>. <strong>But what are the target values?</strong> In Q-learning the state-action-value-update rule, as already defined in equation <a class="reference internal" href="reinforcement.html#equation-qlearnupdate">(100)</a>, is</p>
 <div class="math notranslate nohighlight">
 \[
 Q(s,a) := Q(s,a) + \alpha \left[r + \gamma \max\limits_{a'} Q(s',a') - Q(s,a) \right],
@@ -491,7 +496,7 @@ Q(s,a) := Q(s,a) + \alpha \left[r + \gamma \max\limits_{a'} Q(s',a') - Q(s,a) \r
 <figure class="align-center" id="dqnscores">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 65 </span><span class="caption-text">DQN performance compared to human players. Image Source: <span id="pending-xref-6">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span></span><a class="headerlink" href="#dqnscores" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 66 </span><span class="caption-text">DQN performance compared to human players. Image Source: <span id="pending-xref-6">[<a class="reference internal" href="../referenceSection.html#citation-38">MKS+13</a>]</span></span><a class="headerlink" href="#dqnscores" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <hr class="footnotes docutils" />
