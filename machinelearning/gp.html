@@ -459,7 +459,7 @@
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In the previous sections <strong>parametric</strong> and <strong>non-parametric</strong> supervised ML-methods have been introduced. In parametric algorithms, such as <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a> one assumes a certain model type (e.g. the model is a linear function) and the algorithm learns the parameters of this model type (e.g. slope and bias) such that the concrete model fits well to the given training data. One the other hand a non-parametric approach such as <a class="reference internal" href="knn.html"><span class="doc std std-doc">K-Nearest Neighbors</span></a> does not require any assumptions about the model-type and it does not learn any parameters, that define a model. Instead it just saves all training data and predicts the output of new data by determining the nearest training instances.</p>
 <p>Parametric methods are weak, if the assumption on the model-type is inadequate. After the training phase the entire knowledge of the training data is compressed in a few model parameters. This may constitute waste of information. For example, after training we do not know in which regions much training data has been available and hence predictions may have an increased reliabilty. The drawback of non-parametric methods is their large memory footprint and their long inference time. Moreover, since we do not have a model, predictions in regions, where no training-data has been available, are quite unreliable.</p>
-<p>In this context a <strong>Gaussian Process</strong> can be considered to be a <strong>semi-parametric</strong> supervised ML-algorithm. In the inference phase the predictions are calculated from training data. It is not necessary to assume a certain model type (therefore non-parametric). However, on must assume a way how predictions are calculated from training data and possibly learn parameters, which specify this way (therefore parametric).</p>
+<p>In this context a <strong>Gaussian Process</strong> can be considered to be a <strong>semi-parametric</strong> supervised ML-algorithm. In the inference phase the predictions are calculated from training data. It is not necessary to assume a certain model type (therefore non-parametric). However, one must assume a way how predictions are calculated from training data and possibly learn parameters, which specify this way (therefore parametric).</p>
 <p>Gaussian Processes can be applied for regression and classification. However, in practice they are mostly applied for regression. In this lecture only the regression-case is considered.</p>
 </section>
 <section id="recap-gaussian-normal-distribution">
@@ -467,7 +467,7 @@
 <p>A Gaussian Process is closely related to a <strong>Multidimensional Gaussian Distribution</strong>. Therefore, we first recall univariate and multivariate Gaussian distributions, before the Gaussian Process and it’s application for Regression will be described.</p>
 <section id="univariate">
 <h3>Univariate<a class="headerlink" href="#univariate" title="Permalink to this headline">¶</a></h3>
-<p>The Power Density Function (PDF) of a <strong>Gaussian distribed random variable <span class="math notranslate nohighlight">\(X\)</span></strong> is:</p>
+<p>The Probability Density Function (PDF) of a <strong>Gaussian distribed random variable <span class="math notranslate nohighlight">\(X\)</span></strong> is:</p>
 <div class="math notranslate nohighlight" id="equation-gausspdfuni">
 <span class="eqno">(52)<a class="headerlink" href="#equation-gausspdfuni" title="Permalink to this equation">¶</a></span>\[
 p_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, 
@@ -485,7 +485,7 @@ p_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
 X \sim \mathcal{N}(\mu,\sigma^2)
 \]</div>
 <p><strong>Estimate parameters from data:</strong></p>
-<p>The univariate Gaussian distribution, as defined in equation <a class="reference internal" href="#equation-gausspdfuni">(52)</a> is completely defined by the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. If a sample of <span class="math notranslate nohighlight">\(Z\)</span> values <span class="math notranslate nohighlight">\(x_i\)</span> of a univariate random variable <span class="math notranslate nohighlight">\(X\)</span> are given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.</p>
+<p>The univariate Gaussian distribution, as defined in equation <a class="reference internal" href="#equation-gausspdfuni">(52)</a> is completely defined by the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. If a sample of <span class="math notranslate nohighlight">\(Z\)</span> values <span class="math notranslate nohighlight">\(x_i\)</span> of a univariate random variable <span class="math notranslate nohighlight">\(X\)</span> is given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.</p>
 <p>Estimate for <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -499,7 +499,7 @@ s=\sqrt{\frac{1}{Z-1}\sum_{i=1}^Z (x_i-m)^2}.
 </section>
 <section id="multivariate">
 <h3>Multivariate<a class="headerlink" href="#multivariate" title="Permalink to this headline">¶</a></h3>
-<p>The Power Density Function (PDF) of a <strong>Multidimensional Gaussian Distribution</strong> is:</p>
+<p>The Probability Density Function (PDF) of a <strong>Multidimensional Gaussian Distribution</strong> is:</p>
 <div class="math notranslate nohighlight" id="equation-gausspdfmulti">
 <span class="eqno">(53)<a class="headerlink" href="#equation-gausspdfmulti" title="Permalink to this equation">¶</a></span>\[
   p(\mathbf{x})=\frac{1}{(2 \pi)^{d/2} |\Sigma|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}- \boldsymbol\mu)^T \Sigma^{-1}(\mathbf{x}-\boldsymbol\mu)\right] , \quad -\infty &lt; x &lt; \infty 
@@ -782,24 +782,24 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.41352604 -0.43669308 -0.20117369  0.28166649  0.96857773  1.7926961
-   2.67305632  3.52344055  4.26111074  4.81551426  5.13479431  5.18735355
-   4.95841493  4.44533371  3.65673961  2.61793932  1.3801607   0.02736352
-  -1.32627791 -2.55200985 -3.53333411 -4.19595243 -4.52893243 -4.58640724
-  -4.46616166 -4.27183927 -4.07378234 -3.88443992 -3.65701235 -3.30522273
-  -2.73454998 -1.87422347 -0.70261151  0.73815848  2.3414375 ]
- [ 0.51403948  0.75790405  1.07412238  1.49397805  2.02711177  2.65424535
-   3.32869359  3.98559402  4.5557398   4.98015928  5.22143929  5.26809919
-   5.12997668  4.82608218  4.37052974  3.76418928  2.99750488  2.06395926
-   0.97733628 -0.21663685 -1.4406159  -2.59758009 -3.58829739 -4.32718761
-  -4.75302065 -4.83534415 -4.57882296 -4.02515949 -3.24908007 -2.3449246
-  -1.40463789 -0.49374282  0.36477036  1.19019136  2.02512215]
- [ 0.32609092  0.34581129  0.32356379  0.2764557   0.23152152  0.21729216
-   0.25849173  0.37284926  0.56768445  0.83520374  1.14809446  1.45878825
-   1.70520796  1.82323232  1.76303789  1.50426778  1.06438138  0.49595494
-  -0.12768144 -0.73405604 -1.27182094 -1.7204952  -2.08485008 -2.37672032
-  -2.59391637 -2.70788554 -2.66725303 -2.41569863 -1.91492935 -1.16139306
-  -0.18977847  0.93607588  2.13843921  3.33975285  4.47144107]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.12030366 -0.20315653 -0.23881343 -0.19540537 -0.03996447  0.25573524
+   0.704123    1.28821109  1.95185044  2.60074141  3.11745653  3.38784891
+   3.33074064  2.92008805  2.19056483  1.22386975  0.12168957 -1.02248344
+  -2.14061953 -3.19117504 -4.14763191 -4.98403111 -5.66632198 -6.15286945
+  -6.40155155 -6.37822708 -6.0625016  -5.44958542 -4.54927667 -3.38382358
+  -1.98614974 -0.39941589  1.32164753  3.10803708  4.87412764]
+ [ 3.84147734  3.52817995  3.20824526  2.95974635  2.84405076  2.89061666
+   3.09240005  3.41083618  3.78639296  4.15042728  4.43553205  4.58342219
+   4.55067164  4.31280317  3.86658989  3.22985475  2.43836073  1.54044597
+   0.5909223  -0.35430487 -1.24216138 -2.02472255 -2.65992477 -3.11089115
+  -3.34481882 -3.333176   -3.05468304 -2.50078261 -1.68109917 -0.625665
+   0.61763284  1.98904057  3.4232172   4.85324306  6.21189961]
+ [ 3.77484605  3.77538284  3.77241657  3.80538166  3.89001874  4.00701771
+   4.10940478  4.14221006  4.06166035  3.84350748  3.47865255  2.96271917
+   2.28920091  1.45203005  0.45612358 -0.67123423 -1.87586975 -3.08227236
+  -4.20634993 -5.16906909 -5.90589386 -6.37121016 -6.54029501 -6.410941
+  -6.0034722  -5.35562455 -4.51095165 -3.50499789 -2.35739173 -1.07575548
+   0.33043719  1.83533985  3.39162874  4.9378235   6.41129636]]
 </pre></div>
 </div>
 </div>
