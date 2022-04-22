@@ -11,7 +11,7 @@
 # 
 # Parametric methods are weak, if the assumption on the model-type is inadequate. After the training phase the entire knowledge of the training data is compressed in a few model parameters. This may constitute waste of information. For example, after training we do not know in which regions much training data has been available and hence predictions may have an increased reliabilty. The drawback of non-parametric methods is their large memory footprint and their long inference time. Moreover, since we do not have a model, predictions in regions, where no training-data has been available, are quite unreliable.
 # 
-# In this context a **Gaussian Process** can be considered to be a **semi-parametric** supervised ML-algorithm. In the inference phase the predictions are calculated from training data. It is not necessary to assume a certain model type (therefore non-parametric). However, on must assume a way how predictions are calculated from training data and possibly learn parameters, which specify this way (therefore parametric). 
+# In this context a **Gaussian Process** can be considered to be a **semi-parametric** supervised ML-algorithm. In the inference phase the predictions are calculated from training data. It is not necessary to assume a certain model type (therefore non-parametric). However, one must assume a way how predictions are calculated from training data and possibly learn parameters, which specify this way (therefore parametric). 
 # 
 # Gaussian Processes can be applied for regression and classification. However, in practice they are mostly applied for regression. In this lecture only the regression-case is considered.
 # 
@@ -22,7 +22,7 @@
 # 
 # ### Univariate
 # 
-# The Power Density Function (PDF) of a **Gaussian distribed random variable $X$** is: 
+# The Probability Density Function (PDF) of a **Gaussian distribed random variable $X$** is: 
 # 
 # $$
 # p_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, 
@@ -47,7 +47,7 @@
 # 
 # **Estimate parameters from data:**
 # 
-# The univariate Gaussian distribution, as defined in equation {eq}`gausspdfuni` is completely defined by the parameters $\mu$ and $\sigma$. If a sample of $Z$ values $x_i$ of a univariate random variable $X$ are given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.
+# The univariate Gaussian distribution, as defined in equation {eq}`gausspdfuni` is completely defined by the parameters $\mu$ and $\sigma$. If a sample of $Z$ values $x_i$ of a univariate random variable $X$ is given and it can be assumed that the random variable is Gaussian distributed, the mean-value and the standard deviation can be estimated as follows.
 # 
 # Estimate for $\mu$:
 # 
@@ -66,7 +66,7 @@
 # 
 # ### Multivariate
 # 
-# The Power Density Function (PDF) of a **Multidimensional Gaussian Distribution** is:
+# The Probability Density Function (PDF) of a **Multidimensional Gaussian Distribution** is:
 # 
 # $$
 #   p(\mathbf{x})=\frac{1}{(2 \pi)^{d/2} |\Sigma|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}- \boldsymbol\mu)^T \Sigma^{-1}(\mathbf{x}-\boldsymbol\mu)\right] , \quad -\infty < x < \infty 

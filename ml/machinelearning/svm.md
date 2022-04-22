@@ -29,7 +29,7 @@ Data, which is not linear-separable in the original 2-dimensional space may be l
 ```
 
 
-Another important property of SVM classifiers is that **they found good class-boundaries**. In order to understand what is meant by *good class-boundary* take a look at the picture below. The 4 subplots contain the same training-data but four different class-boundaries, each of which discriminates the given training data error-free. The question is *which of these discriminantes is the best?* The discriminantes in the right column are not robust, because in some regions the datapoints are quite close to the boundary. The discriminant in the top left subplot is the most robust, i.e. the one which generalizes best, because the training-data-free range around the discriminant is maximal. **A SVM classifier actually finds such robust class-boundaries by maximizing the training-data-free range around the discriminant.** 
+Another important property of SVM classifiers is that **they find good class-boundaries**. In order to understand what is meant by *good class-boundary* take a look at the picture below. The 4 subplots contain the same training-data but four different class-boundaries, each of which discriminates the given training data error-free. The question is *which of these discriminantes is the best?* The discriminantes in the right column are not robust, because in some regions the datapoints are quite close to the boundary. The discriminant in the top left subplot is the most robust, i.e. the one which generalizes best, because the training-data-free range around the discriminant is maximal. **A SVM classifier actually finds such robust class-boundaries by maximizing the training-data-free range around the discriminant.** 
 
 
 
