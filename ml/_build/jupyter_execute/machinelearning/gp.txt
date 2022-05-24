@@ -1,0 +1,30 @@
+import numpy as np
+x=np.linspace(0,7,35) 
+mx=0.5+x*np.sin(x)    
+K=np.zeros((len(x),len(x)))
+for i in range(len(x)):
+    for j in range(i,len(x)):
+        k=2*np.exp(-0.5*(x[i]-x[j])**2) #covariance function
+        K[i][j]=k
+        K[j][i]=k
+
+pointset=np.random.multivariate_normal(mx,K,3) #Erzeugt 3 Samples einer multivariaten
+print(pointset)
+
+from matplotlib import pyplot as plt
+from scipy import r_
+plt.figure(figsize=(10,10))
+plt.plot(x,mx,label="mean $m(x)=0.5+x*sin(x)$")
+plt.plot(x,pointset[0],'--',color="gray")
+plt.plot(x,pointset[1],'-.',color="gray")
+plt.plot(x,pointset[2],color="gray")
+plt.text(0.5,6,"$m(x)=0.5+x*sin(x)$ \n$k(x,x')=2 \cdot \exp(0.5\cdot(x-x')^2)$",fontsize=14)
+plt.title('Random Samples and Mean from a Gaussian Process')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+fillx = r_[x, x[::-1]]
+vars=np.diag(K)
+stds=np.sqrt(vars)
+filly = r_[mx+2*stds, mx[::-1]-2*stds[::-1]]
+plt.fill(fillx, filly, facecolor='gray', edgecolor='white', alpha=0.3)
+plt.show()

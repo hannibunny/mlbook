@@ -15,7 +15,7 @@
 
 # Required Modules:
 
-# In[1]:
+# In[47]:
 
 
 #%matplotlib inline
@@ -27,14 +27,14 @@ import matplotlib.pyplot as plt
 
 # Read data from file. The first column contains an ID, the second column is the speed in m/s and the third column is the heartrate in beats/s.
 
-# In[2]:
+# In[48]:
 
 
 dataframe=pd.read_csv("HeartRate.csv",header=None,sep=";",decimal=",",index_col=0,names=["speed","heartrate"])
 dataframe
 
 
-# In[3]:
+# In[46]:
 
 
 numdata=dataframe.shape[0]
@@ -49,7 +49,7 @@ print("Number of samples:  ",numdata)
 # 
 # The function is tailored to the case, where input data consists of only a single feature. However, the function is implemented such that, it can not only be applied to learn a linear function, but a polynomial of arbitrary degree. The degree of the polynomial can be set by the `deg`-argument of the function.
 
-# In[4]:
+# In[93]:
 
 
 def calculateWeights(X,r,deg):
@@ -65,7 +65,7 @@ def calculateWeights(X,r,deg):
     return w
 
 
-# In[5]:
+# In[94]:
 
 
 features=dataframe["speed"].values
@@ -81,7 +81,7 @@ targets=dataframe["heartrate"].values
 # 
 # by setting the `deg`-argument of the function `calculateWeights()` to 1:
 
-# In[6]:
+# In[95]:
 
 
 degree=1
@@ -93,7 +93,7 @@ for i in range(len(w)):
 
 # The learned model and the training samples are plotted below:
 
-# In[7]:
+# In[96]:
 
 
 plt.figure(figsize=(10,8))
@@ -115,7 +115,7 @@ plt.show()
 
 # Finally the mean absolute distance (MAD) and the Mean Square Error (MSE) are calculated.
 
-# In[8]:
+# In[97]:
 
 
 pred=np.zeros(numdata)
@@ -141,7 +141,7 @@ print('MSE = ',mse)
 # 
 # we repeat the steps for `deg=2`:
 
-# In[9]:
+# In[101]:
 
 
 degree=2
@@ -151,7 +151,7 @@ for i in range(len(w)):
     print("w%d = %3.2f"%(i,w[i]))
 
 
-# In[10]:
+# In[102]:
 
 
 plt.figure(figsize=(10,8))
@@ -171,7 +171,7 @@ plt.plot(speedrange,hrrange)
 plt.show()
 
 
-# In[11]:
+# In[103]:
 
 
 pred=np.zeros(numdata)
@@ -195,7 +195,7 @@ print('MSE = ',mse)
 # 
 # we repeat the steps for `deg=3`:
 
-# In[12]:
+# In[104]:
 
 
 degree=3
@@ -205,7 +205,7 @@ for i in range(len(w)):
     print("w%d = %3.2f"%(i,w[i]))
 
 
-# In[13]:
+# In[105]:
 
 
 plt.figure(figsize=(10,8))
@@ -225,7 +225,7 @@ plt.plot(speedrange,hrrange)
 plt.show()
 
 
-# In[14]:
+# In[106]:
 
 
 pred=np.zeros(numdata)
@@ -241,13 +241,13 @@ print('MSE = ',mse)
 
 # ## Same solution, now using Scikit Learn
 
-# In[15]:
+# In[111]:
 
 
 degree=3
 
 
-# In[16]:
+# In[112]:
 
 
 from sklearn import linear_model
@@ -271,7 +271,7 @@ w=np.array(wlist)
 print(w)
 
 
-# In[17]:
+# In[113]:
 
 
 # Plot training samples

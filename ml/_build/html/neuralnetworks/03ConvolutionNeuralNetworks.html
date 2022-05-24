@@ -882,7 +882,7 @@ o=\frac{r-a+2p}{s}+1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fae3ef0db50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe0fbc92130&gt;
 </pre></div>
 </div>
 <img alt="../_images/03ConvolutionNeuralNetworks_37_1.png" src="../_images/03ConvolutionNeuralNetworks_37_1.png" />
@@ -921,6 +921,7 @@ o=\frac{r-a+2p}{s}+1.
 <img alt="../_images/03ConvolutionNeuralNetworks_40_0.png" src="../_images/03ConvolutionNeuralNetworks_40_0.png" />
 </div>
 </div>
+<p><a class="reference external" href="https://deeplizard.com/resource/pavq7noze2?utm">Deeplizard Convolution Filtering Demo</a></p>
 <p><a id="convLayer"></a></p>
 </section>
 </section>
@@ -1055,7 +1056,7 @@ These functions are defined and visualized below.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03ConvolutionNeuralNetworks_53_0.png" src="../_images/03ConvolutionNeuralNetworks_53_0.png" />
+<img alt="../_images/03ConvolutionNeuralNetworks_54_0.png" src="../_images/03ConvolutionNeuralNetworks_54_0.png" />
 </div>
 </div>
 </section>
@@ -1148,6 +1149,7 @@ These functions are defined and visualized below.</p></li>
 <p>CNNs (deep neural networks in general) usually consist of many layers and learnable parameters <span class="math notranslate nohighlight">\(\Rightarrow\)</span> A large set of training data is required to learn robust models. However, there exist approaches to apply deep neural networks with only small sets of trainingdata, e.g.</p>
 <ul class="simple">
 <li><p>Apply (and fine-tune) pretrained networks</p></li>
+<li><p>Apply Self-Supervised or Semi-Supervised Learning</p></li>
 <li><p>Apply <strong>Active Learning</strong></p></li>
 <li><p>Apply Data Augmentation techniques</p></li>
 </ul>
@@ -1273,7 +1275,7 @@ o=\frac{r-a+2p}{s}+1.
 <p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
-(a-1)(d-1).
+(a-1)d+1.
 \]</div>
 <p>The side-length of the filter-result is then</p>
 <div class="math notranslate nohighlight">

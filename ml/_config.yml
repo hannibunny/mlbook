@@ -7,6 +7,9 @@ only_build_toc_files: true
 
 bibtex_bibfiles:
   - maucherML.bib
+  
+execute:
+  execute_notebooks: 'off'
 
 parse:
   myst_extended_syntax: true

@@ -310,6 +310,8 @@ plt.imshow(imy,cmap=plt.cm.gray)
 plt.show()
 
 
+# [Deeplizard Convolution Filtering Demo](https://deeplizard.com/resource/pavq7noze2?utm)
+
 # <a id="convLayer"></a>
 # ### Convolutional Layer in CNNs
 # 
@@ -540,6 +542,7 @@ plt.show()
 # CNNs (deep neural networks in general) usually consist of many layers and learnable parameters $\Rightarrow$ A large set of training data is required to learn robust models. However, there exist approaches to apply deep neural networks with only small sets of trainingdata, e.g.
 # 
 # * Apply (and fine-tune) pretrained networks
+# * Apply Self-Supervised or Semi-Supervised Learning
 # * Apply **Active Learning**
 # * Apply Data Augmentation techniques
 # 
@@ -675,7 +678,7 @@ plt.show()
 # If the width of a filter without dilation is $a$, the corresponding area covered by this filter with a dilation rate of $d$ is 
 # 
 # $$
-# (a-1)(d-1).
+# (a-1)d+1.
 # $$
 # 
 # The side-length of the filter-result is then

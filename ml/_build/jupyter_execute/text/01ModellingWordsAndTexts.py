@@ -32,7 +32,7 @@
 # | not   | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 # | stay  | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
 
-# In[1]:
+# In[19]:
 
 
 import pandas as pd
@@ -40,7 +40,7 @@ import pandas as pd
 
 # A **word-index** is just a one-to-one mapping of words to integers. Usually the word-index defines the One-Hot-Encoding of words: If $i(w)$ is the index of word $w$, then the One-Hot-Encoding of $v(w)$ is a vector, which consists of only zeros, except at the element at position $i(w)$. The value at this position is 1.   
 
-# In[2]:
+# In[20]:
 
 
 simpleWordDF=pd.DataFrame(data=["all", "and", "at", "boys", "girls", "home", "kids", "not", "stay"])
@@ -48,7 +48,7 @@ print("\nWord Index:")
 simpleWordDF
 
 
-# In[3]:
+# In[21]:
 
 
 print("\nCorresponding One-Hot-Encoding")
@@ -92,14 +92,14 @@ pd.get_dummies(simpleWordDF,prefix="")
 #  
 # 
 
-# In[4]:
+# In[22]:
 
 
 from sklearn.feature_extraction.text import CountVectorizer
 vectorizer = CountVectorizer()
 
 
-# In[5]:
+# In[23]:
 
 
 corpus = ['not all kids stay at home.',
@@ -109,7 +109,7 @@ BoW = vectorizer.fit_transform(corpus)
 vectorizer.get_feature_names()
 
 
-# In[6]:
+# In[24]:
 
 
 BoW.toarray()
@@ -128,20 +128,20 @@ BoW.toarray()
 # where $df_j$ is the frequency of documents, in which term $j$ appears, and $N$ is the total number of documents. The advantage of tf-idf, compared to just tf-entries, is that in *tf-idf* the term-frequency *tf* is multiplied by a value *idf*,  which is small for less informative words, i.e. words which appear in many documents, and high for words, which appear in only few documents. It is assumed, that words, which appear only in a few documents have a stronger *semantic focus* and are therefore more important.
 # 
 
-# In[7]:
+# In[25]:
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer()
 
 
-# In[8]:
+# In[26]:
 
 
 tfidf_BoW = vectorizer.fit_transform(corpus)
 
 
-# In[9]:
+# In[27]:
 
 
 tfidf_BoW.toarray()
@@ -189,7 +189,7 @@ tfidf_BoW.toarray()
 # ### Fasttext Word-Embeddings
 # After downloading word embeddings from [FastText](https://fasttext.cc/) they can be imported as follows:
 
-# In[10]:
+# In[28]:
 
 
 from gensim.models import KeyedVectors

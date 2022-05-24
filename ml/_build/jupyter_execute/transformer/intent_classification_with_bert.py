@@ -25,14 +25,14 @@
 # ## Setup
 # 
 
-# In[1]:
+# In[22]:
 
 
 # Required to preprocess text for BERT inputs
 get_ipython().system('pip install -q tensorflow-text==2.6.0')
 
 
-# In[2]:
+# In[23]:
 
 
 import os

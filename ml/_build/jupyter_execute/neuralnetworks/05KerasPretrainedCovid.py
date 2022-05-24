@@ -12,7 +12,7 @@
 
 # The x-ray images of healthy and infected lungs can be downloaded from [here](https://www.dropbox.com/s/ahu4bqmjf4s51xw/dataset.zip?dl=0). After downloading, decompress the archive and assign the path of the resulting `dataset`-directory to the variable `datapath`. For example:
 
-# In[1]:
+# In[32]:
 
 
 datapath = "/Users/johannes/OneDrive - bwstaff/Data/dataset"
@@ -20,7 +20,7 @@ datapath = "/Users/johannes/OneDrive - bwstaff/Data/dataset"
 
 # ## Imports and Configuration
 
-# In[2]:
+# In[33]:
 
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator

@@ -38,13 +38,13 @@
 
 # ## Implementation of Variational Autoencoder
 
-# In[1]:
+# In[4]:
 
 
 #!pip install keras
 
 
-# In[2]:
+# In[5]:
 
 
 import numpy as np

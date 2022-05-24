@@ -219,7 +219,7 @@ print(output)
 
 # The graph of this function is depicted below. As can be seen, the functions value range is $[0,1]$. 
 
-# In[8]:
+# In[21]:
 
 
 x=np.arange(-8,8,0.1)

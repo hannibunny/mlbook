@@ -3,7 +3,7 @@
 
 # # Neural Networks Introduction
 # * Author: Johannes Maucher
-# * Last Update: 20.10.2020
+# * Last Update: 10.05.2022
 
 # ## Natural Neuron
 # 
@@ -192,7 +192,7 @@
 # In the case that the sigmoid-activation function is applied, the loss-function, which is minimized in the training procedure is the **binary cross-entropy function**: 
 # 
 # $$
-# E(T,\Theta)=  \sum\limits_{t=1}^N r_{t} \log y_{t}+(1-r_{t}) \log(1-y_{t}),
+# E(T,\Theta)=  - \sum\limits_{t=1}^N r_{t} \log y_{t}+(1-r_{t}) \log(1-y_{t}),
 # $$
 # 
 # where $r_t$ is the target class-index and $y_t$ is the output of the sigmoid-function, for the t.th training-element. Again, $\Theta=\lbrace w_0,w_1,\ldots, w_d \rbrace$ is the set of weights, which are adapted in the training process.
@@ -251,7 +251,7 @@
 # In the case that the softmax-activation function is applied, the loss-function, which is minimized in the training procedure is the **cross-entropy function**: 
 # 
 # $$
-# E(T,\Theta)= \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}),
+# E(T,\Theta)= - \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}),
 # $$
 # 
 # where $\Theta=\lbrace w_0,w_1,\ldots, w_d \rbrace$ is the set of weights, which are adapted in the training process. $r_{t,k}=1$, if the t.th training-element belongs to class $k$, otherwise it is 0. $y_{t,k}$ is the output of the k.th neuron for the t.th training-element.

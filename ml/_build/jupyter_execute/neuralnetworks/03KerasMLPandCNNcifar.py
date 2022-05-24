@@ -14,21 +14,21 @@
 
 # ## Imports and Configurations
 
-# In[1]:
+# In[40]:
 
 
 #!pip install Pillow
 #!pip install tensorflow-cpu
 
 
-# In[2]:
+# In[41]:
 
 
 #import tensorflow
 #from tensorflow import keras
 
 
-# In[3]:
+# In[42]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
