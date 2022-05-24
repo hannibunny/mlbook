@@ -760,7 +760,7 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 <p>Generate domain, mean-vector and covariance-matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span> 
 <span class="n">mx</span><span class="o">=</span><span class="mf">0.5</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    
 <span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
@@ -776,30 +776,8 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 <p>Generate 3 samples of a Multidimensional Gausian Distribution</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pointset</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#Erzeugt 3 Samples einer multivariaten</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pointset</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#Erzeugt 3 Samples einer multivariaten</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pointset</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.12030366 -0.20315653 -0.23881343 -0.19540537 -0.03996447  0.25573524
-   0.704123    1.28821109  1.95185044  2.60074141  3.11745653  3.38784891
-   3.33074064  2.92008805  2.19056483  1.22386975  0.12168957 -1.02248344
-  -2.14061953 -3.19117504 -4.14763191 -4.98403111 -5.66632198 -6.15286945
-  -6.40155155 -6.37822708 -6.0625016  -5.44958542 -4.54927667 -3.38382358
-  -1.98614974 -0.39941589  1.32164753  3.10803708  4.87412764]
- [ 3.84147734  3.52817995  3.20824526  2.95974635  2.84405076  2.89061666
-   3.09240005  3.41083618  3.78639296  4.15042728  4.43553205  4.58342219
-   4.55067164  4.31280317  3.86658989  3.22985475  2.43836073  1.54044597
-   0.5909223  -0.35430487 -1.24216138 -2.02472255 -2.65992477 -3.11089115
-  -3.34481882 -3.333176   -3.05468304 -2.50078261 -1.68109917 -0.625665
-   0.61763284  1.98904057  3.4232172   4.85324306  6.21189961]
- [ 3.77484605  3.77538284  3.77241657  3.80538166  3.89001874  4.00701771
-   4.10940478  4.14221006  4.06166035  3.84350748  3.47865255  2.96271917
-   2.28920091  1.45203005  0.45612358 -0.67123423 -1.87586975 -3.08227236
-  -4.20634993 -5.16906909 -5.90589386 -6.37121016 -6.54029501 -6.410941
-  -6.0034722  -5.35562455 -4.51095165 -3.50499789 -2.35739173 -1.07575548
-   0.33043719  1.83533985  3.39162874  4.9378235   6.41129636]]
 </pre></div>
 </div>
 </div>
@@ -807,7 +785,7 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 <p>Visualize the generated samples and the mean-function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">r_</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean $m(x)=0.5+x*sin(x)$&quot;</span><span class="p">)</span>
@@ -826,9 +804,6 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/gp_7_0.png" src="../_images/gp_7_0.png" />
 </div>
 </div>
 </section>
