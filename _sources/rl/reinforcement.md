@@ -448,7 +448,7 @@ In this context we refer by *Monte Carlo* to methods, based on *averaging comple
 As in the previous sections, the value of a state $V(s)$ is the *expected return*, which is defined to be the expected cumulative future discounted reward, starting from this state $s$. In order to estimate this value from experience, an obvious approach is to just generate many *random finite walks (episods)* of the agent. Whenever a given state $s$ is visited, the return for this state is available at the end of the episode. The expected return, i.e. the *value* of this state, is then just the average of all returns gathered over all episodes for this state. 
 
 
-```{admonition} First-visit MC prediction for estimating state-values $V$ of policy $\pi_*$
+```{admonition} First-visit MC prediction for estimating state-values $V$ of policy $\pi$
 ---
 name: first-visit
 ---
@@ -477,9 +477,9 @@ At this point, we can already post three differences of Monte Carlo (MC) compare
 
 #### Estimation of Action Value Functions
 
-In the case of *complete knowledge* it was easy to derive a policy from a state value function. Since the transition model and the reward model are known, for each action the possible successive states and rewards can be determined and the best action can be selected to be the policy in this state. However, this is not possible if the transition- and reward model are not known. Therefore, in environments without perfect knowledge the control problem (estimating the optimal policy) is usually solved on the basis of estimating the optimal action values $q_*$. 
+In the case of *complete knowledge* it was easy to derive a policy from a state value function. Since the transition model and the reward model are known, for each action the possible successive states and rewards can be determined and the best action, that can be selected to be the policy in this state. However, this is not possible if the transition- and reward model are not known. Therefore, in environments without perfect knowledge the control problem (estimating the optimal policy) is usually solved on the basis of estimating the optimal action values $q_*$. 
 
-In principle the {ref}`First-visit algorithm <first-visit>` for state values can easily be adopted to calculate **values for state-action-pairs** $q_{\pi}(s,a)$ of a policy. Instead of averaging the returns perceived in all visits of a concrete state, now on has to average the returns over all visits of a concrete state-action pair. However, the problem with such an adoption would be, that many state-action pairs would never be visited. For example if $\pi$ is a deterministic policy, that for a given state $s$ only one action pair $(s,a)$ will be visited. For all other actions, available in this state, no state-action values can be calculated. Note that the purpose of action-values is to gradually improve policies and if many state-actions pairs are never visited no policy-improvements can be found. In order to solve this problem it must be ensured, that all state-action-pairs can be visited, i.e. that for a given state $s$, all actions $a \in mathcal{A}(s)$ have a non-zero probability to be visited. This is achieved by letting the agent to **explore**. The following two approaches of exploring will be condiered in the sequel:
+In principle the {ref}`First-visit algorithm <first-visit>` for state values can easily be adopted to calculate **values for state-action-pairs** $q_{\pi}(s,a)$ of a policy. Instead of averaging the returns perceived in all visits of a concrete state, now on has to average the returns over all visits of a concrete state-action pair. However, the problem with such an adoption would be, that many state-action pairs would never be visited. For example if $\pi$ is a deterministic policy, than for a given state $s$ only one action pair $(s,a)$ will be visited. For all other actions, available in this state, no state-action values can be calculated. Note that the purpose of action-values is to gradually improve policies and if many state-actions pairs are never visited no policy-improvements can be found. In order to solve this problem it must be ensured, that all state-action-pairs can be visited, i.e. that for a given state $s$, all actions $a \in \mathcal{A}(s)$ have a non-zero probability to be visited. This is achieved by letting the agent to **explore**. The following two approaches of exploring will be condiered in the sequel:
 
 * *Exploring Starts (ES)*: Let each episode start in a state-action-pair and each possible state-action-pair has a non-zero probability to be selected as such a start-pair. With this approach an infinite number of episodes is required in order to guarantee, that each state-action-pair is visited sufficiently often, such that the real $q_{\pi_k}$ is calculated for arbitrary $\pi_k$.
 * Allow only *stochacstic policies* for which each possible state-action pair has non-zero probability to be visited.
@@ -517,7 +517,7 @@ name: mces
 	- Set return $G := 0$
 	- Loop for each step of episode, $t=T-1,T-2,\ldots,0$:
 		- Set $G := \gamma G + R_{t+1}$
-		- If $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
+		- Unless $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
 		    - Append $G$ to $Returns((S_t,A_t))$
 			- Set $Q(S_t,A_t) := average(Returns((S_t,A_t)))$
 			- Set policy $\pi(S_t):=argmax_a Q(S_t,a)$
@@ -547,7 +547,7 @@ name: mccontrol
 	- Set return $G := 0$
 	- Loop for each step of episode, $t=T-1,T-2,\ldots,0$:
 		- Set $G := \gamma G + R_{t+1}$
-		- If $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
+		- Unless $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
 		    - Append $G$ to $Returns((S_t,A_t))$
 			- Set $Q(S_t,A_t) := average(Returns((S_t,A_t)))$
 			- Set $A*:=argmax_a Q(S_t,a)$
@@ -606,7 +606,7 @@ This is derived from the fact, that state-action-values are the expectations of 
 ### Temporal Difference (TD) Learning
 
 > *If one had to identify one idea as central and novel to reinforcement learning, it would
-undoubtedly be temporal-di↵erence (TD) learning.* {cite}`Sutton1998`
+undoubtedly be temporal-difference (TD) learning.* {cite}`Sutton1998`
 
 In Monte Carlo methods, as described above, episodes are generated, i.e. a sequence of states, actions and rewards 
 
@@ -620,7 +620,7 @@ $$
 V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
 $$ (mcvalueupdate)
 
-where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. In deterministic environments $\alpha=1$ is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.
+where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. **In deterministic environments $\alpha=1$ is optimal**. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.
 
 $$
 \alpha=0.1/(1+N(s)),
