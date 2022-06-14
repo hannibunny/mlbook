@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Implementing Neural Networks with Keras &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Applying Pretrained Deep Neural Networks for Image Classification" href="04KerasPretrainedClassifiers.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -452,17 +451,17 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#define-training-parameters-1">
+    <a class="reference internal nav-link" href="#id1">
      Define Training Parameters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#perform-training-1">
+    <a class="reference internal nav-link" href="#id2">
      Perform Training
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluation-1">
+    <a class="reference internal nav-link" href="#id3">
      Evaluation
     </a>
    </li>
@@ -474,17 +473,17 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#architecture-1">
+    <a class="reference internal nav-link" href="#id4">
      Architecture
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#define-training-parameters-2">
+    <a class="reference internal nav-link" href="#id5">
      Define Training Parameters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#perform-training-2">
+    <a class="reference internal nav-link" href="#id6">
      Perform Training
     </a>
    </li>
@@ -511,13 +510,13 @@
         
               <div>
                 
-  <section id="implementing-neural-networks-with-keras">
+  <div class="section" id="implementing-neural-networks-with-keras">
 <h1>Implementing Neural Networks with Keras<a class="headerlink" href="#implementing-neural-networks-with-keras" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 02.11.2020</p></li>
 </ul>
-<section id="what-you-will-learn">
+<div class="section" id="what-you-will-learn">
 <h2>What you will learn:<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Define, train and evaluate MLP in Keras</p></li>
@@ -526,8 +525,8 @@
 <li><p>Implement cross-validation in Keras</p></li>
 <li><p>Image classification based on the CIFAR-10 dataset, which is included in <a class="reference external" href="https://keras.io/datasets/">Keras datasets</a>.</p></li>
 </ul>
-</section>
-<section id="imports-and-configurations">
+</div>
+<div class="section" id="imports-and-configurations">
 <h2>Imports and Configurations<a class="headerlink" href="#imports-and-configurations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,8 +632,8 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</section>
-<section id="access-data">
+</div>
+<div class="section" id="access-data">
 <h2>Access Data<a class="headerlink" href="#access-data" title="Permalink to this headline">¶</a></h2>
 <p>Load the Cifar10 image dataset from <code class="docutils literal notranslate"><span class="pre">keras.datasets</span></code>. Determine the shape of the training- and the test-partition.</p>
 <div class="cell docutils container">
@@ -658,8 +657,8 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</section>
-<section id="visualize-data">
+</div>
+<div class="section" id="visualize-data">
 <h2>Visualize Data<a class="headerlink" href="#visualize-data" title="Permalink to this headline">¶</a></h2>
 <p>Viusalize the first 9 images of the training-partition, using function <code class="docutils literal notranslate"><span class="pre">imshow()</span></code> from <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p>
 <div class="cell docutils container">
@@ -681,8 +680,8 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 <img alt="../_images/03KerasMLPandCNNcifar_18_0.png" src="../_images/03KerasMLPandCNNcifar_18_0.png" />
 </div>
 </div>
-</section>
-<section id="preprocessing">
+</div>
+<div class="section" id="preprocessing">
 <h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>Scale all images such that all their values are in the range <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
 <div class="cell docutils container">
@@ -740,10 +739,10 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</section>
-<section id="mlp">
+</div>
+<div class="section" id="mlp">
 <h2>MLP<a class="headerlink" href="#mlp" title="Permalink to this headline">¶</a></h2>
-<section id="architecture">
+<div class="section" id="architecture">
 <h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
 <p>In Keras the architecture of neural networks can be defined in two different ways:</p>
 <ul class="simple">
@@ -751,7 +750,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 <li><p>Using the functional API</p></li>
 </ul>
 <p>Below the two approaches are demonstrated. The first approach is simpler, but restricted to neural networks which consist of a linear stack of layers. The second approach is more flexible and allows to define quit complex network architectures, e.g. with more than one input, more than one output or with parallel branches.</p>
-<section id="network-definition-option1-using-the-sequential-model">
+<div class="section" id="network-definition-option1-using-the-sequential-model">
 <h4>Network definition option1: Using the sequential model<a class="headerlink" href="#network-definition-option1-using-the-sequential-model" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,8 +785,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="network-definition-option-2-using-the-functional-api">
+</div>
+<div class="section" id="network-definition-option-2-using-the-functional-api">
 <h4>Network definition option 2: Using the functional API<a class="headerlink" href="#network-definition-option-2-using-the-functional-api" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -824,9 +823,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="define-training-parameters">
+</div>
+</div>
+<div class="section" id="define-training-parameters">
 <h3>Define Training Parameters<a class="headerlink" href="#define-training-parameters" title="Permalink to this headline">¶</a></h3>
 <p>Apply Stochastic Gradient Descent (SGD) learning, for minimizing the <code class="docutils literal notranslate"><span class="pre">categorical_crossentropy</span></code>. The performance metric shall be <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Train the network.</p>
 <div class="cell docutils container">
@@ -842,8 +841,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="perform-training">
+</div>
+<div class="section" id="perform-training">
 <h3>Perform Training<a class="headerlink" href="#perform-training" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -884,8 +883,8 @@ INFO:tensorflow:Assets written to: models/dense512/assets
 </div>
 </div>
 </div>
-</section>
-<section id="evaluation">
+</div>
+<div class="section" id="evaluation">
 <h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
 <p>Visualize the learning-curve on training- and test-data.</p>
 <div class="cell docutils container">
@@ -950,11 +949,11 @@ INFO:tensorflow:Assets written to: models/dense512/assets
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="cnn">
+</div>
+</div>
+<div class="section" id="cnn">
 <h2>CNN<a class="headerlink" href="#cnn" title="Permalink to this headline">¶</a></h2>
-<section id="define-architecture">
+<div class="section" id="define-architecture">
 <h3>Define Architecture<a class="headerlink" href="#define-architecture" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1004,9 +1003,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="define-training-parameters-1">
-<h3>Define Training Parameters<a class="headerlink" href="#define-training-parameters-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id1">
+<h3>Define Training Parameters<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN1_AVAILABLE</span><span class="p">:</span>
@@ -1020,9 +1019,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="perform-training-1">
-<h3>Perform Training<a class="headerlink" href="#perform-training-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id2">
+<h3>Perform Training<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN1_AVAILABLE</span><span class="p">:</span>
@@ -1060,9 +1059,9 @@ INFO:tensorflow:Assets written to: models/2conv32-dense512/assets
 </div>
 </div>
 </div>
-</section>
-<section id="evaluation-1">
-<h3>Evaluation<a class="headerlink" href="#evaluation-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id3">
+<h3>Evaluation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -1116,12 +1115,12 @@ INFO:tensorflow:Assets written to: models/2conv32-dense512/assets
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="a-more-complex-cnn">
+</div>
+</div>
+<div class="section" id="a-more-complex-cnn">
 <h2>A more complex CNN<a class="headerlink" href="#a-more-complex-cnn" title="Permalink to this headline">¶</a></h2>
-<section id="architecture-1">
-<h3>Architecture<a class="headerlink" href="#architecture-1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Architecture<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">createModel</span><span class="p">():</span>
@@ -1210,9 +1209,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="define-training-parameters-2">
-<h3>Define Training Parameters<a class="headerlink" href="#define-training-parameters-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id5">
+<h3>Define Training Parameters<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN2_AVAILABLE</span><span class="p">:</span>
@@ -1223,9 +1222,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="perform-training-2">
-<h3>Perform Training<a class="headerlink" href="#perform-training-2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id6">
+<h3>Perform Training<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">CNN2_AVAILABLE</span><span class="p">:</span>
@@ -1243,8 +1242,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="evaluate">
+</div>
+<div class="section" id="evaluate">
 <h3>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1297,9 +1296,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="implementation-of-cross-validation-in-keras">
+</div>
+</div>
+<div class="section" id="implementation-of-cross-validation-in-keras">
 <h2>Implementation of Cross Validation in Keras<a class="headerlink" href="#implementation-of-cross-validation-in-keras" title="Permalink to this headline">¶</a></h2>
 <p>Here: Cross-Validation of MLP</p>
 <div class="cell docutils container">
@@ -1380,8 +1379,8 @@ processing fold # 2
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Linear Classification &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Support Vector Machines (SVM)" href="svm.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -434,11 +433,11 @@
         
               <div>
                 
-  <section id="linear-classification">
+  <div class="section" id="linear-classification">
 <h1>Linear Classification<a class="headerlink" href="#linear-classification" title="Permalink to this headline">¶</a></h1>
-<section id="simple-linear-classification">
+<div class="section" id="simple-linear-classification">
 <h2>Simple Linear Classification<a class="headerlink" href="#simple-linear-classification" title="Permalink to this headline">¶</a></h2>
-<section id="binary-linear-classification-by-example">
+<div class="section" id="binary-linear-classification-by-example">
 <h3>Binary linear Classification by example<a class="headerlink" href="#binary-linear-classification-by-example" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,8 +617,8 @@ x=[2,2.5],
 </div>
 </div>
 <p>Since we obtain <span class="math notranslate nohighlight">\(g(\mathbf{x})&gt;0\)</span>, this datapoint can be assigned to the class with label <span class="math notranslate nohighlight">\(1\)</span>.</p>
-</section>
-<section id="k-ary-linear-classification-in-d-dimensional-space">
+</div>
+<div class="section" id="k-ary-linear-classification-in-d-dimensional-space">
 <h3>K-ary linear classification in <span class="math notranslate nohighlight">\(d\)</span>-dimensional space<a class="headerlink" href="#k-ary-linear-classification-in-d-dimensional-space" title="Permalink to this headline">¶</a></h3>
 <p>In the example above binary linear classification of 2-dimensional input data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> has been demonstrated. In the <strong>general case of <span class="math notranslate nohighlight">\(d\)</span>-dimensional input data</strong>, the discriminator equation (<a class="reference internal" href="#equation-discriminant">(15)</a> for the 2-dimensional case) is:</p>
 <div class="math notranslate nohighlight" id="equation-discd">
@@ -646,9 +645,9 @@ g_K(\mathbf{x})  =  w_{K,0} + w_{K,1} x_1 + w_{K,2} x_2 + \cdots + w_{K,d} x_d \
 r_p= \mbox{ argmax}_{j} \; g_j(\mathbf{x}_p),
 \]</div>
 <p>i.e. if the current target label is <span class="math notranslate nohighlight">\(r_p=k\)</span>, then the output of <span class="math notranslate nohighlight">\(g_k(\mathbf{x}_p)\)</span> must be larger than the output of all other <span class="math notranslate nohighlight">\(K-1\)</span> <span class="math notranslate nohighlight">\(g_i(\mathbf{x}_p)\)</span>.</p>
-</section>
-</section>
-<section id="binary-logistic-regression">
+</div>
+</div>
+<div class="section" id="binary-logistic-regression">
 <h2>Binary Logistic Regression<a class="headerlink" href="#binary-logistic-regression" title="Permalink to this headline">¶</a></h2>
 <p>Despite the name Logistic Regression is a binary linear classification as introduced above. The only difference is that in Logistic Regression the output of the discriminator <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> is passed to a sigmoid-function. In general, the sigmoid function is defined as follows:</p>
 <div class="math notranslate nohighlight">
@@ -692,8 +691,8 @@ y=sigmoid(g(\mathbf{x}))=\frac{1}{1+e^{-g(\mathbf{x})}}.
 <li><p>if <span class="math notranslate nohighlight">\(y\)</span> approximates <span class="math notranslate nohighlight">\(0.5\)</span> from above, then we have a <strong>low confidence</strong> for the decision for class-label 1.</p></li>
 </ul>
 <p>This additional confidence-information, provided by Logistic Regression, constitutes a often required advantage with respect to simple linear regression. If data in both classes is Gaussian distributed with the same covariance-matrix. The the ouput value <span class="math notranslate nohighlight">\(y\)</span> is actually the A-posteriori <span class="math notranslate nohighlight">\(P(C_1|x)\)</span> for class 1.</p>
-</section>
-<section id="k-ary-logistic-regression">
+</div>
+<div class="section" id="k-ary-logistic-regression">
 <h2>K-ary logistic Regression<a class="headerlink" href="#k-ary-logistic-regression" title="Permalink to this headline">¶</a></h2>
 <p>K-ary logisitic regression (or MaxEnt-Classification or Softmax-Classification) is the extension of Logistic Regression to the case where <span class="math notranslate nohighlight">\(K&gt;2\)</span> classes must be distinguished. As in Logistic Regression now the outputs of the discriminator functions <span class="math notranslate nohighlight">\(g_i(\mathbf{x})\)</span></p>
 <ul class="simple">
@@ -705,8 +704,8 @@ y=sigmoid(g(\mathbf{x}))=\frac{1}{1+e^{-g(\mathbf{x})}}.
 \[
 y_i =\frac{e^{g_i(\mathbf{x})}}{\sum_{j=1}^K e^{g_j(\mathbf{x})}} \quad \forall i \in [1,\ldots,K].
 \]</div>
-</section>
-<section id="training-of-linear-classifiers">
+</div>
+<div class="section" id="training-of-linear-classifiers">
 <h2>Training of Linear Classifiers<a class="headerlink" href="#training-of-linear-classifiers" title="Permalink to this headline">¶</a></h2>
 <p>Classifiers are usually trained by minimzing an error function. For binary classification the most common error function is <strong>binary cross-entropy</strong>, which is defined as follows</p>
 <div class="math notranslate nohighlight">
@@ -721,8 +720,8 @@ E(T,\Theta)= \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}).
 \]</div>
 <p>There exists different methods to adapt the weights <span class="math notranslate nohighlight">\(w_i\)</span> such that the error-function is minimized. The most popular approaches are <strong>Coordinate Descent</strong>, <strong>Gradient Descent</strong> or <strong>Stochastic Gradient Descent (SGD)</strong>. These approaches are described in the section on <a class="reference internal" href="../neuralnetworks/01NeuralNets.html"><span class="doc std std-doc">conventional neural networks</span></a>. In this section it is also shown how linear classifiers can be realized by Single Layer Perceptrons (SLP).</p>
 <p>As already described in section <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a>, <strong>Regularisation</strong> terms can be added to the error function in order to reduce overfitting (see also <a class="reference external" href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">Logistic Regression in scikit-learn</a>).</p>
-</section>
-<section id="generalized-linear-classification">
+</div>
+<div class="section" id="generalized-linear-classification">
 <h2>Generalized Linear Classification<a class="headerlink" href="#generalized-linear-classification" title="Permalink to this headline">¶</a></h2>
 <p>With <strong>Linear Classification</strong> one can not only learn linear discriminators <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-discriminant">(15)</a>. Instead the same trick as already introduced in section <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a> can be applied to learn nonlinear discriminator surfaces: Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Classifier</strong> with discriminator(s) of type</p>
 <div class="math notranslate nohighlight" id="equation-genlin">
@@ -730,12 +729,12 @@ E(T,\Theta)= \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}).
 g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w_z \Phi_z(\mathbf{x})
 \]</div>
 <p>can be learned. This type of generalization can be applied to binary- and non-binary- and to simple and logistic classification.</p>
-</section>
-<section id="final-remarks">
+</div>
+<div class="section" id="final-remarks">
 <h2>Final Remarks<a class="headerlink" href="#final-remarks" title="Permalink to this headline">¶</a></h2>
 <p>In contrast to Bayesian Classification, as introduced in <a class="reference internal" href="parametricClassification1D.html"><span class="doc std std-doc">section Bayes- and Naive Bayes Classification</span></a>, in Linear Classification we do not learn class-specific probability distributions, but class boundaries. In general all classifiers, which learn a class-specific probability distributions are called <strong>Generative Models</strong>, because these distributions can be applied to generate new data of this type. On the other side, methods which directly learn discriminators, are called <strong>Discriminative Models</strong>. For Generative Models one must assume a certain type of data-distribution (e.g. Gaussian), whereas in Discriminative Models one must assume a certain type of class-boundary. For real-world data Discriminative Models are more robust, than Generative Models, because the assumption of a class-boundary type is usually more realistic than the assumption of a data distribution.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

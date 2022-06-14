@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generative Adversarial Nets (GAN) &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="DCGAN Keras Implementation" href="DCGAN.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -396,10 +395,10 @@
         
               <div>
                 
-  <section id="generative-adversarial-nets-gan">
+  <div class="section" id="generative-adversarial-nets-gan">
 <h1>Generative Adversarial Nets (GAN)<a class="headerlink" href="#generative-adversarial-nets-gan" title="Permalink to this headline">¶</a></h1>
-<p>In 2014 GANs have been introduced by <em>Ian Goodfellow</em> in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-15">GPAM+14</a>]</span> (<a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>). Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
-<section id="idea-gans">
+<p>In 2014 GANs have been introduced by <em>Ian Goodfellow</em> in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id16">GPAM+14</a>]</span> (<a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>). Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
+<div class="section" id="idea-gans">
 <h2>Idea GANs<a class="headerlink" href="#idea-gans" title="Permalink to this headline">¶</a></h2>
 <p>On an abstract level the idea of GANs can be described as follows: A counterfeiter produces fake banknotes. The police is able to discriminate the fake banknotes from real ones and it provides feedback to the counterfeiter on why the banknotes can be detected as fake. This feedback is used by the counterfeiter in order to produce fake, which is less distinguishable from real bankotes. After some iterations of producing better but not sufficiently good fake the counterfeiter is able to produce fake, which can not be discriminated from real banknotes.</p>
 <p>A GAN consists of two models:</p>
@@ -407,22 +406,18 @@
 <li><p>The <strong>discriminator</strong> is the police. It learns to discriminate real data from artificially generated fake data.</p></li>
 <li><p>The <strong>generator</strong> is the counterfeiter, which learns to generate data, that is indistinguishable from real data.</p></li>
 </ol>
-<figure class="align-center" id="ganidea">
+<div class="figure align-center" id="ganidea">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GAN.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 29 </span><span class="caption-text">GAN: Generator-Network tries to produce data, such that the Discriminator-Network can not distinguish this <em>fake</em>-data from <em>real</em>-data.</span><a class="headerlink" href="#ganidea" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="architecture-and-training">
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">GAN: Generator-Network tries to produce data, such that the Discriminator-Network can not distinguish this <em>fake</em>-data from <em>real</em>-data.</span><a class="headerlink" href="#ganidea" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="architecture-and-training">
 <h2>Architecture and Training<a class="headerlink" href="#architecture-and-training" title="Permalink to this headline">¶</a></h2>
-<p>As depicted in image <a class="reference internal" href="#ganidea"><span class="std std-ref">GAN overall picture</span></a> the overall GAN consists of a Generator and a Discriminator. Both of them are usually neural networks of any type. In the initial work <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-15">GPAM+14</a>]</span> MLPs have been applied for both components. Later, it has been shown in <span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#citation-53">RMC16</a>]</span>, that GANs, which apply CNNs for both components are much easier to configure and behave in a more stable manner. The CNN, which has been applied as Generator in <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-53">RMC16</a>]</span>, is depicted below:</p>
-<figure class="align-center" id="dcgangen">
+<p>As depicted in image <a class="reference internal" href="#ganidea"><span class="std std-ref">GAN overall picture</span></a> the overall GAN consists of a Generator and a Discriminator. Both of them are usually neural networks of any type. In the initial work <span id="id2">[<a class="reference internal" href="../referenceSection.html#id16">GPAM+14</a>]</span> MLPs have been applied for both components. Later, it has been shown in <span id="id3">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span>, that GANs, which apply CNNs for both components are much easier to configure and behave in a more stable manner. The CNN, which has been applied as Generator in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span>, is depicted below:</p>
+<div class="figure align-center" id="dcgangen">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 30 </span><span class="caption-text">Generator of the DCGAN. Image Source: <span id="pending-xref-5">[<a class="reference internal" href="../referenceSection.html#citation-53">RMC16</a>]</span>. The upsizing of the feature maps is realized by <em>fractional-strided convolution</em>. This is what has be denoted by Deconvolution with a stride <span class="math notranslate nohighlight">\(&gt;2\)</span> in notebook <a class="reference internal" href="../neuralnetworks/convolutionDemos.html"><span class="doc std std-doc">Animations of Convolution and Deconvolution</span></a></span><a class="headerlink" href="#dcgangen" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Generator of the DCGAN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span>. The upsizing of the feature maps is realized by <em>fractional-strided convolution</em>. This is what has be denoted by Deconvolution with a stride <span class="math notranslate nohighlight">\(&gt;2\)</span> in notebook <a class="reference internal" href="../neuralnetworks/convolutionDemos.html"><span class="doc std std-doc">Animations of Convolution and Deconvolution</span></a></span><a class="headerlink" href="#dcgangen" title="Permalink to this image">¶</a></p>
+</div>
 <p>The task of the GAN is to generate fake-data at the output of the Generator. This fake data shall be indistinguishable from the real-data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is passed to the Discriminator input. The input to the Generator is usually a random noise vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>, drawn e.g. from a multivariate Gaussian distribution. The Generator must be designed such that it’s output <span class="math notranslate nohighlight">\(G(\mathbf{z})\)</span> has the same format as the real-data at the input of the discriminator. The Discriminator is a binary classification network, which receives real-data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and fake-data <span class="math notranslate nohighlight">\(G(\mathbf{z})\)</span>, provided by the Generator. The Discriminator is trained such, that it can discriminate fake-data from real-data. The Generator is trained such, that its output <span class="math notranslate nohighlight">\(G(\mathbf{z})\)</span> is not distinguishable from real-data, i.e. both networks have adversarial training goals.</p>
 <p>The adversarial training process is depcited in <a class="reference internal" href="#gantraining"><span class="std std-ref">the flow-chart below</span></a>. In each epoch</p>
 <ol>
@@ -457,58 +452,46 @@
 	\]</div>
 </li>
 </ol>
-<figure class="align-center" id="gantraining">
+<div class="figure align-center" id="gantraining">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess2cols.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess2cols.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess2cols.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 31 </span><span class="caption-text">GAN training process.</span><a class="headerlink" href="#gantraining" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>Even if CNNs are applied as Generator and Discriminator, the configuration of GANs remains challenging. The authors of <span id="pending-xref-6">[<a class="reference internal" href="../referenceSection.html#citation-53">RMC16</a>]</span> recommend the guidelines given below:</p>
-<figure class="align-center" id="dcganguide">
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">GAN training process.</span><a class="headerlink" href="#gantraining" title="Permalink to this image">¶</a></p>
+</div>
+<p>Even if CNNs are applied as Generator and Discriminator, the configuration of GANs remains challenging. The authors of <span id="id6">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span> recommend the guidelines given below:</p>
+<div class="figure align-center" id="dcganguide">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DCGANguidelines.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DCGANguidelines.png" src="https://maucher.home.hdm-stuttgart.de/Pics/DCGANguidelines.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 32 </span><span class="caption-text">Source: <span id="pending-xref-7">[<a class="reference internal" href="../referenceSection.html#citation-53">RMC16</a>]</span></span><a class="headerlink" href="#dcganguide" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="conditional-gan">
+<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span></span><a class="headerlink" href="#dcganguide" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="conditional-gan">
 <h2>Conditional GAN<a class="headerlink" href="#conditional-gan" title="Permalink to this headline">¶</a></h2>
-<p>In <span id="pending-xref-8">[<a class="reference internal" href="../referenceSection.html#citation-51">MO14</a>]</span> conditional GANs (cGAN) has been introduced. cGANs allow to control different variants of the generated fake-data. For example, if MNIST-like handwritten digits shall be generated by the GAN one can control which concrete digit shall be generated. The control is realized by passing additional information <span class="math notranslate nohighlight">\(y\)</span> to both, the input of the Generator and the input of the Discriminator.</p>
-<figure class="align-center" id="cgan">
+<p>In <span id="id8">[<a class="reference internal" href="../referenceSection.html#id52">MO14</a>]</span> conditional GANs (cGAN) has been introduced. cGANs allow to control different variants of the generated fake-data. For example, if MNIST-like handwritten digits shall be generated by the GAN one can control which concrete digit shall be generated. The control is realized by passing additional information <span class="math notranslate nohighlight">\(y\)</span> to both, the input of the Generator and the input of the Discriminator.</p>
+<div class="figure align-center" id="cgan">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 33 </span><span class="caption-text">Conditional GAN: The condition <span class="math notranslate nohighlight">\(y\)</span> is added to the Generator- and Discriminator input. Depending on the condition different fake-data <span class="math notranslate nohighlight">\(G(z)\)</span> can be generated. Source: <span id="pending-xref-9">[<a class="reference internal" href="../referenceSection.html#citation-51">MO14</a>]</span></span><a class="headerlink" href="#cgan" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Conditional GAN: The condition <span class="math notranslate nohighlight">\(y\)</span> is added to the Generator- and Discriminator input. Depending on the condition different fake-data <span class="math notranslate nohighlight">\(G(z)\)</span> can be generated. Source: <span id="id9">[<a class="reference internal" href="../referenceSection.html#id52">MO14</a>]</span></span><a class="headerlink" href="#cgan" title="Permalink to this image">¶</a></p>
+</div>
 <p>For conditional GANs the Minmax-Loss Function, which is maximized by the Discriminator- and minimized by the Generator-training is</p>
 <div class="math notranslate nohighlight" id="equation-minmaxcgan">
 <span class="eqno">(74)<a class="headerlink" href="#equation-minmaxcgan" title="Permalink to this equation">¶</a></span>\[
 E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ \log(1-D(G(z  \mid y)))  \right]
 \]</div>
 <p>In the MNIST-example <span class="math notranslate nohighlight">\(y\)</span> represents the concrete number, e.g. it is the one-hot-encoding of the digit that shall be generated. In general, <span class="math notranslate nohighlight">\(y\)</span> can be any kind of auxillary information, such as a class-label or data from other modalities, e.g. word-vectors.</p>
-<figure class="align-center" id="cganmnist">
+<div class="figure align-center" id="cganmnist">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GANconditionalMNIST.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GANconditionalMNIST.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GANconditionalMNIST.png" style="width: 500pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 34 </span><span class="caption-text">Source: <span id="pending-xref-10">[<a class="reference internal" href="../referenceSection.html#citation-51">MO14</a>]</span></span><a class="headerlink" href="#cganmnist" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="cycle-gan-transform-from-one-domain-to-another">
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Source: <span id="id10">[<a class="reference internal" href="../referenceSection.html#id52">MO14</a>]</span></span><a class="headerlink" href="#cganmnist" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="cycle-gan-transform-from-one-domain-to-another">
 <h2>Cycle GAN: Transform from one domain to another<a class="headerlink" href="#cycle-gan-transform-from-one-domain-to-another" title="Permalink to this headline">¶</a></h2>
-<p>Image-to-image translation (see picture below for examples) is a class of vision- and graphics-problems, where the goal is to learn the mapping between an input image and an output image using a training set of aligned image pairs. However, for many tasks, paired training data may not be available <span id="pending-xref-11">[<a class="reference internal" href="../referenceSection.html#citation-31">ZPIE17</a>]</span>.</p>
-<figure class="align-center" id="cycleganexamples">
+<p>Image-to-image translation (see picture below for examples) is a class of vision- and graphics-problems, where the goal is to learn the mapping between an input image and an output image using a training set of aligned image pairs. However, for many tasks, paired training data may not be available <span id="id11">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</p>
+<div class="figure align-center" id="cycleganexamples">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 35 </span><span class="caption-text">Source: <span id="pending-xref-12">[<a class="reference internal" href="../referenceSection.html#citation-31">ZPIE17</a>]</span>.</span><a class="headerlink" href="#cycleganexamples" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>Cycle GAN, as introduced in <span id="pending-xref-13">[<a class="reference internal" href="../referenceSection.html#citation-31">ZPIE17</a>]</span>, is an approach for learning to translate an image from a <strong>source domain <span class="math notranslate nohighlight">\(X\)</span></strong> to a <strong>target domain <span class="math notranslate nohighlight">\(Y\)</span></strong> without requiring paired images for training - two sets of unpaired images are sufficient.</p>
-<figure class="align-center" id="paired">
+<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Source: <span id="id12">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#cycleganexamples" title="Permalink to this image">¶</a></p>
+</div>
+<p>Cycle GAN, as introduced in <span id="id13">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>, is an approach for learning to translate an image from a <strong>source domain <span class="math notranslate nohighlight">\(X\)</span></strong> to a <strong>target domain <span class="math notranslate nohighlight">\(Y\)</span></strong> without requiring paired images for training - two sets of unpaired images are sufficient.</p>
+<div class="figure align-center" id="paired">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pairedVsUnpairedStyleTransfer.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pairedVsUnpairedStyleTransfer.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pairedVsUnpairedStyleTransfer.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 36 </span><span class="caption-text">Paired vs. unpaired training data. For Cycle GAN unpaired data is sufficient. Source: <span id="pending-xref-14">[<a class="reference internal" href="../referenceSection.html#citation-31">ZPIE17</a>]</span>.</span><a class="headerlink" href="#paired" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Paired vs. unpaired training data. For Cycle GAN unpaired data is sufficient. Source: <span id="id14">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#paired" title="Permalink to this image">¶</a></p>
+</div>
 <p>In Cycle GAN a mapping</p>
 <div class="math notranslate nohighlight">
 \[
@@ -526,12 +509,10 @@ F : Y \rightarrow  X
 F(G(X)) \approx X
 \]</div>
 <p>(and vice versa) is applied.</p>
-<figure class="align-center" id="paired-1">
+<div class="figure align-center" id="id16">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Learned mappings between source domain <span class="math notranslate nohighlight">\(X\)</span> and target domain <span class="math notranslate nohighlight">\(Y\)</span>. Source: <span id="pending-xref-15">[<a class="reference internal" href="../referenceSection.html#citation-31">ZPIE17</a>]</span>.</span><a class="headerlink" href="#paired-1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Learned mappings between source domain <span class="math notranslate nohighlight">\(X\)</span> and target domain <span class="math notranslate nohighlight">\(Y\)</span>. Source: <span id="id15">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Adversarial Loss function,</strong> to be minimized by <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span> and to be maximized by <span class="math notranslate nohighlight">\(D_Y\)</span> and <span class="math notranslate nohighlight">\(D_X\)</span>, respectively:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -557,50 +538,38 @@ L_{cyc}(G,F,X,Y) =  \frac{1}{m} \sum\limits_{i=1}^m || F(G(x_i))-x_i ||_1 + || G
 L_{full} = L_{adv}(G,D_y,X,Y) + L_{adv}(F,D_x,Y,X) + L_{cyc}(G,F,X,Y)
 \]</div>
 <p><strong>Architecture of the Generators <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span>:</strong></p>
-<figure class="align-center" id="cyclegangen">
+<div class="figure align-center" id="cyclegangen">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANgenerator.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 38 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegangen" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegangen" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Architecture of the Discriminators <span class="math notranslate nohighlight">\(D_x\)</span> and <span class="math notranslate nohighlight">\(D_y\)</span>:</strong></p>
-<figure class="align-center" id="cyclegandisc">
+<div class="figure align-center" id="cyclegandisc">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANdiscriminator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANdiscriminator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANdiscriminator.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 39 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegandisc" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegandisc" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Cycle GAN Strengths and Limitations:</strong></p>
 <p>Cycle GAN works well on tasks, which involve color- or texture-changes, e.g. day-to-night translations, photo-to-painting transformation or style transfer. This can be seen e.g. in this <a class="reference external" href="https://youtu.be/lCR9sT9mbis">video on Cityscape to GTA5-Style transfer</a> or this <a class="reference external" href="https://youtu.be/N7KbfWodXJE">video on day- to night-drive transformation</a>.</p>
 <p>However, Cycle GAN often fails for tasks, that require substantial geometric changes, as can be seen in the image below.</p>
-<figure class="align-center" id="badexample">
+<div class="figure align-center" id="badexample">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Source: <span id="pending-xref-16">[<a class="reference internal" href="../referenceSection.html#citation-31">ZPIE17</a>]</span>.</span><a class="headerlink" href="#badexample" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="star-gan-multi-domain-transformations">
+<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#badexample" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="star-gan-multi-domain-transformations">
 <h2>Star GAN: Multi-domain transformations<a class="headerlink" href="#star-gan-multi-domain-transformations" title="Permalink to this headline">¶</a></h2>
-<figure class="align-center" id="starganceleb">
+<div class="figure align-center" id="starganceleb">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 41 </span><span class="caption-text">Example: Transformations between multiple domains. Source: <span id="pending-xref-17">[<a class="reference internal" href="../referenceSection.html#citation-1">CCK+18</a>]</span>.</span><a class="headerlink" href="#starganceleb" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Example: Transformations between multiple domains. Source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#starganceleb" title="Permalink to this image">¶</a></p>
+</div>
 <p>In Cycle GAN transformations from a source domain <span class="math notranslate nohighlight">\(X\)</span> to a target domain <span class="math notranslate nohighlight">\(Y\)</span> has been addressed. For transformations between multiple domains, Cycle GAN can also be applied, as shown in image <a class="reference internal" href="#stargancross"><span class="std std-ref">Comparison between Cycle- and Star-GAN for multi-domain transformations</span></a>. However, in this case for each possible pair of domains an individual Generator pair has to be trained. With Star GAN transformations between multiple domains can be realized using only a single Generator.</p>
-<figure class="align-center" id="stargancross">
+<div class="figure align-center" id="stargancross">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png" src="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png" style="width: 400pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 42 </span><span class="caption-text">Source: <span id="pending-xref-18">[<a class="reference internal" href="../referenceSection.html#citation-1">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargancross" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="stargantrain">
+<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Source: <span id="id19">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargancross" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="stargantrain">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png" src="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 43 </span><span class="caption-text">Source: <span id="pending-xref-19">[<a class="reference internal" href="../referenceSection.html#citation-1">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrain" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Source: <span id="id20">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrain" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Adversarial Loss:</strong></p>
 <p>Discriminator <span class="math notranslate nohighlight">\(D\)</span> tries to maximize <span class="math notranslate nohighlight">\(L_{adv}\)</span>, whereas the Generator <span class="math notranslate nohighlight">\(G\)</span> tries to minimize it.</p>
 <div class="math notranslate nohighlight">
@@ -656,38 +625,30 @@ L_D=-L_{adv}+\lambda_{cls} L_{cls}^r.
 \[
 L_G=L_{adv}+\lambda_{cls} L_{cls}^f + \lambda_{rec} L_{rec}.
 \]</div>
-<figure class="align-center" id="stargantrainceleb">
+<div class="figure align-center" id="stargantrainceleb">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 44 </span><span class="caption-text">Source: <span id="pending-xref-20">[<a class="reference internal" href="../referenceSection.html#citation-1">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrainceleb" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Source: <span id="id21">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrainceleb" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Architecture of Star GAN Generator:</strong></p>
 <p>The Generator archictecture is similar to the one used in Cycle GAN:</p>
-<figure class="align-center" id="stargangenar">
+<div class="figure align-center" id="stargangenar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 45 </span><span class="caption-text">Source: <span id="pending-xref-21">[<a class="reference internal" href="../referenceSection.html#citation-1">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargangenar" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Source: <span id="id22">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargangenar" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Architecture of Star GAN Discriminator:</strong></p>
 <p>The Discriminator <span class="math notranslate nohighlight">\(D\)</span> classifies per patch. For this a Fully Convolutional Neural Network, like in PatchGAN is applied:</p>
-<figure class="align-center" id="stargandiscar">
+<div class="figure align-center" id="stargandiscar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 46 </span><span class="caption-text">Source: <span id="pending-xref-22">[<a class="reference internal" href="../referenceSection.html#citation-1">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargandiscar" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargandiscar" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>Final Remark on Fully Convolutional Network:</strong></p>
 <p>In a Fully Convolutional Network (FCNN) dense layers at the output are replaced by convolutional layers, by rearranging the neurons in the dense layer into the channel-dimension of a convolutional layer. In this way images of variable size can be passed to the network and the corresponding output has also a variable size. Each output neuron belongs to one region in the image.</p>
-<figure class="align-center" id="fcn">
+<div class="figure align-center" id="fcn">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/fcn.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/fcn.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/fcn.PNG" style="width: 600pt;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 47 </span><span class="caption-text">Neurons of the dense layer are rearranged into channels of a convolutional layer. Since a convolutional layer always has the same number of weights, independent of the size of it’s input, it can manage different sizes of input. In dense layers the number of weights depends on the size of the input. Therefore, dense layers can not cope with variable-size input.</span><a class="headerlink" href="#fcn" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-</section>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Neurons of the dense layer are rearranged into channels of a convolutional layer. Since a convolutional layer always has the same number of weights, independent of the size of it’s input, it can manage different sizes of input. In dense layers the number of weights depends on the size of the input. Therefore, dense layers can not cope with variable-size input.</span><a class="headerlink" href="#fcn" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

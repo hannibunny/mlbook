@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Example Linear Regression &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Linear Classification" href="LinearClassification.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -408,7 +407,7 @@
         
               <div>
                 
-  <section id="example-linear-regression">
+  <div class="section" id="example-linear-regression">
 <h1>Example Linear Regression<a class="headerlink" href="#example-linear-regression" title="Permalink to this headline">¶</a></h1>
 <p>In this example (generalized) linear regression, as introduced <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">in the previous section</span></a> is implemented and applied for estimating a function <span class="math notranslate nohighlight">\(f()\)</span> that maps the speed of long distance runners to their heartrate.</p>
 <div class="math notranslate nohighlight">
@@ -661,7 +660,7 @@ w=\left( D^T D\right)^{-1} D^T r
 </div>
 </div>
 </div>
-<section id="learn-linear-function">
+<div class="section" id="learn-linear-function">
 <h2>Learn linear function<a class="headerlink" href="#learn-linear-function" title="Permalink to this headline">¶</a></h2>
 <p>First, we learn the best linear function</p>
 <div class="math notranslate nohighlight">
@@ -736,8 +735,8 @@ MSE =  84.61650344232515
 </div>
 </div>
 <p>Note that here the metrics MAD and MSE have been calculated on the training data. Hence, the corresponding values describe how well the model is fitted to training data. But these values are useless for determining how good the model will perform on new data. Usually in Machine Learning performance metrics such as MAD and MSE are calculated on test-data. But in this example we haven’t split the set of labeled data into a training- and a test-partition.</p>
-</section>
-<section id="learn-quadratic-function">
+</div>
+<div class="section" id="learn-quadratic-function">
 <h2>Learn quadratic function<a class="headerlink" href="#learn-quadratic-function" title="Permalink to this headline">¶</a></h2>
 <p>In order to learn the best quadratic function</p>
 <div class="math notranslate nohighlight">
@@ -810,8 +809,8 @@ MSE =  74.97805153085808
 </div>
 </div>
 </div>
-</section>
-<section id="learn-cubic-function">
+</div>
+<div class="section" id="learn-cubic-function">
 <h2>Learn cubic function<a class="headerlink" href="#learn-cubic-function" title="Permalink to this headline">¶</a></h2>
 <p>In order to learn the best cubic function</p>
 <div class="math notranslate nohighlight">
@@ -885,8 +884,8 @@ MSE =  72.8395306512783
 </div>
 </div>
 </div>
-</section>
-<section id="same-solution-now-using-scikit-learn">
+</div>
+<div class="section" id="same-solution-now-using-scikit-learn">
 <h2>Same solution, now using Scikit Learn<a class="headerlink" href="#same-solution-now-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -948,8 +947,8 @@ Learned coefficients w0, w1, w2, ....:
 <img alt="../_images/heartRateRegression_28_0.png" src="../_images/heartRateRegression_28_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

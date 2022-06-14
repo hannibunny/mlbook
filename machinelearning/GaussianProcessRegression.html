@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gaussian Process: Implementation in Python &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Neural Networks Introduction" href="../neuralnetworks/01NeuralNets.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -398,7 +397,7 @@
         
               <div>
                 
-  <section id="gaussian-process-implementation-in-python">
+  <div class="section" id="gaussian-process-implementation-in-python">
 <h1>Gaussian Process: Implementation in Python<a class="headerlink" href="#gaussian-process-implementation-in-python" title="Permalink to this headline">¶</a></h1>
 <p>In this section Gaussian Processes regression, as described in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>, is implemented in Python. First the case of predefined mean- and covariance-function is implemented. In the second part these functions are learned from data.</p>
 <div class="cell docutils container">
@@ -411,7 +410,7 @@
 </div>
 </div>
 </div>
-<section id="gaussian-process-for-regression">
+<div class="section" id="gaussian-process-for-regression">
 <h2>Gaussian Process for Regression<a class="headerlink" href="#gaussian-process-for-regression" title="Permalink to this headline">¶</a></h2>
 <p>Definition of training data. This is the same data as used in the GP regression example in the <a class="reference internal" href="gp.html"><span class="doc std std-doc">previous section</span></a>.</p>
 <div class="cell docutils container">
@@ -665,8 +664,8 @@
 <img alt="../_images/GaussianProcessRegression_27_0.png" src="../_images/GaussianProcessRegression_27_0.png" />
 </div>
 </div>
-</section>
-<section id="find-optimum-hyperparameters-for-mean-and-covariance-function">
+</div>
+<div class="section" id="find-optimum-hyperparameters-for-mean-and-covariance-function">
 <h2>Find optimum hyperparameters for mean- and covariance-function<a class="headerlink" href="#find-optimum-hyperparameters-for-mean-and-covariance-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -999,8 +998,8 @@ Learned cov. function m(x) = (2.667)^2 *exp(-(x-x&#39;)^2 / (2 * (1.000)^2))+ 1.
 <img alt="../_images/GaussianProcessRegression_45_0.png" src="../_images/GaussianProcessRegression_45_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
