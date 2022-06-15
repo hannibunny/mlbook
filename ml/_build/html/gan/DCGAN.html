@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DCGAN Keras Implementation &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reinforcement Learning" href="../rl/reinforcement.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -425,7 +424,7 @@
         
               <div>
                 
-  <section id="dcgan-keras-implementation">
+  <div class="section" id="dcgan-keras-implementation">
 <h1>DCGAN Keras Implementation<a class="headerlink" href="#dcgan-keras-implementation" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -728,7 +727,7 @@
 <img alt="../_images/DCGAN_12_0.png" src="../_images/DCGAN_12_0.png" />
 </div>
 </div>
-<section id="generator-model">
+<div class="section" id="generator-model">
 <h2>Generator Model<a class="headerlink" href="#generator-model" title="Permalink to this headline">¶</a></h2>
 <p>The Generator model receives 1-dimensional vectors of length 100 with uniformly distributed float values from -1 to 1 at it’s input. The first layer is a dense layer with 128x7x7 neurons. The output of this dense layer is reshaped into 128 channels, each of size 7x7.
 Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, followed by a Conv2D-layer) 64 channels of size 14x14 are generated in the next layer. Finally, these 64 channels are processed by another deconvolution layer with filters of size 5x5 into a single-channel output of size 28x28.</p>
@@ -797,8 +796,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="discriminator-model">
+</div>
+<div class="section" id="discriminator-model">
 <h2>Discriminator Model<a class="headerlink" href="#discriminator-model" title="Permalink to this headline">¶</a></h2>
 <p>The discriminator is also a CNN. For this experiment on the MNIST dataset, the input is an image (single channel) of size 28x28. The sigmoid output is an indicator for the probability that the input is a real image.
 I.e. if the output value is close to 1, the input is likely a real image, if the output is close to 0, the input is likely a fake.
@@ -871,8 +870,8 @@ In contrast to standard SGD, Adam applies individual learning-rates for each lea
 </div>
 </div>
 </div>
-</section>
-<section id="build-gan-by-combining-generator-and-discriminator">
+</div>
+<div class="section" id="build-gan-by-combining-generator-and-discriminator">
 <h2>Build GAN by combining Generator and Discriminator<a class="headerlink" href="#build-gan-by-combining-generator-and-discriminator" title="Permalink to this headline">¶</a></h2>
 <p>Now, since Generator- and Discriminator models are defined, the overall adversarial model can be build, by simply stacking these models together. The output of the generator is passed to the input of the discriminator:</p>
 <div class="cell docutils container">
@@ -912,8 +911,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="train-gan">
+</div>
+<div class="section" id="train-gan">
 <h2>Train GAN<a class="headerlink" href="#train-gan" title="Permalink to this headline">¶</a></h2>
 <p>Finally, a function <code class="docutils literal notranslate"><span class="pre">train()</span></code> is implemented, which defines the overall training process. The flow-chart of this function is depicted below:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess.png" width="400" class="center"><div class="cell docutils container">
@@ -1020,10 +1019,10 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="generate-new-numbers-from-gan">
+</div>
+<div class="section" id="generate-new-numbers-from-gan">
 <h2>Generate new numbers from GAN<a class="headerlink" href="#generate-new-numbers-from-gan" title="Permalink to this headline">¶</a></h2>
-<section id="gan-learned-over-30-epochs">
+<div class="section" id="gan-learned-over-30-epochs">
 <h3>GAN learned over 30 epochs<a class="headerlink" href="#gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h3>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
@@ -1062,8 +1061,8 @@ _________________________________________________________________
 <img alt="../_images/DCGAN_38_0.png" src="../_images/DCGAN_38_0.png" />
 </div>
 </div>
-</section>
-<section id="generate-new-numbers-from-gan-learned-over-60-epochs">
+</div>
+<div class="section" id="generate-new-numbers-from-gan-learned-over-60-epochs">
 <h3>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h3>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
@@ -1084,9 +1083,9 @@ _________________________________________________________________
 <img alt="../_images/DCGAN_41_0.png" src="../_images/DCGAN_41_0.png" />
 </div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

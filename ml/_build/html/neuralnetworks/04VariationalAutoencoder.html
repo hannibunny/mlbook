@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Variational Autoencoder (VAE) to generate handwritten digits &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Generative Adversarial Nets (GAN)" href="../gan/GAN.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -452,14 +451,14 @@
         
               <div>
                 
-  <section id="variational-autoencoder-vae-to-generate-handwritten-digits">
+  <div class="section" id="variational-autoencoder-vae-to-generate-handwritten-digits">
 <h1>Variational Autoencoder (VAE) to generate handwritten digits<a class="headerlink" href="#variational-autoencoder-vae-to-generate-handwritten-digits" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher - adapted from <a class="reference external" href="https://blog.keras.io/building-autoencoders-in-keras.html">keras autoencoder tutorial</a>.</p></li>
 <li><p>Last Update: 10.12.2021</p></li>
 <li><p>Reference: <a class="reference external" href="https://arxiv.org/abs/1312.6114">D.P. Kingma, M. Welling: Autoencoder Variational Bayes</a></p></li>
 </ul>
-<section id="autoencoder">
+<div class="section" id="autoencoder">
 <h2>Autoencoder<a class="headerlink" href="#autoencoder" title="Permalink to this headline">¶</a></h2>
 <p>An autoencoder consists of an encoder- and a decoder-module. The encoder maps each input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to a latent representation <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, such that the decoder network is able to calculate a reconstruction <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> from <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, whereby <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> must be as close as possible to the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The weights of the encoder- and decoder- module are learned by minimizing a loss-function, which measures the difference between the reconstruction <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> and the original <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. For this, standard gradient descent supervised learning algorithms, such as backpropagation can be applied. Even though the inputs must not be labeled (the target ist the input itself)!</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/autoencoder.png" width="450" class="center">
@@ -472,16 +471,16 @@
 <li><p><strong>Representation Learning</strong> The latent representation <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> can be considered to be a meaningful and efficient representation of the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This compressed representation contains all relevant information, since otherwise the original could not be reconstructed sufficiently.</p></li>
 <li><p><strong>Anomaly Detection</strong>: The autoencoder is trained only with normal cases. In the inference phase normal cases at the input yield a small error between the input and its reconstruction. However, non-normal cases can not be reconstructed well. Hence, a high reconstruction error is an indicator for anomalies.</p></li>
 </ul>
-</section>
-<section id="variational-autoencoder">
+</div>
+<div class="section" id="variational-autoencoder">
 <h2>Variational Autoencoder<a class="headerlink" href="#variational-autoencoder" title="Permalink to this headline">¶</a></h2>
 <p>An autoencoder, as shortly described above, is not a generative model. It just tries to reconstruct the input, but it is not able to generate new data, e.g. new rabbit images or new geese images. This is where the <strong>Variational Autoencoder (VAE)</strong> comes in. A variational autoencoder is a generative model. A VAE, which has been trained with rabbit and geese-images is able to generate new rabbit- and geese images. A VAE, which has been trained with handwritten digit images is able to write new handwritten digits, etc.</p>
 <p>In general, if the probability distribution of one or multiple random variable(s) is known, then new samples, which arise from this distribution can be generated. For example, if the parameters <em>mean</em> and <em>standard-deviation</em> of a Gaussian-distributed random variable are known, then new samples can be generated, which correspond to this distribution.</p>
 <p>Based on this concept, a standard autoencoder can be modified to a generative model - the Variational Autoencoder - as follows: Instead of mapping the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to a latent representation <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the Encoder modul maps the input to a probability distribution. More concrete: A type of probability distribution (e.g. a Gaussian Normal Distribution) is presumed, and the output of the encoder are the concrete parameters of this distribution (e.g. <em>mean</em> and <em>standard deviation</em> for Gaussian distribution type). Then a concrete sample is generated from this distribution. This sample constitutes the input to the decoder.</p>
 <p>The weights of the encoder and decoder-module are learned such that the output of the decoder is as close as possible to input - like in the case of an autoencoder, but now with the new process in the latent layer: parameter estimation and sampling.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/variationalAutoencoder.png" width="550" class="center">
-</section>
-<section id="implementation-of-variational-autoencoder">
+</div>
+<div class="section" id="implementation-of-variational-autoencoder">
 <h2>Implementation of Variational Autoencoder<a class="headerlink" href="#implementation-of-variational-autoencoder" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -532,9 +531,9 @@
 </div>
 </div>
 </div>
-<section id="define-architecture">
+<div class="section" id="define-architecture">
 <h3>Define Architecture<a class="headerlink" href="#define-architecture" title="Permalink to this headline">¶</a></h3>
-<section id="encoder-model">
+<div class="section" id="encoder-model">
 <h4>Encoder Model<a class="headerlink" href="#encoder-model" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,8 +590,8 @@ ________________________________________________________________________________
 <img alt="../_images/04VariationalAutoencoder_13_0.png" src="../_images/04VariationalAutoencoder_13_0.png" />
 </div>
 </div>
-</section>
-<section id="sampling">
+</div>
+<div class="section" id="sampling">
 <h4>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">¶</a></h4>
 <p>Define function for sampling from a Gaussian Distribution:</p>
 <div class="cell docutils container">
@@ -615,8 +614,8 @@ Multiplication  with <span class="math notranslate nohighlight">\(\sigma\)</span
 </div>
 </div>
 </div>
-</section>
-<section id="decoder-model">
+</div>
+<div class="section" id="decoder-model">
 <h4>Decoder Model<a class="headerlink" href="#decoder-model" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,8 +628,8 @@ Multiplication  with <span class="math notranslate nohighlight">\(\sigma\)</span
 </div>
 </div>
 </div>
-</section>
-<section id="end-to-end-autoencoder">
+</div>
+<div class="section" id="end-to-end-autoencoder">
 <h4>End-to-End Autoencoder<a class="headerlink" href="#end-to-end-autoencoder" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,9 +677,9 @@ ________________________________________________________________________________
 <img alt="../_images/04VariationalAutoencoder_23_0.png" src="../_images/04VariationalAutoencoder_23_0.png" />
 </div>
 </div>
-</section>
-</section>
-<section id="define-layer-for-custom-loss">
+</div>
+</div>
+<div class="section" id="define-layer-for-custom-loss">
 <h3>Define Layer for Custom Loss<a class="headerlink" href="#define-layer-for-custom-loss" title="Permalink to this headline">¶</a></h3>
 <p>The parameters of the model are trained by minizing a loss function, which consists of two terms:</p>
 <ul class="simple">
@@ -735,8 +734,8 @@ ________________________________________________________________________________
 <img alt="../_images/04VariationalAutoencoder_29_0.png" src="../_images/04VariationalAutoencoder_29_0.png" />
 </div>
 </div>
-</section>
-<section id="training-vae">
+</div>
+<div class="section" id="training-vae">
 <h3>Training VAE<a class="headerlink" href="#training-vae" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -788,8 +787,8 @@ ________________________________________________________________________________
 <img alt="../_images/04VariationalAutoencoder_33_0.png" src="../_images/04VariationalAutoencoder_33_0.png" />
 </div>
 </div>
-</section>
-<section id="project-inputs-to-latent-space">
+</div>
+<div class="section" id="project-inputs-to-latent-space">
 <h3>Project Inputs to latent space<a class="headerlink" href="#project-inputs-to-latent-space" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,8 +812,8 @@ ________________________________________________________________________________
 <img alt="../_images/04VariationalAutoencoder_36_0.png" src="../_images/04VariationalAutoencoder_36_0.png" />
 </div>
 </div>
-</section>
-<section id="build-digit-generator">
+</div>
+<div class="section" id="build-digit-generator">
 <h3>Build Digit Generator<a class="headerlink" href="#build-digit-generator" title="Permalink to this headline">¶</a></h3>
 <p>Next, a digit generator, which samples from the learned distribution is build.</p>
 <div class="cell docutils container">
@@ -856,9 +855,9 @@ ________________________________________________________________________________
 <img alt="../_images/04VariationalAutoencoder_39_0.png" src="../_images/04VariationalAutoencoder_39_0.png" />
 </div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

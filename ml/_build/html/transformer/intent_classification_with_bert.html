@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Intent Classification with BERT &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -92,7 +89,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +101,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +148,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +190,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +202,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +219,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +258,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +275,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -450,11 +447,11 @@
         
               <div>
                 
-  <section id="intent-classification-with-bert">
+  <div class="section" id="intent-classification-with-bert">
 <h1>Intent Classification with BERT<a class="headerlink" href="#intent-classification-with-bert" title="Permalink to this headline">¶</a></h1>
 <p>This notebook demonstrates the fine-tuning of BERT to perform intent classification.
 Intent classification tries to map given instructions (sentence in natural language) to a set of predefined intents.</p>
-<section id="what-you-will-learn">
+<div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Load data from csv and preprocess it for training and test</p></li>
@@ -463,13 +460,13 @@ Intent classification tries to map given instructions (sentence in natural langu
 <li><p>Train your own model, fine-tuning BERT as part of that</p></li>
 <li><p>Save your model and use it to recognize the intend of instructions</p></li>
 </ul>
-</section>
-<section id="about-bert">
+</div>
+<div class="section" id="about-bert">
 <h2>About BERT<a class="headerlink" href="#about-bert" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT</a> and other Transformer encoder architectures have been shown to be successful on a variety of tasks in NLP (natural language processing). They compute vector-space representations of natural language that are suitable for use in deep learning models. The BERT family of models uses the Transformer encoder architecture to process each token of input text in the full context of all tokens before and after, hence the name: Bidirectional Encoder Representations from Transformers.</p>
 <p>BERT models are usually pre-trained on a large corpus of text, then fine-tuned for specific tasks.</p>
-</section>
-<section id="setup">
+</div>
+<div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -510,8 +507,8 @@ Intent classification tries to map given instructions (sentence in natural langu
 </div>
 </div>
 </div>
-</section>
-<section id="data-access">
+</div>
+<div class="section" id="data-access">
 <h2>Data Access<a class="headerlink" href="#data-access" title="Permalink to this headline">¶</a></h2>
 <p>The data contains various user queries categorized into seven intents. It is hosted on <a class="reference external" href="https://github.com/snipsco/nlu-benchmark/tree/master/2017-06-custom-intent-engines">GitHub</a> and is first presented in <a class="reference external" href="https://arxiv.org/abs/1805.10190">this paper</a>. In the list below the classes and an example for each class is given:</p>
 <ul class="simple">
@@ -714,8 +711,8 @@ Intent classification tries to map given instructions (sentence in natural langu
 </div>
 </div>
 </div>
-</section>
-<section id="loading-models-from-tensorflow-hub">
+</div>
+<div class="section" id="loading-models-from-tensorflow-hub">
 <h2>Loading models from TensorFlow Hub<a class="headerlink" href="#loading-models-from-tensorflow-hub" title="Permalink to this headline">¶</a></h2>
 <p>Here you can choose which BERT model you will load from TensorFlow Hub and fine-tune. There are multiple BERT models available.</p>
 <ul class="simple">
@@ -889,8 +886,8 @@ Preprocess model auto-selected: https://tfhub.dev/tensorflow/bert_en_uncased_pre
 </div>
 </div>
 </div>
-</section>
-<section id="the-preprocessing-model">
+</div>
+<div class="section" id="the-preprocessing-model">
 <h2>The preprocessing model<a class="headerlink" href="#the-preprocessing-model" title="Permalink to this headline">¶</a></h2>
 <p>Text inputs need to be transformed to numeric token ids and arranged in several Tensors before being input to BERT. TensorFlow Hub provides a matching preprocessing model for each of the BERT models discussed above, which implements this transformation using TF ops from the TF.text library. It is not necessary to run pure Python code outside your TensorFlow model to preprocess text.</p>
 <p>The preprocessing model must be the one referenced by the documentation of the BERT model, which you can read at the URL printed above. For BERT models from the drop-down above, the preprocessing model is selected automatically.</p>
@@ -945,8 +942,8 @@ Type Ids   : [0 0 0 0 0 0 0 0 0 0 0 0]
 <li><p>The <code class="docutils literal notranslate"><span class="pre">input_type_ids</span></code> only have one value (0) because this is a single sentence input. For a multiple sentence input, it would have one number for each input.</p></li>
 </ul>
 <p>Since this text preprocessor is a TensorFlow model, It can be included in your model directly.</p>
-</section>
-<section id="using-the-bert-model">
+</div>
+<div class="section" id="using-the-bert-model">
 <h2>Using the BERT model<a class="headerlink" href="#using-the-bert-model" title="Permalink to this headline">¶</a></h2>
 <p>Before putting BERT into an own model, let’s take a look at its outputs. You will load it from TF Hub and see the returned values.</p>
 <div class="cell docutils container">
@@ -998,8 +995,8 @@ Sequence Outputs Values:[[-0.10247643  0.2220486   0.5988388  ... -0.25584024  0
 <li><p><code class="docutils literal notranslate"><span class="pre">encoder_outputs</span></code> are the intermediate activations of the <code class="docutils literal notranslate"><span class="pre">L</span></code> Transformer blocks. <code class="docutils literal notranslate"><span class="pre">outputs[&quot;encoder_outputs&quot;][i]</span></code> is a Tensor of shape <code class="docutils literal notranslate"><span class="pre">[batch_size,</span> <span class="pre">seq_length,</span> <span class="pre">1024]</span></code> with the outputs of the i-th Transformer block, for <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">L</span></code>. The last value of the list is equal to <code class="docutils literal notranslate"><span class="pre">sequence_output</span></code>.</p></li>
 </ul>
 <p>For the fine-tuning you are going to use the <code class="docutils literal notranslate"><span class="pre">pooled_output</span></code> array.</p>
-</section>
-<section id="define-your-model">
+</div>
+<div class="section" id="define-your-model">
 <h2>Define your model<a class="headerlink" href="#define-your-model" title="Permalink to this headline">¶</a></h2>
 <p>You will create a very simple fine-tuned model, with the preprocessing model, the selected BERT model, one Dense and a Dropout layer.</p>
 <p>Note: for more information about the base model’s input and output you can use just follow the model’s url for documentation. Here specifically you don’t need to worry about it because the preprocessing model will take care of that for you.</p>
@@ -1069,8 +1066,8 @@ ________________________________________________________________________________
 </div>
 </div>
 </div>
-</section>
-<section id="model-training">
+</div>
+<div class="section" id="model-training">
 <h2>Model training<a class="headerlink" href="#model-training" title="Permalink to this headline">¶</a></h2>
 <p>You now have all the pieces to train a model, including the preprocessing module, BERT encoder, data, and classifier.</p>
 <p>Since this is a non-binary classification problem and the model outputs probabilities, you’ll use <code class="docutils literal notranslate"><span class="pre">losses.CategoricalCrossentropy</span></code> loss function.</p>
@@ -1082,7 +1079,7 @@ ________________________________________________________________________________
 </div>
 </div>
 </div>
-<section id="loading-the-bert-model-and-training">
+<div class="section" id="loading-the-bert-model-and-training">
 <h3>Loading the BERT model and training<a class="headerlink" href="#loading-the-bert-model-and-training" title="Permalink to this headline">¶</a></h3>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">classifier_model</span></code> you created earlier, you can compile the model with the loss, metric and optimizer.</p>
 <div class="cell docutils container">
@@ -1123,8 +1120,8 @@ Epoch 5/5
 </div>
 </div>
 </div>
-</section>
-<section id="evaluate-the-model">
+</div>
+<div class="section" id="evaluate-the-model">
 <h3>Evaluate the model<a class="headerlink" href="#evaluate-the-model" title="Permalink to this headline">¶</a></h3>
 <p>Let’s see how the model performs. Two values will be returned. Loss (a number which represents the error, lower values are better), and accuracy.</p>
 <div class="cell docutils container">
@@ -1144,8 +1141,8 @@ Accuracy: 0.9742857217788696
 </div>
 </div>
 </div>
-</section>
-<section id="plot-the-accuracy-and-loss-over-time">
+</div>
+<div class="section" id="plot-the-accuracy-and-loss-over-time">
 <h3>Plot the accuracy and loss over time<a class="headerlink" href="#plot-the-accuracy-and-loss-over-time" title="Permalink to this headline">¶</a></h3>
 <p>Based on the <code class="docutils literal notranslate"><span class="pre">History</span></code> object returned by <code class="docutils literal notranslate"><span class="pre">model.fit()</span></code>. You can plot the training and validation loss for comparison, as well as the training and validation accuracy:</p>
 <div class="cell docutils container">
@@ -1256,9 +1253,9 @@ input: 5 stars for machines like me   : estimated intent: RateBook
 </div>
 </div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

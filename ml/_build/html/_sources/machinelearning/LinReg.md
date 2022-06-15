@@ -135,6 +135,7 @@ $$ (minweights)
 
 ## Generalized Linear Regression
 
+
 With **Linear Regression** one can not only learn linear functions $g(\mathbf{x})$ of type {eq}`linfunction`. Since we are free to preprocess the input vectors $\mathbf{x}$ with an arbitrary aomount $z$ of preprocessing functions $\Phi_i$ of arbitrary type (linear and non-linear), a **Generlized Linear Regression** of type 
 
 $$
@@ -144,7 +145,7 @@ $$ (genlin)
 can be learned. Note that this is still called **linear** regression, because we are still linear in the variable's $w_i$.
 
 
- ```{admonition} Example Generalized Linear Regression with
+```{admonition} Example Generalized Linear Regression with
  :class: tip
  :name: exlin1
 
@@ -165,7 +166,7 @@ can be learned. Note that this is still called **linear** regression, because we
  $$ (linfunction)
  
   which yields the minimum loss.
- ```
+```
 
 Finding the weights $w_i$, which minimize the loss function, can be performed in the same way as described above. One just has to replace all $x_{i,t}$ by $\Phi_i(\mathbf{x}_t)$. In particular $\mathbf{w}$ can be calculated as in equation {eq}`minweights`, but now matrix $D$ is 
 

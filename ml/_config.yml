@@ -12,7 +12,21 @@ execute:
   execute_notebooks: 'off'
 
 parse:
-  myst_extended_syntax: true
+  myst_url_schemes: [mailto, http, https]
+  myst_extended_syntax:
+      - dollarmath
+      - amsmath
+      - linkify
+      - fieldlist
+      - replacements
+      - smartquotes
+      - tasklist
+      - strikethrough
+      - substitution
+      - colon_fence
+      - html_admonition
+      - html_image
+      - deflist
 
 latex:
   latex_documents:

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Convolutional Neural Networks &#8212; Machine Learning Lecture</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -43,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -52,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Animations of Convolution and Deconvolution" href="convolutionDemos.html" />
@@ -92,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Introduction
  </span>
@@ -104,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -151,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -193,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -205,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   GAN
  </span>
@@ -222,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -244,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Text
  </span>
@@ -261,7 +260,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Transformer
  </span>
@@ -278,7 +277,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   References
  </span>
@@ -574,7 +573,7 @@
         
               <div>
                 
-  <section id="convolutional-neural-networks">
+  <div class="section" id="convolutional-neural-networks">
 <h1>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -594,7 +593,7 @@
 </ul>
 <p>and many variants of them.</p>
 <p>Among these different types, CNNs are currently the most relevant ones. This notebook describes the overall architecture and the different layer-types, applied in a CNN. Since the most prominent application of CNNs is object recognition in images, the descriptions in this notebook refer to this use-case.</p>
-<section id="overall-architecture">
+<div class="section" id="overall-architecture">
 <h2>Overall Architecture<a class="headerlink" href="#overall-architecture" title="Permalink to this headline">¶</a></h2>
 <p>On an abstract level the architecture of a Deep Neural Network looks like this:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/dnnExtractorClassifier.png" alt="Drawing" style="width: 800px;"/>
@@ -633,12 +632,12 @@
 </div>
 </div>
 </div>
-</section>
-<section id="convolution-layer">
+</div>
+<div class="section" id="convolution-layer">
 <h2>Convolution Layer<a class="headerlink" href="#convolution-layer" title="Permalink to this headline">¶</a></h2>
 <p>A key concept of CNNs is the convolutional layer type. This layer type applies convolutional filtering, which is a well known image processing (or more general: signal processing) technique to extract features from the given input. In contrast to conventional convolutional filtering, in CNNs the filter coefficients and thus the relevant features are <strong>learned</strong>. In this section first the concept of conventional convolutional filtering is described. Then subsection <a class="reference external" href="#convLayer">Convolutional Layer in CNNs</a> discusses the application of this concept in CNNs.</p>
 <p><a id="conceptConvolution"></a></p>
-<section id="concept-of-2d-convolution-filtering">
+<div class="section" id="concept-of-2d-convolution-filtering">
 <h3>Concept of 2D-Convolution Filtering<a class="headerlink" href="#concept-of-2d-convolution-filtering" title="Permalink to this headline">¶</a></h3>
 <p>Convolution Filtering of a 2D-Input of size</p>
 <div class="math notranslate nohighlight">
@@ -661,12 +660,12 @@ If the filter is applied with a stepsize of <span class="math notranslate nohigh
 <blockquote>
 <div><p><strong>Note:</strong> In signal processing convolution and correlation is not the same. Convolution is correlation with the filter rotated 180 degrees. In context of neural networks, where filter coefficients are learned, this distinction can be ignored. As it is common in machine learning literature, in this notebook convolution and correlation are the same.</p>
 </div></blockquote>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" width="600" align="center"><section id="stepsize">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" width="600" align="center"><div class="section" id="stepsize">
 <h4>Stepsize<a class="headerlink" href="#stepsize" title="Permalink to this headline">¶</a></h4>
 <p>The filter need not be convolved in steps of <span class="math notranslate nohighlight">\(s=1\)</span> across the input. Larger stepsizes yield a correspondingly smaller output. In the picture below filtering with stepsize of <span class="math notranslate nohighlight">\(s=2\)</span> is shown below filtering the same input with a stepsize of <span class="math notranslate nohighlight">\(s=1\)</span>.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvStepSizeSmall.png" width="600" align="center">
-</section>
-<section id="zero-padding">
+</div>
+<div class="section" id="zero-padding">
 <h4>Zero-Padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">¶</a></h4>
 <p>Besides stepsize, <em>Padding</em> is an important parameter of convolutional filtering. A padding of <span class="math notranslate nohighlight">\(p&gt;0\)</span> means, that at the left, right, upper and lower boundary of the input <span class="math notranslate nohighlight">\(p\)</span> columns (rows) of zeros are attached to the input. In the picture below a padding of <span class="math notranslate nohighlight">\(p=1\)</span> (lower part) is compared with a convolutional filtering without padding (upper part).
 Often zero-padding is set such that the size of output is equal to the size of the input. For a stepsize of <span class="math notranslate nohighlight">\(s=1\)</span> and an uneven filter-width of <span class="math notranslate nohighlight">\(a\)</span>, this is the case if</p>
@@ -680,8 +679,8 @@ p=\frac{a-1}{2}
 \[
 o=\frac{r-a+2p}{s}+1.
 \]</div>
-<img src="http://maucher.home.hdm-stuttgart.de/Pics/ConvolutionFilterDemo3.gif" style="width:800px" align="middle"></section>
-<section id="example-2d-convolution-filter">
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/ConvolutionFilterDemo3.gif" style="width:800px" align="middle"></div>
+<div class="section" id="example-2d-convolution-filter">
 <h4>Example: 2D-convolution filter<a class="headerlink" href="#example-2d-convolution-filter" title="Permalink to this headline">¶</a></h4>
 <p>Below, a 2D input <code class="docutils literal notranslate"><span class="pre">x1</span></code> of shape (10,10) is defined as a numpy-array. The signal values are <code class="docutils literal notranslate"><span class="pre">1</span></code> (white) in the (4,4)-center region and <code class="docutils literal notranslate"><span class="pre">0</span></code> (black) elsewhere. For the display of the 2-dimensional signal the matplotlib method imshow() is applied.</p>
 <div class="cell docutils container">
@@ -777,8 +776,8 @@ o=\frac{r-a+2p}{s}+1.
 <img alt="../_images/03ConvolutionNeuralNetworks_24_0.png" src="../_images/03ConvolutionNeuralNetworks_24_0.png" />
 </div>
 </div>
-</section>
-<section id="example-gradient-filters-for-edge-detection">
+</div>
+<div class="section" id="example-gradient-filters-for-edge-detection">
 <h4>Example: Gradient Filters for Edge Detection<a class="headerlink" href="#example-gradient-filters-for-edge-detection" title="Permalink to this headline">¶</a></h4>
 <p>A 2-dimensional filter, which calculates the gradient in x-direction can be implemented as 2-dimensional numpy-array:</p>
 <div class="cell docutils container">
@@ -869,8 +868,8 @@ o=\frac{r-a+2p}{s}+1.
 <img alt="../_images/03ConvolutionNeuralNetworks_35_0.png" src="../_images/03ConvolutionNeuralNetworks_35_0.png" />
 </div>
 </div>
-</section>
-<section id="applying-the-prewitt-filter-for-detecting-horizontal-and-vertical-edges-in-an-image">
+</div>
+<div class="section" id="applying-the-prewitt-filter-for-detecting-horizontal-and-vertical-edges-in-an-image">
 <h4>Applying the Prewitt filter for detecting horizontal and vertical edges in an image<a class="headerlink" href="#applying-the-prewitt-filter-for-detecting-horizontal-and-vertical-edges-in-an-image" title="Permalink to this headline">¶</a></h4>
 <p>In the previous subsection the Prewitt filter has been applied on a small 2D-input. Now, both filters are applied to the real image. The real greyscale image, it’s gradients in x- and y-direction and the magnitude of the gradient are plotted below:</p>
 <div class="cell docutils container">
@@ -923,9 +922,9 @@ o=\frac{r-a+2p}{s}+1.
 </div>
 <p><a class="reference external" href="https://deeplizard.com/resource/pavq7noze2?utm">Deeplizard Convolution Filtering Demo</a></p>
 <p><a id="convLayer"></a></p>
-</section>
-</section>
-<section id="convolutional-layer-in-cnns">
+</div>
+</div>
+<div class="section" id="convolutional-layer-in-cnns">
 <h3>Convolutional Layer in CNNs<a class="headerlink" href="#convolutional-layer-in-cnns" title="Permalink to this headline">¶</a></h3>
 <p>In the car-image example above 3 different filters where applied on a single input. Each filter extracted a specific feature:</p>
 <ul class="simple">
@@ -941,35 +940,35 @@ o=\frac{r-a+2p}{s}+1.
 <li><p>for a given input not only one, but <strong>multiple feature maps</strong> are calculated in parallel. Different feature maps have different sets of <strong>shared weights</strong>. In the car-image above, three different filters calculated 3 different feature maps on a single input.</p></li>
 <li><p>The input does not only contain one, but multiple parallel 2D arrays of equal size. These parallel 2D-arrays are called <strong>channels</strong>.</p></li>
 </ul>
-<section id="dense-layer">
+<div class="section" id="dense-layer">
 <h4>Dense Layer<a class="headerlink" href="#dense-layer" title="Permalink to this headline">¶</a></h4>
 <p>In conventional neural networks (Multi Layer Perceptron) each layer is a so called <em>Dense Layer</em> as depicted in the image below:
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/denseLayerTikz.png" style="width: 600px" /></p>
-</section>
-<section id="simple-convolutional-layer-1-dimensional">
+</div>
+<div class="section" id="simple-convolutional-layer-1-dimensional">
 <h4>Simple Convolutional Layer 1-Dimensional<a class="headerlink" href="#simple-convolutional-layer-1-dimensional" title="Permalink to this headline">¶</a></h4>
 <p>A single feature map calculated from a single channel in a 1-dimensional convolutional layer is shown below:</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer1DTikz.png" style="width: 600px" /></section>
-<section id="simple-convolutional-layer-2-dimensional">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer1DTikz.png" style="width: 600px" /></div>
+<div class="section" id="simple-convolutional-layer-2-dimensional">
 <h4>Simple Convolutional Layer 2-Dimensional<a class="headerlink" href="#simple-convolutional-layer-2-dimensional" title="Permalink to this headline">¶</a></h4>
 <p>A single feature map calculated from a single channel in a 2-dimensional convolutional layer is shown below:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer2DTikz.png" style="width: 600px" />
 <p>In the sequel, neurons and weights in convolutional layers are represented as 2-dimensional arrays. The picture below represents the same operation as the picture above.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/convLayer2DarrayTikz.png" style="width: 500px" /><p><a id="multichannels"></a></p>
-</section>
-<section id="multiple-channels-at-the-input-of-the-convolutional-layer">
+</div>
+<div class="section" id="multiple-channels-at-the-input-of-the-convolutional-layer">
 <h4>Multiple Channels at the input of the Convolutional Layer<a class="headerlink" href="#multiple-channels-at-the-input-of-the-convolutional-layer" title="Permalink to this headline">¶</a></h4>
 <p>In CNNs the input to a convolutional layer is in general not a single 2D-array, but a set of multiple arrays (channels). For example in object recognition the input of the first convolutional layer <span class="math notranslate nohighlight">\(conv_1\)</span> is usually the image. The number of channels is then 3 for a RGB-image and 1 for a greyscale image. For all of the following convolutional layers <span class="math notranslate nohighlight">\(conv_i, \; i&gt;1,\)</span> the input is typically the set of (pooled) feature maps of the previous layer <span class="math notranslate nohighlight">\(conv_{i-1}\)</span>. In the picture below the calculation of the values of a single feature map from <span class="math notranslate nohighlight">\(L=3\)</span> channels at the input of the convolutional layer is depicted. Note that for calculating the values of a single feature map, for each channel an individual filter is learned and applied.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultChan.png" width="500" align="center">
 <p><a id="multifeatures"></a></p>
-</section>
-<section id="multiple-feature-maps-at-the-output-of-the-convolutional-layer">
+</div>
+<div class="section" id="multiple-feature-maps-at-the-output-of-the-convolutional-layer">
 <h4>Multiple Feature Maps at the output of the Convolutional Layer<a class="headerlink" href="#multiple-feature-maps-at-the-output-of-the-convolutional-layer" title="Permalink to this headline">¶</a></h4>
 <p>The previous subsection demonstrated the calulation of a single feature map from multiple channels at the input of the convolutional layer. <strong>In a CNN there are multiple channels at the input and multiple feature maps at the output of a convolutional layer.</strong> For sake of simplicity - and because we already know how multiple channels at the input influence a single feature map at the output - the picture and the code cells below demonstrate how multiple feature maps at the output are calculated from a single channel. Note that each feature map has it’s own set of shared weights (filter-coeffients) for each channel at the input of the convolutional layer:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultFeats.png" width="500" align="center">
-</section>
-</section>
-<section id="activation-function">
+</div>
+</div>
+<div class="section" id="activation-function">
 <h3>Activation function<a class="headerlink" href="#activation-function" title="Permalink to this headline">¶</a></h3>
 <p>Activation functions operate element-wise on the values of feature maps. The most common activation functions are</p>
 <ul class="simple">
@@ -1059,9 +1058,9 @@ These functions are defined and visualized below.</p></li>
 <img alt="../_images/03ConvolutionNeuralNetworks_54_0.png" src="../_images/03ConvolutionNeuralNetworks_54_0.png" />
 </div>
 </div>
-</section>
-</section>
-<section id="pooling-layer-in-cnns">
+</div>
+</div>
+<div class="section" id="pooling-layer-in-cnns">
 <h2>Pooling Layer in CNNs<a class="headerlink" href="#pooling-layer-in-cnns" title="Permalink to this headline">¶</a></h2>
 <p>Convolutional layers extract spatial features from their input. The filters (sets of shared weights) define which features are extracted. In the training phase the filters are learned, such that after learning they represent patterns, which frequently appear in the training data. Since each element in a feature map corresponds to a unique region of the input, feature maps do not only represent if the feature is contained in the current input, but also where it is contained (spatial information).</p>
 <p>The benefits of <strong>pooling layers</strong> are:</p>
@@ -1084,8 +1083,8 @@ These functions are defined and visualized below.</p></li>
 <p>In the picture below max-pooling with a filter width of <span class="math notranslate nohighlight">\(w=s=2\)</span> is shown. In this case pooling reduces the size of the 2D-input by a factor of 2.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/MaxPooling.png" width="600" align="center">
 <p>The configuration sketched in the picture above is implemented in the code cells below.</p>
-</section>
-<section id="concatenation-of-convolution-and-pooling">
+</div>
+<div class="section" id="concatenation-of-convolution-and-pooling">
 <h2>Concatenation of Convolution and Pooling<a class="headerlink" href="#concatenation-of-convolution-and-pooling" title="Permalink to this headline">¶</a></h2>
 <p>As shown by the example of the <a class="reference external" href="#alexnet">AlexNet architecture</a>, in a CNN after the input layer usually a cascade of convolution followed by pooling is applied. Each convolutional layer extracts meaningful features and their location. Each pooling layer reduces the size of the channels and thus the spatial resolution of features.</p>
 <p>The image below shows a single sequence of convolution and pooling.</p>
@@ -1110,8 +1109,8 @@ These functions are defined and visualized below.</p></li>
 <li><p>third dimension is the number of columns in each featuremap at the output of the convolutional layer</p></li>
 </ul>
 <p>The picture below sketches the sequence of convolution, activation and pooling in an abstract manner: For <span class="math notranslate nohighlight">\(L_i\)</span> input channels of convolutional layer <span class="math notranslate nohighlight">\(conv_i\)</span> <span class="math notranslate nohighlight">\(L_{i+1}\)</span> feature maps are calculated. These feature maps are processed by an activation function and fed to a pooling layer. The pooled <span class="math notranslate nohighlight">\(L_{i+1}\)</span> feature maps are the <span class="math notranslate nohighlight">\(L_{i+1}\)</span> input channel for the next convolutional layer. If no further convolution-layer is applied, the pooled feature maps are serialized and fed to a fully connected layer.</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/ChannelCubes.png" width="400" align="center"></section>
-<section id="fully-connected-layers">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ChannelCubes.png" width="400" align="center"></div>
+<div class="section" id="fully-connected-layers">
 <h2>Fully Connected Layers<a class="headerlink" href="#fully-connected-layers" title="Permalink to this headline">¶</a></h2>
 <p>In CNNs cascades of convolution- and pooling layer learn to extract meaningful features. These learned features are then fed to a classifier or to a regressor, which outputs the estimated class or the estimated numeric value, respectively. The final classifier or regressor is usually implemented by a usual single- or multilayer perceptron (SLP or MLP). The layers of the SLP or MLP are called <strong>fully connected layers</strong>, since each neuron in layer <span class="math notranslate nohighlight">\(k\)</span> is connected to all neurons in layer <span class="math notranslate nohighlight">\(k-1\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,x_2,\ldots,x_n)\)</span> is the input and <span class="math notranslate nohighlight">\(\mathbf{y}=(y_1,y_2,\ldots,y_m)\)</span> is the output of a fully connected layer, then</p>
@@ -1130,7 +1129,7 @@ These functions are defined and visualized below.</p></li>
 <p>is the weight matrix. Entry <span class="math notranslate nohighlight">\(w_{i,j}\)</span> is the weight from the <span class="math notranslate nohighlight">\(j.th\)</span> element in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to the <span class="math notranslate nohighlight">\(i.th\)</span> element in <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
 <p>As shown in the picture below, the output of the last pooling layer is serialized before it is fed into a fully connected layer. In this example only one fully connected layer is applied, i.e. the classifier is just a SLP. Since there are 8 neurons in the output of the fully connected layer, this example architecture can be applied for a classification into 8 classes. In this case the output is usually processed by a <strong>softmax-activation function</strong>, which is not depicted in the image below.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFC.png" width="800" align="center"><p><a id='cnnconceptcat'></a></p>
-<section id="cnn-summary">
+<div class="section" id="cnn-summary">
 <h3>CNN Summary<a class="headerlink" href="#cnn-summary" title="Permalink to this headline">¶</a></h3>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/cnnConceptCat.png" alt="Drawing" style="width: 400px;"/>
 <p>Image source: <a class="reference external" href="https://www.manning.com/books/deep-learning-with-python">F. Chollet, Deep Learning with Python</a></p>
@@ -1143,8 +1142,8 @@ These functions are defined and visualized below.</p></li>
 <li><p>The deeper the layers the smaller their size and the <strong>smaller the spatial resolution</strong>. I.e. location information gets smaller. In the extreme case, where the feature map consists of only a single neuron, location information is zero.</p></li>
 <li><p>In some applications a classification task may benefit from zero-location information, in others location-information may support classification.</p></li>
 </ul>
-</section>
-<section id="cnn-requirements">
+</div>
+<div class="section" id="cnn-requirements">
 <h3>CNN Requirements<a class="headerlink" href="#cnn-requirements" title="Permalink to this headline">¶</a></h3>
 <p>CNNs (deep neural networks in general) usually consist of many layers and learnable parameters <span class="math notranslate nohighlight">\(\Rightarrow\)</span> A large set of training data is required to learn robust models. However, there exist approaches to apply deep neural networks with only small sets of trainingdata, e.g.</p>
 <ul class="simple">
@@ -1154,9 +1153,9 @@ These functions are defined and visualized below.</p></li>
 <li><p>Apply Data Augmentation techniques</p></li>
 </ul>
 <p>The application of CNNs (deep neural networks in general) only makes sense if input data is somehow correlated. E.g. spatial correlation as in the case of images or temporal correlations as in the case of time-series data or in the case of written or spoken language.</p>
-</section>
-</section>
-<section id="advanced-concepts">
+</div>
+</div>
+<div class="section" id="advanced-concepts">
 <h2>Advanced concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this headline">¶</a></h2>
 <p>Above the basic concepts of CNNs, i.e. convolution-, pooling- and fully-connected layers have been introduced. Further concepts, frequently applied in CNNs are e.g.</p>
 <ul class="simple">
@@ -1167,7 +1166,7 @@ These functions are defined and visualized below.</p></li>
 </ul>
 <p>Dropout has already been introduced in the context of MLPs. Below, deconvolution, dilation and batch-normalization are described. In order to understand deconvolution, we first show how any convolution can be realized as a filter matrix-multiplication.</p>
 <p><a id="convbymatrix"></a></p>
-<section id="convolution-as-matrix-multiplication">
+<div class="section" id="convolution-as-matrix-multiplication">
 <h3>Convolution as matrix multiplication<a class="headerlink" href="#convolution-as-matrix-multiplication" title="Permalink to this headline">¶</a></h3>
 <p>Any convolutional filtering, as introduced above, can be calculated by matrix-multipliaction. Assume that the 2-dim input is</p>
 <div class="math notranslate nohighlight">
@@ -1235,8 +1234,8 @@ w_{2,0} &amp; w_{2,1} &amp; w_{2,2}\\
 	\right]	
 \end{split}\]</div>
 <p>Note that this matrix <span class="math notranslate nohighlight">\(\mathbf{W_S}\)</span> refers to the case of no zero-padding (<span class="math notranslate nohighlight">\(p=0\)</span>) and a step-size of <span class="math notranslate nohighlight">\(s=1\)</span>. However, it can easily be adopted to arbitrary values of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(s\)</span>.</p>
-</section>
-<section id="deconvolution">
+</div>
+<div class="section" id="deconvolution">
 <h3>Deconvolution<a class="headerlink" href="#deconvolution" title="Permalink to this headline">¶</a></h3>
 <p>The concept of convolution has been described in <a class="reference external" href="#conceptConvolution">section Concept of 2D-convolution</a>. Applying a squared filter of side-length <code class="docutils literal notranslate"><span class="pre">a</span></code>, with a zero-padding of <code class="docutils literal notranslate"><span class="pre">p</span></code> and a stepsize of <code class="docutils literal notranslate"><span class="pre">s</span></code> on a squared input of side-length <code class="docutils literal notranslate"><span class="pre">r</span></code> yields a squared output of side-length</p>
 <div class="math notranslate nohighlight">
@@ -1261,14 +1260,14 @@ o=\frac{r-a+2p}{s}+1.
 \[
 \mathbf{V_s}=\mathbf{W_S^T}*\mathbf{U_S}.
 \]</div>
-<section id="application-of-deconvolution-for-semantic-image-segmentation">
+<div class="section" id="application-of-deconvolution-for-semantic-image-segmentation">
 <h4>Application of Deconvolution for Semantic Image Segmentation<a class="headerlink" href="#application-of-deconvolution-for-semantic-image-segmentation" title="Permalink to this headline">¶</a></h4>
 <p>Source: <a class="reference external" href="https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf">Shelhamer et al; Fully Convolutional Networks for Semantic Image Segmentaion</a></p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/shelhamerSemanticSegmentation.png" /></p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/shelhamerNet.png" /></p>
-</section>
-</section>
-<section id="dilated-convolution">
+</div>
+</div>
+<div class="section" id="dilated-convolution">
 <h3>Dilated Convolution<a class="headerlink" href="#dilated-convolution" title="Permalink to this headline">¶</a></h3>
 <p>In the convolution operation as introduced above, the input to the filter at a given position is a small contiguous field within the input-array, e.g. an area of <span class="math notranslate nohighlight">\((3 \times 3)\)</span> pixels. This area of contiguous values, which influence the output at a given position of the filter is also called <strong>local receptive field</strong>. In a dilated convolution the local receptive field of a filter need not be a contiguous area. Instead, a <strong>dilation rate of <span class="math notranslate nohighlight">\(d\)</span></strong> defines, that there are <span class="math notranslate nohighlight">\(d-1\)</span> gaps inbetween the elements, which constitute the local receptive field. The lower part in the picture below shows a dilated convolutional filtering with <span class="math notranslate nohighlight">\(d=2\)</span>.</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvDilated.png" /></p>
@@ -1283,15 +1282,15 @@ o=\frac{r-a+2p}{s}+1.
 o=\frac{r+2p-(a-1)d-1}{s}+1.
 \]</div>
 <p>Dilation allows the extraction of features, from a larger input area, without increasing the filter-width and thus the number of parameters, which must be learned. Simultaneously it implies a stronger subsampling, thus pooling may be not required.</p>
-</section>
-<section id="dropout">
+</div>
+<div class="section" id="dropout">
 <h3>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">¶</a></h3>
 <p>Dropout is a technique to prevent Neural Networks, such as MLPs, CNNs, LSTMs from overfitting. The key idea is to randomly drop units along with their connections from the neural network during training. This prevents units from co-adapting too much. The drop of a defined ratio (0.1-0.5) of random neurons is valid only for one iteration. During this iteration the weights of the droped units are not adapted. In the next iteration another set of units, which are dropped temporarily is randomly selected. Dropout is only applied in the training-phase.<br />
 <img alt="Dropout" src="https://maucher.home.hdm-stuttgart.de/Pics/dropout.PNG" /></p>
-</section>
-<section id="normalization">
+</div>
+<div class="section" id="normalization">
 <h3>Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h3>
-<section id="normalization-in-general">
+<div class="section" id="normalization-in-general">
 <h4>Normalization in general<a class="headerlink" href="#normalization-in-general" title="Permalink to this headline">¶</a></h4>
 <p>Many Machine-Learning algorithms require a normalized input. This is particular true for algorithms, which apply (stochastic) gradient descent training, such as neural networks. Normalization means, that data is transformed such that each feature has a mean of 0 and a variance of 1.</p>
 <p>For example in the following dataset, mean and standard-deviation of the three features (columns) columns differ strongly. In a neural network, the effect of this difference is that weightadaptations for features with high values are much stronger, than for features with low values.</p>
@@ -1380,10 +1379,10 @@ Standard-deviation of normalized data:
 <p>As can be seen in the previous output, after normalisation all features have a mean of 0 and a standard deviation of 1.</p>
 <p>As mentioned above, data shall be normalized before it is passed to a neural network. However, it may also be helpfull to normalize data within a neural network. This is particularly advisable, if unbounded activation functions, such as ReLu are applied. In order to limit the unbounded activation from increasing the output layer values, normalization is used <strong>before the activation function</strong>.</p>
 <p>In the following two subsections 2 different types of normalisation within neural networks are described: <em>Local Response Normalisation</em> and <em>Batch Normalisation</em>.</p>
-</section>
-<section id="local-response-normalisation">
+</div>
+<div class="section" id="local-response-normalisation">
 <h4>Local Response Normalisation<a class="headerlink" href="#local-response-normalisation" title="Permalink to this headline">¶</a></h4>
-<p>Local Response Normalisation (LRN) has been applied in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-66">KSH</a>]</span> in order to limit activation values. Moreover, LRN models <a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">lateral inhibition</a>. In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors.</p>
+<p>Local Response Normalisation (LRN) has been applied in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id67">KSH</a>]</span> in order to limit activation values. Moreover, LRN models <a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">lateral inhibition</a>. In neurobiology lateral inhibition refers to the capacity of a neuron to reduce the activity of its neighbors.</p>
 <p>As depicted in the image below, two variants of LRN exist:</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/channelCubeLRN.png" /></p>
 <p><strong>Inter-Channel LRN:</strong></p>
@@ -1401,10 +1400,10 @@ For channel <span class="math notranslate nohighlight">\(i\)</span> the new valu
 b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{u=\max(0,x-n/2)}^{\min(c,x+n/2)}\sum\limits_{v=\max(0,y-n/2)}^{\min(r,y+n/2)}(a^i_{u,v})^2 \right)^{\beta}}
 \]</div>
 <p>As can be seen in the LRN-equations above the transformation depends only on hyperparameters and the values of the current input, i.e. no parameters must be learned for a LRN-layer.</p>
-</section>
-<section id="batch-normalization">
+</div>
+<div class="section" id="batch-normalization">
 <h4>Batch-Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h4>
-<p>In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-65">IS15</a>]</span>. It helps to mitigate the <strong>Internal Covariate Shift (ICA)</strong> problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the <strong>vanishing gradient problem</strong> causes ineffective learning in the case of very deep networks).<a class="footnote-reference brackets" href="#footnote-1" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>In contrast to LRN, batch-normalisation is a trainable layer. Normalisation parameters must be determined from training-batches. Batch-normalisation has been introduced in <span id="id2">[<a class="reference internal" href="../referenceSection.html#id66">IS15</a>]</span>. It helps to mitigate the <strong>Internal Covariate Shift (ICA)</strong> problem, enables a better propagation of the gradients during training and thus provides the possibility of deeper neural networks (without Batch-Normalisation the <strong>vanishing gradient problem</strong> causes ineffective learning in the case of very deep networks).<a class="footnote-reference brackets" href="#id7" id="id3">1</a></p>
 <p>Batch-normalisation is performerd for each single neuron in the layer individually. I.e. for each single element <span class="math notranslate nohighlight">\(x\)</span> at a concrete position within the 3-dimensional neuron-cube (as depicted in the pictures above) normalisation is performed as follows:</p>
 <ol>
 <li><p>Determine the mean <span class="math notranslate nohighlight">\(\mu_B\)</span> by averaging the activation of the concrete neuron over the entire minibatch <span class="math notranslate nohighlight">\(B\)</span> of size <span class="math notranslate nohighlight">\(m\)</span>:</p>
@@ -1434,34 +1433,34 @@ b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{u=\max(0,x-n/2)}^{\mi
 </li>
 </ol>
 <p>Instead of the values <span class="math notranslate nohighlight">\(x_i\)</span> the normalized values <span class="math notranslate nohighlight">\(y_i\)</span> are passed to the activation function of the layer. Note that for each neuron in the layer two parameters <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> must be learned.</p>
-</section>
-</section>
-<section id="x1-convolution">
+</div>
+</div>
+<div class="section" id="x1-convolution">
 <h3>1x1 Convolution<a class="headerlink" href="#x1-convolution" title="Permalink to this headline">¶</a></h3>
 <p>As described above, convolution-filtering provides the possibility to extract spatially extended features. The size of the filter defines the size of the feature, that can be extracted. A feature which is stretched over <span class="math notranslate nohighlight">\(p \times p\)</span> pixels requires a filter of at least this size to extract it. In this view a <span class="math notranslate nohighlight">\(1 \times 1\)</span>-filter sounds impractical.</p>
 <p>A <em>usual</em> filter-size of <span class="math notranslate nohighlight">\(3 \times 3\)</span> and a filter of size <span class="math notranslate nohighlight">\(1 \times 1\)</span> is visualized in the image below.</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/channelCube1x1.png" /></p>
 <p>A <span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution can be viewed as an Dense-layer operated over all channels at a specific pixel location. As such it is often applied to reduce the number of channels (<strong>dimensionality-reduction</strong>), while keeping the spatial resolution constant. For this purpose <span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution is applied e.g. in <span class="xref myst">inception modules (GoogLeNet)</span>.</p>
-<section id="fully-convolutional-networks">
+<div class="section" id="fully-convolutional-networks">
 <h4>Fully Convolutional Networks<a class="headerlink" href="#fully-convolutional-networks" title="Permalink to this headline">¶</a></h4>
 <p>In Fully Convolutional Networks (FCN) Dense Layers are replaced by <span class="math notranslate nohighlight">\(1 \times 1\)</span> - convolutional filters. The fact, that no dense-layers are required provides the possibility to apply images of different size to the input of the network. In convolutional-layers varying input size yields varying output size, but in contrast to dense layers it does not apply varying weight-matrices!
 As depicted in the image below, in a FCN not only one class per input is calculated. Instead, the output is a <strong>classification map</strong>, which defines in which region which class is most likely. Such classification maps are applied e.g. for <strong>semantic segmentation</strong> (e.g. <a class="reference external" href="https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf">Shelhamer et al; Fully Convolutional Networks for Semantic Image Segmentaion</a>)</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFullyConvolutional.png" width="800" align="center"></section>
-</section>
-<section id="inception-layer-googlenet">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFullyConvolutional.png" width="800" align="center"></div>
+</div>
+<div class="section" id="inception-layer-googlenet">
 <h3>Inception Layer / GoogLeNet<a class="headerlink" href="#inception-layer-googlenet" title="Permalink to this headline">¶</a></h3>
 <p>The crucial feature of an inception layer is that it allows multiple filters of different size within a single layer. The different filters are applied in parallel. Hence features, which are spatially spread over different region sizes, can be learned within one layer. Two typical inception modules with parallel filters in one layer are depcited below. Within GoogLeNet such inception modules are stacked on top of each other.</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/inceptionModule.png" style="width:600px" align="center">
 </figure>
-<p>The inception module on the left-hand-side in the picture above has been the original (or <em>naive</em>) version. The problem with this version is that particularly in the case of filters of larger size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>) and a high-dimensional input<a class="footnote-reference brackets" href="#footnote-1" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>), which operates on a 128-dimensional input has <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 128 = 3200\)</span> parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains <span class="xref myst"><span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution</span> for dimensionality reduction.</p>
-<p>The configuration of the GoogLeNet, as introduced in <span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#citation-67">SLJ+14</a>]</span> is given in the table below:</p>
+<p>The inception module on the left-hand-side in the picture above has been the original (or <em>naive</em>) version. The problem with this version is that particularly in the case of filters of larger size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>) and a high-dimensional input<a class="footnote-reference brackets" href="#id7" id="id4">1</a>, the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size (<span class="math notranslate nohighlight">\(5 \times 5\)</span>), which operates on a 128-dimensional input has <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 128 = 3200\)</span> parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains <span class="xref myst"><span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution</span> for dimensionality reduction.</p>
+<p>The configuration of the GoogLeNet, as introduced in <span id="id5">[<a class="reference internal" href="../referenceSection.html#id68">SLJ+14</a>]</span> is given in the table below:</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/googleNet.png" style="width:600px" align="center">
-</figure></section>
-<section id="residual-blocks-resnet">
+</figure></div>
+<div class="section" id="residual-blocks-resnet">
 <h3>Residual Blocks / ResNet<a class="headerlink" href="#residual-blocks-resnet" title="Permalink to this headline">¶</a></h3>
-<p>ResNet has been introduced 2015 in <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-64">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. The paper shows, that it might be easier to learn a <strong>residual mapping <span class="math notranslate nohighlight">\(F(\mathbf{x})=H(\mathbf{x})-\mathbf{x}\)</span></strong> instead of the target mapping <span class="math notranslate nohighlight">\(y=H(\mathbf{x})\)</span> itself. For this they introduced the residual block as shown in the image below:</p>
+<p>ResNet has been introduced 2015 in <span id="id6">[<a class="reference internal" href="../referenceSection.html#id65">HZRS16</a>]</span>. It’s crucial propery are <strong>residual blocks with short-cut connections</strong>. The paper shows, that it might be easier to learn a <strong>residual mapping <span class="math notranslate nohighlight">\(F(\mathbf{x})=H(\mathbf{x})-\mathbf{x}\)</span></strong> instead of the target mapping <span class="math notranslate nohighlight">\(y=H(\mathbf{x})\)</span> itself. For this they introduced the residual block as shown in the image below:</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetResidual.png" style="width:500px" align="center">
 </figure>
@@ -1475,7 +1474,7 @@ As depicted in the image below, in a FCN not only one class per input is calcula
 \[
 \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + \mathbf{x},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(W_i\)</span> and <span class="math notranslate nohighlight">\(b_i\)</span> are the weights-matrix and the bias-vector in the i.th layer of this block. In this case the dimensions of the output <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> and the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> must be the same. <strong>If the output and input shall have different dimensions</strong>, the input can be transformed by <span class="math notranslate nohighlight">\(W_s\)</span>:</p>
+<p>where <span class="math notranslate nohighlight">\(W_i\)</span> and <span class="math notranslate nohighlight">\(b_i\)</span> are the weights-matrix and the bias-vector in the <a class="reference external" href="http://i.th">i.th</a> layer of this block. In this case the dimensions of the output <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> and the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> must be the same. <strong>If the output and input shall have different dimensions</strong>, the input can be transformed by <span class="math notranslate nohighlight">\(W_s\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{y}=F(\mathbf{x},\lbrace W_i,b_i \rbrace ) + W_s\mathbf{x},
@@ -1493,14 +1492,14 @@ As depicted in the image below, in a FCN not only one class per input is calcula
 <figcaption>
 VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
 </figcaption><hr class="footnotes docutils" />
-<aside class="footnote brackets" id="footnote-1" role="note">
-<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#footnote-reference-1">1</a>,<a role="doc-backlink" href="#footnote-reference-2">2</a>)</span>
-<p>The ICA problem is nicely explained in <a class="reference external" href="https://learnopencv.com/batch-normalization-in-deep-networks/">https://learnopencv.com/batch-normalization-in-deep-networks/</a>.</p>
-</aside>
-</section>
-</section>
-</section>
+<dl class="footnote brackets">
+<dt class="label" id="id7"><span class="brackets">1</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>The ICA problem is nicely explained in <a class="reference external" href="https://learnopencv.com/batch-normalization-in-deep-networks/">https://learnopencv.com/batch-normalization-in-deep-networks/</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

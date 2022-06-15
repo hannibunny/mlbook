@@ -8,7 +8,7 @@ In supervised Machine learning a set of training data $T=\lbrace (\mathbf{x}_i,r
 
 In reinforcement learning we speak of an **agent** (the AI), which acts in an **environment**. The **actions $A$** of the agent must be such that in the long-term the agent is successful in the sense that it approximates a pre-defined goal as close and as efficiently as possible.  The environment is modeled by it's **state $S$**. Depending on it's actions in the environment the agent may or may not receive a positive or negative **reward $R$** [^f1]. Reinforcement learning is also called *learning from a critic*, because the agent trials different actions and sporadically receives feedback from a critic, which is regarded by the agent for future action decisions.
 
-Reinforcement Learning refers to **Sequential Decision Making**. This means that we model the agents behaviour over $time$. At each **discrete time-step $t$** the agent perceives the environment state $S_t$ and  possibly a reward $R_t$. Based on these perceptions it must then decide for an action $A_t$. This action influences the state of the environment and possibly triggers an award. The new state of the environment is denoted by $S_{t+1}$ and the new reward is denoted by $R_{t+1}$. In the long-term the agents decision-making-process must be such, that a pre-defined target-state of the environment is approximated as efficiently as possible. The proximity of a state $s$ to the target-state is measured by an **utility function $U(s)$**. 
+Reinforcement Learning refers to **Sequential Decision Making**. This means that we model the agents behaviour over $time$. At each **discrete time-step $t$** the agent perceives the environment state $S_t$ and  possibly a reward $R_t$. Based on these perceptions it must then decide for an action $A_t$. This action influences the state of the environment and possibly triggers a reward. The new state of the environment is denoted by $S_{t+1}$ and the new reward is denoted by $R_{t+1}$. In the long-term the agents decision-making-process must be such, that a pre-defined target-state of the environment is approximated as efficiently as possible. The proximity of a state $s$ to the target-state is measured by an **utility function $U(s)$**. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png
 ---
@@ -16,8 +16,7 @@ align: center
 width: 300pt
 name:  rlagent
 ---
-Interaction of an Agent with it's environment in a Markov Decision Process (MDP). Image source: {cite}`Sutton1998`.
-
+Interaction of an agent with it's environment in a Markov Decision Process (MDP). Image source: {cite}`Sutton1998`.
 ```
 
 ### Examples
@@ -34,14 +33,13 @@ name:  alphaGo
 ---
 
 Deepmind's AlphaGo ({cite}`Silver16`) combines Reinforcement Learning, Deep Learning and Monte Carlo Tree Search. AlphaGo was able to beat the world champion in Go, Lee Sedol, in 2016. 
-
 ```
 
 #### Non-deterministic Navigation
 
-Navigation or similarly Pathfinding can be solved by the A*-algorithm, if the environment is *deterministic*. This means that given the current state $s_t$ and a selected action $a_t$, the successive state $s_{t+1}$ can uniquely be determined. In a non-deterministic there exist different possible successive states for a given state-action-pair. In such non-deterministic environments Reinforcemt Learning can be applied to learn an optimum policy. This stategy defines for each state the action, which is best, in the sense that the expected future cumulative reward (the utility) is maximized.
+Navigation or similarly pathfinding can be solved by the A*-algorithm, if the environment is *deterministic*. This means that given the current state $s_t$ and a selected action $a_t$, the successive state $s_{t+1}$ can uniquely be determined. In a non-deterministic there exist different possible successive states for a given state-action-pair. In such non-deterministic environments **Reinforcemt Learning can be applied to learn an optimum policy. This policy defines for each state the action, which is best, in the sense that the expected future cumulative reward (the utility) is maximized.**
 
-In the example depicted below the task is to find best path from the field $Start$ to the field in the upper right corner. The possible actions of the agent are to move *upwards, downwards, right* or *left*. The environment is observable in the sense that the agent knows it's current state. However, the environment is non-deterministic because for a known state-action-pair different successive states are possible. For this uncertainty the following probabilities are assumed to be known:
+In the example depicted below the task is to find the best path from the field $Start$ to the field in the upper right corner. The possible actions of the agent are to move *upwards, downwards, right* or *left*. The environment is **observable** in the sense that the agent knows it's current state. However, the environment is **non-deterministic because for a known state-action-pair different successive states are possible**. For this uncertainty the following probabilities are assumed to be known:
 
 * Probability that state in the selected direction is actually reached is $P=0.8$.
 * Probability for a $\pm 90°$ deviation is $P=0.1$ for each. 
@@ -59,7 +57,7 @@ name:  rlex1
 Image source: {cite}`russel2010`: Pathfinding in a non-deterministic environment
 ```
 
-For this pathfinding scenario, the optimum policy, learned by the RL agent may look like in the picture below. The policy is defined by the arrows in the states. These arrows determine in each state the action to take in order to maximize the expected future cumulative reward.
+For this pathfinding scenario, the **optimum policy**, learned by the RL agent may look like in the picture below. The policy is defined by the arrows in the states. These arrows determine in each state the action to take in order to maximize the expected future cumulative reward.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg
 ---
@@ -89,7 +87,6 @@ width: 600pt
 name:  rlex2ff
 ---
 Image source: {cite}`ertel09`: State $s_t$, action $a_t$ and reward $r_t$ for 4 successive time-steps.
-
 ```
 
 
@@ -123,7 +120,7 @@ $$ (rewmod)
 * the **expected reward** can be calculated by
 
 $$
-r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(r \mid s,a).
+r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(r \mid s,a) \cdot r.
 $$ (rewexp)
 
 ```{admonition} Markov Decision Process (MDP)
@@ -132,9 +129,10 @@ A Markov Decision Process is formally defined by
 * a set of actions $\mathcal{A}$
 * a state-transition-model $p(s' \mid s,a)$ (equation {eq}`transmod`)
 * a reward-model $p(r \mid s,a)$ (equation {eq}`rewmod`)
+``` 
 
-In a MDP the goal of an agent is to find an optimal *policy* $\pi_*$, which assigns to each state $s \in \mathcal{S}$ an action $a \in \mathcal{A}$, such that the expected value of the cumulative sum of future received rewards is maximized. Such a policy can be determined by Reinforcement Learning.
-```
+In a MDP the goal of an agent is to find an optimal *policy* $\pi_*$, which assigns to each state $s \in \mathcal{S}$ an action $a \in \mathcal{A}$, such that **the expected value of the cumulative sum of future received rewards is maximized**. Such a policy can be determined by Reinforcement Learning.
+
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png
 ---
@@ -143,7 +141,6 @@ width: 300pt
 name:  mdpwik
 ---
 Example of a simple MDP  with three states (green circles) and two actions (orange circles), with two rewards (orange arrows). Image source: [wikipedia](https://en.wikipedia.org/wiki/Markov_decision_process). 
-
 ```
 
 The cumulative sum of received future rewards at time $t$ is als called the **return $G_t$**:
@@ -158,7 +155,7 @@ $$
 G_t= R_{t+1}+\gamma R_{t+2}+ \gamma^2  R_{t+3}+ \cdots = \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1},
 $$ (returninfinite)
 
-with $0< \gamma < 1$. In this way rewards in the far future are weighted less than rewards immediately ahead and the return value will be finite. Equation {eq}`returninfinite` can easily be turned in a recursive form as follows:
+with $0< \gamma < 1$. In this way rewards in the far future are weighted less than rewards immediately ahead and the return value will be finite. Equation {eq}`returninfinite` can easily be turned into a recursive form as follows:
 
 $$
 G_t= R_{t+1}+\gamma G_{t+1}
@@ -176,13 +173,13 @@ is a function that maps to each state $s \in \mathcal{S}$ a probability for each
 
 In order to find an optimal policy Reinforcement Learning algorithms estimate **Value Functions**. A value function either defines
 
-* how good it is for the agent to be in a given state. This quality is dependent of the policy $\pi$. The *state-value function for policy $\pi$* is the expected value of return, if the agent follows strategy $\pi$, starting from state $s$:
+* how good it is for the agent to be in a given state. This quality is dependent of the policy $\pi$. The **state-value function for policy $\pi$** is the expected value of return, if the agent follows strategy $\pi$, starting from state $s$:
 
 $$
 v_{\pi}(s)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s \right] = \mathbb{E}_{\pi} \left[ \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t=s \right]
 $$ (statevalue)
 
-* how good a action $a$ is in state $s$. This *action-value function for policy $\pi$* measures the expected return, if the agent starts from state $s$, takes action $a$ in this state and then follows strategy $\pi$:
+* how good a action $a$ is in state $s$. This **action-value function for policy $\pi$** measures the expected return, if the agent starts from state $s$, takes action $a$ in this state and then follows strategy $\pi$:
 
 $$
 q_{\pi}(s,a)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s, A_t=a \right] = \mathbb{E}_{\pi} \left[ \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t=s , A_t=a \right]
@@ -191,7 +188,7 @@ $$ (actionvalue)
 The task of estimating a value function is also called the **prediction problem**, since the value of a state or a state-action-pair is predicted. The task of finding a good policy from the previously predicted values is called **control problem**, since the policy defines the control of the agents actions.
 
 How can the state-value function $v_{\pi}$ or the action-value function $q_{\pi}$ be estimated? One simple approach, the *Monte Carlo* method, is to
-let an agent follow policy $\pi$. When it passes state $s$, the future return, gained by the agent is determined. This is done for many times and in the end all these returns, which have been gathered whenever the agent passed state $s$ are averaged. In the same way, the action-value function $q_{\pi}$ can be estimated. In both cases the estimate approximates the true functions if the number of times, each state is visited, is large enough. However, in practise this Monte Carlo approach is not feasible, if the state-space, i.e. the number of different states, is large. In this case the functions can be approximated e.g. by regression. This is actually done in Deep Reinforcement Learning, where Deep Learning algorithms for regression are applied to learn good state-value- or action-value-functions from relatively few examples, gathered by the RL agent. 
+let an agent follow policy $\pi$. When it passes state $s$, the future return, gained by the agent is determined (this future return is known only at the end of the episode). This is done for many times and in the end all these returns, which have been gathered whenever the agent passed state $s$ are averaged. In the same way, the action-value function $q_{\pi}$ can be estimated. In both cases the estimate approximates the true functions if the number of times, each state is visited, is large enough. However, in practise this Monte Carlo approach is not feasible, if the state-space, i.e. the number of different states, is large. In this case the functions can be approximated e.g. by regression. This is actually done in Deep Reinforcement Learning, where Deep Learning algorithms for regression are applied to learn good state-value- or action-value-functions from relatively few examples, gathered by the RL agent. 
 
 
 ### Bellmann Optimality Equations
@@ -203,7 +200,7 @@ v_{\pi}(s) & = &  \mathbb{E}_{\pi} \left[ G_t \mid S_t=s \right] \\
            & = &  \mathbb{E}_{\pi} \left[ R_{t+1} + \gamma G_{t+1} \mid S_t=s \right] \\
 $$ (statevaluerec)  
 
-In order to calculate this expected value for a concrete state $s$ and a concrete policy $\pi$, one must sum up for all possible triples of $(a,s',r)$ the reward $r$ and the discounted state-value $v_{\pi}(s')$ of a successor state, weighted by the probability of this triple, which is given by $\pi(a\mid s)p(s',r \mid s,a)$. This yields the **Bellman equation for $v_{\pi}$: 
+In order to calculate this expected value for a concrete state $s$ and a concrete policy $\pi$, one must sum up for all possible triples of $(a,s',r)$ the reward $r$ and the discounted state-value $v_{\pi}(s')$ of a successor state, weighted by the probability of this triple, which is given by $\pi(a\mid s)p(s',r \mid s,a)$. This yields the **Bellman equation for $v_{\pi}$:** 
 
 $$
 v_{\pi}(s) & = &  \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a)  \left[ r + \gamma \mathbb{E}_{\pi} \left[ G_{t+1} \mid S_{t+1}=s' \right] \right] \\
@@ -218,13 +215,12 @@ align: center
 width: 500pt
 name:  statevalueviz
 ---
-*Visualization* of Bellman-equation {eq}`statevaluerec2`: For a given state $s$ and policy $\pi$, the policy defines the probability of actions, available in $s$. For a given state-action pair $(s,a)$ the transition model $p(s' \mid s,a)$ defines the probability of successive states and the reward model $p(r \mid s,a)$ defines the probability of a reward $r$. For each of the possible succesive states $s'$ the sum $r$ + \gamma $v_{\pi}(s')$ is calculated, and weighted by the probability of this $(a,s',r)$-triple.
-
+*Visualization* of Bellman-equation {eq}`statevaluerec2`: For a given state $s$ and policy $\pi$, the policy defines the probability of actions, available in $s$. For a given state-action pair $(s,a)$ the transition model $p(s' \mid s,a)$ defines the probability of successive states and the reward model $p(r \mid s,a)$ defines the probability of a reward $r$. For each of the possible succesive states $s'$ the sum $r + \gamma v_{\pi}(s')$ is calculated, and weighted by the probability of this $(a,s',r)$-triple.
 ```
 
-The state-value function of equation {eq}`statevaluerec2` defines an ordering of policies in the sense that one can say that policy $\pi$ is better than policy $|pi'$, if and only if $v_{\pi}(s) \geq v_{\pi'}(s)$ for all states $s \in \mathcal{S}$. Moreover, there exists at least one optimal policy $\pi_*$, which is better than all other policies. The goal of an RL agent is to find a good approximation to this optimal policy $\pi_*$.
+The state-value function of equation {eq}`statevaluerec2` defines an ordering of policies in the sense that one can say that policy $\pi$ is better than policy $\pi'$, if and only if $v_{\pi}(s) \geq v_{\pi'}(s)$ for all states $s \in \mathcal{S}$. Moreover, there exists at least one optimal policy $\pi_*$, which is better than all other policies. The goal of an RL agent is to find a good approximation to this optimal policy $\pi_*$.
 
-The state-value function of the optimal strategy is denoted by $v_*(s)$ and defined by:
+**The state-value function of the optimal strategy is denoted by $v_*(s)$ and defined by:**
 
 $$
 v_*(s) =  \max\limits_{\pi} v_{\pi}(s) \quad \forall s \in \mathcal{S}
@@ -256,16 +252,15 @@ width: 400pt
 name:  statevaluevizopt
 ---
 *Visualization* of Bellman optimality equation for $v_*$ {eq}`bellopt`.
-
 ```
 
-From equation {eq}`bellopt` the optimum strategy $\pi_*$ can easily be optained by just taking $argmax$ instead of $max$. The best action in state $s$ is
+From equation {eq}`bellopt` the optimum policy $\pi_*$ can easily be obtained by just taking $argmax$ instead of $max$. The best action in state $s$ is
 
 $$
 \pi_*(s) = \underset{a}{\operatorname{argmax}} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_*(s')  \right].
 $$ (optstratv)
 
-The optimum strategy is definded by $\pi_*(s)$ for all $s \in \mathcal{S}$. 
+The optimum policy is definded by $\pi_*(s)$ for all $s \in \mathcal{S}$. 
  
 
 Similarly the **Bellman optimality equation for $q_*$** is:
@@ -284,15 +279,15 @@ width: 300pt
 name:  actionvaluevizopt
 ---
 *Visualization* of Bellman optimality equation for $q_*$ {eq}`belloptq`.
-
 ```
-From equation {eq}`belloptq` the optimum strategy $\pi_*$ can easily be obtained, since in a given state the best action $a$ is
+
+From equation {eq}`belloptq` the optimum policy $\pi_*$ can easily be obtained, since in a given state the best action $a$ is
 
 $$
-\pi_*(s) = \max\limits_{a \in \mathcal{A}(s)} q_*(s,a).
+\pi_*(s) = \underset{a \in \mathcal{A}(s)}{\operatorname{argmax}} q_*(s,a).
 $$
 
-Note that the Bellman optimality equations {eq}`bellopt` and {eq}`belloptq` are actually systems of non-linear equations, because such an equation exists for each state and each state-action-pair, respectively. In principle any method to solve systems of non-linear equations can be applied to calculate the solution. However, in practice the exact solution of these systems of equations is hardly feasible, because of the following reasons:
+Note that the Bellman optimality equations {eq}`bellopt` and {eq}`belloptq` are actually **systems of non-linear equations**, because such an equation exists for each state and each state-action-pair, respectively. In principle any method to solve systems of non-linear equations can be applied to calculate the solution. However, in practice the exact solution of these systems of equations is hardly feasible, because of the following reasons:
 
 * the dynamics of the system, i.e. $p(r',s' \mid s,a)$, and thus the transition-model $p(s'\mid s,a)$ and the reward model $p(r\mid s,a)$ must be known
 * In practice systems can have many states. Then the solution of the system of non-linear equations is computational exhaustive
@@ -304,7 +299,7 @@ Therefore in practise methods, which approximately solve the Bellman optimality 
 
 ## Dynamic Programming (DP) in the case of complete knowledge
 
-In this section we assume **complete knowledge**, i.e. the environment is perfectly and completely known in terms of a finite MDP. Methods, which can be applied to calculate optimal strategies under these conditions are summarized under the term **Dynamic Programming**. Algorithms of this type apply utility functions such as the Bellman optimality function for $v_*$ {eq}`bellopt` and $q_*$ $v_*$ {eq}`belloptq`, respectively. They calculate approximations of these optimality functions by an **iterative update-process**. Below two famous DP algorithms, *policy iteration* and *value iteration* are described. Both of them belong to the general category of **Generalized Policy Iteration**, since they both iteratively evaluate and improve policies. 
+In this section we assume **complete knowledge**, i.e. the environment is perfectly and completely known in terms of a finite MDP. Methods, which can be applied to calculate optimal strategies under these conditions are summarized under the term **Dynamic Programming**. Algorithms of this type apply utility functions such as the Bellman optimality function for $v_*$ {eq}`bellopt` and $q_*$, respectively. They calculate approximations of these optimality functions by an **iterative update-process**. Below two famous DP algorithms, *policy iteration* and *value iteration* are described. Both of them belong to the general category of **Generalized Policy Iteration**, since they both iteratively evaluate and improve policies. 
 
 ### Policy Iteration
 
@@ -368,7 +363,6 @@ name: policyit
 		
 		- If *old-action* $\neq \pi(s)$, then *policy-stable* $:=false$
 	* If *policy-stable*, then stop and return $V \sim v_*$ and $\pi \sim \pi_*$; else go to 3
-
 ```
 
 It can be proven, that this iterative policy-evaluation and -improvement process converges to the optimal policy. 
@@ -376,7 +370,7 @@ It can be proven, that this iterative policy-evaluation and -improvement process
 
 ### Value Iteration
 
-The drawback of the Policy-Iteration algorithm, as given above, is that in each iteration a specific policy must be evaluated. In this evaluation $V(s)$ of each state $s$ is updated in many (infinite) Loop-iterations. Only after this infinite iterations the true $v_{\pi}(s)$ is availabe and can be applied for policy improvement. Tne improved policy $\pi'$ is then applied for calculating $v_{\pi}(s)$ and so on.
+The drawback of the Policy-Iteration algorithm, as given above, is that in each iteration a specific policy must be evaluated. In this evaluation $V(s)$ of each state $s$ is updated in many (infinite) Loop-iterations. Only after this infinite iterations the true $v_{\pi}(s)$ is availabe and can be applied for policy improvement. The improved policy $\pi'$ is then applied for calculating $v_{\pi'}(s)$ and so on.
 
 Value iterations simplifies this process, by just calculating $V(s)$ in only one sweep and *implicitely updating the policy* after only one such sweep. By *implicitely updating the policy*, we mean (as shown in the {ref}`Value iteration algorithm <valueit>`), that in each iteration within the loop no explicit updated policy $\pi$ is calculated. Instead the policy is updated implicitly by the way the values $v_{k+1}(s)$ in iteration $k+1$ are calculated from the old $v_{k}(s')$ of the successor-states $s'$:
 
@@ -408,7 +402,6 @@ name: valueit
 $$
 \pi(s) = argmax_a \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma V(s')  \right]
 $$
-
 ```
 
 
@@ -421,7 +414,8 @@ align: center
 width: 500pt
 name:  valueitex1
 ---
-The upper left grid represents the initial state of the $3 \times 3$-world. All states are initialized with $v_0(s)=0$. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards ($-1$ for *right* and $+1$ for *left*). The last iteration is marked by $V^*$. The two plots in the right  bottom line are derived optimal strategies. 
+The upper left grid represents the initial state of the $3 \times 3$-world. All states are initialized with $v_0(s)=0$. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards ($-1$ for *right* and $+1$ for *left*). The discounting-rate is assumed to be $\gamma = 0.9$. In each iteration the states are looped through from the lower left to the upper right grid-cell.
+The last iteration is marked by $V^*$. The two plots in the right  bottom line are derived optimal strategies. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png
 ---
@@ -430,14 +424,13 @@ width: 500pt
 name:  valueitex2
 ---
 Calculation of optimal strategy from optimal values in $V^*$. Field $(2,3)$ is the field in the second column, third row (counted from the origin in the upper left corner). Image source: {cite}`ertel09`
-
 ```
 	
 ## Without Knowledge of the Environment
 
 In the previous section we assumed, that complete and perfect knowledge is available. This means that the dynamics $p(s',r \mid s,a)$ and thus the transition model $p(s' \mid s,a)$ and the reward model $p(r \mid s,a)$ are known. Now, we consider the case this knowledge is not available. This means that for a given state-action-pair
 * the possible successive states $s'$ and their probability distribution are not known
-* the possible rewards $r$ and their probability distribution is not known
+* the possible rewards $r$ and their probability distribution are not known
 
 The initially not available knowledge must be learned by the agent from experience. This experience is gathered either by the agent's interaction with the real environment or it is gathered in a **simulation**. In many cases learning by interaction with the real world is not feasible, because a sufficiently frequent visit of all states or all state-action pairs, required to learn stable statistics, is not possible. 
 
@@ -456,7 +449,7 @@ In this context we refer by *Monte Carlo* to methods, based on *averaging comple
 As in the previous sections, the value of a state $V(s)$ is the *expected return*, which is defined to be the expected cumulative future discounted reward, starting from this state $s$. In order to estimate this value from experience, an obvious approach is to just generate many *random finite walks (episods)* of the agent. Whenever a given state $s$ is visited, the return for this state is available at the end of the episode. The expected return, i.e. the *value* of this state, is then just the average of all returns gathered over all episodes for this state. 
 
 
-```{admonition} First-visit MC prediction for estimating state-values $V$ of policy $\pi_*$
+```{admonition} First-visit MC prediction for estimating state-values $V$ of policy $\pi$
 ---
 name: first-visit
 ---
@@ -469,13 +462,12 @@ name: first-visit
 	- Set return $G := 0$
 	- Loop for each step of episode, $t=T-1,T-2,\ldots,0$:
 		- Set $G := \gamma G + R_{t+1}$
-		- If $S_t$ appears in $S_0,S_1, \ldots, S_{t-1}$:
+		- Unless $S_t$ appears in $S_0,S_1, \ldots, S_{t-1}$:
 		    - Append $G$ to $Returns(S_t)$
 			- Set $V(s) := average(Returns(S_t))$
-
 ```
 
-Note, the term *First-visit* in the name of this algorithm. As can be seen in the last if-condition of the algorithm, the first visit to a state $s$ within an episode is not regarded in the average return calculation for this state. There exists also an *Every-visit*-option of this algorithm, where all visits to $s$ are regarded.   
+Note, the term *First-visit* in the name of this algorithm. As can be seen in the last unless-condition of the algorithm, only the first visit to a state $s$ within an episode is regarded in the average return calculation for this state. There exists also an *Every-visit*-option of this algorithm, where all visits to $s$ are regarded.   
 
 At this point, we can already post three differences of Monte Carlo (MC) compared to Dynamic Programming (DP):
 * MC does not require knowledge of the environment in terms of a transition model and a reward model
@@ -486,9 +478,9 @@ At this point, we can already post three differences of Monte Carlo (MC) compare
 
 #### Estimation of Action Value Functions
 
-In the case of *complete knowledge* it was easy to derive a policy from a state value function. Since the transition model and the reward model are known, for each action the possible successive states and rewards can be determined and the best action can be selected to be the policy in this state. However, this is not possible if the transition- and reward model are not known. Therefore, in environments without perfect knowledge the control problem (estimating the optimal policy) is usually solved on the basis of estimating the optimal action values $q_*$. 
+In the case of *complete knowledge* it was easy to derive a policy from a state value function. Since the transition model and the reward model are known, for each action the possible successive states and rewards can be determined and the best action, that can be selected to be the policy in this state. However, this is not possible if the transition- and reward model are not known. Therefore, in environments without perfect knowledge the control problem (estimating the optimal policy) is usually solved on the basis of estimating the optimal action values $q_*$. 
 
-In principle the {ref}`First-visit algorithm <first-visit>` for state values can easily be adopted to calculate **values for state-action-pairs** $q_{\pi}(s,a)$ of a policy. Instead of averaging the returns perceived in all visits of a concrete state, now on has to average the returns over all visits of a concrete state-action pair. However, the problem with such an adoption would be, that many state-action pairs would never be visited. For example if $\pi$ is a deterministic policy, that for a given state $s$ only one action pair $(s,a)$ will be visited. For all other actions, available in this state, no state-action values can be calculated. Note that the purpose of action-values is to gradually improve policies and if many state-actions pairs are never visited no policy-improvements can be found. In order to solve this problem it must be ensured, that all state-action-pairs can be visited, i.e. that for a given state $s$, all actions $a \in mathcal{A}(s)$ have a non-zero probability to be visited. This is achieved by letting the agent to **explore**. The following two approaches of exploring will be condiered in the sequel:
+In principle the {ref}`First-visit algorithm <first-visit>` for state values can easily be adopted to calculate **values for state-action-pairs** $q_{\pi}(s,a)$ of a policy. Instead of averaging the returns perceived in all visits of a concrete state, now on has to average the returns over all visits of a concrete state-action pair. However, the problem with such an adoption would be, that many state-action pairs would never be visited. For example if $\pi$ is a deterministic policy, than for a given state $s$ only one action pair $(s,a)$ will be visited. For all other actions, available in this state, no state-action values can be calculated. Note that the purpose of action-values is to gradually improve policies and if many state-actions pairs are never visited no policy-improvements can be found. In order to solve this problem it must be ensured, that all state-action-pairs can be visited, i.e. that for a given state $s$, all actions $a \in \mathcal{A}(s)$ have a non-zero probability to be visited. This is achieved by letting the agent to **explore**. The following two approaches of exploring will be condiered in the sequel:
 
 * *Exploring Starts (ES)*: Let each episode start in a state-action-pair and each possible state-action-pair has a non-zero probability to be selected as such a start-pair. With this approach an infinite number of episodes is required in order to guarantee, that each state-action-pair is visited sufficiently often, such that the real $q_{\pi_k}$ is calculated for arbitrary $\pi_k$.
 * Allow only *stochacstic policies* for which each possible state-action pair has non-zero probability to be visited.
@@ -526,11 +518,10 @@ name: mces
 	- Set return $G := 0$
 	- Loop for each step of episode, $t=T-1,T-2,\ldots,0$:
 		- Set $G := \gamma G + R_{t+1}$
-		- If $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
+		- Unless $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
 		    - Append $G$ to $Returns((S_t,A_t))$
 			- Set $Q(S_t,A_t) := average(Returns((S_t,A_t)))$
 			- Set policy $\pi(S_t):=argmax_a Q(S_t,a)$
-
 ```
 
 
@@ -557,7 +548,7 @@ name: mccontrol
 	- Set return $G := 0$
 	- Loop for each step of episode, $t=T-1,T-2,\ldots,0$:
 		- Set $G := \gamma G + R_{t+1}$
-		- If $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
+		- Unless $(S_t,A_t)$ appears in $(S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})$:
 		    - Append $G$ to $Returns((S_t,A_t))$
 			- Set $Q(S_t,A_t) := average(Returns((S_t,A_t)))$
 			- Set $A*:=argmax_a Q(S_t,a)$
@@ -567,7 +558,6 @@ name: mccontrol
 					 
 				  else:
 				     - Set $\pi(a \mid S_t) := \frac{\epsilon}{\mid A(S_t) \mid}$
-
 ```
 
 The drawback of {ref}`On-policy first-visit MC control <mccontrol>` is that it can only find the best policy among the set of $\epsilon$-soft policies. But there may be better policies, which are not $\epsilon$-soft. In {cite}`Sutton1998` this problem is stated as follows:
@@ -603,7 +593,6 @@ name: mccontroloff
 		- Set $\pi(S_t):= argmax_a Q(S_t,a) $
 		- If $A_t \neq \pi(S_t)$: exit inner loop. Proceed with next episode
 		- Set $W:=W \frac{1}{b(A_t \mid S_t)}$
-
 ```
 
 In this algorithm the update of the state-action values is realized by 
@@ -618,7 +607,7 @@ This is derived from the fact, that state-action-values are the expectations of 
 ### Temporal Difference (TD) Learning
 
 > *If one had to identify one idea as central and novel to reinforcement learning, it would
-undoubtedly be temporal-di↵erence (TD) learning.* {cite}`Sutton1998`
+undoubtedly be temporal-difference (TD) learning.* {cite}`Sutton1998`
 
 In Monte Carlo methods, as described above, episodes are generated, i.e. a sequence of states, actions and rewards 
 
@@ -632,7 +621,7 @@ $$
 V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
 $$ (mcvalueupdate)
 
-where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. In deterministic environments $\alpha=1$ is optimal. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.
+where $G_t$ is the actual return following time $t$ and $\alpha \in [0,1]$ is the *step-size* or *learning-rate*. A learning-rate of $\alpha=0$ yields no learning (adaptation) at all, whereas $\alpha=1$ means that the old values are not updated, but replaced. **In deterministic environments $\alpha=1$ is optimal**. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. $\alpha=0.1$ in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.
 
 $$
 \alpha=0.1/(1+N(s)),
@@ -770,8 +759,8 @@ name:  qlearn1
 ---
 Q-Learning: Updating state-action-values $Q(s,a)$ and calculation of optimal strategy from optimal values: Initially all $Q(s,a)$-values are $0$ (upper left grid). For the two states in the bottom row, for which *move right* is possible, the reward for action *move-right* is $-1$. For the two states in the bottom row, for which *move left* is possible, the reward for action *move-left* is $+1$. For all other state-action pairs the reward is $0$. 
 Image source: {cite}`ertel09`
-
 ```
+
 
 
 ## References
