@@ -120,7 +120,7 @@ $$ (rewmod)
 * the **expected reward** can be calculated by
 
 $$
-r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(r \mid s,a).
+r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(r \mid s,a) \cdot r.
 $$ (rewexp)
 
 ```{admonition} Markov Decision Process (MDP)
@@ -414,7 +414,8 @@ align: center
 width: 500pt
 name:  valueitex1
 ---
-The upper left grid represents the initial state of the $3 \times 3$-world. All states are initialized with $v_0(s)=0$. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards ($-1$ for *right* and $+1$ for *left*). The last iteration is marked by $V^*$. The two plots in the right  bottom line are derived optimal strategies. 
+The upper left grid represents the initial state of the $3 \times 3$-world. All states are initialized with $v_0(s)=0$. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards ($-1$ for *right* and $+1$ for *left*). The discounting-rate is assumed to be $\gamma = 0.9$. In each iteration the states are looped through from the lower left to the upper right grid-cell.
+The last iteration is marked by $V^*$. The two plots in the right  bottom line are derived optimal strategies. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png
 ---
