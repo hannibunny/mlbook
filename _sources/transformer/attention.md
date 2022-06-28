@@ -386,7 +386,12 @@ $$
 
 #### Multi-Head Attention and Positional Encoding
 
-A drawback of the approach as introduced so far, is that the input-tokens are processed as **unordered set**, i.e. order-information is ignored. This implies that for any pair of input-tokens $x_i, x_j$ query $q$ and key $k$ and thus their correlation-score $a_{i,j}$ is the same. However, in some contexts their correlation can be strong, whereas in others it may be weak. Moreover, the output $y_{passed}$ for the input **Bob passed the ball to Tim** would be the same as the output $y_{passed}$ for the input *Tim passed the ball to Bob*. These problems can be circumvented by *Multi-Head-Attention* and *Positional Encoding*.
+There are 2  drawbacks of the approach as introduced so far:
+
+1. Input-tokens are processed as **unordered set**, i.e. order-information is ignored. For example the output $y_{passed}$ for the input **Bob passed the ball to Tim** would be the same as the output $y_{passed}$ for the input *Tim passed the ball to Bob*.
+2. For a given pair of input-tokens $x_i, x_j$ query $q$ and key $k$ are always the same. Therefore their attention coefficien $a_{ij}$ is also always the same. However, the correlation between a given pair of tokens may vary. In some contexts their interdependence may be strong, in others weak.   
+
+These problems can be circumvented by *Multi-Head-Attention* and *Positional Encoding*.
 
 **Multi-Headed Self-Attention** provides an additional degree of freedom in the sense, that multiple (query,key,value) triples for each pair of positions $(i,j)$ can be learned. For each position $i$, multiple $y_i$ are calculated, by applying the attention mechanism, as introduced above, $h$ times in parallel. Each of the $h$ elements is called an *attention head*. Each attention head applies its own matrices $W_q^r, W_k^r, W_v^r$ for calculating individual queries $q^r$, keys $k^r$ and values $v^r$, which are combined to the output:    
 
