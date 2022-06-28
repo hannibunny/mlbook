@@ -347,14 +347,13 @@ $$
 * the **Key** vector is obtained by multiplying input vector $x_i$  with the learnable matrix $W_k$:
 
 $$
-q
 k_i=W_k x_i
 $$
 
 * the **Value** vector is obtained by multiplying input vector $x_i$  with the learnable matrix $W_v$:
 
 $$
-v_i=W_q x_i
+v_i=W_v x_i
 $$
 
 Applying these three representations the outputs $y_i$ are calculated as follows:

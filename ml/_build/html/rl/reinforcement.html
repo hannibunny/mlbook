@@ -1017,7 +1017,7 @@ The last iteration is marked by <span class="math notranslate nohighlight">\(V^*
 <p>How can this drawback be circumvented? The answer is: <em>by off-policy aproaches</em>. In an <strong>off-policy</strong> algorithm the policy <span class="math notranslate nohighlight">\(\pi\)</span>, which is iteratively evaluated and improved is not the same policy, which defines how actions are selected during the learning episodes. I.e. we have two policies:</p>
 <ul class="simple">
 <li><p>the <strong>target policy <span class="math notranslate nohighlight">\(\pi\)</span></strong> to be optimized</p></li>
-<li><p>the <strong>behaviour policy <span class="math notranslate nohighlight">\(\pi\)</span></strong>, which is applied for selecting actions during the learning episodes.</p></li>
+<li><p>the <strong>behaviour policy <span class="math notranslate nohighlight">\(b\)</span></strong>, which is applied for selecting actions during the learning episodes.</p></li>
 </ul>
 <p>By selecting the behaviour policy <span class="math notranslate nohighlight">\(b\)</span> to be an <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft-policy one can ensure that all possible state-action-pairs are visited, while the target-policy <span class="math notranslate nohighlight">\(\pi\)</span> can be any policy without restrictions, in particular a deterministic policy. The algorithm above, <a class="reference internal" href="#mccontrol"><span class="std std-ref">On-policy first-visit MC control</span></a>, is an <strong>on-policy</strong> approach. Here, behaviour during the episodes is determined by the same policy, which is evaluated and optimized.</p>
 <p>An Off-policy MC control algorithm is given below:</p>

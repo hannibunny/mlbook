@@ -566,7 +566,7 @@ The drawback of {ref}`On-policy first-visit MC control <mccontrol>` is that it c
 	
 How can this drawback be circumvented? The answer is: *by off-policy aproaches*. In an **off-policy** algorithm the policy $\pi$, which is iteratively evaluated and improved is not the same policy, which defines how actions are selected during the learning episodes. I.e. we have two policies: 
 * the **target policy $\pi$** to be optimized
-* the **behaviour policy $\pi$**, which is applied for selecting actions during the learning episodes.
+* the **behaviour policy $b$**, which is applied for selecting actions during the learning episodes.
 
 By selecting the behaviour policy $b$ to be an $\epsilon$-soft-policy one can ensure that all possible state-action-pairs are visited, while the target-policy $\pi$ can be any policy without restrictions, in particular a deterministic policy. The algorithm above, {ref}`On-policy first-visit MC control <mccontrol>`, is an **on-policy** approach. Here, behaviour during the episodes is determined by the same policy, which is evaluated and optimized. 
 	
