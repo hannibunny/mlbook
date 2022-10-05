@@ -195,7 +195,19 @@ Left: PDF of a 2-dimensional Gaussian distribution with strong positive correlat
 
 ## Gaussian Process
 
-After recalling Multidimensional Gaussian Distributions, it's no big deal to understand Gaussian Processes. In a nutshell: Multidimensioanl Gaussian Distributions are distributions over a finite set of $d$ correlated random variables. A Gaussian Process extends this to an infinite set of random variables. The differences are listed in the two panels below: 
+After recalling Multidimensional Gaussian Distributions, it's no big deal to understand Gaussian Processes. In a nutshell: Multidimensioanl Gaussian Distributions are distributions over a finite set of $d$ correlated random variables. A Gaussian Process extends this to an infinite set of random variables. This *extension* is sketched in the image below:
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gauss2DtoInfinite.png
+---
+align: center
+width: 600pt
+name:  distrepresentations
+---
+The top-left plot contains the usual represenations of samples of a 2-dimensional Gaussian Distribution. The top-right displays another representation of a single sample with coordinates $(3.2 , 4.0)$. In the lower-left it is sketched how this representation can be extended to an arbitrary number of dimensions. In the lower-right plot the number of dimensions is infinite. The result is a sample of a Gaussion Process.
+```
+
+
+The differences between Multidimensional Gaussian Distributions and Gaussian Processes are listed in the two panels below: 
 
 ````{panels}
 
