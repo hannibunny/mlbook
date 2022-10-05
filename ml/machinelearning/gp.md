@@ -13,7 +13,6 @@ kernelspec:
   name: python3
 ---
 
----
 
 # Gaussian Process
 
@@ -173,7 +172,6 @@ $$
 
 Below for two distinct 2-dimensional Gaussian distributions the PDF and a corresponding data sample are visualized. In the first example the two random variables are uncorrelated, in the second plot correlated.
 
-+++
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma0.png
 ---
@@ -205,7 +203,6 @@ name:  distrepresentations
 ---
 The top-left plot contains the usual represenations of samples of a 2-dimensional Gaussian Distribution. The top-right displays another representation of a single sample with coordinates (3.2 , 4.0). In the lower-left it is sketched how this representation can be extended to an arbitrary number of dimensions. In the lower-right plot the number of dimensions is infinite. The result is a sample of a Gaussion Process.
 ```
-
 
 The differences between Multidimensional Gaussian Distributions and Gaussian Processes are listed in the two panels below: 
 
@@ -264,7 +261,6 @@ Parameters and characteristics of this covariance function are
 * **Length-Scale $\ell$**: The higher $\ell$ the slower the decrease of the correlation between $f(x)$ and $f(x')$ with increasing distance between $x$ and $x'$. A high value $\ell$ means strong correlation between neighbouring function-values. This yields *smooth* curves. Small values for $\ell$ means less correlation and the potential for high differences in neighbouring function-values.
 * **Variance $\sigma_f^2$**. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.
 
-+++
 
 ````{panels}
 
