@@ -203,7 +203,7 @@ align: center
 width: 600pt
 name:  distrepresentations
 ---
-The top-left plot contains the usual represenations of samples of a 2-dimensional Gaussian Distribution. The top-right displays another representation of a single sample with coordinates $(3.2 , 4.0)$. In the lower-left it is sketched how this representation can be extended to an arbitrary number of dimensions. In the lower-right plot the number of dimensions is infinite. The result is a sample of a Gaussion Process.
+The top-left plot contains the usual represenations of samples of a 2-dimensional Gaussian Distribution. The top-right displays another representation of a single sample with coordinates (3.2 , 4.0). In the lower-left it is sketched how this representation can be extended to an arbitrary number of dimensions. In the lower-right plot the number of dimensions is infinite. The result is a sample of a Gaussion Process.
 ```
 
 
