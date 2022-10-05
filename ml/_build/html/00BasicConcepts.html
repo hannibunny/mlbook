@@ -407,8 +407,8 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#reinforcement-learning">
-       Reinforcement Learning
+      <a class="reference internal nav-link" href="#reinforcement-learning-learning-from-feedback">
+       Reinforcement Learning: Learning from Feedback
       </a>
      </li>
     </ul>
@@ -441,6 +441,16 @@
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#semi-supervised-learning">
        Semi-Supervised Learning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supervised-pretraining">
+       Supervised Pretraining
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#few-shot-learning">
+       Few-Shot Learning
       </a>
      </li>
     </ul>
@@ -487,8 +497,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-ml-applications">
-   Some ML Applications
+  <a class="reference internal nav-link" href="#a-incomplete-list-of-ai-applications">
+   A incomplete list of AI Applications
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -511,7 +521,7 @@
 <h1>Basic Concepts of Data Mining and Machine Learning<a class="headerlink" href="#basic-concepts-of-data-mining-and-machine-learning" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last Update: 22.03.2022</p></li>
+<li><p>Last Update: 04.10.2022</p></li>
 </ul>
 <div class="section" id="overview-data-mining-process">
 <h2>Overview Data Mining Process<a class="headerlink" href="#overview-data-mining-process" title="Permalink to this headline">¶</a></h2>
@@ -571,22 +581,28 @@
 <h4>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h4>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" style="width:800px" align="center"><p><strong>Apply learned Model:</strong>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervisedApply.png" style="width:800px" align="center"></p>
+<hr class="docutils" />
+<p><strong>Associations between Instances (Clustering) and Associations between Features (Association Rule Mining):</strong>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/unsupervisedML.png" style="width:400px" align="center"></p>
 </div>
-<div class="section" id="reinforcement-learning">
-<h4>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h4>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" style="width:500px" align="center"></div>
+<hr class="docutils" />
+<div class="section" id="reinforcement-learning-learning-from-feedback">
+<h4>Reinforcement Learning: Learning from Feedback<a class="headerlink" href="#reinforcement-learning-learning-from-feedback" title="Permalink to this headline">¶</a></h4>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/LeaMayerSteepleEugene.jpg" style="width:500px" align="center"></div>
 </div>
 <div class="section" id="general-scheme-for-machine-learning">
 <h3>General Scheme for Machine Learning<a class="headerlink" href="#general-scheme-for-machine-learning" title="Permalink to this headline">¶</a></h3>
 <p>In Machine Learning one distinguishes</p>
 <ul class="simple">
-<li><p>training-phase,</p></li>
-<li><p>test-phase</p></li>
-<li><p>operational phase.</p></li>
+<li><p>training-mode,</p></li>
+<li><p>validation-mode</p></li>
+<li><p>operational mode.</p></li>
 </ul>
-<p>Training and test are shown in the image below. In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be tested. In the case of supervised learning testing compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.</p>
+<p>In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be validated. In the case of supervised learning validation compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.</p>
+<p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …).</p>
+<p><em>Note: The picture below, distinguishes only training and validation. However, as described above, we also have the test-phase. The corresponding schema would be the same as for validation but with another set of labeled data.</em></p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" alt="Drawing" style="width: 800px;"/><p>As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, …) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, …):</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/dataMatrix.png" alt="Drawing" style="width: 800px;"/>
 <p>The image below depicts such a 2-dimensional array of training-data for the applications <em>Object Recognition, Document Classification, Personality Classification, Temperature Prediction</em> and <em>Recommender System</em>.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataExamples.png" alt="Drawing" style="width: 800px;"/>
 </div>
@@ -638,6 +654,27 @@
 <p>Semi-supervised learning may refer to either <strong>transductive learning</strong> or <strong>inductive learning</strong>.The goal of transductive learning is to infer the correct labels <em>for the given unlabeled data only</em>. The goal of inductive learning is to infer the <em>correct mapping from input data to target in general</em>. (Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Semi-supervised_learning">Wikipedia</a>).</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/SemiSupervised.png" alt="Drawing" style="width: 800px;"/>
 <p>There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers.</p>
+</div>
+<div class="section" id="supervised-pretraining">
+<h4>Supervised Pretraining<a class="headerlink" href="#supervised-pretraining" title="Permalink to this headline">¶</a></h4>
+<p>A common and extremely efficient approach to apply deep neural networks in the case of only relatively small amounts of labeled training data is to integrate neural networks, which have been <strong>pretrained on a very large labeled dataset</strong>. Such pretrained deep neural networks can be downloaded e.g. from</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://keras.io/api/applications/">Keras applications</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/hub">Tensorflow Hub</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/models">Huggingface</a></p></li>
+</ul>
+<p>As in the case of self-supervised learning, the <strong>learned feature extractor</strong> constitutes a basis, which can be adapted and fine-tuned for different tasks. Again, a relatively small amount of task-specific labeled data is required for fine-tuning.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/supervised_pretraining.png" alt="Drawing" style="width: 800px;"/>
+</div>
+<div class="section" id="few-shot-learning">
+<h4>Few-Shot Learning<a class="headerlink" href="#few-shot-learning" title="Permalink to this headline">¶</a></h4>
+<p>The term <strong>Few-Shot-Learning</strong> refers to approaches, which provide models that can be applied for classification, even though there is only a very small amount of labeled data - too small to apply conventional ML. In the extreme case of <strong>One-Shot-Learning</strong> only one labeled training instance per class is required.</p>
+<p>Few-Shot-Learning is often described as <strong>N-way-K shot meta learning classification</strong>. This means that for each of the <span class="math notranslate nohighlight">\(N\)</span> classes <span class="math notranslate nohighlight">\(K\)</span> labeled training instances are available. Typical numbers for <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(K\)</span> are 10 and 5, respectively.</p>
+<p>As sketched in the image below (Image Source: <a class="reference external" href="https://www.borealisai.com/research-blogs/tutorial-2-few-shot-learning-and-meta-learning-i/?utm_source=pocket_mylist">https://www.borealisai.com</a>), the idea of meta learning is to <em>learn how to classify</em> by training a network on different but similar tasks. The more similar tasks are applied to learn the network’s weight, the better it’s capability to distinguish classes in general.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/NoverKfewshot.png" alt="Drawing" style="width: 800px;"/>
+<p>A quit popular realisation of few-shot-learning is the <strong>Matching Networks</strong> approach, which has been introduced in <a class="reference external" href="https://arxiv.org/pdf/1606.04080.pdf">O. Vinyals et al</a>. The picture below describes the idea of this approach:</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/matchingnetworks.png" alt="Drawing" style="width: 600px;"/>
+<p>Training instances (here <span class="math notranslate nohighlight">\(K=4\)</span> different classes) are mapped into an embedding space. The mapping is realized by a neural network <span class="math notranslate nohighlight">\(g\)</span> with learnable parameters <span class="math notranslate nohighlight">\(\Theta\)</span>. The query-image is also mapped to the same embedding space. The function <span class="math notranslate nohighlight">\(f\)</span> applied for mapping the query image need not be the same as the function <span class="math notranslate nohighlight">\(g\)</span>. In the embedded space a simple nearest-neighbour search is applied to determine the class of the query image. I.e. for the given representation of the query-image the closest representation of a training image is determined. The class of this closest training image is the decision. The more similar tasks are available to learn the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> the better the accuracy on similar tasks.</p>
 </div>
 </div>
 <div class="section" id="cross-validation">
@@ -749,10 +786,10 @@ y=f(x)+\epsilon.
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/></div>
 </div>
 </div>
-<div class="section" id="some-ml-applications">
-<h2>Some ML Applications<a class="headerlink" href="#some-ml-applications" title="Permalink to this headline">¶</a></h2>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/aiUseCases.png" alt="Drawing" style="width: 800px;"/>
-<p>Image Source: <a class="reference external" href="https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families">https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families</a></p>
+<div class="section" id="a-incomplete-list-of-ai-applications">
+<h2>A incomplete list of AI Applications<a class="headerlink" href="#a-incomplete-list-of-ai-applications" title="Permalink to this headline">¶</a></h2>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/AIapplicationsEnterprise.png" alt="Drawing" style="width: 600px;"/>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/AIapplicationsIndustry.png" alt="Drawing" style="width: 600px;"/>
 </div>
 <div class="section" id="current-problems-challenges-of-ai-and-ml">
 <h2>Current Problems/Challenges of AI and ML<a class="headerlink" href="#current-problems-challenges-of-ai-and-ml" title="Permalink to this headline">¶</a></h2>

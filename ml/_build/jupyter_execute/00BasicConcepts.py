@@ -3,7 +3,7 @@
 
 # # Basic Concepts of Data Mining and Machine Learning 
 # * Author: Johannes Maucher
-# * Last Update: 22.03.2022
+# * Last Update: 04.10.2022
 
 # ## Overview Data Mining Process
 # The **Cross-industry standard process for data mining (CRISP)** proposes a common approach for realizing data mining projects: 
@@ -84,22 +84,34 @@
 # **Apply learned Model:**
 # <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervisedApply.png" style="width:800px" align="center">
 
-# #### Reinforcement Learning
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/bogenschiessen.jpg" style="width:500px" align="center">
+# ---
+# 
+# **Associations between Instances (Clustering) and Associations between Features (Association Rule Mining):**
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/unsupervisedML.png" style="width:400px" align="center">
+# 
+# ---
+
+# #### Reinforcement Learning: Learning from Feedback
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/LeaMayerSteepleEugene.jpg" style="width:500px" align="center">
 
 # ### General Scheme for Machine Learning
-# In Machine Learning one distinguishes  
-# * training-phase, 
-# * test-phase 
-# * operational phase.
 # 
-# Training and test are shown in the image below. In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be tested. In the case of supervised learning testing compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.
+# In Machine Learning one distinguishes  
+# * training-mode, 
+# * validation-mode 
+# * operational mode.
+# 
+# In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be validated. In the case of supervised learning validation compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.
+# 
+# As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, ...) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, ...).
+# 
+# *Note: The picture below, distinguishes only training and validation. However, as described above, we also have the test-phase. The corresponding schema would be the same as for validation but with another set of labeled data.*
 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" alt="Drawing" style="width: 800px;"/>
 
 # As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, ...) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, ...): 
 # 
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataStructure.PNG" alt="Drawing" style="width: 800px;"/>
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/dataMatrix.png" alt="Drawing" style="width: 800px;"/>
 # 
 # The image below depicts such a 2-dimensional array of training-data for the applications *Object Recognition, Document Classification, Personality Classification, Temperature Prediction* and *Recommender System*.
 # 
@@ -167,6 +179,37 @@
 # 
 # There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers. 
 # 
+# 
+# #### Supervised Pretraining
+# 
+# A common and extremely efficient approach to apply deep neural networks in the case of only relatively small amounts of labeled training data is to integrate neural networks, which have been **pretrained on a very large labeled dataset**. Such pretrained deep neural networks can be downloaded e.g. from 
+# 
+# * [Keras applications](https://keras.io/api/applications/)
+# * [Tensorflow Hub](https://www.tensorflow.org/hub)
+# * [Huggingface](https://huggingface.co/models)
+# 
+# 
+# As in the case of self-supervised learning, the **learned feature extractor** constitutes a basis, which can be adapted and fine-tuned for different tasks. Again, a relatively small amount of task-specific labeled data is required for fine-tuning.
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/supervised_pretraining.png" alt="Drawing" style="width: 800px;"/>
+# 
+
+# #### Few-Shot Learning
+# 
+# The term **Few-Shot-Learning** refers to approaches, which provide models that can be applied for classification, even though there is only a very small amount of labeled data - too small to apply conventional ML. In the extreme case of **One-Shot-Learning** only one labeled training instance per class is required.
+# 
+# Few-Shot-Learning is often described as **N-way-K shot meta learning classification**. This means that for each of the $N$ classes $K$ labeled training instances are available. Typical numbers for $N$ and $K$ are 10 and 5, respectively.
+# 
+# As sketched in the image below (Image Source: [https://www.borealisai.com](https://www.borealisai.com/research-blogs/tutorial-2-few-shot-learning-and-meta-learning-i/?utm_source=pocket_mylist)), the idea of meta learning is to *learn how to classify* by training a network on different but similar tasks. The more similar tasks are applied to learn the network's weight, the better it's capability to distinguish classes in general. 
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/NoverKfewshot.png" alt="Drawing" style="width: 800px;"/>
+# 
+
+# A quit popular realisation of few-shot-learning is the **Matching Networks** approach, which has been introduced in [O. Vinyals et al](https://arxiv.org/pdf/1606.04080.pdf). The picture below describes the idea of this approach:
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/matchingnetworks.png" alt="Drawing" style="width: 600px;"/>
+# 
+# Training instances (here $K=4$ different classes) are mapped into an embedding space. The mapping is realized by a neural network $g$ with learnable parameters $\Theta$. The query-image is also mapped to the same embedding space. The function $f$ applied for mapping the query image need not be the same as the function $g$. In the embedded space a simple nearest-neighbour search is applied to determine the class of the query image. I.e. for the given representation of the query-image the closest representation of a training image is determined. The class of this closest training image is the decision. The more similar tasks are available to learn the functions $f$ and $g$ the better the accuracy on similar tasks.
 
 # ### Cross Validation
 
@@ -301,11 +344,13 @@
 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/>
 
-# ## Some ML Applications
+# ## A incomplete list of AI Applications
 # 
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/aiUseCases.png" alt="Drawing" style="width: 800px;"/>
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/AIapplicationsEnterprise.png" alt="Drawing" style="width: 600px;"/>
 # 
-# Image Source: [https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families](https://www.appliedai.de/de/hub/bibliothek-ai-use-case-families)
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/AIapplicationsIndustry.png" alt="Drawing" style="width: 600px;"/>
+# 
+# 
 
 # ## Current Problems/Challenges of AI and ML
 # * **Data efficiency:** In order to learn complex tasks large amounts of training data are required
