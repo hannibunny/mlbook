@@ -117,6 +117,14 @@
     * News classification with CNN
     * News classification with LSTM
     
+
+### Graph Neural Networks
+
+17. [Graph Neural Networks](neuralnetworks/GraphNeuralNetworks.ipynb)
+    * Concepts of GNNs
+    * Implementation of GNN with Keras
+    * Document Classification with GNNs
+
 ### Attention, Transformer, BERT
 
 1. [Attention, Transformer, BERT](transformer/attention.md)

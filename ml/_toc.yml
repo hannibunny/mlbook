@@ -41,6 +41,9 @@ parts:
   chapters:
   - file: text/01ModellingWordsAndTexts
   - file: text/02TextClassification
+- caption: Graph Neural Networks
+  chapters:
+  - file: neuralnetworks/GraphNeuralNetworks
 - caption: Transformer
   chapters:
   - file: transformer/attention
