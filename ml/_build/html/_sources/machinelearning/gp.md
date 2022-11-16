@@ -13,7 +13,6 @@ kernelspec:
   name: python3
 ---
 
----
 
 # Gaussian Process
 
@@ -173,7 +172,6 @@ $$
 
 Below for two distinct 2-dimensional Gaussian distributions the PDF and a corresponding data sample are visualized. In the first example the two random variables are uncorrelated, in the second plot correlated.
 
-+++
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/2dimGaussSigma0.png
 ---
@@ -195,7 +193,18 @@ Left: PDF of a 2-dimensional Gaussian distribution with strong positive correlat
 
 ## Gaussian Process
 
-After recalling Multidimensional Gaussian Distributions, it's no big deal to understand Gaussian Processes. In a nutshell: Multidimensioanl Gaussian Distributions are distributions over a finite set of $d$ correlated random variables. A Gaussian Process extends this to an infinite set of random variables. The differences are listed in the two panels below: 
+After recalling Multidimensional Gaussian Distributions, it's no big deal to understand Gaussian Processes. In a nutshell: Multidimensioanl Gaussian Distributions are distributions over a finite set of $d$ correlated random variables. A Gaussian Process extends this to an infinite set of random variables. This *extension* is sketched in the image below:
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gauss2DtoInfinite.png
+---
+align: center
+width: 600pt
+name:  distrepresentations
+---
+The top-left plot contains the usual represenations of samples of a 2-dimensional Gaussian Distribution. The top-right displays another representation of a single sample with coordinates (3.2 , 4.0). In the lower-left it is sketched how this representation can be extended to an arbitrary number of dimensions. In the lower-right plot the number of dimensions is infinite. The result is a sample of a Gaussion Process.
+```
+
+The differences between Multidimensional Gaussian Distributions and Gaussian Processes are listed in the two panels below: 
 
 ````{panels}
 
@@ -252,7 +261,6 @@ Parameters and characteristics of this covariance function are
 * **Length-Scale $\ell$**: The higher $\ell$ the slower the decrease of the correlation between $f(x)$ and $f(x')$ with increasing distance between $x$ and $x'$. A high value $\ell$ means strong correlation between neighbouring function-values. This yields *smooth* curves. Small values for $\ell$ means less correlation and the potential for high differences in neighbouring function-values.
 * **Variance $\sigma_f^2$**. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.
 
-+++
 
 ````{panels}
 
@@ -385,6 +393,15 @@ stds=np.sqrt(vars)
 filly = r_[mx+2*stds, mx[::-1]-2*stds[::-1]]
 plt.fill(fillx, filly, facecolor='gray', edgecolor='white', alpha=0.3)
 plt.show()
+```
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/GPsamples.png
+---
+align: center
+width: 600pt
+name:  gpsamples
+---
+3 Samples of a Gaussian Process
 ```
 
 ## Gaussian Process Regression

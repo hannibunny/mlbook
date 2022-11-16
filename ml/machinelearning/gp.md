@@ -395,6 +395,15 @@ plt.fill(fillx, filly, facecolor='gray', edgecolor='white', alpha=0.3)
 plt.show()
 ```
 
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/GPsamples.png
+---
+align: center
+width: 600pt
+name:  gpsamples
+---
+3 Samples of a Gaussian Process
+```
+
 ## Gaussian Process Regression
 
 In the previous subsection it was described how samples of a Gaussian Process can be generated, given a mean-function and a covariance function. However, up to now nothing has been said, how this can be applied for a supervised ML regression task. The idea is that the Gaussian Process with defined mean- and covariance function constiute a **prior**. On the basis of this prior we calculate a **posterior** for the given training data 
@@ -421,7 +430,7 @@ name:  supportpoints
 Training data is considered to constitute support-points (red) of a GP sample. By applying the mean- and covariance-function of the GP all other points of this sample (green dashed line) can be determined.
 ```
 
-Recall that in [Linear Regression](LinReg), it is assumed that the output $y_t$ is the sum of a deterministic term $f(x_t)$ and a noise term $z_t$
+Recall that in [Linear Regression](LinReg), it is assumed that the output $y_t$ is the sum of a deterministic term $f(x_t)$ and a noise term $n_t$
 
 $$
 y_t=f(x_t)+n_t

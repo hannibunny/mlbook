@@ -97,15 +97,20 @@
 # ### General Scheme for Machine Learning
 # 
 # In Machine Learning one distinguishes  
-# * training-mode, 
-# * validation-mode 
-# * operational mode.
+# * training-phase,
+# * validation-phase,
+# * test-phase, 
+# * operational phase.
 # 
-# In the training phase training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs. Once this model is learned it can be applied in the operational phase to map new input-instances to output values (classes-index, cluster-index or numeric function-value). Before applying a learned model in operation it must be validated. In the case of supervised learning validation compares for all test-data the output of the model with the target output. This means that testing also requires labeled data. Test-data and training-data must be disjoint.
+# Training and validation are shown in the image below. 
 # 
-# As shown in the picture above, usually the available data can not be passed directly to the machine-learning algorithm. Instead it must be processed in order to transform it to a corresponding format and to extract meaningful features. The usual formal, accepted by all machine-learning algorithms is a 2-dimensional array, whose rows are the instances (e.g. documents, images, customers, ...) and whose columns are the features, which describe the instances (e.g. words, pixels, bought products, ...).
+# 1. In the **training phase** training-data is applied to learn a general model. The model either describes the structure of the training data (in the case of unsupervised learning) or a function, which maps input-data to outputs.
 # 
-# *Note: The picture below, distinguishes only training and validation. However, as described above, we also have the test-phase. The corresponding schema would be the same as for validation but with another set of labeled data.*
+# 2. **Validation phase:** During the training-phase the model is fitted to the training-data. However, the primal goal is not to find a model, which is maximally fitted to training data. Instead we like to learn a model, which **generalizes well**, i.e. it shall be good on new data, which has not been seen during training. For this a validation-data partition, which is disjoint to the training-data partition, is applied to the model. This means, that for each input of the validation-partition the learned models prediction is calculated and compared to the true output (label). In this way an error-statistic, more general: a performance-measure, can be calculated. The performance measure on the validation data is used to assess the learned model, to compare different models and to select the best trained model.
+# 
+# 3. **Test phase:** In order to estimate the selected models performance in real life, one applies a test-data partition, which is disjoint to training-data and validation-data. The performance on the test-data tells us the accuracy we can expect in the operational mode.
+# 
+# 4. **Operational mode:** If the performance in the preceding test phase is sufficient for our purpose, the model can be deployed to the target device. In the operational mode, the model receives new input data and has to calculate the corresponding output (class, prediction, etc.)
 
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/Learning.png" alt="Drawing" style="width: 800px;"/>
 
