@@ -14,7 +14,7 @@
 # ## Artificial Neuron
 # 
 # 
-# <img src="http://maucher.home.hdm-stuttgart.de/Pics/slpPresentationSingle.png" width="400">
+# <img src="http://maucher.home.hdm-stuttgart.de/Pics/einneuron.jpg" width="400">
 # 
 
 # The artificial model of a neuron is shown in the picture below. At the input of each neuron the weighted sum 
