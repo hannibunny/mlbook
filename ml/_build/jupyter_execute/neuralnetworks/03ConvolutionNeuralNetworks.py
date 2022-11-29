@@ -4,7 +4,7 @@
 # # Convolutional Neural Networks
 # 
 # * Author: Johannes Maucher
-# * Last Update: 03.12.2021
+# * Last Update: 29.11.2022
 # 
 # There exists different types of deep neural networks, e.g.
 # * Convolutional Neural Networks (CNNs)
@@ -14,8 +14,9 @@
 # * (Hierarchical) Attention Networks
 # * Sequence-to-Sequence Networks
 # * Transformer Networks
-# * Deep Q-Networks (Deep Reinforcementlearning)
+# * Deep Reinforcementlearning, Deep Q-Networks
 # * Generative Adversarial Networks
+# * Diffusion Models
 # 
 # and many variants of them. 
 # 
@@ -49,7 +50,7 @@
 
 # The picture below contains a very famous CNN - the so called [AlexNet](https://www.nvidia.cn/content/tesla/pdf/machine-learning/imagenet-classification-with-deep-convolutional-nn.pdf), which won the ImageNet contest in 2012. In the classification-task of this contest 1000 different objects must be recognized in images. For training 15 million labeled images have been applied. On a computer with two GTX 580 3GB GPUs training took about 6 days. AlexNet achieved a top-5 error rate of 15.4% - compared to 26.2% of the second best. AlexNet can be considered as an important milestone in the development and application of deep neural networks.
 # <a id="alexnet"></a>
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/AlexNetArchitecture.png" width="800" align="center">
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/alexNetColored.png" width="800" align="center">
 
 # The input of to the AlexNet is a 3-channel RGB-image. The dense-layer at the output consists of 1000 neurons, each refering to one of the 1000 object categories, which are distinguished in the ImageNet data. The index of the output-neuron with the maximum value indicates the most-probable object category. 
 
@@ -63,7 +64,7 @@
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#%matplotlib inline
 import scipy.ndimage as ndi
 import numpy as np
 np.set_printoptions(suppress=True)
@@ -363,6 +364,10 @@ plt.show()
 # <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultFeats.png" width="500" align="center">
 # 
 # 
+
+# **Further Example: Extracting 3 features from one channel:**
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/convolutionMultiFeatEdge.png" width="500" align="center">
 
 # ### Activation function
 # Activation functions operate element-wise on the values of feature maps. The most common activation functions are 

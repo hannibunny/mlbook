@@ -3,7 +3,7 @@
 
 # # Implementing Neural Networks with Keras
 # * Author: Johannes Maucher
-# * Last Update: 02.11.2020
+# * Last Update: 29.11.2022
 
 # ## What you will learn:
 # * Define, train and evaluate MLP in Keras
@@ -14,25 +14,24 @@
 
 # ## Imports and Configurations
 
-# In[40]:
+# In[26]:
 
 
+#!pip install visualkeras
 #!pip install Pillow
 #!pip install tensorflow-cpu
 
 
-# In[41]:
+# In[27]:
 
 
 #import tensorflow
 #from tensorflow import keras
 
 
-# In[42]:
+# In[28]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
-#from keras.datasets import cifar10
 from matplotlib import pyplot as plt
 import numpy as np
 from tensorflow.keras.datasets import cifar10
@@ -44,13 +43,13 @@ from tensorflow.keras.backend import set_image_data_format
 import os
 
 
-# In[43]:
+# In[29]:
 
 
 set_image_data_format("channels_last")
 
 
-# In[44]:
+# In[30]:
 
 
 import warnings
@@ -59,7 +58,7 @@ warnings.filterwarnings("ignore")
 
 # The following code-cell is just relevant if notebook is executed on a computer with multiple GPUs. It allows to select the GPU. 
 
-# In[45]:
+# In[31]:
 
 
 #from os import environ
@@ -70,7 +69,7 @@ warnings.filterwarnings("ignore")
 # In this notebook the neural network shall not learn models, which already exists. This is implemented as follows. The three models (MLP and two different CNNs) are saved to the files, whose name is assigned to the variables `mlpmodelname`, `cnnsimplemodelname` and `cnnadvancedmodelname`, respectively. 
 # If these files exist (checked by `os.path.isfile(filename)`) a corresponding AVAILABLE-Flag is set. If this flag is `False`, the corresponding model will be learned and saved, otherwise the existing model will be loaded from disc.
 
-# In[67]:
+# In[32]:
 
 
 modeldirectory="models/"
@@ -79,7 +78,7 @@ cnnsimplemodelname=modeldirectory+"2conv32-dense512"
 cnnadvancedmodelname=modeldirectory+"2conv32-4conv64-dense512"
 
 
-# In[68]:
+# In[33]:
 
 
 import os.path
@@ -100,7 +99,7 @@ else:
     CNN2_AVAILABLE=False
 
 
-# In[69]:
+# In[34]:
 
 
 CNN1_AVAILABLE
@@ -110,13 +109,13 @@ CNN1_AVAILABLE
 # 
 # Load the Cifar10 image dataset from `keras.datasets`. Determine the shape of the training- and the test-partition.
 
-# In[49]:
+# In[35]:
 
 
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
 
-# In[50]:
+# In[36]:
 
 
 print(np.shape(X_train))
@@ -127,7 +126,7 @@ print(np.shape(X_test))
 # 
 # Viusalize the first 9 images of the training-partition, using function `imshow()` from `matplotlib.pyplot`.
 
-# In[51]:
+# In[37]:
 
 
 # create a grid of 3x3 images
@@ -145,7 +144,7 @@ plt.show()
 # ## Preprocessing 
 # Scale all images such that all their values are in the range $[0,1]$.
 
-# In[52]:
+# In[38]:
 
 
 X_train = X_train.astype('float32')
@@ -156,7 +155,7 @@ X_test = X_test / 255.0
 
 # Labels of the first 9 training images:
 
-# In[53]:
+# In[39]:
 
 
 print(y_train[:9])
@@ -164,7 +163,7 @@ print(y_train[:9])
 
 # **Label-Encoding:** Transform the labels of the train- and test-partition into a one-hot-encoded representation. 
 
-# In[54]:
+# In[40]:
 
 
 y_train=to_categorical(y_train)
@@ -184,7 +183,7 @@ print(y_train[:9,:])
 
 # #### Network definition option1: Using the sequential model
 
-# In[60]:
+# In[41]:
 
 
 if MLP_AVAILABLE:
@@ -198,9 +197,21 @@ else:
 model.summary()
 
 
+# In[42]:
+
+
+import visualkeras
+
+
+# In[43]:
+
+
+visualkeras.layered_view(model,legend=True)
+
+
 # #### Network definition option 2: Using the functional API
 
-# In[16]:
+# In[44]:
 
 
 # This returns a tensor
@@ -215,7 +226,7 @@ model2.summary()
 # ### Define Training Parameters 
 # Apply Stochastic Gradient Descent (SGD) learning, for minimizing the `categorical_crossentropy`. The performance metric shall be `accuracy`. Train the network.
 
-# In[61]:
+# In[45]:
 
 
 if not MLP_AVAILABLE:
@@ -229,7 +240,7 @@ if not MLP_AVAILABLE:
 
 # ### Perform Training
 
-# In[62]:
+# In[46]:
 
 
 if not MLP_AVAILABLE:
@@ -243,7 +254,7 @@ else:
 # ### Evaluation 
 # Visualize the learning-curve on training- and test-data. 
 
-# In[63]:
+# In[47]:
 
 
 import matplotlib.pyplot as plt
@@ -253,7 +264,7 @@ sb.set_style("whitegrid")
 sb.set_context("notebook")
 
 
-# In[64]:
+# In[48]:
 
 
 try:
@@ -274,14 +285,14 @@ except:
     print("LEARNING CURVE ONLY AVAILABLE IF TRAINING HAS BEEN PERFORMED IN THIS RUN")
 
 
-# In[65]:
+# In[49]:
 
 
 loss,acc = model.evaluate(X_train,y_train, verbose=0)
 print("Accuracy on Training Data : %.2f%%" % (acc*100))
 
 
-# In[66]:
+# In[50]:
 
 
 loss,acc = model.evaluate(X_test,y_test, verbose=0)
@@ -291,7 +302,7 @@ print("Accuracy on Test Data: %.2f%%" % (acc*100))
 # ## CNN 
 # ### Define Architecture
 
-# In[71]:
+# In[51]:
 
 
 if CNN1_AVAILABLE:
@@ -310,9 +321,15 @@ else:
 model.summary()
 
 
+# In[52]:
+
+
+visualkeras.layered_view(model,legend=True)
+
+
 # ### Define Training Parameters
 
-# In[72]:
+# In[53]:
 
 
 if not CNN1_AVAILABLE:
@@ -326,7 +343,7 @@ if not CNN1_AVAILABLE:
 
 # ### Perform Training
 
-# In[73]:
+# In[54]:
 
 
 if not CNN1_AVAILABLE:
@@ -339,7 +356,7 @@ else:
 
 # ### Evaluation
 
-# In[26]:
+# In[55]:
 
 
 try:
@@ -360,14 +377,14 @@ except:
     print("LEARNING CURVE ONLY AVAILABLE IF TRAINING HAS BEEN PERFORMED IN THIS RUN")
 
 
-# In[27]:
+# In[56]:
 
 
 loss,acc = model.evaluate(X_train,y_train, verbose=0)
 print("Accuracy on Training Data : %.2f%%" % (acc*100))
 
 
-# In[28]:
+# In[57]:
 
 
 loss,acc = model.evaluate(X_test, y_test, verbose=0)
@@ -378,7 +395,7 @@ print("Accuracy on Test Data: %.2f%%" % (acc*100))
 # 
 # ### Architecture
 
-# In[29]:
+# In[58]:
 
 
 def createModel():
@@ -407,7 +424,7 @@ def createModel():
     return model
 
 
-# In[30]:
+# In[59]:
 
 
 if CNN2_AVAILABLE:
@@ -418,9 +435,15 @@ else:
 model.summary()
 
 
+# In[60]:
+
+
+visualkeras.layered_view(model,legend=True)
+
+
 # ### Define Training Parameters
 
-# In[31]:
+# In[61]:
 
 
 if not CNN2_AVAILABLE:
@@ -431,7 +454,7 @@ if not CNN2_AVAILABLE:
 
 # ### Perform Training
 
-# In[32]:
+# In[62]:
 
 
 if not CNN2_AVAILABLE:
@@ -444,7 +467,7 @@ else:
 
 # ### Evaluate
 
-# In[33]:
+# In[63]:
 
 
 try:
@@ -460,79 +483,92 @@ except:
     print("LEARNING CURVE ONLY AVAILABLE IF TRAINING HAS BEEN PERFORMED IN THIS RUN")
 
 
-# In[34]:
+# In[64]:
 
 
 loss,acc = model.evaluate(X_train,y_train, verbose=0)
 print("Accuracy on Training Data : %.2f%%" % (acc*100))
 
 
-# In[35]:
+# In[65]:
 
 
 loss,acc = model.evaluate(X_test,y_test, verbose=0)
 print("Accuracy on Test Data : %.2f%%" % (acc*100))
 
 
-# ## Implementation of Cross Validation in Keras
+# ## Visualize Feature Maps in 2nd Conv-Layer
 # 
-# Here: Cross-Validation of MLP
+# The output of an arbitrary layer, for a given input image can be visualized as demonstrated below.
+# 
+# First we select and display an image, for which the featuremaps in the 2nd Convolution Layer of the previously defined and trained network shall be generated:
 
-# In[36]:
-
-
-CROSS_VAL=True
-
-
-# In[37]:
+# In[142]:
 
 
-def build_model_mlp():
-    model = Sequential()
-    model.add(Flatten(input_shape=(32, 32,3)))
-    model.add(Dense(512, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(num_classes, activation='softmax'))
-    ###################################################
-    model.compile(loss='categorical_crossentropy',optimizer='sgd',metrics=['accuracy'])
-    return model
+img=X_train[7:8,:,:,:]
 
 
-# In[38]:
+# In[143]:
 
 
-def cross_validation(build_model,train_data,train_targets,folds=3,num_epochs=10):
-    num_val_samples = int(len(train_data) / folds)
-    all_scores = []
-    for i in range(folds):
-        print('processing fold #', i)
-        val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
-        val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
-
-        partial_train_data = np.concatenate(                                     
-            [train_data[:i * num_val_samples],
-             train_data[(i + 1) * num_val_samples:]],
-            axis=0)
-        partial_train_targets = np.concatenate(
-            [train_targets[:i * num_val_samples],
-             train_targets[(i + 1) * num_val_samples:]],
-            axis=0)
-
-        model = build_model()                                                    
-        model.fit(partial_train_data, partial_train_targets,                     
-                  epochs=num_epochs, batch_size=32, verbose=0)
-        val_score = model.evaluate(val_data, val_targets, verbose=0)      
-        all_scores.append(val_score)
-        print(" Loss on test data: %2.4f \n Accuracy on test data: %2.4f \n"% (val_score[0],val_score[1]))
-    return all_scores
+img.shape
 
 
-# In[39]:
+# In[144]:
 
 
-if CROSS_VAL:
-    results=cross_validation(build_model_mlp,X_train,y_train)
-    print(results)
+plt.figure(figsize=(3,3))
+plt.imshow(img[0])
+
+
+# Next, we define a network, which contains the first 2 convolution layers of the previously trained network:
+
+# In[145]:
+
+
+FirstLayer=Model(inputs=model.inputs, outputs=model.layers[1].output)
+
+
+# In[146]:
+
+
+FirstLayer.summary()
+
+
+# Then we pass the selected image to the extracted subnetwork. The output are the feature-maps of the second convolutional layer:
+
+# In[147]:
+
+
+feature_maps = FirstLayer.predict(img)
+
+
+# There are 32 feature-maps, each of size $(32 \times 32)$:
+
+# In[148]:
+
+
+feature_maps.shape
+
+
+# Finally we visualize these 32 feature-maps:
+
+# In[149]:
+
+
+# alle Feature Maps plotten
+square = 8
+ix = 1
+plt.figure(figsize=(20,20))
+for _ in range(8):
+    for _ in range(4):
+        ax = plt.subplot(square, square, ix)
+        ax.set_xticks([])
+        ax.set_yticks([])
+        plt.imshow(feature_maps[0, :, :, ix-1])
+        ix += 1
+plt.show()
 
 
 # In[ ]:

@@ -106,6 +106,7 @@
 
 # #### One-To-Many (RNN)
 # Finally, the one-to-many recurrent architecture maps a single vector at the input, to a sequence of output-vectors. A concrete application of this category is image-captioning, where the input is a single image, and the output is a sequence of words, which describes the contents of the image in a natural language. As can be seen in the picture below, the input $x(t=1)$ is applied to calculate the first hidden-state $h(t=1)$. All following hidden states $h(t)$ are calculated only from $h(t-1)$. For each hidden-state $h(t)$ a corresponding output $y(t)$ is calculated. 
+# 
 # ![oneToMany](http://maucher.home.hdm-stuttgart.de/Pics/oneToMany.PNG)
 
 # #### Bidirectional RNN

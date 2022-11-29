@@ -589,7 +589,7 @@
 <h1>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last Update: 03.12.2021</p></li>
+<li><p>Last Update: 29.11.2022</p></li>
 </ul>
 <p>There exists different types of deep neural networks, e.g.</p>
 <ul class="simple">
@@ -600,8 +600,9 @@
 <li><p>(Hierarchical) Attention Networks</p></li>
 <li><p>Sequence-to-Sequence Networks</p></li>
 <li><p>Transformer Networks</p></li>
-<li><p>Deep Q-Networks (Deep Reinforcementlearning)</p></li>
+<li><p>Deep Reinforcementlearning, Deep Q-Networks</p></li>
 <li><p>Generative Adversarial Networks</p></li>
+<li><p>Diffusion Models</p></li>
 </ul>
 <p>and many variants of them.</p>
 <p>Among these different types, CNNs are currently the most relevant ones. This notebook describes the overall architecture and the different layer-types, applied in a CNN. Since the most prominent application of CNNs is object recognition in images, the descriptions in this notebook refer to this use-case.</p>
@@ -621,7 +622,7 @@
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/zeilerLayers4-5.PNG"></p>
 <p>The picture below contains a very famous CNN - the so called <a class="reference external" href="https://www.nvidia.cn/content/tesla/pdf/machine-learning/imagenet-classification-with-deep-convolutional-nn.pdf">AlexNet</a>, which won the ImageNet contest in 2012. In the classification-task of this contest 1000 different objects must be recognized in images. For training 15 million labeled images have been applied. On a computer with two GTX 580 3GB GPUs training took about 6 days. AlexNet achieved a top-5 error rate of 15.4% - compared to 26.2% of the second best. AlexNet can be considered as an important milestone in the development and application of deep neural networks.
 <a id="alexnet"></a>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/AlexNetArchitecture.png" width="800" align="center"></p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/alexNetColored.png" width="800" align="center"></p>
 <p>The input of to the AlexNet is a 3-channel RGB-image. The dense-layer at the output consists of 1000 neurons, each refering to one of the 1000 object categories, which are distinguished in the ImageNet data. The index of the output-neuron with the maximum value indicates the most-probable object category.</p>
 <p>Between input- and output-layer, there are basically three different types of layers:</p>
 <ul class="simple">
@@ -632,7 +633,7 @@
 <p>Moreover, normalisation-layers, dropout-layers, deconvolution-layers and dilation-layers are also frequently applied in CNNs. In the following sections, these layer types are described.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%matplotlib inline</span>
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -978,7 +979,8 @@ o=\frac{r-a+2p}{s}+1.
 <h4>Multiple Feature Maps at the output of the Convolutional Layer<a class="headerlink" href="#multiple-feature-maps-at-the-output-of-the-convolutional-layer" title="Permalink to this headline">¶</a></h4>
 <p>The previous subsection demonstrated the calulation of a single feature map from multiple channels at the input of the convolutional layer. <strong>In a CNN there are multiple channels at the input and multiple feature maps at the output of a convolutional layer.</strong> For sake of simplicity - and because we already know how multiple channels at the input influence a single feature map at the output - the picture and the code cells below demonstrate how multiple feature maps at the output are calculated from a single channel. Note that each feature map has it’s own set of shared weights (filter-coeffients) for each channel at the input of the convolutional layer:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionMultFeats.png" width="500" align="center">
-</div>
+<p><strong>Further Example: Extracting 3 features from one channel:</strong></p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/convolutionMultiFeatEdge.png" width="500" align="center"></div>
 </div>
 <div class="section" id="activation-function">
 <h3>Activation function<a class="headerlink" href="#activation-function" title="Permalink to this headline">¶</a></h3>
@@ -1067,7 +1069,7 @@ These functions are defined and visualized below.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03ConvolutionNeuralNetworks_54_0.png" src="../_images/03ConvolutionNeuralNetworks_54_0.png" />
+<img alt="../_images/03ConvolutionNeuralNetworks_55_0.png" src="../_images/03ConvolutionNeuralNetworks_55_0.png" />
 </div>
 </div>
 </div>
