@@ -88,6 +88,15 @@
 # 
 # ![manyToOne](http://maucher.home.hdm-stuttgart.de/Pics/manyToOne.PNG)
 
+# **Examples:**
+# 
+# 
+# ![manyToOne](http://maucher.home.hdm-stuttgart.de/Pics/timeSeriesRNN.png)
+# 
+# ---
+# 
+# ![manyToOne](http://maucher.home.hdm-stuttgart.de/Pics/textRNN.png)
+
 # #### Many-to-Many (RNN)
 # A many-to-many recurrent architecture maps a sequence of input-vectors to a sequence of output-vectors. An example for this category is **language-translation**, where each input represents a single word. The entire sequence is usually a sentence and the output is the translated sentence. At each time stamp $t \in [1,T]$
 # - a new input-vector $x(t)$ (word representation) is passed to the net

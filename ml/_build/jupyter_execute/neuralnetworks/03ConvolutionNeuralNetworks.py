@@ -531,7 +531,7 @@ plt.show()
 
 # <a id='cnnconceptcat'></a>
 # ### CNN Summary
-# <img src="https://maucher.home.hdm-stuttgart.de/Pics/cnnConceptCat.png" alt="Drawing" style="width: 400px;"/>
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/cnnConceptCat.png" alt="Drawing" width = "400px"/>
 # 
 # Image source: [F. Chollet, Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python)
 
@@ -552,6 +552,17 @@ plt.show()
 # * Apply Data Augmentation techniques
 # 
 # The application of CNNs (deep neural networks in general) only makes sense if input data is somehow correlated. E.g. spatial correlation as in the case of images or temporal correlations as in the case of time-series data or in the case of written or spoken language.
+
+# ## 1-Dimensional Convolution
+# 
+# ### 1-Dimensional Convolution for Text 
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/text1DConv.png" alt="Drawing" width = "500px"/>
+# 
+# ### 1-Dimensional Convolution for Time Series Data
+# 
+# <img src="https://maucher.home.hdm-stuttgart.de/Pics/timeSeries1DConv.png" alt="Drawing" width = "500px"/>
+# 
 
 # ## Advanced concepts
 # Above the basic concepts of CNNs, i.e. convolution-, pooling- and fully-connected layers have been introduced. Further concepts, frequently applied in CNNs are e.g.
