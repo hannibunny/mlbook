@@ -1342,13 +1342,7 @@ _________________________________________________________________
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">=</span><span class="n">X_train</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">8</span><span class="p">,:,:,:]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">img</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1366,28 +1360,22 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb22151c0a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb15238a880&gt;
 </pre></div>
 </div>
-<img alt="../_images/03KerasMLPandCNNcifar_67_1.png" src="../_images/03KerasMLPandCNNcifar_67_1.png" />
+<img alt="../_images/03KerasMLPandCNNcifar_66_1.png" src="../_images/03KerasMLPandCNNcifar_66_1.png" />
 </div>
 </div>
 <p>Next, we define a network, which contains the first 2 convolution layers of the previously trained network:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FirstLayer</span><span class="o">=</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FirstLayer</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">FirstLayer</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_14&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;model_16&quot;
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
@@ -1436,8 +1424,7 @@ _________________________________________________________________
 <p>Finally we visualize these 32 feature-maps:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># alle Feature Maps plotten</span>
-<span class="n">square</span> <span class="o">=</span> <span class="mi">8</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">ix</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
@@ -1452,7 +1439,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03KerasMLPandCNNcifar_76_0.png" src="../_images/03KerasMLPandCNNcifar_76_0.png" />
+<img alt="../_images/03KerasMLPandCNNcifar_74_0.png" src="../_images/03KerasMLPandCNNcifar_74_0.png" />
 </div>
 </div>
 </div>

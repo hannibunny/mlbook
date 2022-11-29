@@ -503,19 +503,14 @@ print("Accuracy on Test Data : %.2f%%" % (acc*100))
 # 
 # First we select and display an image, for which the featuremaps in the 2nd Convolution Layer of the previously defined and trained network shall be generated:
 
-# In[142]:
+# In[152]:
 
 
 img=X_train[7:8,:,:,:]
-
-
-# In[143]:
-
-
 img.shape
 
 
-# In[144]:
+# In[153]:
 
 
 plt.figure(figsize=(3,3))
@@ -524,21 +519,16 @@ plt.imshow(img[0])
 
 # Next, we define a network, which contains the first 2 convolution layers of the previously trained network:
 
-# In[145]:
+# In[154]:
 
 
 FirstLayer=Model(inputs=model.inputs, outputs=model.layers[1].output)
-
-
-# In[146]:
-
-
 FirstLayer.summary()
 
 
 # Then we pass the selected image to the extracted subnetwork. The output are the feature-maps of the second convolutional layer:
 
-# In[147]:
+# In[155]:
 
 
 feature_maps = FirstLayer.predict(img)
@@ -546,7 +536,7 @@ feature_maps = FirstLayer.predict(img)
 
 # There are 32 feature-maps, each of size $(32 \times 32)$:
 
-# In[148]:
+# In[156]:
 
 
 feature_maps.shape
@@ -554,10 +544,9 @@ feature_maps.shape
 
 # Finally we visualize these 32 feature-maps:
 
-# In[149]:
+# In[157]:
 
 
-# alle Feature Maps plotten
 square = 8
 ix = 1
 plt.figure(figsize=(20,20))
