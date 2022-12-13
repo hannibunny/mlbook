@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Reinforcement Learning &#8212; Machine Learning Lecture</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example Q-Learning" href="QLearnFrozenLake.html" />
+    <link rel="prev" title="Reinforcement Learning" href="reinforcement.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Intro and Overview Machine Learning Lecture
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/convolutionDemos.html">
+   Animations of Convolution and Deconvolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/GAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graph Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/GraphNeuralNetworks.html">
+   Graph Neural Networks (GNN)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/rl/DQN.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-q-network-dqn">
+   Deep Q-Network (DQN)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dqn-architecture-and-preprocessing">
+     DQN Architecture and Preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dqn-learning">
+     DQN Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Deep Reinforcement Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-q-network-dqn">
+   Deep Q-Network (DQN)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dqn-architecture-and-preprocessing">
+     DQN Architecture and Preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dqn-learning">
+     DQN Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="deep-reinforcement-learning">
+<h1>Deep Reinforcement Learning<a class="headerlink" href="#deep-reinforcement-learning" title="Permalink to this headline">#</a></h1>
+<p>In the previous section Reinforcementlearning has been introduced. For solving the <strong>control problem</strong> with TD-Learning, Sarsa and Q-Learning has been described. These algorithms estimate <span class="math notranslate nohighlight">\(Q(S,A)\)</span> -values for each possible state-action pair <span class="math notranslate nohighlight">\((S,A)\)</span>. From the estimated <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values the policy can easily be derived by selecting in each state <span class="math notranslate nohighlight">\(S\)</span> the action <span class="math notranslate nohighlight">\(A\)</span>, which has the maximum <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-value in this state. In order to estimate the <span class="math notranslate nohighlight">\(Q(S,A)\)</span> reliably, each state-action pair must be traversed multiple times. This is not feasible for many real-world problems, where the number of possible state-actions pair is very large. For example, in Backgammon alone the number of states is estimated to be in the range of <span class="math notranslate nohighlight">\(10^{20}\)</span> and the number of state-action pairs is correspondingly higher.</p>
+<div class="figure align-center" id="backgammon">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg" style="width: 300pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">In Backgammon alone the number of states is estimated to be in the range of <span class="math notranslate nohighlight">\(10^{20}.\)</span></span><a class="headerlink" href="#backgammon" title="Permalink to this image">#</a></p>
+</div>
+<p>The problem, that a multiple traversion of all state action pairs is not feasible, is solved by learning a regression model, i.e. a function, which maps Q-Values to each possible state-action pair. In this approach <strong>Reinforcement-Learning and Supervised Learning are combined</strong> in the way that e.g. Q-Learning is applied to provide <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values for a limited set of state-action pairs. Then a supervised ML-algorithm, e.g. a MLP, is applied to learn a function</p>
+<div class="math notranslate nohighlight">
+\[
+f: (S,A) \rightarrow Q(S,A).
+\]</div>
+<div class="section" id="deep-q-network-dqn">
+<h2>Deep Q-Network (DQN)<a class="headerlink" href="#deep-q-network-dqn" title="Permalink to this headline">#</a></h2>
+<p>Before the invention of Deep Q-Network (DQN) in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id39" title="Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A Riedmiller. Playing Atari with Deep Reinforcement Learning. CoRR, 2013. URL: http://arxiv.org/abs/1312.5602, arXiv:1312.5602.">MKS+13</a>]</span>, either linear regression models or non-linear conventional neural networks (MLPs) have been applied for learning a good approximation. Training linear models turned out to be stabel, in the sense of convergence. However, they often lacked sufficient accuracy. On the other hand non-linear models turned out to have weak convergence behaviour. This is because ML-algorithms usually assume <strong>i.i.d</strong> (independent and identical distributed data). However, data provided by the reinforcement-algorithm is sequentially strongly correlated. Moreover, the distribution of data may change abruptly, because a relatively small adaption of the <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values may yield a totally different policy.</p>
+<p>The publication <em>Human-level control through deep reinforcement learning</em> (<span id="id2">[<a class="reference internal" href="../referenceSection.html#id39" title="Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A Riedmiller. Playing Atari with Deep Reinforcement Learning. CoRR, 2013. URL: http://arxiv.org/abs/1312.5602, arXiv:1312.5602.">MKS+13</a>]</span>) constituted a breakthrough in the combination of Reinforcement Learning and Deep Neural Networks. For some retro Atari computer games such as <em>Pong</em>, <em>Breakout</em>, <em>Seaquest</em> or <em>Space Invaders</em> , the authors managed to learn a good non-linear <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function with a Convolutional Neural Network (CNN).</p>
+<p>In their experiments, the authors applied their DQN to a range of <em>Atari 2600</em> games implemented in the <em>Arcade Learning Environment</em><a class="footnote-reference brackets" href="#f1" id="id3">1</a>. <em>Atari 2600</em> is a challenging RL testbed that presents agents with a high dimensional visual input: <span class="math notranslate nohighlight">\(210 \times 160\)</span> RGB video at 60Hz. The only information provided to the DQN has been the screencasts of the computer games.</p>
+<div class="figure align-center" id="atariscreenshots">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">Screenshots of some classical Atari computer games, for which DQN has been applied to learn a good <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function.</span><a class="headerlink" href="#atariscreenshots" title="Permalink to this image">#</a></p>
+</div>
+<p>In this subsection the concept of DQN, as developed in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id39" title="Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A Riedmiller. Playing Atari with Deep Reinforcement Learning. CoRR, 2013. URL: http://arxiv.org/abs/1312.5602, arXiv:1312.5602.">MKS+13</a>]</span>, will be described.</p>
+<div class="section" id="dqn-architecture-and-preprocessing">
+<h3>DQN Architecture and Preprocessing<a class="headerlink" href="#dqn-architecture-and-preprocessing" title="Permalink to this headline">#</a></h3>
+<div class="figure align-center" id="statetoactionvalue">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">Predicting a Q-value for each state-action pair at the input of a network is conceptionally the same as predicting for a given input state a Q-value for each possible action. Image Source: <a class="reference external" href="http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf">http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf</a></span><a class="headerlink" href="#statetoactionvalue" title="Permalink to this image">#</a></p>
+</div>
+<p>The input to the CNN represents the current game state. The output of the DQN has as much elements as the maximal number of actions available. Atari classical games have been controlled by a joystick, which provides 18 different postions. For each of these 18 actions one Q-value is estimated for the current input state.</p>
+<div class="figure align-center" id="dqnarchitecture">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 64 </span><span class="caption-text">Architectur of the DQN CNN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id39" title="Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A Riedmiller. Playing Atari with Deep Reinforcement Learning. CoRR, 2013. URL: http://arxiv.org/abs/1312.5602, arXiv:1312.5602.">MKS+13</a>]</span></span><a class="headerlink" href="#dqnarchitecture" title="Permalink to this image">#</a></p>
+</div>
+<p>The input to the network represents the current game state. In general a <em>state</em> should always contain as much as relevant information as possible. In computer games <strong>movement</strong> is obviously a relevant information. Since movement can not be obtained by observing only a single frame of the screencast, four successive frames are applied to the input of the network. However, these frames are not directly passed to the first layer of the CNN, instead a <strong>preprocessed version of 4 successive frames of the screencast</strong> are used.</p>
+<p>The preprocessing function takes <span class="math notranslate nohighlight">\(m=4\)</span> successive RGB-frames of size <span class="math notranslate nohighlight">\(210 \times 160\)</span> from the <em>Atari 2600</em> emulator. Next, for any pair of 2 successive frames at each pixel-position the maximum value within this pair of frames is determined. The smaller value is ignored in the sequel. This maximum-operation is necessary, because in the videos some objects are represented only in the even frames, others only in the odd frames. The RGB-frames are then transformed to <em>YCrCb</em> and only the luminance channel <em>Y</em> is regarded in the sequel, whereas the two chromatic channels are ignored. The <em>Y</em>-channel frames are then rescaled to a size of <span class="math notranslate nohighlight">\(84 \times 84\)</span>. The resulting tensor of size <span class="math notranslate nohighlight">\(84 \times 84 \times 3\)</span> constitutes the input to the first layer of the CNN. The details of the CNN, containing 3 convolutional and 2 fully connected layers, are given in the table below.</p>
+<div class="figure align-center" id="dqnparams">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 65 </span><span class="caption-text">Hyperparameters of the DQN CNN. Image Source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id39" title="Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A Riedmiller. Playing Atari with Deep Reinforcement Learning. CoRR, 2013. URL: http://arxiv.org/abs/1312.5602, arXiv:1312.5602.">MKS+13</a>]</span></span><a class="headerlink" href="#dqnparams" title="Permalink to this image">#</a></p>
+</div>
+</div>
+<div class="section" id="dqn-learning">
+<h3>DQN Learning<a class="headerlink" href="#dqn-learning" title="Permalink to this headline">#</a></h3>
+<p>As already mentioned above, the idea of the Deep Q-Network in general is to</p>
+<ol class="simple">
+<li><p>Apply an emulator, which models the environment. The emulator provides for each state <span class="math notranslate nohighlight">\(s\)</span> the set of possible actions <span class="math notranslate nohighlight">\(A(s)\)</span>. Moreover, the emulator allows to select for the given state <span class="math notranslate nohighlight">\(s\)</span> a corresponding action <span class="math notranslate nohighlight">\(a \in A(s)\)</span> and the possibility to execute this action. For action-selection e.g. the <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy policy an be applied (see <a class="reference internal" href="reinforcement.html"><span class="doc std std-doc">previous page</span></a>). After the execution of <span class="math notranslate nohighlight">\(a\)</span> the emulator returns the obtained reward <span class="math notranslate nohighlight">\(r\)</span> and the new state <span class="math notranslate nohighlight">\(s'\)</span>. Starting from an arbitrary initial state one can thus select a set <span class="math notranslate nohighlight">\(D\)</span> of quadruples <span class="math notranslate nohighlight">\((s,a,r,s')\)</span>. The quadruple set <strong><span class="math notranslate nohighlight">\(D\)</span> is called Replay Memory</strong>.</p></li>
+<li><p>Apply the quadruple-set <span class="math notranslate nohighlight">\(D\)</span> as training-data for the deep neural network, which learns a function <span class="math notranslate nohighlight">\(f: (S,A) \rightarrow Q(S,A)\)</span>.</p></li>
+</ol>
+<p>During training, the weights <span class="math notranslate nohighlight">\(\Theta\)</span> of the DQN are iteratively adapted such that a Loss-Function is minimzed (this learning-approach is called <em>(Stochastic) Gradient Descent</em>). The loss-function in general somehow measures the <strong>difference between the current network output and the corresponding target value</strong>. For the given DQN the <strong>network outputs</strong> are <span class="math notranslate nohighlight">\(Q(s,a,\Theta)\)</span>-values for a given quadruple <span class="math notranslate nohighlight">\((s,a,r,s')\)</span> at the input with the current network-weights <span class="math notranslate nohighlight">\(\Theta\)</span>. <strong>But what are the target values?</strong> In Q-learning the state-action-value-update rule, as already defined in equation <a class="reference internal" href="reinforcement.html#equation-qlearnupdate">(100)</a>, is</p>
+<div class="math notranslate nohighlight">
+\[
+Q(s,a) := Q(s,a) + \alpha \left[r + \gamma \max\limits_{a'} Q(s',a') - Q(s,a) \right],
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the current state, <span class="math notranslate nohighlight">\(a\)</span> is the chosen action, <span class="math notranslate nohighlight">\(r\)</span> is the obtained reward, <span class="math notranslate nohighlight">\(s'\)</span> is the obtained successor state, and <span class="math notranslate nohighlight">\(a'\)</span> is a possible action in the successor state <span class="math notranslate nohighlight">\(s'\)</span>. In this iterative update-process old values <span class="math notranslate nohighlight">\(Q(s,a)\)</span> are updated by new experiences <span class="math notranslate nohighlight">\(r + \gamma \max\limits_a' Q(s',a')\)</span>. These new experiences are applied as target-values. For computing these target values <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(s'\)</span> are given from the current quadruple <span class="math notranslate nohighlight">\((s,a,r,s')\)</span>, but what about <span class="math notranslate nohighlight">\(\max\limits_a' Q(s',a')\)</span>? The answer is to calculate the <span class="math notranslate nohighlight">\(Q(s',a')\)</span> with the DQN, however not with the current weights <span class="math notranslate nohighlight">\(\Theta\)</span>, but with an older version <span class="math notranslate nohighlight">\(\Theta^{-}\)</span>. The values of this older version are denoted by <span class="math notranslate nohighlight">\(\hat{Q}(s',a')\)</span>. This older version is only applied to calculate the targets. The weights of the older version are updated from time to time. <strong>In this way DQN-learning realizes the same concept as the state-action-value-update rule of Q-learning: in both algorithms <span class="math notranslate nohighlight">\(Q(s,a)\)</span> are iteratively updated by the experienced reward <span class="math notranslate nohighlight">\(r\)</span> and the best <span class="math notranslate nohighlight">\(Q(s',a')\)</span>-value in the experienced successor state <span class="math notranslate nohighlight">\(s'\)</span> and both algorithms apply older <span class="math notranslate nohighlight">\(\hat{Q}(s',a')\)</span>-values for this update.</strong> In DQN the weights are updated per minibatch, where a minibatch is a random sample from the Replay Memory <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<div class="admonition-deep-q-learning-algorithm admonition" id="deepqlearning">
+<p class="admonition-title">Deep Q-Learning Algorithm</p>
+<ul class="simple">
+<li><p>Initialize Replay Memory <span class="math notranslate nohighlight">\(D\)</span> to capacity <span class="math notranslate nohighlight">\(N\)</span></p></li>
+<li><p>Initialize action-value-function <span class="math notranslate nohighlight">\(Q\)</span> with random weights <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p>Initialize target action-value-function <span class="math notranslate nohighlight">\(\hat{Q}\)</span> with weights <span class="math notranslate nohighlight">\(\theta^{-}=\theta\)</span></p></li>
+</ul>
+<ol>
+<li><p>For episode from 1 to M do</p>
+<ol>
+<li><p>Initialize sequence <span class="math notranslate nohighlight">\(s_1=\{x_1\}\)</span> and preprocess sequence <span class="math notranslate nohighlight">\(\phi_1=\phi(s_1)\)</span></p></li>
+<li><p>For t from 1 to T do</p>
+<ol>
+<li><p>With probability <span class="math notranslate nohighlight">\(\epsilon\)</span> select a random action <span class="math notranslate nohighlight">\(a_t\)</span>, otherwise select <span class="math notranslate nohighlight">\(a_t=argmax_a(Q(\phi(s_t),a;\theta))\)</span></p></li>
+<li><p>Execute <span class="math notranslate nohighlight">\(a_t\)</span> in emulator, observe reward <span class="math notranslate nohighlight">\(r_t\)</span> and image <span class="math notranslate nohighlight">\(x_{t+1}\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(s_{t+1}=s_t,a_t,x_{t+1}\)</span> and preprocess <span class="math notranslate nohighlight">\(\phi_{t+1}=\phi(s_{t+1})\)</span></p></li>
+<li><p>Store transitition <span class="math notranslate nohighlight">\((\phi_t,a_t,r_t,\phi_{t+1})\)</span> in <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Sample random minibatch of transititions <span class="math notranslate nohighlight">\((\phi_j,a_j,r_j,\phi_{j+1})\)</span> from <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Set</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+            y_j=\left\{ \begin{array}{ll}
+            r_j &amp; \mbox{if episode terminates at step } j+1 \\
+            r_j + \gamma \max_{a'} \hat{Q}(\phi_{j+1},a';\theta^-) &amp; \mbox{ otherwise } \\
+            \end{array}
+            \right.
+            \end{split}\]</div>
+</li>
+<li><p>Perform a gradient descent step on <span class="math notranslate nohighlight">\(\left(y_j-Q(\phi_j,a_j;\theta)  \right)^2\)</span>} w.r.t. <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p>Every C steps update <span class="math notranslate nohighlight">\(\hat{Q}=Q\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<p>In the figure below, the score, achieved by DQN w.r.t. human players is shown for classic Atari games. This score has been calculated by</p>
+<div class="math notranslate nohighlight">
+\[
+100*\frac{Score_{DQN}-Score_{randomPlay}}{Score_{ProfHuman}-Score_{randomPlay}},
+\]</div>
+<p>i.e. a score of 100 corresponds to the score achieved by <strong>professional</strong> human players. An <strong>average</strong> human player has a score of <span class="math notranslate nohighlight">\(76\%\)</span>.</p>
+<div class="figure align-center" id="dqnscores">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">DQN performance compared to human players. Image Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id39" title="Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin A Riedmiller. Playing Atari with Deep Reinforcement Learning. CoRR, 2013. URL: http://arxiv.org/abs/1312.5602, arXiv:1312.5602.">MKS+13</a>]</span></span><a class="headerlink" href="#dqnscores" title="Permalink to this image">#</a></p>
+</div>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/mgbellemare/Arcade-Learning-Environment">Arcade Learning environment</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./rl"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="reinforcement.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Reinforcement Learning</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="QLearnFrozenLake.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Example Q-Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Johannes Maucher<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

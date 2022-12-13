@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Representations for Words and Texts &#8212; Machine Learning Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -17,104 +19,142 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="References" href="../referenceSection.html" />
-    <link rel="prev" title="Generative Adversarial Nets (GAN)" href="../gan/DCGAN.html" />
-
+    <link rel="next" title="Text classification with CNNs and LSTMs" href="02TextClassification.html" />
+    <link rel="prev" title="Example Q-Learning" href="../rl/QLearnFrozenLake.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-
+    <!-- Google Analytics -->
+    
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
-  
-</a>
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Intro and Overview Machine Learning Lecture
-  </a>
- </li>
-</ul>
-<p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Intro and Overview Machine Learning Lecture
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
    Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Conventional ML
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
    Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
   </a>
  </li>
  <li class="toctree-l1">
@@ -127,13 +167,18 @@
    Gaussian Process
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Neural Networks
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
    Neural Networks Introduction
@@ -147,6 +192,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/convolutionDemos.html">
+   Animations of Convolution and Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -165,48 +215,109 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Autoencoder
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
    Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   GAN
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../gan/DCGAN.html">
+  <a class="reference internal" href="../gan/GAN.html">
    Generative Adversarial Nets (GAN)
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
+  </a>
+ </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Text
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Representations for Words and Texts
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graph Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/GraphNeuralNetworks.html">
+   Graph Neural Networks (GNN)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -214,91 +325,165 @@
  </li>
 </ul>
 
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/text/01ModellingWordsAndTexts.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-        <!-- Source interaction buttons -->
-
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/text/01ModellingWordsAndTexts.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/text/01ModellingWordsAndTexts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/text/01ModellingWordsAndTexts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#one-hot-encoding-of-single-words">
    One-Hot-Encoding of Single Words
@@ -365,27 +550,121 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparision-bow-vs-sequence-of-word-embeddings">
+   Comparision: BoW vs. Sequence of Word-Embeddings
+  </a>
+ </li>
 </ul>
 
-        </nav>
-        
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Representations for Words and Texts</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-hot-encoding-of-single-words">
+   One-Hot-Encoding of Single Words
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-embeddings">
+   Word Embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bag-of-word-modell-of-documents">
+   Bag of Word Modell of documents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#term-frequencies">
+     Term Frequencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#term-frequency-inverse-document-frequency">
+     Term Frequency Inverse Document Frequency
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-generate-wordembeddings-cbow-and-skipgram">
+   How to generate Wordembeddings? CBOW and Skipgram
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continous-bag-of-words-cbow">
+     Continous Bag-Of-Words (CBOW)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skip-gram">
+     Skip-Gram
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-word-embeddings">
+     Other Word-Embeddings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-access-pretrained-word-embeddings">
+   How to Access Pretrained Word-Embeddings?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fasttext-word-embeddings">
+     Fasttext Word-Embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glove-word-embeddings">
+     Glove Word-Embeddings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparision-bow-vs-sequence-of-word-embeddings">
+   Comparision: BoW vs. Sequence of Word-Embeddings
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="representations-for-words-and-texts">
-<h1>Representations for Words and Texts<a class="headerlink" href="#representations-for-words-and-texts" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="representations-for-words-and-texts">
+<h1>Representations for Words and Texts<a class="headerlink" href="#representations-for-words-and-texts" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 16.12.2020</p></li>
 </ul>
-<p>In previous sections, e.g. <span class="xref myst">02RegressionPipe.ipynb</span> different types of data, numeric and categorial, have been applied. It has been shown how categorical data is mapped to numeric values or numeric vectors, such that it can be applied as input of a Machine Learning algorithm.</p>
+<p>In previous sections different types of data, numeric and categorial, have been applied. It has been shown how categorical data is mapped to numeric values or numeric vectors, such that it can be applied as input of a Machine Learning algorithm.</p>
 <p>Another type of data is text, either single words, sentences, sections or entire documents. How to map these types to numeric representations?</p>
 <div class="section" id="one-hot-encoding-of-single-words">
-<h2>One-Hot-Encoding of Single Words<a class="headerlink" href="#one-hot-encoding-of-single-words" title="Permalink to this headline">¶</a></h2>
+<h2>One-Hot-Encoding of Single Words<a class="headerlink" href="#one-hot-encoding-of-single-words" title="Permalink to this headline">#</a></h2>
 <p>A very simple option for representing single words as numeric vectors is One-Hot-Encoding. This type of encoding has already been introduced above for modelling non-binary categorial features. Each possible value (word) is uniquely mapped to an index, and the associated vector contains only zeros, except at the position of the value’s (word’s) index.</p>
 <p>For example, assume that the entire set of possible words is</p>
 <div class="math notranslate nohighlight">
@@ -746,22 +1025,22 @@ V=(\mbox{all, and, at, boys, girls, home, kids, not, stay}).
 </div>
 </div>
 <div class="section" id="word-embeddings">
-<h2>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline">¶</a></h2>
-<p>One-Hot-Encoding of words suffer from crucial drawbacks:</p>
+<h2>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline">#</a></h2>
+<p>One-Hot-Encoding of words suffer from the following drawbacks:</p>
 <ol class="simple">
-<li><p>The vectors are usually very long - there length is given by the number of words in the vocabulary. Moreover, the vectors are quite sparse, since the set of words appearing in one document is usually only a very small part of the set of all words in the vocabulary.</p></li>
+<li><p>The vectors are usually very long - there length is given by the number of words in the vocabulary.</p></li>
+<li><p>The vectors are extremely sparse: only one non-zero entry.</p></li>
 <li><p>Semantic relations between words are not modelled. This means that in this model there is no information about the fact that word <em>car</em> is more related to word <em>vehicle</em> than to word <em>lake</em>.</p></li>
-<li><p>In the BoW-model of documents word order is totally ignored. E.g. the model can not distinguish if word <em>not</em> appeared immediately before word <em>good</em> or before word <em>bad</em>.</p></li>
 </ol>
-<p>All of these drawbacks can be solved by applying <em>Word Embeddings</em> and by the way the resulting <em>Word Empeddings</em> are passed e.g. to the input of Recurrent Neural Networks, Convolutional Neural Networks or Transformers (see later chapters of this lecture).</p>
+<p>All of these drawbacks can be solved by applying <em>Word Embeddings</em> and by the way the resulting <em>Word Embeddings</em> are passed to neural networks.</p>
 <p>Word embeddings have revolutionalized many fields of Natural Language Processing since their efficient neural-network-based generation has been published in <a class="reference external" href="https://arxiv.org/pdf/1301.3781.pdf">Efficient Estimation of Word Representations in Vector Space</a> by Mikolov et al (2013). Word embeddings map words into vector-spaces such that semantically or syntactically related words are close together, whereas unrelated words are far from each other. Moreover, it has been shown that the word-embeddings, generated by <em>word2vec</em>-techniques <em>CBOW</em> or <em>Skipgram</em>, are well-structured in the sense that also relations such as <em>is-capital-of</em>, <em>is-female-of</em>, <em>is-plural-of</em> are encoded in the vector space. In this way questions like <em>woman is to queen, as man is to ?</em> can be answered by simple operations of linear algebra in the word-vector-space. Compared to the length of one-hot encoded word-vectors, word-embedding-vectors are short (typical lengths in the range from 100-300) and dense (float-values).</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/dsm.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/dsm.png" alt="Drawing" style="width: 600px;"/>
 <p><em>CBOW</em> and <em>Skipgram</em>, are techniques to learn word-embeddings, i.e. a mapping of words to vectors by relatively simple neural networks. Usually large corpora are applied for learning, e.g. the entire Wikipedia corpus in a given language. Today, pretrained models for the most common languages are available, for example from <a class="reference external" href="https://fasttext.cc/">FastText project</a>.</p>
 </div>
 <div class="section" id="bag-of-word-modell-of-documents">
-<h2>Bag of Word Modell of documents<a class="headerlink" href="#bag-of-word-modell-of-documents" title="Permalink to this headline">¶</a></h2>
+<h2>Bag of Word Modell of documents<a class="headerlink" href="#bag-of-word-modell-of-documents" title="Permalink to this headline">#</a></h2>
 <div class="section" id="term-frequencies">
-<h3>Term Frequencies<a class="headerlink" href="#term-frequencies" title="Permalink to this headline">¶</a></h3>
+<h3>Term Frequencies<a class="headerlink" href="#term-frequencies" title="Permalink to this headline">#</a></h3>
 <p>The conventional model for representing texts of arbitrary length as numeric vectors, is the <strong>Bag-of-Words</strong> model.
 In this model each word of the underlying vocabulary corresponds to one column and each document (text) corresponds to a single row of a matrix. The entry in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is just the term-frequency <span class="math notranslate nohighlight">\(tf_{i,j}\)</span> of word <span class="math notranslate nohighlight">\(j\)</span> in document <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <p>For example, assume, that we have only two documents</p>
@@ -811,7 +1090,7 @@ In this model each word of the underlying vocabulary corresponds to one column a
 </table>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -848,7 +1127,7 @@ In this model each word of the underlying vocabulary corresponds to one column a
 </div>
 </div>
 <div class="section" id="term-frequency-inverse-document-frequency">
-<h3>Term Frequency Inverse Document Frequency<a class="headerlink" href="#term-frequency-inverse-document-frequency" title="Permalink to this headline">¶</a></h3>
+<h3>Term Frequency Inverse Document Frequency<a class="headerlink" href="#term-frequency-inverse-document-frequency" title="Permalink to this headline">#</a></h3>
 <p>Instead of the term-frequency <span class="math notranslate nohighlight">\(tf_{i,j}\)</span> it is also possible to fill the BoW-vector with</p>
 <ul class="simple">
 <li><p>a binary indicator which indicates if the term <span class="math notranslate nohighlight">\(j\)</span> appears in document <span class="math notranslate nohighlight">\(i\)</span></p></li>
@@ -861,7 +1140,7 @@ tfidf_{i,j}=tf_{i,j} \cdot log \frac{N}{df_j},
 <p>where <span class="math notranslate nohighlight">\(df_j\)</span> is the frequency of documents, in which term <span class="math notranslate nohighlight">\(j\)</span> appears, and <span class="math notranslate nohighlight">\(N\)</span> is the total number of documents. The advantage of tf-idf, compared to just tf-entries, is that in <em>tf-idf</em> the term-frequency <em>tf</em> is multiplied by a value <em>idf</em>,  which is small for less informative words, i.e. words which appear in many documents, and high for words, which appear in only few documents. It is assumed, that words, which appear only in a few documents have a stronger <em>semantic focus</em> and are therefore more important.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">TfidfVectorizer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
 <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -893,47 +1172,46 @@ tfidf_{i,j}=tf_{i,j} \cdot log \frac{N}{df_j},
 </div>
 </div>
 <div class="section" id="how-to-generate-wordembeddings-cbow-and-skipgram">
-<h2>How to generate Wordembeddings? CBOW and Skipgram<a class="headerlink" href="#how-to-generate-wordembeddings-cbow-and-skipgram" title="Permalink to this headline">¶</a></h2>
+<h2>How to generate Wordembeddings? CBOW and Skipgram<a class="headerlink" href="#how-to-generate-wordembeddings-cbow-and-skipgram" title="Permalink to this headline">#</a></h2>
 <p>In 2013 Mikolov et al. published <a class="reference external" href="https://arxiv.org/pdf/1301.3781.pdf">Efficient Estimation of Word Representations in Vector Space</a>. They proposed quite simple neural network architectures to efficiently create word-embeddings: CBOW and Skipgram. These architectures are better known as <strong>Word2Vec</strong>. In both techniques neural networks are trained for a pseudo-task. After training, the network itself is usually not of interest. However, the learned weights in the input-layer constitute the word-embeddings, which can then be applied for a large field of NLP-tasks, e.g. document classification.</p>
 <div class="section" id="continous-bag-of-words-cbow">
-<h3>Continous Bag-Of-Words (CBOW)<a class="headerlink" href="#continous-bag-of-words-cbow" title="Permalink to this headline">¶</a></h3>
+<h3>Continous Bag-Of-Words (CBOW)<a class="headerlink" href="#continous-bag-of-words-cbow" title="Permalink to this headline">#</a></h3>
 <p>The idea of CBOW is to predict the target word <span class="math notranslate nohighlight">\(w_i\)</span>, given the <span class="math notranslate nohighlight">\(N\)</span> context-words <span class="math notranslate nohighlight">\(w_{i-N/2},\ldots, w_{i-1}, \quad w_{i+1}, w_{i+N/2}\)</span>.
 In order to learn such a predictor a large but unlabeled corpus is required. The extraction of training-samples from a corpus is sketched in the picture below:</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/CBowTrainSamples.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/CBowTrainSamples.png" alt="Drawing" style="width: 600px;"/>
 <p>In this example a context length of <span class="math notranslate nohighlight">\(N=4\)</span> has been applied. The first training-element consists of</p>
 <ul class="simple">
 <li><p>the <span class="math notranslate nohighlight">\(N=4\)</span> input-words <em>(happy,families,all,alike)</em></p></li>
 <li><p>the target word <em>are</em>.</p></li>
 </ul>
 <p>In order to obtain the second training-sample the window of length <span class="math notranslate nohighlight">\(N+1\)</span> is just shifted by one to the right. The concrete architecture for CBOW is shown in the picture below. At the input the <span class="math notranslate nohighlight">\(N\)</span> context words are one-hot-encoded. The fully-connected <em>Projection-layer</em> maps the context words to a vector representation of the context. This vector representation is the input of a softmax-output-layer. The output-layer has as much neurons as there are words in the vocabulary <span class="math notranslate nohighlight">\(V\)</span>. Each neurons uniquely corresponds to a word of the vocabulary and outputs an estimation of the probaility, that the word appears as target for the current context-words at the input.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/cbowGramArchitecture.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/cbowGramArchitecture.png" alt="Drawing" style="width: 600px;"/>
 <p>After training the CBOW-network the vector representation of word <span class="math notranslate nohighlight">\(w\)</span> are the weights from the one-hot encoded word <span class="math notranslate nohighlight">\(w\)</span> at the input of the network to the neurons in the projection-layer. I.e. the number of neurons in the projection layer define the length of the word-embedding.</p>
 </div>
 <div class="section" id="skip-gram">
-<h3>Skip-Gram<a class="headerlink" href="#skip-gram" title="Permalink to this headline">¶</a></h3>
+<h3>Skip-Gram<a class="headerlink" href="#skip-gram" title="Permalink to this headline">#</a></h3>
 <p>Skip-Gram is similar to CBOW, but has a reversed prediction process: For a given target word at the input, the Skip-Gram model predicts words, which are likely in the context of this target word. Again, the context is defined by the <span class="math notranslate nohighlight">\(N\)</span> neighbouring words. The extraction of training-samples from a corpus is sketched in the picture below:</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/skipGramTrainSamples.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/skipGramTrainSamples.png" alt="Drawing" style="width: 600px;"/>
 <p>Again a context length of <span class="math notranslate nohighlight">\(N=4\)</span> has been applied. The first training-element consists of</p>
 <ul class="simple">
 <li><p>the first target word <em>(happy)</em> as input to the network</p></li>
 <li><p>the first context word <em>(families)</em> as network-output.</p></li>
 </ul>
 <p>The concrete architecture for Skip-gram is shown in the picture below. At the input the target-word is one-hot-encoded. The fully-connected <em>Projection-layer</em> outputs the current vector representation of the target-word. This vector representation is the input of a softmax-output-layer. The output-layer has as much neurons as there are words in the vocabulary <span class="math notranslate nohighlight">\(V\)</span>. Each neurons uniquely corresponds to a word of the vocabulary and outputs an estimation of the probaility, that the word appears in the context of the current target-word at the input.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/skipGramArchitecture.png" />
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/skipGramArchitecture.png" alt="Drawing" style="width: 600px;"/></div>
 <div class="section" id="other-word-embeddings">
-<h3>Other Word-Embeddings<a class="headerlink" href="#other-word-embeddings" title="Permalink to this headline">¶</a></h3>
+<h3>Other Word-Embeddings<a class="headerlink" href="#other-word-embeddings" title="Permalink to this headline">#</a></h3>
 <p>CBOW- and Skip-Gram are possibly the most popular word-embeddings. However, there are more count-based and prediction-based methods to generate them, e.g. Random-Indexing, <a class="reference external" href="https://nlp.stanford.edu/projects/glove/">Glove</a>, <a class="reference external" href="https://fasttext.cc/">FastText</a>.</p>
 </div>
 </div>
 <div class="section" id="how-to-access-pretrained-word-embeddings">
-<h2>How to Access Pretrained Word-Embeddings?<a class="headerlink" href="#how-to-access-pretrained-word-embeddings" title="Permalink to this headline">¶</a></h2>
+<h2>How to Access Pretrained Word-Embeddings?<a class="headerlink" href="#how-to-access-pretrained-word-embeddings" title="Permalink to this headline">#</a></h2>
 <div class="section" id="fasttext-word-embeddings">
-<h3>Fasttext Word-Embeddings<a class="headerlink" href="#fasttext-word-embeddings" title="Permalink to this headline">¶</a></h3>
+<h3>Fasttext Word-Embeddings<a class="headerlink" href="#fasttext-word-embeddings" title="Permalink to this headline">#</a></h3>
 <p>After downloading word embeddings from <a class="reference external" href="https://fasttext.cc/">FastText</a> they can be imported as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="k">import</span> <span class="n">KeyedVectors</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
 
 <span class="c1"># Creating the model</span>
 <span class="c1">#en_model = KeyedVectors.load_word2vec_format(&#39;/Users/maucher/DataSets/Gensim/FastText/Gensim/FastText/wiki-news-300d-1M.vec&#39;)</span>
@@ -941,7 +1219,7 @@ In order to learn such a predictor a large but unlabeled corpus is required. The
 <span class="n">en_model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s1">&#39;/Users/johannes/DataSets/Gensim/FastText/fasttextEnglish300.vec&#39;</span><span class="p">)</span>
 <span class="c1"># Getting the tokens </span>
 <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">en_model</span><span class="o">.</span><span class="n">vocab</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">en_model</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">:</span>
     <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
 
 <span class="c1"># Printing out number of tokens available</span>
@@ -955,16 +1233,8 @@ In order to learn such a predictor a large but unlabeled corpus is required. The
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">6</span><span class="n">a3718ca176a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Creating the model</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(&#39;/Users/maucher/DataSets/Gensim/FastText/Gensim/FastText/wiki-news-300d-1M.vec&#39;)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">#en_model = KeyedVectors.load_word2vec_format(r&#39;C:\Users\maucher\DataSets\Gensim\Data\Fasttext\wiki-news-300d-1M.vec\wiki-news-300d-1M.vec&#39;) #path on surface</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;gensim&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of Tokens: 999994
+Dimension of a word vector: 300
 </pre></div>
 </div>
 </div>
@@ -995,21 +1265,21 @@ First 10 components of word-vector:
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;cars&#39;, 0.8045914769172668),
  (&#39;automobile&#39;, 0.7667388916015625),
- (&#39;vehicle&#39;, 0.753485918045044),
- (&#39;Car&#39;, 0.7177952527999878),
+ (&#39;vehicle&#39;, 0.7534858584403992),
+ (&#39;Car&#39;, 0.7177953124046326),
  (&#39;truck&#39;, 0.6989946961402893),
- (&#39;SUV&#39;, 0.689612865447998),
+ (&#39;SUV&#39;, 0.6896128058433533),
  (&#39;automobiles&#39;, 0.6783526539802551),
- (&#39;dealership&#39;, 0.6682884097099304),
+ (&#39;dealership&#39;, 0.6682883501052856),
  (&#39;garage&#39;, 0.6681075096130371),
- (&#39;driver&#39;, 0.6541328430175781)]
+ (&#39;driver&#39;, 0.6541329026222229)]
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="glove-word-embeddings">
-<h3>Glove Word-Embeddings<a class="headerlink" href="#glove-word-embeddings" title="Permalink to this headline">¶</a></h3>
+<h3>Glove Word-Embeddings<a class="headerlink" href="#glove-word-embeddings" title="Permalink to this headline">#</a></h3>
 <p>After downloading word-embeddings from <a class="reference external" href="https://nlp.stanford.edu/projects/glove/">Glove</a>, they can be imported as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1024,15 +1294,21 @@ First 10 components of word-vector:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.test.utils</span> <span class="k">import</span> <span class="n">datapath</span><span class="p">,</span> <span class="n">get_tmpfile</span>
-<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="k">import</span> <span class="n">KeyedVectors</span>
-<span class="kn">from</span> <span class="nn">gensim.scripts.glove2word2vec</span> <span class="k">import</span> <span class="n">glove2word2vec</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.test.utils</span> <span class="kn">import</span> <span class="n">datapath</span><span class="p">,</span> <span class="n">get_tmpfile</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
+<span class="kn">from</span> <span class="nn">gensim.scripts.glove2word2vec</span> <span class="kn">import</span> <span class="n">glove2word2vec</span>
 
 <span class="n">glove_file</span> <span class="o">=</span> <span class="n">datapath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">GLOVE_DIR</span><span class="p">,</span> <span class="s1">&#39;glove.6B.100d.txt&#39;</span><span class="p">))</span>
 <span class="n">tmp_file</span> <span class="o">=</span> <span class="n">get_tmpfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">GLOVE_DIR</span><span class="p">,</span> <span class="s1">&#39;test_word2vec.txt&#39;</span><span class="p">))</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">glove2word2vec</span><span class="p">(</span><span class="n">glove_file</span><span class="p">,</span> <span class="n">tmp_file</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">tmp_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-32-b7985f974e25&gt;:8: DeprecationWarning: Call to deprecated `glove2word2vec` (KeyedVectors.load_word2vec_format(.., binary=False, no_header=True) loads GLoVE text vectors.).
+  _ = glove2word2vec(glove_file, tmp_file)
 </pre></div>
 </div>
 </div>
@@ -1044,21 +1320,42 @@ First 10 components of word-vector:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;vehicle&#39;, 0.8630838394165039),
- (&#39;truck&#39;, 0.8597878217697144),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;vehicle&#39;, 0.8630837798118591),
+ (&#39;truck&#39;, 0.8597878813743591),
  (&#39;cars&#39;, 0.837166965007782),
  (&#39;driver&#39;, 0.8185911178588867),
  (&#39;driving&#39;, 0.781263530254364),
- (&#39;motorcycle&#39;, 0.7553157210350037),
- (&#39;vehicles&#39;, 0.7462255954742432),
- (&#39;parked&#39;, 0.7459464073181152),
- (&#39;bus&#39;, 0.7372706532478333),
- (&#39;taxi&#39;, 0.7155268788337708)]
+ (&#39;motorcycle&#39;, 0.7553156614303589),
+ (&#39;vehicles&#39;, 0.7462257146835327),
+ (&#39;parked&#39;, 0.74594646692276),
+ (&#39;bus&#39;, 0.737270712852478),
+ (&#39;taxi&#39;, 0.7155269384384155)]
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="comparision-bow-vs-sequence-of-word-embeddings">
+<h2>Comparision: BoW vs. Sequence of Word-Embeddings<a class="headerlink" href="#comparision-bow-vs-sequence-of-word-embeddings" title="Permalink to this headline">#</a></h2>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/bowVsEmbedding.png" alt="Drawing" style="width: 600px;"/>
+<p>BoW representations of text suffer from crucial drawbacks:</p>
+<ol class="simple">
+<li><p>The vectors are usually very long - there length is given by the number of words in the vocabulary. Moreover, the vectors are quite sparse, since the set of words appearing in one document is usually only a very small part of the set of all words in the vocabulary.</p></li>
+<li><p>Semantic relations between words are not modelled. This means that in this model there is no information about the fact that word <em>car</em> is more related to word <em>vehicle</em> than to word <em>lake</em>.</p></li>
+<li><p>In the BoW-model of documents word order is totally ignored. E.g. the model can not distinguish if word <em>not</em> appeared immediately before word <em>good</em> or before word <em>bad</em>.</p></li>
+</ol>
+<p>All of these drawbacks can be solved by</p>
+<ul class="simple">
+<li><p>applying <em>Word Embeddings</em></p></li>
+<li><p>passing sequences of Word-Embedding-Vectors to the input of</p>
+<ul>
+<li><p>Recurrent Neural Networks,</p></li>
+<li><p>Convolutional Neural Networks</p></li>
+<li><p>Transformers</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -1084,36 +1381,48 @@ First 10 components of word-vector:
 
               </div>
               
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../rl/QLearnFrozenLake.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Example Q-Learning</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="02TextClassification.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Text classification with CNNs and LSTMs</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page">Generative Adversarial Nets (GAN)</a>
-    <a class='right-next' id="next-link" href="../referenceSection.html" title="next page">References</a>
-
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Johannes Maucher<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Dr. Johannes Maucher<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
 
-
-    
   </body>
 </html>

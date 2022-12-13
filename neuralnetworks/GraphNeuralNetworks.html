@@ -1,0 +1,2532 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graph Neural Networks (GNN) &#8212; Machine Learning Lecture</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sequence-To-Sequence, Attention, Transformer" href="../transformer/attention.html" />
+    <link rel="prev" title="Text classification with CNNs and LSTMs" href="../text/02TextClassification.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Intro and Overview Machine Learning Lecture
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolutionDemos.html">
+   Animations of Convolution and Deconvolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/GAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graph Neural Networks
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Graph Neural Networks (GNN)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/neuralnetworks/GraphNeuralNetworks.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/neuralnetworks/GraphNeuralNetworks.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Graph Neural Networks (GNN)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph">
+     Graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-neural-networks">
+     Graph Neural Networks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#message-passing">
+       Message Passing
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-convolutional-network-gcn">
+       Graph Convolutional Network (GCN)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-convolutional-network-for-node-classification">
+       Graph Convolutional Network for Node Classification
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-convolutional-network-for-graph-classification">
+       Graph Convolutional Network for Graph Classification
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introductory-example-node-classification-with-graph-neural-networks">
+   Introductory Example: Node Classification with Graph Neural Networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup">
+     Setup
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-the-dataset">
+     Prepare the Dataset
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-dataset">
+       Download the dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#process-and-visualize-the-dataset">
+       Process and visualize the dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#split-the-dataset-into-stratified-train-and-test-sets">
+       Split the dataset into stratified train and test sets
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implement-train-and-evaluate-experiment">
+     Implement, Train and Evaluate Experiment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implement-feedforward-network-ffn-module">
+     Implement Feedforward Network (FFN) Module
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-baseline-neural-network-model">
+     Build a Baseline Neural Network Model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prepare-the-data-for-the-baseline-model">
+       Prepare the data for the baseline model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implement-a-baseline-classifier">
+       Implement a baseline classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-baseline-classifier">
+       Train the baseline classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examine-the-baseline-model-predictions">
+       Examine the baseline model predictions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-graph-neural-network-model">
+     Build a Graph Neural Network Model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prepare-the-data-for-the-graph-model">
+       Prepare the data for the graph model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implement-a-graph-convolution-layer">
+       Implement a graph convolution layer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implement-a-graph-neural-network-node-classifier">
+       Implement a graph neural network node classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-gnn-model">
+       Train the GNN model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examine-the-gnn-model-predictions">
+       Examine the GNN model predictions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Graph Neural Networks (GNN)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Graph Neural Networks (GNN)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph">
+     Graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-neural-networks">
+     Graph Neural Networks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#message-passing">
+       Message Passing
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-convolutional-network-gcn">
+       Graph Convolutional Network (GCN)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-convolutional-network-for-node-classification">
+       Graph Convolutional Network for Node Classification
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-convolutional-network-for-graph-classification">
+       Graph Convolutional Network for Graph Classification
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introductory-example-node-classification-with-graph-neural-networks">
+   Introductory Example: Node Classification with Graph Neural Networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup">
+     Setup
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-the-dataset">
+     Prepare the Dataset
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-dataset">
+       Download the dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#process-and-visualize-the-dataset">
+       Process and visualize the dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#split-the-dataset-into-stratified-train-and-test-sets">
+       Split the dataset into stratified train and test sets
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implement-train-and-evaluate-experiment">
+     Implement, Train and Evaluate Experiment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implement-feedforward-network-ffn-module">
+     Implement Feedforward Network (FFN) Module
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-baseline-neural-network-model">
+     Build a Baseline Neural Network Model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prepare-the-data-for-the-baseline-model">
+       Prepare the data for the baseline model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implement-a-baseline-classifier">
+       Implement a baseline classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-baseline-classifier">
+       Train the baseline classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examine-the-baseline-model-predictions">
+       Examine the baseline model predictions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-graph-neural-network-model">
+     Build a Graph Neural Network Model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prepare-the-data-for-the-graph-model">
+       Prepare the data for the graph model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implement-a-graph-convolution-layer">
+       Implement a graph convolution layer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implement-a-graph-neural-network-node-classifier">
+       Implement a graph neural network node classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-gnn-model">
+       Train the GNN model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examine-the-gnn-model-predictions">
+       Examine the GNN model predictions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="graph-neural-networks-gnn">
+<h1>Graph Neural Networks (GNN)<a class="headerlink" href="#graph-neural-networks-gnn" title="Permalink to this headline">#</a></h1>
+<p>Graph based deep learning is currently one of the hottest topics in Machine Learning Research. In the NeurIPS 2020 conference GNNs constituted the most prominent topic, as can be seen in this <a class="reference external" href="https://github.com/naganandy/graph-based-deep-learning-literature/blob/master/conference-publications/folders/publications_neurips20/README.md">list of conference papers</a>.</p>
+<p>However, GNNs are not only subject of research. They have already found their way into a wide range of <a class="reference external" href="https://medium.com/criteo-engineering/top-applications-of-graph-neural-networks-2021-c06ec82bfc18">applications</a>.</p>
+<p>Graph Neural Networks are suitable for Machine Learning tasks on data with structural
+relation between the individual data-points. Examples are e.g. social and communication networks analysis, traffic prediction, fraud detection, etc. <a class="reference external" href="https://www.cs.mcgill.ca/~wlh/grl_book/">Graph Representation Learning</a>
+aims to build and train models for graph datasets to be used for a variety of ML tasks.</p>
+<p>This lecture shall provide an understanding of the basic concepts of Graph Neural Networks and their application categories.</p>
+<div class="section" id="graph">
+<h2>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">#</a></h2>
+<p>A graph consists of a set of nodes, which are partially connected by edges. <strong>Nodes</strong> can represent things of different categories such as persons, locations, companies, etc. Nodes may also represent things of the same categorie but different subcategories. <strong>Edges</strong> can be directed or undirected. They also may have weights, which somehow define the <em>strength</em> of the connection. Edges can also be of different type, e.g.</p>
+<ul class="simple">
+<li><p>an edge between a node of type <em>person</em> and a node of type <em>paper</em> may have the meaning <em>isAuthorOf</em></p></li>
+<li><p>a directed edge between two nodes of type <em>paper</em> may mean that the paper of the source node refers to the paper of the target node.</p></li>
+</ul>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/graph.png" width="500px" align="center">
+<figcaption>
+Figure 1: Example graph with undirected edges (no arrows) and different node types (colours)
+</figcaption>
+</figure></div>
+<div class="section" id="graph-neural-networks">
+<h2>Graph Neural Networks<a class="headerlink" href="#graph-neural-networks" title="Permalink to this headline">#</a></h2>
+<p>In the context of GNNs each node is described by a set of features (a numeric vector). For example, if the nodes represent papers, then the descriptor vector of the nodes may be the Bag-of-Words vector (BoW) of the paper.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/graphNodeDescriptors.png" width="550px" align="center">
+<figcaption>
+Figure 2: To each node a descriptor (numeric vector) is assigned.
+</figcaption>
+</figure>
+<p>The BoW of a paper depends only on the words, which appear in the paper. Information about the neighbouring nodes is totally ignored. On the other hand, in some applications such information from neighbouring nodes may be helpful. For example, it may be easier to determine the subject of a paper, if not only the words in the paper itself are known, but also the contents of the papers in it’s immediate neighbourhood. This is actually what GNNs provide: <strong>GNNs calculate node representations (embeddings), which depend not only on the contents of the node itself, but also on the neighbouring nodes.</strong> The definition of <em>neighbourhood</em> depends on the task and the context. For example the immediate neighbours of a scientific paper may be all papers, which are referenced in this paper.</p>
+<div class="section" id="message-passing">
+<h3>Message Passing<a class="headerlink" href="#message-passing" title="Permalink to this headline">#</a></h3>
+<p>In a GNN the node representation <span class="math notranslate nohighlight">\(h_i^k\)</span> of each node <span class="math notranslate nohighlight">\(i\)</span> are adapted over many iteration (k indicates the iteration). At the very beginning to each node <span class="math notranslate nohighlight">\(i\)</span> an initial vector <span class="math notranslate nohighlight">\(h_i^0\)</span> is assigned, e.g. the BoW vector of a document. Then in each iteration <span class="math notranslate nohighlight">\(k&gt;0\)</span> these representations are updated by information from the neighbouring nodes. The image below sketches the update of node 0 in iteration <span class="math notranslate nohighlight">\(k\)</span>. Let <span class="math notranslate nohighlight">\(N(i)\)</span> denote the set of direct neighbours of node <span class="math notranslate nohighlight">\(i\)</span>, then</p>
+<ol class="simple">
+<li><p>For each node <span class="math notranslate nohighlight">\(u\)</span> in <span class="math notranslate nohighlight">\(N(i)\)</span> pass the current descriptor <span class="math notranslate nohighlight">\(h_u^k\)</span> to a Feed Forward Neural Network (for example a single fully connected layer). The output of this FFN is called the message <span class="math notranslate nohighlight">\(m_u^k\)</span> from node <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
+<li><p>All messages <span class="math notranslate nohighlight">\(m_u^k\)</span> and the current node representation <span class="math notranslate nohighlight">\(h_i^{k}\)</span> are <strong>aggregated</strong> by some function which outputs the new representation <span class="math notranslate nohighlight">\(h_i^{k+1}\)</span> of node <span class="math notranslate nohighlight">\(i\)</span>. The aggregation function can be a simple sum-, mean-, or max-operation. However, it can also be implemented by an arbitrary neural layer type as e.g. a fully connected layer or a recurrent layer.</p></li>
+</ol>
+<p>This process is performed, in parallel, on all nodes <span class="math notranslate nohighlight">\(i\)</span> in the graph as node-embeddings in iteration <span class="math notranslate nohighlight">\(k+1\)</span> depend on embeddings in iteration <span class="math notranslate nohighlight">\(k\)</span>. In this way in each iteration each node <em>grabs</em> more information from it’s surrounding nodes. Finally this <em>better representations</em> can be applied for different tasks, such as node-classification, node-clustering, sub-graph-identification, sub-graph-clustering etc. Depending on the task, individual node embeddings of type <span class="math notranslate nohighlight">\(h_i^{k}\)</span>, or representations of sub-graphs or the entire graph may be required. A simple representation of a subgraph or graph can be obtained by just summing up the node-embeddings of all nodes in the graph or subgraph, respectively.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/graphMessagePassing.png" width="800px" align="center">
+<figcaption>
+Figure 3: Calculation of new descriptor at node 0.
+</figcaption>
+</figure></div>
+<div class="section" id="graph-convolutional-network-gcn">
+<h3>Graph Convolutional Network (GCN)<a class="headerlink" href="#graph-convolutional-network-gcn" title="Permalink to this headline">#</a></h3>
+<p>Next, we will consider how the concept of message passing, as introduced in the previous subsection, is implemented in Graph Neural Networks (GNNs)?</p>
+<p>As explained in the previous subsections, in each iteration each node’s descriptor vector is updated by the messages from the neighbouring nodes. In a Graph Convolutional Network (GCN) each iteration is implemented by a GCN-layer. I.e. the first update is calculated in the first GCN-layer, the second update is calculated in the second layer and so on. Thus the number of updates and therefore the range of the neighbourhood that is considered in the final node representation is given by the number of GCN layers. Such a stack of GCN-layers is depicted in the right hand side of Figure 4. In this Figure the abbreviation GNN is used for Graph Neural Net (GNN). GNN is more general as GCN, but here we always assume that the GNN is a GCN. The short-cut connections around the GNN layers are necessary, because the new representation of a node is the aggregation of the messages from the neighboring nodes and the old representation of this node.</p>
+<p>As depicted in the right hand side of Figure 4, the stack of GCN layers is preceeded by one or more preprocessing layers, which calculate the initial node descriptors. The initial node descriptors do not depend on the neighbouring codes. Moreover, the output of the GCN-layer stack is passed to one or more post-processing layers. These post-processing layers depend on the task. E.g. for the task of node-classification, the post-processing layers assign to each node descriptor at the output of the GCN-layer stack the category of the node.</p>
+<p>In Figure 3, it was assumed, that the message <span class="math notranslate nohighlight">\(m_u^k\)</span> coming from node <span class="math notranslate nohighlight">\(u\)</span> in iteration <span class="math notranslate nohighlight">\(k+1\)</span> is the output of a dense layer (linear layer), whose input is the node descriptor <span class="math notranslate nohighlight">\(h_u^k\)</span>. In general, as depicted in the left hand-side of the image below, the dense layer can apply Batch-Normalization, Dropout and an arbitrary Activation function.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/GNNDesign.png" width="600px" align="center">
+<figcaption>
+Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space for Graph Neural Networks</a> 
+</figcaption>
+</figure>
+<p>Where does the name <em>Graph Convolutional Layer</em> come from?</p>
+<p>For this take a look to the left hand side of Figure 5. In a <em>Convolutional Layer</em> at each position a new value is calculated as the scalar-product of the filter coefficients and the receptive field of the current position (neuron). Each position (neuron) can be considered as a node. And each node has an edge to all other nodes (positions), which belong to the local receptive field of the current position (neuron). Actually, at each position not only one value is calculated, but one value for each feature map.</p>
+<p>With this notion in mind, the difference of a graph convolution layer w.r.t. a convolution layer is that in a GCN each node can have an arbitrary number of neighbouring nodes, whereas in a convolution layer the number of neighbouring nodes is fixed and given by the size of the filter.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gcnVScnn.png" width="600px" align="center">
+<figcaption>
+    Figure 5: Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
+</figcaption>
+</figure>
+</div>
+<div class="section" id="graph-convolutional-network-for-node-classification">
+<h3>Graph Convolutional Network for Node Classification<a class="headerlink" href="#graph-convolutional-network-for-node-classification" title="Permalink to this headline">#</a></h3>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gcnNodeClassification.png" width="600px" align="center">
+<figcaption>
+    Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
+</figcaption>
+</figure>
+</div>
+<div class="section" id="graph-convolutional-network-for-graph-classification">
+<h3>Graph Convolutional Network for Graph Classification<a class="headerlink" href="#graph-convolutional-network-for-graph-classification" title="Permalink to this headline">#</a></h3>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gcnGraphClassification.png" width="600px"align="center">
+<figcaption>
+    Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
+</figcaption>
+</figure>
+<p><a id='intro'></a></p>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introductory-example-node-classification-with-graph-neural-networks">
+<h1>Introductory Example: Node Classification with Graph Neural Networks<a class="headerlink" href="#introductory-example-node-classification-with-graph-neural-networks" title="Permalink to this headline">#</a></h1>
+<p>After learning the basic concepts of Graph Neural Networks, we continue with the implementation of Graph Convolution Networks (GCN). This part is an adaptation of the <a class="reference external" href="https://keras.io/examples/graph/gnn_citations/">Keras tutorial</a>. You don’t have to implement the GCN layer and the GCN Network by yourself, but you should study this part carefully, such that you are able</p>
+<ul class="simple">
+<li><p>to answer the questions at the end of this section</p></li>
+<li><p>to implement the GCN network on the task of music genre prediction in the following section.</p></li>
+</ul>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>This example demonstrates a simple implementation of a <a class="reference external" href="https://arxiv.org/pdf/1901.00596.pdf">Graph Neural Network</a>
+(GNN) model. The model is used for a node prediction task on the <a class="reference external" href="https://relational.fit.cvut.cz/dataset/CORA">Cora dataset</a>
+to predict the subject of a paper given its words and citations network.</p>
+<p>Note that, <strong>we implement a Graph Convolution Layer from scratch</strong> to provide a better
+understanding of how they work. However, there is a number of specialized TensorFlow-based
+libraries that provide rich GNN APIs, such as <a class="reference external" href="https://graphneural.network/">Spectral</a>,
+<a class="reference external" href="https://stellargraph.readthedocs.io/en/stable/README.html">StellarGraph</a>, and
+<a class="reference external" href="https://github.com/deepmind/graph_nets">GraphNets</a>.</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prepare-the-dataset">
+<h2>Prepare the Dataset<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">#</a></h2>
+<p>The Cora dataset consists of 2,708 scientific papers classified into one of seven classes.
+The citation network consists of 5,429 links. Each paper has a binary word vector of size
+1,433, indicating the presence of a corresponding word.</p>
+<div class="section" id="download-the-dataset">
+<h3>Download the dataset<a class="headerlink" href="#download-the-dataset" title="Permalink to this headline">#</a></h3>
+<p>The dataset has two tap-separated files: <code class="docutils literal notranslate"><span class="pre">cora.cites</span></code> and <code class="docutils literal notranslate"><span class="pre">cora.content</span></code>.</p>
+<ol class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">cora.cites</span></code> includes the citation records with two columns:
+<code class="docutils literal notranslate"><span class="pre">cited_paper_id</span></code> (target) and <code class="docutils literal notranslate"><span class="pre">citing_paper_id</span></code> (source).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">cora.content</span></code> includes the paper content records with 1,435 columns:
+<code class="docutils literal notranslate"><span class="pre">paper_id</span></code>, <code class="docutils literal notranslate"><span class="pre">subject</span></code>, and 1,433 binary features.</p></li>
+</ol>
+<p>First the Cora-dataset is downloaded and extracted:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zip_file</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;cora.tgz&quot;</span><span class="p">,</span>
+    <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;https://linqs-data.soe.ucsc.edu/public/lbc/cora.tgz&quot;</span><span class="p">,</span>
+    <span class="n">extract</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">zip_file</span><span class="p">),</span> <span class="s2">&quot;cora&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zip_file</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/johannes/.keras/datasets/cora.tgz&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="process-and-visualize-the-dataset">
+<h3>Process and visualize the dataset<a class="headerlink" href="#process-and-visualize-the-dataset" title="Permalink to this headline">#</a></h3>
+<p>Then we load the citations data into a Pandas DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">citations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;cora.cites&quot;</span><span class="p">),</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Citations shape:&quot;</span><span class="p">,</span> <span class="n">citations</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Citations shape: (5429, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we display a sample of the <code class="docutils literal notranslate"><span class="pre">citations</span></code> DataFrame.
+The <code class="docutils literal notranslate"><span class="pre">target</span></code> column includes the paper ids cited by the paper ids in the <code class="docutils literal notranslate"><span class="pre">source</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">citations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>35</td>
+      <td>1033</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>35</td>
+      <td>103482</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>35</td>
+      <td>103515</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>35</td>
+      <td>1050679</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>35</td>
+      <td>1103960</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As can be seen in the output of the next-code cell, there are some papers (e.g. paper 35), which are referenced by many others. Other papers are referenced only once or even not at all.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">citations</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35        166
+6213       76
+1365       74
+3229       61
+114        42
+         ... 
+264347      1
+346243      1
+221302      1
+143476      1
+851968      1
+Name: target, Length: 1565, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s load the papers data into a Pandas DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;paper_id&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;term_</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1433</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span>
+<span class="n">papers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;cora.content&quot;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">column_names</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Papers shape:&quot;</span><span class="p">,</span> <span class="n">papers</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Papers shape: (2708, 1435)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we display a sample of the <code class="docutils literal notranslate"><span class="pre">papers</span></code> DataFrame. The DataFrame includes the <code class="docutils literal notranslate"><span class="pre">paper_id</span></code>
+and the <code class="docutils literal notranslate"><span class="pre">subject</span></code> columns, as well as 1,433 binary column representing whether a term exists
+in the paper or not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">papers</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>paper_id</th>
+      <th>term_0</th>
+      <th>term_1</th>
+      <th>term_2</th>
+      <th>term_3</th>
+      <th>term_4</th>
+      <th>term_5</th>
+      <th>term_6</th>
+      <th>term_7</th>
+      <th>term_8</th>
+      <th>...</th>
+      <th>term_1424</th>
+      <th>term_1425</th>
+      <th>term_1426</th>
+      <th>term_1427</th>
+      <th>term_1428</th>
+      <th>term_1429</th>
+      <th>term_1430</th>
+      <th>term_1431</th>
+      <th>term_1432</th>
+      <th>subject</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>31336</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Neural_Networks</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1061127</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Rule_Learning</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1106406</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Reinforcement_Learning</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13195</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Reinforcement_Learning</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>37879</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Probabilistic_Methods</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1435 columns</p>
+</div></div></div>
+</div>
+<p>Let’s display the count of the papers in each subject.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">papers</span><span class="o">.</span><span class="n">subject</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Neural_Networks           818
+Probabilistic_Methods     426
+Genetic_Algorithms        418
+Theory                    351
+Case_Based                298
+Reinforcement_Learning    217
+Rule_Learning             180
+Name: subject, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We convert the paper ids and the subjects into zero-based indices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_values</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">papers</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">class_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">id</span> <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_values</span><span class="p">)}</span>
+<span class="n">paper_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">papers</span><span class="p">[</span><span class="s2">&quot;paper_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">papers</span><span class="p">[</span><span class="s2">&quot;paper_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">papers</span><span class="p">[</span><span class="s2">&quot;paper_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">paper_idx</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+<span class="n">citations</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">citations</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">paper_idx</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+<span class="n">citations</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">citations</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">paper_idx</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+<span class="n">papers</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">papers</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">class_idx</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">papers</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>paper_id</th>
+      <th>term_0</th>
+      <th>term_1</th>
+      <th>term_2</th>
+      <th>term_3</th>
+      <th>term_4</th>
+      <th>term_5</th>
+      <th>term_6</th>
+      <th>term_7</th>
+      <th>term_8</th>
+      <th>...</th>
+      <th>term_1424</th>
+      <th>term_1425</th>
+      <th>term_1426</th>
+      <th>term_1427</th>
+      <th>term_1428</th>
+      <th>term_1429</th>
+      <th>term_1430</th>
+      <th>term_1431</th>
+      <th>term_1432</th>
+      <th>subject</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>462</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1911</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2002</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>248</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>519</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1435 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">papers</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2708, 1435)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">citations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>target</th>
+      <th>source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>905</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>906</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1909</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1940</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now let’s visualize the citation graph. Each node in the graph represents a paper,
+and the color of the node corresponds to its subject. Note that we only show a sample of
+the papers in the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">papers</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cora_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_pandas_edgelist</span><span class="p">(</span><span class="n">citations</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1500</span><span class="p">))</span>
+<span class="n">subjects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">papers</span><span class="p">[</span><span class="n">papers</span><span class="p">[</span><span class="s2">&quot;paper_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cora_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">))][</span><span class="s2">&quot;subject&quot;</span><span class="p">])</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_spring</span><span class="p">(</span><span class="n">cora_graph</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">subjects</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/GraphNeuralNetworks_33_0.png" src="../_images/GraphNeuralNetworks_33_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="split-the-dataset-into-stratified-train-and-test-sets">
+<h3>Split the dataset into stratified train and test sets<a class="headerlink" href="#split-the-dataset-into-stratified-train-and-test-sets" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">group_data</span> <span class="ow">in</span> <span class="n">papers</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;subject&quot;</span><span class="p">):</span>
+    <span class="c1"># Select around 85% of the dataset for training and validation, and 15% for test</span>
+    <span class="n">random_selection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group_data</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mf">0.5</span>
+    <span class="n">train_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group_data</span><span class="p">[</span><span class="n">random_selection</span><span class="p">])</span>
+    <span class="n">test_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group_data</span><span class="p">[</span><span class="o">~</span><span class="n">random_selection</span><span class="p">])</span>
+
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train data shape:&quot;</span><span class="p">,</span> <span class="n">train_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test data shape:&quot;</span><span class="p">,</span> <span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train data shape: (1322, 1435)
+Test data shape: (1386, 1435)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="implement-train-and-evaluate-experiment">
+<h2>Implement, Train and Evaluate Experiment<a class="headerlink" href="#implement-train-and-evaluate-experiment" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hidden_units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">]</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">dropout_rate</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function compiles and trains an input model using the given training data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
+    <span class="c1"># Compile the model.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">),</span>
+        <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">SparseCategoricalAccuracy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">)],</span>
+    <span class="p">)</span>
+    <span class="c1"># Create an early stopping callback.</span>
+    <span class="n">early_stopping</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_acc&quot;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="c1"># Fit the model.</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">],</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function displays the loss and accuracy curves of the model during training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_learning_curves</span><span class="p">(</span><span class="n">history</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">])</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;val_loss&quot;</span><span class="p">])</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Epochs&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">])</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;val_acc&quot;</span><span class="p">])</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Epochs&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Accuracy&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="implement-feedforward-network-ffn-module">
+<h2>Implement Feedforward Network (FFN) Module<a class="headerlink" href="#implement-feedforward-network-ffn-module" title="Permalink to this headline">#</a></h2>
+<p>We will use this module in the baseline and the GNN models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">fnn_layers</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">hidden_units</span><span class="p">:</span>
+        <span class="n">fnn_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">BatchNormalization</span><span class="p">())</span>
+        <span class="n">fnn_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">))</span>
+        <span class="n">fnn_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">gelu</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">fnn_layers</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="build-a-baseline-neural-network-model">
+<h2>Build a Baseline Neural Network Model<a class="headerlink" href="#build-a-baseline-neural-network-model" title="Permalink to this headline">#</a></h2>
+<div class="section" id="prepare-the-data-for-the-baseline-model">
+<h3>Prepare the data for the baseline model<a class="headerlink" href="#prepare-the-data-for-the-baseline-model" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">papers</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;paper_id&quot;</span><span class="p">,</span> <span class="s2">&quot;subject&quot;</span><span class="p">}</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_idx</span><span class="p">)</span>
+
+<span class="c1"># Create train and test features as a numpy array.</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="c1"># Create train and test targets as a numpy array.</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_classes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="implement-a-baseline-classifier">
+<h3>Implement a baseline classifier<a class="headerlink" href="#implement-a-baseline-classifier" title="Permalink to this headline">#</a></h3>
+<p>We add five FFN blocks with skip connections, so that we generate a baseline model with
+roughly the same number of parameters as the GNN models to be built later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_baseline_model</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_features</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;input_features&quot;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ffn_block1&quot;</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">block_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="c1"># Create an FFN block.</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ffn_block</span><span class="si">{</span><span class="n">block_idx</span> <span class="o">+</span> <span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># Add skip connection.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;skip_connection</span><span class="si">{</span><span class="n">block_idx</span> <span class="o">+</span> <span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)([</span><span class="n">x</span><span class="p">,</span> <span class="n">x1</span><span class="p">])</span>
+    <span class="c1"># Compute logits.</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;logits&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># Create the model.</span>
+    <span class="k">return</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;baseline&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseline_model</span> <span class="o">=</span> <span class="n">create_baseline_model</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">)</span>
+<span class="n">baseline_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;baseline&quot;
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_features (InputLayer)     [(None, 1433)]       0                                            
+__________________________________________________________________________________________________
+ffn_block1 (Sequential)         (None, 32)           52804       input_features[0][0]             
+__________________________________________________________________________________________________
+ffn_block2 (Sequential)         (None, 32)           2368        ffn_block1[0][0]                 
+__________________________________________________________________________________________________
+skip_connection2 (Add)          (None, 32)           0           ffn_block1[0][0]                 
+                                                                 ffn_block2[0][0]                 
+__________________________________________________________________________________________________
+ffn_block3 (Sequential)         (None, 32)           2368        skip_connection2[0][0]           
+__________________________________________________________________________________________________
+skip_connection3 (Add)          (None, 32)           0           skip_connection2[0][0]           
+                                                                 ffn_block3[0][0]                 
+__________________________________________________________________________________________________
+ffn_block4 (Sequential)         (None, 32)           2368        skip_connection3[0][0]           
+__________________________________________________________________________________________________
+skip_connection4 (Add)          (None, 32)           0           skip_connection3[0][0]           
+                                                                 ffn_block4[0][0]                 
+__________________________________________________________________________________________________
+ffn_block5 (Sequential)         (None, 32)           2368        skip_connection4[0][0]           
+__________________________________________________________________________________________________
+skip_connection5 (Add)          (None, 32)           0           skip_connection4[0][0]           
+                                                                 ffn_block5[0][0]                 
+__________________________________________________________________________________________________
+logits (Dense)                  (None, 7)            231         skip_connection5[0][0]           
+==================================================================================================
+Total params: 62,507
+Trainable params: 59,065
+Non-trainable params: 3,442
+__________________________________________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-the-baseline-classifier">
+<h3>Train the baseline classifier<a class="headerlink" href="#train-the-baseline-classifier" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">run_experiment</span><span class="p">(</span><span class="n">baseline_model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the learning curves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_learning_curves</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/GraphNeuralNetworks_53_0.png" src="../_images/GraphNeuralNetworks_53_0.png" />
+</div>
+</div>
+<p>Now we evaluate the baseline model on the test data split.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">baseline_model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">test_accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test accuracy: 73.67%
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="examine-the-baseline-model-predictions">
+<h3>Examine the baseline model predictions<a class="headerlink" href="#examine-the-baseline-model-predictions" title="Permalink to this headline">#</a></h3>
+<p>Let’s create new data instances by randomly generating binary word vectors with respect to
+the word presence probabilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_random_instances</span><span class="p">(</span><span class="n">num_instances</span><span class="p">):</span>
+    <span class="n">token_probability</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">instances</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_instances</span><span class="p">):</span>
+        <span class="n">probabilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">token_probability</span><span class="p">))</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="p">(</span><span class="n">probabilities</span> <span class="o">&lt;=</span> <span class="n">token_probability</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">instances</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">display_class_probabilities</span><span class="p">(</span><span class="n">probabilities</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">instance_idx</span><span class="p">,</span> <span class="n">probs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">probabilities</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instance </span><span class="si">{</span><span class="n">instance_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">probs</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">class_values</span><span class="p">[</span><span class="n">class_idx</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">prob</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we show the baseline model predictions given these randomly generated instances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_instances</span> <span class="o">=</span> <span class="n">generate_random_instances</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="n">baseline_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_instances</span><span class="p">)</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">logits</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">display_class_probabilities</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Instance 1:
+- Case_Based: 0.63%
+- Genetic_Algorithms: 0.08%
+- Neural_Networks: 90.82%
+- Probabilistic_Methods: 0.29%
+- Reinforcement_Learning: 0.03%
+- Rule_Learning: 0.16%
+- Theory: 8.0%
+Instance 2:
+- Case_Based: 2.74%
+- Genetic_Algorithms: 0.34%
+- Neural_Networks: 12.24%
+- Probabilistic_Methods: 82.45%
+- Reinforcement_Learning: 0.95%
+- Rule_Learning: 0.07%
+- Theory: 1.2%
+Instance 3:
+- Case_Based: 0.61%
+- Genetic_Algorithms: 85.31%
+- Neural_Networks: 6.04%
+- Probabilistic_Methods: 4.73%
+- Reinforcement_Learning: 2.79%
+- Rule_Learning: 0.07%
+- Theory: 0.45%
+Instance 4:
+- Case_Based: 0.47%
+- Genetic_Algorithms: 0.38%
+- Neural_Networks: 94.28%
+- Probabilistic_Methods: 1.96%
+- Reinforcement_Learning: 0.05%
+- Rule_Learning: 0.05%
+- Theory: 2.81%
+Instance 5:
+- Case_Based: 73.4%
+- Genetic_Algorithms: 8.19%
+- Neural_Networks: 2.07%
+- Probabilistic_Methods: 7.09%
+- Reinforcement_Learning: 6.03%
+- Rule_Learning: 1.02%
+- Theory: 2.2%
+Instance 6:
+- Case_Based: 4.23%
+- Genetic_Algorithms: 5.48%
+- Neural_Networks: 30.19%
+- Probabilistic_Methods: 46.4%
+- Reinforcement_Learning: 1.51%
+- Rule_Learning: 0.51%
+- Theory: 11.7%
+Instance 7:
+- Case_Based: 0.07%
+- Genetic_Algorithms: 0.05%
+- Neural_Networks: 0.34%
+- Probabilistic_Methods: 0.02%
+- Reinforcement_Learning: 99.32%
+- Rule_Learning: 0.05%
+- Theory: 0.15%
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="build-a-graph-neural-network-model">
+<h2>Build a Graph Neural Network Model<a class="headerlink" href="#build-a-graph-neural-network-model" title="Permalink to this headline">#</a></h2>
+<p><a id='graphinfo'></a></p>
+<div class="section" id="prepare-the-data-for-the-graph-model">
+<h3>Prepare the data for the graph model<a class="headerlink" href="#prepare-the-data-for-the-graph-model" title="Permalink to this headline">#</a></h3>
+<p>Preparing and loading the graphs data into the model for training is the most challenging
+part in GNN models, which is addressed in different ways by the specialised libraries.
+In this example, we show a simple approach for preparing and using graph data that is suitable
+if your dataset consists of a single graph that fits entirely in memory.</p>
+<p>The graph data is represented by the <code class="docutils literal notranslate"><span class="pre">graph_info</span></code> tuple, which consists of the following
+three elements:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">node_features</span></code>: This is a <code class="docutils literal notranslate"><span class="pre">[num_nodes,</span> <span class="pre">num_features]</span></code> NumPy array that includes the
+node features. In this dataset, the nodes are the papers, and the <code class="docutils literal notranslate"><span class="pre">node_features</span></code> are the
+word-presence binary vectors of each paper.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edges</span></code>:  This is a <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">num_edges]</span></code> NumPy array. The first column contains the id of the source-node and the second column contains the id of the target node of an edge. However, in this application we do not consider directed edges, i.e. it does matter which of the two nodes is the target and the source, respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edge_weights</span></code> (optional): This is a <code class="docutils literal notranslate"><span class="pre">[num_edges]</span></code> NumPy array that includes the edge weights, which <em>quantify</em>
+the relationships between nodes in the graph. In this example, there are no weights for the paper citations.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an edges array (sparse adjacency matrix) of shape [2, num_edges].</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">citations</span><span class="p">[[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="c1"># Create an edge weights array of ones.</span>
+<span class="n">edge_weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">edges</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># Create a node features array of shape [num_nodes, num_features].</span>
+<span class="n">node_features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span>
+    <span class="n">papers</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;paper_id&quot;</span><span class="p">)[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span>
+<span class="p">)</span>
+<span class="c1"># Create graph info tuple with node_features, edges, and edge_weights.</span>
+<span class="n">graph_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_features</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">edge_weights</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Edges shape:&quot;</span><span class="p">,</span> <span class="n">edges</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Edge-Weight shape:&quot;</span><span class="p">,</span> <span class="n">edge_weights</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nodes shape:&quot;</span><span class="p">,</span> <span class="n">node_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Edges shape: (2, 5429)
+Edge-Weight shape: (5429,)
+Nodes shape: (2708, 1433)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  21,  905,  906, ..., 2586, 1874, 2707],
+       [   0,    0,    0, ..., 1874, 1876, 1897]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(5429,), dtype=float32, numpy=array([1., 1., 1., ..., 1., 1., 1.], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="implement-a-graph-convolution-layer">
+<h3>Implement a graph convolution layer<a class="headerlink" href="#implement-a-graph-convolution-layer" title="Permalink to this headline">#</a></h3>
+<p>We implement a graph convolution module as a <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Layer?version=nightly">Keras Layer</a>.
+Our <code class="docutils literal notranslate"><span class="pre">GraphConvLayer</span></code> performs the following steps:</p>
+<ol class="simple">
+<li><p><strong>Prepare</strong>: The input node representations are processed using a FFN to produce a <em>message</em>. You can simplify
+the processing by only applying linear transformation to the representations.</p></li>
+<li><p><strong>Aggregate</strong>: The messages of the neighbours of each node are aggregated with
+respect to the <code class="docutils literal notranslate"><span class="pre">edge_weights</span></code> using a <em>permutation invariant</em> pooling operation, such as <em>sum</em>, <em>mean</em>, and <em>max</em>,
+to prepare a single aggregated message for each node. See, for example, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/math/unsorted_segment_sum">tf.math.unsorted_segment_sum</a>
+APIs used to aggregate neighbour messages.</p></li>
+<li><p><strong>Update</strong>: The <code class="docutils literal notranslate"><span class="pre">node_repesentations</span></code> and <code class="docutils literal notranslate"><span class="pre">aggregated_messages</span></code>—both of shape <code class="docutils literal notranslate"><span class="pre">[num_nodes,</span> <span class="pre">representation_dim]</span></code>—
+are combined and processed to produce the new state of the node representations (node embeddings).
+If <code class="docutils literal notranslate"><span class="pre">combination_type</span></code> is <code class="docutils literal notranslate"><span class="pre">gru</span></code>, the <code class="docutils literal notranslate"><span class="pre">node_repesentations</span></code> and <code class="docutils literal notranslate"><span class="pre">aggregated_messages</span></code> are stacked to create a sequence,
+then processed by a GRU layer. Otherwise, the <code class="docutils literal notranslate"><span class="pre">node_repesentations</span></code> and <code class="docutils literal notranslate"><span class="pre">aggregated_messages</span></code> are added
+or concatenated, then processed using a FFN.</p></li>
+</ol>
+<p>The technique implemented use ideas from <a class="reference external" href="https://arxiv.org/abs/1609.02907">Graph Convolutional Networks</a>,
+<a class="reference external" href="https://arxiv.org/abs/1706.02216">GraphSage</a>, <a class="reference external" href="https://arxiv.org/abs/1810.00826">Graph Isomorphism Network</a>,
+<a class="reference external" href="https://arxiv.org/abs/1902.07153">Simple Graph Networks</a>, and
+<a class="reference external" href="https://arxiv.org/abs/1511.05493">Gated Graph Sequence Neural Networks</a>.
+Two other key techniques that are not covered are <a class="reference external" href="https://arxiv.org/abs/1710.10903">Graph Attention Networks</a>
+and <a class="reference external" href="https://arxiv.org/abs/1704.01212">Message Passing Neural Networks</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GraphConvLayer</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">hidden_units</span><span class="p">,</span>
+        <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">aggregation_type</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+        <span class="n">combination_type</span><span class="o">=</span><span class="s2">&quot;concat&quot;</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GraphConvLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregation_type</span> <span class="o">=</span> <span class="n">aggregation_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span> <span class="o">=</span> <span class="n">combination_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">=</span> <span class="n">normalize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ffn_prepare</span> <span class="o">=</span> <span class="n">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span> <span class="o">==</span> <span class="s2">&quot;gated&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span>
+                <span class="n">units</span><span class="o">=</span><span class="n">hidden_units</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
+                <span class="n">recurrent_activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+                <span class="n">dropout</span><span class="o">=</span><span class="n">dropout_rate</span><span class="p">,</span>
+                <span class="n">return_state</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">recurrent_dropout</span><span class="o">=</span><span class="n">dropout_rate</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span> <span class="o">=</span> <span class="n">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_repesentations</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># node_repesentations shape is [num_edges, embedding_dim].</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ffn_prepare</span><span class="p">(</span><span class="n">node_repesentations</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">messages</span> <span class="o">=</span> <span class="n">messages</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">messages</span>
+
+    <span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">neighbour_messages</span><span class="p">):</span>
+        <span class="c1"># node_indices shape is [num_edges].</span>
+        <span class="c1"># neighbour_messages shape: [num_edges, representation_dim].</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">node_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregation_type</span> <span class="o">==</span> <span class="s2">&quot;sum&quot;</span><span class="p">:</span>
+            <span class="n">aggregated_message</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">unsorted_segment_sum</span><span class="p">(</span>
+                <span class="n">neighbour_messages</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="n">num_nodes</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregation_type</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
+            <span class="n">aggregated_message</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">unsorted_segment_mean</span><span class="p">(</span>
+                <span class="n">neighbour_messages</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="n">num_nodes</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregation_type</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+            <span class="n">aggregated_message</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">unsorted_segment_max</span><span class="p">(</span>
+                <span class="n">neighbour_messages</span><span class="p">,</span> <span class="n">node_indices</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="n">num_nodes</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid aggregation type: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregation_type</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">aggregated_message</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_repesentations</span><span class="p">,</span> <span class="n">aggregated_messages</span><span class="p">):</span>
+        <span class="c1"># node_repesentations shape is [num_nodes, representation_dim].</span>
+        <span class="c1"># aggregated_messages shape is [num_nodes, representation_dim].</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span> <span class="o">==</span> <span class="s2">&quot;gru&quot;</span><span class="p">:</span>
+            <span class="c1"># Create a sequence of two elements for the GRU layer.</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">node_repesentations</span><span class="p">,</span> <span class="n">aggregated_messages</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span> <span class="o">==</span> <span class="s2">&quot;concat&quot;</span><span class="p">:</span>
+            <span class="c1"># Concatenate the node_repesentations and aggregated_messages.</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">node_repesentations</span><span class="p">,</span> <span class="n">aggregated_messages</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">:</span>
+            <span class="c1"># Add node_repesentations and aggregated_messages.</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">node_repesentations</span> <span class="o">+</span> <span class="n">aggregated_messages</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid combination type: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Apply the processing function.</span>
+        <span class="n">node_embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination_type</span> <span class="o">==</span> <span class="s2">&quot;gru&quot;</span><span class="p">:</span>
+            <span class="n">node_embeddings</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">node_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">:</span>
+            <span class="n">node_embeddings</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">l2_normalize</span><span class="p">(</span><span class="n">node_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node_embeddings</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process the inputs to produce the node_embeddings.</span>
+
+<span class="sd">        inputs: a tuple of three elements: node_repesentations, edges, edge_weights.</span>
+<span class="sd">        Returns: node_embeddings of shape [num_nodes, representation_dim].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">node_repesentations</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">edge_weights</span> <span class="o">=</span> <span class="n">inputs</span>
+        <span class="c1"># Get node_indices (source) and neighbour_indices (target) from edges.</span>
+        <span class="n">node_indices</span><span class="p">,</span> <span class="n">neighbour_indices</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># neighbour_repesentations shape is [num_edges, representation_dim].</span>
+        <span class="n">neighbour_repesentations</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">node_repesentations</span><span class="p">,</span> <span class="n">neighbour_indices</span><span class="p">)</span>
+
+        <span class="c1"># Prepare the messages of the neighbours.</span>
+        <span class="n">neighbour_messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">neighbour_repesentations</span><span class="p">,</span> <span class="n">edge_weights</span><span class="p">)</span>
+        <span class="c1"># Aggregate the neighbour messages.</span>
+        <span class="n">aggregated_messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">node_indices</span><span class="p">,</span> <span class="n">neighbour_messages</span><span class="p">)</span>
+        <span class="c1"># Update the node embedding with the neighbour messages.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">node_repesentations</span><span class="p">,</span> <span class="n">aggregated_messages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="implement-a-graph-neural-network-node-classifier">
+<h3>Implement a graph neural network node classifier<a class="headerlink" href="#implement-a-graph-neural-network-node-classifier" title="Permalink to this headline">#</a></h3>
+<p>The GNN classification model follows the <a class="reference external" href="https://arxiv.org/abs/2011.08843">Design Space for Graph Neural Networks</a> approach,
+as follows:</p>
+<ol class="simple">
+<li><p>Apply preprocessing using FFN to the node features to generate initial node representations.</p></li>
+<li><p>Apply one or more graph convolutional layer, with skip connections,  to the node representation
+to produce node embeddings.</p></li>
+<li><p>Apply post-processing using FFN to the node embeddings to generate the final node embeddings.</p></li>
+<li><p>Feed the node embeddings in a Softmax layer to predict the node class.</p></li>
+</ol>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/GNNDesign.png" width="600px" align="center">
+<figcaption>
+Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space for Graph Neural Networks</a> 
+</figcaption>
+</figure>
+<p>Each graph convolutional layer added captures information from a further level of neighbours.
+However, adding many graph convolutional layer can cause oversmoothing, where the model
+produces similar embeddings for all the nodes.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">graph_info</span></code> passed to the constructor of the Keras model, and used as a <em>property</em>
+of the Keras model object, rather than input data for training or prediction.
+The model will accept a <strong>batch</strong> of <code class="docutils literal notranslate"><span class="pre">node_indices</span></code>, which are used to lookup the
+node features and neighbours from the <code class="docutils literal notranslate"><span class="pre">graph_info</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GNNNodeClassifier</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">graph_info</span><span class="p">,</span>
+        <span class="n">num_classes</span><span class="p">,</span>
+        <span class="n">hidden_units</span><span class="p">,</span>
+        <span class="n">aggregation_type</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+        <span class="n">combination_type</span><span class="o">=</span><span class="s2">&quot;concat&quot;</span><span class="p">,</span>
+        <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GNNNodeClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Unpack graph_info to three elements: node_features, edges, and edge_weight.</span>
+        <span class="n">node_features</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">edge_weights</span> <span class="o">=</span> <span class="n">graph_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_features</span> <span class="o">=</span> <span class="n">node_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span> <span class="o">=</span> <span class="n">edge_weights</span>
+        <span class="c1"># Set edge_weights to ones if not provided.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">edges</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># Scale edge_weights to sum to 1.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span> <span class="o">/</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span><span class="p">)</span>
+
+        <span class="c1"># Create a process layer.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span> <span class="o">=</span> <span class="n">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;preprocess&quot;</span><span class="p">)</span>
+        <span class="c1"># Create the first GraphConv layer.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">GraphConvLayer</span><span class="p">(</span>
+            <span class="n">hidden_units</span><span class="p">,</span>
+            <span class="n">dropout_rate</span><span class="p">,</span>
+            <span class="n">aggregation_type</span><span class="p">,</span>
+            <span class="n">combination_type</span><span class="p">,</span>
+            <span class="n">normalize</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;graph_conv1&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Create the second GraphConv layer.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">GraphConvLayer</span><span class="p">(</span>
+            <span class="n">hidden_units</span><span class="p">,</span>
+            <span class="n">dropout_rate</span><span class="p">,</span>
+            <span class="n">aggregation_type</span><span class="p">,</span>
+            <span class="n">combination_type</span><span class="p">,</span>
+            <span class="n">normalize</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;graph_conv2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Create a postprocess layer.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postprocess</span> <span class="o">=</span> <span class="n">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;postprocess&quot;</span><span class="p">)</span>
+        <span class="c1"># Create a compute logits layer.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_logits</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;logits&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_node_indices</span><span class="p">):</span>
+        <span class="c1"># Preprocess the node_features to produce node representations.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_features</span><span class="p">)</span>
+        <span class="c1"># Apply the first graph conv layer.</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span><span class="p">))</span>
+        <span class="c1"># Skip connection.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x</span>
+        <span class="c1"># Apply the second graph conv layer.</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_weights</span><span class="p">))</span>
+        <span class="c1"># Skip connection.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x</span>
+        <span class="c1"># Postprocess node embedding.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">postprocess</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># Fetch node embeddings for the input node_indices.</span>
+        <span class="n">node_embeddings</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">input_node_indices</span><span class="p">))</span>
+        <span class="c1"># Compute logits</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_logits</span><span class="p">(</span><span class="n">node_embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test instantiating and calling the GNN model.
+Notice that if you provide <code class="docutils literal notranslate"><span class="pre">N</span></code> node indices, the output will be a tensor of shape <code class="docutils literal notranslate"><span class="pre">[N,</span> <span class="pre">num_classes]</span></code>,
+regardless of the size of the graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_ffn</span><span class="p">(</span><span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">fnn_layers</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">hidden_units</span><span class="p">:</span>
+        <span class="n">fnn_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">BatchNormalization</span><span class="p">())</span>
+        <span class="n">fnn_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">))</span>
+        <span class="n">fnn_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">gelu</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">fnn_layers</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gnn_model</span> <span class="o">=</span> <span class="n">GNNNodeClassifier</span><span class="p">(</span>
+    <span class="n">graph_info</span><span class="o">=</span><span class="n">graph_info</span><span class="p">,</span>
+    <span class="n">num_classes</span><span class="o">=</span><span class="n">num_classes</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="o">=</span><span class="n">hidden_units</span><span class="p">,</span>
+    <span class="n">dropout_rate</span><span class="o">=</span><span class="n">dropout_rate</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;gnn_model&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GNN output shape:&quot;</span><span class="p">,</span> <span class="n">gnn_model</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]))</span>
+
+<span class="n">gnn_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GNN output shape: tf.Tensor(
+[[ 0.09489781 -0.13171248  0.07057946 -0.00091081 -0.00611768 -0.06186762
+  -0.0872837 ]
+ [ 0.0284081   0.0716852   0.06900616 -0.00205153  0.12006313  0.07707085
+   0.0928875 ]
+ [ 0.01449234  0.11557137  0.02314884  0.05024857 -0.07092346  0.10359368
+   0.02685509]], shape=(3, 7), dtype=float32)
+Model: &quot;gnn_model&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+preprocess (Sequential)      (2708, 32)                52804     
+_________________________________________________________________
+graph_conv1 (GraphConvLayer) multiple                  5888      
+_________________________________________________________________
+graph_conv2 (GraphConvLayer) multiple                  5888      
+_________________________________________________________________
+postprocess (Sequential)     (2708, 32)                2368      
+_________________________________________________________________
+logits (Dense)               multiple                  231       
+=================================================================
+Total params: 67,179
+Trainable params: 63,481
+Non-trainable params: 3,698
+_________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-the-gnn-model">
+<h3>Train the GNN model<a class="headerlink" href="#train-the-gnn-model" title="Permalink to this headline">#</a></h3>
+<p>Note that we use the standard <em>supervised</em> cross-entropy loss to train the model.
+However, we can add another <em>self-supervised</em> loss term for the generated node embeddings
+that makes sure that neighbouring nodes in graph have similar representations, while faraway
+nodes have dissimilar representations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">paper_id</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="c1">#print(x_train.shape)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">run_experiment</span><span class="p">(</span><span class="n">gnn_model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the learning curves</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_learning_curves</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/GraphNeuralNetworks_74_0.png" src="../_images/GraphNeuralNetworks_74_0.png" />
+</div>
+</div>
+<p>Now we evaluate the GNN model on the test data split.
+The results may vary depending on the training sample, however the GNN model always outperforms
+the baseline model in terms of the test accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">paper_id</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">gnn_model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">test_accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test accuracy: 77.85%
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="examine-the-gnn-model-predictions">
+<h3>Examine the GNN model predictions<a class="headerlink" href="#examine-the-gnn-model-predictions" title="Permalink to this headline">#</a></h3>
+<p>Let’s add the new instances as nodes to the <code class="docutils literal notranslate"><span class="pre">node_features</span></code>, and generate links
+(citations) to existing nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we add the N new_instances as nodes to the graph</span>
+<span class="c1"># by appending the new_instance to node_features.</span>
+<span class="n">num_nodes</span> <span class="o">=</span> <span class="n">node_features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">new_node_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">node_features</span><span class="p">,</span> <span class="n">new_instances</span><span class="p">])</span>
+<span class="c1"># Second we add the M edges (citations) from each new node to a set</span>
+<span class="c1"># of existing nodes in a particular subject</span>
+<span class="n">new_node_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">num_nodes</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)]</span>
+<span class="n">new_citations</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">subject_idx</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">papers</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;subject&quot;</span><span class="p">):</span>
+    <span class="n">subject_papers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">paper_id</span><span class="p">)</span>
+    <span class="c1"># Select random x papers specific subject.</span>
+    <span class="n">selected_paper_indices1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">subject_papers</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Select random y papers from any subject (where y &lt; x).</span>
+    <span class="n">selected_paper_indices2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">papers</span><span class="o">.</span><span class="n">paper_id</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Merge the selected paper indices.</span>
+    <span class="n">selected_paper_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">selected_paper_indices1</span><span class="p">,</span> <span class="n">selected_paper_indices2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+    <span class="c1"># Create edges between a citing paper idx and the selected cited papers.</span>
+    <span class="n">citing_paper_indx</span> <span class="o">=</span> <span class="n">new_node_indices</span><span class="p">[</span><span class="n">subject_idx</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cited_paper_idx</span> <span class="ow">in</span> <span class="n">selected_paper_indices</span><span class="p">:</span>
+        <span class="n">new_citations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">citing_paper_indx</span><span class="p">,</span> <span class="n">cited_paper_idx</span><span class="p">])</span>
+
+<span class="n">new_citations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_citations</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">new_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">edges</span><span class="p">,</span> <span class="n">new_citations</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s update the <code class="docutils literal notranslate"><span class="pre">node_features</span></code> and the <code class="docutils literal notranslate"><span class="pre">edges</span></code> in the GNN model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original node_features shape:&quot;</span><span class="p">,</span> <span class="n">gnn_model</span><span class="o">.</span><span class="n">node_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original edges shape:&quot;</span><span class="p">,</span> <span class="n">gnn_model</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">gnn_model</span><span class="o">.</span><span class="n">node_features</span> <span class="o">=</span> <span class="n">new_node_features</span>
+<span class="n">gnn_model</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">new_edges</span>
+<span class="n">gnn_model</span><span class="o">.</span><span class="n">edge_weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">new_edges</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New node_features shape:&quot;</span><span class="p">,</span> <span class="n">gnn_model</span><span class="o">.</span><span class="n">node_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New edges shape:&quot;</span><span class="p">,</span> <span class="n">gnn_model</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">logits</span> <span class="o">=</span> <span class="n">gnn_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">new_node_indices</span><span class="p">))</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">logits</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">display_class_probabilities</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original node_features shape: (2708, 1433)
+Original edges shape: (2, 5429)
+New node_features shape: (2715, 1433)
+New edges shape: (2, 5478)
+Instance 1:
+- Case_Based: 0.95%
+- Genetic_Algorithms: 6.9%
+- Neural_Networks: 79.31%
+- Probabilistic_Methods: 1.83%
+- Reinforcement_Learning: 2.3%
+- Rule_Learning: 1.73%
+- Theory: 6.98%
+Instance 2:
+- Case_Based: 2.32%
+- Genetic_Algorithms: 74.62%
+- Neural_Networks: 9.23%
+- Probabilistic_Methods: 9.13%
+- Reinforcement_Learning: 4.04%
+- Rule_Learning: 0.13%
+- Theory: 0.53%
+Instance 3:
+- Case_Based: 0.05%
+- Genetic_Algorithms: 86.75%
+- Neural_Networks: 10.79%
+- Probabilistic_Methods: 1.5%
+- Reinforcement_Learning: 0.75%
+- Rule_Learning: 0.01%
+- Theory: 0.15%
+Instance 4:
+- Case_Based: 0.03%
+- Genetic_Algorithms: 0.06%
+- Neural_Networks: 97.93%
+- Probabilistic_Methods: 1.15%
+- Reinforcement_Learning: 0.04%
+- Rule_Learning: 0.02%
+- Theory: 0.78%
+Instance 5:
+- Case_Based: 0.13%
+- Genetic_Algorithms: 97.04%
+- Neural_Networks: 0.44%
+- Probabilistic_Methods: 0.3%
+- Reinforcement_Learning: 2.0%
+- Rule_Learning: 0.02%
+- Theory: 0.06%
+Instance 6:
+- Case_Based: 1.26%
+- Genetic_Algorithms: 70.2%
+- Neural_Networks: 8.54%
+- Probabilistic_Methods: 1.8%
+- Reinforcement_Learning: 12.06%
+- Rule_Learning: 1.68%
+- Theory: 4.46%
+Instance 7:
+- Case_Based: 3.97%
+- Genetic_Algorithms: 0.91%
+- Neural_Networks: 0.46%
+- Probabilistic_Methods: 1.52%
+- Reinforcement_Learning: 76.0%
+- Rule_Learning: 6.93%
+- Theory: 10.21%
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the probabilities of the expected subjects
+(to which several citations are added) are higher compared to the baseline model.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./neuralnetworks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../text/02TextClassification.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Text classification with CNNs and LSTMs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../transformer/attention.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sequence-To-Sequence, Attention, Transformer</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Johannes Maucher<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,172 +1,85 @@
 Traceback (most recent call last):
   File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 1087, in execute
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/asyncio/base_events.py", line 608, in run_until_complete
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 540, in async_execute
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 832, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 740, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-vae.fit(x_train,
-        shuffle=True,
-        epochs=epochs,
-        batch_size=batch_size,
-        validation_data=(x_test, None))
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+import tensorflow.compat.v1.keras.backend as K # see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
+
+from keras.layers import Input, Dense, Lambda, Layer
+from keras.models import Model
+from keras import backend as K
+from keras import metrics
+from keras.datasets import mnist
+from keras import losses
+from keras.utils.vis_utils import plot_model
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-12-7119ffe563b8>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m vae.fit(x_train,
-[0m[1;32m      2[0m         [0mshuffle[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m         [0mepochs[0m[0;34m=[0m[0mepochs[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m         [0mbatch_size[0m[0;34m=[0m[0mbatch_size[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m         validation_data=(x_test, None))
+[0;31mImportError[0m                               Traceback (most recent call last)
+Input [0;32mIn [2][0m, in [0;36m<cell line: 5>[0;34m()[0m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mstats[39;00m [38;5;28;01mimport[39;00m norm
+[0;32m----> 5[0m [38;5;28;01mimport[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcompat[39;00m[38;5;21;01m.[39;00m[38;5;21;01mv1[39;00m[38;5;21;01m.[39;00m[38;5;21;01mkeras[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbackend[39;00m [38;5;28;01mas[39;00m [38;5;21;01mK[39;00m [38;5;66;03m# see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras[39;00m
+[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mtensorflow[39;00m [38;5;28;01mas[39;00m [38;5;21;01mtf[39;00m
+[1;32m      7[0m tf[38;5;241m.[39mcompat[38;5;241m.[39mv1[38;5;241m.[39mdisable_eager_execution()
 
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py[0m in [0;36mfit[0;34m(self, x, y, batch_size, epochs, verbose, callbacks, validation_split, validation_data, shuffle, class_weight, sample_weight, initial_epoch, steps_per_epoch, validation_steps, validation_batch_size, validation_freq, max_queue_size, workers, use_multiprocessing)[0m
-[1;32m   1098[0m                 _r=1):
-[1;32m   1099[0m               [0mcallbacks[0m[0;34m.[0m[0mon_train_batch_begin[0m[0;34m([0m[0mstep[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1100[0;31m               [0mtmp_logs[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mtrain_function[0m[0;34m([0m[0miterator[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   1101[0m               [0;32mif[0m [0mdata_handler[0m[0;34m.[0m[0mshould_sync[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   1102[0m                 [0mcontext[0m[0;34m.[0m[0masync_wait[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+File [0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/__init__.py:41[0m, in [0;36m<module>[0;34m[0m
+[1;32m     38[0m [38;5;28;01mimport[39;00m [38;5;21;01msix[39;00m [38;5;28;01mas[39;00m [38;5;21;01m_six[39;00m
+[1;32m     39[0m [38;5;28;01mimport[39;00m [38;5;21;01msys[39;00m [38;5;28;01mas[39;00m [38;5;21;01m_sys[39;00m
+[0;32m---> 41[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtools[39;00m [38;5;28;01mimport[39;00m module_util [38;5;28;01mas[39;00m _module_util
+[1;32m     42[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutil[39;00m[38;5;21;01m.[39;00m[38;5;21;01mlazy_loader[39;00m [38;5;28;01mimport[39;00m LazyLoader [38;5;28;01mas[39;00m _LazyLoader
+[1;32m     44[0m [38;5;66;03m# Make sure code inside the TensorFlow codebase can use tf2.enabled() at import.[39;00m
 
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py[0m in [0;36m__call__[0;34m(self, *args, **kwds)[0m
-[1;32m    826[0m     [0mtracing_count[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mexperimental_get_tracing_count[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    827[0m     [0;32mwith[0m [0mtrace[0m[0;34m.[0m[0mTrace[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_name[0m[0;34m)[0m [0;32mas[0m [0mtm[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 828[0;31m       [0mresult[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_call[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    829[0m       [0mcompiler[0m [0;34m=[0m [0;34m"xla"[0m [0;32mif[0m [0mself[0m[0;34m.[0m[0m_experimental_compile[0m [0;32melse[0m [0;34m"nonXla"[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    830[0m       [0mnew_tracing_count[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mexperimental_get_tracing_count[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+File [0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/__init__.py:40[0m, in [0;36m<module>[0;34m[0m
+[1;32m     31[0m [38;5;28;01mimport[39;00m [38;5;21;01mtraceback[39;00m
+[1;32m     33[0m [38;5;66;03m# We aim to keep this file minimal and ideally remove completely.[39;00m
+[1;32m     34[0m [38;5;66;03m# If you are adding a new file with @tf_export decorators,[39;00m
+[1;32m     35[0m [38;5;66;03m# import it in modules_with_exports.py instead.[39;00m
+[1;32m     36[0m 
+[1;32m     37[0m [38;5;66;03m# go/tf-wildcard-import[39;00m
+[1;32m     38[0m [38;5;66;03m# pylint: disable=wildcard-import,g-bad-import-order,g-import-not-at-top[39;00m
+[0;32m---> 40[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m[38;5;21;01m.[39;00m[38;5;21;01meager[39;00m [38;5;28;01mimport[39;00m context
+[1;32m     41[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m [38;5;28;01mimport[39;00m pywrap_tensorflow [38;5;28;01mas[39;00m _pywrap_tensorflow
+[1;32m     43[0m [38;5;66;03m# pylint: enable=wildcard-import[39;00m
+[1;32m     44[0m 
+[1;32m     45[0m [38;5;66;03m# Bring in subpackages.[39;00m
 
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py[0m in [0;36m_call[0;34m(self, *args, **kwds)[0m
-[1;32m    869[0m       [0;31m# This is the first call of __call__, so we have to initialize.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    870[0m       [0minitializers[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 871[0;31m       [0mself[0m[0;34m.[0m[0m_initialize[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkwds[0m[0;34m,[0m [0madd_initializers_to[0m[0;34m=[0m[0minitializers[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    872[0m     [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    873[0m       [0;31m# At this point we know that the initialization is complete (or less[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+File [0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/context.py:35[0m, in [0;36m<module>[0;34m[0m
+[1;32m     33[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01mprotobuf[39;00m [38;5;28;01mimport[39;00m config_pb2
+[1;32m     34[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01mprotobuf[39;00m [38;5;28;01mimport[39;00m rewriter_config_pb2
+[0;32m---> 35[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m [38;5;28;01mimport[39;00m pywrap_tfe
+[1;32m     36[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m [38;5;28;01mimport[39;00m tf2
+[1;32m     37[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mclient[39;00m [38;5;28;01mimport[39;00m pywrap_tf_session
 
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py[0m in [0;36m_initialize[0;34m(self, args, kwds, add_initializers_to)[0m
-[1;32m    723[0m     [0mself[0m[0;34m.[0m[0m_graph_deleter[0m [0;34m=[0m [0mFunctionDeleter[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_lifted_initializer_graph[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    724[0m     self._concrete_stateful_fn = (
-[0;32m--> 725[0;31m         self._stateful_fn._get_concrete_function_internal_garbage_collected(  # pylint: disable=protected-access
-[0m[1;32m    726[0m             *args, **kwds))
-[1;32m    727[0m [0;34m[0m[0m
+File [0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/pywrap_tfe.py:29[0m, in [0;36m<module>[0;34m[0m
+[1;32m     27[0m [38;5;66;03m# pylint: disable=invalid-import-order,g-bad-import-order, wildcard-import, unused-import[39;00m
+[1;32m     28[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m [38;5;28;01mimport[39;00m pywrap_tensorflow
+[0;32m---> 29[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpython[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_pywrap_tfe[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
 
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/function.py[0m in [0;36m_get_concrete_function_internal_garbage_collected[0;34m(self, *args, **kwargs)[0m
-[1;32m   2967[0m       [0margs[0m[0;34m,[0m [0mkwargs[0m [0;34m=[0m [0;32mNone[0m[0;34m,[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2968[0m     [0;32mwith[0m [0mself[0m[0;34m.[0m[0m_lock[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2969[0;31m       [0mgraph_function[0m[0;34m,[0m [0m_[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_maybe_define_function[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2970[0m     [0;32mreturn[0m [0mgraph_function[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2971[0m [0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/function.py[0m in [0;36m_maybe_define_function[0;34m(self, args, kwargs)[0m
-[1;32m   3359[0m [0;34m[0m[0m
-[1;32m   3360[0m           [0mself[0m[0;34m.[0m[0m_function_cache[0m[0;34m.[0m[0mmissed[0m[0;34m.[0m[0madd[0m[0;34m([0m[0mcall_context_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 3361[0;31m           [0mgraph_function[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_create_graph_function[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   3362[0m           [0mself[0m[0;34m.[0m[0m_function_cache[0m[0;34m.[0m[0mprimary[0m[0;34m[[0m[0mcache_key[0m[0;34m][0m [0;34m=[0m [0mgraph_function[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   3363[0m [0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/function.py[0m in [0;36m_create_graph_function[0;34m(self, args, kwargs, override_flat_arg_shapes)[0m
-[1;32m   3194[0m     [0marg_names[0m [0;34m=[0m [0mbase_arg_names[0m [0;34m+[0m [0mmissing_arg_names[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   3195[0m     graph_function = ConcreteFunction(
-[0;32m-> 3196[0;31m         func_graph_module.func_graph_from_py_func(
-[0m[1;32m   3197[0m             [0mself[0m[0;34m.[0m[0m_name[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   3198[0m             [0mself[0m[0;34m.[0m[0m_python_function[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/func_graph.py[0m in [0;36mfunc_graph_from_py_func[0;34m(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes)[0m
-[1;32m    988[0m         [0m_[0m[0;34m,[0m [0moriginal_func[0m [0;34m=[0m [0mtf_decorator[0m[0;34m.[0m[0munwrap[0m[0;34m([0m[0mpython_func[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    989[0m [0;34m[0m[0m
-[0;32m--> 990[0;31m       [0mfunc_outputs[0m [0;34m=[0m [0mpython_func[0m[0;34m([0m[0;34m*[0m[0mfunc_args[0m[0;34m,[0m [0;34m**[0m[0mfunc_kwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    991[0m [0;34m[0m[0m
-[1;32m    992[0m       [0;31m# invariant: `func_outputs` contains only Tensors, CompositeTensors,[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/eager/def_function.py[0m in [0;36mwrapped_fn[0;34m(*args, **kwds)[0m
-[1;32m    632[0m             [0mxla_context[0m[0;34m.[0m[0mExit[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    633[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 634[0;31m           [0mout[0m [0;34m=[0m [0mweak_wrapped_fn[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0m__wrapped__[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    635[0m         [0;32mreturn[0m [0mout[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    636[0m [0;34m[0m[0m
-
-[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/func_graph.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
-[1;32m    975[0m           [0;32mexcept[0m [0mException[0m [0;32mas[0m [0me[0m[0;34m:[0m  [0;31m# pylint:disable=broad-except[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    976[0m             [0;32mif[0m [0mhasattr[0m[0;34m([0m[0me[0m[0;34m,[0m [0;34m"ag_error_metadata"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 977[0;31m               [0;32mraise[0m [0me[0m[0;34m.[0m[0mag_error_metadata[0m[0;34m.[0m[0mto_exception[0m[0;34m([0m[0me[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    978[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    979[0m               [0;32mraise[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mTypeError[0m: in user code:
-
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:805 train_function  *
-        return step_function(self, iterator)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:795 step_function  **
-        outputs = model.distribute_strategy.run(run_step, args=(data,))
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/distribute/distribute_lib.py:1259 run
-        return self._extended.call_for_each_replica(fn, args=args, kwargs=kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/distribute/distribute_lib.py:2730 call_for_each_replica
-        return self._call_for_each_replica(fn, args, kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/distribute/distribute_lib.py:3417 _call_for_each_replica
-        return fn(*args, **kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:788 run_step  **
-        outputs = model.train_step(data)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:755 train_step
-        loss = self.compiled_loss(
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/compile_utils.py:237 __call__
-        self._loss_metric.update_state(
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/utils/metrics_utils.py:90 decorated
-        update_op = update_state_fn(*args, **kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/metrics.py:177 update_state_fn
-        return ag_update_state(*args, **kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/metrics.py:378 update_state  **
-        with ops.control_dependencies([value_sum]):
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/ops.py:5359 control_dependencies
-        return get_default_graph().control_dependencies(control_inputs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/func_graph.py:359 control_dependencies
-        self.control_captures.add(graph_element)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/keras_tensor.py:260 __hash__
-        raise TypeError('Tensors are unhashable. (%s)'
-
-    TypeError: Tensors are unhashable. (KerasTensor(type_spec=TensorSpec(shape=(), dtype=tf.float32, name=None), name='tf.math.reduce_sum_2/Sum:0', description="created by layer 'tf.math.reduce_sum_2'"))Instead, use tensor.ref() as the key.
-
-TypeError: in user code:
-
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:805 train_function  *
-        return step_function(self, iterator)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:795 step_function  **
-        outputs = model.distribute_strategy.run(run_step, args=(data,))
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/distribute/distribute_lib.py:1259 run
-        return self._extended.call_for_each_replica(fn, args=args, kwargs=kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/distribute/distribute_lib.py:2730 call_for_each_replica
-        return self._call_for_each_replica(fn, args, kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/distribute/distribute_lib.py:3417 _call_for_each_replica
-        return fn(*args, **kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:788 run_step  **
-        outputs = model.train_step(data)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py:755 train_step
-        loss = self.compiled_loss(
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/compile_utils.py:237 __call__
-        self._loss_metric.update_state(
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/utils/metrics_utils.py:90 decorated
-        update_op = update_state_fn(*args, **kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/metrics.py:177 update_state_fn
-        return ag_update_state(*args, **kwargs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/metrics.py:378 update_state  **
-        with ops.control_dependencies([value_sum]):
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/ops.py:5359 control_dependencies
-        return get_default_graph().control_dependencies(control_inputs)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/framework/func_graph.py:359 control_dependencies
-        self.control_captures.add(graph_element)
-    /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/keras_tensor.py:260 __hash__
-        raise TypeError('Tensors are unhashable. (%s)'
-
-    TypeError: Tensors are unhashable. (KerasTensor(type_spec=TensorSpec(shape=(), dtype=tf.float32, name=None), name='tf.math.reduce_sum_2/Sum:0', description="created by layer 'tf.math.reduce_sum_2'"))Instead, use tensor.ref() as the key.
-
+[0;31mImportError[0m: dlopen(/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tfe.so, 0x0002): Library not loaded: @rpath/_pywrap_tensorflow_internal.so
+  Referenced from: /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tfe.so
+  Reason: tried: '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utfe.so___Utensorflow/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utensorflow_Uinternal_Umacos___Utensorflow_Spython/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utfe.so___Utensorflow/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utensorflow_Uinternal_Umacos___Utensorflow_Spython/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/bin/../lib/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/bin/../lib/_pywrap_tensorflow_internal.so' (no such file), '/usr/local/lib/_pywrap_tensorflow_internal.so' (no such file), '/usr/lib/_pywrap_tensorflow_internal.so' (no such file)
+ImportError: dlopen(/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tfe.so, 0x0002): Library not loaded: @rpath/_pywrap_tensorflow_internal.so
+  Referenced from: /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tfe.so
+  Reason: tried: '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utfe.so___Utensorflow/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utensorflow_Uinternal_Umacos___Utensorflow_Spython/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utfe.so___Utensorflow/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../../_solib_darwin_x86_64/_U_S_Stensorflow_Spython_C_Upywrap_Utensorflow_Uinternal_Umacos___Utensorflow_Spython/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/../_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/bin/../lib/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/lib/_pywrap_tensorflow_internal.so' (no such file), '/Users/johannes/opt/anaconda3/envs/books/bin/../lib/_pywrap_tensorflow_internal.so' (no such file), '/usr/local/lib/_pywrap_tensorflow_internal.so' (no such file), '/usr/lib/_pywrap_tensorflow_internal.so' (no such file)
 

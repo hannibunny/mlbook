@@ -5,9 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generative Adversarial Nets (GAN) &#8212; Machine Learning Lecture</title>
+    <title>DCGAN Keras Implementation &#8212; Machine Learning Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -17,104 +19,142 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Representations for Words and Texts" href="../text/01ModellingWordsAndTexts.html" />
-    <link rel="prev" title="Variational Autoencoder (VAE) to generate handwritten digits" href="../neuralnetworks/04VariationalAutoencoder.html" />
-
+    <link rel="next" title="Reinforcement Learning" href="../rl/reinforcement.html" />
+    <link rel="prev" title="Generative Adversarial Nets (GAN)" href="GAN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-
+    <!-- Google Analytics -->
+    
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
-  
-</a>
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Intro and Overview Machine Learning Lecture
-  </a>
- </li>
-</ul>
-<p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Intro and Overview Machine Learning Lecture
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../00BasicConcepts.html">
    Basic Concepts of Data Mining and Machine Learning
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Conventional ML
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
    Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
   </a>
  </li>
  <li class="toctree-l1">
@@ -127,13 +167,18 @@
    Gaussian Process
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Neural Networks
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
    Neural Networks Introduction
@@ -147,6 +192,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/convolutionDemos.html">
+   Animations of Convolution and Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -165,48 +215,109 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Autoencoder
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
    Variational Autoencoder (VAE) to generate handwritten digits
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   GAN
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GAN.html">
    Generative Adversarial Nets (GAN)
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   DCGAN Keras Implementation
+  </a>
+ </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/reinforcement.html">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl/QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Text
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
    Representations for Words and Texts
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
 </ul>
-<p class="caption collapsible-parent">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graph Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/GraphNeuralNetworks.html">
+   Graph Neural Networks (GNN)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -214,141 +325,193 @@
  </li>
 </ul>
 
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/gan/DCGAN.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-        <!-- Source interaction buttons -->
-
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/gan/DCGAN.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/gan/DCGAN.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/gan/DCGAN.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#idea-gans">
-   Idea GANs
+  <a class="reference internal nav-link" href="#generator-model">
+   Generator Model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-applications-of-gans">
-   Example Applications of GANs
+  <a class="reference internal nav-link" href="#discriminator-model">
+   Discriminator Model
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#image-to-image-translation">
-     Image-to-Image Translation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#automatic-anime-character-creation">
-     Automatic Anime Character Creation
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits">
-   Keras implementation of GAN, which generates MNIST-type handwritten digits
+  <a class="reference internal nav-link" href="#build-gan-by-combining-generator-and-discriminator">
+   Build GAN by combining Generator and Discriminator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-gan">
+   Train GAN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan">
+   Generate new numbers from GAN
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generator-model">
-     Generator Model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#discriminator-model">
-     Discriminator Model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-gan-by-combining-generator-and-discriminator">
-     Build GAN by combining Generator and Discriminator
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#train-gan">
-     Train GAN
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-30-epochs">
-     Generate new numbers from GAN learned over 30 epochs
+    <a class="reference internal nav-link" href="#gan-learned-over-30-epochs">
+     GAN learned over 30 epochs
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -360,54 +523,78 @@
  </li>
 </ul>
 
-        </nav>
-        
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>DCGAN Keras Implementation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generator-model">
+   Generator Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discriminator-model">
+   Discriminator Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-gan-by-combining-generator-and-discriminator">
+   Build GAN by combining Generator and Discriminator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-gan">
+   Train GAN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-numbers-from-gan">
+   Generate new numbers from GAN
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gan-learned-over-30-epochs">
+     GAN learned over 30 epochs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-new-numbers-from-gan-learned-over-60-epochs">
+     Generate new numbers from GAN learned over 60 epochs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="generative-adversarial-nets-gan">
-<h1>Generative Adversarial Nets (GAN)<a class="headerlink" href="#generative-adversarial-nets-gan" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="dcgan-keras-implementation">
+<h1>DCGAN Keras Implementation<a class="headerlink" href="#dcgan-keras-implementation" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last Update: 07.01.2019</p></li>
+<li><p>Last Update: 04.11.2021</p></li>
 </ul>
-<p>References:</p>
-<ol class="simple">
-<li><p><a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al: Generative Adversarial Nets</a></p></li>
-<li><p><a class="reference external" href="https://arxiv.org/pdf/1511.06434.pdf">A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs</a></p></li>
-</ol>
-<div class="section" id="idea-gans">
-<h2>Idea GANs<a class="headerlink" href="#idea-gans" title="Permalink to this headline">¶</a></h2>
-<p>In 2014 GANs have been introduced by <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>. Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
-<p>On an abstract level the idea of GANs can be described as follows: A counterfeiter produces fake banknotes. The police is able to discriminate the fake banknotes from real ones and it provides feedback to the counterfeiter on why the banknotes can be detected as fake. This feedback is used by the counterfeiter in order to produce fake, which is less distinguishable from real bankotes. After some iterations of producing better but not sufficiently good fake the counterfeiter is able to produce fake, which can not be discriminated from real banknotes.</p>
-<p>A GAN consists of two models:</p>
-<ol class="simple">
-<li><p>The <strong>discriminator</strong> is the police. It learns to discriminate real data from artificially generated fake data.</p></li>
-<li><p>The <strong>generator</strong> is the counterfeiter, which learns to generate data, that is indistinguishable from real data.</p></li>
-</ol>
-<p><img alt="GAN" src="gan/./Pics/GAN.png" /></p>
-</div>
-<div class="section" id="example-applications-of-gans">
-<h2>Example Applications of GANs<a class="headerlink" href="#example-applications-of-gans" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="image-to-image-translation">
-<h3>Image-to-Image Translation<a class="headerlink" href="#image-to-image-translation" title="Permalink to this headline">¶</a></h3>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/ganCelebrities.PNG" style="width: 450px;" /></a>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/ganTranslation.PNG" style="width: 450px;" /></a>
-</div>
-<div class="section" id="automatic-anime-character-creation">
-<h3>Automatic Anime Character Creation<a class="headerlink" href="#automatic-anime-character-creation" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://arxiv.org/pdf/1708.05509.pdf">Y. Jin et al: Towards the Automatic Anime Characters Creation with Generative Adversarial Networks</a></p>
-<a class="center reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png" class="center" src="https://maucher.home.hdm-stuttgart.de/Pics/animeCharacters.png" style="width: 450px;" /></a>
 <p>In this notebook a GAN is designed, which learns to generate handwritten numbers between 0 and 9, like the ones, given in the MNIST dataset. In this case the real data is the MNIST dataset, which contains 70000 greyscale images of size 28x28, 7000 images for each of the 10 digits.</p>
 <p>The Discriminator model is just a binary classifier, whose task is to distinguish fake, from real images. The fake images are produced by the Generator model. At it’s input the Generator model receives 1-dimensional vectors of length 100, whose components are uniformly distributed random float-values between -1 and 1. The discriminator model is learned such that the <em>cross-entropy-loss</em> for discrimating real from fake images is minimized by Stochastic Gradient Descent (SGD). The Generator model is learned such that the generated fake data is classified as real-data by the discriminator.</p>
-</div>
-</div>
-<div class="section" id="keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits">
-<h2>Keras implementation of GAN, which generates MNIST-type handwritten digits<a class="headerlink" href="#keras-implementation-of-gan-which-generates-mnist-type-handwritten-digits" title="Permalink to this headline">¶</a></h2>
 <p>Below a Deep Convolutional GAN (DCGAN) as introduced in <a class="reference external" href="https://arxiv.org/pdf/1511.06434.pdf">A. Radford and L. Metz: Unsupervised Representation Learning with Deep Convolutional GANs</a> is implemented. This type of GAN applies a Convolutional Neural Net (CNN) for the Generator- and the Discriminator model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -418,12 +605,21 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="k">import</span> <span class="n">mnist</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="k">import</span> <span class="n">Adam</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>  <span class="c1">#this package is used to show progress in training loops</span>
-<span class="kn">from</span> <span class="nn">keras.layers.advanced_activations</span> <span class="k">import</span> <span class="n">LeakyReLU</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow.compat.v1.keras.backend</span> <span class="k">as</span> <span class="nn">K</span> <span class="c1"># see https://stackoverflow.com/questions/61056781/typeerror-tensor-is-unhashable-instead-use-tensor-ref-as-the-key-in-keras</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_eager_execution</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>  <span class="c1">#this package is used to show progress in training loops</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">LeakyReLU</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -691,11 +887,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_14_0.png" src="../_images/DCGAN_14_0.png" />
+<img alt="../_images/DCGAN_12_0.png" src="../_images/DCGAN_12_0.png" />
 </div>
 </div>
 <div class="section" id="generator-model">
-<h3>Generator Model<a class="headerlink" href="#generator-model" title="Permalink to this headline">¶</a></h3>
+<h2>Generator Model<a class="headerlink" href="#generator-model" title="Permalink to this headline">#</a></h2>
 <p>The Generator model receives 1-dimensional vectors of length 100 with uniformly distributed float values from -1 to 1 at it’s input. The first layer is a dense layer with 128x7x7 neurons. The output of this dense layer is reshaped into 128 channels, each of size 7x7.
 Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, followed by a Conv2D-layer) 64 channels of size 14x14 are generated in the next layer. Finally, these 64 channels are processed by another deconvolution layer with filters of size 5x5 into a single-channel output of size 28x28.</p>
 <p>In between layers, batch normalization stabilizes learning. The activation function after the dense- and the first deconvolution-layer is a LeakyReLU. The output deconvolution-layer applies tanh- activation.</p>
@@ -713,6 +909,13 @@ Using a deconvolution filter of size 5x5 (realized by an UpSampling2D-layer, fol
         <span class="n">UpSampling2D</span><span class="p">(),</span>
         <span class="n">Conv2D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">)</span>
     <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/keras/layers/normalization/batch_normalization.py:520: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
 </pre></div>
 </div>
 </div>
@@ -758,7 +961,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="discriminator-model">
-<h3>Discriminator Model<a class="headerlink" href="#discriminator-model" title="Permalink to this headline">¶</a></h3>
+<h2>Discriminator Model<a class="headerlink" href="#discriminator-model" title="Permalink to this headline">#</a></h2>
 <p>The discriminator is also a CNN. For this experiment on the MNIST dataset, the input is an image (single channel) of size 28x28. The sigmoid output is an indicator for the probability that the input is a real image.
 I.e. if the output value is close to 1, the input is likely a real image, if the output is close to 0, the input is likely a fake.
 The first convolution layer applies 5x5 filters in order to calculate 64 features. The second convolution layer applies 5x5 filters to the 64 input channels and calculates 128 feature maps. The last dense layer has a single neuron with a sigmoid activation for binary classification.</p>
@@ -832,7 +1035,7 @@ In contrast to standard SGD, Adam applies individual learning-rates for each lea
 </div>
 </div>
 <div class="section" id="build-gan-by-combining-generator-and-discriminator">
-<h3>Build GAN by combining Generator and Discriminator<a class="headerlink" href="#build-gan-by-combining-generator-and-discriminator" title="Permalink to this headline">¶</a></h3>
+<h2>Build GAN by combining Generator and Discriminator<a class="headerlink" href="#build-gan-by-combining-generator-and-discriminator" title="Permalink to this headline">#</a></h2>
 <p>Now, since Generator- and Discriminator models are defined, the overall adversarial model can be build, by simply stacking these models together. The output of the generator is passed to the input of the discriminator:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -873,10 +1076,9 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="train-gan">
-<h3>Train GAN<a class="headerlink" href="#train-gan" title="Permalink to this headline">¶</a></h3>
+<h2>Train GAN<a class="headerlink" href="#train-gan" title="Permalink to this headline">#</a></h2>
 <p>Finally, a function <code class="docutils literal notranslate"><span class="pre">train()</span></code> is implemented, which defines the overall training process. The flow-chart of this function is depicted below:</p>
-<p><img alt="GANtrainingProcess" src="gan/./Pics/GANtrainingProcess.png" /></p>
-<div class="cell docutils container">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess.png" width="400" class="center"><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
     <span class="n">batch_count</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">batch_size</span>
@@ -916,60 +1118,6 @@ _________________________________________________________________
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/468 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">57</span><span class="n">f9cef8857f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
-
-<span class="nn">&lt;ipython-input-16-036338951789&gt;</span> in <span class="ni">train</span><span class="nt">(epoch, batch_size)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>             <span class="c1"># train the discriminator</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="ne">---&gt; </span><span class="mi">24</span>             <span class="n">discriminator</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> 
-<span class="g g-Whitespace">     </span><span class="mi">26</span>             <span class="c1"># train the generator</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ni">train_on_batch</span><span class="nt">(self, x, y, sample_weight, class_weight, reset_metrics, return_dict)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1721</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="o">.</span><span class="n">scope</span><span class="p">(),</span> \
-<span class="g g-Whitespace">   </span><span class="mi">1722</span>          <span class="n">training_utils</span><span class="o">.</span><span class="n">RespectCompiledTrainableState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1723</span>       <span class="n">iterator</span> <span class="o">=</span> <span class="n">data_adapter</span><span class="o">.</span><span class="n">single_batch_iterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distribute_strategy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1724</span>                                                     <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1725</span>                                                     <span class="n">class_weight</span><span class="p">)</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">single_batch_iterator</span><span class="nt">(strategy, x, y, sample_weight, class_weight)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1511</span>     <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1512</span> 
-<span class="ne">-&gt; </span><span class="mi">1513</span>   <span class="n">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1514</span>   <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_ops</span><span class="o">.</span><span class="n">DatasetV2</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span>   <span class="k">if</span> <span class="n">class_weight</span><span class="p">:</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">_check_data_cardinality</span><span class="nt">(data)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="nn">~/opt/anaconda3/envs/books/lib/python3.8/site-packages/tensorflow/python/keras/engine/data_adapter.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1520</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1521</span> <span class="k">def</span> <span class="nf">_check_data_cardinality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="nn">-&gt; 1522   num_samples = set(int(i.shape[0]) for i</span> in <span class="ni">nest.flatten</span><span class="nt">(data))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Data cardinality is ambiguous:</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="ne">AttributeError</span>: &#39;int&#39; object has no attribute &#39;shape&#39;
 </pre></div>
 </div>
 </div>
@@ -1035,8 +1183,10 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-<div class="section" id="generate-new-numbers-from-gan-learned-over-30-epochs">
-<h3>Generate new numbers from GAN learned over 30 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-30-epochs" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="generate-new-numbers-from-gan">
+<h2>Generate new numbers from GAN<a class="headerlink" href="#generate-new-numbers-from-gan" title="Permalink to this headline">#</a></h2>
+<div class="section" id="gan-learned-over-30-epochs">
+<h3>GAN learned over 30 epochs<a class="headerlink" href="#gan-learned-over-30-epochs" title="Permalink to this headline">#</a></h3>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1071,12 +1221,12 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_40_0.png" src="../_images/DCGAN_40_0.png" />
+<img alt="../_images/DCGAN_38_0.png" src="../_images/DCGAN_38_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="generate-new-numbers-from-gan-learned-over-60-epochs">
-<h3>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">¶</a></h3>
+<h3>Generate new numbers from GAN learned over 60 epochs<a class="headerlink" href="#generate-new-numbers-from-gan-learned-over-60-epochs" title="Permalink to this headline">#</a></h3>
 <p>Load the learned weights and apply them for generating fake images:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1093,7 +1243,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/DCGAN_43_0.png" src="../_images/DCGAN_43_0.png" />
+<img alt="../_images/DCGAN_41_0.png" src="../_images/DCGAN_41_0.png" />
 </div>
 </div>
 </div>
@@ -1122,36 +1272,48 @@ _________________________________________________________________
 
               </div>
               
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="GAN.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Generative Adversarial Nets (GAN)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../rl/reinforcement.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reinforcement Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../neuralnetworks/04VariationalAutoencoder.html" title="previous page">Variational Autoencoder (VAE) to generate handwritten digits</a>
-    <a class='right-next' id="next-link" href="../text/01ModellingWordsAndTexts.html" title="next page">Representations for Words and Texts</a>
-
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Johannes Maucher<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Dr. Johannes Maucher<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
 
-
-    
   </body>
 </html>

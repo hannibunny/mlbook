@@ -1,0 +1,1532 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reinforcement Learning &#8212; Machine Learning Lecture</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deep Reinforcement Learning" href="DQN.html" />
+    <link rel="prev" title="DCGAN Keras Implementation" href="../gan/DCGAN.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Lecture</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Intro and Overview Machine Learning Lecture
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00BasicConcepts.html">
+   Basic Concepts of Data Mining and Machine Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conventional ML
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/knn.html">
+   K - Nearest Neighbour Classification / Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/parametricClassification1D.html">
+   Bayes- and Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinReg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/heartRateRegression.html">
+   Example Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/LinearClassification.html">
+   Linear Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/svm.html">
+   Support Vector Machines (SVM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/gp.html">
+   Gaussian Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../machinelearning/GaussianProcessRegression.html">
+   Gaussian Process: Implementation in Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/01NeuralNets.html">
+   Neural Networks Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html">
+   Recurrent Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/convolutionDemos.html">
+   Animations of Convolution and Deconvolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/03KerasMLPandCNNcifar.html">
+   Implementing Neural Networks with Keras
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04KerasPretrainedClassifiers.html">
+   Applying Pretrained Deep Neural Networks for Image Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/05KerasPretrainedCovid.html">
+   Apply Pretrained Neural Networks on new Task
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Autoencoder
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/04VariationalAutoencoder.html">
+   Variational Autoencoder (VAE) to generate handwritten digits
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  GAN
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/GAN.html">
+   Generative Adversarial Nets (GAN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gan/DCGAN.html">
+   DCGAN Keras Implementation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reinforcement Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DQN.html">
+   Deep Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="QLearnFrozenLake.html">
+   Example Q-Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Text
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/01ModellingWordsAndTexts.html">
+   Representations for Words and Texts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../text/02TextClassification.html">
+   Text classification with CNNs and LSTMs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graph Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../neuralnetworks/GraphNeuralNetworks.html">
+   Graph Neural Networks (GNN)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transformer
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/attention.html">
+   Sequence-To-Sequence, Attention, Transformer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transformer/intent_classification_with_bert.html">
+   Intent Classification with BERT
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/rl/reinforcement.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-notions">
+     Basic Notions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     Examples
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#board-games">
+       Board Games
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-deterministic-navigation">
+       Non-deterministic Navigation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#movement-of-simple-robots">
+       Movement of simple Robots
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+   Markov Decision Process (MDP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-the-optimal-policy">
+   Finding the Optimal Policy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bellmann-optimality-equations">
+     Bellmann Optimality Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-programming-dp-in-the-case-of-complete-knowledge">
+   Dynamic Programming (DP) in the case of complete knowledge
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration">
+     Policy Iteration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration">
+     Value Iteration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#without-knowledge-of-the-environment">
+   Without Knowledge of the Environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monte-carlo-mc-methods">
+     Monte Carlo (MC) Methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#estimation-of-state-value-function">
+       Estimation of State Value Function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#estimation-of-action-value-functions">
+       Estimation of Action Value Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#monte-carlo-control">
+       Monte Carlo Control
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#temporal-difference-td-learning">
+     Temporal Difference (TD) Learning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sarsa">
+       Sarsa
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#q-learning">
+       Q-Learning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Reinforcement Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-notions">
+     Basic Notions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     Examples
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#board-games">
+       Board Games
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-deterministic-navigation">
+       Non-deterministic Navigation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#movement-of-simple-robots">
+       Movement of simple Robots
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+   Markov Decision Process (MDP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-the-optimal-policy">
+   Finding the Optimal Policy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bellmann-optimality-equations">
+     Bellmann Optimality Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-programming-dp-in-the-case-of-complete-knowledge">
+   Dynamic Programming (DP) in the case of complete knowledge
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration">
+     Policy Iteration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration">
+     Value Iteration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#without-knowledge-of-the-environment">
+   Without Knowledge of the Environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monte-carlo-mc-methods">
+     Monte Carlo (MC) Methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#estimation-of-state-value-function">
+       Estimation of State Value Function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#estimation-of-action-value-functions">
+       Estimation of Action Value Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#monte-carlo-control">
+       Monte Carlo Control
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#temporal-difference-td-learning">
+     Temporal Difference (TD) Learning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sarsa">
+       Sarsa
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#q-learning">
+       Q-Learning
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="reinforcement-learning">
+<h1>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">#</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<div class="section" id="basic-notions">
+<h3>Basic Notions<a class="headerlink" href="#basic-notions" title="Permalink to this headline">#</a></h3>
+<p>In supervised Machine learning a set of training data <span class="math notranslate nohighlight">\(T=\lbrace (\mathbf{x}_i,r_i) \rbrace_{i=1}^N\)</span> is given and the task is to learn a model <span class="math notranslate nohighlight">\(y=f(\mathbf{x})\)</span>, which maps any input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to the corresponding output <span class="math notranslate nohighlight">\(y\)</span>. This type of learning is also called <em>learning with teacher</em>. The teacher provides the training data in the form that he labels each input <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> with the corresponding output <span class="math notranslate nohighlight">\(r_i\)</span> and the student (the supervised ML algorithm) must learn a general mapping from input to output. This is also called inductive reasoning.</p>
+<p>In reinforcement learning we speak of an <strong>agent</strong> (the AI), which acts in an <strong>environment</strong>. The <strong>actions <span class="math notranslate nohighlight">\(A\)</span></strong> of the agent must be such that in the long-term the agent is successful in the sense that it approximates a pre-defined goal as close and as efficiently as possible.  The environment is modeled by it’s <strong>state <span class="math notranslate nohighlight">\(S\)</span></strong>. Depending on it’s actions in the environment the agent may or may not receive a positive or negative <strong>reward <span class="math notranslate nohighlight">\(R\)</span></strong> <a class="footnote-reference brackets" href="#f1" id="id1">1</a>. Reinforcement learning is also called <em>learning from a critic</em>, because the agent trials different actions and sporadically receives feedback from a critic, which is regarded by the agent for future action decisions.</p>
+<p>Reinforcement Learning refers to <strong>Sequential Decision Making</strong>. This means that we model the agents behaviour over <span class="math notranslate nohighlight">\(time\)</span>. At each <strong>discrete time-step <span class="math notranslate nohighlight">\(t\)</span></strong> the agent perceives the environment state <span class="math notranslate nohighlight">\(S_t\)</span> and  possibly a reward <span class="math notranslate nohighlight">\(R_t\)</span>. Based on these perceptions it must then decide for an action <span class="math notranslate nohighlight">\(A_t\)</span>. This action influences the state of the environment and possibly triggers a reward. The new state of the environment is denoted by <span class="math notranslate nohighlight">\(S_{t+1}\)</span> and the new reward is denoted by <span class="math notranslate nohighlight">\(R_{t+1}\)</span>. In the long-term the agents decision-making-process must be such, that a pre-defined target-state of the environment is approximated as efficiently as possible. The proximity of a state <span class="math notranslate nohighlight">\(s\)</span> to the target-state is measured by an <strong>utility function <span class="math notranslate nohighlight">\(U(s)\)</span></strong>.</p>
+<div class="figure align-center" id="rlagent">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png" src="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png" style="width: 300pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Interaction of an agent with it’s environment in a Markov Decision Process (MDP). Image source: <span id="id2">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span>.</span><a class="headerlink" href="#rlagent" title="Permalink to this image">#</a></p>
+</div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h3>
+<div class="section" id="board-games">
+<h4>Board Games<a class="headerlink" href="#board-games" title="Permalink to this headline">#</a></h4>
+<p>Games, in particular board games like chess, checkers or Go are typical applications for reinforcement learning. The agent is the AI, which plays against a human player. The agents’s goal is to win the game. In the most simple setting it perceives a non-zero reward only at the very end of the game. This reward is positive if the AI wins, otherwise it is negative. If the AI is in turn, it first perceives the current state, which is the current board-constellation. Then it has to decide for a new action. This action modifies the state on the board. This new state is the basis for the human players action, which in turn provides a new state to the AI and so on.</p>
+<div class="figure align-center" id="alphago">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg" src="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Deepmind’s AlphaGo (<span id="id3">[<a class="reference internal" href="../referenceSection.html#id61" title="David Silver, Aja Huang, Chris J. Maddison, Arthur Guez, Laurent Sifre, George van den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu, Thore Graepel, and Demis Hassabis. Mastering the game of go with deep neural networks and tree search. Nature, 529(7587):484–489, 2016. doi:10.1038/nature16961.">SHM+16</a>]</span>) combines Reinforcement Learning, Deep Learning and Monte Carlo Tree Search. AlphaGo was able to beat the world champion in Go, Lee Sedol, in 2016.</span><a class="headerlink" href="#alphago" title="Permalink to this image">#</a></p>
+</div>
+</div>
+<div class="section" id="non-deterministic-navigation">
+<h4>Non-deterministic Navigation<a class="headerlink" href="#non-deterministic-navigation" title="Permalink to this headline">#</a></h4>
+<p>Navigation or similarly pathfinding can be solved by the A*-algorithm, if the environment is <em>deterministic</em>. This means that given the current state <span class="math notranslate nohighlight">\(s_t\)</span> and a selected action <span class="math notranslate nohighlight">\(a_t\)</span>, the successive state <span class="math notranslate nohighlight">\(s_{t+1}\)</span> can uniquely be determined. In a non-deterministic there exist different possible successive states for a given state-action-pair. In such non-deterministic environments <strong>Reinforcemt Learning can be applied to learn an optimum policy. This policy defines for each state the action, which is best, in the sense that the expected future cumulative reward (the utility) is maximized.</strong></p>
+<p>In the example depicted below the task is to find the best path from the field <span class="math notranslate nohighlight">\(Start\)</span> to the field in the upper right corner. The possible actions of the agent are to move <em>upwards, downwards, right</em> or <em>left</em>. The environment is <strong>observable</strong> in the sense that the agent knows it’s current state. However, the environment is <strong>non-deterministic because for a known state-action-pair different successive states are possible</strong>. For this uncertainty the following probabilities are assumed to be known:</p>
+<ul class="simple">
+<li><p>Probability that state in the selected direction is actually reached is <span class="math notranslate nohighlight">\(P=0.8\)</span>.</p></li>
+<li><p>Probability for a <span class="math notranslate nohighlight">\(\pm 90°\)</span> deviation is <span class="math notranslate nohighlight">\(P=0.1\)</span> for each.</p></li>
+</ul>
+<p>If selected direction hits a wall, the agent remains in it’s current state. A reward of <span class="math notranslate nohighlight">\(r_t=1\)</span> is provided, if <span class="math notranslate nohighlight">\(a_t\)</span> terminates in field <span class="math notranslate nohighlight">\((4/3)\)</span> (the upper right corner) and a reward of <span class="math notranslate nohighlight">\(r_t=-1\)</span> is provided if <span class="math notranslate nohighlight">\(a_t\)</span> terminates in field <span class="math notranslate nohighlight">\((4/2)\)</span>. For any other action the reward (cost) is <span class="math notranslate nohighlight">\(r_t=-0.04\)</span>.</p>
+<div class="figure align-center" id="rlex1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Image source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id58" title="Stuart Russell and Peter Norvig. Artificial Intelligence: A Modern Approach. Prentice Hall, 3 edition, 2010.">RN10</a>]</span>: Pathfinding in a non-deterministic environment</span><a class="headerlink" href="#rlex1" title="Permalink to this image">#</a></p>
+</div>
+<p>For this pathfinding scenario, the <strong>optimum policy</strong>, learned by the RL agent may look like in the picture below. The policy is defined by the arrows in the states. These arrows determine in each state the action to take in order to maximize the expected future cumulative reward.</p>
+<div class="figure align-center" id="rlex1strat">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Image source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id58" title="Stuart Russell and Peter Norvig. Artificial Intelligence: A Modern Approach. Prentice Hall, 3 edition, 2010.">RN10</a>]</span>: Optimum policy learned by the RL agent</span><a class="headerlink" href="#rlex1strat" title="Permalink to this image">#</a></p>
+</div>
+</div>
+<div class="section" id="movement-of-simple-robots">
+<h4>Movement of simple Robots<a class="headerlink" href="#movement-of-simple-robots" title="Permalink to this headline">#</a></h4>
+<div class="figure align-center" id="rlex2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Image source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id60" title="Wolfgang Ertel. Grundkurs Künstliche Intelligenz: eine praxisorientierte Einführung. Number ISBN 978-3-8348-0783-0. Vieweg + Teubner, Wiesbaden, second edition, 2009. URL: http://d-nb.info/994758561.">Ert09</a>]</span>: Two simple crawling robots. Each robot has two joints. Each joint can be in two different positions. Hence, there exists 4 different states. The robot shall learn to control the joints such that it efficiently moves from left to right. Whenever the robot moves to the right it perceives a positive reward. Movement to the left is punished with a negative reward. As can easily be verified, a movement of the robot depends not only on a single action but on a state-action-pair.</span><a class="headerlink" href="#rlex2" title="Permalink to this image">#</a></p>
+</div>
+<div class="figure align-center" id="rlex2ff">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">Image source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id60" title="Wolfgang Ertel. Grundkurs Künstliche Intelligenz: eine praxisorientierte Einführung. Number ISBN 978-3-8348-0783-0. Vieweg + Teubner, Wiesbaden, second edition, 2009. URL: http://d-nb.info/994758561.">Ert09</a>]</span>: State <span class="math notranslate nohighlight">\(s_t\)</span>, action <span class="math notranslate nohighlight">\(a_t\)</span> and reward <span class="math notranslate nohighlight">\(r_t\)</span> for 4 successive time-steps.</span><a class="headerlink" href="#rlex2ff" title="Permalink to this image">#</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="markov-decision-process-mdp">
+<h2>Markov Decision Process (MDP)<a class="headerlink" href="#markov-decision-process-mdp" title="Permalink to this headline">#</a></h2>
+<p>Formally, Sequential Decision Making is usually described by a <strong>Markov Decision Process (MDP)</strong>. In a <strong>finite MDP</strong> the set of states <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, the set of actions <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> and the set of rewards <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is finite. For MDPs the <em>Markovian property</em> is assumed, which states that for each given state-action-pair, the</p>
+<ul class="simple">
+<li><p>probability distribution of the successive state <span class="math notranslate nohighlight">\(S_t\)</span> and</p></li>
+<li><p>the probability distribution of the successive reward <span class="math notranslate nohighlight">\(R_t\)</span></p></li>
+</ul>
+<p>depends only on the immediate preceding state and all states which lie further back need not be regarded. The function</p>
+<div class="math notranslate nohighlight" id="equation-mdpfull">
+<span class="eqno">(75)<a class="headerlink" href="#equation-mdpfull" title="Permalink to this equation">#</a></span>\[
+p(s',r \mid s,a) = P(S_t=s',R_t=r \mid S_{t-1}=s, A_{t-1}=a) \quad \forall s`,s \in \mathcal{S}, r \in \mathcal{R} \mbox{ and } a \in \mathcal{A}
+\]</div>
+<p>describes the full dynamics of the MDP. By applying the marginalisation law (see <a class="reference external" href="https://hannibunny.github.io/probability/ProbabilityMultivariate.html">Basics of Probability Theory</a>),</p>
+<ul class="simple">
+<li><p>the <strong>state-transition probability</strong> can be calculated by</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-transmod">
+<span class="eqno">(76)<a class="headerlink" href="#equation-transmod" title="Permalink to this equation">#</a></span>\[
+p(s' \mid s,a) = P(S_t=s'\mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(s',r \mid s,a)
+\]</div>
+<ul class="simple">
+<li><p>the <strong>reward probability</strong> can be calculated by</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-rewmod">
+<span class="eqno">(77)<a class="headerlink" href="#equation-rewmod" title="Permalink to this equation">#</a></span>\[
+p(r \mid s,a) = P(R_t=r \mid S_{t-1}=s, A_{t-1}=a) =  \sum\limits_{s' \in \mathcal{S}} p(s',r \mid s,a).
+\]</div>
+<ul class="simple">
+<li><p>the <strong>expected reward</strong> can be calculated by</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-rewexp">
+<span class="eqno">(78)<a class="headerlink" href="#equation-rewexp" title="Permalink to this equation">#</a></span>\[
+r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal{R}} p(r \mid s,a) \cdot r.
+\]</div>
+<div class="admonition-markov-decision-process-mdp admonition">
+<p class="admonition-title">Markov Decision Process (MDP)</p>
+<p>A Markov Decision Process is formally defined by</p>
+<ul class="simple">
+<li><p>a set of states <span class="math notranslate nohighlight">\(\mathcal{S}\)</span></p></li>
+<li><p>a set of actions <span class="math notranslate nohighlight">\(\mathcal{A}\)</span></p></li>
+<li><p>a state-transition-model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> (equation <a class="reference internal" href="#equation-transmod">(76)</a>)</p></li>
+<li><p>a reward-model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> (equation <a class="reference internal" href="#equation-rewmod">(77)</a>)</p></li>
+</ul>
+</div>
+<p>In a MDP the goal of an agent is to find an optimal <em>policy</em> <span class="math notranslate nohighlight">\(\pi_*\)</span>, which assigns to each state <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> an action <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span>, such that <strong>the expected value of the cumulative sum of future received rewards is maximized</strong>. Such a policy can be determined by Reinforcement Learning.</p>
+<div class="figure align-center" id="mdpwik">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png" src="https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png" style="width: 300pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">Example of a simple MDP  with three states (green circles) and two actions (orange circles), with two rewards (orange arrows). Image source: <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_decision_process">wikipedia</a>.</span><a class="headerlink" href="#mdpwik" title="Permalink to this image">#</a></p>
+</div>
+<p>The cumulative sum of received future rewards at time <span class="math notranslate nohighlight">\(t\)</span> is als called the <strong>return <span class="math notranslate nohighlight">\(G_t\)</span></strong>:</p>
+<div class="math notranslate nohighlight" id="equation-returnfinite">
+<span class="eqno">(79)<a class="headerlink" href="#equation-returnfinite" title="Permalink to this equation">#</a></span>\[
+G_t= R_{t+1}+R_{t+2}+R_{t+3}+\cdots + R_{T},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the final time step. This formula can only be applied in the cases, where a <em>final time step <span class="math notranslate nohighlight">\(T\)</span></em> can be defined or the entire agent-environment interaction can be partitioned into subsequences, called <em>episodes</em>. Whenever, such a termination can not be defined, the return can not be calculated by equation <a class="reference internal" href="#equation-returnfinite">(79)</a>, because <span class="math notranslate nohighlight">\(T=\infty\)</span> and the return could be infinite. In order to cope with this problem a <em>discounting rate <span class="math notranslate nohighlight">\(\gamma\)</span></em> is applied to calculate the return</p>
+<div class="math notranslate nohighlight" id="equation-returninfinite">
+<span class="eqno">(80)<a class="headerlink" href="#equation-returninfinite" title="Permalink to this equation">#</a></span>\[
+G_t= R_{t+1}+\gamma R_{t+2}+ \gamma^2  R_{t+3}+ \cdots = \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(0&lt; \gamma &lt; 1\)</span>. In this way rewards in the far future are weighted less than rewards immediately ahead and the return value will be finite. Equation <a class="reference internal" href="#equation-returninfinite">(80)</a> can easily be turned into a recursive form as follows:</p>
+<div class="math notranslate nohighlight" id="equation-returnrecursive">
+<span class="eqno">(81)<a class="headerlink" href="#equation-returnrecursive" title="Permalink to this equation">#</a></span>\[
+G_t= R_{t+1}+\gamma G_{t+1}
+\]</div>
+</div>
+<div class="section" id="finding-the-optimal-policy">
+<h2>Finding the Optimal Policy<a class="headerlink" href="#finding-the-optimal-policy" title="Permalink to this headline">#</a></h2>
+<p>As mentioned above the goal of Reinforcement Learning is to <strong>find an optimal policy <span class="math notranslate nohighlight">\(\pi_*(a\mid s)\)</span>, which maximizes the expected return</strong>. The <em>return</em> has been defined in equations <a class="reference internal" href="#equation-returnfinite">(79)</a> and <a class="reference internal" href="#equation-returninfinite">(80)</a>, respectively. A policy</p>
+<div class="math notranslate nohighlight" id="equation-policy">
+<span class="eqno">(82)<a class="headerlink" href="#equation-policy" title="Permalink to this equation">#</a></span>\[
+\pi(a\mid s) = P(A_t=a \mid S_t=s)
+\]</div>
+<p>is a function that maps to each state <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> a probability for each action <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span>, which is available in this state. Simply put, a strategy dictates what to do in each state.</p>
+<p>In order to find an optimal policy Reinforcement Learning algorithms estimate <strong>Value Functions</strong>. A value function either defines</p>
+<ul class="simple">
+<li><p>how good it is for the agent to be in a given state. This quality is dependent of the policy <span class="math notranslate nohighlight">\(\pi\)</span>. The <strong>state-value function for policy <span class="math notranslate nohighlight">\(\pi\)</span></strong> is the expected value of return, if the agent follows strategy <span class="math notranslate nohighlight">\(\pi\)</span>, starting from state <span class="math notranslate nohighlight">\(s\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-statevalue">
+<span class="eqno">(83)<a class="headerlink" href="#equation-statevalue" title="Permalink to this equation">#</a></span>\[
+v_{\pi}(s)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s \right] = \mathbb{E}_{\pi} \left[ \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t=s \right]
+\]</div>
+<ul class="simple">
+<li><p>how good a action <span class="math notranslate nohighlight">\(a\)</span> is in state <span class="math notranslate nohighlight">\(s\)</span>. This <strong>action-value function for policy <span class="math notranslate nohighlight">\(\pi\)</span></strong> measures the expected return, if the agent starts from state <span class="math notranslate nohighlight">\(s\)</span>, takes action <span class="math notranslate nohighlight">\(a\)</span> in this state and then follows strategy <span class="math notranslate nohighlight">\(\pi\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-actionvalue">
+<span class="eqno">(84)<a class="headerlink" href="#equation-actionvalue" title="Permalink to this equation">#</a></span>\[
+q_{\pi}(s,a)= \mathbb{E}_{\pi} \left[ G_t \mid S_t=s, A_t=a \right] = \mathbb{E}_{\pi} \left[ \sum\limits_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t=s , A_t=a \right]
+\]</div>
+<p>The task of estimating a value function is also called the <strong>prediction problem</strong>, since the value of a state or a state-action-pair is predicted. The task of finding a good policy from the previously predicted values is called <strong>control problem</strong>, since the policy defines the control of the agents actions.</p>
+<p>How can the state-value function <span class="math notranslate nohighlight">\(v_{\pi}\)</span> or the action-value function <span class="math notranslate nohighlight">\(q_{\pi}\)</span> be estimated? One simple approach, the <em>Monte Carlo</em> method, is to
+let an agent follow policy <span class="math notranslate nohighlight">\(\pi\)</span>. When it passes state <span class="math notranslate nohighlight">\(s\)</span>, the future return, gained by the agent is determined (this future return is known only at the end of the episode). This is done for many times and in the end all these returns, which have been gathered whenever the agent passed state <span class="math notranslate nohighlight">\(s\)</span> are averaged. In the same way, the action-value function <span class="math notranslate nohighlight">\(q_{\pi}\)</span> can be estimated. In both cases the estimate approximates the true functions if the number of times, each state is visited, is large enough. However, in practise this Monte Carlo approach is not feasible, if the state-space, i.e. the number of different states, is large. In this case the functions can be approximated e.g. by regression. This is actually done in Deep Reinforcement Learning, where Deep Learning algorithms for regression are applied to learn good state-value- or action-value-functions from relatively few examples, gathered by the RL agent.</p>
+<div class="section" id="bellmann-optimality-equations">
+<h3>Bellmann Optimality Equations<a class="headerlink" href="#bellmann-optimality-equations" title="Permalink to this headline">#</a></h3>
+<p>As seen in equation <a class="reference internal" href="#equation-returnrecursive">(81)</a> the return can be calculated recursively. Same is true for the state-value function:</p>
+<div class="math notranslate nohighlight" id="equation-statevaluerec">
+<span class="eqno">(85)<a class="headerlink" href="#equation-statevaluerec" title="Permalink to this equation">#</a></span>\[\begin{split}
+v_{\pi}(s) &amp; = &amp;  \mathbb{E}_{\pi} \left[ G_t \mid S_t=s \right] \\
+           &amp; = &amp;  \mathbb{E}_{\pi} \left[ R_{t+1} + \gamma G_{t+1} \mid S_t=s \right] \\
+\end{split}\]</div>
+<p>In order to calculate this expected value for a concrete state <span class="math notranslate nohighlight">\(s\)</span> and a concrete policy <span class="math notranslate nohighlight">\(\pi\)</span>, one must sum up for all possible triples of <span class="math notranslate nohighlight">\((a,s',r)\)</span> the reward <span class="math notranslate nohighlight">\(r\)</span> and the discounted state-value <span class="math notranslate nohighlight">\(v_{\pi}(s')\)</span> of a successor state, weighted by the probability of this triple, which is given by <span class="math notranslate nohighlight">\(\pi(a\mid s)p(s',r \mid s,a)\)</span>. This yields the <strong>Bellman equation for <span class="math notranslate nohighlight">\(v_{\pi}\)</span>:</strong></p>
+<div class="math notranslate nohighlight" id="equation-statevaluerec2">
+<span class="eqno">(86)<a class="headerlink" href="#equation-statevaluerec2" title="Permalink to this equation">#</a></span>\[\begin{split}
+v_{\pi}(s) &amp; = &amp;  \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a)  \left[ r + \gamma \mathbb{E}_{\pi} \left[ G_{t+1} \mid S_{t+1}=s' \right] \right] \\
+           &amp; = &amp;  \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a)  \left[ r + \gamma v_{\pi}(s') \right], \quad \forall s \in \mathcal{S}
+\end{split}\]</div>
+<p>The components of this equation are visualized in the picture below. Note that this equation constitutes a relation between the value function of a state and the value-function of all successor states.</p>
+<div class="figure align-center" id="statevalueviz">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png" src="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png" style="width: 500pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text"><em>Visualization</em> of Bellman-equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a>: For a given state <span class="math notranslate nohighlight">\(s\)</span> and policy <span class="math notranslate nohighlight">\(\pi\)</span>, the policy defines the probability of actions, available in <span class="math notranslate nohighlight">\(s\)</span>. For a given state-action pair <span class="math notranslate nohighlight">\((s,a)\)</span> the transition model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> defines the probability of successive states and the reward model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> defines the probability of a reward <span class="math notranslate nohighlight">\(r\)</span>. For each of the possible succesive states <span class="math notranslate nohighlight">\(s'\)</span> the sum <span class="math notranslate nohighlight">\(r + \gamma v_{\pi}(s')\)</span> is calculated, and weighted by the probability of this <span class="math notranslate nohighlight">\((a,s',r)\)</span>-triple.</span><a class="headerlink" href="#statevalueviz" title="Permalink to this image">#</a></p>
+</div>
+<p>The state-value function of equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a> defines an ordering of policies in the sense that one can say that policy <span class="math notranslate nohighlight">\(\pi\)</span> is better than policy <span class="math notranslate nohighlight">\(\pi'\)</span>, if and only if <span class="math notranslate nohighlight">\(v_{\pi}(s) \geq v_{\pi'}(s)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>. Moreover, there exists at least one optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>, which is better than all other policies. The goal of an RL agent is to find a good approximation to this optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>.</p>
+<p><strong>The state-value function of the optimal strategy is denoted by <span class="math notranslate nohighlight">\(v_*(s)\)</span> and defined by:</strong></p>
+<div class="math notranslate nohighlight" id="equation-vopt">
+<span class="eqno">(87)<a class="headerlink" href="#equation-vopt" title="Permalink to this equation">#</a></span>\[
+v_*(s) =  \max\limits_{\pi} v_{\pi}(s) \quad \forall s \in \mathcal{S}
+\]</div>
+<p>Optimal policies also share the same optimal action-value function <span class="math notranslate nohighlight">\(q_*\)</span> (<span id="id8">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span>), defined by:</p>
+<div class="math notranslate nohighlight" id="equation-qopt">
+<span class="eqno">(88)<a class="headerlink" href="#equation-qopt" title="Permalink to this equation">#</a></span>\[\begin{split}
+q_*(s,a) &amp; = &amp; \max\limits_{\pi} q_{\pi}(s,a) \quad \forall s \in \mathcal{S}, a \in \mathcal{A} \\
+         &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma v_{*}(S_{t+1}) \mid S_t=s, A_t=a \right].
+\end{split}\]</div>
+<p>Combining equations <a class="reference internal" href="#equation-statevaluerec2">(86)</a>, <a class="reference internal" href="#equation-vopt">(87)</a> and <a class="reference internal" href="#equation-qopt">(88)</a> yields the so called <strong>Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span></strong>:</p>
+<div class="math notranslate nohighlight" id="equation-bellopt">
+<span class="eqno">(89)<a class="headerlink" href="#equation-bellopt" title="Permalink to this equation">#</a></span>\[\begin{split}
+v_* (s) &amp; = &amp;  \max\limits_{a \in \mathcal{A}(s)} q_{\pi_*}(s,a) \\
+    &amp; = &amp;  \max\limits_{a} \mathbb{E}_{\pi_*} \left[ G_t \mid S_t = s, A_t=a \right] \\
+	&amp; = &amp;  \max\limits_{a} \mathbb{E}_{\pi_*} \left[ R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t=a \right] \\
+	&amp; = &amp;  \max\limits_{a} \mathbb{E} \left[ R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t=a \right] \\
+	&amp; = &amp;  \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_*(s')  \right].
+\end{split}\]</div>
+<p>This equation can be visualized as follows:</p>
+<div class="figure align-center" id="statevaluevizopt">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png" src="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(89)</a>.</span><a class="headerlink" href="#statevaluevizopt" title="Permalink to this image">#</a></p>
+</div>
+<p>From equation <a class="reference internal" href="#equation-bellopt">(89)</a> the optimum policy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be obtained by just taking <span class="math notranslate nohighlight">\(argmax\)</span> instead of <span class="math notranslate nohighlight">\(max\)</span>. The best action in state <span class="math notranslate nohighlight">\(s\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-optstratv">
+<span class="eqno">(90)<a class="headerlink" href="#equation-optstratv" title="Permalink to this equation">#</a></span>\[
+\pi_*(s) = \underset{a}{\operatorname{argmax}} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_*(s')  \right].
+\]</div>
+<p>The optimum policy is definded by <span class="math notranslate nohighlight">\(\pi_*(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>.</p>
+<p>Similarly the <strong>Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span></strong> is:</p>
+<div class="math notranslate nohighlight" id="equation-belloptq">
+<span class="eqno">(91)<a class="headerlink" href="#equation-belloptq" title="Permalink to this equation">#</a></span>\[\begin{split}
+q_*(s,a) &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma \max\limits_{a'} q_*(S_{t+1},a') \mid S_t = s, A_t=a \right] \\ 
+         &amp; = &amp; \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma \max\limits_{a'} q_*(s',a') \right].
+\end{split}\]</div>
+<p>This equation can be visualized as follows:</p>
+<div class="figure align-center" id="actionvaluevizopt">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png" src="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png" style="width: 300pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span> <a class="reference internal" href="#equation-belloptq">(91)</a>.</span><a class="headerlink" href="#actionvaluevizopt" title="Permalink to this image">#</a></p>
+</div>
+<p>From equation <a class="reference internal" href="#equation-belloptq">(91)</a> the optimum policy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be obtained, since in a given state the best action <span class="math notranslate nohighlight">\(a\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_*(s) = \underset{a \in \mathcal{A}(s)}{\operatorname{argmax}} q_*(s,a).
+\]</div>
+<p>Note that the Bellman optimality equations <a class="reference internal" href="#equation-bellopt">(89)</a> and <a class="reference internal" href="#equation-belloptq">(91)</a> are actually <strong>systems of non-linear equations</strong>, because such an equation exists for each state and each state-action-pair, respectively. In principle any method to solve systems of non-linear equations can be applied to calculate the solution. However, in practice the exact solution of these systems of equations is hardly feasible, because of the following reasons:</p>
+<ul class="simple">
+<li><p>the dynamics of the system, i.e. <span class="math notranslate nohighlight">\(p(r',s' \mid s,a)\)</span>, and thus the transition-model <span class="math notranslate nohighlight">\(p(s'\mid s,a)\)</span> and the reward model <span class="math notranslate nohighlight">\(p(r\mid s,a)\)</span> must be known</p></li>
+<li><p>In practice systems can have many states. Then the solution of the system of non-linear equations is computational exhaustive</p></li>
+<li><p>the Markov property must be fulfilled</p></li>
+</ul>
+<p>Therefore in practise methods, which approximately solve the Bellman optimality equations are applied. In the sequel such approximations will be presented. We will particularly distinguish in approximations for agents with</p>
+<ul class="simple">
+<li><p><strong>complete knowledge</strong>, in this case the dynamics and therefore the transition- and reward-model are known</p></li>
+<li><p><strong>incomplete knowledge</strong>, where such a complete and perfect knowledge of the environment is not available.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="dynamic-programming-dp-in-the-case-of-complete-knowledge">
+<h2>Dynamic Programming (DP) in the case of complete knowledge<a class="headerlink" href="#dynamic-programming-dp-in-the-case-of-complete-knowledge" title="Permalink to this headline">#</a></h2>
+<p>In this section we assume <strong>complete knowledge</strong>, i.e. the environment is perfectly and completely known in terms of a finite MDP. Methods, which can be applied to calculate optimal strategies under these conditions are summarized under the term <strong>Dynamic Programming</strong>. Algorithms of this type apply utility functions such as the Bellman optimality function for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(89)</a> and <span class="math notranslate nohighlight">\(q_*\)</span>, respectively. They calculate approximations of these optimality functions by an <strong>iterative update-process</strong>. Below two famous DP algorithms, <em>policy iteration</em> and <em>value iteration</em> are described. Both of them belong to the general category of <strong>Generalized Policy Iteration</strong>, since they both iteratively evaluate and improve policies.</p>
+<div class="section" id="policy-iteration">
+<h3>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline">#</a></h3>
+<p>The general approach of the DP methods presented here consists of:</p>
+<ul class="simple">
+<li><p>Policy Evaluation (Prediction)</p></li>
+<li><p>Policy Improvement (Control)</p></li>
+<li><p>Policy Iteration</p></li>
+</ul>
+<p>Starting from an initial policy <span class="math notranslate nohighlight">\(\pi_0\)</span>, the value function <span class="math notranslate nohighlight">\(v_{\pi_0}\)</span> of this policy is <strong>evaluated (E)</strong>. Based on this evaluation the policy is <strong>improved (I)</strong>. In the next iteration, the value <span class="math notranslate nohighlight">\(v_{\pi_1}\)</span> is evaluated for the improved policy <span class="math notranslate nohighlight">\(\pi_1\)</span> and this value is again applied to calculate the new policy improvement <span class="math notranslate nohighlight">\(\pi_2\)</span>… and so on:</p>
+<div class="math notranslate nohighlight" id="equation-gpi">
+<span class="eqno">(92)<a class="headerlink" href="#equation-gpi" title="Permalink to this equation">#</a></span>\[
+\pi_0 \xrightarrow{E} v_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} v_{\pi_2} \xrightarrow{I}  \cdots \xrightarrow{I} \pi_* \xrightarrow{E} v_{\pi_*}
+\]</div>
+<p><strong>Policy Evaluation</strong> is based on the Bellman equation for <span class="math notranslate nohighlight">\(v_{\pi}\)</span> (equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a>) and turns this equation into an iterative update rule. In iteration <span class="math notranslate nohighlight">\(k+1\)</span> a new update <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> is calculated from the old <span class="math notranslate nohighlight">\(v_{k}(s')\)</span> of the successor-states <span class="math notranslate nohighlight">\(s'\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-evaluationit">
+<span class="eqno">(93)<a class="headerlink" href="#equation-evaluationit" title="Permalink to this equation">#</a></span>\[
+v_{k+1}(s)  =   \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_k(s')  \right], \quad \forall s \in \mathcal{S},
+\]</div>
+<p>The initial values <span class="math notranslate nohighlight">\(v_0\)</span> are chosen arbitrarily.</p>
+<p><strong>Policy Improvement:</strong> The reason for calculating the value function for a policy is to improve the policy. In accordance to equations <a class="reference internal" href="#equation-bellopt">(89)</a> and <a class="reference internal" href="#equation-optstratv">(90)</a>, from the previous policy <span class="math notranslate nohighlight">\(\pi\)</span> and the state evaluations <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, the new policy <span class="math notranslate nohighlight">\(\pi'\)</span> can be calculated by</p>
+<div class="math notranslate nohighlight" id="equation-policyimprove">
+<span class="eqno">(94)<a class="headerlink" href="#equation-policyimprove" title="Permalink to this equation">#</a></span>\[\begin{split}
+\pi'(s) &amp; = &amp;  \underset{a}{\operatorname{argmax}} q_{\pi}(s,a) \\
+	&amp; = &amp;  \underset{a}{\operatorname{argmax}} \mathbb{E} \left[ R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s, A_t=a \right] \\
+	&amp; = &amp;  \underset{a}{\operatorname{argmax}} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_{\pi}(s')  \right].
+\end{split}\]</div>
+<p>Putting policy-evaluation and -improvement into an iterative process yields the following algorithm:</p>
+<div class="admonition-policy-iteration-for-estimating-approximate-pi admonition" id="policyit">
+<p class="admonition-title">Policy Iteration for estimating approximate <span class="math notranslate nohighlight">\(\pi_*\)</span></p>
+<ol>
+<li><p>Define value for evaluation-termination <span class="math notranslate nohighlight">\(\epsilon\)</span> (small positive number)</p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(V(s) \in \mathbb{R} \mbox{ and } \pi(s) \in A(s) \mbox{ randomly } \forall  s \in \mathcal{S}\)</span>. Except terminal states (if any). Terminal states must be initialized with <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>Policy Evaluation</p>
+<ul>
+<li><p>Loop:</p>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\Delta := 0\)</span></p></li>
+<li><p>Loop over all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(v := V(s)\)</span></p></li>
+<li><p>Calculate new <span class="math notranslate nohighlight">\(V(s) :=  \sum\limits_{s'} \sum\limits_r p(s',r \mid s,\pi(s)) \left[ r+ \gamma V(s')  \right]\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(\Delta := \max (\Delta,\mid v-V(s) \mid)\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>until <span class="math notranslate nohighlight">\(\Delta &lt; \epsilon\)</span></p>
+</li>
+</ul>
+</li>
+<li><p>Policy Improvement</p>
+<ul>
+<li><p>Set <em>policy-stable</em><span class="math notranslate nohighlight">\(:=true\)</span></p></li>
+<li><p>Loop over all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>:</p>
+<ul class="simple">
+<li><p>Set <em>old-action</em> <span class="math notranslate nohighlight">\(:= \pi(s)\)</span></p></li>
+<li><p>New policy:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+		\pi(s) = argmax_a \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma V(s')  \right]
+		\]</div>
+<ul class="simple">
+<li><p>If <em>old-action</em> <span class="math notranslate nohighlight">\(\neq \pi(s)\)</span>, then <em>policy-stable</em> <span class="math notranslate nohighlight">\(:=false\)</span></p></li>
+</ul>
+</li>
+<li><p>If <em>policy-stable</em>, then stop and return <span class="math notranslate nohighlight">\(V \sim v_*\)</span> and <span class="math notranslate nohighlight">\(\pi \sim \pi_*\)</span>; else go to 3</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<p>It can be proven, that this iterative policy-evaluation and -improvement process converges to the optimal policy.</p>
+</div>
+<div class="section" id="value-iteration">
+<h3>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">#</a></h3>
+<p>The drawback of the Policy-Iteration algorithm, as given above, is that in each iteration a specific policy must be evaluated. In this evaluation <span class="math notranslate nohighlight">\(V(s)\)</span> of each state <span class="math notranslate nohighlight">\(s\)</span> is updated in many (infinite) Loop-iterations. Only after this infinite iterations the true <span class="math notranslate nohighlight">\(v_{\pi}(s)\)</span> is availabe and can be applied for policy improvement. The improved policy <span class="math notranslate nohighlight">\(\pi'\)</span> is then applied for calculating <span class="math notranslate nohighlight">\(v_{\pi'}(s)\)</span> and so on.</p>
+<p>Value iterations simplifies this process, by just calculating <span class="math notranslate nohighlight">\(V(s)\)</span> in only one sweep and <em>implicitely updating the policy</em> after only one such sweep. By <em>implicitely updating the policy</em>, we mean (as shown in the <a class="reference internal" href="#valueit"><span class="std std-ref">Value iteration algorithm</span></a>), that in each iteration within the loop no explicit updated policy <span class="math notranslate nohighlight">\(\pi\)</span> is calculated. Instead the policy is updated implicitly by the way the values <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> in iteration <span class="math notranslate nohighlight">\(k+1\)</span> are calculated from the old <span class="math notranslate nohighlight">\(v_{k}(s')\)</span> of the successor-states <span class="math notranslate nohighlight">\(s'\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-valueit">
+<span class="eqno">(95)<a class="headerlink" href="#equation-valueit" title="Permalink to this equation">#</a></span>\[
+v_{k+1}(s)  =   \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma v_k(s')  \right], \quad \forall s \in \mathcal{S}.
+\]</div>
+<p>In the policy-iteration-algorithm the new values <span class="math notranslate nohighlight">\(v_{k+1}(s)\)</span> have been calculated in dependance of the policy <span class="math notranslate nohighlight">\(\pi\)</span>. In the value-iteration algorithm these value-updates have been calculated in dependence of the best action available in the current state.</p>
+<p>Starting from initial random values for <span class="math notranslate nohighlight">\(v_0\)</span> the sequence <span class="math notranslate nohighlight">\(\lbrace v_k \rbrace\)</span> converges to the optimal values <span class="math notranslate nohighlight">\(v_*\)</span> for <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>, if <span class="math notranslate nohighlight">\(\gamma &lt; 1\)</span>. In practise the value iteration algorithm terminates, if the differences of the values <span class="math notranslate nohighlight">\(v_{k+1}\)</span> between one iteration and the values <span class="math notranslate nohighlight">\(v_{k}\)</span> of the previous iteration are below a pre-defined threshold <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<div class="admonition-value-iteration-algorithm-for-estimating-approximate-pi admonition" id="valueit">
+<p class="admonition-title">Value Iteration Algorithm for estimating approximate <span class="math notranslate nohighlight">\(\pi_*\)</span></p>
+<ul>
+<li><p>Define value for termination-test <span class="math notranslate nohighlight">\(\epsilon\)</span></p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(V(s) \in \mathbb{R} \quad \forall  s \in \mathcal{S}\)</span> randomly. Except terminal states (if any). Terminal states must be initialized with <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>Loop:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Delta := 0\)</span></p></li>
+<li><p>Loop over all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(v := V(s)\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(V(s) := \max_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma V(s')  \right]\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(\Delta := \max (\Delta,\mid v-V(s) \mid)\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>until <span class="math notranslate nohighlight">\(\Delta &lt; \epsilon\)</span></p>
+</li>
+<li><p>Output policy <span class="math notranslate nohighlight">\(\pi \sim \pi_*\)</span>, such that</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\pi(s) = argmax_a \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) \left[ r+ \gamma V(s')  \right]
+\]</div>
+</div>
+<div class="admonition-example-value-iteration-algorithm admonition">
+<p class="admonition-title">Example: Value Iteration Algorithm </p>
+<p>In this simple example a deterministic transition model and a deterministic reward model is assumed. This means that for a given state-action-pair the successor and the reward is uniquely defined. Hence, for a given condition <span class="math notranslate nohighlight">\((s,a)\)</span> the probability <span class="math notranslate nohighlight">\(p(s',r \mid s,a) = 1\)</span> for exactly one pair <span class="math notranslate nohighlight">\((s',r)\)</span> and for all other successor-reward combinations this probability is 0.</p>
+<div class="figure align-center" id="valueitex1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBspErtl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBspErtl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBspErtl.png" style="width: 500pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">The upper left grid represents the initial state of the <span class="math notranslate nohighlight">\(3 \times 3\)</span>-world. All states are initialized with <span class="math notranslate nohighlight">\(v_0(s)=0\)</span>. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards (<span class="math notranslate nohighlight">\(-1\)</span> for <em>right</em> and <span class="math notranslate nohighlight">\(+1\)</span> for <em>left</em>). The discounting-rate is assumed to be <span class="math notranslate nohighlight">\(\gamma = 0.9\)</span>. In each iteration the states are looped through from the lower left to the upper right grid-cell.
+The last iteration is marked by <span class="math notranslate nohighlight">\(V^*\)</span>. The two plots in the right  bottom line are derived optimal strategies.</span><a class="headerlink" href="#valueitex1" title="Permalink to this image">#</a></p>
+<div class="legend">
+<div class="figure align-center" id="valueitex2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png" style="width: 500pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">Calculation of optimal strategy from optimal values in <span class="math notranslate nohighlight">\(V^*\)</span>. Field <span class="math notranslate nohighlight">\((2,3)\)</span> is the field in the second column, third row (counted from the origin in the upper left corner). Image source: <span id="id9">[<a class="reference internal" href="../referenceSection.html#id60" title="Wolfgang Ertel. Grundkurs Künstliche Intelligenz: eine praxisorientierte Einführung. Number ISBN 978-3-8348-0783-0. Vieweg + Teubner, Wiesbaden, second edition, 2009. URL: http://d-nb.info/994758561.">Ert09</a>]</span></span><a class="headerlink" href="#valueitex2" title="Permalink to this image">#</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="without-knowledge-of-the-environment">
+<h2>Without Knowledge of the Environment<a class="headerlink" href="#without-knowledge-of-the-environment" title="Permalink to this headline">#</a></h2>
+<p>In the previous section we assumed, that complete and perfect knowledge is available. This means that the dynamics <span class="math notranslate nohighlight">\(p(s',r \mid s,a)\)</span> and thus the transition model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> and the reward model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> are known. Now, we consider the case this knowledge is not available. This means that for a given state-action-pair</p>
+<ul class="simple">
+<li><p>the possible successive states <span class="math notranslate nohighlight">\(s'\)</span> and their probability distribution are not known</p></li>
+<li><p>the possible rewards <span class="math notranslate nohighlight">\(r\)</span> and their probability distribution are not known</p></li>
+</ul>
+<p>The initially not available knowledge must be learned by the agent from experience. This experience is gathered either by the agent’s interaction with the real environment or it is gathered in a <strong>simulation</strong>. In many cases learning by interaction with the real world is not feasible, because a sufficiently frequent visit of all states or all state-action pairs, required to learn stable statistics, is not possible.</p>
+<p>A basic concept for agents interacting with environments without perfect knowledge is:</p>
+<ol class="simple">
+<li><p>In a given state <span class="math notranslate nohighlight">\(s\)</span> the agent somehow selects and executes an available action <span class="math notranslate nohighlight">\(a\)</span></p></li>
+<li><p>Only <strong>after executing the action</strong> the agents perceives the reward <span class="math notranslate nohighlight">\(r \mid s,a\)</span> and the successive state <span class="math notranslate nohighlight">\(s' \mid s,a\)</span>.</p></li>
+</ol>
+<p>The approaches described below, <em>Monte Carlo</em> and <em>Temporal Difference</em>, both can be considered as Generalized Policy Iteration, as sketched in <a class="reference internal" href="#equation-gpi">(92)</a>.</p>
+<div class="section" id="monte-carlo-mc-methods">
+<h3>Monte Carlo (MC) Methods<a class="headerlink" href="#monte-carlo-mc-methods" title="Permalink to this headline">#</a></h3>
+<p>In this context we refer by <em>Monte Carlo</em> to methods, based on <em>averaging complete returns</em> over random samples (<em>return</em> as defined in equations <a class="reference internal" href="#equation-returnfinite">(79)</a> and <a class="reference internal" href="#equation-returninfinite">(80)</a>, respectively). In contrast to MC-methods, TD-learning methods, which are described in the next subsection, learn from <em>partial returns</em>.</p>
+<div class="section" id="estimation-of-state-value-function">
+<h4>Estimation of State Value Function<a class="headerlink" href="#estimation-of-state-value-function" title="Permalink to this headline">#</a></h4>
+<p>As in the previous sections, the value of a state <span class="math notranslate nohighlight">\(V(s)\)</span> is the <em>expected return</em>, which is defined to be the expected cumulative future discounted reward, starting from this state <span class="math notranslate nohighlight">\(s\)</span>. In order to estimate this value from experience, an obvious approach is to just generate many <em>random finite walks (episods)</em> of the agent. Whenever a given state <span class="math notranslate nohighlight">\(s\)</span> is visited, the return for this state is available at the end of the episode. The expected return, i.e. the <em>value</em> of this state, is then just the average of all returns gathered over all episodes for this state.</p>
+<div class="admonition-first-visit-mc-prediction-for-estimating-state-values-v-of-policy-pi admonition" id="first-visit">
+<p class="admonition-title">First-visit MC prediction for estimating state-values <span class="math notranslate nohighlight">\(V\)</span> of policy <span class="math notranslate nohighlight">\(\pi\)</span></p>
+<ol>
+<li><p>Input: Policy <span class="math notranslate nohighlight">\(\pi\)</span> to be evaluated</p></li>
+<li><p>Initialize</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V(s) \in \mathbb{R} \quad \forall  s \in \mathcal{S}\)</span> randomly.</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>: Allocate an empty list <em>Returns(s)</em></p></li>
+</ul>
+</li>
+<li><p>Loop forever (for each episode):</p>
+<ul class="simple">
+<li><p>Generate an episode following <span class="math notranslate nohighlight">\(\pi\)</span>: <span class="math notranslate nohighlight">\(S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Set return <span class="math notranslate nohighlight">\(G := 0\)</span></p></li>
+<li><p>Loop for each step of episode, <span class="math notranslate nohighlight">\(t=T-1,T-2,\ldots,0\)</span>:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(G := \gamma G + R_{t+1}\)</span></p></li>
+<li><p>Unless <span class="math notranslate nohighlight">\(S_t\)</span> appears in <span class="math notranslate nohighlight">\(S_0,S_1, \ldots, S_{t-1}\)</span>:</p>
+<ul>
+<li><p>Append <span class="math notranslate nohighlight">\(G\)</span> to <span class="math notranslate nohighlight">\(Returns(S_t)\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(V(s) := average(Returns(S_t))\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>Note, the term <em>First-visit</em> in the name of this algorithm. As can be seen in the last unless-condition of the algorithm, only the first visit to a state <span class="math notranslate nohighlight">\(s\)</span> within an episode is regarded in the average return calculation for this state. There exists also an <em>Every-visit</em>-option of this algorithm, where all visits to <span class="math notranslate nohighlight">\(s\)</span> are regarded.</p>
+<p>At this point, we can already post three differences of Monte Carlo (MC) compared to Dynamic Programming (DP):</p>
+<ul class="simple">
+<li><p>MC does not require knowledge of the environment in terms of a transition model and a reward model</p></li>
+<li><p>In MC state-evaluation (see <a class="reference internal" href="#first-visit"><span class="std std-ref">First-visit algorithm</span></a>) the estimation of a state’s value is independent of the estimated values of other (successive) states</p></li>
+<li><p>In MC state-evaluation (see <a class="reference internal" href="#first-visit"><span class="std std-ref">First-visit algorithm</span></a>) the computational expense of estimating the value of a single state is independent of the total number of states. This property may be of benefit, if the values of only a few states must be estimated.</p></li>
+</ul>
+</div>
+<div class="section" id="estimation-of-action-value-functions">
+<h4>Estimation of Action Value Functions<a class="headerlink" href="#estimation-of-action-value-functions" title="Permalink to this headline">#</a></h4>
+<p>In the case of <em>complete knowledge</em> it was easy to derive a policy from a state value function. Since the transition model and the reward model are known, for each action the possible successive states and rewards can be determined and the best action, that can be selected to be the policy in this state. However, this is not possible if the transition- and reward model are not known. Therefore, in environments without perfect knowledge the control problem (estimating the optimal policy) is usually solved on the basis of estimating the optimal action values <span class="math notranslate nohighlight">\(q_*\)</span>.</p>
+<p>In principle the <a class="reference internal" href="#first-visit"><span class="std std-ref">First-visit algorithm</span></a> for state values can easily be adopted to calculate <strong>values for state-action-pairs</strong> <span class="math notranslate nohighlight">\(q_{\pi}(s,a)\)</span> of a policy. Instead of averaging the returns perceived in all visits of a concrete state, now on has to average the returns over all visits of a concrete state-action pair. However, the problem with such an adoption would be, that many state-action pairs would never be visited. For example if <span class="math notranslate nohighlight">\(\pi\)</span> is a deterministic policy, than for a given state <span class="math notranslate nohighlight">\(s\)</span> only one action pair <span class="math notranslate nohighlight">\((s,a)\)</span> will be visited. For all other actions, available in this state, no state-action values can be calculated. Note that the purpose of action-values is to gradually improve policies and if many state-actions pairs are never visited no policy-improvements can be found. In order to solve this problem it must be ensured, that all state-action-pairs can be visited, i.e. that for a given state <span class="math notranslate nohighlight">\(s\)</span>, all actions <span class="math notranslate nohighlight">\(a \in \mathcal{A}(s)\)</span> have a non-zero probability to be visited. This is achieved by letting the agent to <strong>explore</strong>. The following two approaches of exploring will be condiered in the sequel:</p>
+<ul class="simple">
+<li><p><em>Exploring Starts (ES)</em>: Let each episode start in a state-action-pair and each possible state-action-pair has a non-zero probability to be selected as such a start-pair. With this approach an infinite number of episodes is required in order to guarantee, that each state-action-pair is visited sufficiently often, such that the real <span class="math notranslate nohighlight">\(q_{\pi_k}\)</span> is calculated for arbitrary <span class="math notranslate nohighlight">\(\pi_k\)</span>.</p></li>
+<li><p>Allow only <em>stochacstic policies</em> for which each possible state-action pair has non-zero probability to be visited.</p></li>
+</ul>
+</div>
+<div class="section" id="monte-carlo-control">
+<h4>Monte Carlo Control<a class="headerlink" href="#monte-carlo-control" title="Permalink to this headline">#</a></h4>
+<p>In order to find good policies the generalized concept of iteratively executing policy evaluation and policy improvement (GPI) is adopted from <a class="reference internal" href="#equation-gpi">(92)</a>:</p>
+<div class="math notranslate nohighlight" id="equation-gpiq">
+<span class="eqno">(96)<a class="headerlink" href="#equation-gpiq" title="Permalink to this equation">#</a></span>\[
+\pi_0 \xrightarrow{E} q_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} q_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} q_{\pi_2} \xrightarrow{I}  \cdots \xrightarrow{I} \pi_* \xrightarrow{E} q_{\pi_*}
+\]</div>
+<p><em>Policy Evaluation (E)</em> can be done by adopting the MC <a class="reference internal" href="#first-visit"><span class="std std-ref">First-visit algorithm</span></a> to state-action-pairs <span class="math notranslate nohighlight">\((s,a)\)</span>. If the number of episodes is infinite and the <em>Exploring Starts (ES)</em> approach, as defined above, is implemented, the algorithms finds the true state-action-values <span class="math notranslate nohighlight">\(q_{\pi}\)</span> for all arbitrary <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+<p>From this state-action-values <span class="math notranslate nohighlight">\(q_{\pi}\)</span> the policy can easily be improved <em>(I)</em> by:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(s) = \underset{a}{\operatorname{argmax}} q(s,a).
+\]</div>
+<p>The drawback of this concept is the fact that an infinite number of episodes is required in the policy evaluation step in order to calculate <span class="math notranslate nohighlight">\(q_{\pi}\)</span>. However, this problem can be solved by the same approach, which already have been applied above, where the evolution from the <a class="reference internal" href="#policyit"><span class="std std-ref">Policy-iteration algorithm</span></a> to the <a class="reference internal" href="#valueit"><span class="std std-ref">Value iteration algorithm</span></a> has been presented: In value-iterartion the policy is evaluated in only one sweep before it is implicitely improved. The improved policy is applied in the next iteration …and so on. Applying this idea to the Monte Carlo Policy iteration yields the algorithm below:</p>
+<div class="admonition-monte-carlo-es-exploring-starts-for-estimating-optimal-policy-pi admonition" id="mces">
+<p class="admonition-title">Monte Carlo ES (Exploring Starts) for estimating optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span></p>
+<ol>
+<li><p>Initialize</p>
+<ul class="simple">
+<li><p>arbitrary <span class="math notranslate nohighlight">\(\pi(s) \in \mathcal{A}(s) \quad \forall  s \in \mathcal{S}\)</span></p></li>
+<li><p>arbitrary <span class="math notranslate nohighlight">\(Q(s,a) \quad \forall  s \in \mathcal{S} \quad \forall  a \in \mathcal{A}(s)\)</span>.</p></li>
+<li><p>For each pair <span class="math notranslate nohighlight">\((s,a)\)</span>: Allocate an empty list <em>Returns((s,a))</em></p></li>
+</ul>
+</li>
+<li><p>Loop forever (for each episode):</p>
+<ul class="simple">
+<li><p>Choose <span class="math notranslate nohighlight">\(S_0 \in \mathcal{S}, \quad A_0 \in \mathcal{A}(S_0)\)</span> randomly, such that all pairs have non-zero probability.</p></li>
+<li><p>Generate an episode from <span class="math notranslate nohighlight">\(S_0,A_0\)</span> following <span class="math notranslate nohighlight">\(\pi\)</span>: <span class="math notranslate nohighlight">\(S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Set return <span class="math notranslate nohighlight">\(G := 0\)</span></p></li>
+<li><p>Loop for each step of episode, <span class="math notranslate nohighlight">\(t=T-1,T-2,\ldots,0\)</span>:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(G := \gamma G + R_{t+1}\)</span></p></li>
+<li><p>Unless <span class="math notranslate nohighlight">\((S_t,A_t)\)</span> appears in <span class="math notranslate nohighlight">\((S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})\)</span>:</p>
+<ul>
+<li><p>Append <span class="math notranslate nohighlight">\(G\)</span> to <span class="math notranslate nohighlight">\(Returns((S_t,A_t))\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(Q(S_t,A_t) := average(Returns((S_t,A_t)))\)</span></p></li>
+<li><p>Set policy <span class="math notranslate nohighlight">\(\pi(S_t):=argmax_a Q(S_t,a)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>The <a class="reference internal" href="#mces"><span class="std std-ref">Monte Carlo ES algorithm</span></a> assumes an infinite number of episodes. This is unrealistic. In practise one has to limit the number of episodes and the likelihood of finding no good policy increases with a decreasing limit of episodes. The obvious improvement is to ensure that any state-action pair can be selected with a non-zero probability, not only at the start, but during the entire episode, i.e. <span class="math notranslate nohighlight">\(\pi(a\mid s)&gt;0, \forall s \in \mathcal{S}, a \in \mathcal{A}\)</span>. In practise usually a small value <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> is defined and the policy must meet the restriction</p>
+<div class="math notranslate nohighlight">
+\[
+\pi(a\mid s) &gt; \frac{\epsilon}{\mid A(s) \mid}, \quad \forall s \in \mathcal{S}, a \in \mathcal{A},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mid A(s) \mid\)</span> is the number of possible actions in state <span class="math notranslate nohighlight">\(s\)</span>. Policies, which fulfill this restriction are called <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-soft policies</strong>. The most common <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft policy is the <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy policy</strong>. This type chooses most of the time an action that has maximal estimated action value (<strong>Exploit</strong>), but with a small probability of <span class="math notranslate nohighlight">\(\epsilon\)</span> they randomly select an action from <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> (<strong>Explore</strong>). Finding a good ratio between <em>Exploit</em> and <em>Explore</em> is called the <strong>Explore-Exploit-Dilemma</strong>. A MC control algorithm, which integrates a simple Explore-Exploit scheme is given below:</p>
+<div class="admonition-on-policy-first-visit-mc-control-for-estimating-policy-pi admonition" id="mccontrol">
+<p class="admonition-title">On-policy first-visit MC control for estimating policy <span class="math notranslate nohighlight">\(\pi_*\)</span></p>
+<ol>
+<li><p>Choose parmater <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span></p></li>
+<li><p>Initialize</p>
+<ul class="simple">
+<li><p>arbitrary <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft policy <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
+<li><p>arbitrary <span class="math notranslate nohighlight">\(Q(s,a) \quad \forall  s \in \mathcal{S} \quad \forall  a \in \mathcal{A}(s)\)</span>.</p></li>
+<li><p>For each pair <span class="math notranslate nohighlight">\((s,a)\)</span>: Allocate an empty list <em>Returns((s,a))</em></p></li>
+</ul>
+</li>
+<li><p>Loop forever (for each episode):</p>
+<ul class="simple">
+<li><p>Generate an episode following <span class="math notranslate nohighlight">\(\pi\)</span>: <span class="math notranslate nohighlight">\(S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T\)</span></p></li>
+</ul>
+<ul>
+<li><p>Set return <span class="math notranslate nohighlight">\(G := 0\)</span></p></li>
+<li><p>Loop for each step of episode, <span class="math notranslate nohighlight">\(t=T-1,T-2,\ldots,0\)</span>:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(G := \gamma G + R_{t+1}\)</span></p></li>
+<li><p>Unless <span class="math notranslate nohighlight">\((S_t,A_t)\)</span> appears in <span class="math notranslate nohighlight">\((S_0,A_0),(S_1,A_1) \ldots, (S_{t-1},A_{t-1})\)</span>:</p>
+<ul>
+<li><p>Append <span class="math notranslate nohighlight">\(G\)</span> to <span class="math notranslate nohighlight">\(Returns((S_t,A_t))\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(Q(S_t,A_t) := average(Returns((S_t,A_t)))\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(A*:=argmax_a Q(S_t,a)\)</span></p></li>
+<li><p>For all <span class="math notranslate nohighlight">\(a \in A(S_t)\)</span>:</p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(a = A*\)</span>:</p>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\pi(a \mid S_t) := 1 - \epsilon + \frac{\epsilon}{\mid A(S_t) \mid}\)</span></p></li>
+</ul>
+<p>else:</p>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\pi(a \mid S_t) := \frac{\epsilon}{\mid A(S_t) \mid}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>The drawback of <a class="reference internal" href="#mccontrol"><span class="std std-ref">On-policy first-visit MC control</span></a> is that it can only find the best policy among the set of <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft policies. But there may be better policies, which are not <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft. In <span id="id10">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span> this problem is stated as follows:</p>
+<blockquote>
+<div><p><em>All learning control methods face a dilemma: They seek to learn action values conditional on subsequent optimal behavior, but they need to behave non-optimally in order to explore all actions (to find the optimal actions). How can they learn about the optimal policy while behaving according to an exploratory policy?</em></p>
+</div></blockquote>
+<p>How can this drawback be circumvented? The answer is: <em>by off-policy aproaches</em>. In an <strong>off-policy</strong> algorithm the policy <span class="math notranslate nohighlight">\(\pi\)</span>, which is iteratively evaluated and improved is not the same policy, which defines how actions are selected during the learning episodes. I.e. we have two policies:</p>
+<ul class="simple">
+<li><p>the <strong>target policy <span class="math notranslate nohighlight">\(\pi\)</span></strong> to be optimized</p></li>
+<li><p>the <strong>behaviour policy <span class="math notranslate nohighlight">\(b\)</span></strong>, which is applied for selecting actions during the learning episodes.</p></li>
+</ul>
+<p>By selecting the behaviour policy <span class="math notranslate nohighlight">\(b\)</span> to be an <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft-policy one can ensure that all possible state-action-pairs are visited, while the target-policy <span class="math notranslate nohighlight">\(\pi\)</span> can be any policy without restrictions, in particular a deterministic policy. The algorithm above, <a class="reference internal" href="#mccontrol"><span class="std std-ref">On-policy first-visit MC control</span></a>, is an <strong>on-policy</strong> approach. Here, behaviour during the episodes is determined by the same policy, which is evaluated and optimized.</p>
+<p>An Off-policy MC control algorithm is given below:</p>
+<div class="admonition-off-policy-mc-control-for-estimating-policy-pi admonition" id="mccontroloff">
+<p class="admonition-title">Off-policy MC control for estimating policy <span class="math notranslate nohighlight">\(\pi_*\)</span></p>
+<ol>
+<li><p>Initialize <span class="math notranslate nohighlight">\(\forall  s \in \mathcal{S} \quad \forall  a \in \mathcal{A}(s)\)</span></p>
+<ul class="simple">
+<li><p>arbitrary <span class="math notranslate nohighlight">\(Q(s,a) \in \mathbb{R}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C(s,a)=0\)</span></p></li>
+<li><p>Policy <span class="math notranslate nohighlight">\(\pi(s)=argmax_a Q(s,a)\)</span></p></li>
+</ul>
+</li>
+<li><p>Loop forever (for each episode):</p>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(b\)</span> to be any <span class="math notranslate nohighlight">\(\epsilon\)</span>-soft policy</p></li>
+<li><p>Generate an episode following <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Set return <span class="math notranslate nohighlight">\(G := 0\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(W:=1\)</span></p></li>
+<li><p>Loop for each step of episode, <span class="math notranslate nohighlight">\(t=T-1,T-2,\ldots,0\)</span>:</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(G := \gamma G + R_{t+1}\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(C(S_t,A_t):=C(S_t,A_t)+W\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(Q(S_t,A_t) := Q(S_t,A_t) + \frac{W}{C(S_t,A_t)}\left[ G - Q(S_t,A_t) \right]\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(\pi(S_t):= argmax_a Q(S_t,a) \)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A_t \neq \pi(S_t)\)</span>: exit inner loop. Proceed with next episode</p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(W:=W \frac{1}{b(A_t \mid S_t)}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>In this algorithm the update of the state-action values is realized by</p>
+<div class="math notranslate nohighlight">
+\[
+Q(S_t,A_t) := Q(S_t,A_t) + \frac{W}{C(S_t,A_t)}\left[ G - Q(S_t,A_t) \right].
+\]</div>
+<p>This is derived from the fact, that state-action-values are the expectations of the returns, as defined recursively in equation <a class="reference internal" href="#equation-returnrecursive">(81)</a>. However, now we have instead of the discount-factor <span class="math notranslate nohighlight">\(\gamma\)</span> the term <span class="math notranslate nohighlight">\(W/C(S_t,A_t)\)</span>. The reason for this term is that the <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span>-values shall be the expectation of the returns of the <em>target policy <span class="math notranslate nohighlight">\(\pi\)</span></em>, but we collected the rewards of the behaviour policy <span class="math notranslate nohighlight">\(b\)</span>. As shown in <span id="id11">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span> the term <span class="math notranslate nohighlight">\(W/C(S_t,A_t)\)</span> allows to map the behaviour-policy returns to the target-policy returns.</p>
+</div>
+</div>
+<div class="section" id="temporal-difference-td-learning">
+<h3>Temporal Difference (TD) Learning<a class="headerlink" href="#temporal-difference-td-learning" title="Permalink to this headline">#</a></h3>
+<blockquote>
+<div><p><em>If one had to identify one idea as central and novel to reinforcement learning, it would
+undoubtedly be temporal-difference (TD) learning.</em> <span id="id12">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span></p>
+</div></blockquote>
+<p>In Monte Carlo methods, as described above, episodes are generated, i.e. a sequence of states, actions and rewards</p>
+<div class="math notranslate nohighlight">
+\[
+S_0, A_0, R_1,S_1, A_1, R_2, \ldots, S_{T-1}, A_{T-1}, R_T
+\]</div>
+<p>is gathered. At the end of an episode the return <span class="math notranslate nohighlight">\(G_t\)</span>, i.e. the accumulated rewards, starting from time <span class="math notranslate nohighlight">\(t\)</span> up to the end of the episode, can be calculated. Only then the state-values <span class="math notranslate nohighlight">\(V(S_t)\)</span> or the action-state values <span class="math notranslate nohighlight">\(Q(S_t,A_t)\)</span> can be updated. In the case of state-values a simple MC every-visit-update method is</p>
+<div class="math notranslate nohighlight" id="equation-mcvalueupdate">
+<span class="eqno">(97)<a class="headerlink" href="#equation-mcvalueupdate" title="Permalink to this equation">#</a></span>\[
+V(S_t) := V(S_t) + \alpha \left[G_t - V(S_t) \right],
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_t\)</span> is the actual return following time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span> is the <em>step-size</em> or <em>learning-rate</em>. A learning-rate of <span class="math notranslate nohighlight">\(\alpha=0\)</span> yields no learning (adaptation) at all, whereas <span class="math notranslate nohighlight">\(\alpha=1\)</span> means that the old values are not updated, but replaced. <strong>In deterministic environments <span class="math notranslate nohighlight">\(\alpha=1\)</span> is optimal</strong>. In stochastic environments the learning rate of reinforcement learning algorithms in general must be small, e.g. <span class="math notranslate nohighlight">\(\alpha=0.1\)</span> in order to guarantee convergence of the algorithm. It is also possible to decrease the learning rate with an increasing number of visits to the state, e.g.</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha=0.1/(1+N(s)),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(N(s)\)</span> is the number of visits to state <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<p>In contrast to MC, <strong>TD methods need not to wait until the end of the episode to update the values.</strong> In TD-methods at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<ol class="simple">
+<li><p>the agent in state <span class="math notranslate nohighlight">\(S_t\)</span> selects and executes an action <span class="math notranslate nohighlight">\(a \in \mathcal{A}(S_t)\)</span></p></li>
+<li><p>after executing action <span class="math notranslate nohighlight">\(a\)</span>, the agent perceives the successor state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> and the reward <span class="math notranslate nohighlight">\(R_{t+1}\)</span></p></li>
+<li><p>Then the values are updated, e.g. as follows:</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-tdvalueupdate">
+<span class="eqno">(98)<a class="headerlink" href="#equation-tdvalueupdate" title="Permalink to this equation">#</a></span>\[
+V(S_t) := V(S_t) + \alpha \left[R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right]
+\]</div>
+<p>The corresponding algorithm for policy evaluation is:</p>
+<div class="admonition-tabular-td-0-algorithm-for-estimating-v-pi admonition" id="tabtd0">
+<p class="admonition-title">Tabular TD(0) Algorithm for estimating <span class="math notranslate nohighlight">\(v_{\pi}\)</span></p>
+<ul>
+<li><p>Input: Policy <span class="math notranslate nohighlight">\(\pi\)</span> to be evaluated</p></li>
+<li><p>Configure: Parameter step size <span class="math notranslate nohighlight">\(\alpha \in ]0,1]\)</span></p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(V(s) \in \mathbb{R} \quad \forall  s \in \mathcal{S}\)</span> randomly. Except terminal states. Terminal states must be initialized with <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>Loop for each episode:</p>
+<ul>
+<li><p>Initialize S</p></li>
+<li><p>Loop for each step within episode:</p>
+<ul class="simple">
+<li><p>Select action <span class="math notranslate nohighlight">\(A\)</span> for the current state <span class="math notranslate nohighlight">\(S\)</span> according to policy <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
+<li><p>Execute action <span class="math notranslate nohighlight">\(A\)</span> and observe reward <span class="math notranslate nohighlight">\(R\)</span> and successor state <span class="math notranslate nohighlight">\(S'\)</span></p></li>
+<li><p>Set</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+		V(S) := V(S) + \alpha \left[R + \gamma V(S') - V(S) \right]
+		\]</div>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(S:=S'\)</span>
+until <span class="math notranslate nohighlight">\(S\)</span> is terminal state</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>In the update for the state-values (equation <a class="reference internal" href="#equation-tdvalueupdate">(98)</a>) the term within the square brackets is called the <strong>TD-Error:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t).
+\]</div>
+<p>It measures the difference between the estimate <span class="math notranslate nohighlight">\(V(S_t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> and the better estimate <span class="math notranslate nohighlight">\(R_{t+1} + \gamma V(S_{t+1})\)</span>, which can be calculated after perceiving <span class="math notranslate nohighlight">\(R_{t+1}\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.</p>
+<p>It is proven, that the <a class="reference internal" href="#tabtd0"><span class="std std-ref">TD(0) policy evaluation algorithm</span></a> converges for any policy to <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, if the step-size parameter <span class="math notranslate nohighlight">\(\alpha\)</span> decreases. Moreover, in practice, TD-methods usually converge faster than MC methods.</p>
+<p>In the case, that only finite experience, i.e. a limited number of episodes, is available, the most common approach is to present this experience repeatedly to the learning algorithm until it converges. In this case, from the given approximation <span class="math notranslate nohighlight">\(V\)</span> of the value function, the increments are calulated for each time-step of all episodes according to equation <a class="reference internal" href="#equation-tdvalueupdate">(98)</a>. Only at the end of this batch the value-function <span class="math notranslate nohighlight">\(V\)</span> is updated and the new increments for the entire batch are calculated w.r.t. this updated value-function and so on. This procss is called <strong>batch-updating</strong>. Under batch-updating, TD(0) converges deterministically to a single answer independent
+of the step-size parameter, <span class="math notranslate nohighlight">\(\alpha\)</span>, as long as <span class="math notranslate nohighlight">\(\alpha\)</span> is chosen to be sufficiently small (<span id="id13">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span>).</p>
+<p>Up to now, for TD-learning, we only considered the <strong>prediction problem</strong>, in particular the calculation of the value-state function. Now, we turn to the <strong>control problem</strong>, i.e. the determination of an optimal policy.</p>
+<div class="section" id="sarsa">
+<h4>Sarsa<a class="headerlink" href="#sarsa" title="Permalink to this headline">#</a></h4>
+<p>As already described in the context of MC methods, in environments of incomplete knowledge, the optimal policy can not easily derived from the optimal state-value function <span class="math notranslate nohighlight">\(v*\)</span>. Instead, the policy can be directly derived from the action-value function <span class="math notranslate nohighlight">\(q*\)</span>. In contrast to equation <a class="reference internal" href="#equation-tdvalueupdate">(98)</a>, we now consider transitions from state-action-pair to state-action-pair and update values of such pairs:</p>
+<div class="math notranslate nohighlight" id="equation-tdactionupdate">
+<span class="eqno">(99)<a class="headerlink" href="#equation-tdactionupdate" title="Permalink to this equation">#</a></span>\[
+Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) - Q(S_t,A_t) \right]
+\]</div>
+<p>Since these updates require <span class="math notranslate nohighlight">\((S_t,A_t,R_{t+1},S_{t+1},A_{t+1})\)</span>, the approach is also called <strong>Sarsa</strong>.</p>
+<div class="admonition-sarsa-on-policy-td-control-for-estimating-q-sim-q admonition" id="id14">
+<p class="admonition-title">Sarsa: On-policy TD control for estimating <span class="math notranslate nohighlight">\(Q \sim q_*\)</span></p>
+<ul>
+<li><p>Configure: Parameter step size <span class="math notranslate nohighlight">\(\alpha \in ]0,1]\)</span> and mall value <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span></p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(Q(s,a) \in \mathbb{R} \quad \forall  s \in \mathcal{S}, a \in \mathcal{A}(s)\)</span> randomly. State-action-values of terminal states must be initialized with <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>Loop for each episode:</p>
+<ul>
+<li><p>Initialize S</p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\(A\)</span> from <span class="math notranslate nohighlight">\(S\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy)</p></li>
+<li><p>Loop for each step within episode:</p>
+<ul class="simple">
+<li><p>Execute action <span class="math notranslate nohighlight">\(A\)</span> and observe reward <span class="math notranslate nohighlight">\(R\)</span> and successor state <span class="math notranslate nohighlight">\(S'\)</span></p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\(A'\)</span> from <span class="math notranslate nohighlight">\(S'\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy)</p></li>
+<li><p>Set</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+		Q(S,A) := Q(S,A) + \alpha \left[R + \gamma Q(S',A') - Q(S,A) \right]
+		\]</div>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(S:=S'\)</span>, <span class="math notranslate nohighlight">\(A:=A'\)</span>
+until <span class="math notranslate nohighlight">\(S\)</span> is terminal state</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="q-learning">
+<h4>Q-Learning<a class="headerlink" href="#q-learning" title="Permalink to this headline">#</a></h4>
+<p>Q-Learning is an off-policy TD reinforcement learning method. In contrast to Sarsa the learned action-value function Q directly approximates <span class="math notranslate nohighlight">\(q_*\)</span>, the optimal action-value function, independent of the policy being followed (<span id="id15">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span>).</p>
+<p>The state-action-value update rule is</p>
+<div class="math notranslate nohighlight" id="equation-qlearnupdate">
+<span class="eqno">(100)<a class="headerlink" href="#equation-qlearnupdate" title="Permalink to this equation">#</a></span>\[
+Q(S_t,A_t) := Q(S_t,A_t) + \alpha \left[R_{t+1} + \gamma \max\limits_a Q(S_{t+1},a) - Q(S_t,A_t) \right]
+\]</div>
+<div class="admonition-q-learning-off-policy-td-control-for-estimating-pi-sim-pi admonition" id="qlearning">
+<p class="admonition-title">Q-Learning: Off-policy TD control for estimating <span class="math notranslate nohighlight">\(\pi \sim \pi_*\)</span></p>
+<ul>
+<li><p>Configure: Parameter step size <span class="math notranslate nohighlight">\(\alpha \in ]0,1]\)</span> and mall value <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span></p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(Q(s,a) \in \mathbb{R} \quad \forall  s \in \mathcal{S}, a \in \mathcal{A}(s)\)</span> randomly. State-action-values of terminal states must be initialized with <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>Loop for each episode:</p>
+<ul>
+<li><p>Initialize S</p></li>
+<li><p>Loop for each step within episode:</p>
+<ul class="simple">
+<li><p>Choose <span class="math notranslate nohighlight">\(A\)</span> from <span class="math notranslate nohighlight">\(S\)</span> using policy derived from <span class="math notranslate nohighlight">\(Q\)</span> (e.g. <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy)</p></li>
+<li><p>Execute action <span class="math notranslate nohighlight">\(A\)</span> and observe reward <span class="math notranslate nohighlight">\(R\)</span> and successor state <span class="math notranslate nohighlight">\(S'\)</span></p></li>
+<li><p>Set</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+		Q(S,A) := Q(S,A) + \alpha \left[R + \gamma \max\limits_a Q(S',a) - Q(S,A) \right]
+		\]</div>
+<ul class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(S:=S'\)</span>
+until <span class="math notranslate nohighlight">\(S\)</span> is terminal state</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition-example-q-learning-algorithm admonition">
+<p class="admonition-title">Example: Q-Learning Algorithm </p>
+<div class="figure align-center" id="qlearn1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/qlearnErtl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/qlearnErtl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/qlearnErtl.png" style="width: 600pt;" /></a>
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Q-Learning: Updating state-action-values <span class="math notranslate nohighlight">\(Q(s,a)\)</span> and calculation of optimal strategy from optimal values: Initially all <span class="math notranslate nohighlight">\(Q(s,a)\)</span>-values are <span class="math notranslate nohighlight">\(0\)</span> (upper left grid). For the two states in the bottom row, for which <em>move right</em> is possible, the reward for action <em>move-right</em> is <span class="math notranslate nohighlight">\(-1\)</span>. For the two states in the bottom row, for which <em>move left</em> is possible, the reward for action <em>move-left</em> is <span class="math notranslate nohighlight">\(+1\)</span>. For all other state-action pairs the reward is <span class="math notranslate nohighlight">\(0\)</span>.
+Image source: <span id="id16">[<a class="reference internal" href="../referenceSection.html#id60" title="Wolfgang Ertel. Grundkurs Künstliche Intelligenz: eine praxisorientierte Einführung. Number ISBN 978-3-8348-0783-0. Vieweg + Teubner, Wiesbaden, second edition, 2009. URL: http://d-nb.info/994758561.">Ert09</a>]</span></span><a class="headerlink" href="#qlearn1" title="Permalink to this image">#</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Further reading: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id57" title="Richard S. Sutton and Andrew G. Barto. Reinforcement Learning: An Introduction. The MIT Press, second edition, 2018. URL: http://incompleteideas.net/book/the-book-2nd.html.">SB18</a>]</span>, <span id="id18">[<a class="reference internal" href="../referenceSection.html#id58" title="Stuart Russell and Peter Norvig. Artificial Intelligence: A Modern Approach. Prentice Hall, 3 edition, 2010.">RN10</a>]</span>, <span id="id19">[<a class="reference internal" href="../referenceSection.html#id60" title="Wolfgang Ertel. Grundkurs Künstliche Intelligenz: eine praxisorientierte Einführung. Number ISBN 978-3-8348-0783-0. Vieweg + Teubner, Wiesbaden, second edition, 2009. URL: http://d-nb.info/994758561.">Ert09</a>]</span></p></li>
+<li><p><a class="reference external" href="https://youtu.be/nyjbcRQ-uQ8">RL video tutorial by deeplizard</a></p></li>
+</ul>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><em>Reinforcement</em> is just another word for <em>reward</em>, hence learning from reinforcements.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./rl"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">DCGAN Keras Implementation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DQN.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Deep Reinforcement Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Johannes Maucher<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
