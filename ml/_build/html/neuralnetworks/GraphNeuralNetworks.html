@@ -843,7 +843,8 @@ Figure 2: To each node a descriptor (numeric vector) is assigned.
 <p>In a GNN the node representation <span class="math notranslate nohighlight">\(h_i^k\)</span> of each node <span class="math notranslate nohighlight">\(i\)</span> are adapted over many iteration (k indicates the iteration). At the very beginning to each node <span class="math notranslate nohighlight">\(i\)</span> an initial vector <span class="math notranslate nohighlight">\(h_i^0\)</span> is assigned, e.g. the BoW vector of a document. Then in each iteration <span class="math notranslate nohighlight">\(k&gt;0\)</span> these representations are updated by information from the neighbouring nodes. The image below sketches the update of node 0 in iteration <span class="math notranslate nohighlight">\(k\)</span>. Let <span class="math notranslate nohighlight">\(N(i)\)</span> denote the set of direct neighbours of node <span class="math notranslate nohighlight">\(i\)</span>, then</p>
 <ol class="simple">
 <li><p>For each node <span class="math notranslate nohighlight">\(u\)</span> in <span class="math notranslate nohighlight">\(N(i)\)</span> pass the current descriptor <span class="math notranslate nohighlight">\(h_u^k\)</span> to a Feed Forward Neural Network (for example a single fully connected layer). The output of this FFN is called the message <span class="math notranslate nohighlight">\(m_u^k\)</span> from node <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
-<li><p>All messages <span class="math notranslate nohighlight">\(m_u^k\)</span> and the current node representation <span class="math notranslate nohighlight">\(h_i^{k}\)</span> are <strong>aggregated</strong> by some function which outputs the new representation <span class="math notranslate nohighlight">\(h_i^{k+1}\)</span> of node <span class="math notranslate nohighlight">\(i\)</span>. The aggregation function can be a simple sum-, mean-, or max-operation. However, it can also be implemented by an arbitrary neural layer type as e.g. a fully connected layer or a recurrent layer.</p></li>
+<li><p>All messages <span class="math notranslate nohighlight">\(m_u^k\)</span> and the current node representation <span class="math notranslate nohighlight">\(h_i^{k}\)</span> are <strong>aggregated</strong> by some function. The aggregation function can be a simple sum-, mean-, or max-operation.</p></li>
+<li><p>The new representation <span class="math notranslate nohighlight">\(h_i^{k+1}\)</span> of node <span class="math notranslate nohighlight">\(i\)</span> is calculated from the aggregated messages of the neighbours and the current representation <span class="math notranslate nohighlight">\(h_i^{k}\)</span>. This update can be implemented e.g. by an arbitrary neural layer type as e.g. a fully connected layer or a recurrent layer.</p></li>
 </ol>
 <p>This process is performed, in parallel, on all nodes <span class="math notranslate nohighlight">\(i\)</span> in the graph as node-embeddings in iteration <span class="math notranslate nohighlight">\(k+1\)</span> depend on embeddings in iteration <span class="math notranslate nohighlight">\(k\)</span>. In this way in each iteration each node <em>grabs</em> more information from it’s surrounding nodes. Finally this <em>better representations</em> can be applied for different tasks, such as node-classification, node-clustering, sub-graph-identification, sub-graph-clustering etc. Depending on the task, individual node embeddings of type <span class="math notranslate nohighlight">\(h_i^{k}\)</span>, or representations of sub-graphs or the entire graph may be required. A simple representation of a subgraph or graph can be obtained by just summing up the node-embeddings of all nodes in the graph or subgraph, respectively.</p>
 <figure align="center">
@@ -863,8 +864,7 @@ Figure 3: Calculation of new descriptor at node 0.
 <figcaption>
 Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space for Graph Neural Networks</a> 
 </figcaption>
-</figure>
-<p>Where does the name <em>Graph Convolutional Layer</em> come from?</p>
+</figure><p><strong>Where does the name <em>Graph Convolutional Layer</em> come from?</strong></p>
 <p>For this take a look to the left hand side of Figure 5. In a <em>Convolutional Layer</em> at each position a new value is calculated as the scalar-product of the filter coefficients and the receptive field of the current position (neuron). Each position (neuron) can be considered as a node. And each node has an edge to all other nodes (positions), which belong to the local receptive field of the current position (neuron). Actually, at each position not only one value is calculated, but one value for each feature map.</p>
 <p>With this notion in mind, the difference of a graph convolution layer w.r.t. a convolution layer is that in a GCN each node can have an arbitrary number of neighbouring nodes, whereas in a convolution layer the number of neighbouring nodes is fixed and given by the size of the filter.</p>
 <figure align="center">
@@ -890,8 +890,7 @@ Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space 
 <figcaption>
     Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
 </figcaption>
-</figure>
-<p><a id='intro'></a></p>
+</figure><p><a id='intro'></a></p>
 </div>
 </div>
 </div>
@@ -1576,7 +1575,7 @@ the papers in the dataset.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/GraphNeuralNetworks_33_0.png" src="../_images/GraphNeuralNetworks_33_0.png" />
+<img alt="../_images/GraphNeuralNetworks_34_0.png" src="../_images/GraphNeuralNetworks_34_0.png" />
 </div>
 </div>
 </div>
@@ -1813,7 +1812,7 @@ ________________________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/GraphNeuralNetworks_53_0.png" src="../_images/GraphNeuralNetworks_53_0.png" />
+<img alt="../_images/GraphNeuralNetworks_54_0.png" src="../_images/GraphNeuralNetworks_54_0.png" />
 </div>
 </div>
 <p>Now we evaluate the baseline model on the test data split.</p>
@@ -2153,7 +2152,7 @@ Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space for Graph 
 <p>Each graph convolutional layer added captures information from a further level of neighbours.
 However, adding many graph convolutional layer can cause oversmoothing, where the model
 produces similar embeddings for all the nodes.</p>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">graph_info</span></code> passed to the constructor of the Keras model, and used as a <em>property</em>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">graph_info</span></code> is passed to the constructor of the Keras model and is implemented as a <em>property</em>
 of the Keras model object, rather than input data for training or prediction.
 The model will accept a <strong>batch</strong> of <code class="docutils literal notranslate"><span class="pre">node_indices</span></code>, which are used to lookup the
 node features and neighbours from the <code class="docutils literal notranslate"><span class="pre">graph_info</span></code>.</p>
@@ -2319,7 +2318,7 @@ nodes have dissimilar representations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/GraphNeuralNetworks_74_0.png" src="../_images/GraphNeuralNetworks_74_0.png" />
+<img alt="../_images/GraphNeuralNetworks_75_0.png" src="../_images/GraphNeuralNetworks_75_0.png" />
 </div>
 </div>
 <p>Now we evaluate the GNN model on the test data split.

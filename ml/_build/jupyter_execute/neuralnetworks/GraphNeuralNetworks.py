@@ -49,7 +49,9 @@
 # 
 # 1. For each node $u$ in $N(i)$ pass the current descriptor $h_u^k$ to a Feed Forward Neural Network (for example a single fully connected layer). The output of this FFN is called the message $m_u^k$ from node $u$.
 # 
-# 2. All messages $m_u^k$ and the current node representation $h_i^{k}$ are **aggregated** by some function which outputs the new representation $h_i^{k+1}$ of node $i$. The aggregation function can be a simple sum-, mean-, or max-operation. However, it can also be implemented by an arbitrary neural layer type as e.g. a fully connected layer or a recurrent layer.   
+# 2. All messages $m_u^k$ and the current node representation $h_i^{k}$ are **aggregated** by some function. The aggregation function can be a simple sum-, mean-, or max-operation.
+# 
+# 3. The new representation $h_i^{k+1}$ of node $i$ is calculated from the aggregated messages of the neighbours and the current representation $h_i^{k}$. This update can be implemented e.g. by an arbitrary neural layer type as e.g. a fully connected layer or a recurrent layer.   
 # 
 # This process is performed, in parallel, on all nodes $i$ in the graph as node-embeddings in iteration $k+1$ depend on embeddings in iteration $k$. In this way in each iteration each node *grabs* more information from it's surrounding nodes. Finally this *better representations* can be applied for different tasks, such as node-classification, node-clustering, sub-graph-identification, sub-graph-clustering etc. Depending on the task, individual node embeddings of type $h_i^{k}$, or representations of sub-graphs or the entire graph may be required. A simple representation of a subgraph or graph can be obtained by just summing up the node-embeddings of all nodes in the graph or subgraph, respectively. 
 # 
@@ -79,8 +81,8 @@
 # Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space for Graph Neural Networks</a> 
 # </figcaption>
 # </figure>
-# 
-# Where does the name *Graph Convolutional Layer* come from?
+
+# **Where does the name *Graph Convolutional Layer* come from?**
 # 
 # For this take a look to the left hand side of Figure 5. In a *Convolutional Layer* at each position a new value is calculated as the scalar-product of the filter coefficients and the receptive field of the current position (neuron). Each position (neuron) can be considered as a node. And each node has an edge to all other nodes (positions), which belong to the local receptive field of the current position (neuron). Actually, at each position not only one value is calculated, but one value for each feature map. 
 # 
@@ -111,7 +113,6 @@
 #     Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
 # </figcaption>
 # </figure>
-# 
 
 # <a id='intro'></a>
 # # Introductory Example: Node Classification with Graph Neural Networks
@@ -729,7 +730,7 @@ class GraphConvLayer(layers.Layer):
 # However, adding many graph convolutional layer can cause oversmoothing, where the model
 # produces similar embeddings for all the nodes.
 # 
-# Note that the `graph_info` passed to the constructor of the Keras model, and used as a *property*
+# Note that the `graph_info` is passed to the constructor of the Keras model and is implemented as a *property*
 # of the Keras model object, rather than input data for training or prediction.
 # The model will accept a **batch** of `node_indices`, which are used to lookup the
 # node features and neighbours from the `graph_info`.
