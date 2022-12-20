@@ -3,7 +3,7 @@
 
 # # Variational Autoencoder (VAE) to generate handwritten digits
 # * Author: Johannes Maucher - adapted from [keras autoencoder tutorial](https://blog.keras.io/building-autoencoders-in-keras.html).
-# * Last Update: 10.12.2021
+# * Last Update: 19.12.2022
 # * Reference: [D.P. Kingma, M. Welling: Autoencoder Variational Bayes](https://arxiv.org/abs/1312.6114)
 
 # ## Autoencoder
@@ -44,7 +44,7 @@
 #!pip install keras
 
 
-# In[5]:
+# In[1]:
 
 
 import numpy as np
@@ -64,7 +64,7 @@ from keras import losses
 from keras.utils.vis_utils import plot_model
 
 
-# In[6]:
+# In[2]:
 
 
 from os import environ
@@ -72,7 +72,7 @@ environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
-# In[7]:
+# In[3]:
 
 
 batch_size = 100
@@ -86,7 +86,7 @@ epsilon_std = 1.0
 # ### Define Architecture
 # #### Encoder Model
 
-# In[8]:
+# In[4]:
 
 
 x = Input(shape=(original_dim,))
@@ -97,19 +97,19 @@ z_log_var = Dense(latent_dim)(h)
 
 # Note, that the encoder outputs are interpreted to be the **values** and the **logarithmic variance** values.
 
-# In[9]:
+# In[5]:
 
 
 encoderModel=Model(inputs=x, outputs=[z_mean, z_log_var])
 
 
-# In[10]:
+# In[6]:
 
 
 encoderModel.summary()
 
 
-# In[11]:
+# In[7]:
 
 
 plot_model(encoderModel, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
@@ -118,7 +118,7 @@ plot_model(encoderModel, to_file='model_plot.png', show_shapes=True, show_layer_
 # #### Sampling
 # Define function for sampling from a Gaussian Distribution:
 
-# In[12]:
+# In[8]:
 
 
 def sampling(args):
@@ -132,7 +132,7 @@ def sampling(args):
 
 # Implementation of the sampling function, as defined above, as a Keras layer:
 
-# In[13]:
+# In[9]:
 
 
 z = Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
@@ -140,7 +140,7 @@ z = Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
 
 # #### Decoder Model
 
-# In[14]:
+# In[10]:
 
 
 #instantiate these layers separately so as to reuse them later
@@ -152,7 +152,7 @@ x_decoded_mean = decoder_mean(h_decoded)
 
 # #### End-to-End Autoencoder
 
-# In[18]:
+# In[11]:
 
 
 # end-to-end autoencoder
@@ -160,7 +160,7 @@ vae = Model(x, x_decoded_mean)
 vae.summary()
 
 
-# In[19]:
+# In[12]:
 
 
 plot_model(vae, to_file='vae_plot.png', show_shapes=True, show_layer_names=True)
@@ -170,11 +170,11 @@ plot_model(vae, to_file='vae_plot.png', show_shapes=True, show_layer_names=True)
 
 # The parameters of the model are trained by minizing a loss function, which consists of two terms: 
 # * a **reconstruction loss** forcing the decoded samples to match the initial inputs. For this reconstruction loss *binary crossentropy* is applied.
-# * the KL divergence between the learned latent distribution and the prior distribution. This term acts as a **regularization term**. 
+# * the KL divergence between the learned latent distribution and the standard multidimensional Normal-distribution $\mathcal{N(\mathbf{0},\mathbf{I})}$ (zero-mean and variance one). This term acts as a **regularization term** and forces the learned distribution to apporximate the standard multidimensional Normaldistribution. See e.g. [https://leenashekhar.github.io/2019-01-30-KL-Divergence/](https://leenashekhar.github.io/2019-01-30-KL-Divergence/) for the derivation of the KL-Divergence formula, implemented below.
 
 # In order to implement this custom loss function a corresponding layer is defined as follows:
 
-# In[30]:
+# In[13]:
 
 
 class KLDivergenceLayer(Layer):
@@ -196,7 +196,7 @@ class KLDivergenceLayer(Layer):
         return x
 
 
-# In[21]:
+# In[14]:
 
 
 y = KLDivergenceLayer()([x, x_decoded_mean])
@@ -204,7 +204,7 @@ vae = Model(x, y)
 vae.compile(optimizer='rmsprop', loss=None)
 
 
-# In[22]:
+# In[15]:
 
 
 plot_model(vae, to_file='vae_kl_plot.png', show_shapes=True, show_layer_names=True)
@@ -212,7 +212,7 @@ plot_model(vae, to_file='vae_kl_plot.png', show_shapes=True, show_layer_names=Tr
 
 # ### Training VAE
 
-# In[23]:
+# In[16]:
 
 
 # train the VAE on MNIST digits
@@ -224,7 +224,7 @@ x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
 x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
 
-# In[24]:
+# In[17]:
 
 
 hist=vae.fit(x_train,
@@ -235,7 +235,7 @@ hist=vae.fit(x_train,
         verbose=False)
 
 
-# In[25]:
+# In[18]:
 
 
 loss = hist.history['loss']
@@ -252,13 +252,13 @@ plt.show()
 
 # ### Project Inputs to latent space
 
-# In[26]:
+# In[19]:
 
 
 encoder = Model(x, z_mean)
 
 
-# In[27]:
+# In[20]:
 
 
 # display a 2D plot of the digit classes in the latent space
@@ -273,7 +273,7 @@ plt.show()
 # 
 # Next, a digit generator, which samples from the learned distribution is build.
 
-# In[28]:
+# In[21]:
 
 
 decoder_input = Input(shape=(latent_dim,))
@@ -282,7 +282,7 @@ _x_decoded_mean = decoder_mean(_h_decoded)
 generator = Model(decoder_input, _x_decoded_mean)
 
 
-# In[29]:
+# In[22]:
 
 
 # display a 2D manifold of the digits
