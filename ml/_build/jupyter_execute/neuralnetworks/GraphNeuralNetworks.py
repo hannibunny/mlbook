@@ -135,7 +135,7 @@
 
 # ## Setup
 
-# In[1]:
+# In[48]:
 
 
 import os
@@ -148,7 +148,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 
-# In[2]:
+# In[49]:
 
 
 np.set_printoptions(suppress=True)
@@ -171,7 +171,7 @@ np.set_printoptions(suppress=True)
 
 # First the Cora-dataset is downloaded and extracted:
 
-# In[3]:
+# In[50]:
 
 
 zip_file = keras.utils.get_file(
@@ -182,7 +182,7 @@ zip_file = keras.utils.get_file(
 data_dir = os.path.join(os.path.dirname(zip_file), "cora")
 
 
-# In[4]:
+# In[51]:
 
 
 zip_file
@@ -192,7 +192,7 @@ zip_file
 # 
 # Then we load the citations data into a Pandas DataFrame.
 
-# In[5]:
+# In[52]:
 
 
 citations = pd.read_csv(
@@ -207,7 +207,7 @@ print("Citations shape:", citations.shape)
 # Now we display a sample of the `citations` DataFrame.
 # The `target` column includes the paper ids cited by the paper ids in the `source` column.
 
-# In[6]:
+# In[53]:
 
 
 citations.head()
@@ -215,7 +215,7 @@ citations.head()
 
 # As can be seen in the output of the next-code cell, there are some papers (e.g. paper 35), which are referenced by many others. Other papers are referenced only once or even not at all.
 
-# In[7]:
+# In[54]:
 
 
 citations.target.value_counts()
@@ -223,7 +223,7 @@ citations.target.value_counts()
 
 # Now let's load the papers data into a Pandas DataFrame.
 
-# In[8]:
+# In[55]:
 
 
 column_names = ["paper_id"] + [f"term_{idx}" for idx in range(1433)] + ["subject"]
@@ -237,7 +237,7 @@ print("Papers shape:", papers.shape)
 # and the `subject` columns, as well as 1,433 binary column representing whether a term exists
 # in the paper or not.
 
-# In[9]:
+# In[56]:
 
 
 papers.head()
@@ -245,7 +245,7 @@ papers.head()
 
 # Let's display the count of the papers in each subject.
 
-# In[10]:
+# In[57]:
 
 
 print(papers.subject.value_counts())
@@ -253,12 +253,16 @@ print(papers.subject.value_counts())
 
 # We convert the paper ids and the subjects into zero-based indices.
 
-# In[11]:
+# In[58]:
 
 
 class_values = sorted(papers["subject"].unique())
 class_idx = {name: id for id, name in enumerate(class_values)}
 paper_idx = {name: idx for idx, name in enumerate(sorted(papers["paper_id"].unique()))}
+
+
+# In[59]:
+
 
 papers["paper_id"] = papers["paper_id"].apply(lambda name: paper_idx[name])
 citations["source"] = citations["source"].apply(lambda name: paper_idx[name])
@@ -266,33 +270,19 @@ citations["target"] = citations["target"].apply(lambda name: paper_idx[name])
 papers["subject"] = papers["subject"].apply(lambda value: class_idx[value])
 
 
-# In[12]:
+# In[60]:
 
 
-class_values = sorted(papers["subject"].unique())
-class_idx = {name: id for id, name in enumerate(class_values)}
-paper_idx = {name: idx for idx, name in enumerate(sorted(papers["paper_id"].unique()))}
+papers.head()
 
 
-# In[13]:
-
-
-class_idx
-
-
-# In[14]:
-
-
-paper_idx
-
-
-# In[15]:
+# In[61]:
 
 
 papers.shape
 
 
-# In[16]:
+# In[62]:
 
 
 citations.head()
@@ -302,7 +292,7 @@ citations.head()
 # and the color of the node corresponds to its subject. Note that we only show a sample of
 # the papers in the dataset.
 
-# In[17]:
+# In[63]:
 
 
 plt.figure(figsize=(10, 10))
@@ -314,7 +304,7 @@ nx.draw_spring(cora_graph, node_size=15, node_color=subjects)
 
 # ### Split the dataset into stratified train and test sets
 
-# In[18]:
+# In[64]:
 
 
 train_data, test_data = [], []
@@ -334,7 +324,7 @@ print("Test data shape:", test_data.shape)
 
 # ## Implement, Train and Evaluate Experiment
 
-# In[19]:
+# In[65]:
 
 
 hidden_units = [32, 32]
@@ -346,7 +336,7 @@ batch_size = 256
 
 # This function compiles and trains an input model using the given training data.
 
-# In[20]:
+# In[66]:
 
 
 
@@ -369,6 +359,7 @@ def run_experiment(model, x_train, y_train):
         batch_size=batch_size,
         validation_split=0.3,
         callbacks=[early_stopping],
+        verbose=False,
     )
 
     return history
@@ -376,7 +367,7 @@ def run_experiment(model, x_train, y_train):
 
 # This function displays the loss and accuracy curves of the model during training.
 
-# In[21]:
+# In[67]:
 
 
 
@@ -401,7 +392,7 @@ def display_learning_curves(history):
 # 
 # We will use this module in the baseline and the GNN models.
 
-# In[22]:
+# In[68]:
 
 
 
@@ -420,7 +411,7 @@ def create_ffn(hidden_units, dropout_rate, name=None):
 # 
 # ### Prepare the data for the baseline model
 
-# In[23]:
+# In[69]:
 
 
 feature_names = set(papers.columns) - {"paper_id", "subject"}
@@ -435,7 +426,7 @@ y_train = train_data["subject"]
 y_test = test_data["subject"]
 
 
-# In[24]:
+# In[70]:
 
 
 num_classes
@@ -446,7 +437,7 @@ num_classes
 # We add five FFN blocks with skip connections, so that we generate a baseline model with
 # roughly the same number of parameters as the GNN models to be built later.
 
-# In[25]:
+# In[71]:
 
 
 def create_baseline_model(hidden_units, num_classes, dropout_rate=0.2):
@@ -463,7 +454,7 @@ def create_baseline_model(hidden_units, num_classes, dropout_rate=0.2):
     return keras.Model(inputs=inputs, outputs=logits, name="baseline")
 
 
-# In[26]:
+# In[72]:
 
 
 baseline_model = create_baseline_model(hidden_units, num_classes, dropout_rate)
@@ -472,7 +463,7 @@ baseline_model.summary()
 
 # ### Train the baseline classifier
 
-# In[27]:
+# In[73]:
 
 
 history = run_experiment(baseline_model, x_train, y_train)
@@ -480,7 +471,7 @@ history = run_experiment(baseline_model, x_train, y_train)
 
 # Let's plot the learning curves.
 
-# In[28]:
+# In[74]:
 
 
 display_learning_curves(history)
@@ -488,7 +479,7 @@ display_learning_curves(history)
 
 # Now we evaluate the baseline model on the test data split.
 
-# In[29]:
+# In[75]:
 
 
 _, test_accuracy = baseline_model.evaluate(x=x_test, y=y_test, verbose=0)
@@ -500,7 +491,7 @@ print(f"Test accuracy: {round(test_accuracy * 100, 2)}%")
 # Let's create new data instances by randomly generating binary word vectors with respect to
 # the word presence probabilities.
 
-# In[30]:
+# In[76]:
 
 
 
@@ -524,7 +515,7 @@ def display_class_probabilities(probabilities):
 
 # Now we show the baseline model predictions given these randomly generated instances.
 
-# In[31]:
+# In[77]:
 
 
 new_instances = generate_random_instances(num_classes)
@@ -553,7 +544,7 @@ display_class_probabilities(probabilities)
 # 3. `edge_weights` (optional): This is a `[num_edges]` NumPy array that includes the edge weights, which *quantify*
 # the relationships between nodes in the graph. In this example, there are no weights for the paper citations.
 
-# In[32]:
+# In[78]:
 
 
 # Create an edges array (sparse adjacency matrix) of shape [2, num_edges].
@@ -572,13 +563,13 @@ print("Edge-Weight shape:", edge_weights.shape)
 print("Nodes shape:", node_features.shape)
 
 
-# In[33]:
+# In[79]:
 
 
 edges
 
 
-# In[34]:
+# In[80]:
 
 
 edge_weights
@@ -609,7 +600,7 @@ edge_weights
 # Two other key techniques that are not covered are [Graph Attention Networks](https://arxiv.org/abs/1710.10903)
 # and [Message Passing Neural Networks](https://arxiv.org/abs/1704.01212).
 
-# In[35]:
+# In[81]:
 
 
 
@@ -743,7 +734,7 @@ class GraphConvLayer(layers.Layer):
 # The model will accept a **batch** of `node_indices`, which are used to lookup the
 # node features and neighbours from the `graph_info`.
 
-# In[36]:
+# In[82]:
 
 
 
@@ -821,7 +812,7 @@ class GNNNodeClassifier(tf.keras.Model):
 # Notice that if you provide `N` node indices, the output will be a tensor of shape `[N, num_classes]`,
 # regardless of the size of the graph.
 
-# In[37]:
+# In[83]:
 
 
 def create_ffn(hidden_units, dropout_rate, name=None):
@@ -835,7 +826,7 @@ def create_ffn(hidden_units, dropout_rate, name=None):
     return keras.Sequential(fnn_layers, name=name)
 
 
-# In[38]:
+# In[84]:
 
 
 gnn_model = GNNNodeClassifier(
@@ -858,7 +849,7 @@ gnn_model.summary()
 # that makes sure that neighbouring nodes in graph have similar representations, while faraway
 # nodes have dissimilar representations.
 
-# In[39]:
+# In[85]:
 
 
 x_train = train_data.paper_id.to_numpy()
@@ -868,7 +859,7 @@ history = run_experiment(gnn_model, x_train, y_train)
 
 # Let's plot the learning curves
 
-# In[40]:
+# In[86]:
 
 
 display_learning_curves(history)
@@ -878,7 +869,7 @@ display_learning_curves(history)
 # The results may vary depending on the training sample, however the GNN model always outperforms
 # the baseline model in terms of the test accuracy.
 
-# In[41]:
+# In[87]:
 
 
 x_test = test_data.paper_id.to_numpy()
@@ -891,7 +882,7 @@ print(f"Test accuracy: {round(test_accuracy * 100, 2)}%")
 # Let's add the new instances as nodes to the `node_features`, and generate links
 # (citations) to existing nodes.
 
-# In[42]:
+# In[88]:
 
 
 # First we add the N new_instances as nodes to the graph
@@ -923,7 +914,7 @@ new_edges = np.concatenate([edges, new_citations], axis=1)
 
 # Now let's update the `node_features` and the `edges` in the GNN model.
 
-# In[43]:
+# In[89]:
 
 
 print("Original node_features shape:", gnn_model.node_features.shape)

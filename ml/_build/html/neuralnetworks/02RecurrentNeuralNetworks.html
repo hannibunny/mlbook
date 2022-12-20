@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recurrent Neural Networks &#8212; Machine Learning Lecture</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,48 +19,64 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Convolutional Neural Networks" href="03ConvolutionNeuralNetworks.html" />
     <link rel="prev" title="Neural Networks Introduction" href="01NeuralNets.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -68,10 +85,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
       
@@ -82,16 +104,17 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Intro and Overview Machine Learning Lecture
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Intro and Overview Machine Learning Lecture
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -103,7 +126,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Conventional ML
  </span>
@@ -150,7 +173,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Neural Networks
  </span>
@@ -192,7 +215,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Autoencoder
  </span>
@@ -204,7 +227,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   GAN
  </span>
@@ -221,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Reinforcement Learning
  </span>
@@ -243,7 +266,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Text
  </span>
@@ -260,7 +283,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Graph Neural Networks
  </span>
@@ -272,7 +295,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Transformer
  </span>
@@ -289,7 +312,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   References
  </span>
@@ -303,91 +326,164 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/neuralnetworks/02RecurrentNeuralNetworks.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/neuralnetworks/02RecurrentNeuralNetworks.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/neuralnetworks/02RecurrentNeuralNetworks.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/neuralnetworks/02RecurrentNeuralNetworks.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#recap-feedforward-neural-networks">
    Recap: Feedforward Neural Networks
@@ -444,23 +540,95 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Recurrent Neural Networks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap-feedforward-neural-networks">
+   Recap: Feedforward Neural Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Recurrent Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-categories-of-recurrent-neural-networks">
+     Application Categories of Recurrent Neural Networks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-to-one-feedforward-neural-network">
+       One-to-One (Feedforward Neural Network)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#many-to-one-rnn">
+       Many-to-One (RNN)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#many-to-many-rnn">
+       Many-to-Many (RNN)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-to-many-rnn">
+       One-To-Many (RNN)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bidirectional-rnn">
+       Bidirectional RNN
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-short-term-memory-lstm-networks">
+   Long-short-Term-Memory (LSTM) networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gated-recurrent-unit-gru">
+   Gated Recurrent Unit (GRU)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="recurrent-neural-networks">
-<h1>Recurrent Neural Networks<a class="headerlink" href="#recurrent-neural-networks" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="recurrent-neural-networks">
+<h1>Recurrent Neural Networks<a class="headerlink" href="#recurrent-neural-networks" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 30.10.2020</p></li>
 </ul>
 <div class="section" id="recap-feedforward-neural-networks">
-<h2>Recap: Feedforward Neural Networks<a class="headerlink" href="#recap-feedforward-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2>Recap: Feedforward Neural Networks<a class="headerlink" href="#recap-feedforward-neural-networks" title="Permalink to this headline">#</a></h2>
 <p>Feedforward neural networks have already been introduced in <a class="reference internal" href="01NeuralNets.html"><span class="doc std std-doc">01NeuralNets.ipynb</span></a>. Here, we just repeat the basics of feedforward nets in order to clarify how Recurrent Neural Networks differ from them.</p>
 <p>In artificial neural networks the neurons are typically arranged in layers. There exist weighted connections between the neurons in different layers. The weights are learned during the training-phase and define the overall function <span class="math notranslate nohighlight">\(f\)</span>, which maps an input-signal <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to an output <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. In a feed-forward network the neural layers are  ordered such that the signals of the input-neurons are connected to the input of the neurons in the first hidden layer. The output of the neurons in the <span class="math notranslate nohighlight">\(i.th\)</span> hidden layer are connected to the input of the neurons in the <span class="math notranslate nohighlight">\((i+1).th\)</span> hidden layer and so on. The output of the neurons in the last hidden layer, are connected to the neurons in the output layer. In particular there are no backward-connections in a feed-forward network. A multilayer-perceptron (MLP) is a feed-forward network in which all neurons in layer <span class="math notranslate nohighlight">\(i\)</span> are connected to all neurons in layer <span class="math notranslate nohighlight">\(i+1\)</span>. A simple MLP with 3 input neurons, one hidden layer and one neuron in the output layer is depicted in figure below.</p>
 <p><img alt="mlp" src="http://maucher.home.hdm-stuttgart.de/Pics/mlp.PNG" /></p>
@@ -484,7 +652,7 @@
 <p>where <span class="math notranslate nohighlight">\(g(\cdot)\)</span> is the <em>activation-function</em>. Typical activation-functions are e.g. sigmoid-, tanh-, softmax- or the identity-function. The weight matrix <span class="math notranslate nohighlight">\(W^k\)</span> of layer <span class="math notranslate nohighlight">\(k\)</span> consists of <span class="math notranslate nohighlight">\(z_k\)</span> rows and <span class="math notranslate nohighlight">\(z_{k-1}\)</span> columns. The entry <span class="math notranslate nohighlight">\(W_{ij}^k\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is the weight of the connection from neuron <span class="math notranslate nohighlight">\(j\)</span> in layer <span class="math notranslate nohighlight">\(k-1\)</span> to neuron <span class="math notranslate nohighlight">\(i\)</span> in layer <span class="math notranslate nohighlight">\(k\)</span>.</p>
 </div>
 <div class="section" id="id1">
-<h2>Recurrent Neural Networks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Recurrent Neural Networks<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>In feed-forward neural networks the output depends only on the network parameters and the current input vector. Previous or successive input-vectors are not regarded. This means, that <strong>feed-forward networks do not model correlations between successive input-vectors</strong>.</p>
 <p>E.g. in Natural Language Processing (NLP) the input signals are often words of a phrase, sentence, paragraph or document. Obviously, successive words are correlated. Speech and text are not the only domains of <strong>correlated data</strong>. For all <strong>time-series-data</strong>, e.g. temperature, stock-market, unemployment-numbers, …we also have temporal correlations. A feed-forward network would ignore these correlations. Recurrent Neural Networks (RNNs) would be better for this type of data.</p>
 <p>The architecture of a <strong>simple recurrent layer</strong> is depicted in the figure below. RNNs operate on variable-length sequences of input. In contrast to simple feedforward-networks, they have connections in forward- and backward-direction. The backward-connections realise an internal state, or memory. In each time stamp the output <span class="math notranslate nohighlight">\(h^1(t)\)</span> is calculated in dependence of the current input <span class="math notranslate nohighlight">\(x(t)\)</span> and the previous output <span class="math notranslate nohighlight">\(h^1(t-1)\)</span>. Thus the current output depends on the current input and all former outputs. In this way RNNs model correlations between successive input elements.</p>
@@ -501,7 +669,7 @@
 <p>The picture above depicts a single recurrent layer. In a (deep) neural network several recurrent layers can be stacked togehter. A convenient architecture-type for sequence-classification (e.g. text-classification) contains one or more recurrent layers and one or more dense layers at the output. In this constellation the dense layers at the output serve as classifier and the recurrent layers at the input generate a meaningful representation of the input-sequence. However, sequence-classification (<em>many-to-one</em>) is only one application category of recurrent neural networks. Other categories are described in <a class="reference external" href="#appcat">subsection Application Categories</a>.</p>
 <p><a id="appcat"></a></p>
 <div class="section" id="application-categories-of-recurrent-neural-networks">
-<h3>Application Categories of Recurrent Neural Networks<a class="headerlink" href="#application-categories-of-recurrent-neural-networks" title="Permalink to this headline">¶</a></h3>
+<h3>Application Categories of Recurrent Neural Networks<a class="headerlink" href="#application-categories-of-recurrent-neural-networks" title="Permalink to this headline">#</a></h3>
 <p>In order to distinguish RNN application categories we apply an abstract representations of neural networks in which</p>
 <ul class="simple">
 <li><p>the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is represented by a  <strong><font color='green'>green rectangle</font></strong>.</p></li>
@@ -513,13 +681,13 @@
 <div><p><strong>Note:</strong> The application categories, listed below, are not only applicable for simple RNNs, but also for <a class="reference external" href="#lstm">LSTMs</a> and <a class="reference external" href="#gru">GRUs</a>, which will be described in the following sections.</p>
 </div></blockquote>
 <div class="section" id="one-to-one-feedforward-neural-network">
-<h4>One-to-One (Feedforward Neural Network)<a class="headerlink" href="#one-to-one-feedforward-neural-network" title="Permalink to this headline">¶</a></h4>
+<h4>One-to-One (Feedforward Neural Network)<a class="headerlink" href="#one-to-one-feedforward-neural-network" title="Permalink to this headline">#</a></h4>
 <p>With the notation defined above a Feedworward Neural Network with one hidden layer is abstractly defined as below:</p>
 <p><img alt="oneToOne" src="http://maucher.home.hdm-stuttgart.de/Pics/oneToOne.PNG" /></p>
 <p>This type of model represents the standard supervised learning algorithms for classification and regression, where all input-vectors are considered to be independent of each other.</p>
 </div>
 <div class="section" id="many-to-one-rnn">
-<h4>Many-to-One (RNN)<a class="headerlink" href="#many-to-one-rnn" title="Permalink to this headline">¶</a></h4>
+<h4>Many-to-One (RNN)<a class="headerlink" href="#many-to-one-rnn" title="Permalink to this headline">#</a></h4>
 <p>A many-to-one recurrent architecture maps a sequence of input-vectors to a single output. An example for this category is <strong>text-classification</strong>, where each input represents a single word and a class-label must be calculated for the entire sequence. At each time stamp <span class="math notranslate nohighlight">\(t \in [1,T]\)</span></p>
 <ul class="simple">
 <li><p>a new input-vector <span class="math notranslate nohighlight">\(x(t)\)</span> (word representation) is passed to the net</p></li>
@@ -533,7 +701,7 @@
 <p><img alt="manyToOne" src="http://maucher.home.hdm-stuttgart.de/Pics/textRNN.png" /></p>
 </div>
 <div class="section" id="many-to-many-rnn">
-<h4>Many-to-Many (RNN)<a class="headerlink" href="#many-to-many-rnn" title="Permalink to this headline">¶</a></h4>
+<h4>Many-to-Many (RNN)<a class="headerlink" href="#many-to-many-rnn" title="Permalink to this headline">#</a></h4>
 <p>A many-to-many recurrent architecture maps a sequence of input-vectors to a sequence of output-vectors. An example for this category is <strong>language-translation</strong>, where each input represents a single word. The entire sequence is usually a sentence and the output is the translated sentence. At each time stamp <span class="math notranslate nohighlight">\(t \in [1,T]\)</span></p>
 <ul class="simple">
 <li><p>a new input-vector <span class="math notranslate nohighlight">\(x(t)\)</span> (word representation) is passed to the net</p></li>
@@ -549,12 +717,12 @@
 <p><img alt="manyToManySync" src="http://maucher.home.hdm-stuttgart.de/Pics/manyToManySync.PNG" /></p>
 </div>
 <div class="section" id="one-to-many-rnn">
-<h4>One-To-Many (RNN)<a class="headerlink" href="#one-to-many-rnn" title="Permalink to this headline">¶</a></h4>
+<h4>One-To-Many (RNN)<a class="headerlink" href="#one-to-many-rnn" title="Permalink to this headline">#</a></h4>
 <p>Finally, the one-to-many recurrent architecture maps a single vector at the input, to a sequence of output-vectors. A concrete application of this category is image-captioning, where the input is a single image, and the output is a sequence of words, which describes the contents of the image in a natural language. As can be seen in the picture below, the input <span class="math notranslate nohighlight">\(x(t=1)\)</span> is applied to calculate the first hidden-state <span class="math notranslate nohighlight">\(h(t=1)\)</span>. All following hidden states <span class="math notranslate nohighlight">\(h(t)\)</span> are calculated only from <span class="math notranslate nohighlight">\(h(t-1)\)</span>. For each hidden-state <span class="math notranslate nohighlight">\(h(t)\)</span> a corresponding output <span class="math notranslate nohighlight">\(y(t)\)</span> is calculated.</p>
 <p><img alt="oneToMany" src="http://maucher.home.hdm-stuttgart.de/Pics/oneToMany.PNG" /></p>
 </div>
 <div class="section" id="bidirectional-rnn">
-<h4>Bidirectional RNN<a class="headerlink" href="#bidirectional-rnn" title="Permalink to this headline">¶</a></h4>
+<h4>Bidirectional RNN<a class="headerlink" href="#bidirectional-rnn" title="Permalink to this headline">#</a></h4>
 <p>A bidirectional RNN calculates two types of hidden-states at it’s output:</p>
 <ul class="simple">
 <li><p>The first type is the same as described up to now in this notebook. I.e. the current recurrent hidden layer output <span class="math notranslate nohighlight">\(h^1(t)\)</span> is calculated from the current input <span class="math notranslate nohighlight">\(x(t)\)</span> and the recurrent hidden output from the previous time-step <span class="math notranslate nohighlight">\(h^1(t-1)\)</span>.</p></li>
@@ -568,7 +736,7 @@
 </div>
 </div>
 <div class="section" id="long-short-term-memory-lstm-networks">
-<h2>Long-short-Term-Memory (LSTM) networks<a class="headerlink" href="#long-short-term-memory-lstm-networks" title="Permalink to this headline">¶</a></h2>
+<h2>Long-short-Term-Memory (LSTM) networks<a class="headerlink" href="#long-short-term-memory-lstm-networks" title="Permalink to this headline">#</a></h2>
 <p>Simple RNNs, as described and depicted in <a class="reference external" href="#abstrnn">Simple RNN</a>, suffer from an important problem: Applying Stochastic Gradient Descent allows to learn short-term dependencies quite well, but the network is not capable to learn long-term dependencies. The reason for this drawback is the <a class="reference external" href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient problem</a>: In SGD weights are updated proportional to the gradient of the loss-function with respect to the specific weight. In some areas of the networks these gradients get marginal, i.e. the weights are not adapted any longer. S. Hochreiter and J. Schmidhuber studied the problem of vanishing gradients in simple RNNs in their famous paper <a class="reference external" href="https://www.researchgate.net/publication/13853244_Long_Short-term_Memory">Long short-term Memory</a> and they proposed a new type of RNN, which circumvents this problem and is able to learn also long-term dependencies. The architecture of such a Long short-term Memory Network (LSTM) is depicted below:</p>
 <p><img alt="lstm" src="http://maucher.home.hdm-stuttgart.de/Pics/abstrlstm.png" /></p>
 <p>As shown in the figure above a LSTM keeps and updates a so called <em>cell-state</em>. This cell-state mainly realises the memory. The network is able to learn, which parts in the memory (cell-state) can be forgotten and which parts of the memory shall be updated. The new hidden-state <span class="math notranslate nohighlight">\(h^1(t)\)</span> depends not only on the previous hidden state <span class="math notranslate nohighlight">\(h^1(t-1)\)</span> and the current input <span class="math notranslate nohighlight">\(x(t)\)</span>, but also on the memory (cell-state).</p>
@@ -577,7 +745,7 @@
 <p><a id="gru"></a></p>
 </div>
 <div class="section" id="gated-recurrent-unit-gru">
-<h2>Gated Recurrent Unit (GRU)<a class="headerlink" href="#gated-recurrent-unit-gru" title="Permalink to this headline">¶</a></h2>
+<h2>Gated Recurrent Unit (GRU)<a class="headerlink" href="#gated-recurrent-unit-gru" title="Permalink to this headline">#</a></h2>
 <p>Recurrent Neural Networks with Gated Recurrent Unit (GRU) have been introduced in <a class="reference external" href="https://arxiv.org/pdf/1409.1259.pdf">Cho et al: On the Properties of Neural Machine Translation: Encoder–Decoder Approaches</a>. They perform as well as LSTMs on sequence modelling, while  being conceptually simpler. As shown in the figure below, similar to the LSTM unit, the GRU has gating units that modulate the flow of information inside the unit, however, without having a separate cell-state memory. The output of the GRU <span class="math notranslate nohighlight">\(h^1(t)\)</span> is a linear interpolation of the previous output <span class="math notranslate nohighlight">\(h^1(t-1)\)</span> and a candidate output <span class="math notranslate nohighlight">\(\underline{h}^1(t)\)</span>. The weighting of these two elements is defined by the update-filter <span class="math notranslate nohighlight">\(i(t)\)</span>. The output <span class="math notranslate nohighlight">\(f(t)\)</span> of the forget-gate determines which parts from the previous hidden state <span class="math notranslate nohighlight">\(h^1(t-1)\)</span> can be forgotten in the calculation of the candidate output <span class="math notranslate nohighlight">\(\underline{h}^1(t)\)</span>.</p>
 <p><img alt="abstrgru" src="http://maucher.home.hdm-stuttgart.de/Pics/abstrgru.png" /></p>
 <p>An empirical evaluation of LSTMs and GRUs can be found in <a class="reference external" href="https://arxiv.org/pdf/1412.3555.pdf">Chung et al, Empirical Evaluation of Gated Recurrent Neural Networkson Sequence Modeling</a>.</p>
@@ -606,34 +774,48 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="01NeuralNets.html" title="previous page">Neural Networks Introduction</a>
-    <a class='right-next' id="next-link" href="03ConvolutionNeuralNetworks.html" title="next page">Convolutional Neural Networks</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01NeuralNets.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Neural Networks Introduction</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="03ConvolutionNeuralNetworks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Convolutional Neural Networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Dr. Johannes Maucher<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Johannes Maucher<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>
