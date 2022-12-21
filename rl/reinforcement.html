@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Deep Reinforcement Learning" href="DQN.html" />
-    <link rel="prev" title="DCGAN Keras Implementation" href="../gan/DCGAN.html" />
+    <link rel="prev" title="Difussion Models" href="../diffusion/denoisingDiffusion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -242,6 +242,18 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../gan/DCGAN.html">
    DCGAN Keras Implementation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Diffusion Models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../diffusion/denoisingDiffusion.html">
+   Difussion Models
   </a>
  </li>
 </ul>
@@ -735,7 +747,7 @@ title="Print to PDF"
 <figure class="align-center" id="rlagent">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png" src="https://maucher.home.hdm-stuttgart.de/Pics/RLAgent.png" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 48 </span><span class="caption-text">Interaction of an agent with it’s environment in a Markov Decision Process (MDP). Image source: <span id="id2">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span>.</span><a class="headerlink" href="#rlagent" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Interaction of an agent with it’s environment in a Markov Decision Process (MDP). Image source: <span id="id2">[<a class="reference internal" href="../referenceSection.html#id57">SB18</a>]</span>.</span><a class="headerlink" href="#rlagent" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -747,7 +759,7 @@ title="Print to PDF"
 <figure class="align-center" id="alphago">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg" src="https://maucher.home.hdm-stuttgart.de/Pics/alphaGo.jpeg" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Deepmind’s AlphaGo (<span id="id3">[<a class="reference internal" href="../referenceSection.html#id61">SHM+16</a>]</span>) combines Reinforcement Learning, Deep Learning and Monte Carlo Tree Search. AlphaGo was able to beat the world champion in Go, Lee Sedol, in 2016.</span><a class="headerlink" href="#alphago" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Deepmind’s AlphaGo (<span id="id3">[<a class="reference internal" href="../referenceSection.html#id61">SHM+16</a>]</span>) combines Reinforcement Learning, Deep Learning and Monte Carlo Tree Search. AlphaGo was able to beat the world champion in Go, Lee Sedol, in 2016.</span><a class="headerlink" href="#alphago" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -763,14 +775,14 @@ title="Print to PDF"
 <figure class="align-center" id="rlex1">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/4-3welt.jpg" style="width: 200pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Image source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id58">RN10</a>]</span>: Pathfinding in a non-deterministic environment</span><a class="headerlink" href="#rlex1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Image source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id58">RN10</a>]</span>: Pathfinding in a non-deterministic environment</span><a class="headerlink" href="#rlex1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For this pathfinding scenario, the <strong>optimum policy</strong>, learned by the RL agent may look like in the picture below. The policy is defined by the arrows in the states. These arrows determine in each state the action to take in order to maximize the expected future cumulative reward.</p>
 <figure class="align-center" id="rlex1strat">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/4-3weltstrategie1.jpg" style="width: 200pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Image source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id58">RN10</a>]</span>: Optimum policy learned by the RL agent</span><a class="headerlink" href="#rlex1strat" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Image source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id58">RN10</a>]</span>: Optimum policy learned by the RL agent</span><a class="headerlink" href="#rlex1strat" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -779,13 +791,13 @@ title="Print to PDF"
 <figure class="align-center" id="rlex2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter1Engl.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Image source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span>: Two simple crawling robots. Each robot has two joints. Each joint can be in two different positions. Hence, there exists 4 different states. The robot shall learn to control the joints such that it efficiently moves from left to right. Whenever the robot moves to the right it perceives a positive reward. Movement to the left is punished with a negative reward. As can easily be verified, a movement of the robot depends not only on a single action but on a state-action-pair.</span><a class="headerlink" href="#rlex2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Image source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span>: Two simple crawling robots. Each robot has two joints. Each joint can be in two different positions. Hence, there exists 4 different states. The robot shall learn to control the joints such that it efficiently moves from left to right. Whenever the robot moves to the right it perceives a positive reward. Movement to the left is punished with a negative reward. As can easily be verified, a movement of the robot depends not only on a single action but on a state-action-pair.</span><a class="headerlink" href="#rlex2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="rlex2ff">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/krabbelroboter2Engl.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Image source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span>: State <span class="math notranslate nohighlight">\(s_t\)</span>, action <span class="math notranslate nohighlight">\(a_t\)</span> and reward <span class="math notranslate nohighlight">\(r_t\)</span> for 4 successive time-steps.</span><a class="headerlink" href="#rlex2ff" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 54 </span><span class="caption-text">Image source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span>: State <span class="math notranslate nohighlight">\(s_t\)</span>, action <span class="math notranslate nohighlight">\(a_t\)</span> and reward <span class="math notranslate nohighlight">\(r_t\)</span> for 4 successive time-steps.</span><a class="headerlink" href="#rlex2ff" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -839,7 +851,7 @@ r(s,a) = \mathbb{E}(R_t \mid S_{t-1}=s, A_{t-1}=a) = \sum\limits_{r \in \mathcal
 <figure class="align-center" id="mdpwik">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png" src="https://maucher.home.hdm-stuttgart.de/Pics/MarkovDecisionProcess.png" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 54 </span><span class="caption-text">Example of a simple MDP  with three states (green circles) and two actions (orange circles), with two rewards (orange arrows). Image source: <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_decision_process">wikipedia</a>.</span><a class="headerlink" href="#mdpwik" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 55 </span><span class="caption-text">Example of a simple MDP  with three states (green circles) and two actions (orange circles), with two rewards (orange arrows). Image source: <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_decision_process">wikipedia</a>.</span><a class="headerlink" href="#mdpwik" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The cumulative sum of received future rewards at time <span class="math notranslate nohighlight">\(t\)</span> is als called the <strong>return <span class="math notranslate nohighlight">\(G_t\)</span></strong>:</p>
@@ -902,7 +914,7 @@ v_{\pi}(s) &amp; = &amp;  \sum\limits_a \pi(a\mid s) \sum\limits_{s'} \sum\limit
 <figure class="align-center" id="statevalueviz">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png" src="https://maucher.home.hdm-stuttgart.de/Pics/stateValueViz.png" style="width: 500pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 55 </span><span class="caption-text"><em>Visualization</em> of Bellman-equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a>: For a given state <span class="math notranslate nohighlight">\(s\)</span> and policy <span class="math notranslate nohighlight">\(\pi\)</span>, the policy defines the probability of actions, available in <span class="math notranslate nohighlight">\(s\)</span>. For a given state-action pair <span class="math notranslate nohighlight">\((s,a)\)</span> the transition model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> defines the probability of successive states and the reward model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> defines the probability of a reward <span class="math notranslate nohighlight">\(r\)</span>. For each of the possible succesive states <span class="math notranslate nohighlight">\(s'\)</span> the sum <span class="math notranslate nohighlight">\(r + \gamma v_{\pi}(s')\)</span> is calculated, and weighted by the probability of this <span class="math notranslate nohighlight">\((a,s',r)\)</span>-triple.</span><a class="headerlink" href="#statevalueviz" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 56 </span><span class="caption-text"><em>Visualization</em> of Bellman-equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a>: For a given state <span class="math notranslate nohighlight">\(s\)</span> and policy <span class="math notranslate nohighlight">\(\pi\)</span>, the policy defines the probability of actions, available in <span class="math notranslate nohighlight">\(s\)</span>. For a given state-action pair <span class="math notranslate nohighlight">\((s,a)\)</span> the transition model <span class="math notranslate nohighlight">\(p(s' \mid s,a)\)</span> defines the probability of successive states and the reward model <span class="math notranslate nohighlight">\(p(r \mid s,a)\)</span> defines the probability of a reward <span class="math notranslate nohighlight">\(r\)</span>. For each of the possible succesive states <span class="math notranslate nohighlight">\(s'\)</span> the sum <span class="math notranslate nohighlight">\(r + \gamma v_{\pi}(s')\)</span> is calculated, and weighted by the probability of this <span class="math notranslate nohighlight">\((a,s',r)\)</span>-triple.</span><a class="headerlink" href="#statevalueviz" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The state-value function of equation <a class="reference internal" href="#equation-statevaluerec2">(86)</a> defines an ordering of policies in the sense that one can say that policy <span class="math notranslate nohighlight">\(\pi\)</span> is better than policy <span class="math notranslate nohighlight">\(\pi'\)</span>, if and only if <span class="math notranslate nohighlight">\(v_{\pi}(s) \geq v_{\pi'}(s)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span>. Moreover, there exists at least one optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>, which is better than all other policies. The goal of an RL agent is to find a good approximation to this optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span>.</p>
@@ -930,7 +942,7 @@ v_* (s) &amp; = &amp;  \max\limits_{a \in \mathcal{A}(s)} q_{\pi_*}(s,a) \\
 <figure class="align-center" id="statevaluevizopt">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png" src="https://maucher.home.hdm-stuttgart.de/Pics/stateValueVizOpt.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 56 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(89)</a>.</span><a class="headerlink" href="#statevaluevizopt" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 57 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(v_*\)</span> <a class="reference internal" href="#equation-bellopt">(89)</a>.</span><a class="headerlink" href="#statevaluevizopt" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>From equation <a class="reference internal" href="#equation-bellopt">(89)</a> the optimum policy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be obtained by just taking <span class="math notranslate nohighlight">\(argmax\)</span> instead of <span class="math notranslate nohighlight">\(max\)</span>. The best action in state <span class="math notranslate nohighlight">\(s\)</span> is</p>
@@ -949,7 +961,7 @@ q_*(s,a) &amp; = &amp; \mathbb{E} \left[ R_{t+1} + \gamma \max\limits_{a'} q_*(S
 <figure class="align-center" id="actionvaluevizopt">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png" src="https://maucher.home.hdm-stuttgart.de/Pics/actionValueVizOpt.png" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 57 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span> <a class="reference internal" href="#equation-belloptq">(91)</a>.</span><a class="headerlink" href="#actionvaluevizopt" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 58 </span><span class="caption-text"><em>Visualization</em> of Bellman optimality equation for <span class="math notranslate nohighlight">\(q_*\)</span> <a class="reference internal" href="#equation-belloptq">(91)</a>.</span><a class="headerlink" href="#actionvaluevizopt" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>From equation <a class="reference internal" href="#equation-belloptq">(91)</a> the optimum policy <span class="math notranslate nohighlight">\(\pi_*\)</span> can easily be obtained, since in a given state the best action <span class="math notranslate nohighlight">\(a\)</span> is</p>
@@ -1086,13 +1098,13 @@ v_{k+1}(s)  =   \max\limits_{a} \sum\limits_{s'} \sum\limits_r p(s',r \mid s,a) 
 <figure class="align-center" id="valueitex1">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBspErtl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBspErtl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBspErtl.png" style="width: 500pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 58 </span><span class="caption-text">The upper left grid represents the initial state of the <span class="math notranslate nohighlight">\(3 \times 3\)</span>-world. All states are initialized with <span class="math notranslate nohighlight">\(v_0(s)=0\)</span>. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards (<span class="math notranslate nohighlight">\(-1\)</span> for <em>right</em> and <span class="math notranslate nohighlight">\(+1\)</span> for <em>left</em>). The discounting-rate is assumed to be <span class="math notranslate nohighlight">\(\gamma = 0.9\)</span>. In each iteration the states are looped through from the lower left to the upper right grid-cell.
+<p><span class="caption-number">Fig. 59 </span><span class="caption-text">The upper left grid represents the initial state of the <span class="math notranslate nohighlight">\(3 \times 3\)</span>-world. All states are initialized with <span class="math notranslate nohighlight">\(v_0(s)=0\)</span>. The reward-values are assigned to the arrows. Only actions within the lower row of the world have non-negative rewards (<span class="math notranslate nohighlight">\(-1\)</span> for <em>right</em> and <span class="math notranslate nohighlight">\(+1\)</span> for <em>left</em>). The discounting-rate is assumed to be <span class="math notranslate nohighlight">\(\gamma = 0.9\)</span>. In each iteration the states are looped through from the lower left to the upper right grid-cell.
 The last iteration is marked by <span class="math notranslate nohighlight">\(V^*\)</span>. The two plots in the right  bottom line are derived optimal strategies.</span><a class="headerlink" href="#valueitex1" title="Permalink to this image">#</a></p>
 <div class="legend">
 <figure class="align-center" id="valueitex2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/WertIterationBsp2Ertl.png" style="width: 500pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 59 </span><span class="caption-text">Calculation of optimal strategy from optimal values in <span class="math notranslate nohighlight">\(V^*\)</span>. Field <span class="math notranslate nohighlight">\((2,3)\)</span> is the field in the second column, third row (counted from the origin in the upper left corner). Image source: <span id="id9">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span></span><a class="headerlink" href="#valueitex2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 60 </span><span class="caption-text">Calculation of optimal strategy from optimal values in <span class="math notranslate nohighlight">\(V^*\)</span>. Field <span class="math notranslate nohighlight">\((2,3)\)</span> is the field in the second column, third row (counted from the origin in the upper left corner). Image source: <span id="id9">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span></span><a class="headerlink" href="#valueitex2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1467,7 +1479,7 @@ until <span class="math notranslate nohighlight">\(S\)</span> is terminal state<
 <figure class="align-center" id="qlearn1">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/qlearnErtl.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/qlearnErtl.png" src="https://maucher.home.hdm-stuttgart.de/Pics/qlearnErtl.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 60 </span><span class="caption-text">Q-Learning: Updating state-action-values <span class="math notranslate nohighlight">\(Q(s,a)\)</span> and calculation of optimal strategy from optimal values: Initially all <span class="math notranslate nohighlight">\(Q(s,a)\)</span>-values are <span class="math notranslate nohighlight">\(0\)</span> (upper left grid). For the two states in the bottom row, for which <em>move right</em> is possible, the reward for action <em>move-right</em> is <span class="math notranslate nohighlight">\(-1\)</span>. For the two states in the bottom row, for which <em>move left</em> is possible, the reward for action <em>move-left</em> is <span class="math notranslate nohighlight">\(+1\)</span>. For all other state-action pairs the reward is <span class="math notranslate nohighlight">\(0\)</span>.
+<p><span class="caption-number">Fig. 61 </span><span class="caption-text">Q-Learning: Updating state-action-values <span class="math notranslate nohighlight">\(Q(s,a)\)</span> and calculation of optimal strategy from optimal values: Initially all <span class="math notranslate nohighlight">\(Q(s,a)\)</span>-values are <span class="math notranslate nohighlight">\(0\)</span> (upper left grid). For the two states in the bottom row, for which <em>move right</em> is possible, the reward for action <em>move-right</em> is <span class="math notranslate nohighlight">\(-1\)</span>. For the two states in the bottom row, for which <em>move left</em> is possible, the reward for action <em>move-left</em> is <span class="math notranslate nohighlight">\(+1\)</span>. For all other state-action pairs the reward is <span class="math notranslate nohighlight">\(0\)</span>.
 Image source: <span id="id16">[<a class="reference internal" href="../referenceSection.html#id60">Ert09</a>]</span></span><a class="headerlink" href="#qlearn1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -1517,11 +1529,11 @@ Image source: <span id="id16">[<a class="reference internal" href="../referenceS
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../gan/DCGAN.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../diffusion/denoisingDiffusion.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">DCGAN Keras Implementation</p>
+            <p class="prev-next-title">Difussion Models</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="DQN.html" title="next page">
