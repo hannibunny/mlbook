@@ -103,7 +103,9 @@ The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated by a U-net.
 
 ### U-Net
 
-U-Net has been introduced in {cite}`Ronne2015`.
+U-Net is a CNN, which has been introduced in {cite}`Ronne2015` for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path. 
+
+For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png
 ---
@@ -127,3 +129,12 @@ Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www
 ```
 
 
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
+---
+align: center
+width: 600pt
+name:  unetdenoising
+---
+Stepwise denoising in the reverse path
+
+```

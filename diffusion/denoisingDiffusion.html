@@ -624,7 +624,8 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 <p>The mean <span class="math notranslate nohighlight">\(\mu_{\Theta}(x_t,t)\)</span> of this distribution is estimated by a U-net.</p>
 <section id="u-net">
 <h3>U-Net<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h3>
-<p>U-Net has been introduced in <span id="id3">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span>.</p>
+<p>U-Net is a CNN, which has been introduced in <span id="id3">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
+<p>For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied.</p>
 <figure class="align-center" id="unetdiffusion">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" style="width: 600pt;" /></a>
 <figcaption>
@@ -635,6 +636,12 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png" style="width: 600pt;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 51 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a></span><a class="headerlink" href="#unetresidual" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="unetdenoising">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Stepwise denoising in the reverse path</span><a class="headerlink" href="#unetdenoising" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

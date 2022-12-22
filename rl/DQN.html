@@ -537,7 +537,7 @@ title="Print to PDF"
 <figure class="align-center" id="backgammon">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg" src="https://maucher.home.hdm-stuttgart.de/Pics/Backgammon.jpg" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 65 </span><span class="caption-text">In Backgammon alone the number of states is estimated to be in the range of <span class="math notranslate nohighlight">\(10^{20}.\)</span></span><a class="headerlink" href="#backgammon" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 66 </span><span class="caption-text">In Backgammon alone the number of states is estimated to be in the range of <span class="math notranslate nohighlight">\(10^{20}.\)</span></span><a class="headerlink" href="#backgammon" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The problem, that a multiple traversion of all state action pairs is not feasible, is solved by learning a regression model, i.e. a function, which maps Q-Values to each possible state-action pair. In this approach <strong>Reinforcement-Learning and Supervised Learning are combined</strong> in the way that e.g. Q-Learning is applied to provide <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-values for a limited set of state-action pairs. Then a supervised ML-algorithm, e.g. a MLP, is applied to learn a function</p>
@@ -553,7 +553,7 @@ f: (S,A) \rightarrow Q(S,A).
 <figure class="align-center" id="atariscreenshots">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/atariClassics.PNG" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 66 </span><span class="caption-text">Screenshots of some classical Atari computer games, for which DQN has been applied to learn a good <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function.</span><a class="headerlink" href="#atariscreenshots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 67 </span><span class="caption-text">Screenshots of some classical Atari computer games, for which DQN has been applied to learn a good <span class="math notranslate nohighlight">\(Q(S,A)\)</span>-function.</span><a class="headerlink" href="#atariscreenshots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In this subsection the concept of DQN, as developed in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span>, will be described.</p>
@@ -562,14 +562,14 @@ f: (S,A) \rightarrow Q(S,A).
 <figure class="align-center" id="statetoactionvalue">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/Q-Network.PNG" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 67 </span><span class="caption-text">Predicting a Q-value for each state-action pair at the input of a network is conceptionally the same as predicting for a given input state a Q-value for each possible action. Image Source: <a class="reference external" href="http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf">http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf</a></span><a class="headerlink" href="#statetoactionvalue" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Predicting a Q-value for each state-action pair at the input of a network is conceptionally the same as predicting for a given input state a Q-value for each possible action. Image Source: <a class="reference external" href="http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf">http://ir.hit.edu.cn/~jguo/docs/notes/dqn-atari.pdf</a></span><a class="headerlink" href="#statetoactionvalue" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The input to the CNN represents the current game state. The output of the DQN has as much elements as the maximal number of actions available. Atari classical games have been controlled by a joystick, which provides 18 different postions. For each of these 18 actions one Q-value is estimated for the current input state.</p>
 <figure class="align-center" id="dqnarchitecture">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnn.PNG" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Architectur of the DQN CNN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnarchitecture" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Architectur of the DQN CNN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnarchitecture" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The input to the network represents the current game state. In general a <em>state</em> should always contain as much as relevant information as possible. In computer games <strong>movement</strong> is obviously a relevant information. Since movement can not be obtained by observing only a single frame of the screencast, four successive frames are applied to the input of the network. However, these frames are not directly passed to the first layer of the CNN, instead a <strong>preprocessed version of 4 successive frames of the screencast</strong> are used.</p>
@@ -577,7 +577,7 @@ f: (S,A) \rightarrow Q(S,A).
 <figure class="align-center" id="dqnparams">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/DQNcnnTable.PNG" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Hyperparameters of the DQN CNN. Image Source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnparams" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text">Hyperparameters of the DQN CNN. Image Source: <span id="id6">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnparams" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -639,7 +639,7 @@ Q(s,a) := Q(s,a) + \alpha \left[r + \gamma \max\limits_{a'} Q(s',a') - Q(s,a) \r
 <figure class="align-center" id="dqnscores">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/deepReinforcementAtariPerformance.PNG" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 70 </span><span class="caption-text">DQN performance compared to human players. Image Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnscores" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">DQN performance compared to human players. Image Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id39">MKS+13</a>]</span></span><a class="headerlink" href="#dqnscores" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <hr class="footnotes docutils" />
