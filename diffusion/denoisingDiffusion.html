@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reinforcement Learning" href="../rl/reinforcement.html" />
@@ -444,12 +446,46 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-diffusion-process">
+   Forward Diffusion Process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backward-diffusion-process">
+   Backward Diffusion Process
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -461,6 +497,29 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-diffusion-process">
+   Forward Diffusion Process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backward-diffusion-process">
+   Backward Diffusion Process
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -474,10 +533,12 @@ title="Print to PDF"
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last update: 21.12.22 !!Draft!!</p></li>
 </ul>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Generative Adversarial Networks (GANs) and Variational Autoencoders (VAEs) are two generative Deep Learning models, which can be applied to generate new content. The new content is typically a new instance of a category of which many other instances have been used for training.</p>
 <p>GANs and VAEs suffer from drawbacks, e.g. for GANs it is usually challenging to find a good hyperparameter-configuration such that the training-process is stable. Moreover, the diversity of the generated new content is often quite low. For VAEs it is challenging to find a good loss-function.</p>
 <p>Diffusion Models are another type of generative Deep Learning. The concept of diffusion is borrowed from thermodynamics. Gas molecules diffuse from high density to low density areas. During this process entropy increases. In information theory, this entropy-increase corresponds to a loss of information. Such an information loss can be caused by adding noise.</p>
-<p>The idea of Probabilistic Denoising Diffusion models, as introduced in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span> is to</p>
+<p>The idea of Probabilistic Denoising Diffusion models, as introduced in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id71">SDWMG15</a>]</span> and significantly improved in <span id="id2">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span>, is to</p>
 <ol class="simple">
 <li><p>gradually add noise to a given input in the <strong>forward diffusion process</strong></p></li>
 <li><p>learn the corresponding inverse process in a <strong>backward diffusion process</strong> and apply this inverse process to generate new instances from noise.</p></li>
@@ -488,7 +549,30 @@ title="Print to PDF"
 <p><span class="caption-number">Fig. 48 </span><span class="caption-text">Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a></span><a class="headerlink" href="#diffusionprocess" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>For the backward diffusion process a conditional probability distributions must be learned. For this a neural network is applied. The forward diffusion process doesn’t require a training.</p>
 <p>The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation, image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.</p>
+</section>
+<section id="forward-diffusion-process">
+<h2>Forward Diffusion Process<a class="headerlink" href="#forward-diffusion-process" title="Permalink to this headline">#</a></h2>
+<p>Starting form real data <span class="math notranslate nohighlight">\(x_0\)</span>, which is sampled from a known data distribution <span class="math notranslate nohighlight">\(q(x_0)\)</span>, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images <span class="math notranslate nohighlight">\(x_0,x_1,x_2,\ldots,x_T\)</span> is generated. The conditional probability distribution <span class="math notranslate nohighlight">\(q(x_t|x_{t-1})\)</span> for <span class="math notranslate nohighlight">\(x_t\)</span>, given <span class="math notranslate nohighlight">\(x_{t-1}\)</span> is a Gaussian distribution with</p>
+<ul class="simple">
+<li><p>mean: <span class="math notranslate nohighlight">\(\sqrt{1-\beta_t}x_{t-1}\)</span></p></li>
+<li><p>variance: <span class="math notranslate nohighlight">\(\beta_t \mathbf{I}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+q(x_t|x_{t-1}) = \matchcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t \mathbf{I})
+\]</div>
+<figure class="align-center" id="diffusionforward">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png" style="width: 600pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Forward Process: Gradually add noise. This direction of the process is known. No learning required.</span><a class="headerlink" href="#diffusionforward" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="backward-diffusion-process">
+<h2>Backward Diffusion Process<a class="headerlink" href="#backward-diffusion-process" title="Permalink to this headline">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
