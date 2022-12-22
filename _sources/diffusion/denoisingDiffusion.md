@@ -31,14 +31,7 @@ The range of applications of Diffusion models is similar as for GANs and VAEs, e
 
 ## Forward Diffusion Process
 
-Starting form real data $x_0$, which is sampled from a known data distribution $q(x_0)$, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images $x_0,x_1,x_2,\ldots,x_T$ is generated. The conditional probability distribution $q(x_t|x_{t-1})$ for $x_t$, given $x_{t-1}$ is a Gaussian distribution with 
-
-* mean: $\sqrt{1-\beta_t}x_{t-1}$
-* variance: $\beta_t \mathbf{I}$
-
-$$
-q(x_t|x_{t-1}) = \matchcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t \mathbf{I})
-$$    
+Starting form real data $x_0$, which is sampled from a known data distribution $q(x_0)$, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images $x_0,x_1,x_2,\ldots,x_T$ is generated. For $T \rightarrow \infty$, $x_T$ is equivalent to an isotropic Gaussian distribution.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png
 ---
@@ -50,5 +43,28 @@ Forward Process: Gradually add noise. This direction of the process is known. No
 
 ```
 
+The conditional probability distribution $q(x_t|x_{t-1})$ for $x_t$, given $x_{t-1}$ is a Gaussian distribution with 
+
+* mean: $\sqrt{1-\beta_t}x_{t-1}$
+* variance: $\beta_t \mathbf{I}$
+
+The set $\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T$ defines a *variance schedule*, i.e. how much noise is added in each step. $\mathbf{I}$ is the identity matrix:
+
+$$
+q(x_t|x_{t-1}) = \mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t \mathbf{I}),
+$$   
+
+and
+
+$$
+q(x_{1:T}|x_{0}) = \prod_{t=1^T} q(x_t|x_{t-1})
+$$
+
+
+In order to generate the noisy image version $x_t$ in an arbitrary step $t$ it is not necssary to execute $t$ steps in sequence. Instead $x_t$ can be generated as follows:
+
+$$
+x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, \mbox{ where } \epsilon \sim \mathcal{N}(0,\mathbf{I})
+$$
 
 ## Backward Diffusion Process
