@@ -48,8 +48,6 @@ The conditional probability distribution $q(x_t|x_{t-1})$ for $x_t$, given $x_{t
 * mean: $\sqrt{1-\beta_t}x_{t-1}$
 * variance: $\beta_t \mathbf{I}$
 
-The set $\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T$ defines a *variance schedule*, i.e. how much noise is added in each step. $\mathbf{I}$ is the identity matrix:
-
 $$
 q(x_t|x_{t-1}) = \mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t \mathbf{I}),
 $$   
@@ -57,14 +55,32 @@ $$
 and
 
 $$
-q(x_{1:T}|x_{0}) = \prod_{t=1^T} q(x_t|x_{t-1})
+q(x_{1:T}|x_{0}) = \prod_{t=1^T} q(x_t|x_{t-1}).
 $$
 
+The set $\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T$ defines a *variance schedule*, i.e. how much noise is added in each step. $\mathbf{I}$ is the identity matrix:
 
-In order to generate the noisy image version $x_t$ in an arbitrary step $t$ it is not necssary to execute $t$ steps in sequence. Instead $x_t$ can be generated as follows:
+In order to generate the noisy image version $x_t$ in an arbitrary step $t$ it is not necssary to execute $t$ steps in sequence. With
 
 $$
-x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, \mbox{ where } \epsilon \sim \mathcal{N}(0,\mathbf{I})
+\overline{\alpha}_t = \prod_{s=1}^t (1-\beta_s),
 $$
 
-## Backward Diffusion Process
+the probability distribution is
+
+$$
+q(x_t|x_{0}) = \mathcal{N}(x_t;\sqrt{\overline{\alpha}_t x_{0},(1-\overline{\alpha}_t) \mathbf{I})
+$$
+
+and a sample from this distribution can be generated as follows:
+
+$$
+x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, \mbox{ where } \epsilon \sim \mathcal{N}(0,\mathbf{I}).
+$$
+
+The distribution $q(x_t|x_{0})$ is called the *Diffusion Kernel*.
+
+The variance schedule, i.e. the set of $\beta_t$-values, is configured such that $\overline{\alpha}_T \rightarrow 0$ and $q(x_{1:T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})$
+
+
+## Reverse Diffusion Process

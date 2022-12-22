@@ -479,8 +479,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backward-diffusion-process">
-   Backward Diffusion Process
+  <a class="reference internal nav-link" href="#reverse-diffusion-process">
+   Reverse Diffusion Process
   </a>
  </li>
 </ul>
@@ -513,8 +513,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backward-diffusion-process">
-   Backward Diffusion Process
+  <a class="reference internal nav-link" href="#reverse-diffusion-process">
+   Reverse Diffusion Process
   </a>
  </li>
 </ul>
@@ -566,7 +566,6 @@ title="Print to PDF"
 <li><p>mean: <span class="math notranslate nohighlight">\(\sqrt{1-\beta_t}x_{t-1}\)</span></p></li>
 <li><p>variance: <span class="math notranslate nohighlight">\(\beta_t \mathbf{I}\)</span></p></li>
 </ul>
-<p>The set <span class="math notranslate nohighlight">\(\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T\)</span> defines a <em>variance schedule</em>, i.e. how much noise is added in each step. <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the identity matrix:</p>
 <div class="math notranslate nohighlight">
 \[
 q(x_t|x_{t-1}) = \mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t \mathbf{I}),
@@ -574,16 +573,29 @@ q(x_t|x_{t-1}) = \mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_t \mathbf{I}),
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-q(x_{1:T}|x_{0}) = \prod_{t=1^T} q(x_t|x_{t-1})
+q(x_{1:T}|x_{0}) = \prod_{t=1^T} q(x_t|x_{t-1}).
 \]</div>
-<p>In order to generate the noisy image version <span class="math notranslate nohighlight">\(x_t\)</span> in an arbitrary step <span class="math notranslate nohighlight">\(t\)</span> it is not necssary to execute <span class="math notranslate nohighlight">\(t\)</span> steps in sequence. Instead <span class="math notranslate nohighlight">\(x_t\)</span> can be generated as follows:</p>
+<p>The set <span class="math notranslate nohighlight">\(\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T\)</span> defines a <em>variance schedule</em>, i.e. how much noise is added in each step. <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the identity matrix:</p>
+<p>In order to generate the noisy image version <span class="math notranslate nohighlight">\(x_t\)</span> in an arbitrary step <span class="math notranslate nohighlight">\(t\)</span> it is not necssary to execute <span class="math notranslate nohighlight">\(t\)</span> steps in sequence. With</p>
 <div class="math notranslate nohighlight">
 \[
-x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, \mbox{ where } \epsilon \sim \mathcal{N}(0,\mathbf{I})
+\overline{\alpha}_t = \prod_{s=1}^t (1-\beta_s),
 \]</div>
+<p>the probability distribution is</p>
+<div class="math notranslate nohighlight">
+\[
+q(x_t|x_{0}) = \mathcal{N}(x_t;\sqrt{\overline{\alpha}_t x_{0},(1-\overline{\alpha}_t) \mathbf{I})
+\]</div>
+<p>and a sample from this distribution can be generated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, \mbox{ where } \epsilon \sim \mathcal{N}(0,\mathbf{I}).
+\]</div>
+<p>The distribution <span class="math notranslate nohighlight">\(q(x_t|x_{0})\)</span> is called the <em>Diffusion Kernel</em>.</p>
+<p>The variance schedule, i.e. the set of <span class="math notranslate nohighlight">\(\beta_t\)</span>-values, is configured such that <span class="math notranslate nohighlight">\(\overline{\alpha}_T \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(q(x_{1:T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})\)</span></p>
 </section>
-<section id="backward-diffusion-process">
-<h2>Backward Diffusion Process<a class="headerlink" href="#backward-diffusion-process" title="Permalink to this headline">#</a></h2>
+<section id="reverse-diffusion-process">
+<h2>Reverse Diffusion Process<a class="headerlink" href="#reverse-diffusion-process" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
