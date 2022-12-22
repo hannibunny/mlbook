@@ -55,10 +55,10 @@ $$
 and the complete distribution of the whole process can then be calculated as follows:
 
 $$
-q(x_{0:T}|x_{0}) = q(x_0) \prod_{t=1^T} q(x_t|x_{t-1}).
+q(x_{0:T}|x_{0}) = q(x_0) \prod_{t=1}^T q(x_t|x_{t-1}).
 $$
 
-The set $\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T$ defines a *variance schedule*, i.e. how much noise is added in each step. $\mathbf{I}$ is the identity matrix:
+The set $\lbrace \beta_t \in (0,1)\rbrace_{t=1}^T$ defines a *variance schedule*, i.e. how much noise is added in each step. $\mathbf{I}$ is the identity matrix.
 
 In order to generate the noisy image version $x_t$ in an arbitrary step $t$ it is not necssary to execute $t$ steps in sequence. With
 
@@ -69,7 +69,7 @@ $$
 the probability distribution is
 
 $$
-q(x_t|x_{0}) = \mathcal{N}(x_t;\sqrt{\overline{\alpha}_t x_{0},(1-\overline{\alpha}_t) \mathbf{I})
+q(x_t|x_{0}) = \mathcal{N}(x_t;\sqrt{\overline{\alpha}}_t x_{0},(1-\overline{\alpha}_t) \mathbf{I})
 $$
 
 and a sample from this distribution can be generated as follows:
@@ -80,14 +80,14 @@ $$
 
 The distribution $q(x_t|x_{0})$ is called the *Diffusion Kernel*.
 
-The variance schedule, i.e. the set of $\beta_t$-values, is configured such that $\overline{\alpha}_T \rightarrow 0$ and $q(x_{T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})$. Different functions for varying  the $\beta_t$-values can be applied, for example a linear increase of $\beta_t$ from $\beta_0=0.0001$ to $\beta_T=0.02$.  
+The variance schedule, i.e. the set of $\beta_t$-values, is configured such that $\overline{\alpha}_T \rightarrow 0$ and $q(x_{T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})$. Different functions for varying  the $\beta_t$-values can be applied, for example a linear increase from $\beta_0=0.0001$ to $\beta_T=0.02$.  
 
 
 ## Reverse Diffusion Process
 
-In the reverse process the goal is to sample from $q(x_{t-1}|x_{t})$. If this is possible, then the true sample can be reconstructed from Gaussian noise input $x_T \sim \mathcal{N}(0,\mathbf{I})$. Unfortunately, in general $q(x_{t-1}|x_{t}) \propto q(x_{t-1} q(x_t|x_{t-1}))$ is intractable.
+In the reverse process the goal is to sample from $q(x_{t-1}|x_{t})$. If this is possible, then the true sample can be reconstructed from Gaussian noise input $x_T \sim \mathcal{N}(0,\mathbf{I})$. Unfortunately, in general $q(x_{t-1}|x_{t}) \propto q(x_{t-1}) q(x_t|x_{t-1}))$ is intractable.
 
-The solution is to estimate the true $q(x_{t-1}|x_{t})$-distribution by a distribution $p_{\Theta}(x_{t-1}|x_{t})$, which is calculated by a neural network. If the $\beta_t$-values are small enough, $q(x_{t-1}|x_{t})$ will also be Gaussian. Hence
+The solution is to estimate the true $q(x_{t-1}|x_{t})$-distribution by a distribution $p_{\Theta}(x_{t-1}|x_{t})$, which is calculated by a neural network. If the $\beta_t$-values are small enough, $q(x_{t-1}|x_{t})$ will be Gaussian. Hence
 
 $$
 p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \mathbf{I})
@@ -96,7 +96,34 @@ $$
 and the complete distribution of the whole process can then be calculated as follows:
 
 $$
-p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1^T} p_{\Theta}(x_{t-1}|x_{t}) \mbox{ and } p(x_T)=\mathcal{N}(x_{T};0,\mathbf{I}).
+p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with } p(x_T)=\mathcal{N}(x_{T};0,\mathbf{I}).
 $$
 
 The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated by a U-net.
+
+### U-Net
+
+U-Net has been introduced in {cite}`Ronne2015`.
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png
+---
+align: center
+width: 600pt
+name:  unetdiffusion
+---
+Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
+
+```
+
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png
+---
+align: center
+width: 600pt
+name:  unetresidual
+---
+Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
+
+```
+
+
