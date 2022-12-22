@@ -121,7 +121,7 @@ Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png
 ---
 align: center
-width: 600pt
+width: 300pt
 name:  unetresidual
 ---
 Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
