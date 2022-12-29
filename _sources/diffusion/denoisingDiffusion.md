@@ -12,7 +12,7 @@ GANs and VAEs suffer from drawbacks, e.g. for GANs it is usually challenging to 
 Diffusion Models are another type of generative Deep Learning. The concept of diffusion is borrowed from thermodynamics. Gas molecules diffuse from high density to low density areas. During this process entropy increases. In information theory, this entropy-increase corresponds to a loss of information. Such an information loss can be caused by adding noise. 
 
 The idea of Probabilistic Denoising Diffusion models, as introduced in {cite}`sohl-dickstein15` and significantly improved in {cite}`Ho20`, is to 
-1. gradually add noise to a given input in the **forward diffusion process**
+1. gradually add noise to a given input in the **forward diffusion process**. In the final step the representation can be considered to be pure noise, i.e. a sample from an isotropic Gaussian normal distribution $\mathcal{N}(0,\mathbf{I})$.
 2. learn the corresponding inverse process in a **backward diffusion process** and apply this inverse process to generate new instances from noise.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/denoisingdiffusionprocess.png
@@ -25,9 +25,9 @@ Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-
 
 ```
 
-For the backward diffusion process a conditional probability distributions must be learned. For this a neural network is applied. The forward diffusion process doesn't require a training.
+For the backward diffusion, the noise between two successive image representations must be estimated. If the more noisy image $x_{t}$ and the noise $\epsilon_t$ are known, it is easy to subtract the noise from the more noisy image in order to get the less noisy image representation $x_{t-1}$. For this a neural network is applied. The forward diffusion process doesn't require a training.
 
-The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation, image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.
+The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation (e.g. in DALL-E 2), image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.
 
 ## Forward Diffusion Process
 
@@ -99,13 +99,46 @@ $$
 p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with } p(x_T)=\mathcal{N}(x_{T};0,\mathbf{I}).
 $$
 
-The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated by a U-net.
+The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated using a U-net, as described below. 
 
-### U-Net
+After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.
+
+
+## Training
+
+### Overall Idea
+
+In the **training phase** the forward-process and the reverse-process are applied. In the **inference** phase one starts with sampling a *noise-image* from an isotropic Gaussian normal distribution $\mathcal{N}(0,\mathbf{I})$. This noise sample is then passed through the reverse diffusion process. In each step of the reverse step the noise-increment between two successive image-representation is estimated by the trained neural network and subtracted from the corresponding input image $x_t$ in order to get the less noisy representation $x_{t-1}$.
+
+### Loss-function
+
+The overall goal is to minimize the negative log-likelihood
+
+$$
+- \log(p_{\Theta}(x_0)),
+$$
+
+i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** (see e.g. [https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
+
+$$
+- \log(p_{\Theta}(x_0)) \leq - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right).
+$$
+
+The evidence of this bound is clear, since the [Kullback-Leibler divergence](https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html) is always non-negative. The lower bound of the formula above can be transformed into the following form:
+
+$$
+- \log(p_{\Theta}(x_0)) \leq - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right).
+$$
+
+
+
+
+
+## U-Net
 
 U-Net is a CNN, which has been introduced in {cite}`Ronne2015` for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path. 
 
-For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied.
+For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied. The U-Net is trained such that it models the reverse diffusion path.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png
 ---
@@ -136,5 +169,17 @@ width: 600pt
 name:  unetdenoising
 ---
 Stepwise denoising in the reverse path
+
+```
+
+
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png
+---
+align: center
+width: 600pt
+name:  diffalg
+---
+Source: {cite}`Ho20`
 
 ```

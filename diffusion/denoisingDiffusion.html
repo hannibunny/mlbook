@@ -482,13 +482,28 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#reverse-diffusion-process">
    Reverse Diffusion Process
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training">
+   Training
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#u-net">
-     U-Net
+    <a class="reference internal nav-link" href="#overall-idea">
+     Overall Idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loss-function">
+     Loss-function
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#u-net">
+   U-Net
+  </a>
  </li>
 </ul>
 
@@ -523,13 +538,28 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#reverse-diffusion-process">
    Reverse Diffusion Process
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training">
+   Training
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#u-net">
-     U-Net
+    <a class="reference internal nav-link" href="#overall-idea">
+     Overall Idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loss-function">
+     Loss-function
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#u-net">
+   U-Net
+  </a>
  </li>
 </ul>
 
@@ -554,7 +584,7 @@ title="Print to PDF"
 <p>Diffusion Models are another type of generative Deep Learning. The concept of diffusion is borrowed from thermodynamics. Gas molecules diffuse from high density to low density areas. During this process entropy increases. In information theory, this entropy-increase corresponds to a loss of information. Such an information loss can be caused by adding noise.</p>
 <p>The idea of Probabilistic Denoising Diffusion models, as introduced in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id71">SDWMG15</a>]</span> and significantly improved in <span id="id2">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span>, is to</p>
 <ol class="simple">
-<li><p>gradually add noise to a given input in the <strong>forward diffusion process</strong></p></li>
+<li><p>gradually add noise to a given input in the <strong>forward diffusion process</strong>. In the final step the representation can be considered to be pure noise, i.e. a sample from an isotropic Gaussian normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,\mathbf{I})\)</span>.</p></li>
 <li><p>learn the corresponding inverse process in a <strong>backward diffusion process</strong> and apply this inverse process to generate new instances from noise.</p></li>
 </ol>
 <figure class="align-center" id="diffusionprocess">
@@ -563,8 +593,8 @@ title="Print to PDF"
 <p><span class="caption-number">Fig. 48 </span><span class="caption-text">Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a></span><a class="headerlink" href="#diffusionprocess" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>For the backward diffusion process a conditional probability distributions must be learned. For this a neural network is applied. The forward diffusion process doesn’t require a training.</p>
-<p>The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation, image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.</p>
+<p>For the backward diffusion, the noise between two successive image representations must be estimated. If the more noisy image <span class="math notranslate nohighlight">\(x_{t}\)</span> and the noise <span class="math notranslate nohighlight">\(\epsilon_t\)</span> are known, it is easy to subtract the noise from the more noisy image in order to get the less noisy image representation <span class="math notranslate nohighlight">\(x_{t-1}\)</span>. For this a neural network is applied. The forward diffusion process doesn’t require a training.</p>
+<p>The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation (e.g. in DALL-E 2), image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.</p>
 </section>
 <section id="forward-diffusion-process">
 <h2>Forward Diffusion Process<a class="headerlink" href="#forward-diffusion-process" title="Permalink to this headline">#</a></h2>
@@ -621,11 +651,38 @@ p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \math
 \[
 p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with } p(x_T)=\mathcal{N}(x_{T};0,\mathbf{I}).
 \]</div>
-<p>The mean <span class="math notranslate nohighlight">\(\mu_{\Theta}(x_t,t)\)</span> of this distribution is estimated by a U-net.</p>
+<p>The mean <span class="math notranslate nohighlight">\(\mu_{\Theta}(x_t,t)\)</span> of this distribution is estimated using a U-net, as described below.</p>
+<p>After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.</p>
+</section>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h2>
+<section id="overall-idea">
+<h3>Overall Idea<a class="headerlink" href="#overall-idea" title="Permalink to this headline">#</a></h3>
+<p>In the <strong>training phase</strong> the forward-process and the reverse-process are applied. In the <strong>inference</strong> phase one starts with sampling a <em>noise-image</em> from an isotropic Gaussian normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,\mathbf{I})\)</span>. This noise sample is then passed through the reverse diffusion process. In each step of the reverse step the noise-increment between two successive image-representation is estimated by the trained neural network and subtracted from the corresponding input image <span class="math notranslate nohighlight">\(x_t\)</span> in order to get the less noisy representation <span class="math notranslate nohighlight">\(x_{t-1}\)</span>.</p>
+</section>
+<section id="loss-function">
+<h3>Loss-function<a class="headerlink" href="#loss-function" title="Permalink to this headline">#</a></h3>
+<p>The overall goal is to minimize the negative log-likelihood</p>
+<div class="math notranslate nohighlight">
+\[
+- \log(p_{\Theta}(x_0)),
+\]</div>
+<p>i.e. the probability that in the reverse process the input image <span class="math notranslate nohighlight">\(x_0\)</span> is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the <strong>Variational Lower Bound</strong> (see e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Evidence_lower_bound">https://en.wikipedia.org/wiki/Evidence_lower_bound</a>):</p>
+<div class="math notranslate nohighlight">
+\[
+- \log(p_{\Theta}(x_0)) \leq - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right).
+\]</div>
+<p>The evidence of this bound is clear, since the <a class="reference external" href="https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html">Kullback-Leibler divergence</a> is always non-negative. The lower bound of the formula above can be transformed into the following form:</p>
+<div class="math notranslate nohighlight">
+\[
+- \log(p_{\Theta}(x_0)) \leq - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right).
+\]</div>
+</section>
+</section>
 <section id="u-net">
-<h3>U-Net<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h3>
+<h2>U-Net<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h2>
 <p>U-Net is a CNN, which has been introduced in <span id="id3">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
-<p>For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied.</p>
+<p>For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied. The U-Net is trained such that it models the reverse diffusion path.</p>
 <figure class="align-center" id="unetdiffusion">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" style="width: 600pt;" /></a>
 <figcaption>
@@ -644,7 +701,12 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 <p><span class="caption-number">Fig. 52 </span><span class="caption-text">Stepwise denoising in the reverse path</span><a class="headerlink" href="#unetdenoising" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
+<figure class="align-center" id="diffalg">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" style="width: 600pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
