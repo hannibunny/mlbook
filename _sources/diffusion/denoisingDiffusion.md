@@ -118,7 +118,7 @@ $$
 - \log(p_{\Theta}(x_0)),
 $$
 
-i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** (see e.g. [https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
+i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** ([https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
 
 $$
 - \log(p_{\Theta}(x_0)) \leq - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right).
@@ -131,7 +131,27 @@ $$
 $$
 
 
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
+---
+align: center
+width: 600pt
+name:  unetdenoising
+---
+Stepwise denoising in the reverse path: At time step $t$ the image-version $x_t$ is passed to the U-net. Given this input the U-net predicts the noise-inkrement $\Epsilon_{\Theta}(t)$ of this time-step. This noise increment is subtracted from $x_t$. The result is the less noisier image version $x_{t-1}$, which is passed in the next step to the input of the U-net in oder to predict $\Epsilon_{\Theta}(t-1)$.  
 
+```
+
+
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png
+---
+align: center
+width: 600pt
+name:  diffalg
+---
+Source: {cite}`Ho20`
+
+```
 
 
 ## U-Net
@@ -162,24 +182,4 @@ Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www
 ```
 
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
----
-align: center
-width: 600pt
-name:  unetdenoising
----
-Stepwise denoising in the reverse path
 
-```
-
-
-
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png
----
-align: center
-width: 600pt
-name:  diffalg
----
-Source: {cite}`Ho20`
-
-```
