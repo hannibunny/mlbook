@@ -137,7 +137,7 @@ align: center
 width: 600pt
 name:  unetdenoising
 ---
-Stepwise denoising in the reverse path: At time step $t$ the image-version $x_t$ is passed to the U-net. Given this input the U-net predicts the noise-inkrement $\Epsilon_{\Theta}(t)$ of this time-step. This noise increment is subtracted from $x_t$. The result is the less noisier image version $x_{t-1}$, which is passed in the next step to the input of the U-net in oder to predict $\Epsilon_{\Theta}(t-1)$.  
+Stepwise denoising in the reverse path: At time step $t$ the image-version $x_t$ is passed to the U-net. Given this input the U-net predicts the noise-inkrement $\epsilon_{\Theta}(t)$ of this time-step. This noise increment is subtracted from $x_t$. The result is the less noisier image version $x_{t-1}$, which is passed in the next step to the input of the U-net in oder to predict $\epsilon_{\Theta}(t-1)$.  
 
 ```
 
