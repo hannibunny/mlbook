@@ -696,20 +696,20 @@ L_T &amp; = &amp; D_{KL}(q(x_T | x_0) || p(x_T)) \\
 \end{align*}
 \end{split}\]</div>
 <p><strong>For minimisation of the variational lower bound the term <span class="math notranslate nohighlight">\(L_T\)</span> can be ignored</strong>, because it depends only on the forward-process and <span class="math notranslate nohighlight">\(p(x)\)</span> is just random noise, sampled from an isotropic Gaussian.</p>
-<p><strong>Concerning the terms <span class="math notranslate nohighlight">\(L_{t-1}\)</span></strong>:
-1. Due to the conditioning on <span class="math notranslate nohighlight">\(x_0\)</span> the <span class="math notranslate nohighlight">\(q(x_{t-1} | x_t, x_0)\)</span> are Gaussians
-2. The <span class="math notranslate nohighlight">\(p_{\Theta}(x_{t-1} | x_t )\)</span> are also Gaussians:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$
+<p><strong>Concerning the terms <span class="math notranslate nohighlight">\(L_{t-1}\)</span></strong>:</p>
+<ol class="simple">
+<li><p>Due to the conditioning on <span class="math notranslate nohighlight">\(x_0\)</span> the <span class="math notranslate nohighlight">\(q(x_{t-1} | x_t, x_0)\)</span> are Gaussians</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(p_{\Theta}(x_{t-1} | x_t )\)</span> are also Gaussians:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
 p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \mathbf{I})
-$$
-
-Then the KL-Divergence between the two distributions is 
-
-$$
+\]</div>
+<p>Then the KL-Divergence between the two distributions is</p>
+<div class="math notranslate nohighlight">
+\[
 L_{t-1} \propto || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2.
-$$
-</pre></div>
-</div>
+\]</div>
 <figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
 <figcaption>
