@@ -724,12 +724,17 @@ L_{t-1} \propto E_{t,x_0} \left[ || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||
 <p>With this parameterization <span class="math notranslate nohighlight">\(L_{t-1}\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
-L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
 \]</div>
 <p>with</p>
 <div class="math notranslate nohighlight">
 \[
 \lambda_t = \frac{\beta_t^2}{2 \sigma_t^2 (1-\beta_t) (1-\overline{\alpha}_t)}.
+\]</div>
+<p>The authors of <span id="id3">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span> showed, that by simply setting <span class="math notranslate nohighlight">\(\lambda_t=1\)</span> the quality improves. They propose also that the term <span class="math notranslate nohighlight">\(L_0\)</span> can be neglected, yielding the simplified overall Loss-function, which is minimized during training:</p>
+<div class="math notranslate nohighlight">
+\[
+L_{simple} = E_{t,x_0,\epsilon} \left[ || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right]
 \]</div>
 <figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
@@ -740,14 +745,14 @@ L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(\underb
 <figure class="align-center" id="diffalg">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Source: <span id="id3">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="u-net">
 <h2>U-Net<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h2>
-<p>U-Net is a CNN, which has been introduced in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
+<p>U-Net is a CNN, which has been introduced in <span id="id5">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
 <p>For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied. The U-Net is trained such that it models the reverse diffusion path.</p>
 <figure class="align-center" id="unetdiffusion">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" style="width: 600pt;" /></a>

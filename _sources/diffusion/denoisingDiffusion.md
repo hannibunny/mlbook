@@ -188,7 +188,7 @@ With this parameterization $L_{t-1}$ is
 
 
 $$
-L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
 $$
 
 
@@ -198,7 +198,11 @@ $$
 \lambda_t = \frac{\beta_t^2}{2 \sigma_t^2 (1-\beta_t) (1-\overline{\alpha}_t)}.
 $$
 
+The authors of {cite}`Ho20` showed, that by simply setting $\lambda_t=1$ the quality improves. They propose also that the term $L_0$ can be neglected, yielding the simplified overall Loss-function, which is minimized during training:
 
+$$
+L_{simple} = E_{t,x_0,\epsilon} \left[ || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right]
+$$
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
 ---
