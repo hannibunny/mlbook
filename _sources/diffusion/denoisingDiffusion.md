@@ -86,7 +86,7 @@ The variance schedule, i.e. the set of $\beta_t$-values, is configured such that
 ---
 align: center
 width: 500pt
-name:  diffusionforward
+name:  diffusionnoiseforward
 ---
 Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) By incrementally adding noise in the forward process the distribution $q(x_t)$ stepwise gets closer to a Gaussian normaldistribution.
 
@@ -118,7 +118,7 @@ After training of the U-Net, the reverse path of the Diffusion Model can be appl
 ---
 align: center
 width: 500pt
-name:  diffusionforward
+name:  diffusionnoisereverse
 ---
 Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) In the reverse process $x_T$ is sampled from an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level $t=0$ a sample from the real data distribution is available.
 
