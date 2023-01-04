@@ -167,7 +167,7 @@ $$
 Then the KL-Divergence between the two distributions is 
 
 $$
-L_{t-1} \propto || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2.
+L_{t-1} \propto E_{t,x_0} \left[ || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2 \right]. 
 $$
 
 with: 
@@ -179,9 +179,27 @@ $$
 and
 
 $$ 
-\mu_{\Theta}(x_t,t) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon_{Theta}(x_t,t) \right).
+\mu_{\Theta}(x_t,t) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon_{\Theta}(x_t,t) \right),
 $$
 
+where $\epsilon$ is a noise sample from the isotropic Gaussian normaldistribution and $\epsilon_{\Theta}(x_t,t)$ is the noise, predicted by the neural network at step $t$ for given input $x_t$.
+
+With this parameterization $L_{t-1}$ is
+
+
+$$
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}{x_t},t)||^2 \right],
+$$
+
+$$
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(x_t,t)||^2 \right],
+$$
+
+with 
+
+$$
+\lambda_t = \frac{\beta_t^2}{2 \sigma_t^2 (1-\beta_t) (1-\overline{\alpha}_t)}.
+$$
 
 
 
