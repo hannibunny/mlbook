@@ -120,7 +120,7 @@ align: center
 width: 500pt
 name:  diffusionforward
 ---
-Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) In the reverse process $x_T$ is sampled for an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level $t=0$ a sample from the real data distribution is available.
+Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) In the reverse process $x_T$ is sampled from an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level $t=0$ a sample from the real data distribution is available.
 
 ```
 
