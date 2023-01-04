@@ -259,7 +259,7 @@ align: center
 width: 600pt
 name:  unetdiffusion
 ---
-Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
+Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/): U-Net architecture used in the reverse path of denoising diffusion models. 
 
 ```
 
@@ -270,7 +270,7 @@ align: center
 width: 300pt
 name:  unetresidual
 ---
-Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
+Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/): Each residual block consists of 2 subsequences of Batch-Normalisation, Relu activation and 3x3 Convolution.  
 
 ```
 
