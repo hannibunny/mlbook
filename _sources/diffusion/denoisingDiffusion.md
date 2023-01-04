@@ -115,19 +115,19 @@ In the **training phase** the forward-process and the reverse-process are applie
 The overall goal is to minimize the negative log-likelihood
 
 $$
-E_{q(x_0)} \left[- \log(p_{\Theta}(x_0))\right],
+E \left[- \log(p_{\Theta}(x_0))\right],
 $$
 
-i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. $E_{q(x_0)}$ is the expectation value over all $x_0$. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** ([https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
+i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. $E$ is the expectation value. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** ([https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
 
 $$
-E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right].
+E \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right].
 $$
 
 The evidence of this bound is clear, since the [Kullback-Leibler divergence](https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html) is always non-negative. The lower bound of the formula above can be rewritten in the following form:
 
 $$
-E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q(x_0)} \left[  - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right) \right] =: L_{vlb}.
+E \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q} \left[  - \log \left(\frac{p_{\Theta}(x_{0:T}) }{q(x_{1:T}|x_0)} \right) \right] =: L_{vlb}.
 $$
 
 
