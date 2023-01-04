@@ -679,8 +679,21 @@ E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q(x_0)} \left[  - \log
 \]</div>
 <div class="dropdown admonition">
 <p class="admonition-title">Remark on the Variational Lower Bound!</p>
-<p>In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.</p>
+<p>In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature, we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.</p>
 </div>
+<p>It can be shown, that the variational lower bound <span class="math notranslate nohighlight">\(L_{vlb}\)</span> can be expressed as a sum of KL-divergeneces:</p>
+<div class="math notranslate nohighlight">
+\[
+L_{vlb}=L_0 + L_1 + L_2 + \cdots + L_T,
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*} 
+L_0 &amp; = &amp; -\log(p_{\Theta}(x_0 | x_1 )) \\ 
+L_T &amp; = &amp; D_{KL}(q(x_T | x_0) || p(x_T)) \\
+\end{align*}
+\end{split}\]</div>
 <figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
 <figcaption>

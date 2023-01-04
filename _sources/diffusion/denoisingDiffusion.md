@@ -134,9 +134,26 @@ $$
 ```{admonition} Remark on the Variational Lower Bound!
 :class: dropdown
 
-In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.  
+In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature, we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.  
 
 ```
+
+It can be shown, that the variational lower bound $L_{vlb}$ can be expressed as a sum of KL-divergeneces:
+
+$$
+L_{vlb}=L_0 + L_1 + L_2 + \cdots + L_T,
+$$
+
+with 
+
+$$
+\begin{align*} 
+L_0 & = & -\log(p_{\Theta}(x_0 | x_1 )) \\ 
+L_T & = & D_{KL}(q(x_T | x_0) || p(x_T)) \\
+\end{align*}
+$$
+
+
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
 ---
