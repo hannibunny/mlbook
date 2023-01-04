@@ -82,6 +82,16 @@ The distribution $q(x_t|x_{0})$ is called the *Diffusion Kernel*.
 
 The variance schedule, i.e. the set of $\beta_t$-values, is configured such that $\overline{\alpha}_T \rightarrow 0$ and $q(x_{T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})$. Different functions for varying  the $\beta_t$-values can be applied, for example a linear increase from $\beta_0=0.0001$ to $\beta_T=0.02$.  
 
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png
+---
+align: center
+width: 500pt
+name:  diffusionnoiseforward
+---
+Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) By incrementally adding noise in the forward process the distribution $q(x_t)$ stepwise gets closer to a Gaussian normaldistribution.
+
+```
+
 
 ## Reverse Diffusion Process
 
@@ -104,6 +114,16 @@ The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated using a U-net, 
 After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.
 
 
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png
+---
+align: center
+width: 500pt
+name:  diffusionnoisereverse
+---
+Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) In the reverse process $x_T$ is sampled from an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level $t=0$ a sample from the real data distribution is available.
+
+```
+
 ## Training
 
 ### Overall Idea
@@ -115,21 +135,94 @@ In the **training phase** the forward-process and the reverse-process are applie
 The overall goal is to minimize the negative log-likelihood
 
 $$
-- \log(p_{\Theta}(x_0)),
+E \left[- \log(p_{\Theta}(x_0))\right],
 $$
 
-i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** ([https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
+i.e. the probability that in the reverse process the input image $x_0$ is reconstructed shall be maximized. $E$ is the expectation value. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the **Variational Lower Bound** ([https://en.wikipedia.org/wiki/Evidence_lower_bound](https://en.wikipedia.org/wiki/Evidence_lower_bound)):
 
 $$
-E_{x_0} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{x_0} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right],
+E \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right].
 $$
 
-where $E_{x_0}$ is the expectation value over all $x_0$. The evidence of this bound is clear, since the [Kullback-Leibler divergence](https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html) is always non-negative. The lower bound of the formula above can be rewritten in the following form:
+The evidence of this bound is clear, since the [Kullback-Leibler divergence](https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html) is always non-negative. The lower bound of the formula above can be rewritten in the following form:
 
 $$
-E_{x_0} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{x_0} \left[  - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right) \right].
+E \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q} \left[  - \log \left(\frac{p_{\Theta}(x_{0:T}) }{q(x_{1:T}|x_0)} \right) \right] =: L_{vlb}.
 $$
 
+
+```{admonition} Remark on the Variational Lower Bound!
+:class: dropdown
+
+In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature, we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.  
+
+```
+
+It can be shown, that the variational lower bound $L_{vlb}$ can be expressed as a sum of KL-divergeneces:
+
+$$
+L_{vlb}=L_0 + L_1 + L_2 + \cdots + L_T,
+$$
+
+with 
+
+$$
+\begin{align*} 
+L_0 & = & -\log(p_{\Theta}(x_0 | x_1 )) \\ 
+L_{t-1} & = & D_{KL}(q(x_{t-1} | x_t, x_0) || p_{\Theta}(x_{t-1} | x_t )) \\
+L_T & = & D_{KL}(q(x_T | x_0) || p(x_T)) \\
+\end{align*}
+$$
+
+**For minimisation of the variational lower bound the term $L_T$ can be ignored**, because it depends only on the forward-process and $p(x)$ is just random noise, sampled from an isotropic Gaussian.
+
+**Concerning the terms $L_{t-1}$**:
+1. Due to the conditioning on $x_0$ the $q(x_{t-1} | x_t, x_0)$ are Gaussians
+2. The $p_{\Theta}(x_{t-1} | x_t )$ are also Gaussians:
+
+$$
+p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \mathbf{I})
+$$
+
+Then the KL-Divergence between the two distributions is 
+
+$$
+L_{t-1} \propto E_{t,x_0} \left[ || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2 \right]. 
+$$
+
+with: 
+
+$$
+\tilde{\mu}(x_t,x_0) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon \right)
+$$
+
+and
+
+$$ 
+\mu_{\Theta}(x_t,t) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon_{\Theta}(x_t,t) \right),
+$$
+
+where $\epsilon$ is a noise sample from the isotropic Gaussian normaldistribution and $\epsilon_{\Theta}(x_t,t)$ is the noise, predicted by the neural network at step $t$ for given input $x_t$.
+
+With this parameterization $L_{t-1}$ is
+
+
+$$
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
+$$
+
+
+with 
+
+$$
+\lambda_t = \frac{\beta_t^2}{2 \sigma_t^2 (1-\beta_t) (1-\overline{\alpha}_t)}.
+$$
+
+The authors of {cite}`Ho20` showed, that by simply setting $\lambda_t=1$ the quality improves. They propose also that the term $L_0$ can be neglected, yielding the simplified overall Loss-function, which is minimized during training:
+
+$$
+L_{simple} = E_{t,x_0,\epsilon} \left[ || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right]
+$$
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
 ---
@@ -166,7 +259,7 @@ align: center
 width: 600pt
 name:  unetdiffusion
 ---
-Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
+Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/): U-Net architecture used in the reverse path of denoising diffusion models. 
 
 ```
 
@@ -177,7 +270,7 @@ align: center
 width: 300pt
 name:  unetresidual
 ---
-Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/) 
+Source: [https://www.assemblyai.com/blog/how-imagen-actually-works/](https://www.assemblyai.com/blog/how-imagen-actually-works/): Each residual block consists of 2 subsequences of Batch-Normalisation, Relu activation and 3x3 Convolution.  
 
 ```
 

@@ -637,6 +637,12 @@ x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, 
 \]</div>
 <p>The distribution <span class="math notranslate nohighlight">\(q(x_t|x_{0})\)</span> is called the <em>Diffusion Kernel</em>.</p>
 <p>The variance schedule, i.e. the set of <span class="math notranslate nohighlight">\(\beta_t\)</span>-values, is configured such that <span class="math notranslate nohighlight">\(\overline{\alpha}_T \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(q(x_{T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})\)</span>. Different functions for varying  the <span class="math notranslate nohighlight">\(\beta_t\)</span>-values can be applied, for example a linear increase from <span class="math notranslate nohighlight">\(\beta_0=0.0001\)</span> to <span class="math notranslate nohighlight">\(\beta_T=0.02\)</span>.</p>
+<figure class="align-center" id="diffusionnoiseforward">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png" style="width: 500pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Image Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a> By incrementally adding noise in the forward process the distribution <span class="math notranslate nohighlight">\(q(x_t)\)</span> stepwise gets closer to a Gaussian normaldistribution.</span><a class="headerlink" href="#diffusionnoiseforward" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="reverse-diffusion-process">
 <h2>Reverse Diffusion Process<a class="headerlink" href="#reverse-diffusion-process" title="Permalink to this headline">#</a></h2>
@@ -653,6 +659,12 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 \]</div>
 <p>The mean <span class="math notranslate nohighlight">\(\mu_{\Theta}(x_t,t)\)</span> of this distribution is estimated using a U-net, as described below.</p>
 <p>After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.</p>
+<figure class="align-center" id="diffusionnoisereverse">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png" style="width: 500pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Image Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a> In the reverse process <span class="math notranslate nohighlight">\(x_T\)</span> is sampled from an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level <span class="math notranslate nohighlight">\(t=0\)</span> a sample from the real data distribution is available.</span><a class="headerlink" href="#diffusionnoisereverse" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="training">
 <h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h2>
@@ -665,46 +677,105 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 <p>The overall goal is to minimize the negative log-likelihood</p>
 <div class="math notranslate nohighlight">
 \[
-- \log(p_{\Theta}(x_0)),
+E \left[- \log(p_{\Theta}(x_0))\right],
 \]</div>
-<p>i.e. the probability that in the reverse process the input image <span class="math notranslate nohighlight">\(x_0\)</span> is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the <strong>Variational Lower Bound</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Evidence_lower_bound">https://en.wikipedia.org/wiki/Evidence_lower_bound</a>):</p>
+<p>i.e. the probability that in the reverse process the input image <span class="math notranslate nohighlight">\(x_0\)</span> is reconstructed shall be maximized. <span class="math notranslate nohighlight">\(E\)</span> is the expectation value. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the <strong>Variational Lower Bound</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Evidence_lower_bound">https://en.wikipedia.org/wiki/Evidence_lower_bound</a>):</p>
 <div class="math notranslate nohighlight">
 \[
-E_{x_0} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{x_0} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right],
+E \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(E_{x_0}\)</span> is the expectation value over all <span class="math notranslate nohighlight">\(x_0\)</span>. The evidence of this bound is clear, since the <a class="reference external" href="https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html">Kullback-Leibler divergence</a> is always non-negative. The lower bound of the formula above can be rewritten in the following form:</p>
+<p>The evidence of this bound is clear, since the <a class="reference external" href="https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html">Kullback-Leibler divergence</a> is always non-negative. The lower bound of the formula above can be rewritten in the following form:</p>
 <div class="math notranslate nohighlight">
 \[
-E_{x_0} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{x_0} \left[  - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right) \right].
+E \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q} \left[  - \log \left(\frac{p_{\Theta}(x_{0:T}) }{q(x_{1:T}|x_0)} \right) \right] =: L_{vlb}.
+\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Remark on the Variational Lower Bound!</p>
+<p>In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature, we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.</p>
+</div>
+<p>It can be shown, that the variational lower bound <span class="math notranslate nohighlight">\(L_{vlb}\)</span> can be expressed as a sum of KL-divergeneces:</p>
+<div class="math notranslate nohighlight">
+\[
+L_{vlb}=L_0 + L_1 + L_2 + \cdots + L_T,
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*} 
+L_0 &amp; = &amp; -\log(p_{\Theta}(x_0 | x_1 )) \\ 
+L_{t-1} &amp; = &amp; D_{KL}(q(x_{t-1} | x_t, x_0) || p_{\Theta}(x_{t-1} | x_t )) \\
+L_T &amp; = &amp; D_{KL}(q(x_T | x_0) || p(x_T)) \\
+\end{align*}
+\end{split}\]</div>
+<p><strong>For minimisation of the variational lower bound the term <span class="math notranslate nohighlight">\(L_T\)</span> can be ignored</strong>, because it depends only on the forward-process and <span class="math notranslate nohighlight">\(p(x)\)</span> is just random noise, sampled from an isotropic Gaussian.</p>
+<p><strong>Concerning the terms <span class="math notranslate nohighlight">\(L_{t-1}\)</span></strong>:</p>
+<ol class="simple">
+<li><p>Due to the conditioning on <span class="math notranslate nohighlight">\(x_0\)</span> the <span class="math notranslate nohighlight">\(q(x_{t-1} | x_t, x_0)\)</span> are Gaussians</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(p_{\Theta}(x_{t-1} | x_t )\)</span> are also Gaussians:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \mathbf{I})
+\]</div>
+<p>Then the KL-Divergence between the two distributions is</p>
+<div class="math notranslate nohighlight">
+\[
+L_{t-1} \propto E_{t,x_0} \left[ || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2 \right]. 
+\]</div>
+<p>with:</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\mu}(x_t,x_0) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon \right)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ 
+\mu_{\Theta}(x_t,t) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon_{\Theta}(x_t,t) \right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a noise sample from the isotropic Gaussian normaldistribution and <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(x_t,t)\)</span> is the noise, predicted by the neural network at step <span class="math notranslate nohighlight">\(t\)</span> for given input <span class="math notranslate nohighlight">\(x_t\)</span>.</p>
+<p>With this parameterization <span class="math notranslate nohighlight">\(L_{t-1}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_t = \frac{\beta_t^2}{2 \sigma_t^2 (1-\beta_t) (1-\overline{\alpha}_t)}.
+\]</div>
+<p>The authors of <span id="id3">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span> showed, that by simply setting <span class="math notranslate nohighlight">\(\lambda_t=1\)</span> the quality improves. They propose also that the term <span class="math notranslate nohighlight">\(L_0\)</span> can be neglected, yielding the simplified overall Loss-function, which is minimized during training:</p>
+<div class="math notranslate nohighlight">
+\[
+L_{simple} = E_{t,x_0,\epsilon} \left[ || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right]
 \]</div>
 <figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Stepwise denoising in the reverse path: At time step <span class="math notranslate nohighlight">\(t\)</span> the image-version <span class="math notranslate nohighlight">\(x_t\)</span> is passed to the U-net. Given this input the U-net predicts the noise-inkrement <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t)\)</span> of this time-step. This noise increment is subtracted from <span class="math notranslate nohighlight">\(x_t\)</span>. The result is the less noisier image version <span class="math notranslate nohighlight">\(x_{t-1}\)</span>, which is passed in the next step to the input of the U-net in oder to predict <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t-1)\)</span>.</span><a class="headerlink" href="#unetdenoising" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Stepwise denoising in the reverse path: At time step <span class="math notranslate nohighlight">\(t\)</span> the image-version <span class="math notranslate nohighlight">\(x_t\)</span> is passed to the U-net. Given this input the U-net predicts the noise-inkrement <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t)\)</span> of this time-step. This noise increment is subtracted from <span class="math notranslate nohighlight">\(x_t\)</span>. The result is the less noisier image version <span class="math notranslate nohighlight">\(x_{t-1}\)</span>, which is passed in the next step to the input of the U-net in oder to predict <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t-1)\)</span>.</span><a class="headerlink" href="#unetdenoising" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="diffalg">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Source: <span id="id3">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="u-net">
 <h2>U-Net<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h2>
-<p>U-Net is a CNN, which has been introduced in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
+<p>U-Net is a CNN, which has been introduced in <span id="id5">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
 <p>For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied. The U-Net is trained such that it models the reverse diffusion path.</p>
 <figure class="align-center" id="unetdiffusion">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a></span><a class="headerlink" href="#unetdiffusion" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 54 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a>: U-Net architecture used in the reverse path of denoising diffusion models.</span><a class="headerlink" href="#unetdiffusion" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="unetresidual">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a></span><a class="headerlink" href="#unetresidual" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 55 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a>: Each residual block consists of 2 subsequences of Batch-Normalisation, Relu activation and 3x3 Convolution.</span><a class="headerlink" href="#unetresidual" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
