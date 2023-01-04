@@ -665,18 +665,22 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 <p>The overall goal is to minimize the negative log-likelihood</p>
 <div class="math notranslate nohighlight">
 \[
-- \log(p_{\Theta}(x_0)),
+E_{q(x_0)} \left[- \log(p_{\Theta}(x_0))\right],
 \]</div>
-<p>i.e. the probability that in the reverse process the input image <span class="math notranslate nohighlight">\(x_0\)</span> is reconstructed shall be maximized. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the <strong>Variational Lower Bound</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Evidence_lower_bound">https://en.wikipedia.org/wiki/Evidence_lower_bound</a>):</p>
+<p>i.e. the probability that in the reverse process the input image <span class="math notranslate nohighlight">\(x_0\)</span> is reconstructed shall be maximized. <span class="math notranslate nohighlight">\(E_{q(x_0)}\)</span> is the expectation value over all <span class="math notranslate nohighlight">\(x_0\)</span>. However, this loss function can not be applied directly because it can not be calculated in a closed form. The solution is to apply the <strong>Variational Lower Bound</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Evidence_lower_bound">https://en.wikipedia.org/wiki/Evidence_lower_bound</a>):</p>
 <div class="math notranslate nohighlight">
 \[
-E_{x_0} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{x_0} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right],
+E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) + D_{KL} \left(q(x_{1:T}|x_0) || p_{\Theta}(x_{1:T}|x_0)\right) \right].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(E_{x_0}\)</span> is the expectation value over all <span class="math notranslate nohighlight">\(x_0\)</span>. The evidence of this bound is clear, since the <a class="reference external" href="https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html">Kullback-Leibler divergence</a> is always non-negative. The lower bound of the formula above can be rewritten in the following form:</p>
+<p>The evidence of this bound is clear, since the <a class="reference external" href="https://hannibunny.github.io/probability/KullbackLeiblerDivergence.html">Kullback-Leibler divergence</a> is always non-negative. The lower bound of the formula above can be rewritten in the following form:</p>
 <div class="math notranslate nohighlight">
 \[
-E_{x_0} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{x_0} \left[  - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right) \right].
+E_{q(x_0)} \left[ - \log(p_{\Theta}(x_0)) \right] \leq E_{q(x_0)} \left[  - \log \left(\frac{q(x_{1:T}|x_0)}{p_{\Theta}(x_{0:T}) } \right) \right] =: L_{vlb}.
 \]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Remark on the Variational Lower Bound!</p>
+<p>In the inequation above the right hand side is actually an upper bound of the left hand side. However, in order to be consistent with the literature we call it the variational lower bound. We can not minimize the left hand side directly, but indirectly by minimizing the right hand side of the inequation.</p>
+</div>
 <figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
 <figcaption>
