@@ -82,6 +82,16 @@ The distribution $q(x_t|x_{0})$ is called the *Diffusion Kernel*.
 
 The variance schedule, i.e. the set of $\beta_t$-values, is configured such that $\overline{\alpha}_T \rightarrow 0$ and $q(x_{T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})$. Different functions for varying  the $\beta_t$-values can be applied, for example a linear increase from $\beta_0=0.0001$ to $\beta_T=0.02$.  
 
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png
+---
+align: center
+width: 500pt
+name:  diffusionforward
+---
+Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) By incrementally adding noise in the forward process the distribution $q(x_t)$ stepwise gets closer to a Gaussian normaldistribution.
+
+```
+
 
 ## Reverse Diffusion Process
 
@@ -103,6 +113,16 @@ The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated using a U-net, 
 
 After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.
 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png
+---
+align: center
+width: 500pt
+name:  diffusionforward
+---
+Image Source: [https://cvpr2022-tutorial-diffusion-models.github.io](https://cvpr2022-tutorial-diffusion-models.github.io) In the reverse process $x_T$ is sampled for an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level $t=0$ a sample from the real data distribution is available.
+
+```
 
 ## Training
 
