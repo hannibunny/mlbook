@@ -32,6 +32,9 @@ parts:
   chapters:
   - file: gan/GAN
   - file: gan/DCGAN
+- caption: Diffusion Models
+  chapters:
+  - file: diffusion/denoisingDiffusion 
 - caption: Reinforcement Learning
   chapters:
   - file: rl/reinforcement
