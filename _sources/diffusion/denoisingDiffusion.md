@@ -188,12 +188,9 @@ With this parameterization $L_{t-1}$ is
 
 
 $$
-L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}{x_t},t)||^2 \right],
+L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right],
 $$
 
-$$
-L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \mu_{\Theta}(x_t,t)||^2 \right],
-$$
 
 with 
 
