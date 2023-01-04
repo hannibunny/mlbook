@@ -149,6 +149,7 @@ with
 $$
 \begin{align*} 
 L_0 & = & -\log(p_{\Theta}(x_0 | x_1 )) \\ 
+L_{t-1} & = & D_{KL}(q(x_{t-1} | x_t, x_0) || p_{\Theta}(x_{t-1} | x_t )) \\
 L_T & = & D_{KL}(q(x_T | x_0) || p(x_T)) \\
 \end{align*}
 $$

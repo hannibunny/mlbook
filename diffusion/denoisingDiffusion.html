@@ -691,6 +691,7 @@ L_{vlb}=L_0 + L_1 + L_2 + \cdots + L_T,
 \[\begin{split}
 \begin{align*} 
 L_0 &amp; = &amp; -\log(p_{\Theta}(x_0 | x_1 )) \\ 
+L_{t-1} &amp; = &amp; D_{KL}(q(x_{t-1} | x_t, x_0) || p_{\Theta}(x_{t-1} | x_t )) \\
 L_T &amp; = &amp; D_{KL}(q(x_T | x_0) || p(x_T)) \\
 \end{align*}
 \end{split}\]</div>
