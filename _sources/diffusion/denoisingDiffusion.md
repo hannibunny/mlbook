@@ -154,6 +154,26 @@ L_T & = & D_{KL}(q(x_T | x_0) || p(x_T)) \\
 \end{align*}
 $$
 
+**For minimisation of the variational lower bound the term $L_T$ can be ignored**, because it depends only on the forward-process and $p(x)$ is just random noise, sampled from an isotropic Gaussian.
+
+**Concerning the terms $L_{t-1}$**:
+	1. Due to the conditioning on $x_0$ the $q(x_{t-1} | x_t, x_0)$ are Gaussians
+	2. The $p_{\Theta}(x_{t-1} | x_t )$ are also Gaussians:
+
+	$$
+	p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \mathbf{I})
+	$$
+
+	Then the KL-Divergence between the two distributions is 
+
+	$$
+    L_{t-1} \propto || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2.
+	$$
+
+
+
+
+
 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png
