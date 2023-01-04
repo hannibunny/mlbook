@@ -1,7 +1,7 @@
 # Difussion Models
 
 * Author: Johannes Maucher
-* Last update: 21.12.22 !!Draft!!
+* Last update: 04.01.2022
 
 ## Introduction
 
