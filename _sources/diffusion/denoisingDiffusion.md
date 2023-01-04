@@ -170,8 +170,17 @@ $$
 L_{t-1} \propto || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2.
 $$
 
+with: 
 
+$$
+\tilde{\mu}(x_t,x_0) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon \right)
+$$
 
+and
+
+$$ 
+\mu_{\Theta}(x_t,t) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon_{Theta}(x_t,t) \right).
+$$
 
 
 

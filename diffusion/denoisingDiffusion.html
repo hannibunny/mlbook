@@ -710,6 +710,16 @@ p_{\Theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\Theta}(x_t,t),\sigma^2 \math
 \[
 L_{t-1} \propto || \tilde{\mu}(x_t,x_0) - \mu_{\Theta}(x_t,t)||^2.
 \]</div>
+<p>with:</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\mu}(x_t,x_0) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon \right)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ 
+\mu_{\Theta}(x_t,t) = \frac{1}{\sqrt{1-\beta_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\overline{\alpha}_t}} \epsilon_{Theta}(x_t,t) \right).
+\]</div>
 <figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
 <figcaption>
