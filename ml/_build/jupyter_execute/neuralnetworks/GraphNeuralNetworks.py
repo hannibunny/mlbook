@@ -340,6 +340,7 @@ batch_size = 256
 # In[66]:
 
 
+
 def run_experiment(model, x_train, y_train):
     # Compile the model.
     model.compile(
@@ -370,6 +371,7 @@ def run_experiment(model, x_train, y_train):
 # In[67]:
 
 
+
 def display_learning_curves(history):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
 
@@ -392,6 +394,7 @@ def display_learning_curves(history):
 # We will use this module in the baseline and the GNN models.
 
 # In[68]:
+
 
 
 def create_ffn(hidden_units, dropout_rate, name=None):
@@ -490,6 +493,7 @@ print(f"Test accuracy: {round(test_accuracy * 100, 2)}%")
 # the word presence probabilities.
 
 # In[76]:
+
 
 
 def generate_random_instances(num_instances):
@@ -598,6 +602,7 @@ edge_weights
 # and [Message Passing Neural Networks](https://arxiv.org/abs/1704.01212).
 
 # In[81]:
+
 
 
 class GraphConvLayer(layers.Layer):
@@ -731,6 +736,7 @@ class GraphConvLayer(layers.Layer):
 # node features and neighbours from the `graph_info`.
 
 # In[82]:
+
 
 
 class GNNNodeClassifier(tf.keras.Model):

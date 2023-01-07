@@ -572,8 +572,7 @@ plt.legend(loc='lower right')
 
 
 def print_my_examples(inputs, results):
-  result_for_printing = \
-    [f'input: {inputs[i]:<30} : estimated intent: {results[i]}'
+  result_for_printing =     [f'input: {inputs[i]:<30} : estimated intent: {results[i]}'
                          for i in range(len(inputs))]
   print(*result_for_printing, sep='\n')
   print()

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Concepts of Data Mining and Machine Learning &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -21,7 +20,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +36,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -786,13 +785,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-concepts-of-data-mining-and-machine-learning">
+  <div class="tex2jax_ignore mathjax_ignore section" id="basic-concepts-of-data-mining-and-machine-learning">
 <h1>Basic Concepts of Data Mining and Machine Learning<a class="headerlink" href="#basic-concepts-of-data-mining-and-machine-learning" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 04.10.2022</p></li>
 </ul>
-<section id="overview-data-mining-process">
+<div class="section" id="overview-data-mining-process">
 <h2>Overview Data Mining Process<a class="headerlink" href="#overview-data-mining-process" title="Permalink to this headline">#</a></h2>
 <p>The <strong>Cross-industry standard process for data mining (CRISP)</strong> proposes a common approach for realizing data mining projects:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/CRISPsmall.png" alt="Drawing" style="width: 400px;"/>
@@ -801,15 +800,15 @@ title="Print to PDF"
 <p>In the third phase data must be investigated and understood more thoroughly. Common means for understanding data are e.g. visualization and the calculation of simple statistics. Outliers must be detected and processed, sampling rates must be determined, features must be selected and eventually be transformed to other formats.</p>
 <p>In the modelling phase various algorithms and their hyperparameters are selected and applied. Their performance on the given data is determined in the evaluation phase.</p>
 <p>The output of the evaluation is usually fed back to the first phases (business- and data-understanding). Applying this feedback the techniques in the overall process are adapted and optimized. Usually only after several iterations of this process the evaluation yields good results and the project can be deployed.</p>
-</section>
-<section id="machine-learning-definition-concepts-categories">
+</div>
+<div class="section" id="machine-learning-definition-concepts-categories">
 <h2>Machine Learning: Definition, Concepts, Categories<a class="headerlink" href="#machine-learning-definition-concepts-categories" title="Permalink to this headline">#</a></h2>
 <p>Machine Learning constitutes one of the 4 categories of Artificial Intelligence (AI). As shown in the image below, the other categories are <em>Search and Planning</em>, <em>Knowledge and Inference</em> and <em>Modelling of Uncertainty</em>.</p>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/categoriesEnglish.png" alt="Drawing" width="600">
 <p>Currently, Machine Learning is by far the most important AI category.</p>
 <p>The following cartoon depicts the idea of supervised learning. A teacher provides labels for the input and a relation (model) between input and label is learned. Actually, the cartoon sketches a crucial problem of supervised Machine Learning: If we have only a small amount of training data, the learned model is overfits to a probably irrelevant feature.</p>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/MLcartoon.JPG" alt="Drawing" width="300">
-<section id="definition-machine-learning">
+<div class="section" id="definition-machine-learning">
 <h3>Definition Machine Learning<a class="headerlink" href="#definition-machine-learning" title="Permalink to this headline">#</a></h3>
 <p>There is no unique definition of Machine Learning. One of the most famous definitions has been formulated in <a class="reference external" href="http://www.cs.cmu.edu/~tom/mlbook.html">Tom Mitchell, Machine Learning</a>:</p>
 <ul class="simple">
@@ -822,8 +821,8 @@ title="Print to PDF"
 <li><p>an intelligent search-engine, which provides individual results on queries</p></li>
 <li><p>a recommender-system for an online-shop</p></li>
 </ul>
-</section>
-<section id="categorisation-of-machine-learning-approaches">
+</div>
+<div class="section" id="categorisation-of-machine-learning-approaches">
 <h3>Categorisation of Machine Learning Approaches<a class="headerlink" href="#categorisation-of-machine-learning-approaches" title="Permalink to this headline">#</a></h3>
 <p>The field of Machine Learning is usually categorized with respect to two dimensions: The first dimension is the question <em>What shall be learned?</em> and the second asks for <em>How shall be learned?</em>. The resulting 2-dimensional matrix is depicted below:</p>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/mlCategories.png" style="width:800px" align="center"><p>On an abstract level there exist 4 answers on the first question. One can either learn</p>
@@ -841,25 +840,25 @@ title="Print to PDF"
 <li><p>unsupervised learning: In this case training data consists only of inputs - no teacher is required for labeling. For example pictures can be clustered, such that similar pictures are assigned to the same group.</p></li>
 <li><p>Reinforcement learning: In this type no teacher who lables each input-instance is available. However, there is a critics-element, which provides feedback from time-to-time. For example an intelligent agent in a computer game maps each input state to a corresponding action. Only after a possibly long sequence of actions the agent gets feedback in form of an increasing/decreasing High-Score.</p></li>
 </ul>
-<section id="supervised-learning">
+<div class="section" id="supervised-learning">
 <h4>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">#</a></h4>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearning.png" style="width:800px" align="center"><p><strong>Apply Learned Modell:</strong>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningApply.png" style="width:800px" align="center"></p>
-</section>
-<section id="unsupervised-learning">
+</div>
+<div class="section" id="unsupervised-learning">
 <h4>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">#</a></h4>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervised.png" style="width:800px" align="center"><p><strong>Apply learned Model:</strong>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/introExampleLearningUnsupervisedApply.png" style="width:800px" align="center"></p>
 <hr class="docutils" />
 <p><strong>Associations between Instances (Clustering) and Associations between Features (Association Rule Mining):</strong>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/unsupervisedML.png" style="width:400px" align="center"></p>
-</section>
+</div>
 <hr class="docutils" />
-<section id="reinforcement-learning-learning-from-feedback">
+<div class="section" id="reinforcement-learning-learning-from-feedback">
 <h4>Reinforcement Learning: Learning from Feedback<a class="headerlink" href="#reinforcement-learning-learning-from-feedback" title="Permalink to this headline">#</a></h4>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/LeaMayerSteepleEugene.jpg" style="width:500px" align="center"></section>
-</section>
-<section id="general-scheme-for-machine-learning">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/LeaMayerSteepleEugene.jpg" style="width:500px" align="center"></div>
+</div>
+<div class="section" id="general-scheme-for-machine-learning">
 <h3>General Scheme for Machine Learning<a class="headerlink" href="#general-scheme-for-machine-learning" title="Permalink to this headline">#</a></h3>
 <p>In Machine Learning one distinguishes</p>
 <ul class="simple">
@@ -879,8 +878,8 @@ title="Print to PDF"
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/dataMatrix.png" alt="Drawing" style="width: 800px;"/>
 <p>The image below depicts such a 2-dimensional array of training-data for the applications <em>Object Recognition, Document Classification, Personality Classification, Temperature Prediction</em> and <em>Recommender System</em>.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlDataExamples.png" alt="Drawing" style="width: 800px;"/>
-</section>
-<section id="general-concept-of-supervised-learning">
+</div>
+<div class="section" id="general-concept-of-supervised-learning">
 <h3>General Concept of Supervised Learning<a class="headerlink" href="#general-concept-of-supervised-learning" title="Permalink to this headline">#</a></h3>
 <p>The general concept of supervised learning is sketched in the image below. This concept is realized by almost all algorithms for supervised machine learning, in particular all neural networks learn according to this approach. In the following description it is assumed that the ML algorithm is a Neural Network.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/learnGradientDescent.png" alt="Drawing" style="width: 600px;"/>
@@ -893,8 +892,8 @@ title="Print to PDF"
 <li><p>Depending on the calculated errors, adjust the network weights <span class="math notranslate nohighlight">\(\Theta\)</span>, such that in the sequel the network outputs are closer to the targets (i.e. the error decreases).</p></li>
 <li><p>Repeat this until the calculated error is small enough.</p></li>
 </ol>
-</section>
-<section id="required-amount-of-data-supervised-learning">
+</div>
+<div class="section" id="required-amount-of-data-supervised-learning">
 <h3>Required Amount of data (supervised learning)<a class="headerlink" href="#required-amount-of-data-supervised-learning" title="Permalink to this headline">#</a></h3>
 <p>One of the crucial questions at the beginning of each ML-procect is</p>
 <p><em>How much labeled data is required?</em></p>
@@ -906,18 +905,18 @@ title="Print to PDF"
 <li><p>test.</p></li>
 </ul>
 <p>However, the main factors, which influence the amount of labeled data, are known and depicted below:</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/amountDataNew.png" alt="Drawing" style="width: 600px;"/></section>
-<section id="further-categories">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/amountDataNew.png" alt="Drawing" style="width: 600px;"/></div>
+<div class="section" id="further-categories">
 <h3>Further Categories<a class="headerlink" href="#further-categories" title="Permalink to this headline">#</a></h3>
 <p>Even though Machine Learning showed amazing accuracy in a wide range of tasks such as object classification, machine translation and automated content generation, many experts are convinced that in order to create human-level AI new approaches to ML and AI must be invented. The current methods, in particular supervised learning, is supposed to get stuck in a suboptimum, far from human-level AI. The reason for these doubts is that supervised ML requires large amounts of labeled data and in general labeling is expensive. On the other hand a main factor of human intelligence is <strong>common sense</strong>, i.e. knowledge on general concepts such as <em>gravity</em> or <em>object permanence</em>. Human’s create <em>common sense</em> from their birth on, mainly by unsupervised observation of the world. It is because of this understanding of common concepts that makes our learning of specific things efficient. For example, based on the knowledge of <em>gravity</em>, we do not need much specific training samples in order to predict the trajectory of a stone, which is thrown away.</p>
 <p>It is clear that supervised learning alone will not be sufficient to teach machines something like common sense, since it is impossible to label everything. Therefore, recent ML research has a strong focus on finding new methods for learning from unlabeled data. In particular concepts that exploit both, a relatively small set of labeled data and a large set of unlabeled data, are investigated. Two main categories of this type are <em>self-supervised learning</em> and <em>semi-supervised learning</em>.</p>
-<section id="self-supervised-learning">
+<div class="section" id="self-supervised-learning">
 <h4>Self-Supervised Learning<a class="headerlink" href="#self-supervised-learning" title="Permalink to this headline">#</a></h4>
 <p>Self-supervised learning consists of 2 stages: First large amounts of unlabeled data are applied to <em>learn a feature-extractor, which  provides a good representation of the given data domain</em>. This feature-extractor is passed to stage 2, where it can be applied for many different tasks with the same input data domain. In order to learn these task-specific models in the 2nd stage only relatively small amounts of task-specific labeled data is required. This concept is depicted in the image below. Examples are e.g. <a class="reference internal" href="text/01ModellingWordsAndTexts.html"><span class="doc std std-doc">Word2Vec</span></a> or transformers like <a class="reference internal" href="transformer/attention.html"><span class="doc std std-doc">BERT</span></a>. In both examples unlabeled text data (e.g. the entire Wikipedia, or tons of books) are applied for pretraining. During pretraining the feature-extractor is trained such that it predicts masked words (target) from the surrounding words (input).</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/self_supervised_learning" alt="Drawing" style="width: 800px;"/>
 <p>Self-supervised learning is only applicable, if there exist semantic relations between the elements <span class="math notranslate nohighlight">\(x_i\)</span> of the unlabeled data. This is true e.g. for text (words within sentences are related), images (neighbouring pixels are correlated) and video (successive frames within the video are correlated).</p>
-</section>
-<section id="semi-supervised-learning">
+</div>
+<div class="section" id="semi-supervised-learning">
 <h4>Semi-Supervised Learning<a class="headerlink" href="#semi-supervised-learning" title="Permalink to this headline">#</a></h4>
 <p>Semi-supervised learning is another approach to learn models from relatively small amounts of labeled data and large amounts of unlabeled data. The trick in self-supervised learning was to apply in stage 1 a supervised-learning approach on unlabeled data. This is feasible only if there exists semantic relations between the elements of the input-data-vectors. Now, in semi-supervised learning, we do not have to impose this hard restriction on the structure of data. However, there exist other assumptions, which must be fullfilled (at least one), e.g. the</p>
 <ul class="simple">
@@ -928,8 +927,8 @@ title="Print to PDF"
 <p>Semi-supervised learning may refer to either <strong>transductive learning</strong> or <strong>inductive learning</strong>.The goal of transductive learning is to infer the correct labels <em>for the given unlabeled data only</em>. The goal of inductive learning is to infer the <em>correct mapping from input data to target in general</em>. (Source: <a class="reference external" href="https://en.wikipedia.org/wiki/Semi-supervised_learning">Wikipedia</a>).</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/SemiSupervised.png" alt="Drawing" style="width: 800px;"/>
 <p>There exists many approaches for semi-supervised learning. One is to use the labeled data to learn an initial classification model. Then the unlabeled data is applied to learn better class-specific distributions, which provide better classifiers.</p>
-</section>
-<section id="supervised-pretraining">
+</div>
+<div class="section" id="supervised-pretraining">
 <h4>Supervised Pretraining<a class="headerlink" href="#supervised-pretraining" title="Permalink to this headline">#</a></h4>
 <p>A common and extremely efficient approach to apply deep neural networks in the case of only relatively small amounts of labeled training data is to integrate neural networks, which have been <strong>pretrained on a very large labeled dataset</strong>. Such pretrained deep neural networks can be downloaded e.g. from</p>
 <ul class="simple">
@@ -939,8 +938,8 @@ title="Print to PDF"
 </ul>
 <p>As in the case of self-supervised learning, the <strong>learned feature extractor</strong> constitutes a basis, which can be adapted and fine-tuned for different tasks. Again, a relatively small amount of task-specific labeled data is required for fine-tuning.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/supervised_pretraining.png" alt="Drawing" style="width: 800px;"/>
-</section>
-<section id="few-shot-learning">
+</div>
+<div class="section" id="few-shot-learning">
 <h4>Few-Shot Learning<a class="headerlink" href="#few-shot-learning" title="Permalink to this headline">#</a></h4>
 <p>The term <strong>Few-Shot-Learning</strong> refers to approaches, which provide models that can be applied for classification, even though there is only a very small amount of labeled data - too small to apply conventional ML. In the extreme case of <strong>One-Shot-Learning</strong> only one labeled training instance per class is required.</p>
 <p>Few-Shot-Learning is often described as <strong>N-way-K shot meta learning classification</strong>. This means that for each of the <span class="math notranslate nohighlight">\(N\)</span> classes <span class="math notranslate nohighlight">\(K\)</span> labeled training instances are available. Typical numbers for <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(K\)</span> are 10 and 5, respectively.</p>
@@ -949,16 +948,16 @@ title="Print to PDF"
 <p>A quit popular realisation of few-shot-learning is the <strong>Matching Networks</strong> approach, which has been introduced in <a class="reference external" href="https://arxiv.org/pdf/1606.04080.pdf">O. Vinyals et al</a>. The picture below describes the idea of this approach:</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/matchingnetworks.png" alt="Drawing" style="width: 600px;"/>
 <p>Training instances (here <span class="math notranslate nohighlight">\(K=4\)</span> different classes) are mapped into an embedding space. The mapping is realized by a neural network <span class="math notranslate nohighlight">\(g\)</span> with learnable parameters <span class="math notranslate nohighlight">\(\Theta\)</span>. The query-image is also mapped to the same embedding space. The function <span class="math notranslate nohighlight">\(f\)</span> applied for mapping the query image need not be the same as the function <span class="math notranslate nohighlight">\(g\)</span>. In the embedded space a simple nearest-neighbour search is applied to determine the class of the query image. I.e. for the given representation of the query-image the closest representation of a training image is determined. The class of this closest training image is the decision. The more similar tasks are available to learn the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> the better the accuracy on similar tasks.</p>
-</section>
-</section>
-<section id="cross-validation">
+</div>
+</div>
+<div class="section" id="cross-validation">
 <h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h3>
 <p>K-fold cross-Validation is the standard validation method if labeled data is rare. The entire set of labeled data is partitioned into k (<span class="math notranslate nohighlight">\(k=10\)</span> in the example below) disjoint subsets. The entire evaluation consists of k iterations. In the <a class="reference external" href="http://i.th">i.th</a> iteration, the <a class="reference external" href="http://i.th">i.th</a> partition (subset) is applied for validation, all other partitions are applied for training the model. In each iteration the model’s performance, e.g. accuracy, is determined on the validation-partition. Finally, the overall performance is the average performance over all k performance values.</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/CrossValidation.jpg" alt="Drawing" style="width: 800px;"/></section>
-<section id="performance-metrics">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/CrossValidation.jpg" alt="Drawing" style="width: 800px;"/></div>
+<div class="section" id="performance-metrics">
 <h3>Performance Metrics<a class="headerlink" href="#performance-metrics" title="Permalink to this headline">#</a></h3>
 <p>Below <span class="math notranslate nohighlight">\(r_i\)</span> denotes the true label, given in the labeled dataset and <span class="math notranslate nohighlight">\(y_i\)</span> denotes the corresponding label as predicted by the learned model. Obviously the goal is to learn a model, whose predictions <span class="math notranslate nohighlight">\(y_i\)</span> are as close as possible to the true labels <span class="math notranslate nohighlight">\(r_i\)</span>. For classification and regression there exists different metrics to measure the difference between true and predicted labels. The most important metrics are summarized below. Metrics, provided by scikit-learn, can be found here: <a class="reference external" href="http://scikit-learn.org/stable/modules/model_evaluation.html">Scores in scikit-learn</a>.</p>
-<section id="classification">
+<div class="section" id="classification">
 <h4>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">#</a></h4>
 <p>For classification the most prominent metric is <strong>accuracy</strong>, which is just the rate of correct classifications. For the analysis of a classifier, determination of accuracy alone is not sufficient. The metrics defined below provide more subtle information on correct and erroneous events. All of the defined evaluation metrics can be obtained from the confusion matrix. For a binary classifier, the <strong>confusion matrix</strong> is depicted below. For a <em>K</em>-class classifier, the confusion matrix has size <span class="math notranslate nohighlight">\(K \times K\)</span>. The rows correspond to the true labels, the columns to the predicted labels.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/confusionMat.png" style="width:300px" align="center"><p><strong>Accuracy:</strong> The rate of overall correct classifications:</p>
@@ -996,8 +995,8 @@ REC=\frac{TP}{FN+TP}
 \[
 F1=2\frac{PRE \cdot REC }{PRE + REC}
 \]</div>
-</section>
-<section id="regression">
+</div>
+<div class="section" id="regression">
 <h4>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">#</a></h4>
 <p>Also regression models can be scored by a variety of metrics. The most prominent are</p>
 <ul class="simple">
@@ -1025,11 +1024,11 @@ R^2  =  1- \frac{SS_e}{SS_r}, \quad \mbox{ with } SS_e=\sum_{i=1}^N(r_i-y_i)^2, 
 RMSLE = \sqrt{\frac{1}{N} \sum\limits_{i=1}^N(\ln(r_i)-\ln(y_i))^2}
 \]</div>
 <p>For RMSLE there is no explicit scoring function in scikit-learn, but it can be easily computed via the NMSE-function. The RMSLE is well suited for the case that the error (i.e. the difference between <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(r_i\)</span>) increases with the values of <span class="math notranslate nohighlight">\(r_i\)</span>. Then large errors at high values of <span class="math notranslate nohighlight">\(r_i\)</span> are weighted less by RMSLE.</p>
-</section>
-</section>
-<section id="bias-and-variance-overfitting-and-underfitting">
+</div>
+</div>
+<div class="section" id="bias-and-variance-overfitting-and-underfitting">
 <h3>Bias and Variance, Overfitting and Underfitting<a class="headerlink" href="#bias-and-variance-overfitting-and-underfitting" title="Permalink to this headline">#</a></h3>
-<section id="bias-variance-tradeoff">
+<div class="section" id="bias-variance-tradeoff">
 <h4>Bias-Variance-Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this headline">#</a></h4>
 <p>The goal of <strong>supervised machine learning</strong> is to learn a model</p>
 <div class="math notranslate nohighlight">
@@ -1050,22 +1049,22 @@ y=f(x)+\epsilon.
 <p>A <strong>high variance</strong> means that the learned model strongly varies with varying training data - even if the overall data distribution is identical. Algorithms, which are able to strongly adapt to the given training data are e.g. Support Vector Machines (SVM) with non-linear kernels or decision trees.</p>
 <p>In the figure below the top-row (part 1 and part 2) shows a linear model of high bias (only a linear function can be learned). The variance is low because even though the training data in part 1 and part 2 is different, the learned models are similar. The lower row (part 3 and part 4) refers to an algorithm (non-linear SVM) of low-bias (many different types of functions can be learned), but high-variance, because the learned model in part 3 and part 4 are significantly different.</p>
 <p>The goal is to find an algorithm, which learns a model of low bias and low variance. However, usually low bias yields high variance and vice versa. The goal is to find a good trade-off between them</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/BiasVariance.png" alt="Drawing" style="width: 600px;"/></section>
-<section id="overfitting-underfitting">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/BiasVariance.png" alt="Drawing" style="width: 600px;"/></div>
+<div class="section" id="overfitting-underfitting">
 <h4>Overfitting / Underfitting<a class="headerlink" href="#overfitting-underfitting" title="Permalink to this headline">#</a></h4>
 <p>The goal of supervised machine learning is to find a model, which performs well on new data, i.e. data, which has not be seen during training. It is in general no problem, to find an algorithm, which learns a model, that is well adapted to the given training data. However, it is a big challenge to find a model, that performs well on previously unseen data.</p>
 <p><strong>Overfitting</strong> means, that a model has been strongly adapted to the training data, but it performs bad on new data. Algorithms of low-bias are able to learn models, which are strongly fittet to training data. However, then often the variance and the probability of overfitting are high.</p>
 <p><strong>Underfitting</strong> means, that the learned model is weakly adapted to the training data. Algorithms of high-bias yield an increased probability of underfitting.</p>
 <p>The image below sketches the relation between bias, variance, over- and underfitting (Image source: <a class="reference external" href="https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229">https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229</a>)</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/></section>
-</section>
-</section>
-<section id="a-incomplete-list-of-ai-applications">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/biasvarianceoverfitting.png" alt="Drawing" style="width: 800px;"/></div>
+</div>
+</div>
+<div class="section" id="a-incomplete-list-of-ai-applications">
 <h2>A incomplete list of AI Applications<a class="headerlink" href="#a-incomplete-list-of-ai-applications" title="Permalink to this headline">#</a></h2>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/AIapplicationsEnterprise.png" alt="Drawing" style="width: 600px;"/>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/AIapplicationsIndustry.png" alt="Drawing" style="width: 600px;"/>
-</section>
-<section id="current-problems-challenges-of-ai-and-ml">
+</div>
+<div class="section" id="current-problems-challenges-of-ai-and-ml">
 <h2>Current Problems/Challenges of AI and ML<a class="headerlink" href="#current-problems-challenges-of-ai-and-ml" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><strong>Data efficiency:</strong> In order to learn complex tasks large amounts of training data are required</p></li>
@@ -1075,8 +1074,8 @@ y=f(x)+\epsilon.
 <li><p><strong>Common Sense</strong> makes human learning efficient. It is hard to learn common sense knowledge in ML.</p></li>
 <li><p>ML models usually learn correlations but not <strong>Causality</strong>.</p></li>
 </ul>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/captionbotexample.png" alt="Drawing" style="width: 800px;"/></section>
-</section>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/captionbotexample.png" alt="Drawing" style="width: 800px;"/></div>
+</div>
 
     <script type="text/x-thebe-config">
     {

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neural Networks Introduction &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -21,7 +20,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -37,7 +36,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -832,25 +831,25 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks-introduction">
+  <div class="tex2jax_ignore mathjax_ignore section" id="neural-networks-introduction">
 <h1>Neural Networks Introduction<a class="headerlink" href="#neural-networks-introduction" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 10.05.2022</p></li>
 </ul>
-<section id="natural-neuron">
+<div class="section" id="natural-neuron">
 <h2>Natural Neuron<a class="headerlink" href="#natural-neuron" title="Permalink to this headline">#</a></h2>
 <p><img alt="Natural Neuron" src="https://maucher.home.hdm-stuttgart.de/Pics/neuron.png" /></p>
 <p>Neurons are the basic elements for information processing. A neuron consists of a cell-body, many dendrites and an axon. The neuron receives electrical signals from other neurons via the dendrites. In the cell-body all input-signals received via the dendrites are accumulated. If the accumulated electrical signal exceeds a certain threshold, the cell-body outputs an electrical signal via it’s axon. In this case the neuron is said to be activated. Otherwise, if the accumulated input at the cell-body is below the threshold, the neuron is not active, i.e. it does not send a signal to connected neurons. The point, where dendrites of neurons are connected to axons of other neurons is called synapse. The synapse consists of an electrochemical substance. The conductivity of this substance depends on it’s concentration of neurotransmitters. The process of learning adapts the conductivity of synapses and, i.e. the degree of connection between neurons. A single neuron can receive inputs from 10-100000 other neurons. However, there is only one axon, but multiple dendrites of other cell can be connected to this axon.</p>
-</section>
-<section id="artificial-neuron">
+</div>
+<div class="section" id="artificial-neuron">
 <h2>Artificial Neuron<a class="headerlink" href="#artificial-neuron" title="Permalink to this headline">#</a></h2>
 <img src="http://maucher.home.hdm-stuttgart.de/Pics/einneuron.jpg" width="400">
 <p>The artificial model of a neuron is shown in the picture below. At the input of each neuron the weighted sum</p>
 <div class="math notranslate nohighlight">
 \[in=\sum\limits_{j=0}^d w_jx_j = \mathbf{w}\cdot \mathbf{x^T}=(w_0, w_1, \ldots, w_d) \cdot (x_0, x_1, \ldots, x_d)^T \]</div>
 <p>is calculated. The values <span class="math notranslate nohighlight">\(x_j\)</span> are the outputs of other neurons. Each <span class="math notranslate nohighlight">\(x_j\)</span> is weighted by a scalar <span class="math notranslate nohighlight">\(w_j\)</span>, similar as in the natural model the signal-strength from a connected neuron is damped by the conductivity of the synapse. As in the natural model, learning of an artificial network means adaptation of the weights between neurons. Also, as in the natural model, the weighted sum at the input of the neuron is fed to an <strong>activation function g()</strong>, which can be a simple threshold-function that outputs a <code class="docutils literal notranslate"><span class="pre">1</span></code> if the weighted sum <span class="math notranslate nohighlight">\(in=\sum\limits_{j=0}^d w_jx_j\)</span>  exceeds a certain threshold and a <code class="docutils literal notranslate"><span class="pre">0</span></code> otherwise.</p>
-<section id="activation-function">
+<div class="section" id="activation-function">
 <h3>Activation Function<a class="headerlink" href="#activation-function" title="Permalink to this headline">#</a></h3>
 <p>The most common activation functions are:</p>
 <ul>
@@ -883,42 +882,42 @@ title="Print to PDF"
 </ul>
 <p><img alt="Activationfunctions" src="https://maucher.home.hdm-stuttgart.de/Pics/activationsViz.png" /></p>
 <p>All artificial neurons calculate the sum of weighted inputs <span class="math notranslate nohighlight">\(in\)</span>. Neurons differ in the activation function, which is applied on <span class="math notranslate nohighlight">\(in\)</span>. In the sections below it will be described how to choose an appropriate activation function.</p>
-</section>
-<section id="bias">
+</div>
+<div class="section" id="bias">
 <h3>Bias<a class="headerlink" href="#bias" title="Permalink to this headline">#</a></h3>
 <p>Among the input-signals, <span class="math notranslate nohighlight">\(x_0\)</span> has a special meaning. In contrast to all other <span class="math notranslate nohighlight">\(x_j\)</span> the value of this so called <strong>bias</strong> is constant <span class="math notranslate nohighlight">\(x_0=1\)</span>. Instead of denoting the bias input to a neuron by <span class="math notranslate nohighlight">\(w_0 \cdot x_0 = w_0\)</span> it can also be written as <span class="math notranslate nohighlight">\(b\)</span>. I.e.</p>
 <div class="math notranslate nohighlight">
 \[in=\sum\limits_{j=0}^d w_jx_j  \quad \mbox{  is equivalent to  } \quad in=\sum\limits_{j=1}^d w_jx_j+b\]</div>
 <p>Hence the following two graphical representations are equivalent:</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpPresentations.png" style="width: 700px;"/></section>
-</section>
-<section id="artificial-neural-networks-general-notions">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpPresentations.png" style="width: 700px;"/></div>
+</div>
+<div class="section" id="artificial-neural-networks-general-notions">
 <h2>Artificial Neural Networks: General Notions<a class="headerlink" href="#artificial-neural-networks-general-notions" title="Permalink to this headline">#</a></h2>
-<section id="layers">
+<div class="section" id="layers">
 <h3>Layers<a class="headerlink" href="#layers" title="Permalink to this headline">#</a></h3>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/mlpL3.png" style="width: 600px;"/><p>In Neural Networks neurons are arranged in layers. All Neurons of a single layer are of the same type, i.e. they apply the same activation function on the weighted sum at their input (see previous section). Each Neural Network has at least one input-layer and one output-layer. The number of neurons in the input-layer is determined by the number of features (attributes) in the given Machine-Learning problem. The number of neurons in the output-layer depends on the task. E.g. for <strong>binary-classification</strong> and <strong>regression</strong> only one neuron in the output-layer is requried, for classification into <span class="math notranslate nohighlight">\(K&gt;2\)</span> classes the output-layer consists of <span class="math notranslate nohighlight">\(K\)</span> neurons.</p>
 <p>Actually, the <strong>input-layer</strong> is not considered as a <em>real</em> layer, since it only takes in the values of the current feature-vector, but does not perform any processing, such as calculating an activation function of a weighted sum. The input layer is ignored when determining the number of layers in a neural-network.</p>
 <p>For <strong>example</strong> for a binary credit-worthiness classification of customers, which are modelled by the numeric features <em>age, annual income, equity</em>, <span class="math notranslate nohighlight">\(3+1=4\)</span> neurons are required at the input (3 neurons <span class="math notranslate nohighlight">\(x_1,x_2,x_3\)</span> for the 3 features plus the constant bias <span class="math notranslate nohighlight">\(x_0=1\)</span>) and one neuron is required at the output. For non-numeric features at the input, the number of neurons in the inut-layer is not directly given by the number of features, since each non-numeric feature must be <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">One-Hot encoded</a> before passing it to the Neural Network.</p>
 <p>Inbetween the input- and the output-layer there may be zero, one or more other layers. The number of layers in a Neural Network is an essential architectural hyperparameter. <strong>Hyperparameters</strong> in Neural Networks, as well as in all other Machine Learning algorithms, are parameters, which are not learned automatically in the training phase, but must be configured from outside. Finding appropriate hyperparameters for the given task and the given data is possibly the most challenging task in machine-learning.</p>
-</section>
-<section id="feedforward-and-recurrent-neural-networks">
+</div>
+<div class="section" id="feedforward-and-recurrent-neural-networks">
 <h3>Feedforward- and Recurrent Neural Networks<a class="headerlink" href="#feedforward-and-recurrent-neural-networks" title="Permalink to this headline">#</a></h3>
 <p>In <strong>Feedforward Neural Networks (FNN)</strong> signals are propagated only in one direction - from the input- towards the output layer. In a network with <span class="math notranslate nohighlight">\(L\)</span> layers, the input-layer is typically indexed by 0 and the output-layer’s index is <span class="math notranslate nohighlight">\(L\)</span> (as mentioned above the input-layer is ignored in the layer-count). Then in a FNN the output of layer <span class="math notranslate nohighlight">\(j\)</span> can be passed to the input of neurons in layer <span class="math notranslate nohighlight">\(i\)</span>, if and only if <span class="math notranslate nohighlight">\(i&gt;j\)</span>.</p>
 <p><strong>Recurrent Neural Networks (RNN)</strong>, in contrast to FNNs, not only have forward connections, but also backward-connections. I.e the output of neurons in layer <span class="math notranslate nohighlight">\(j\)</span> can be passed to the input of neurons in the same layer or to neurons in layers of index <span class="math notranslate nohighlight">\(k&lt;j\)</span>.</p>
-</section>
-<section id="general-concept-of-supervised-learning">
+</div>
+<div class="section" id="general-concept-of-supervised-learning">
 <h3>General Concept of Supervised Learning<a class="headerlink" href="#general-concept-of-supervised-learning" title="Permalink to this headline">#</a></h3>
 <p>Neural Networks can be applied for supervised and unsupervised learning. By far the most applications apply Neural Networks for <strong>supervised learning</strong> for classification or regression. This notebook only considers this case. Neural Networks for unsupervised learning would be for example <a class="reference external" href="https://en.wikipedia.org/wiki/Self-organizing_map">Self Organizing Maps</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Autoencoder">Auto Encoders</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">Restricted Boltzmann Machines</a>.</p>
 <p>The general concept of supervised learning of a neural network is sketched in the picture below.</p>
 <p><img alt="Principle of Learning" src="https://maucher.home.hdm-stuttgart.de/Pics/learnGradientDescent.png" /></p>
 <p>In supervised learning each training element is a pair of input/target. The input contains the observable features, and the target is either the true class-label in the case of classification or the true numeric output value in the case of regression. A Neural Network is trained by passing a single training-element to the network. For the given input the output of the network is calculated, based on the current weight values. This output of the network is compared with the target. As long as there is a significant difference between the output and the target, the weights of the networks are adapted.
 In a well trained network, the deviation between output and target is as small as possible for all training-elements.</p>
-</section>
-<section id="gradient-descent-learning">
+</div>
+<div class="section" id="gradient-descent-learning">
 <h3>Gradient Descent Learning<a class="headerlink" href="#gradient-descent-learning" title="Permalink to this headline">#</a></h3>
 <p>In the previous section the general idea of training a Neural Network has been presented. Now, a concrete realization of this concept is described - <strong>Gradient Descent -</strong> and <strong>Stochastic Gradient Descent Learning</strong>. This approach is not only applied for all types of Neural Networks, but for many other supervised Machine Learning algorithms.</p>
-</section>
-<section id="id1">
+</div>
+<div class="section" id="id1">
 <h3>Gradient Descent Learning<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>The concept of Gradient Descent Learning is as follows:</p>
 <ol class="simple">
@@ -945,9 +944,9 @@ In a well trained network, the deviation between output and target is as small a
 \]</div>
 <p>for regression, binary and non-binary classification is presented.-</p>
 <p><img alt="Gradient Descent Flowchart" src="https://maucher.home.hdm-stuttgart.de/Pics/peaksexampleboth.jpg" /></p>
-</section>
-</section>
-<section id="single-layer-perceptron">
+</div>
+</div>
+<div class="section" id="single-layer-perceptron">
 <h2>Single Layer Perceptron<a class="headerlink" href="#single-layer-perceptron" title="Permalink to this headline">#</a></h2>
 <p>A Single Layer Perceptron (SLP) is a Feedforward Neural Network (FNN), which consists only of an input- and an output layer (the output-layer is the <em>single</em> layer). All neurons of the input layer are connected to all neurons of the output layer. A layer with this property is also called a <strong>fully-connected layer</strong> or a <strong>dense layer</strong>. SLPs can be applied to learn</p>
 <ul class="simple">
@@ -955,7 +954,7 @@ In a well trained network, the deviation between output and target is as small a
 <li><p>a linear classifier for more than 2 classes</p></li>
 <li><p>a linear regression model</p></li>
 </ul>
-<section id="slp-for-regression">
+<div class="section" id="slp-for-regression">
 <h3>SLP for Regression<a class="headerlink" href="#slp-for-regression" title="Permalink to this headline">#</a></h3>
 <p>A SLP can be applied to learn a linear function</p>
 <div class="math notranslate nohighlight">
@@ -972,8 +971,8 @@ E(T,\Theta)=SSE(T,\Theta)= \frac{1}{2} \sum\limits_{t=1}^N (r_t-y_t)^2 = \frac{1
 <p>where <span class="math notranslate nohighlight">\(\Theta=\lbrace w_0,w_1,\ldots, w_d \rbrace\)</span> is the set of weights, which are adapted in the training process.</p>
 <p><strong>Example:</strong> The <span class="math notranslate nohighlight">\(N=5\)</span> training-elements given in the table of the picture below contain only a single input feature <span class="math notranslate nohighlight">\(x_1\)</span> and the corresponding target-value <span class="math notranslate nohighlight">\(r\)</span>. From these training-elements a SLP can learn a linear function <span class="math notranslate nohighlight">\(y=w_0+w_1 x_1\)</span>, which minimizes the loss-function SSE.</p>
 <p><img alt="Linear Regression" src="https://maucher.home.hdm-stuttgart.de/Pics/slp1dimlinearregression.png" /></p>
-</section>
-<section id="slp-for-binary-classification">
+</div>
+<div class="section" id="slp-for-binary-classification">
 <h3>SLP for binary classification<a class="headerlink" href="#slp-for-binary-classification" title="Permalink to this headline">#</a></h3>
 <p>A SLP can be applied to learn a binary classifier from a set of N labeled observations</p>
 <div class="math notranslate nohighlight">
@@ -1008,8 +1007,8 @@ b=-\frac{w_0}{w_2}=3.
 \]</div>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/slpBinaryClassification.png" style="width: 600px;">
 <p>Once this model, i.e. the set of weights, is learned it can be applied for classification as follows: A new observation <span class="math notranslate nohighlight">\(\mathbf{x'}=(x'_1,x'_2)\)</span> is inserted into the learned equation <span class="math notranslate nohighlight">\(w_0 \cdot 1 + w_1 \cdot x'_1 + w_2 \cdot x'_2\)</span>. The result of this linear equation is passed to the sigmoid-function. If sigmoid-function’s output is <span class="math notranslate nohighlight">\(&gt;0.5\)</span> the most probable class is <span class="math notranslate nohighlight">\(C_1\)</span>, otherwise it is <span class="math notranslate nohighlight">\(C_0\)</span>.</p>
-</section>
-<section id="slp-for-classification-in-k-2-classes">
+</div>
+<div class="section" id="slp-for-classification-in-k-2-classes">
 <h3>SLP for classification in <span class="math notranslate nohighlight">\(K&gt;2\)</span> classes<a class="headerlink" href="#slp-for-classification-in-k-2-classes" title="Permalink to this headline">#</a></h3>
 <p>A SLP can be applied to learn a non-binary classifier from a set of N labeled observations</p>
 <div class="math notranslate nohighlight">
@@ -1035,9 +1034,9 @@ E(T,\Theta)= - \sum\limits_{t=1}^N \sum\limits_{k=1}^K r_{t,k} \log(y_{t,k}),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\Theta=\lbrace w_0,w_1,\ldots, w_d \rbrace\)</span> is the set of weights, which are adapted in the training process. <span class="math notranslate nohighlight">\(r_{t,k}=1\)</span>, if the <a class="reference external" href="http://t.th">t.th</a> training-element belongs to class <span class="math notranslate nohighlight">\(k\)</span>, otherwise it is 0. <span class="math notranslate nohighlight">\(y_{t,k}\)</span> is the output of the <a class="reference external" href="http://k.th">k.th</a> neuron for the <a class="reference external" href="http://t.th">t.th</a> training-element.</p>
 <p>Each output neuron has its own set of weights, and each weight-set defines a (d-1)-dimensional hyperplane in the d-dimensional space. However, now these hyperplanes are not the class boundary itself, but they determine the class boundaries, which are actually of convex shape as depicted below. In the picture below, the red area indicates the inputs, who yield a maximum output at the neuron, whose weights belong to the red line, the blue area is the of inputs, whose maximum value is at the neuron, which belongs to the blue line and the green area comprises the inputs, whose maximum value is at the neuron, which belongs to the green line.</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpMultiClassRegions.png" width="400" class="center"></section>
-</section>
-<section id="gradient-of-error-function">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/slpMultiClassRegions.png" width="400" class="center"></div>
+</div>
+<div class="section" id="gradient-of-error-function">
 <h2>Gradient of Error Function<a class="headerlink" href="#gradient-of-error-function" title="Permalink to this headline">#</a></h2>
 <p>Above, the general idea of Gradient Descent Learning has been described. The corresponding weight-adaptation rule is:</p>
 <div class="math notranslate nohighlight">
@@ -1078,7 +1077,7 @@ W=W+\Delta W,
 <p>This calculation of the weight-adaption from the error-vector at the output of the neural network is also called the <strong>Backward-Pass</strong>.</p>
 <p>As can be seen in this weight-adaptation formula, for each single adaptation the entire batch of <span class="math notranslate nohighlight">\(N\)</span> training-elements is regarded (since the sum goes over all training-elements). This is called <strong>Batch-Learning</strong>. The flowchart of the described Gradient Descent Learning is depicted below. In the context of Neural Network training an <em>epoch</em> means that each element of the entire training-dataset has been shown used once for weight-adaptation. Usually, the entire training-process comprises many epochs. The termination of the training-process is either defined by a fixed number of epochs, or by a threshold on the decrease of the Loss Function. I.e. if the loss does not decrease significantly over several iterations, training terminates.</p>
 <p><img alt="Gradient Descent Flowchart" src="https://maucher.home.hdm-stuttgart.de/Pics/gradientDescent.png" /></p>
-<section id="stochastic-gradient-descent-learning">
+<div class="section" id="stochastic-gradient-descent-learning">
 <h3>Stochastic Gradient Descent Learning<a class="headerlink" href="#stochastic-gradient-descent-learning" title="Permalink to this headline">#</a></h3>
 <p>A quite popular variant of the Gradient Descent Batch-Learning is to regard for a single weight-adaptation only a single training element. In this variant the weight adaptation with respect to the <a class="reference external" href="http://t.th">t.th</a> training-element is:</p>
 <div class="math notranslate nohighlight">
@@ -1086,15 +1085,15 @@ W=W+\Delta W,
 \Delta W= \eta  \boldsymbol{\Delta}_t  \boldsymbol{x}_{t}^T
 \]</div>
 <p>In contrast to Batch-Learning this variant is called <strong>Online-Learning</strong>. The true Gradient Descent approach would require Batch-Learning. Since the Online-Learning variant is not fully conform to the Gradient Descent approach it is called <strong>Stochastic Gradient Descent (SGD)</strong>.</p>
-</section>
-</section>
-<section id="summary-single-layer-perceptron">
+</div>
+</div>
+<div class="section" id="summary-single-layer-perceptron">
 <h2>Summary Single Layer Perceptron<a class="headerlink" href="#summary-single-layer-perceptron" title="Permalink to this headline">#</a></h2>
 <p><img alt="SLP summary" src="https://maucher.home.hdm-stuttgart.de/Pics/slpSummary.png" /></p>
-</section>
-<section id="multi-layer-perceptron">
+</div>
+<div class="section" id="multi-layer-perceptron">
 <h2>Multi Layer Perceptron<a class="headerlink" href="#multi-layer-perceptron" title="Permalink to this headline">#</a></h2>
-<section id="notations-and-basic-characteristics">
+<div class="section" id="notations-and-basic-characteristics">
 <h3>Notations and Basic Characteristics<a class="headerlink" href="#notations-and-basic-characteristics" title="Permalink to this headline">#</a></h3>
 <p>A Multi Layer Perceptron (MLP) with <span class="math notranslate nohighlight">\(L\geq 2\)</span> layers is a Feedforward Neural Network (FNN), which consists of</p>
 <ul class="simple">
@@ -1133,11 +1132,11 @@ W=W+\Delta W,
 </ul>
 <p>are distinguished. The corresponding MLP output-layer is the same as in the case of a SLP.</p>
 <p>In contrast to SLPs, MLPs are able to <strong>learn non-linear</strong> models. This difference is depicted below: The left hand side shows the linear classification-boundary, as learned by a SLP, whereas on the right-hand side the non-linear boundary, as learned by a MLP from the same training data, is plotted.</p>
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/nonlinearClassification.png" alt="Drawing" style="width: 800px;"/></section>
-</section>
-<section id="architecture">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/nonlinearClassification.png" alt="Drawing" style="width: 800px;"/></div>
+</div>
+<div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h2>
-<section id="number-of-hidden-layers">
+<div class="section" id="number-of-hidden-layers">
 <h3>Number of hidden layers<a class="headerlink" href="#number-of-hidden-layers" title="Permalink to this headline">#</a></h3>
 <p>In the design of MLPs, the number of required hidden layers and the number of neurons per hidden layer are crucial hyperparameters, which strongly influence the network’s performance. Appropriate values for these parameters strongly depend on the application and data at hand. They can not be calculated analytically, but have to be determined in corresponding evaluation- and optimization experiments.</p>
 <p>In order to roughly determine ranges for a suitable number of hidden neurons, one should consider, that an increasing number of hidden neurons</p>
@@ -1146,10 +1145,10 @@ W=W+\Delta W,
 <li><p>allows to learn more complex models,</p></li>
 <li><p>increases the risk of overfitting.</p></li>
 </ul>
-</section>
-<section id="activation-and-loss-functions">
+</div>
+<div class="section" id="activation-and-loss-functions">
 <h3>Activation- and Loss-functions<a class="headerlink" href="#activation-and-loss-functions" title="Permalink to this headline">#</a></h3>
-<section id="activation-functions-in-hidden-layers">
+<div class="section" id="activation-functions-in-hidden-layers">
 <h4>Activation functions in hidden layers<a class="headerlink" href="#activation-functions-in-hidden-layers" title="Permalink to this headline">#</a></h4>
 <p>The type of activation function to be used in the hidden-layers of a MLP is an hyperparameter, which must be configured by the user, i.e. it is not determined by e.g. the application category. Typical activations for the hidden-layers are:</p>
 <ul class="simple">
@@ -1159,8 +1158,8 @@ W=W+\Delta W,
 <li><p>leaky relu</p></li>
 </ul>
 <p>Finding the best, or at least an appropriate, activation function for the application and data at hand requires empirical analysis.</p>
-</section>
-<section id="activation-functions-in-the-output-layer-and-loss-functions">
+</div>
+<div class="section" id="activation-functions-in-the-output-layer-and-loss-functions">
 <h4>Activation functions in the output layer and loss functions<a class="headerlink" href="#activation-functions-in-the-output-layer-and-loss-functions" title="Permalink to this headline">#</a></h4>
 <p>The configuration of the activation function in the output-layer and the loss function, which is minimized in the training-stage, depend on the application-category in the same way as in the <span class="xref myst">SLP</span>:</p>
 <p><strong>Regression:</strong></p>
@@ -1181,10 +1180,10 @@ W=W+\Delta W,
 <li><p>Activation function in the output-layer: softmax</p></li>
 <li><p>Loss Function: Cross-Entropy</p></li>
 </ul>
-</section>
-</section>
-</section>
-<section id="id2">
+</div>
+</div>
+</div>
+<div class="section" id="id2">
 <h2>Gradient Descent Learning<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>For training, MLPs apply the same approach as SLPs: Gradient Descent. The general consept of Gradient Descent learning is:</p>
 <ol class="simple">
@@ -1249,8 +1248,8 @@ W^l=W^l+ \Delta W^l,
 \boldsymbol{\Delta}_t=\left( \begin{array}{c} \Delta_{t,1} \\ \Delta_{t,2} \\ \vdots \\ \Delta_{t,z_L} \end{array} \right) = \left( \begin{array}{c} r_{t,1} - h^L_{t,1} \\ r_{t,2} - h^L_{t,2} \\ \vdots \\ r_{t,z_L} - h^L_{t,z_L} \end{array} \right)
 \end{split}\]</div>
 <p>Note that in the calculation of <span class="math notranslate nohighlight">\(\boldsymbol{D}_t^l\)</span> depends on the weight-matrices <span class="math notranslate nohighlight">\(W^{l+1},\ldots W^{L}\)</span>. It is important that for this the old weight-matrices (before the update in the current iteration) are used.</p>
-</section>
-<section id="hyperparameters">
+</div>
+<div class="section" id="hyperparameters">
 <h2>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this headline">#</a></h2>
 <p>In the previous sections the following Neural Network hyperparameters, i.e. parameters, which must be configured and optimized by the user, have been mentioned:</p>
 <ul class="simple">
@@ -1296,14 +1295,14 @@ an additional term</p></li>
 <li><p><strong>Dropout:</strong> Dropout is a technique to prevent Neural Networks, such as MLPs, CNNs, LSTMs from overfitting. The key idea is to randomly drop units along with their connections from the neural network during training. This prevents units from co-adapting too much. The drop of a defined ratio (0.1-0.5) of random neurons is valid only for one iteration. During this iteration the weights of the droped units are not adapted. In the next iteration another set of units, which are dropped temporarily is randomly selected. Dropout is only applied in the training-phase.<br />
 <img alt="Dropout" src="https://maucher.home.hdm-stuttgart.de/Pics/dropout.PNG" /></p></li>
 </ul>
-</section>
-<section id="early-mlp-example-autonomos-driving">
+</div>
+<div class="section" id="early-mlp-example-autonomos-driving">
 <h2>Early MLP Example: Autonomos Driving<a class="headerlink" href="#early-mlp-example-autonomos-driving" title="Permalink to this headline">#</a></h2>
 <p>The ALVINN net is a MLP with one hidden layer. It has been designed and trained for <em>road following</em> in autonomous driving. The input has been provided by a simple <span class="math notranslate nohighlight">\(30 \times 32\)</span> greyscale camera. As shown in the picture below, the hidden layer contains only 4 neurons. In the output-layer each of the 30 neurons belongs to one “steering-wheel-direction”. The training data has been collected by recording videos while an expert driver steers the car. For each frame (input) the steering-wheel-direction (label) has been tracked.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/alvinnNN.jpg" width=450 class="center">
 <p>After training the vehicle cruised autonomously for 90 miles on a highway at a speed of up to 70mph. The test-highway has not been included in the training cruises.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
