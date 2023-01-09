@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Generative Adversarial Nets (GAN) &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -546,10 +547,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="generative-adversarial-nets-gan">
+  <section class="tex2jax_ignore mathjax_ignore" id="generative-adversarial-nets-gan">
 <h1>Generative Adversarial Nets (GAN)<a class="headerlink" href="#generative-adversarial-nets-gan" title="Permalink to this headline">#</a></h1>
-<p>In 2014 GANs have been introduced by <em>Ian Goodfellow</em> in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id16" title="Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. Generative adversarial nets. In Proceedings of the 27th International Conference on Neural Information Processing Systems - Volume 2, NIPS'14, 2672–2680. Cambridge, MA, USA, 2014. MIT Press.">GPAM+14</a>]</span> (<a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>). Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
-<div class="section" id="idea-gans">
+<p>In 2014 GANs have been introduced by <em>Ian Goodfellow</em> in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id16">GPAM+14</a>]</span> (<a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">Ian Goodfellow et al</a>). Since then they are one of the hottest topics in deeplearning research. GANs are able to generate synthetic data that looks similar to data of a given trainingset. In this way artifical images, paintings, texts, audio or handwritten digits can be generated.</p>
+<section id="idea-gans">
 <h2>Idea GANs<a class="headerlink" href="#idea-gans" title="Permalink to this headline">#</a></h2>
 <p>On an abstract level the idea of GANs can be described as follows: A counterfeiter produces fake banknotes. The police is able to discriminate the fake banknotes from real ones and it provides feedback to the counterfeiter on why the banknotes can be detected as fake. This feedback is used by the counterfeiter in order to produce fake, which is less distinguishable from real bankotes. After some iterations of producing better but not sufficiently good fake the counterfeiter is able to produce fake, which can not be discriminated from real banknotes.</p>
 <p>A GAN consists of two models:</p>
@@ -557,18 +558,22 @@ title="Print to PDF"
 <li><p>The <strong>discriminator</strong> is the police. It learns to discriminate real data from artificially generated fake data.</p></li>
 <li><p>The <strong>generator</strong> is the counterfeiter, which learns to generate data, that is indistinguishable from real data.</p></li>
 </ol>
-<div class="figure align-center" id="ganidea">
+<figure class="align-center" id="ganidea">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GAN.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">GAN: Generator-Network tries to produce data, such that the Discriminator-Network can not distinguish this <em>fake</em>-data from <em>real</em>-data.</span><a class="headerlink" href="#ganidea" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="architecture-and-training">
+<figcaption>
+<p><span class="caption-number">Fig. 31 </span><span class="caption-text">GAN: Generator-Network tries to produce data, such that the Discriminator-Network can not distinguish this <em>fake</em>-data from <em>real</em>-data.</span><a class="headerlink" href="#ganidea" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="architecture-and-training">
 <h2>Architecture and Training<a class="headerlink" href="#architecture-and-training" title="Permalink to this headline">#</a></h2>
-<p>As depicted in image <a class="reference internal" href="#ganidea"><span class="std std-ref">GAN overall picture</span></a> the overall GAN consists of a Generator and a Discriminator. Both of them are usually neural networks of any type. In the initial work <span id="id2">[<a class="reference internal" href="../referenceSection.html#id16" title="Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. Generative adversarial nets. In Proceedings of the 27th International Conference on Neural Information Processing Systems - Volume 2, NIPS'14, 2672–2680. Cambridge, MA, USA, 2014. MIT Press.">GPAM+14</a>]</span> MLPs have been applied for both components. Later, it has been shown in <span id="id3">[<a class="reference internal" href="../referenceSection.html#id54" title="Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. 2016. arXiv:1511.06434.">RMC16</a>]</span>, that GANs, which apply CNNs for both components are much easier to configure and behave in a more stable manner. The CNN, which has been applied as Generator in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id54" title="Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. 2016. arXiv:1511.06434.">RMC16</a>]</span>, is depicted below:</p>
-<div class="figure align-center" id="dcgangen">
+<p>As depicted in image <a class="reference internal" href="#ganidea"><span class="std std-ref">GAN overall picture</span></a> the overall GAN consists of a Generator and a Discriminator. Both of them are usually neural networks of any type. In the initial work <span id="id2">[<a class="reference internal" href="../referenceSection.html#id16">GPAM+14</a>]</span> MLPs have been applied for both components. Later, it has been shown in <span id="id3">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span>, that GANs, which apply CNNs for both components are much easier to configure and behave in a more stable manner. The CNN, which has been applied as Generator in <span id="id4">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span>, is depicted below:</p>
+<figure class="align-center" id="dcgangen">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/DCGANgenerator.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Generator of the DCGAN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id54" title="Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. 2016. arXiv:1511.06434.">RMC16</a>]</span>. The upsizing of the feature maps is realized by <em>fractional-strided convolution</em>. This is what has be denoted by Deconvolution with a stride <span class="math notranslate nohighlight">\(&gt;2\)</span> in notebook <a class="reference internal" href="../neuralnetworks/convolutionDemos.html"><span class="doc std std-doc">Animations of Convolution and Deconvolution</span></a></span><a class="headerlink" href="#dcgangen" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 32 </span><span class="caption-text">Generator of the DCGAN. Image Source: <span id="id5">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span>. The upsizing of the feature maps is realized by <em>fractional-strided convolution</em>. This is what has be denoted by Deconvolution with a stride <span class="math notranslate nohighlight">\(&gt;2\)</span> in notebook <a class="reference internal" href="../neuralnetworks/convolutionDemos.html"><span class="doc std std-doc">Animations of Convolution and Deconvolution</span></a></span><a class="headerlink" href="#dcgangen" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The task of the GAN is to generate fake-data at the output of the Generator. This fake data shall be indistinguishable from the real-data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is passed to the Discriminator input. The input to the Generator is usually a random noise vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>, drawn e.g. from a multivariate Gaussian distribution. The Generator must be designed such that it’s output <span class="math notranslate nohighlight">\(G(\mathbf{z})\)</span> has the same format as the real-data at the input of the discriminator. The Discriminator is a binary classification network, which receives real-data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and fake-data <span class="math notranslate nohighlight">\(G(\mathbf{z})\)</span>, provided by the Generator. The Discriminator is trained such, that it can discriminate fake-data from real-data. The Generator is trained such, that its output <span class="math notranslate nohighlight">\(G(\mathbf{z})\)</span> is not distinguishable from real-data, i.e. both networks have adversarial training goals.</p>
 <p>The adversarial training process is depcited in <a class="reference internal" href="#gantraining"><span class="std std-ref">the flow-chart below</span></a>. In each epoch</p>
 <ol>
@@ -603,46 +608,58 @@ title="Print to PDF"
 	\]</div>
 </li>
 </ol>
-<div class="figure align-center" id="gantraining">
+<figure class="align-center" id="gantraining">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess2cols.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess2cols.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GANtrainingProcess2cols.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">GAN training process.</span><a class="headerlink" href="#gantraining" title="Permalink to this image">#</a></p>
-</div>
-<p>Even if CNNs are applied as Generator and Discriminator, the configuration of GANs remains challenging. The authors of <span id="id6">[<a class="reference internal" href="../referenceSection.html#id54" title="Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. 2016. arXiv:1511.06434.">RMC16</a>]</span> recommend the guidelines given below:</p>
-<div class="figure align-center" id="dcganguide">
+<figcaption>
+<p><span class="caption-number">Fig. 33 </span><span class="caption-text">GAN training process.</span><a class="headerlink" href="#gantraining" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Even if CNNs are applied as Generator and Discriminator, the configuration of GANs remains challenging. The authors of <span id="id6">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span> recommend the guidelines given below:</p>
+<figure class="align-center" id="dcganguide">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/DCGANguidelines.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/DCGANguidelines.png" src="https://maucher.home.hdm-stuttgart.de/Pics/DCGANguidelines.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id54" title="Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. 2016. arXiv:1511.06434.">RMC16</a>]</span></span><a class="headerlink" href="#dcganguide" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="conditional-gan">
+<figcaption>
+<p><span class="caption-number">Fig. 34 </span><span class="caption-text">Source: <span id="id7">[<a class="reference internal" href="../referenceSection.html#id54">RMC16</a>]</span></span><a class="headerlink" href="#dcganguide" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="conditional-gan">
 <h2>Conditional GAN<a class="headerlink" href="#conditional-gan" title="Permalink to this headline">#</a></h2>
-<p>In <span id="id8">[<a class="reference internal" href="../referenceSection.html#id52" title="Mehdi Mirza and Simon Osindero. Conditional generative adversarial nets. 2014. cite arxiv:1411.1784. URL: http://arxiv.org/abs/1411.1784.">MO14</a>]</span> conditional GANs (cGAN) has been introduced. cGANs allow to control different variants of the generated fake-data. For example, if MNIST-like handwritten digits shall be generated by the GAN one can control which concrete digit shall be generated. The control is realized by passing additional information <span class="math notranslate nohighlight">\(y\)</span> to both, the input of the Generator and the input of the Discriminator.</p>
-<div class="figure align-center" id="cgan">
+<p>In <span id="id8">[<a class="reference internal" href="../referenceSection.html#id52">MO14</a>]</span> conditional GANs (cGAN) has been introduced. cGANs allow to control different variants of the generated fake-data. For example, if MNIST-like handwritten digits shall be generated by the GAN one can control which concrete digit shall be generated. The control is realized by passing additional information <span class="math notranslate nohighlight">\(y\)</span> to both, the input of the Generator and the input of the Discriminator.</p>
+<figure class="align-center" id="cgan">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/ConditionalGAN.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Conditional GAN: The condition <span class="math notranslate nohighlight">\(y\)</span> is added to the Generator- and Discriminator input. Depending on the condition different fake-data <span class="math notranslate nohighlight">\(G(z)\)</span> can be generated. Source: <span id="id9">[<a class="reference internal" href="../referenceSection.html#id52" title="Mehdi Mirza and Simon Osindero. Conditional generative adversarial nets. 2014. cite arxiv:1411.1784. URL: http://arxiv.org/abs/1411.1784.">MO14</a>]</span></span><a class="headerlink" href="#cgan" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 35 </span><span class="caption-text">Conditional GAN: The condition <span class="math notranslate nohighlight">\(y\)</span> is added to the Generator- and Discriminator input. Depending on the condition different fake-data <span class="math notranslate nohighlight">\(G(z)\)</span> can be generated. Source: <span id="id9">[<a class="reference internal" href="../referenceSection.html#id52">MO14</a>]</span></span><a class="headerlink" href="#cgan" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>For conditional GANs the Minmax-Loss Function, which is maximized by the Discriminator- and minimized by the Generator-training is</p>
 <div class="math notranslate nohighlight" id="equation-minmaxcgan">
 <span class="eqno">(74)<a class="headerlink" href="#equation-minmaxcgan" title="Permalink to this equation">#</a></span>\[
 E_x \left[ \log(D(x \mid y)) \right] +  E_z \left[ \log(1-D(G(z  \mid y)))  \right]
 \]</div>
 <p>In the MNIST-example <span class="math notranslate nohighlight">\(y\)</span> represents the concrete number, e.g. it is the one-hot-encoding of the digit that shall be generated. In general, <span class="math notranslate nohighlight">\(y\)</span> can be any kind of auxillary information, such as a class-label or data from other modalities, e.g. word-vectors.</p>
-<div class="figure align-center" id="cganmnist">
+<figure class="align-center" id="cganmnist">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GANconditionalMNIST.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GANconditionalMNIST.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GANconditionalMNIST.png" style="width: 500pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Source: <span id="id10">[<a class="reference internal" href="../referenceSection.html#id52" title="Mehdi Mirza and Simon Osindero. Conditional generative adversarial nets. 2014. cite arxiv:1411.1784. URL: http://arxiv.org/abs/1411.1784.">MO14</a>]</span></span><a class="headerlink" href="#cganmnist" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="cycle-gan-transform-from-one-domain-to-another">
+<figcaption>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">Source: <span id="id10">[<a class="reference internal" href="../referenceSection.html#id52">MO14</a>]</span></span><a class="headerlink" href="#cganmnist" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="cycle-gan-transform-from-one-domain-to-another">
 <h2>Cycle GAN: Transform from one domain to another<a class="headerlink" href="#cycle-gan-transform-from-one-domain-to-another" title="Permalink to this headline">#</a></h2>
-<p>Image-to-image translation (see picture below for examples) is a class of vision- and graphics-problems, where the goal is to learn the mapping between an input image and an output image using a training set of aligned image pairs. However, for many tasks, paired training data may not be available <span id="id11">[<a class="reference internal" href="../referenceSection.html#id32" title="Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A. Efros. Unpaired image-to-image translation using cycle-consistent adversarial networks. 2017 IEEE International Conference on Computer Vision (ICCV), pages 2242-2251, 2017.">ZPIE17</a>]</span>.</p>
-<div class="figure align-center" id="cycleganexamples">
+<p>Image-to-image translation (see picture below for examples) is a class of vision- and graphics-problems, where the goal is to learn the mapping between an input image and an output image using a training set of aligned image pairs. However, for many tasks, paired training data may not be available <span id="id11">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</p>
+<figure class="align-center" id="cycleganexamples">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANexamples.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Source: <span id="id12">[<a class="reference internal" href="../referenceSection.html#id32" title="Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A. Efros. Unpaired image-to-image translation using cycle-consistent adversarial networks. 2017 IEEE International Conference on Computer Vision (ICCV), pages 2242-2251, 2017.">ZPIE17</a>]</span>.</span><a class="headerlink" href="#cycleganexamples" title="Permalink to this image">#</a></p>
-</div>
-<p>Cycle GAN, as introduced in <span id="id13">[<a class="reference internal" href="../referenceSection.html#id32" title="Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A. Efros. Unpaired image-to-image translation using cycle-consistent adversarial networks. 2017 IEEE International Conference on Computer Vision (ICCV), pages 2242-2251, 2017.">ZPIE17</a>]</span>, is an approach for learning to translate an image from a <strong>source domain <span class="math notranslate nohighlight">\(X\)</span></strong> to a <strong>target domain <span class="math notranslate nohighlight">\(Y\)</span></strong> without requiring paired images for training - two sets of unpaired images are sufficient.</p>
-<div class="figure align-center" id="paired">
+<figcaption>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Source: <span id="id12">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#cycleganexamples" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Cycle GAN, as introduced in <span id="id13">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>, is an approach for learning to translate an image from a <strong>source domain <span class="math notranslate nohighlight">\(X\)</span></strong> to a <strong>target domain <span class="math notranslate nohighlight">\(Y\)</span></strong> without requiring paired images for training - two sets of unpaired images are sufficient.</p>
+<figure class="align-center" id="paired">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pairedVsUnpairedStyleTransfer.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pairedVsUnpairedStyleTransfer.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pairedVsUnpairedStyleTransfer.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Paired vs. unpaired training data. For Cycle GAN unpaired data is sufficient. Source: <span id="id14">[<a class="reference internal" href="../referenceSection.html#id32" title="Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A. Efros. Unpaired image-to-image translation using cycle-consistent adversarial networks. 2017 IEEE International Conference on Computer Vision (ICCV), pages 2242-2251, 2017.">ZPIE17</a>]</span>.</span><a class="headerlink" href="#paired" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">Paired vs. unpaired training data. For Cycle GAN unpaired data is sufficient. Source: <span id="id14">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#paired" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In Cycle GAN a mapping</p>
 <div class="math notranslate nohighlight">
 \[
@@ -660,10 +677,12 @@ F : Y \rightarrow  X
 F(G(X)) \approx X
 \]</div>
 <p>(and vice versa) is applied.</p>
-<div class="figure align-center" id="id16">
+<figure class="align-center" id="id16">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGAN.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Learned mappings between source domain <span class="math notranslate nohighlight">\(X\)</span> and target domain <span class="math notranslate nohighlight">\(Y\)</span>. Source: <span id="id15">[<a class="reference internal" href="../referenceSection.html#id32" title="Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A. Efros. Unpaired image-to-image translation using cycle-consistent adversarial networks. 2017 IEEE International Conference on Computer Vision (ICCV), pages 2242-2251, 2017.">ZPIE17</a>]</span>.</span><a class="headerlink" href="#id16" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 39 </span><span class="caption-text">Learned mappings between source domain <span class="math notranslate nohighlight">\(X\)</span> and target domain <span class="math notranslate nohighlight">\(Y\)</span>. Source: <span id="id15">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#id16" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Adversarial Loss function,</strong> to be minimized by <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span> and to be maximized by <span class="math notranslate nohighlight">\(D_Y\)</span> and <span class="math notranslate nohighlight">\(D_X\)</span>, respectively:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -689,38 +708,50 @@ L_{cyc}(G,F,X,Y) =  \frac{1}{m} \sum\limits_{i=1}^m || F(G(x_i))-x_i ||_1 + || G
 L_{full} = L_{adv}(G,D_y,X,Y) + L_{adv}(F,D_x,Y,X) + L_{cyc}(G,F,X,Y)
 \]</div>
 <p><strong>Architecture of the Generators <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(F\)</span>:</strong></p>
-<div class="figure align-center" id="cyclegangen">
+<figure class="align-center" id="cyclegangen">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANgenerator.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegangen" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegangen" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Architecture of the Discriminators <span class="math notranslate nohighlight">\(D_x\)</span> and <span class="math notranslate nohighlight">\(D_y\)</span>:</strong></p>
-<div class="figure align-center" id="cyclegandisc">
+<figure class="align-center" id="cyclegandisc">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANdiscriminator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANdiscriminator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANdiscriminator.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegandisc" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 41 </span><span class="caption-text">Source: <a class="reference external" href="https://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d%7D%7Bhttps://towardsdatascience.com/cyclegan-learning-to-translate-images-without-paired-training-data-5b4e93862c8d">towards data science</a>.</span><a class="headerlink" href="#cyclegandisc" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Cycle GAN Strengths and Limitations:</strong></p>
 <p>Cycle GAN works well on tasks, which involve color- or texture-changes, e.g. day-to-night translations, photo-to-painting transformation or style transfer. This can be seen e.g. in this <a class="reference external" href="https://youtu.be/lCR9sT9mbis">video on Cityscape to GTA5-Style transfer</a> or this <a class="reference external" href="https://youtu.be/N7KbfWodXJE">video on day- to night-drive transformation</a>.</p>
 <p>However, Cycle GAN often fails for tasks, that require substantial geometric changes, as can be seen in the image below.</p>
-<div class="figure align-center" id="badexample">
+<figure class="align-center" id="badexample">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png" src="https://maucher.home.hdm-stuttgart.de/Pics/CycleGANBadExample.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id32" title="Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei A. Efros. Unpaired image-to-image translation using cycle-consistent adversarial networks. 2017 IEEE International Conference on Computer Vision (ICCV), pages 2242-2251, 2017.">ZPIE17</a>]</span>.</span><a class="headerlink" href="#badexample" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="star-gan-multi-domain-transformations">
+<figcaption>
+<p><span class="caption-number">Fig. 42 </span><span class="caption-text">Source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id32">ZPIE17</a>]</span>.</span><a class="headerlink" href="#badexample" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="star-gan-multi-domain-transformations">
 <h2>Star GAN: Multi-domain transformations<a class="headerlink" href="#star-gan-multi-domain-transformations" title="Permalink to this headline">#</a></h2>
-<div class="figure align-center" id="starganceleb">
+<figure class="align-center" id="starganceleb">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANcelebA.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Example: Transformations between multiple domains. Source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id2" title="Yunjey Choi, Minje Choi, Munyoung Kim, Jung-Woo Ha, Sunghun Kim, and Jaegul Choo. Stargan: unified generative adversarial networks for multi-domain image-to-image translation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). June 2018.">CCK+18</a>]</span>.</span><a class="headerlink" href="#starganceleb" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 43 </span><span class="caption-text">Example: Transformations between multiple domains. Source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#starganceleb" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In Cycle GAN transformations from a source domain <span class="math notranslate nohighlight">\(X\)</span> to a target domain <span class="math notranslate nohighlight">\(Y\)</span> has been addressed. For transformations between multiple domains, Cycle GAN can also be applied, as shown in image <a class="reference internal" href="#stargancross"><span class="std std-ref">Comparison between Cycle- and Star-GAN for multi-domain transformations</span></a>. However, in this case for each possible pair of domains an individual Generator pair has to be trained. With Star GAN transformations between multiple domains can be realized using only a single Generator.</p>
-<div class="figure align-center" id="stargancross">
+<figure class="align-center" id="stargancross">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png" src="https://maucher.home.hdm-stuttgart.de/Pics/starGANcrossdomain.png" style="width: 400pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Source: <span id="id19">[<a class="reference internal" href="../referenceSection.html#id2" title="Yunjey Choi, Minje Choi, Munyoung Kim, Jung-Woo Ha, Sunghun Kim, and Jaegul Choo. Stargan: unified generative adversarial networks for multi-domain image-to-image translation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). June 2018.">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargancross" title="Permalink to this image">#</a></p>
-</div>
-<div class="figure align-center" id="stargantrain">
+<figcaption>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">Source: <span id="id19">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargancross" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="stargantrain">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png" src="https://maucher.home.hdm-stuttgart.de/Pics/starGANtraining.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Source: <span id="id20">[<a class="reference internal" href="../referenceSection.html#id2" title="Yunjey Choi, Minje Choi, Munyoung Kim, Jung-Woo Ha, Sunghun Kim, and Jaegul Choo. Stargan: unified generative adversarial networks for multi-domain image-to-image translation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). June 2018.">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrain" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 45 </span><span class="caption-text">Source: <span id="id20">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrain" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Adversarial Loss:</strong></p>
 <p>Discriminator <span class="math notranslate nohighlight">\(D\)</span> tries to maximize <span class="math notranslate nohighlight">\(L_{adv}\)</span>, whereas the Generator <span class="math notranslate nohighlight">\(G\)</span> tries to minimize it.</p>
 <div class="math notranslate nohighlight">
@@ -776,30 +807,38 @@ L_D=-L_{adv}+\lambda_{cls} L_{cls}^r.
 \[
 L_G=L_{adv}+\lambda_{cls} L_{cls}^f + \lambda_{rec} L_{rec}.
 \]</div>
-<div class="figure align-center" id="stargantrainceleb">
+<figure class="align-center" id="stargantrainceleb">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANtrainingCelebRafd.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Source: <span id="id21">[<a class="reference internal" href="../referenceSection.html#id2" title="Yunjey Choi, Minje Choi, Munyoung Kim, Jung-Woo Ha, Sunghun Kim, and Jaegul Choo. Stargan: unified generative adversarial networks for multi-domain image-to-image translation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). June 2018.">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrainceleb" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 46 </span><span class="caption-text">Source: <span id="id21">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargantrainceleb" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Architecture of Star GAN Generator:</strong></p>
 <p>The Generator archictecture is similar to the one used in Cycle GAN:</p>
-<div class="figure align-center" id="stargangenar">
+<figure class="align-center" id="stargangenar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANgenerator.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Source: <span id="id22">[<a class="reference internal" href="../referenceSection.html#id2" title="Yunjey Choi, Minje Choi, Munyoung Kim, Jung-Woo Ha, Sunghun Kim, and Jaegul Choo. Stargan: unified generative adversarial networks for multi-domain image-to-image translation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). June 2018.">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargangenar" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 47 </span><span class="caption-text">Source: <span id="id22">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargangenar" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Architecture of Star GAN Discriminator:</strong></p>
 <p>The Discriminator <span class="math notranslate nohighlight">\(D\)</span> classifies per patch. For this a Fully Convolutional Neural Network, like in PatchGAN is applied:</p>
-<div class="figure align-center" id="stargandiscar">
+<figure class="align-center" id="stargandiscar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png" src="https://maucher.home.hdm-stuttgart.de/Pics/StarGANdiscriminator.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id2" title="Yunjey Choi, Minje Choi, Munyoung Kim, Jung-Woo Ha, Sunghun Kim, and Jaegul Choo. Stargan: unified generative adversarial networks for multi-domain image-to-image translation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). June 2018.">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargandiscar" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 48 </span><span class="caption-text">Source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id2">CCK+18</a>]</span>.</span><a class="headerlink" href="#stargandiscar" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Final Remark on Fully Convolutional Network:</strong></p>
 <p>In a Fully Convolutional Network (FCNN) dense layers at the output are replaced by convolutional layers, by rearranging the neurons in the dense layer into the channel-dimension of a convolutional layer. In this way images of variable size can be passed to the network and the corresponding output has also a variable size. Each output neuron belongs to one region in the image.</p>
-<div class="figure align-center" id="fcn">
+<figure class="align-center" id="fcn">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/fcn.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/fcn.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/fcn.PNG" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Neurons of the dense layer are rearranged into channels of a convolutional layer. Since a convolutional layer always has the same number of weights, independent of the size of it’s input, it can manage different sizes of input. In dense layers the number of weights depends on the size of the input. Therefore, dense layers can not cope with variable-size input.</span><a class="headerlink" href="#fcn" title="Permalink to this image">#</a></p>
-</div>
-</div>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">Neurons of the dense layer are rearranged into channels of a convolutional layer. Since a convolutional layer always has the same number of weights, independent of the size of it’s input, it can manage different sizes of input. In dense layers the number of weights depends on the size of the input. Therefore, dense layers can not cope with variable-size input.</span><a class="headerlink" href="#fcn" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

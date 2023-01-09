@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Difussion Models &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -570,36 +571,40 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="difussion-models">
+  <section class="tex2jax_ignore mathjax_ignore" id="difussion-models">
 <h1>Difussion Models<a class="headerlink" href="#difussion-models" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last update: 04.01.2022</p></li>
 </ul>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Generative Adversarial Networks (GANs) and Variational Autoencoders (VAEs) are two generative Deep Learning models, which can be applied to generate new content. The new content is typically a new instance of a category of which many other instances have been used for training.</p>
 <p>GANs and VAEs suffer from drawbacks, e.g. for GANs it is usually challenging to find a good hyperparameter-configuration such that the training-process is stable. Moreover, the diversity of the generated new content is often quite low. For VAEs it is challenging to find a good loss-function.</p>
 <p>Diffusion Models are another type of generative Deep Learning. The concept of diffusion is borrowed from thermodynamics. Gas molecules diffuse from high density to low density areas. During this process entropy increases. In information theory, this entropy-increase corresponds to a loss of information. Such an information loss can be caused by adding noise.</p>
-<p>The idea of Probabilistic Denoising Diffusion models, as introduced in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id71" title="Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In Francis Bach and David Blei, editors, Proceedings of the 32nd International Conference on Machine Learning, volume 37 of Proceedings of Machine Learning Research, 2256–2265. Lille, France, 07–09 Jul 2015. PMLR. URL: https://proceedings.mlr.press/v37/sohl-dickstein15.html.">SDWMG15</a>]</span> and significantly improved in <span id="id2">[<a class="reference internal" href="../referenceSection.html#id70" title="Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. In Proceedings of the 34th International Conference on Neural Information Processing Systems, NIPS'20. Red Hook, NY, USA, 2020. Curran Associates Inc.">HJA20</a>]</span>, is to</p>
+<p>The idea of Probabilistic Denoising Diffusion models, as introduced in <span id="id1">[<a class="reference internal" href="../referenceSection.html#id71">SDWMG15</a>]</span> and significantly improved in <span id="id2">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span>, is to</p>
 <ol class="simple">
 <li><p>gradually add noise to a given input in the <strong>forward diffusion process</strong>. In the final step the representation can be considered to be pure noise, i.e. a sample from an isotropic Gaussian normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,\mathbf{I})\)</span>.</p></li>
 <li><p>learn the corresponding inverse process in a <strong>backward diffusion process</strong> and apply this inverse process to generate new instances from noise.</p></li>
 </ol>
-<div class="figure align-center" id="diffusionprocess">
+<figure class="align-center" id="diffusionprocess">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/denoisingdiffusionprocess.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/denoisingdiffusionprocess.png" src="https://maucher.home.hdm-stuttgart.de/Pics/denoisingdiffusionprocess.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a></span><a class="headerlink" href="#diffusionprocess" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 50 </span><span class="caption-text">Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a></span><a class="headerlink" href="#diffusionprocess" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>For the backward diffusion, the noise between two successive image representations must be estimated. If the more noisy image <span class="math notranslate nohighlight">\(x_{t}\)</span> and the noise <span class="math notranslate nohighlight">\(\epsilon_t\)</span> are known, it is easy to subtract the noise from the more noisy image in order to get the less noisy image representation <span class="math notranslate nohighlight">\(x_{t-1}\)</span>. For this a neural network is applied. The forward diffusion process doesn’t require a training.</p>
 <p>The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation (e.g. in DALL-E 2), image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.</p>
-</div>
-<div class="section" id="forward-diffusion-process">
+</section>
+<section id="forward-diffusion-process">
 <h2>Forward Diffusion Process<a class="headerlink" href="#forward-diffusion-process" title="Permalink to this headline">#</a></h2>
 <p>Starting form real data <span class="math notranslate nohighlight">\(x_0\)</span>, which is sampled from a known data distribution <span class="math notranslate nohighlight">\(q(x_0)\)</span>, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images <span class="math notranslate nohighlight">\(x_0,x_1,x_2,\ldots,x_T\)</span> is generated. For <span class="math notranslate nohighlight">\(T \rightarrow \infty\)</span>, <span class="math notranslate nohighlight">\(x_T\)</span> is equivalent to an isotropic Gaussian distribution.</p>
-<div class="figure align-center" id="diffusionforward">
+<figure class="align-center" id="diffusionforward">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Forward Process: Gradually add noise. This direction of the process is known. No learning required.</span><a class="headerlink" href="#diffusionforward" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 51 </span><span class="caption-text">Forward Process: Gradually add noise. This direction of the process is known. No learning required.</span><a class="headerlink" href="#diffusionforward" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The conditional probability distribution <span class="math notranslate nohighlight">\(q(x_t|x_{t-1})\)</span> for <span class="math notranslate nohighlight">\(x_t\)</span>, given <span class="math notranslate nohighlight">\(x_{t-1}\)</span> is a Gaussian distribution with</p>
 <ul class="simple">
 <li><p>mean: <span class="math notranslate nohighlight">\(\sqrt{1-\beta_t}x_{t-1}\)</span></p></li>
@@ -632,12 +637,14 @@ x_t = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{(1-\overline{\alpha}_t)} \epsilon, 
 \]</div>
 <p>The distribution <span class="math notranslate nohighlight">\(q(x_t|x_{0})\)</span> is called the <em>Diffusion Kernel</em>.</p>
 <p>The variance schedule, i.e. the set of <span class="math notranslate nohighlight">\(\beta_t\)</span>-values, is configured such that <span class="math notranslate nohighlight">\(\overline{\alpha}_T \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(q(x_{T}|x_{0})\approx \mathcal{N}(x_T;0,\mathbf{I})\)</span>. Different functions for varying  the <span class="math notranslate nohighlight">\(\beta_t\)</span>-values can be applied, for example a linear increase from <span class="math notranslate nohighlight">\(\beta_0=0.0001\)</span> to <span class="math notranslate nohighlight">\(\beta_T=0.02\)</span>.</p>
-<div class="figure align-center" id="diffusionnoiseforward">
+<figure class="align-center" id="diffusionnoiseforward">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoiseforward.png" style="width: 500pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Image Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a> By incrementally adding noise in the forward process the distribution <span class="math notranslate nohighlight">\(q(x_t)\)</span> stepwise gets closer to a Gaussian normaldistribution.</span><a class="headerlink" href="#diffusionnoiseforward" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="reverse-diffusion-process">
+<figcaption>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">Image Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a> By incrementally adding noise in the forward process the distribution <span class="math notranslate nohighlight">\(q(x_t)\)</span> stepwise gets closer to a Gaussian normaldistribution.</span><a class="headerlink" href="#diffusionnoiseforward" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="reverse-diffusion-process">
 <h2>Reverse Diffusion Process<a class="headerlink" href="#reverse-diffusion-process" title="Permalink to this headline">#</a></h2>
 <p>In the reverse process the goal is to sample from <span class="math notranslate nohighlight">\(q(x_{t-1}|x_{t})\)</span>. If this is possible, then the true sample can be reconstructed from Gaussian noise input <span class="math notranslate nohighlight">\(x_T \sim \mathcal{N}(0,\mathbf{I})\)</span>. Unfortunately, in general <span class="math notranslate nohighlight">\(q(x_{t-1}|x_{t}) \propto q(x_{t-1}) q(x_t|x_{t-1}))\)</span> is intractable.</p>
 <p>The solution is to estimate the true <span class="math notranslate nohighlight">\(q(x_{t-1}|x_{t})\)</span>-distribution by a distribution <span class="math notranslate nohighlight">\(p_{\Theta}(x_{t-1}|x_{t})\)</span>, which is calculated by a neural network. If the <span class="math notranslate nohighlight">\(\beta_t\)</span>-values are small enough, <span class="math notranslate nohighlight">\(q(x_{t-1}|x_{t})\)</span> will be Gaussian. Hence</p>
@@ -652,18 +659,20 @@ p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with
 \]</div>
 <p>The mean <span class="math notranslate nohighlight">\(\mu_{\Theta}(x_t,t)\)</span> of this distribution is estimated using a U-net, as described below.</p>
 <p>After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.</p>
-<div class="figure align-center" id="diffusionnoisereverse">
+<figure class="align-center" id="diffusionnoisereverse">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionnoisereverse.png" style="width: 500pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Image Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a> In the reverse process <span class="math notranslate nohighlight">\(x_T\)</span> is sampled from an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level <span class="math notranslate nohighlight">\(t=0\)</span> a sample from the real data distribution is available.</span><a class="headerlink" href="#diffusionnoisereverse" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="training">
+<figcaption>
+<p><span class="caption-number">Fig. 53 </span><span class="caption-text">Image Source: <a class="reference external" href="https://cvpr2022-tutorial-diffusion-models.github.io">https://cvpr2022-tutorial-diffusion-models.github.io</a> In the reverse process <span class="math notranslate nohighlight">\(x_T\)</span> is sampled from an isotropic Gaussian normal distribution. In each step noise is predicted and subtracted such that in the level <span class="math notranslate nohighlight">\(t=0\)</span> a sample from the real data distribution is available.</span><a class="headerlink" href="#diffusionnoisereverse" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="training">
 <h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h2>
-<div class="section" id="overall-idea">
+<section id="overall-idea">
 <h3>Overall Idea<a class="headerlink" href="#overall-idea" title="Permalink to this headline">#</a></h3>
 <p>In the <strong>training phase</strong> the forward-process and the reverse-process are applied. In the <strong>inference</strong> phase one starts with sampling a <em>noise-image</em> from an isotropic Gaussian normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,\mathbf{I})\)</span>. This noise sample is then passed through the reverse diffusion process. In each step of the reverse step the noise-increment between two successive image-representation is estimated by the trained neural network and subtracted from the corresponding input image <span class="math notranslate nohighlight">\(x_t\)</span> in order to get the less noisy representation <span class="math notranslate nohighlight">\(x_{t-1}\)</span>.</p>
-</div>
-<div class="section" id="loss-function">
+</section>
+<section id="loss-function">
 <h3>Loss-function<a class="headerlink" href="#loss-function" title="Permalink to this headline">#</a></h3>
 <p>The overall goal is to minimize the negative log-likelihood</p>
 <div class="math notranslate nohighlight">
@@ -734,35 +743,43 @@ L_{t-1} = E_{t,x_0,\epsilon} \left[ \lambda_t || \epsilon - \epsilon_{\Theta}(\u
 \[
 \lambda_t = \frac{\beta_t^2}{2 \sigma_t^2 (1-\beta_t) (1-\overline{\alpha}_t)}.
 \]</div>
-<p>The authors of <span id="id3">[<a class="reference internal" href="../referenceSection.html#id70" title="Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. In Proceedings of the 34th International Conference on Neural Information Processing Systems, NIPS'20. Red Hook, NY, USA, 2020. Curran Associates Inc.">HJA20</a>]</span> showed, that by simply setting <span class="math notranslate nohighlight">\(\lambda_t=1\)</span> the quality improves. They propose also that the term <span class="math notranslate nohighlight">\(L_0\)</span> can be neglected, yielding the simplified overall Loss-function, which is minimized during training:</p>
+<p>The authors of <span id="id3">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span> showed, that by simply setting <span class="math notranslate nohighlight">\(\lambda_t=1\)</span> the quality improves. They propose also that the term <span class="math notranslate nohighlight">\(L_0\)</span> can be neglected, yielding the simplified overall Loss-function, which is minimized during training:</p>
 <div class="math notranslate nohighlight">
 \[
 L_{simple} = E_{t,x_0,\epsilon} \left[ || \epsilon - \epsilon_{\Theta}(\underbrace{\sqrt{\overline{\alpha}_t}x_0 + \sqrt{1-\overline{\alpha}_t} \epsilon}_{x_t},t)||^2 \right]
 \]</div>
-<div class="figure align-center" id="unetdenoising">
+<figure class="align-center" id="unetdenoising">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetDenoising.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Stepwise denoising in the reverse path: At time step <span class="math notranslate nohighlight">\(t\)</span> the image-version <span class="math notranslate nohighlight">\(x_t\)</span> is passed to the U-net. Given this input the U-net predicts the noise-inkrement <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t)\)</span> of this time-step. This noise increment is subtracted from <span class="math notranslate nohighlight">\(x_t\)</span>. The result is the less noisier image version <span class="math notranslate nohighlight">\(x_{t-1}\)</span>, which is passed in the next step to the input of the U-net in oder to predict <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t-1)\)</span>.</span><a class="headerlink" href="#unetdenoising" title="Permalink to this image">#</a></p>
-</div>
-<div class="figure align-center" id="diffalg">
+<figcaption>
+<p><span class="caption-number">Fig. 54 </span><span class="caption-text">Stepwise denoising in the reverse path: At time step <span class="math notranslate nohighlight">\(t\)</span> the image-version <span class="math notranslate nohighlight">\(x_t\)</span> is passed to the U-net. Given this input the U-net predicts the noise-inkrement <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t)\)</span> of this time-step. This noise increment is subtracted from <span class="math notranslate nohighlight">\(x_t\)</span>. The result is the less noisier image version <span class="math notranslate nohighlight">\(x_{t-1}\)</span>, which is passed in the next step to the input of the U-net in oder to predict <span class="math notranslate nohighlight">\(\epsilon_{\Theta}(t-1)\)</span>.</span><a class="headerlink" href="#unetdenoising" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="diffalg">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" src="https://maucher.home.hdm-stuttgart.de/Pics/diffusionAlgorithm.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">Source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id70" title="Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. In Proceedings of the 34th International Conference on Neural Information Processing Systems, NIPS'20. Red Hook, NY, USA, 2020. Curran Associates Inc.">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="u-net">
+<figcaption>
+<p><span class="caption-number">Fig. 55 </span><span class="caption-text">Source: <span id="id4">[<a class="reference internal" href="../referenceSection.html#id70">HJA20</a>]</span></span><a class="headerlink" href="#diffalg" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="u-net">
 <h2>U-Net<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h2>
-<p>U-Net is a CNN, which has been introduced in <span id="id5">[<a class="reference internal" href="../referenceSection.html#id72" title="Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-net: convolutional networks for biomedical image segmentation. 2015. URL: https://arxiv.org/abs/1505.04597, doi:10.48550/ARXIV.1505.04597.">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
+<p>U-Net is a CNN, which has been introduced in <span id="id5">[<a class="reference internal" href="../referenceSection.html#id72">RFB15</a>]</span> for biomedical image segmentation. The network consists of a contracting path and an expansive path, which gives it the u-shaped architecture. During the contraction, the spatial information is reduced while feature information is increased. The expansive pathway combines the feature and spatial information through a sequence of up-convolutions and concatenations with high-resolution features from the contracting path.</p>
 <p>For denoising diffusion models, usually a U-Net modification, which integrates Multi-Head Attention and Residual blocks (see figures below) is applied. The U-Net is trained such that it models the reverse diffusion path.</p>
-<div class="figure align-center" id="unetdiffusion">
+<figure class="align-center" id="unetdiffusion">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetdiffusion.png" style="width: 600pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a>: U-Net architecture used in the reverse path of denoising diffusion models.</span><a class="headerlink" href="#unetdiffusion" title="Permalink to this image">#</a></p>
-</div>
-<div class="figure align-center" id="unetresidual">
+<figcaption>
+<p><span class="caption-number">Fig. 56 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a>: U-Net architecture used in the reverse path of denoising diffusion models.</span><a class="headerlink" href="#unetdiffusion" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="unetresidual">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png" src="https://maucher.home.hdm-stuttgart.de/Pics/unetresidual.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a>: Each residual block consists of 2 subsequences of Batch-Normalisation, Relu activation and 3x3 Convolution.</span><a class="headerlink" href="#unetresidual" title="Permalink to this image">#</a></p>
-</div>
-</div>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 57 </span><span class="caption-text">Source: <a class="reference external" href="https://www.assemblyai.com/blog/how-imagen-actually-works/">https://www.assemblyai.com/blog/how-imagen-actually-works/</a>: Each residual block consists of 2 subsequences of Batch-Normalisation, Relu activation and 3x3 Convolution.</span><a class="headerlink" href="#unetresidual" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

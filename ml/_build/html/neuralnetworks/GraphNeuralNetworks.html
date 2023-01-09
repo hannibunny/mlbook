@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Graph Neural Networks (GNN) &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -819,7 +820,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="graph-neural-networks-gnn">
+  <section class="tex2jax_ignore mathjax_ignore" id="graph-neural-networks-gnn">
 <h1>Graph Neural Networks (GNN)<a class="headerlink" href="#graph-neural-networks-gnn" title="Permalink to this headline">#</a></h1>
 <p>Graph based deep learning is currently one of the hottest topics in Machine Learning Research. In the NeurIPS 2020 conference GNNs constituted the most prominent topic, as can be seen in this <a class="reference external" href="https://github.com/naganandy/graph-based-deep-learning-literature/blob/master/conference-publications/folders/publications_neurips20/README.md">list of conference papers</a>.</p>
 <p>However, GNNs are not only subject of research. They have already found their way into a wide range of <a class="reference external" href="https://medium.com/criteo-engineering/top-applications-of-graph-neural-networks-2021-c06ec82bfc18">applications</a>.</p>
@@ -827,7 +828,7 @@ title="Print to PDF"
 relation between the individual data-points. Examples are e.g. social and communication networks analysis, traffic prediction, fraud detection, etc. <a class="reference external" href="https://www.cs.mcgill.ca/~wlh/grl_book/">Graph Representation Learning</a>
 aims to build and train models for graph datasets to be used for a variety of ML tasks.</p>
 <p>This lecture shall provide an understanding of the basic concepts of Graph Neural Networks and their application categories.</p>
-<div class="section" id="graph">
+<section id="graph">
 <h2>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">#</a></h2>
 <p>A graph consists of a set of nodes, which are partially connected by edges. <strong>Nodes</strong> can represent things of different categories such as persons, locations, companies, etc. Nodes may also represent things of the same categorie but different subcategories. <strong>Edges</strong> can be directed or undirected. They also may have weights, which somehow define the <em>strength</em> of the connection. Edges can also be of different type, e.g.</p>
 <ul class="simple">
@@ -839,8 +840,8 @@ aims to build and train models for graph datasets to be used for a variety of ML
 <figcaption>
 Figure 1: Example graph with undirected edges (no arrows) and different node types (colours)
 </figcaption>
-</figure></div>
-<div class="section" id="graph-neural-networks">
+</figure></section>
+<section id="graph-neural-networks">
 <h2>Graph Neural Networks<a class="headerlink" href="#graph-neural-networks" title="Permalink to this headline">#</a></h2>
 <p>In the context of GNNs each node is described by a set of features (a numeric vector). For example, if the nodes represent papers, then the descriptor vector of the nodes may be the Bag-of-Words vector (BoW) of the paper.</p>
 <figure align="center">
@@ -850,7 +851,7 @@ Figure 2: To each node a descriptor (numeric vector) is assigned.
 </figcaption>
 </figure>
 <p>The BoW of a paper depends only on the words, which appear in the paper. Information about the neighbouring nodes is totally ignored. On the other hand, in some applications such information from neighbouring nodes may be helpful. For example, it may be easier to determine the subject of a paper, if not only the words in the paper itself are known, but also the contents of the papers in it’s immediate neighbourhood. This is actually what GNNs provide: <strong>GNNs calculate node representations (embeddings), which depend not only on the contents of the node itself, but also on the neighbouring nodes.</strong> The definition of <em>neighbourhood</em> depends on the task and the context. For example the immediate neighbours of a scientific paper may be all papers, which are referenced in this paper.</p>
-<div class="section" id="message-passing">
+<section id="message-passing">
 <h3>Message Passing<a class="headerlink" href="#message-passing" title="Permalink to this headline">#</a></h3>
 <p>In a GNN the node representation <span class="math notranslate nohighlight">\(h_i^k\)</span> of each node <span class="math notranslate nohighlight">\(i\)</span> are adapted over many iteration (k indicates the iteration). At the very beginning to each node <span class="math notranslate nohighlight">\(i\)</span> an initial vector <span class="math notranslate nohighlight">\(h_i^0\)</span> is assigned, e.g. the BoW vector of a document. Then in each iteration <span class="math notranslate nohighlight">\(k&gt;0\)</span> these representations are updated by information from the neighbouring nodes. The image below sketches the update of node 0 in iteration <span class="math notranslate nohighlight">\(k\)</span>. Let <span class="math notranslate nohighlight">\(N(i)\)</span> denote the set of direct neighbours of node <span class="math notranslate nohighlight">\(i\)</span>, then</p>
 <ol class="simple">
@@ -864,8 +865,8 @@ Figure 2: To each node a descriptor (numeric vector) is assigned.
 <figcaption>
 Figure 3: Calculation of new descriptor at node 0.
 </figcaption>
-</figure></div>
-<div class="section" id="graph-convolutional-network-gcn">
+</figure></section>
+<section id="graph-convolutional-network-gcn">
 <h3>Graph Convolutional Network (GCN)<a class="headerlink" href="#graph-convolutional-network-gcn" title="Permalink to this headline">#</a></h3>
 <p>Next, we will consider how the concept of message passing, as introduced in the previous subsection, is implemented in Graph Neural Networks (GNNs)?</p>
 <p>As explained in the previous subsections, in each iteration each node’s descriptor vector is updated by the messages from the neighbouring nodes. In a Graph Convolutional Network (GCN) each iteration is implemented by a GCN-layer. I.e. the first update is calculated in the first GCN-layer, the second update is calculated in the second layer and so on. Thus the number of updates and therefore the range of the neighbourhood that is considered in the final node representation is given by the number of GCN layers. Such a stack of GCN-layers is depicted in the right hand side of Figure 4. In this Figure the abbreviation GNN is used for Graph Neural Net (GNN). GNN is more general as GCN, but here we always assume that the GNN is a GCN. The short-cut connections around the GNN layers are necessary, because the new representation of a node is the aggregation of the messages from the neighboring nodes and the old representation of this node.</p>
@@ -885,8 +886,8 @@ Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space 
     Figure 5: Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
 </figcaption>
 </figure>
-</div>
-<div class="section" id="graph-convolutional-network-for-node-classification">
+</section>
+<section id="graph-convolutional-network-for-node-classification">
 <h3>Graph Convolutional Network for Node Classification<a class="headerlink" href="#graph-convolutional-network-for-node-classification" title="Permalink to this headline">#</a></h3>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/gcnNodeClassification.png" width="600px" align="center">
@@ -894,8 +895,8 @@ Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space 
     Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
 </figcaption>
 </figure>
-</div>
-<div class="section" id="graph-convolutional-network-for-graph-classification">
+</section>
+<section id="graph-convolutional-network-for-graph-classification">
 <h3>Graph Convolutional Network for Graph Classification<a class="headerlink" href="#graph-convolutional-network-for-graph-classification" title="Permalink to this headline">#</a></h3>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/gcnGraphClassification.png" width="600px"align="center">
@@ -903,17 +904,17 @@ Figure 4: Image Source: <a href="https://arxiv.org/abs/2011.08843">Design Space 
     Image Source: <a href="https://arxiv.org/pdf/1901.00596.pdf">Wu et al.: A Comprehensive Survey on Graph Neural Networks</a>
 </figcaption>
 </figure><p><a id='intro'></a></p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introductory-example-node-classification-with-graph-neural-networks">
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introductory-example-node-classification-with-graph-neural-networks">
 <h1>Introductory Example: Node Classification with Graph Neural Networks<a class="headerlink" href="#introductory-example-node-classification-with-graph-neural-networks" title="Permalink to this headline">#</a></h1>
 <p>After learning the basic concepts of Graph Neural Networks, we continue with the implementation of Graph Convolution Networks (GCN). This part is an adaptation of the <a class="reference external" href="https://keras.io/examples/graph/gnn_citations/">Keras tutorial</a>. You don’t have to implement the GCN layer and the GCN Network by yourself, but you should study this part carefully, such that you are able</p>
 <ul class="simple">
 <li><p>to answer the questions at the end of this section</p></li>
 <li><p>to implement the GCN network on the task of music genre prediction in the following section.</p></li>
 </ul>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>This example demonstrates a simple implementation of a <a class="reference external" href="https://arxiv.org/pdf/1901.00596.pdf">Graph Neural Network</a>
 (GNN) model. The model is used for a node prediction task on the <a class="reference external" href="https://relational.fit.cvut.cz/dataset/CORA">Cora dataset</a>
@@ -923,8 +924,8 @@ understanding of how they work. However, there is a number of specialized Tensor
 libraries that provide rich GNN APIs, such as <a class="reference external" href="https://graphneural.network/">Spectral</a>,
 <a class="reference external" href="https://stellargraph.readthedocs.io/en/stable/README.html">StellarGraph</a>, and
 <a class="reference external" href="https://github.com/deepmind/graph_nets">GraphNets</a>.</p>
-</div>
-<div class="section" id="setup">
+</section>
+<section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -947,13 +948,13 @@ libraries that provide rich GNN APIs, such as <a class="reference external" href
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="prepare-the-dataset">
+</section>
+<section id="prepare-the-dataset">
 <h2>Prepare the Dataset<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">#</a></h2>
 <p>The Cora dataset consists of 2,708 scientific papers classified into one of seven classes.
 The citation network consists of 5,429 links. Each paper has a binary word vector of size
 1,433, indicating the presence of a corresponding word.</p>
-<div class="section" id="download-the-dataset">
+<section id="download-the-dataset">
 <h3>Download the dataset<a class="headerlink" href="#download-the-dataset" title="Permalink to this headline">#</a></h3>
 <p>The dataset has two tap-separated files: <code class="docutils literal notranslate"><span class="pre">cora.cites</span></code> and <code class="docutils literal notranslate"><span class="pre">cora.content</span></code>.</p>
 <ol class="simple">
@@ -987,8 +988,8 @@ The citation network consists of 5,429 links. Each paper has a binary word vecto
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="process-and-visualize-the-dataset">
+</section>
+<section id="process-and-visualize-the-dataset">
 <h3>Process and visualize the dataset<a class="headerlink" href="#process-and-visualize-the-dataset" title="Permalink to this headline">#</a></h3>
 <p>Then we load the citations data into a Pandas DataFrame.</p>
 <div class="cell docutils container">
@@ -1590,8 +1591,8 @@ the papers in the dataset.</p>
 <img alt="../_images/GraphNeuralNetworks_34_0.png" src="../_images/GraphNeuralNetworks_34_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="split-the-dataset-into-stratified-train-and-test-sets">
+</section>
+<section id="split-the-dataset-into-stratified-train-and-test-sets">
 <h3>Split the dataset into stratified train and test sets<a class="headerlink" href="#split-the-dataset-into-stratified-train-and-test-sets" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1618,9 +1619,9 @@ Test data shape: (1386, 1435)
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="implement-train-and-evaluate-experiment">
+</section>
+</section>
+<section id="implement-train-and-evaluate-experiment">
 <h2>Implement, Train and Evaluate Experiment<a class="headerlink" href="#implement-train-and-evaluate-experiment" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1685,8 +1686,8 @@ Test data shape: (1386, 1435)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="implement-feedforward-network-ffn-module">
+</section>
+<section id="implement-feedforward-network-ffn-module">
 <h2>Implement Feedforward Network (FFN) Module<a class="headerlink" href="#implement-feedforward-network-ffn-module" title="Permalink to this headline">#</a></h2>
 <p>We will use this module in the baseline and the GNN models.</p>
 <div class="cell docutils container">
@@ -1704,10 +1705,10 @@ Test data shape: (1386, 1435)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="build-a-baseline-neural-network-model">
+</section>
+<section id="build-a-baseline-neural-network-model">
 <h2>Build a Baseline Neural Network Model<a class="headerlink" href="#build-a-baseline-neural-network-model" title="Permalink to this headline">#</a></h2>
-<div class="section" id="prepare-the-data-for-the-baseline-model">
+<section id="prepare-the-data-for-the-baseline-model">
 <h3>Prepare the data for the baseline model<a class="headerlink" href="#prepare-the-data-for-the-baseline-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1737,8 +1738,8 @@ Test data shape: (1386, 1435)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="implement-a-baseline-classifier">
+</section>
+<section id="implement-a-baseline-classifier">
 <h3>Implement a baseline classifier<a class="headerlink" href="#implement-a-baseline-classifier" title="Permalink to this headline">#</a></h3>
 <p>We add five FFN blocks with skip connections, so that we generate a baseline model with
 roughly the same number of parameters as the GNN models to be built later.</p>
@@ -1806,8 +1807,8 @@ ________________________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="train-the-baseline-classifier">
+</section>
+<section id="train-the-baseline-classifier">
 <h3>Train the baseline classifier<a class="headerlink" href="#train-the-baseline-classifier" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1841,8 +1842,8 @@ ________________________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="examine-the-baseline-model-predictions">
+</section>
+<section id="examine-the-baseline-model-predictions">
 <h3>Examine the baseline model predictions<a class="headerlink" href="#examine-the-baseline-model-predictions" title="Permalink to this headline">#</a></h3>
 <p>Let’s create new data instances by randomly generating binary word vectors with respect to
 the word presence probabilities.</p>
@@ -1939,12 +1940,12 @@ Instance 7:
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="build-a-graph-neural-network-model">
+</section>
+</section>
+<section id="build-a-graph-neural-network-model">
 <h2>Build a Graph Neural Network Model<a class="headerlink" href="#build-a-graph-neural-network-model" title="Permalink to this headline">#</a></h2>
 <p><a id='graphinfo'></a></p>
-<div class="section" id="prepare-the-data-for-the-graph-model">
+<section id="prepare-the-data-for-the-graph-model">
 <h3>Prepare the data for the graph model<a class="headerlink" href="#prepare-the-data-for-the-graph-model" title="Permalink to this headline">#</a></h3>
 <p>Preparing and loading the graphs data into the model for training is the most challenging
 part in GNN models, which is addressed in different ways by the specialised libraries.
@@ -2012,8 +2013,8 @@ Nodes shape: (2708, 1433)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="implement-a-graph-convolution-layer">
+</section>
+<section id="implement-a-graph-convolution-layer">
 <h3>Implement a graph convolution layer<a class="headerlink" href="#implement-a-graph-convolution-layer" title="Permalink to this headline">#</a></h3>
 <p>We implement a graph convolution module as a <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Layer?version=nightly">Keras Layer</a>.
 Our <code class="docutils literal notranslate"><span class="pre">GraphConvLayer</span></code> performs the following steps:</p>
@@ -2143,8 +2144,8 @@ and <a class="reference external" href="https://arxiv.org/abs/1704.01212">Messag
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="implement-a-graph-neural-network-node-classifier">
+</section>
+<section id="implement-a-graph-neural-network-node-classifier">
 <h3>Implement a graph neural network node classifier<a class="headerlink" href="#implement-a-graph-neural-network-node-classifier" title="Permalink to this headline">#</a></h3>
 <p>The GNN classification model follows the <a class="reference external" href="https://arxiv.org/abs/2011.08843">Design Space for Graph Neural Networks</a> approach,
 as follows:</p>
@@ -2306,8 +2307,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="train-the-gnn-model">
+</section>
+<section id="train-the-gnn-model">
 <h3>Train the GNN model<a class="headerlink" href="#train-the-gnn-model" title="Permalink to this headline">#</a></h3>
 <p>Note that we use the standard <em>supervised</em> cross-entropy loss to train the model.
 However, we can add another <em>self-supervised</em> loss term for the generated node embeddings
@@ -2350,8 +2351,8 @@ the baseline model in terms of the test accuracy.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="examine-the-gnn-model-predictions">
+</section>
+<section id="examine-the-gnn-model-predictions">
 <h3>Examine the GNN model predictions<a class="headerlink" href="#examine-the-gnn-model-predictions" title="Permalink to this headline">#</a></h3>
 <p>Let’s add the new instances as nodes to the <code class="docutils literal notranslate"><span class="pre">node_features</span></code>, and generate links
 (citations) to existing nodes.</p>
@@ -2470,9 +2471,9 @@ Instance 7:
 </div>
 <p>Notice that the probabilities of the expected subjects
 (to which several citations are added) are higher compared to the baseline model.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

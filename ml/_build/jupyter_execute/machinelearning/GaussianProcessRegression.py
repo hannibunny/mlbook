@@ -205,7 +205,8 @@ def objective(x): #Returns Log-Likelihood, which must be optimized
             KB[i][j]=k
             KB[j][i]=k
     KBinv=np.linalg.inv(KB)
-    return -1*(-0.5* np.log(np.linalg.det(KB))-0.5 * np.dot(np.transpose(yB-mxB), np.dot(KBinv,(yB-mxB)))-2*np.log(2*np.pi))
+    return -1*(-0.5* np.log(np.linalg.det(KB))-0.5 * np.dot(np.transpose(yB-mxB), \
+np.dot(KBinv,(yB-mxB)))-2*np.log(2*np.pi))
 
 
 # In[18]:

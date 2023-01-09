@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Linear Regression &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -560,7 +561,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="linear-regression">
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h1>
 <p>For a given set of labeled training data</p>
 <div class="math notranslate nohighlight">
@@ -586,7 +587,7 @@ g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d
 \]</div>
 <p>from data, such that the corresponding <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> is a good estimate for <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>.</p>
 <p>Concerning the non-deterministic part <span class="math notranslate nohighlight">\(n\)</span> one often assumes that it is a Gaussian-distributed random variable of mean <span class="math notranslate nohighlight">\(\mu=0\)</span> and standard-deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. In this case the posterior <span class="math notranslate nohighlight">\(p(r|\mathbf{x})\)</span> is also a Gaussian distribution with standard-deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and mean <span class="math notranslate nohighlight">\(\mu=g(\mathbf{x} \mid \theta)\)</span>.</p>
-<div class="section" id="maximum-likelihood-estimation">
+<section id="maximum-likelihood-estimation">
 <h2>Maximum-Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this headline">#</a></h2>
 <p>Maximum-Likelihood Estimation (MLE) estimates the parameters <span class="math notranslate nohighlight">\(\Theta\)</span>, such that the corresponding <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> is the one, which most likely generates the given set of training data <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p>Under the assumption that noise <span class="math notranslate nohighlight">\(n\)</span> is a Gaussian-distributed variable of mean <span class="math notranslate nohighlight">\(\mu=0\)</span>, one can prove that the MLE approach can be realized by minimizing the <strong>Sum of Squared Error (SSE) Loss function</strong>:</p>
@@ -673,8 +674,8 @@ r_N \\
 <span class="eqno">(5)<a class="headerlink" href="#equation-minweights" title="Permalink to this equation">#</a></span>\[
 \mathbf{w}= \left( \mathbf{D}^T \mathbf{D} \right)^{-1} \mathbf{D}^T \mathbf{r}.
 \]</div>
-</div>
-<div class="section" id="generalized-linear-regression">
+</section>
+<section id="generalized-linear-regression">
 <h2>Generalized Linear Regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this headline">#</a></h2>
 <p>With <strong>Linear Regression</strong> one can not only learn linear functions <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-linfunction">(8)</a>. Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Regression</strong> of type</p>
 <div class="math notranslate nohighlight" id="equation-genlin">
@@ -712,8 +713,8 @@ g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w
 \end{array}
 \right]
 \end{split}\]</div>
-</div>
-<div class="section" id="regularisation">
+</section>
+<section id="regularisation">
 <h2>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">#</a></h2>
 <p>In Machine Learning Regularisation is a technique to avoid overfitting. With regularisation the weights are learned such that they not only minimize a loss function on training data (e.g. the Mean Squared Error) but simultaneously have as low as possible absolut values. This additional restriction - absolute values of weights shall be low - yields better generalisation because functions with lower coefficients <span class="math notranslate nohighlight">\(w_i\)</span> are smoother. However, the challenge is to find a good trade-off between minimizing the error on training data and minimizing the weights <span class="math notranslate nohighlight">\(w_i\)</span>. If too much emphasis is put on the weight-minimizsation the learned function may be to simple, i.e. it is underfitted to training data.</p>
 <p>The different regularisation methods, described below, learn weights by minimizing training-error and a regularisation term simultaneously:</p>
@@ -722,11 +723,13 @@ g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w
 weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 \]</div>
 <p>The different techniques described below all perform linear regression, but differ in the used <em>regularisation-term</em>. The hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span> is used to control the trade-off between error-minimisation and weight-minimisation.</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <img alt="https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png" src="https://maucher.home.hdm-stuttgart.de/Pics/regularisation.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The plot on the left hand side displays a polynomial of degree 7, which has been learned from the given training data without regularisation. It can be observed, that the weights have comparatively high values and the learned function is tightly fitted to training data (overfitted). In contrast on the right hand side regularisation has been applied (Ridge regression). It can be seen, that now the learned weights are much smaller and the corresponding curve is smoother and not overfitted to training data.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</div>
-<div class="section" id="ridge-regression">
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The plot on the left hand side displays a polynomial of degree 7, which has been learned from the given training data without regularisation. It can be observed, that the weights have comparatively high values and the learned function is tightly fitted to training data (overfitted). In contrast on the right hand side regularisation has been applied (Ridge regression). It can be seen, that now the learned weights are much smaller and the corresponding curve is smoother and not overfitted to training data.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="ridge-regression">
 <h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline">#</a></h3>
 <p>In Ridge-Regression the error-function <span class="math notranslate nohighlight">\(E(w,T)\)</span> in equation <a class="reference internal" href="#equation-genreg">(10)</a> is the MSE and the regularisation term is the squared <strong>L2-norm</strong>. I.e. Ridge-Regression minimizes</p>
 <div class="math notranslate nohighlight" id="equation-ridge">
@@ -739,8 +742,8 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 ||w||_p = \left(\sum\limits_{i} |w_i|^p \right)^{\frac{1}{p}}
 \]</div>
 <p>For Ridge Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge">Ridge</a>.</p>
-</div>
-<div class="section" id="lasso">
+</section>
+<section id="lasso">
 <h3>Lasso<a class="headerlink" href="#lasso" title="Permalink to this headline">#</a></h3>
 <p>Lasso regularisation provides sparse weights. This means that many weights are zero or very close to zero and only the weights which belong to the most important features are non-zero. This sparsity can be achieved by applying the <strong>L1-Norm</strong> as regularisation term.</p>
 <div class="math notranslate nohighlight" id="equation-ridge">
@@ -748,8 +751,8 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_1 \right),
 \]</div>
 <p>For Lasso Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso">Lasso</a>.</p>
-</div>
-<div class="section" id="elastic-net">
+</section>
+<section id="elastic-net">
 <h3>Elastic-Net<a class="headerlink" href="#elastic-net" title="Permalink to this headline">#</a></h3>
 <p>Elastic-Net regularisation applies a regularisation term, which is a weighted sum of <strong>L1-</strong> and <strong>L2-norm</strong>.</p>
 <div class="math notranslate nohighlight" id="equation-elasticnet">
@@ -757,9 +760,9 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \rho ||w||_1  +  \frac{\lambda (1-\rho)}{2} ||w||_2^2 \right),
 \]</div>
 <p>For Elastic-Net Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet">ElasticNet</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

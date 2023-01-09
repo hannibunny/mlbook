@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Implementing Neural Networks with Keras &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -771,13 +772,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="implementing-neural-networks-with-keras">
+  <section class="tex2jax_ignore mathjax_ignore" id="implementing-neural-networks-with-keras">
 <h1>Implementing Neural Networks with Keras<a class="headerlink" href="#implementing-neural-networks-with-keras" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 29.11.2022</p></li>
 </ul>
-<div class="section" id="what-you-will-learn">
+<section id="what-you-will-learn">
 <h2>What you will learn:<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Define, train and evaluate MLP in Keras</p></li>
@@ -786,8 +787,8 @@ title="Print to PDF"
 <li><p>Implement cross-validation in Keras</p></li>
 <li><p>Image classification based on the CIFAR-10 dataset, which is included in <a class="reference external" href="https://keras.io/datasets/">Keras datasets</a>.</p></li>
 </ul>
-</div>
-<div class="section" id="imports-and-configurations">
+</section>
+<section id="imports-and-configurations">
 <h2>Imports and Configurations<a class="headerlink" href="#imports-and-configurations" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -892,8 +893,8 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="access-data">
+</section>
+<section id="access-data">
 <h2>Access Data<a class="headerlink" href="#access-data" title="Permalink to this headline">#</a></h2>
 <p>Load the Cifar10 image dataset from <code class="docutils literal notranslate"><span class="pre">keras.datasets</span></code>. Determine the shape of the training- and the test-partition.</p>
 <div class="cell docutils container">
@@ -917,8 +918,8 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="visualize-data">
+</section>
+<section id="visualize-data">
 <h2>Visualize Data<a class="headerlink" href="#visualize-data" title="Permalink to this headline">#</a></h2>
 <p>Viusalize the first 9 images of the training-partition, using function <code class="docutils literal notranslate"><span class="pre">imshow()</span></code> from <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p>
 <div class="cell docutils container">
@@ -940,8 +941,8 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 <img alt="../_images/03KerasMLPandCNNcifar_18_0.png" src="../_images/03KerasMLPandCNNcifar_18_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="preprocessing">
+</section>
+<section id="preprocessing">
 <h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h2>
 <p>Scale all images such that all their values are in the range <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
 <div class="cell docutils container">
@@ -999,10 +1000,10 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="mlp">
+</section>
+<section id="mlp">
 <h2>MLP<a class="headerlink" href="#mlp" title="Permalink to this headline">#</a></h2>
-<div class="section" id="architecture">
+<section id="architecture">
 <h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h3>
 <p>In Keras the architecture of neural networks can be defined in two different ways:</p>
 <ul class="simple">
@@ -1010,7 +1011,7 @@ If these files exist (checked by <code class="docutils literal notranslate"><spa
 <li><p>Using the functional API</p></li>
 </ul>
 <p>Below the two approaches are demonstrated. The first approach is simpler, but restricted to neural networks which consist of a linear stack of layers. The second approach is more flexible and allows to define quit complex network architectures, e.g. with more than one input, more than one output or with parallel branches.</p>
-<div class="section" id="network-definition-option1-using-the-sequential-model">
+<section id="network-definition-option1-using-the-sequential-model">
 <h4>Network definition option1: Using the sequential model<a class="headerlink" href="#network-definition-option1-using-the-sequential-model" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1063,8 +1064,8 @@ _________________________________________________________________
 <img alt="../_images/03KerasMLPandCNNcifar_29_0.png" src="../_images/03KerasMLPandCNNcifar_29_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="network-definition-option-2-using-the-functional-api">
+</section>
+<section id="network-definition-option-2-using-the-functional-api">
 <h4>Network definition option 2: Using the functional API<a class="headerlink" href="#network-definition-option-2-using-the-functional-api" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1100,9 +1101,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="define-training-parameters">
+</section>
+</section>
+<section id="define-training-parameters">
 <h3>Define Training Parameters<a class="headerlink" href="#define-training-parameters" title="Permalink to this headline">#</a></h3>
 <p>Apply Stochastic Gradient Descent (SGD) learning, for minimizing the <code class="docutils literal notranslate"><span class="pre">categorical_crossentropy</span></code>. The performance metric shall be <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Train the network.</p>
 <div class="cell docutils container">
@@ -1118,8 +1119,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="perform-training">
+</section>
+<section id="perform-training">
 <h3>Perform Training<a class="headerlink" href="#perform-training" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1138,8 +1139,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluation">
+</section>
+<section id="evaluation">
 <h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h3>
 <p>Visualize the learning-curve on training- and test-data.</p>
 <div class="cell docutils container">
@@ -1204,11 +1205,11 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="cnn">
+</section>
+</section>
+<section id="cnn">
 <h2>CNN<a class="headerlink" href="#cnn" title="Permalink to this headline">#</a></h2>
-<div class="section" id="define-architecture">
+<section id="define-architecture">
 <h3>Define Architecture<a class="headerlink" href="#define-architecture" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1270,8 +1271,8 @@ _________________________________________________________________
 <img alt="../_images/03KerasMLPandCNNcifar_43_0.png" src="../_images/03KerasMLPandCNNcifar_43_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h3>Define Training Parameters<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1286,8 +1287,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h3>Perform Training<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1334,8 +1335,8 @@ Epoch 10/10
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id3">
+</section>
+<section id="id3">
 <h3>Evaluation<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1388,11 +1389,11 @@ Epoch 10/10
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="a-more-complex-cnn">
+</section>
+</section>
+<section id="a-more-complex-cnn">
 <h2>A more complex CNN<a class="headerlink" href="#a-more-complex-cnn" title="Permalink to this headline">#</a></h2>
-<div class="section" id="id4">
+<section id="id4">
 <h3>Architecture<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1494,8 +1495,8 @@ _________________________________________________________________
 <img alt="../_images/03KerasMLPandCNNcifar_55_0.png" src="../_images/03KerasMLPandCNNcifar_55_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="id5">
+</section>
+<section id="id5">
 <h3>Define Training Parameters<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1507,8 +1508,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id6">
+</section>
+<section id="id6">
 <h3>Perform Training<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1533,8 +1534,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate">
+</section>
+<section id="evaluate">
 <h3>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1582,9 +1583,9 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="visualize-feature-maps-in-2nd-conv-layer">
+</section>
+</section>
+<section id="visualize-feature-maps-in-2nd-conv-layer">
 <h2>Visualize Feature Maps in 2nd Conv-Layer<a class="headerlink" href="#visualize-feature-maps-in-2nd-conv-layer" title="Permalink to this headline">#</a></h2>
 <p>The output of an arbitrary layer, for a given input image can be visualized as demonstrated below.</p>
 <p>First we select and display an image, for which the featuremaps in the 2nd Convolution Layer of the previously defined and trained network shall be generated:</p>
@@ -1691,8 +1692,8 @@ _________________________________________________________________
 <img alt="../_images/03KerasMLPandCNNcifar_74_0.png" src="../_images/03KerasMLPandCNNcifar_74_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

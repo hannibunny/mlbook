@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Apply Pretrained Neural Networks on new Task &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -663,13 +664,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="apply-pretrained-neural-networks-on-new-task">
+  <section class="tex2jax_ignore mathjax_ignore" id="apply-pretrained-neural-networks-on-new-task">
 <h1>Apply Pretrained Neural Networks on new Task<a class="headerlink" href="#apply-pretrained-neural-networks-on-new-task" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 04.11.2020</p></li>
 </ul>
-<div class="section" id="what-you-will-learn">
+<section id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Download and integrate deep neural network (<a class="reference external" href="https://arxiv.org/pdf/1409.1556.pdf">VGG-16</a>), which has been trained on ImageNet Dataset</p></li>
@@ -684,8 +685,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="imports-and-configuration">
+</section>
+<section id="imports-and-configuration">
 <h2>Imports and Configuration<a class="headerlink" href="#imports-and-configuration" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -709,7 +710,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<div class="section" id="define-training-parameters">
+<section id="define-training-parameters">
 <h3>Define training parameters<a class="headerlink" href="#define-training-parameters" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,9 +721,9 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="import-all-images-and-visualize">
+</section>
+</section>
+<section id="import-all-images-and-visualize">
 <h2>Import all images and visualize<a class="headerlink" href="#import-all-images-and-visualize" title="Permalink to this headline">#</a></h2>
 <p>Grab the list of images in the dataset directory. Then initialize the list of data and class images</p>
 <div class="cell docutils container">
@@ -822,8 +823,8 @@ title="Print to PDF"
 <img alt="../_images/05KerasPretrainedCovid_17_0.png" src="../_images/05KerasPretrainedCovid_17_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="preprocessing">
+</section>
+<section id="preprocessing">
 <h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h2>
 <p>Convert the data and labels to NumPy arrays while scaling the pixel intensities to the range <span class="math notranslate nohighlight">\([0,1]\)</span></p>
 <div class="cell docutils container">
@@ -844,8 +845,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="split-into-training-and-test-partition">
+</section>
+<section id="split-into-training-and-test-partition">
 <h2>Split into training- and test-partition<a class="headerlink" href="#split-into-training-and-test-partition" title="Permalink to this headline">#</a></h2>
 <p>Partition the data into training and testing splits using 60% of the data for training and the remaining 40% for testing</p>
 <div class="cell docutils container">
@@ -869,8 +870,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="image-data-generator">
+</section>
+<section id="image-data-generator">
 <h2>Image Data Generator<a class="headerlink" href="#image-data-generator" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference external" href="https://keras.io/api/preprocessing/image/">ImageDataGenerator</a> is an easy way to load and augment images in batches for image classification tasks. Together with the method <code class="docutils literal notranslate"><span class="pre">fit_generator()</span></code> (see below), it provides the possibility, that not all of the training data must be kept in the memory. Instead only the current batch is loaded. Moreover, the <code class="docutils literal notranslate"><span class="pre">ImageDataGenerator</span></code>-class provides methods to modify images, e.g. by shift, rotation, flipping, color-transform etc.
 In the code cell below an object of this class is instantiated, which will randomly rotate images within an angle of 15°.</p>
@@ -881,8 +882,8 @@ In the code cell below an object of this class is instantiated, which will rando
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="load-feature-extractor-part-of-pretrained-vgg16-net">
+</section>
+<section id="load-feature-extractor-part-of-pretrained-vgg16-net">
 <h2>Load Feature Extractor Part of pretrained VGG16 Net<a class="headerlink" href="#load-feature-extractor-part-of-pretrained-vgg16-net" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -891,8 +892,8 @@ In the code cell below an object of this class is instantiated, which will rando
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="construct-the-new-classifier-that-will-be-placed-on-top-of-the-feature-extractor">
+</section>
+<section id="construct-the-new-classifier-that-will-be-placed-on-top-of-the-feature-extractor">
 <h2>Construct the new Classifier that will be placed on top of the Feature Extractor<a class="headerlink" href="#construct-the-new-classifier-that-will-be-placed-on-top-of-the-feature-extractor" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -984,8 +985,8 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="compile-and-train-network">
+</section>
+<section id="compile-and-train-network">
 <h2>Compile and train Network<a class="headerlink" href="#compile-and-train-network" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1045,8 +1046,8 @@ Please use Model.fit, which supports generators.
 <img alt="../_images/05KerasPretrainedCovid_38_0.png" src="../_images/05KerasPretrainedCovid_38_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="evaluation">
+</section>
+<section id="evaluation">
 <h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1065,7 +1066,7 @@ Please use Model.fit, which supports generators.
 </div>
 </div>
 </div>
-<div class="section" id="classification-report">
+<section id="classification-report">
 <h3>Classification Report<a class="headerlink" href="#classification-report" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1086,8 +1087,8 @@ weighted avg       0.95      0.95      0.95        40
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="confusion-matrix">
+</section>
+<section id="confusion-matrix">
 <h3>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1125,9 +1126,9 @@ weighted avg       0.95      0.95      0.95        40
 <img alt="../_images/05KerasPretrainedCovid_45_0.png" src="../_images/05KerasPretrainedCovid_45_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

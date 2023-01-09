@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Bayes- and Naive Bayes Classifier &#8212; Machine Learning Lecture</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -20,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -36,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -619,7 +620,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bayes-and-naive-bayes-classifier">
+  <section class="tex2jax_ignore mathjax_ignore" id="bayes-and-naive-bayes-classifier">
 <h1>Bayes- and Naive Bayes Classifier<a class="headerlink" href="#bayes-and-naive-bayes-classifier" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>In this section and nearly all other parts of this course basic notions of <strong>probability theory</strong> are required. If you feel unsure about this, it is strongly recommended to study this <a class="reference external" href="https://hannibunny.github.io/probability/intro.html">short intro in probability theory</a>.</p>
@@ -643,7 +644,7 @@ P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_
 </div>
 </div>
 </div>
-<div class="section" id="access-labeled-data">
+<section id="access-labeled-data">
 <h2>Access labeled data<a class="headerlink" href="#access-labeled-data" title="Permalink to this headline">#</a></h2>
 <p>Read customer data from file. Each row in the file represents one custoner. The first column is the customer ID, the second column is the annual income of the customer and the third column is the class of car he or she bought:</p>
 <ul class="simple">
@@ -835,8 +836,8 @@ P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="training">
+</section>
+<section id="training">
 <h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h2>
 <p>In the training-phase for each car-class <span class="math notranslate nohighlight">\(C_i\)</span> the likelihood-function <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori probability <span class="math notranslate nohighlight">\(p(C_i)\)</span> must be determined. It is assumed that the likelihoods are gaussian normal distributions. Hence, for each class the <strong>mean</strong> and the <strong>standard-deviation</strong> must be estimated from the given data.</p>
 <div class="cell docutils container">
@@ -943,8 +944,8 @@ P(C_i|x)=\frac{p(x|C_i)P(C_i)}{P(x)} = \frac{p(x|C_i)P(C_i)}{\sum_k p(x|C_k)P(C_
 <img alt="../_images/parametricClassification1D_12_0.png" src="../_images/parametricClassification1D_12_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="classification-inference-phase">
+</section>
+<section id="classification-inference-phase">
 <h2>Classification (Inference Phase)<a class="headerlink" href="#classification-inference-phase" title="Permalink to this headline">#</a></h2>
 <p>Once the model is trained the likelihood <span class="math notranslate nohighlight">\(p(x|C_i)\)</span> and the a-priori probability <span class="math notranslate nohighlight">\(P(C_i)\)</span> is known for all 3 classes <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
 <p>The most probable class is then calculated as follows:</p>
@@ -996,8 +997,8 @@ Most probable class for customer with income 69000.00 Euro is 2
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="bayesian-classification-with-scikit-learn">
+</section>
+<section id="bayesian-classification-with-scikit-learn">
 <h2>Bayesian Classification with Scikit-Learn<a class="headerlink" href="#bayesian-classification-with-scikit-learn" title="Permalink to this headline">#</a></h2>
 <p>For Bayesian Classification Scikit-Learn provides Naive Bayes Classifiers for Gaussian-, Bernoulli- and Multinomial distributed data. In the example above 1-dimensional Gaussian distributed input-data has been applied. In this case the Scikit-Learn Naive Bayes Classifier for Gaussian-distributed data, <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> learns the same model as the classifier implemented in the previous sections of this notebook. This is demonstrated in the following code-cells:</p>
 <div class="cell docutils container">
@@ -1015,7 +1016,7 @@ Most probable class for customer with income 69000.00 Euro is 2
 </div>
 </div>
 </div>
-<div class="section" id="train-the-naive-bayes-classifier">
+<section id="train-the-naive-bayes-classifier">
 <h3>Train the Naive Bayes Classifier:<a class="headerlink" href="#train-the-naive-bayes-classifier" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1057,8 +1058,8 @@ Note that std is slightly different as above. This is because std of pandas divi
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="use-the-trained-model-for-predictions">
+</section>
+<section id="use-the-trained-model-for-predictions">
 <h3>Use the trained model for predictions<a class="headerlink" href="#use-the-trained-model-for-predictions" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1096,8 +1097,8 @@ A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with i
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="model-accuracy-on-training-data">
+</section>
+<section id="model-accuracy-on-training-data">
 <h3>Model Accuracy on training data<a class="headerlink" href="#model-accuracy-on-training-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1158,8 +1159,8 @@ A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with i
 </div>
 </div>
 <p>In the confusion matrix the entry <span class="math notranslate nohighlight">\(C_{i,j}\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> is the number of instances, which are known to be in class <span class="math notranslate nohighlight">\(i\)</span>, but predicted to class <span class="math notranslate nohighlight">\(j\)</span>. For example the confusion matrix above indicates, that 3 elements of true class <span class="math notranslate nohighlight">\(1\)</span> have been predicted as class <span class="math notranslate nohighlight">\(0\)</span>-instances.</p>
-</div>
-<div class="section" id="cross-validation">
+</section>
+<section id="cross-validation">
 <h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h3>
 <p>The accuracy on training data should not be applied for model evaluation. Instead a model should be evaluated by determining the accuracy (or other performance figures) on data, which has not been applied for training. Since we have only few labeled data in this example cross-validation is applied for determining the model’s accuracy:</p>
 <div class="cell docutils container">
@@ -1176,8 +1177,8 @@ A-Posteriori for class 0: 0.000 ; class 1: 0.298 ; class 3 0.702 for user with i
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="naive-bayes-classifier-for-multidimensional-data">
+</section>
+<section id="naive-bayes-classifier-for-multidimensional-data">
 <h3>Naive Bayes Classifier for Multidimensional data<a class="headerlink" href="#naive-bayes-classifier-for-multidimensional-data" title="Permalink to this headline">#</a></h3>
 <p>In the playground-example above the input-features where only one dimensional: The only input feature has been the annual income of a customer. The 1-dimensional case is quite unusual in practice. In the code-cell below a <strong>Naive Bayes Classifier</strong> is evaluated for multidimensional data. This is just to demonstrate that the same process as applied above for the simple dataset, can also be applied for arbitrary complex datasets.</p>
 <p>Again we start from the Bayes Theorem:</p>
@@ -1481,9 +1482,9 @@ P(C_i|\mathbf{x})=\frac{p(\mathbf{x}|C_i)}{P(\mathbf{x})}P(C_i) = \frac{\prod_{j
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
