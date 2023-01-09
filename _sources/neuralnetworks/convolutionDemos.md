@@ -7,6 +7,33 @@ The concepts convolution, deconvolution (=transposed convolution), strides and p
 
 ## Convolution
 
+:::{card}
+
+padding = 0, stride = 1
+^^^
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gif/no_padding_no_strides.gif" style="width:200px" align="center">
+</figure>
+---
+padding = 1, stride = 1
+^^^
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gif/same_padding_no_strides.gif" style="width:200px" align="center">
+</figure>
+---
+padding = 0, stride = 2
+^^^
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gif/no_padding_strides.gif" style="width:200px" align="center">
+</figure>
+---
+padding = 1, stride = 2
+^^^
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/gif/padding_strides.gif" style="width:200px" align="center">
+</figure>
+:::
+
 ````{panels}
 
 padding = 0, stride = 1
