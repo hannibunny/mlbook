@@ -206,7 +206,8 @@ The top-left plot contains the usual represenations of samples of a 2-dimensiona
 
 The differences between Multidimensional Gaussian Distributions and Gaussian Processes are listed in the two panels below: 
 
-````{panels}
+::::{grid} 2
+:::{grid-item-card}
 
 Multidimensional Gaussian Distribution
 ^^^
@@ -220,7 +221,8 @@ Multidimensional Gaussian Distribution
 * The random variables $X_i$ and $X_j$ are correlated with covariance $\sigma_{ij}$
 * Each subset of the $d$ random variables is again a Multidimensional Gaussian Distribution
 * The  Multidimensional Gaussian Distribution is completely defined by it's mean-vector $\mathbf{\mu}=[\mu_1,\mu_2,\ldots, \mu_d]$ and it's covariance matrix $\Sigma$
----
+:::
+:::{grid-item-card}
 Gaussian Process
 ^^^
 * Distribution over continous functions
@@ -233,8 +235,8 @@ Gaussian Process
 * The function values $f(x_i)$ and $f(x_j)$ are correlated with covariance $k(x_i,x_j)$
 * Each finite subset of the infinity number of function values $f(x_i)$ is a Multidimensional Gaussian Distribution
 * The Gaussian Process is completely defined by it's mean-function $m(x)$ and it's covariance function $k(x_i,x_j)$
-
-````
+:::
+::::
 
 ```{admonition} Gaussian Process
 A Gaussian Process is a Probabilistic Distribution over functions $f(x)$, with $-\infty < x < \infty$. Since there exists an infinite number of values for $x$ it can be considered as an infinite-dimensional Gaussian distribution. Each finite subset of function-values $f(x_1),f(x_2),\ldots,f(x_d)$ is a usual Multidimensional Gaussian Distribution.  
@@ -262,21 +264,23 @@ Parameters and characteristics of this covariance function are
 * **Variance $\sigma_f^2$**. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.
 
 
-````{panels}
+::::{grid} 2
+:::{grid-item-card} 
 
 Length-scale $\ell=1.0$
 ^^^
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png
 High length-scale in squared-exponential covariance function
 ```
----
+:::
+:::{grid-item-card} 
 Length-scale $\ell=0.408$
 ^^^
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png
 Smaller length-scale in squared-exponential covariance function
-```
-
 ````
+:::
+::::
 
 ### Generate Samples of Gaussian Process
 

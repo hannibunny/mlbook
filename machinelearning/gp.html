@@ -814,6 +814,52 @@ s_{ij}=\frac{1}{Z-1}\sum_{k=1}^Z (x_{k,i}-m_i) \cdot (x_{k,j}-m_j)
 </figcaption>
 </figure>
 <p>The differences between Multidimensional Gaussian Distributions and Gaussian Processes are listed in the two panels below:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">Multidimensional Gaussian Distribution</p>
+</div>
+<div class="sd-card-body docutils">
+<ul>
+<li><p class="sd-card-text">Joint Distribution over d Gaussian Variables</p>
+<div class="math notranslate nohighlight">
+\[
+	X=\left[ X_1,X_2,\ldots X_d \right]
+	\]</div>
+</li>
+<li><p class="sd-card-text">At each index <span class="math notranslate nohighlight">\(i\)</span>, with <span class="math notranslate nohighlight">\(i \in \{1,\ldots,d\}\)</span> a Gaussian distributed variable <span class="math notranslate nohighlight">\(X_i\)</span> with mean <span class="math notranslate nohighlight">\(\mu_i\)</span> and variance <span class="math notranslate nohighlight">\(\sigma_i\)</span> is defined.</p></li>
+<li><p class="sd-card-text">The random variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> are correlated with covariance <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span></p></li>
+<li><p class="sd-card-text">Each subset of the <span class="math notranslate nohighlight">\(d\)</span> random variables is again a Multidimensional Gaussian Distribution</p></li>
+<li><p class="sd-card-text">The  Multidimensional Gaussian Distribution is completely defined by it’s mean-vector <span class="math notranslate nohighlight">\(\mathbf{\mu}=[\mu_1,\mu_2,\ldots, \mu_d]\)</span> and it’s covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">Gaussian Process</p>
+</div>
+<div class="sd-card-body docutils">
+<ul>
+<li><p class="sd-card-text">Distribution over continous functions</p>
+<div class="math notranslate nohighlight">
+\[
+  f(x)
+  \]</div>
+</li>
+<li><p class="sd-card-text">For each <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(-\infty &lt; x &lt; \infty\)</span> a Gaussian distributed <span class="math notranslate nohighlight">\(f(x)\)</span> with mean <span class="math notranslate nohighlight">\(m(x)\)</span> and variance <span class="math notranslate nohighlight">\(k(x,x)\)</span> is defined.</p></li>
+<li><p class="sd-card-text">The function values <span class="math notranslate nohighlight">\(f(x_i)\)</span> and <span class="math notranslate nohighlight">\(f(x_j)\)</span> are correlated with covariance <span class="math notranslate nohighlight">\(k(x_i,x_j)\)</span></p></li>
+<li><p class="sd-card-text">Each finite subset of the infinity number of function values <span class="math notranslate nohighlight">\(f(x_i)\)</span> is a Multidimensional Gaussian Distribution</p></li>
+<li><p class="sd-card-text">The Gaussian Process is completely defined by it’s mean-function <span class="math notranslate nohighlight">\(m(x)\)</span> and it’s covariance function <span class="math notranslate nohighlight">\(k(x_i,x_j)\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="admonition-gaussian-process admonition">
 <p class="admonition-title">Gaussian Process</p>
 <p>A Gaussian Process is a Probabilistic Distribution over functions <span class="math notranslate nohighlight">\(f(x)\)</span>, with <span class="math notranslate nohighlight">\(-\infty &lt; x &lt; \infty\)</span>. Since there exists an infinite number of values for <span class="math notranslate nohighlight">\(x\)</span> it can be considered as an infinite-dimensional Gaussian distribution. Each finite subset of function-values <span class="math notranslate nohighlight">\(f(x_1),f(x_2),\ldots,f(x_d)\)</span> is a usual Multidimensional Gaussian Distribution.</p>
@@ -836,6 +882,40 @@ k(x,x')= \sigma_f^2 \cdot e^{- \frac{(x-x')^2}{2\ell^2}}
 <li><p><strong>Length-Scale <span class="math notranslate nohighlight">\(\ell\)</span></strong>: The higher <span class="math notranslate nohighlight">\(\ell\)</span> the slower the decrease of the correlation between <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f(x')\)</span> with increasing distance between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>. A high value <span class="math notranslate nohighlight">\(\ell\)</span> means strong correlation between neighbouring function-values. This yields <em>smooth</em> curves. Small values for <span class="math notranslate nohighlight">\(\ell\)</span> means less correlation and the potential for high differences in neighbouring function-values.</p></li>
 <li><p><strong>Variance <span class="math notranslate nohighlight">\(\sigma_f^2\)</span></strong>. This is the maximal covariance value and defines the value on the main diagonal of the covariance-matrix. This hyperparameter should be large, if one can assume a strong deviation around the mean-value.</p></li>
 </ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">Length-scale <span class="math notranslate nohighlight">\(\ell=1.0\)</span></p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default" id="id5">
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMean.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">High length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">Length-scale <span class="math notranslate nohighlight">\(\ell=0.408\)</span></p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default" id="id6">
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessSamplesZeroMeanTheta3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Smaller length-scale in squared-exponential covariance function</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="generate-samples-of-gaussian-process">
 <h3>Generate Samples of Gaussian Process<a class="headerlink" href="#generate-samples-of-gaussian-process" title="Permalink to this headline">#</a></h3>
@@ -948,7 +1028,7 @@ k(x_N,x_1) &amp; k(x_N,x_2) &amp; \ldots &amp; k(x_N,x_N) \\
 <figure class="align-center" id="gpsamples">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/GPsamples.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/GPsamples.png" src="https://maucher.home.hdm-stuttgart.de/Pics/GPsamples.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 23 </span><span class="caption-text">3 Samples of a Gaussian Process</span><a class="headerlink" href="#gpsamples" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">3 Samples of a Gaussian Process</span><a class="headerlink" href="#gpsamples" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -970,7 +1050,7 @@ T=\{x_t,y_t \}_{t=1}^N
 <figure class="align-center" id="supportpoints">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPosteriorZeroMean.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPosteriorZeroMean.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPosteriorZeroMean.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Training data is considered to constitute support-points (red) of a GP sample. By applying the mean- and covariance-function of the GP all other points of this sample (green dashed line) can be determined.</span><a class="headerlink" href="#supportpoints" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Training data is considered to constitute support-points (red) of a GP sample. By applying the mean- and covariance-function of the GP all other points of this sample (green dashed line) can be determined.</span><a class="headerlink" href="#supportpoints" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Recall that in <a class="reference internal" href="LinReg.html"><span class="doc std std-doc">Linear Regression</span></a>, it is assumed that the output <span class="math notranslate nohighlight">\(y_t\)</span> is the sum of a deterministic term <span class="math notranslate nohighlight">\(f(x_t)\)</span> and a noise term <span class="math notranslate nohighlight">\(n_t\)</span></p>
@@ -1074,7 +1154,7 @@ K_* &amp; K_{**} \\
 \[
 p(y_*|\mathbf{y}).
 \]</div>
-<p>It is known, that the conditional probability distribution of a multidimensional Gaussian distribution (see figure <a class="reference internal" href="#condprob"><span class="std std-numref">Fig. 25</span></a>) is also a multidimensional Gaussian distribution, which in the given case is specified as follows:</p>
+<p>It is known, that the conditional probability distribution of a multidimensional Gaussian distribution (see figure <a class="reference internal" href="#condprob"><span class="std std-numref">Fig. 27</span></a>) is also a multidimensional Gaussian distribution, which in the given case is specified as follows:</p>
 <div class="math notranslate nohighlight">
 \[
 y_*|\mathbf{y} \sim \mathcal{N} \left(\mu_* + K_*K^{-1}(\mathbf{y}-\boldsymbol\mu) \; , \; K_{**} - K_*K^{-1}K_*^T\right)
@@ -1102,7 +1182,7 @@ std(y_*)=\sqrt(var(y_*))
 <figure class="align-center" id="condprob">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/conditionalGaussianDistribution.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/conditionalGaussianDistribution.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/conditionalGaussianDistribution.PNG" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 25 </span><span class="caption-text">The conditional probability distribution of a 2-dimensional Gaussian distribution is a 1-dimensional Gaussian distribution</span><a class="headerlink" href="#condprob" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">The conditional probability distribution of a 2-dimensional Gaussian distribution is a 1-dimensional Gaussian distribution</span><a class="headerlink" href="#condprob" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-gp-regression-predict-target-mathbf-y-y-1-y-2-ldots-y-z-at-many-inputs-mathbf-x-x-1-x-2-ldots-x-z admonition">
@@ -1221,7 +1301,7 @@ std(y_*)=[ 1.016 , 1.394 , 1.416 ]
 <figure class="align-center" id="gpregex">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPredictionDiscrete.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPredictionDiscrete.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gaussianProcessPredictionDiscrete.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Training data (red points), predictions <span class="math notranslate nohighlight">\(y_*\)</span> (green points) and the <span class="math notranslate nohighlight">\(95\%\)</span>-confidence intervalls around the predictions (vertical bars) for this example</span><a class="headerlink" href="#gpregex" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Training data (red points), predictions <span class="math notranslate nohighlight">\(y_*\)</span> (green points) and the <span class="math notranslate nohighlight">\(95\%\)</span>-confidence intervalls around the predictions (vertical bars) for this example</span><a class="headerlink" href="#gpregex" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1279,7 +1359,7 @@ L=\log\left(p(\mathbf{y}|\mathbf{x},\theta\right)=-\frac{1}{2} \log|K| - \frac{1
 <figure class="align-center" id="gphyppar">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gpHyperparameterLearning.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gpHyperparameterLearning.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gpHyperparameterLearning.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 27 </span><span class="caption-text">Left: A static mean <span class="math notranslate nohighlight">\(m(x)=0\)</span> is assumed. Right: A quadratic mean of type <span class="math notranslate nohighlight">\(m(x)=a x^2 + b x +c\)</span> is assumed. In both cases a covariance function of type <em>squared exponential</em> has been assumed. The plot show the learned hyperparameters and the resulting GP regression models for both cases.</span><a class="headerlink" href="#gphyppar" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">Left: A static mean <span class="math notranslate nohighlight">\(m(x)=0\)</span> is assumed. Right: A quadratic mean of type <span class="math notranslate nohighlight">\(m(x)=a x^2 + b x +c\)</span> is assumed. In both cases a covariance function of type <em>squared exponential</em> has been assumed. The plot show the learned hyperparameters and the resulting GP regression models for both cases.</span><a class="headerlink" href="#gphyppar" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1289,7 +1369,7 @@ L=\log\left(p(\mathbf{y}|\mathbf{x},\theta\right)=-\frac{1}{2} \log|K| - \frac{1
 <figure class="align-center" id="lengthscale">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/04NoisySinNoTrainZeroMeanVaryTheta.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/04NoisySinNoTrainZeroMeanVaryTheta.png" src="https://maucher.home.hdm-stuttgart.de/Pics/04NoisySinNoTrainZeroMeanVaryTheta.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Decreasing horizontal length-scale <span class="math notranslate nohighlight">\(\ell\)</span> from top left to bottom right</span><a class="headerlink" href="#lengthscale" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">Decreasing horizontal length-scale <span class="math notranslate nohighlight">\(\ell\)</span> from top left to bottom right</span><a class="headerlink" href="#lengthscale" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>As can be seen a decreasing length-scale <span class="math notranslate nohighlight">\(\ell\)</span> yields</p>
