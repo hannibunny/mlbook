@@ -1,5 +1,8 @@
 # Reinforcement Learning
 
+* Author: Johannes Maucher
+* Last update: 07.01.2023
+
 ## Introduction
 
 ### Basic Notions
@@ -7,6 +10,7 @@
 In supervised Machine learning a set of training data $T=\lbrace (\mathbf{x}_i,r_i) \rbrace_{i=1}^N$ is given and the task is to learn a model $y=f(\mathbf{x})$, which maps any input $\mathbf{x}$ to the corresponding output $y$. This type of learning is also called *learning with teacher*. The teacher provides the training data in the form that he labels each input $\mathbf{x}_i$ with the corresponding output $r_i$ and the student (the supervised ML algorithm) must learn a general mapping from input to output. This is also called inductive reasoning. 
 
 In reinforcement learning we speak of an **agent** (the AI), which acts in an **environment**. The **actions $A$** of the agent must be such that in the long-term the agent is successful in the sense that it approximates a pre-defined goal as close and as efficiently as possible.  The environment is modeled by it's **state $S$**. Depending on it's actions in the environment the agent may or may not receive a positive or negative **reward $R$** [^f1]. Reinforcement learning is also called *learning from a critic*, because the agent trials different actions and sporadically receives feedback from a critic, which is regarded by the agent for future action decisions.
+
 
 Reinforcement Learning refers to **Sequential Decision Making**. This means that we model the agents behaviour over $time$. At each **discrete time-step $t$** the agent perceives the environment state $S_t$ and  possibly a reward $R_t$. Based on these perceptions it must then decide for an action $A_t$. This action influences the state of the environment and possibly triggers a reward. The new state of the environment is denoted by $S_{t+1}$ and the new reward is denoted by $R_{t+1}$. In the long-term the agents decision-making-process must be such, that a pre-defined target-state of the environment is approximated as efficiently as possible. The proximity of a state $s$ to the target-state is measured by an **utility function $U(s)$**. 
 
@@ -87,6 +91,20 @@ width: 600pt
 name:  rlex2ff
 ---
 Image source: {cite}`ertel09`: State $s_t$, action $a_t$ and reward $r_t$ for 4 successive time-steps.
+```
+
+
+### Overall Structure of this Section
+
+
+The overall structure of this section is depicted below:
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/reinforcementlearningIdea.png
+---
+align: center
+width: 600pt
+name:  overallstructRL
+---
 ```
 
 
