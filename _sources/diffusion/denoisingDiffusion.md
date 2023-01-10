@@ -29,6 +29,16 @@ For the backward diffusion, the noise between two successive image representatio
 
 The range of applications of Diffusion models is similar as for GANs and VAEs, e.g. image generation, image modification, text-driven image generation (e.g. in DALL-E 2), image-to-image translation, superresolution, image segmentation or 3D shape generation and completion.
 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/DiffusionImageExamples.png
+---
+align: center
+width: 600pt
+name:  diffusionexamples
+---
+Source: {cite}`Dhariwal21`. Images generated from denoising defusion model.
+```
+
 ## Forward Diffusion Process
 
 Starting form real data $x_0$, which is sampled from a known data distribution $q(x_0)$, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images $x_0,x_1,x_2,\ldots,x_T$ is generated. For $T \rightarrow \infty$, $x_T$ is equivalent to an isotropic Gaussian distribution.
