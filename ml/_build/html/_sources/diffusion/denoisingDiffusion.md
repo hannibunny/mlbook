@@ -41,7 +41,7 @@ Source: {cite}`Dhariwal21`. Images generated from denoising defusion model.
 
 ## Forward Diffusion Process
 
-Starting form real data $x_0$, which is sampled from a known data distribution $q(x_0)$, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images $x_0,x_1,x_2,\ldots,x_T$ is generated. For $T \rightarrow \infty$, $x_T$ is equivalent to an isotropic Gaussian distribution.
+Starting form real data $x_0$, which is sampled from a known data distribution $q(x_0)$, the forward diffusion process adds in each step a small amount of Gaussian noise to the current image-version. In this way a sequence of increasingly noisy images $x_0,x_1,x_2,\ldots,x_T$ is generated. For $T \rightarrow \infty$, $p(x_T)$ is equivalent to an isotropic Gaussian distribution. In {cite}`Ho20` $T=1000$ has been applied.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/diffusionforward.png
 ---
@@ -119,7 +119,7 @@ $$
 p_{\Theta}(x_{0:T}) = p(x_T) \prod_{t=1}^T p_{\Theta}(x_{t-1}|x_{t}) \mbox{ with } p(x_T)=\mathcal{N}(x_{T};0,\mathbf{I}).
 $$
 
-The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated using a U-net, as described below. 
+<!-- The mean $\mu_{\Theta}(x_t,t)$ of this distribution is estimated using a U-net, as described below.  -->
 
 After training of the U-Net, the reverse path of the Diffusion Model can be applied to generate data by passing randomly sampled noise through the learned denoising process.
 
