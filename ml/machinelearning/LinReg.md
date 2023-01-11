@@ -245,7 +245,4 @@ For Elastic-Net Regression, *scikit-learn* provides the class [ElasticNet](https
 
 
 
-```{note}
-In scikit-learn all of the Linear Regression variants, described in this section are contained in the submodule [sklearn.linear_model](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model).
-```
  
