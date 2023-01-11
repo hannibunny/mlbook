@@ -133,6 +133,11 @@ $$
 $$ (minweights)
 
 
+```{note}
+The approach described above is a quite old type of linear regression. In the literature it is often called [Ordinary Least Square (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares). In scikit-learn the name of the corresponding OLS-module is just [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html) 
+```
+
+
 ## Generalized Linear Regression
 
 
@@ -163,7 +168,7 @@ can be learned. Note that this is still called **linear** regression, because we
  
  $$
  g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x} + \cdots + w_6 \Phi_6(\mathbf{x})
- $$ (linfunction)
+ $$ (linfunctionGen)
  
   which yields the minimum loss.
 ```
@@ -180,7 +185,7 @@ $$
 1 & \Phi_1(\mathbf{x}_{N}) & \Phi_2(\mathbf{x}_{N})& \cdots & \Phi_z(\mathbf{x}_{N}) \\
 \end{array}
 \right]
-$$ (genlin)
+$$ (genlin1)
 
 ## Regularisation
 
@@ -222,7 +227,7 @@ Lasso regularisation provides sparse weights. This means that many weights are z
 
 $$
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_1 \right),
-$$ (ridge)
+$$ (lasso)
 
 
 For Lasso Regression, *scikit-learn* provides the class [Lasso](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso).
@@ -237,4 +242,10 @@ $$ (elasticnet)
 
 
 For Elastic-Net Regression, *scikit-learn* provides the class [ElasticNet](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet).
+
+
+
+```{note}
+In scikit-learn all of the Linear Regression variants, described in this section are contained in the submodule [sklearn.linear_model](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model).
+```
  
