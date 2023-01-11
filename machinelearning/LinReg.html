@@ -577,7 +577,7 @@ r=f(\mathbf{x})+n,
 <p>and we like to find a good approximation <span class="math notranslate nohighlight">\(g(\mathbf{x}|\Theta)\)</span> for the unknown deterministic part <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>.</p>
 <p>In linear regression we assume that the approximation <span class="math notranslate nohighlight">\(g(x|\Theta)\)</span> is a linear function of type</p>
 <div class="math notranslate nohighlight" id="equation-linfunction">
-<span class="eqno">(8)<a class="headerlink" href="#equation-linfunction" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(1)<a class="headerlink" href="#equation-linfunction" title="Permalink to this equation">#</a></span>\[
 g(\mathbf{x})=w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_d x_d 
 \]</div>
 <p>This means, that we assume a certain type of function and we want to learn the parameters</p>
@@ -674,12 +674,16 @@ r_N \\
 <span class="eqno">(5)<a class="headerlink" href="#equation-minweights" title="Permalink to this equation">#</a></span>\[
 \mathbf{w}= \left( \mathbf{D}^T \mathbf{D} \right)^{-1} \mathbf{D}^T \mathbf{r}.
 \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The approach described above is a quite old type of linear regression. In the literature it is often called <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Ordinary Least Square (OLS)</a>. In scikit-learn the name of the corresponding OLS-module is just <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">LinearRegression</a></p>
+</div>
 </section>
 <section id="generalized-linear-regression">
 <h2>Generalized Linear Regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this headline">#</a></h2>
-<p>With <strong>Linear Regression</strong> one can not only learn linear functions <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-linfunction">(8)</a>. Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Regression</strong> of type</p>
+<p>With <strong>Linear Regression</strong> one can not only learn linear functions <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> of type <a class="reference internal" href="#equation-linfunction">(1)</a>. Since we are free to preprocess the input vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an arbitrary aomount <span class="math notranslate nohighlight">\(z\)</span> of preprocessing functions <span class="math notranslate nohighlight">\(\Phi_i\)</span> of arbitrary type (linear and non-linear), a <strong>Generlized Linear Regression</strong> of type</p>
 <div class="math notranslate nohighlight" id="equation-genlin">
-<span class="eqno">(9)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(6)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">#</a></span>\[
 g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w_z \Phi_z(\mathbf{x})
 \]</div>
 <p>can be learned. Note that this is still called <strong>linear</strong> regression, because we are still linear in the variable’s <span class="math notranslate nohighlight">\(w_i\)</span>.</p>
@@ -695,15 +699,15 @@ g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x}) + \cdots + w
  \Phi_6(\mathbf{x}) &amp;=&amp; x_2^2 
  \end{split}\]</div>
 <p>The learning task is then to determine the weights <span class="math notranslate nohighlight">\(w_i\)</span> of the polynomial</p>
-<div class="math notranslate nohighlight" id="equation-linfunction">
-<span class="eqno">(8)<a class="headerlink" href="#equation-linfunction" title="Permalink to this equation">#</a></span>\[
+<div class="math notranslate nohighlight" id="equation-linfunctiongen">
+<span class="eqno">(8)<a class="headerlink" href="#equation-linfunctiongen" title="Permalink to this equation">#</a></span>\[
  g(\mathbf{x})=w_0 + w_1 \Phi_1(\mathbf{x}) + w_2 \Phi_2(\mathbf{x} + \cdots + w_6 \Phi_6(\mathbf{x})
  \]</div>
 <p>which yields the minimum loss.</p>
 </div>
 <p>Finding the weights <span class="math notranslate nohighlight">\(w_i\)</span>, which minimize the loss function, can be performed in the same way as described above. One just has to replace all <span class="math notranslate nohighlight">\(x_{i,t}\)</span> by <span class="math notranslate nohighlight">\(\Phi_i(\mathbf{x}_t)\)</span>. In particular <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> can be calculated as in equation <a class="reference internal" href="#equation-minweights">(5)</a>, but now matrix <span class="math notranslate nohighlight">\(D\)</span> is</p>
-<div class="math notranslate nohighlight" id="equation-genlin">
-<span class="eqno">(9)<a class="headerlink" href="#equation-genlin" title="Permalink to this equation">#</a></span>\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-genlin1">
+<span class="eqno">(9)<a class="headerlink" href="#equation-genlin1" title="Permalink to this equation">#</a></span>\[\begin{split}
 \mathbf{D}= \left[ 
 \begin{array}{ccccc}
 1 &amp; \Phi_1(\mathbf{x}_{1}) &amp; \Phi_2(\mathbf{x}_{1})&amp; \cdots &amp; \Phi_z(\mathbf{x}_{1}) \\
@@ -733,7 +737,7 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 <h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline">#</a></h3>
 <p>In Ridge-Regression the error-function <span class="math notranslate nohighlight">\(E(w,T)\)</span> in equation <a class="reference internal" href="#equation-genreg">(10)</a> is the MSE and the regularisation term is the squared <strong>L2-norm</strong>. I.e. Ridge-Regression minimizes</p>
 <div class="math notranslate nohighlight" id="equation-ridge">
-<span class="eqno">(13)<a class="headerlink" href="#equation-ridge" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11)<a class="headerlink" href="#equation-ridge" title="Permalink to this equation">#</a></span>\[
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_2^2 \right),
 \]</div>
 <p>where the <strong>p-norm</strong> <span class="math notranslate nohighlight">\(||w||_p\)</span> is defined to be</p>
@@ -746,8 +750,8 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 <section id="lasso">
 <h3>Lasso<a class="headerlink" href="#lasso" title="Permalink to this headline">#</a></h3>
 <p>Lasso regularisation provides sparse weights. This means that many weights are zero or very close to zero and only the weights which belong to the most important features are non-zero. This sparsity can be achieved by applying the <strong>L1-Norm</strong> as regularisation term.</p>
-<div class="math notranslate nohighlight" id="equation-ridge">
-<span class="eqno">(13)<a class="headerlink" href="#equation-ridge" title="Permalink to this equation">#</a></span>\[
+<div class="math notranslate nohighlight" id="equation-lasso">
+<span class="eqno">(13)<a class="headerlink" href="#equation-lasso" title="Permalink to this equation">#</a></span>\[
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \cdot ||w||_1 \right),
 \]</div>
 <p>For Lasso Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso">Lasso</a>.</p>
@@ -760,6 +764,10 @@ weights = argmin\left( E(w,T) + \lambda \cdot regularisationterm(w) \right)
 \mathbf{w}=argmin\left( \sum\limits_{t=1}^N [r_t-g(\mathbf{x}_t|\Theta)]^2 + \lambda \rho ||w||_1  +  \frac{\lambda (1-\rho)}{2} ||w||_2^2 \right),
 \]</div>
 <p>For Elastic-Net Regression, <em>scikit-learn</em> provides the class <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet">ElasticNet</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In scikit-learn all of the Linear Regression variants, described in this section are contained in the submodule <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model">sklearn.linear_model</a>.</p>
+</div>
 </section>
 </section>
 </section>
