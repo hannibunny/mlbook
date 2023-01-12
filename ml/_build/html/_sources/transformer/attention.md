@@ -6,14 +6,23 @@ In the context of Machine Learning a sequence is an ordered data structure, whos
 
 **Examples:**
 - Univariate Time Series Data:
+	 - Stock price of a company
 	 - Average daily temperature over a certain period of time
-	 - Stock prise of a company
-	 - Playlist: Sequence of songs
+	 - In general data which is tracked by sensors over time, e.g. accelaration, speed, energy-consuption, pressure, emissions, ...  
 - Multivariate Time Series Data:
      - For a specific product in an online-shop: Daily number of clicks, number of purchases, number of ratings, number of returns
 - Natural Language: The words in a sentence, section, article, ...
 - Image: Sequence of pixels
 - Video: Sequence of frames   
+
+
+
+The crucial property of sequences is the correlation between the individual datapoints. This means that for each element (datapoint) of the sequence, information is not only provided by it's individual feature-vector, but also by the neighboring datapoints. For each element of the sequence, the neighboring elements are called **context** and we can understand an individual element by taking in account
+* it's feature vector
+* the contextual information, provided by the neighbours
+
+
+An example of how the humain brain exploits context-information in order to recognize is given in the image below.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg
 ---
@@ -25,11 +34,9 @@ Understand by integration of contextual information.
 
 ```
 
-The crucial property of sequences is the correlation between the individual datapoints. This means that for each element (datapoint) of the sequence, information is not only provided by it's individual feature-vector, but also by the neighboring datapoints. For each element of the sequence, the neighboring elements are called **context** and we can understand an individual element by taking in account
-* it's feature vector
-* the contextual information, provided by the neighbours
 
-For this type of sequential data, Machine Learning algorithms should learn models, which regard not only individual feature vectors, but also contextual information. For example [Recurrent Networks (RNN)](../neuralnetworks/02RecurrentNeuralNetworks) are capable to do so. In this section more complex ML architectures, suitable for sequential data will be described. Some of these architectures integrate RNNs. More recent architectures, *Transformers*, model the correlations within sequences not by RNNs but by *Attention*. Both, Attention and the integration of Attention in Transformers will be described in this section.
+
+For all types of sequential data, Machine Learning algorithms should learn models, which regard not only individual feature vectors, but also contextual information. For example [Recurrent Networks (RNN)](../neuralnetworks/02RecurrentNeuralNetworks) are capable to do so. In this section more complex ML architectures, suitable for sequential data will be described. Some of these architectures integrate Recurrent Neural Networks. More recent architectures, *Transformers*, integrate the concept of *Attention*. Both, Attention and the integration of Attention in Transformers will be described in this section.
 
 As already mentioned in section [Recurrent Networks (RNN)](../neuralnetworks/02RecurrentNeuralNetworks), ML algorithms, which take sequential data at their input, either output one element per sequence (many-to-one) or a sequence of elements (many-to-many). The latter is the same as Sequence-To-Sequence learning. 
 
