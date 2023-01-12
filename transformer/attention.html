@@ -696,9 +696,9 @@ title="Print to PDF"
 <ul class="simple">
 <li><p>Univariate Time Series Data:</p>
 <ul>
+<li><p>Stock price of a company</p></li>
 <li><p>Average daily temperature over a certain period of time</p></li>
-<li><p>Stock prise of a company</p></li>
-<li><p>Playlist: Sequence of songs</p></li>
+<li><p>In general data which is tracked by sensors over time, e.g. accelaration, speed, energy-consuption, pressure, emissions, …</p></li>
 </ul>
 </li>
 <li><p>Multivariate Time Series Data:</p>
@@ -710,18 +710,19 @@ title="Print to PDF"
 <li><p>Image: Sequence of pixels</p></li>
 <li><p>Video: Sequence of frames</p></li>
 </ul>
+<p>The crucial property of sequences is the correlation between the individual datapoints. This means that for each element (datapoint) of the sequence, information is not only provided by it’s individual feature-vector, but also by the neighboring datapoints. For each element of the sequence, the neighboring elements are called <strong>context</strong> and we can understand an individual element by taking in account</p>
+<ul class="simple">
+<li><p>it’s feature vector</p></li>
+<li><p>the contextual information, provided by the neighbours</p></li>
+</ul>
+<p>An example of how the humain brain exploits context-information in order to recognize is given in the image below.</p>
 <figure class="align-center" id="kontext">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg" src="https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg" style="width: 300pt;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 78 </span><span class="caption-text">Understand by integration of contextual information.</span><a class="headerlink" href="#kontext" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The crucial property of sequences is the correlation between the individual datapoints. This means that for each element (datapoint) of the sequence, information is not only provided by it’s individual feature-vector, but also by the neighboring datapoints. For each element of the sequence, the neighboring elements are called <strong>context</strong> and we can understand an individual element by taking in account</p>
-<ul class="simple">
-<li><p>it’s feature vector</p></li>
-<li><p>the contextual information, provided by the neighbours</p></li>
-</ul>
-<p>For this type of sequential data, Machine Learning algorithms should learn models, which regard not only individual feature vectors, but also contextual information. For example <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html"><span class="doc std std-doc">Recurrent Networks (RNN)</span></a> are capable to do so. In this section more complex ML architectures, suitable for sequential data will be described. Some of these architectures integrate RNNs. More recent architectures, <em>Transformers</em>, model the correlations within sequences not by RNNs but by <em>Attention</em>. Both, Attention and the integration of Attention in Transformers will be described in this section.</p>
+<p>For all types of sequential data, Machine Learning algorithms should learn models, which regard not only individual feature vectors, but also contextual information. For example <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html"><span class="doc std std-doc">Recurrent Networks (RNN)</span></a> are capable to do so. In this section more complex ML architectures, suitable for sequential data will be described. Some of these architectures integrate Recurrent Neural Networks. More recent architectures, <em>Transformers</em>, integrate the concept of <em>Attention</em>. Both, Attention and the integration of Attention in Transformers will be described in this section.</p>
 <p>As already mentioned in section <a class="reference internal" href="../neuralnetworks/02RecurrentNeuralNetworks.html"><span class="doc std std-doc">Recurrent Networks (RNN)</span></a>, ML algorithms, which take sequential data at their input, either output one element per sequence (many-to-one) or a sequence of elements (many-to-many). The latter is the same as Sequence-To-Sequence learning.</p>
 <p>Sequence-To-Sequence (Seq2Seq) models (<span id="id1">[<a class="reference internal" href="../referenceSection.html#id62">CvMG+14</a>]</span>, <span id="id2">[<a class="reference internal" href="../referenceSection.html#id18">SVL14</a>]</span>) map</p>
 <ul class="simple">
