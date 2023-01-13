@@ -674,6 +674,107 @@ Contextual Embeddings from BERT. Image source: {cite}`Devlin`
 
 ```
 
+## GPT, GPT-2 and GPT-3
+
+
+In contrast to BERT, which is an encoder-only transformer, GPT ({cite}`radford2018`), GPT-2 ({cite}`radford2019`) and GPT-3 ({cite}`Brown2020`) are decoder-only transformers. They are **Autoregressive Language Models (AR LM)**. A AR LM predicts for a given token-sequence $(x_1, x_2, \ldots x_k)$ the following token $x_{k+1}$. Then it predicts from $(x_2, x_3, \ldots x_{k+1})$ the
+next word $x_{k+2}$ and so on. In contrast to BERT it therefore integrates only the previous context. However, since AR LMs can predict the next tokens from given prompts, they are applicable for tasks like generating text or any type of sequence-to-sequence transformations such as translation, text-to-code, etc.
+
+Moreover, the fact that the AR LM is trained for text-completion, the authors of GPT-2 ({cite}`radford2019`) proposed to implement **multi-task-learning** at a data-level. What does this mean? Usually multi-task-learning is realized not on a data- but on a architectural level. A typical approach is to have a common network-part, e.g. the first layers, which constitutes the feature-extractor, and on top of this common part two or more task-specific architectures in parallel, e.g. one stack of layers for classification, one stack of layers for Named-Entity-Recognition and so on. Each task-specific part is trained with task-specific labeled data. BERT and the first GPT are examples for this approach. The drawback is, that task-specific fine-tuning still requires quite large amounts of data.
+
+
+In contrast to this architectural solution for mult-task learning, in data-level multi-task learning only one common architecture is applied and the **task-description is part of the input data.** Instead of predicting
+
+$$
+p(output | input),
+$$ 
+
+the **task-conditioned** probability
+
+$$
+p(output | input, task)
+$$
+ is predicted, i.e. for one and the same input, different outputs can be generated. This is possible if the model is an AR LM, because the **input and the task-description are just sequences of tokens**. For example the two different tasks *translate english to french* and *translate english to german*, can be implemented by providing training data of type
+
+ (*translate to french*, *< english text >*, *< french text >*)
+
+ and
+
+ (*translate to german*, *< english text >*, *< german text >*). 
+
+GPT-2 proposes to take data of this format, and just training the model for a text completion objective should suffice to train the model for all the underlying objectives. Since the unsupervised and supervised objectives are the same, the global minima for the unsupervised objective are the same as the global minima for the supervised objective. Moreover, since the model is not trained specifically for any of the underlying tasks (translation, summarization, question-answering, etc.), it is said to be an example of **few-shot-, one-shot- or zero-shot learning**. In few-shot learning one just has to explain the task and provide a few examples for this task in the inference phase, i.e. there is no task-specific weight adaptation. The concept of the x-shot approaches is depicted in the image below. The fact that no fine-tuning on downstream tasks is required is a step towards **general intelligence**.  
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png
+---
+align: center
+width: 600pt
+name:  x-shotlearners
+---
+Image source: {cite}`Brown2020`. Zero-shot, one-shot and few-shot, contrasted with traditional fine-tuning. The panels above show four methods for performing a task with a language model. Fine-tuning is the traditional method, whereas zero-, one-, and few-shot, which are applied in GPT-3, require the model to perform the task with only forward passes at test time. In the few shot setting typically a few dozen examples are presented to the model. Exact phrasings for all GPT-3 task descriptions, examples and prompts can be found in [Appendix G of the paper](https://arxiv.org/pdf/2005.14165.pdf).
+```
+
+Of course, before x-shot learning can be applied, the model must be pretrained. **GPT is pretrained as a autoregeressive language model** from unsupervised data (large amounts of texts).
+
+GPT-3 is evaluated on more than two dozen datasets. For each of these tasks, it is evaluated for 3 settings: zero-shot, one-shot, and few-shot. 
+
+
+The largest GPT-3 model consists of 175 billion parameters, which is 470 times more than BERT, and requires a storage of 800GB. Smaller variants, which have been considered in {cite}`Brown2020` are depicted in the table below:
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt3variants.png
+---
+align: center
+width: 600pt
+name:  x-shotlearners
+---
+Image source: {cite}`Brown2020`. Sizes, architectures, and learning hyper-parameters (batch size in tokens and learning rate) of the trained models. All models were trained for a total of 300 billion tokens
+```
+
+Summary of main properties:
+
+
+:::{card} GPT ({cite}`radford2018`)
+* Decoder-only Autoregressive Language Model (AR LM)
+* 12 layers decoder with masked self-attention as in decoder of {cite}`Vaswani2017` and 12 heads.
+* At the input: [Byte Pair Encoding](https://huggingface.co/course/chapter6/5?fw=pt) and positional encoding.
+* 768-dimensional token-representations
+* 117 Million parameters
+* Unsupervised Pretraining and task-specific supervised fine-
+* Trained on [BooksCorpus Dataset (7000 unpublished books)](https://paperswithcode.com/dataset/bookcorpus)
+* already remarkable zero-shot performance on different NLP tasks like question-answering, schema resolution, sentiment analysis only due to pre-training of the AR LM.
+
+Card content
+:::
+
+
+:::{card} GPT-2 ({cite}`radford2019`)
+* Decoder-only Autoregressive Language Model (AR LM)
+* much larger model than GPT: 1.5 billion parameters
+* 48 layers and 1600-dimensional token-representations
+* Layer normalisation was moved to input of each sub-block and an additional layer normalisation was added after final self-attention block
+* *Task-conditioned* training (unsupervised)
+* Performs well in *Zero-Shot-Setting* for some NLP tasks 
+* much larger dataset for training. [WebText Corpus (40GB)](https://paperswithcode.com/dataset/webtext): Scrapped data from Reddit and outbound links
+* GPT-2 showed that training on larger dataset and having more parameters improved the capability of language model to understand tasks and surpass the state-of-the-art of many tasks in zero shot settings.
+
+
+Card content
+:::
+
+
+:::{card} GPT-3 ({cite}`Brown2020`)
+* Decoder-only Autoregressive Language Model (AR LM)
+* much larger model than GPT-2: 175 billion parameters
+* 96 layers, each having 96 heads 
+* 12888-dimensional token-representations
+* Sparse Attention patterns in Self-Attention blocks
+* *Task-conditioned* training (unsupervised)
+* Performs well on *Zero-Shot-, One-Shot-*, and *Few-Shot-settings* in downstream NLP tasks.
+* Perform well on on-the-fly tasks on which it was never explicitly trained on, like summing up numbers, writing SQL queries and codes
+*  trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia.
+
+:::
+
+
 
 
 [^fa1]: An overview for other scoring functions is provided [here](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html).
