@@ -720,7 +720,7 @@ GPT-3 is evaluated on more than two dozen datasets. For each of these tasks, it 
 
 The largest GPT-3 model consists of 175 billion parameters, which is 470 times more than BERT, and requires a storage of 800GB. Smaller variants, which have been considered in {cite}`Brown2020` are depicted in the table below:
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt3variants.png
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt3modelvariants.png
 ---
 align: center
 width: 600pt
