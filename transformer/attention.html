@@ -563,6 +563,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gpt-gpt-2-and-gpt-3">
+   GPT, GPT-2 and GPT-3
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -676,6 +681,11 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gpt-gpt-2-and-gpt-3">
+   GPT, GPT-2 and GPT-3
+  </a>
  </li>
 </ul>
 
@@ -1203,6 +1213,95 @@ These masked tokens are predicted by passing the final hidden vectors, which bel
 <p><span class="caption-number">Fig. 105 </span><span class="caption-text">Contextual Embeddings from BERT. Image source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+</section>
+<section id="gpt-gpt-2-and-gpt-3">
+<h2>GPT, GPT-2 and GPT-3<a class="headerlink" href="#gpt-gpt-2-and-gpt-3" title="Permalink to this headline">#</a></h2>
+<p>In contrast to BERT, which is an encoder-only transformer, GPT (<span id="id19">[<a class="reference internal" href="../referenceSection.html#id76">RN18</a>]</span>), GPT-2 (<span id="id20">[<a class="reference internal" href="../referenceSection.html#id75">RWC+19</a>]</span>) and GPT-3 (<span id="id21">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>) are decoder-only transformers. They are <strong>Autoregressive Language Models (AR LM)</strong>. A AR LM predicts for a given token-sequence <span class="math notranslate nohighlight">\((x_1, x_2, \ldots x_k)\)</span> the following token <span class="math notranslate nohighlight">\(x_{k+1}\)</span>. Then it predicts from <span class="math notranslate nohighlight">\((x_2, x_3, \ldots x_{k+1})\)</span> the
+next word <span class="math notranslate nohighlight">\(x_{k+2}\)</span> and so on. In contrast to BERT it therefore integrates only the previous context. However, since AR LMs can predict the next tokens from given prompts, they are applicable for tasks like generating text or any type of sequence-to-sequence transformations such as translation, text-to-code, etc.</p>
+<p>Moreover, the fact that the AR LM is trained for text-completion, the authors of GPT-2 (<span id="id22">[<a class="reference internal" href="../referenceSection.html#id75">RWC+19</a>]</span>) proposed to implement <strong>multi-task-learning</strong> at a data-level. What does this mean? Usually multi-task-learning is realized not on a data- but on a architectural level. A typical approach is to have a common network-part, e.g. the first layers, which constitutes the feature-extractor, and on top of this common part two or more task-specific architectures in parallel, e.g. one stack of layers for classification, one stack of layers for Named-Entity-Recognition and so on. Each task-specific part is trained with task-specific labeled data. BERT and the first GPT are examples for this approach. The drawback is, that task-specific fine-tuning still requires quite large amounts of data.</p>
+<p>In contrast to this architectural solution for mult-task learning, in data-level multi-task learning only one common architecture is applied and the <strong>task-description is part of the input data.</strong> Instead of predicting</p>
+<div class="math notranslate nohighlight">
+\[
+p(output | input),
+\]</div>
+<p>the <strong>task-conditioned</strong> probability</p>
+<div class="math notranslate nohighlight">
+\[
+p(output | input, task)
+\]</div>
+<p>is predicted, i.e. for one and the same input, different outputs can be generated. This is possible if the model is an AR LM, because the <strong>input and the task-description are just sequences of tokens</strong>. For example the two different tasks <em>translate english to french</em> and <em>translate english to german</em>, can be implemented by providing training data of type</p>
+<p>(<em>translate to french</em>, <em>&lt; english text &gt;</em>, <em>&lt; french text &gt;</em>)</p>
+<p>and</p>
+<p>(<em>translate to german</em>, <em>&lt; english text &gt;</em>, <em>&lt; german text &gt;</em>).</p>
+<p>GPT-2 proposes to take data of this format, and just training the model for a text completion objective should suffice to train the model for all the underlying objectives. Since the unsupervised and supervised objectives are the same, the global minima for the unsupervised objective are the same as the global minima for the supervised objective. Moreover, since the model is not trained specifically for any of the underlying tasks (translation, summarization, question-answering, etc.), it is said to be an example of <strong>few-shot-, one-shot- or zero-shot learning</strong>. In few-shot learning one just has to explain the task and provide a few examples for this task in the inference phase, i.e. there is no task-specific weight adaptation. The concept of the x-shot approaches is depicted in the image below. The fact that no fine-tuning on downstream tasks is required is a step towards <strong>general intelligence</strong>.</p>
+<figure class="align-center" id="x-shotlearners">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png" src="https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png" style="width: 600pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Image source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>. Zero-shot, one-shot and few-shot, contrasted with traditional fine-tuning. The panels above show four methods for performing a task with a language model. Fine-tuning is the traditional method, whereas zero-, one-, and few-shot, which are applied in GPT-3, require the model to perform the task with only forward passes at test time. In the few shot setting typically a few dozen examples are presented to the model. Exact phrasings for all GPT-3 task descriptions, examples and prompts can be found in <a class="reference external" href="https://arxiv.org/pdf/2005.14165.pdf">Appendix G of the paper</a>.</span><a class="headerlink" href="#x-shotlearners" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Of course, before x-shot learning can be applied, the model must be pretrained. <strong>GPT is pretrained as a autoregeressive language model</strong> from unsupervised data (large amounts of texts).</p>
+<p>GPT-3 is evaluated on more than two dozen datasets. For each of these tasks, it is evaluated for 3 settings: zero-shot, one-shot, and few-shot.</p>
+<p>The largest GPT-3 model consists of 175 billion parameters, which is 470 times more than BERT, and requires a storage of 800GB. Smaller variants, which have been considered in <span id="id24">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span> are depicted in the table below:</p>
+<figure class="align-center" id="id26">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gpt3variants.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gpt3variants.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gpt3variants.png" style="width: 600pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Image source: <span id="id25">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>. Sizes, architectures, and learning hyper-parameters (batch size in tokens and learning rate) of the trained models. All models were trained for a total of 300 billion tokens</span><a class="headerlink" href="#id26" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Summary of main properties:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+GPT (<span id="id28">[<a class="reference internal" href="../referenceSection.html#id76">RN18</a>]</span>)</div>
+<ul class="simple">
+<li><p class="sd-card-text">Decoder-only Autoregressive Language Model (AR LM)</p></li>
+<li><p class="sd-card-text">12 layers decoder with masked self-attention as in decoder of <span id="id27">[<a class="reference internal" href="../referenceSection.html#id17">VSP+17</a>]</span> and 12 heads.</p></li>
+<li><p class="sd-card-text">At the input: <a class="reference external" href="https://huggingface.co/course/chapter6/5?fw=pt">Byte Pair Encoding</a> and positional encoding.</p></li>
+<li><p class="sd-card-text">768-dimensional token-representations</p></li>
+<li><p class="sd-card-text">117 Million parameters</p></li>
+<li><p class="sd-card-text">Unsupervised Pretraining and task-specific supervised fine-</p></li>
+<li><p class="sd-card-text">Trained on <a class="reference external" href="https://paperswithcode.com/dataset/bookcorpus">BooksCorpus Dataset (7000 unpublished books)</a></p></li>
+<li><p class="sd-card-text">already remarkable zero-shot performance on different NLP tasks like question-answering, schema resolution, sentiment analysis only due to pre-training of the AR LM.</p></li>
+</ul>
+<p class="sd-card-text">Card content</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+GPT-2 (<span id="id29">[<a class="reference internal" href="../referenceSection.html#id75">RWC+19</a>]</span>)</div>
+<ul class="simple">
+<li><p class="sd-card-text">Decoder-only Autoregressive Language Model (AR LM)</p></li>
+<li><p class="sd-card-text">much larger model than GPT: 1.5 billion parameters</p></li>
+<li><p class="sd-card-text">48 layers and 1600-dimensional token-representations</p></li>
+<li><p class="sd-card-text">Layer normalisation was moved to input of each sub-block and an additional layer normalisation was added after final self-attention block</p></li>
+<li><p class="sd-card-text"><em>Task-conditioned</em> training (unsupervised)</p></li>
+<li><p class="sd-card-text">Performs well in <em>Zero-Shot-Setting</em> for some NLP tasks</p></li>
+<li><p class="sd-card-text">much larger dataset for training. <a class="reference external" href="https://paperswithcode.com/dataset/webtext">WebText Corpus (40GB)</a>: Scrapped data from Reddit and outbound links</p></li>
+<li><p class="sd-card-text">GPT-2 showed that training on larger dataset and having more parameters improved the capability of language model to understand tasks and surpass the state-of-the-art of many tasks in zero shot settings.</p></li>
+</ul>
+<p class="sd-card-text">Card content</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+GPT-3 (<span id="id30">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>)</div>
+<ul class="simple">
+<li><p class="sd-card-text">Decoder-only Autoregressive Language Model (AR LM)</p></li>
+<li><p class="sd-card-text">much larger model than GPT-2: 175 billion parameters</p></li>
+<li><p class="sd-card-text">96 layers, each having 96 heads</p></li>
+<li><p class="sd-card-text">12888-dimensional token-representations</p></li>
+<li><p class="sd-card-text">Sparse Attention patterns in Self-Attention blocks</p></li>
+<li><p class="sd-card-text"><em>Task-conditioned</em> training (unsupervised)</p></li>
+<li><p class="sd-card-text">Performs well on <em>Zero-Shot-, One-Shot-</em>, and <em>Few-Shot-settings</em> in downstream NLP tasks.</p></li>
+<li><p class="sd-card-text">Perform well on on-the-fly tasks on which it was never explicitly trained on, like summing up numbers, writing SQL queries and codes</p></li>
+<li><p class="sd-card-text">trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia.</p></li>
+</ul>
+</div>
+</div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="fa1"><span class="brackets"><a class="fn-backref" href="#id6">1</a></span></dt>
@@ -1215,7 +1314,6 @@ These masked tokens are predicted by passing the final hidden vectors, which bel
 <dd><p><a class="reference external" href="https://gluebenchmark.com">GLUE Benchmark for NLP tasks</a></p>
 </dd>
 </dl>
-</section>
 </section>
 </section>
 
