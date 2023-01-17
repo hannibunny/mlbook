@@ -725,7 +725,7 @@ title="Print to PDF"
 <li><p>it’s feature vector</p></li>
 <li><p>the contextual information, provided by the neighbours</p></li>
 </ul>
-<p>An example of how the humain brain exploits context-information in order to recognize is given in the image below.</p>
+<p>An example of how the human brain exploits context-information in order to recognize is given in the image below.</p>
 <figure class="align-center" id="kontext">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg" src="https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg" style="width: 300pt;" /></a>
 <figcaption>
@@ -925,7 +925,7 @@ a_{j} = \frac{\exp(e_{j})}{\sum_{k=1}^{T_x}\exp(e_{k})}%, \quad e_{j}=a(h_{e,j})
 <h2>Transformer<a class="headerlink" href="#transformer" title="Permalink to this headline">#</a></h2>
 <section id="motivation">
 <h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
-<p>Deep Learning needs huge amounts of training data and correspondingly high processing effort for training. In order to cope with this processing complexity, GPUs/TPUs must be applied. However, GPUs and TPUs yield higher training speed, if operations can be <strong>parallelized</strong>. The drawback of RNNs (of any type) is that the recurrent connections can not be parallelized. <strong>Transformers</strong> <span id="id8">[<a class="reference internal" href="../referenceSection.html#id17">VSP+17</a>]</span> exploit only <strong>Self-Attention</strong>, without recurrent connections. So they they can be trained efficiently on GPUs. In this section first the concept of Self-Attention is described. Then Transformer architectures are presented.</p>
+<p>Deep Learning needs huge amounts of training data and correspondingly high processing effort for training. In order to cope with this processing complexity, GPUs/TPUs must be applied. However, GPUs and TPUs yield higher training speed, if operations can be <strong>parallelized</strong>. The drawback of RNNs (of any type) is that the recurrent connections can not be parallelized. <strong>Transformers</strong> <span id="id8">[<a class="reference internal" href="../referenceSection.html#id17">VSP+17</a>]</span> exploit only <strong>Self-Attention</strong>, without recurrent connections. So they can be trained efficiently on GPUs. In this section first the concept of Self-Attention is described. Then Transformer architectures are presented.</p>
 </section>
 <section id="self-attention">
 <h3>Self Attention<a class="headerlink" href="#self-attention" title="Permalink to this headline">#</a></h3>
@@ -1040,7 +1040,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <li><p><strong>Option 2:</strong></p>
 <ul>
 <li><p>Fed entire vector <span class="math notranslate nohighlight">\(x_i\)</span> to each head.</p></li>
-<li><p>Matrices <span class="math notranslate nohighlight">\(W_q, W_k,W_v\)</span> are each of size <span class="math notranslate nohighlight">\(d \times d\)</span> (each head has it’s own matrix-set)</p></li>
+<li><p>Matrices <span class="math notranslate nohighlight">\(W_q^r, W_k^r,W_v^r\)</span> are each of size <span class="math notranslate nohighlight">\(d \times d\)</span></p></li>
 <li><p>Concatenation of  <span class="math notranslate nohighlight">\(y_i^1,\ldots,y_i^h\)</span> yields <span class="math notranslate nohighlight">\(y_i\)</span> of size <span class="math notranslate nohighlight">\(d \cdot h\)</span></p></li>
 <li><p>Multiply this concatenation with matrix <span class="math notranslate nohighlight">\(W_O\)</span>, which is typically of size <span class="math notranslate nohighlight">\(d \times (d \cdot h)\)</span></p></li>
 </ul>
@@ -1080,7 +1080,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <p><span class="caption-number">Fig. 93 </span><span class="caption-text">Example: Singlehead Self-Attention for the two-words sequence <em>Thinking Machines</em> . Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#encoderblockexample" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Instead of calculating the outputs <span class="math notranslate nohighlight">\(z_i\)</span>s of a single head individually all of them can be calculated simultanously by matrix multiplication:</p>
+<p>Instead of calculating the outputs <span class="math notranslate nohighlight">\(z_i\)</span> of a single head individually all of them can be calculated simultanously by matrix multiplication:</p>
 <figure class="align-center" id="selfattentionmatrix">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png" src="https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png" style="width: 300pt;" /></a>
 <figcaption>
@@ -1098,7 +1098,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 </section>
 <section id="building-transformers-from-self-attention-layers">
 <h3>Building Transformers from Self-Attention-Layers<a class="headerlink" href="#building-transformers-from-self-attention-layers" title="Permalink to this headline">#</a></h3>
-<p>As depicted in the image below, a Transformer in general consists of an Encoder and an Decoder stack. The Encoder is a stack of Encoder-blocks. The Decoder is a stack of Decoder-blocks. Both, Encoder- and Decoder-blocks are Transformer blocks. In general a <strong>Transformer Block</strong> is defined to be <strong>any architecture, designed to process a connected set of units - such as the tokens in a sequence or the pixels in an image - where the only interaction between units is through self-attention.</strong></p>
+<p>As depicted in the image below, a Transformer in general consists of an Encoder and a Decoder stack. The Encoder is a stack of Encoder-blocks. The Decoder is a stack of Decoder-blocks. Both, Encoder- and Decoder-blocks are Transformer blocks. In general a <strong>Transformer Block</strong> is defined to be <strong>any architecture, designed to process a connected set of units - such as the tokens in a sequence or the pixels in an image - where the only interaction between units is through self-attention.</strong></p>
 <figure class="align-center" id="stack">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png" style="width: 400pt;" /></a>
 <figcaption>
@@ -1112,7 +1112,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <p><span class="caption-number">Fig. 97 </span><span class="caption-text">Encoder Block - simple variant: Self-Attention Layer followed by Feed Forward Network. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#encoderblock" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The image above depicts a simle variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts have been introduced and analysed in the context of Resnet (<span id="id9">[<a class="reference internal" href="../referenceSection.html#id63">HZRS15</a>]</span>). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see <span id="id10">[<a class="reference internal" href="../referenceSection.html#id64">BKH16</a>]</span>), before it is passed to the Feed Forward Net.</p>
+<p>The image above depicts a simple variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts have been introduced and analysed in the context of Resnet (<span id="id9">[<a class="reference internal" href="../referenceSection.html#id63">HZRS15</a>]</span>). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see <span id="id10">[<a class="reference internal" href="../referenceSection.html#id64">BKH16</a>]</span>), before it is passed to the Feed Forward Net.</p>
 <figure class="align-center" id="norm">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png" src="https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png" style="width: 400pt;" /></a>
 <figcaption>

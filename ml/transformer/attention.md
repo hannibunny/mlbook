@@ -22,7 +22,7 @@ The crucial property of sequences is the correlation between the individual data
 * the contextual information, provided by the neighbours
 
 
-An example of how the humain brain exploits context-information in order to recognize is given in the image below.
+An example of how the human brain exploits context-information in order to recognize is given in the image below.
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/KontextBeimLesen.jpeg
 ---
@@ -289,7 +289,7 @@ Scoring function $a()$ realized by a MLP with softmax-activation at the output. 
 
 ### Motivation
 
-Deep Learning needs huge amounts of training data and correspondingly high processing effort for training. In order to cope with this processing complexity, GPUs/TPUs must be applied. However, GPUs and TPUs yield higher training speed, if operations can be **parallelized**. The drawback of RNNs (of any type) is that the recurrent connections can not be parallelized. **Transformers** {cite}`Vaswani2017` exploit only **Self-Attention**, without recurrent connections. So they they can be trained efficiently on GPUs. In this section first the concept of Self-Attention is described. Then Transformer architectures are presented.
+Deep Learning needs huge amounts of training data and correspondingly high processing effort for training. In order to cope with this processing complexity, GPUs/TPUs must be applied. However, GPUs and TPUs yield higher training speed, if operations can be **parallelized**. The drawback of RNNs (of any type) is that the recurrent connections can not be parallelized. **Transformers** {cite}`Vaswani2017` exploit only **Self-Attention**, without recurrent connections. So they can be trained efficiently on GPUs. In this section first the concept of Self-Attention is described. Then Transformer architectures are presented.
 
 ### Self Attention
 
@@ -416,7 +416,7 @@ The length of the input vectors $x_i$ is typically $d=256$. A typical number of 
 
 * **Option 2:**
   - Fed entire vector $x_i$ to each head. 
-  - Matrices $W_q, W_k,W_v$ are each of size $d \times d$ (each head has it's own matrix-set)
+  - Matrices $W_q^r, W_k^r,W_v^r$ are each of size $d \times d$
   - Concatenation of  $y_i^1,\ldots,y_i^h$ yields $y_i$ of size $d \cdot h$
   - Multiply this concatenation with matrix $W_O$, which is typically of size $d \times (d \cdot h)$
 
@@ -477,7 +477,7 @@ Example: Singlehead Self-Attention for the two-words sequence *Thinking Machines
 
 ```
 
-Instead of calculating the outputs $z_i$s of a single head individually all of them can be calculated simultanously by matrix multiplication:
+Instead of calculating the outputs $z_i$ of a single head individually all of them can be calculated simultanously by matrix multiplication:
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png
 ---
@@ -504,7 +504,7 @@ Calculating all Self-Attention outputs $z_i$ by matrix-multiplication (Single he
 
 ### Building Transformers from Self-Attention-Layers
 
-As depicted in the image below, a Transformer in general consists of an Encoder and an Decoder stack. The Encoder is a stack of Encoder-blocks. The Decoder is a stack of Decoder-blocks. Both, Encoder- and Decoder-blocks are Transformer blocks. In general a **Transformer Block** is defined to be **any architecture, designed to process a connected set of units - such as the tokens in a sequence or the pixels in an image - where the only interaction between units is through self-attention.**
+As depicted in the image below, a Transformer in general consists of an Encoder and a Decoder stack. The Encoder is a stack of Encoder-blocks. The Decoder is a stack of Decoder-blocks. Both, Encoder- and Decoder-blocks are Transformer blocks. In general a **Transformer Block** is defined to be **any architecture, designed to process a connected set of units - such as the tokens in a sequence or the pixels in an image - where the only interaction between units is through self-attention.**
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png
 ---
@@ -528,7 +528,7 @@ Encoder Block - simple variant: Self-Attention Layer followed by Feed Forward Ne
 
 ```
 
-The image above depicts a simle variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts have been introduced and analysed in the context of Resnet ({cite}`HeResnet`). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see {cite}`ba2016layer`), before it is passed to the Feed Forward Net. 
+The image above depicts a simple variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts have been introduced and analysed in the context of Resnet ({cite}`HeResnet`). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see {cite}`ba2016layer`), before it is passed to the Feed Forward Net. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png
 ---
