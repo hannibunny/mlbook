@@ -528,7 +528,7 @@ Encoder Block - simple variant: Self-Attention Layer followed by Feed Forward Ne
 
 ```
 
-The image above depicts a simple variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts have been introduced and analysed in the context of Resnet ({cite}`HeResnet`). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see {cite}`ba2016layer`), before it is passed to the Feed Forward Net. 
+The image above depicts a simple variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts has been introduced and analysed in the context of Resnet ({cite}`HeResnet`). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see {cite}`ba2016layer`), before it is passed to the Feed Forward Net. 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png
 ---
@@ -677,13 +677,15 @@ Contextual Embeddings from BERT. Image source: {cite}`Devlin`
 ## GPT, GPT-2 and GPT-3
 
 
-In contrast to BERT, which is an encoder-only transformer, GPT ({cite}`radford2018`), GPT-2 ({cite}`radford2019`) and GPT-3 ({cite}`Brown2020`) are decoder-only transformers. They are **Autoregressive Language Models (AR LM)**. A AR LM predicts for a given token-sequence $(x_1, x_2, \ldots x_k)$ the following token $x_{k+1}$. Then it predicts from $(x_2, x_3, \ldots x_{k+1})$ the
+In contrast to BERT, which is an encoder-only transformer, GPT ({cite}`radford2018`), GPT-2 ({cite}`radford2019`) and GPT-3 ({cite}`Brown2020`) are decoder-only transformers. Since there is no encoder, there is also no *encoder-decoder attention block* in the decoder. 
+
+The GPT variants are **Autoregressive Language Models (AR LM)**. A AR LM predicts for a given token-sequence $(x_1, x_2, \ldots x_k)$ the following token $x_{k+1}$. Then it predicts from $(x_2, x_3, \ldots x_{k+1})$ the
 next word $x_{k+2}$ and so on. In contrast to BERT it therefore integrates only the previous context. However, since AR LMs can predict the next tokens from given prompts, they are applicable for tasks like generating text or any type of sequence-to-sequence transformations such as translation, text-to-code, etc.
 
 Moreover, the fact that the AR LM is trained for text-completion, the authors of GPT-2 ({cite}`radford2019`) proposed to implement **multi-task-learning** at a data-level. What does this mean? Usually multi-task-learning is realized not on a data- but on a architectural level. A typical approach is to have a common network-part, e.g. the first layers, which constitutes the feature-extractor, and on top of this common part two or more task-specific architectures in parallel, e.g. one stack of layers for classification, one stack of layers for Named-Entity-Recognition and so on. Each task-specific part is trained with task-specific labeled data. BERT and the first GPT are examples for this approach. The drawback is, that task-specific fine-tuning still requires quite large amounts of data.
 
 
-In contrast to this architectural solution for mult-task learning, in data-level multi-task learning only one common architecture is applied and the **task-description is part of the input data.** Instead of predicting
+In contrast to this architectural solution for multi-task learning, in data-level multi-task learning only one common architecture is applied and the **task-description is part of the input data.** Instead of predicting
 
 $$
 p(output | input),
