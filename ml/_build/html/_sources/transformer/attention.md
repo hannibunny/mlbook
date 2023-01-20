@@ -744,7 +744,7 @@ Summary of main properties:
 * Trained on [BooksCorpus Dataset (7000 unpublished books)](https://paperswithcode.com/dataset/bookcorpus), 5GB
 * already remarkable zero-shot performance on different NLP tasks like question-answering, schema resolution, sentiment analysis only due to pre-training of the AR LM.
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt1architecture.png
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/GPT1architecture.png
 ---
 align: center
 width: 400pt
@@ -769,7 +769,7 @@ name:  archgpt1
 * GPT-2 showed that training on larger dataset and having more parameters improved the capability of language model to understand tasks and surpass the state-of-the-art of many tasks in zero shot settings.
 
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt2architecture.png
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/GPT2architecture.png
 ---
 align: center
 width: 400pt
@@ -793,7 +793,7 @@ name:  archgpt2
 *  trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia, 600GB in total.
 
 
-```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt3architecture.png
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/GPT3architecture.png
 ---
 align: center
 width: 400pt
