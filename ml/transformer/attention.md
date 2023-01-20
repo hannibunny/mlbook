@@ -741,25 +741,42 @@ Summary of main properties:
 * 768-dimensional token-representations
 * 117 Million parameters
 * Unsupervised Pretraining and task-specific supervised fine-
-* Trained on [BooksCorpus Dataset (7000 unpublished books)](https://paperswithcode.com/dataset/bookcorpus)
+* Trained on [BooksCorpus Dataset (7000 unpublished books)](https://paperswithcode.com/dataset/bookcorpus), 5GB
 * already remarkable zero-shot performance on different NLP tasks like question-answering, schema resolution, sentiment analysis only due to pre-training of the AR LM.
 
-Card content
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt1architecture.png
+---
+align: center
+width: 400pt
+name:  archgpt1
+---
+
+```
+
 :::
 
 
 :::{card} GPT-2 ({cite}`radford2019`)
 * Decoder-only Autoregressive Language Model (AR LM)
 * much larger model than GPT: 1.5 billion parameters
-* 48 layers and 1600-dimensional token-representations
+* 48 layers 
+* 1600-dimensional token-representations
 * Layer normalisation was moved to input of each sub-block and an additional layer normalisation was added after final self-attention block
+* Byte Pair Encoded Input Tokens
 * *Task-conditioned* training (unsupervised)
 * Performs well in *Zero-Shot-Setting* for some NLP tasks 
 * much larger dataset for training. [WebText Corpus (40GB)](https://paperswithcode.com/dataset/webtext): Scrapped data from Reddit and outbound links
 * GPT-2 showed that training on larger dataset and having more parameters improved the capability of language model to understand tasks and surpass the state-of-the-art of many tasks in zero shot settings.
 
 
-Card content
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt2architecture.png
+---
+align: center
+width: 400pt
+name:  archgpt2
+---
+
+```
 :::
 
 
@@ -768,12 +785,22 @@ Card content
 * much larger model than GPT-2: 175 billion parameters
 * 96 layers, each having 96 heads 
 * 12888-dimensional token-representations
+* Byte Pair Encoded Input Tokens
 * Sparse Attention patterns in Self-Attention blocks
 * *Task-conditioned* training (unsupervised)
 * Performs well on *Zero-Shot-, One-Shot-*, and *Few-Shot-settings* in downstream NLP tasks.
 * Perform well on on-the-fly tasks on which it was never explicitly trained on, like summing up numbers, writing SQL queries and codes
-*  trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia.
+*  trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia, 600GB in total.
 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/gpt3architecture.png
+---
+align: center
+width: 400pt
+name:  archgpt3
+---
+
+```
 :::
 
 

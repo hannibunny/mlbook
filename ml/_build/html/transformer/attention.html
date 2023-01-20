@@ -1263,10 +1263,12 @@ GPT (<span id="id28">[<a class="reference internal" href="../referenceSection.ht
 <li><p class="sd-card-text">768-dimensional token-representations</p></li>
 <li><p class="sd-card-text">117 Million parameters</p></li>
 <li><p class="sd-card-text">Unsupervised Pretraining and task-specific supervised fine-</p></li>
-<li><p class="sd-card-text">Trained on <a class="reference external" href="https://paperswithcode.com/dataset/bookcorpus">BooksCorpus Dataset (7000 unpublished books)</a></p></li>
+<li><p class="sd-card-text">Trained on <a class="reference external" href="https://paperswithcode.com/dataset/bookcorpus">BooksCorpus Dataset (7000 unpublished books)</a>, 5GB</p></li>
 <li><p class="sd-card-text">already remarkable zero-shot performance on different NLP tasks like question-answering, schema resolution, sentiment analysis only due to pre-training of the AR LM.</p></li>
 </ul>
-<p class="sd-card-text">Card content</p>
+<figure class="align-center" id="archgpt1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gpt1architecture.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gpt1architecture.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gpt1architecture.png" style="width: 400pt;" /></a>
+</figure>
 </div>
 </div>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
@@ -1276,14 +1278,18 @@ GPT-2 (<span id="id29">[<a class="reference internal" href="../referenceSection.
 <ul class="simple">
 <li><p class="sd-card-text">Decoder-only Autoregressive Language Model (AR LM)</p></li>
 <li><p class="sd-card-text">much larger model than GPT: 1.5 billion parameters</p></li>
-<li><p class="sd-card-text">48 layers and 1600-dimensional token-representations</p></li>
+<li><p class="sd-card-text">48 layers</p></li>
+<li><p class="sd-card-text">1600-dimensional token-representations</p></li>
 <li><p class="sd-card-text">Layer normalisation was moved to input of each sub-block and an additional layer normalisation was added after final self-attention block</p></li>
+<li><p class="sd-card-text">Byte Pair Encoded Input Tokens</p></li>
 <li><p class="sd-card-text"><em>Task-conditioned</em> training (unsupervised)</p></li>
 <li><p class="sd-card-text">Performs well in <em>Zero-Shot-Setting</em> for some NLP tasks</p></li>
 <li><p class="sd-card-text">much larger dataset for training. <a class="reference external" href="https://paperswithcode.com/dataset/webtext">WebText Corpus (40GB)</a>: Scrapped data from Reddit and outbound links</p></li>
 <li><p class="sd-card-text">GPT-2 showed that training on larger dataset and having more parameters improved the capability of language model to understand tasks and surpass the state-of-the-art of many tasks in zero shot settings.</p></li>
 </ul>
-<p class="sd-card-text">Card content</p>
+<figure class="align-center" id="archgpt2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gpt2architecture.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gpt2architecture.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gpt2architecture.png" style="width: 400pt;" /></a>
+</figure>
 </div>
 </div>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
@@ -1295,12 +1301,16 @@ GPT-3 (<span id="id30">[<a class="reference internal" href="../referenceSection.
 <li><p class="sd-card-text">much larger model than GPT-2: 175 billion parameters</p></li>
 <li><p class="sd-card-text">96 layers, each having 96 heads</p></li>
 <li><p class="sd-card-text">12888-dimensional token-representations</p></li>
+<li><p class="sd-card-text">Byte Pair Encoded Input Tokens</p></li>
 <li><p class="sd-card-text">Sparse Attention patterns in Self-Attention blocks</p></li>
 <li><p class="sd-card-text"><em>Task-conditioned</em> training (unsupervised)</p></li>
 <li><p class="sd-card-text">Performs well on <em>Zero-Shot-, One-Shot-</em>, and <em>Few-Shot-settings</em> in downstream NLP tasks.</p></li>
 <li><p class="sd-card-text">Perform well on on-the-fly tasks on which it was never explicitly trained on, like summing up numbers, writing SQL queries and codes</p></li>
-<li><p class="sd-card-text">trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia.</p></li>
+<li><p class="sd-card-text">trained on a mix of five different corpora, each having certain weight assigned to it. High quality datasets were sampled more often, and model was trained for more than one epoch on them. The five datasets used were Common Crawl, WebText2, Books1, Books2 and Wikipedia, 600GB in total.</p></li>
 </ul>
+<figure class="align-center" id="archgpt3">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gpt3architecture.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gpt3architecture.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gpt3architecture.png" style="width: 400pt;" /></a>
+</figure>
 </div>
 </div>
 <hr class="footnotes docutils" />
