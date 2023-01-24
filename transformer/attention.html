@@ -532,6 +532,11 @@ title="Print to PDF"
        Multi-Head Attention and Positional Encoding
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example">
+       Example
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -649,6 +654,11 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#multi-head-attention-and-positional-encoding">
        Multi-Head Attention and Positional Encoding
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example">
+       Example
       </a>
      </li>
     </ul>
@@ -1072,6 +1082,10 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <p><span class="caption-number">Fig. 92 </span><span class="caption-text">Positional Encoding: To each position within the sequence a unique <em>positional-encoding-vector</em> is assigned. As can be seen the euclidean distance between vectors for further away positions is larger than the distance between vectors, which belong to positions close to each other.  <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#positionalencoding2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h4>
+<p>Below the Self-Attention calculations are demonstrated for a simple two-word-sentence, first for single-head, then for multi-head attention. Positional encoding is disregarded in this example.</p>
 <p>For the two-word example sentence <em>Thinking Machines</em> and for the case of a single head, the calculations done in the Self-Attention block, as specified in
 <a class="reference internal" href="#singlehead"><span class="std std-ref">Image Singlehead Self-attention</span></a>, are sketched in the image below. In this example postional encoding has been omitted for sake of simplicity.</p>
 <figure class="align-center" id="encoderblockexample">
