@@ -466,8 +466,6 @@ Positional Encoding: To each position within the sequence a unique *positional-e
 
 #### Example
 
-Below the Self-Attention calculations are demonstrated for a simple two-word-sentence, first for single-head, then for multi-head attention. Positional encoding is disregarded in this example.
-
 For the two-word example sentence *Thinking Machines* and for the case of a single head, the calculations done in the Self-Attention block, as specified in 
 {ref}`Image Singlehead Self-attention<singlehead>`, are sketched in the image below. In this example postional encoding has been omitted for sake of simplicity. 
 
@@ -520,7 +518,7 @@ Encoder- and Decoder-Stack of a Transformer. Image source: [http://jalammar.gith
 
 ```
 
-A typical Encoder block is depicted in the image below. In this image the *Self-Attention* module is the same as already depicted in {ref}`Image Multihead Self-attention<multihead>`. The outputs $z_i$ of the Self-Attention module are exactly the contextual embeddings, which has been denoted by $y_i$ in {ref}`Image Multihead Self-attention<multihead>`. Each of the outputs $z_i$ is passed to a Multi-Layer Perceptron (MLP). The outputs of the MLP are the new representations $r_i$ (one for each input token). These outputs $r_i$ constitute the inputs $x_i$ to the next Encoder block.
+A typical Encoder block is depicted in the image below. In this image the *Self-Attention* module is the same as already depicted in {ref}`Image Multihead Self-attention<multihead>`. The outputs $z_i$ of the Self-Attention module are exactly the contextual embeddings, which have been denoted by $y_i$ in {ref}`Image Multihead Self-attention<multihead>`. Each of the outputs $z_i$ is passed to a Multi-Layer Perceptron (MLP). The outputs of the MLP are the new representations $r_i$ (one for each input token). These outputs $r_i$ constitute the inputs $x_i$ to the next Encoder block.
 	
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoder1.png
 ---
@@ -618,10 +616,11 @@ In BERT, tokens are not words, but word-pieces. This yields a better *out-of-voc
 
 ### BERT Pre-Training
 
-**Masked Language Model (MLM):** For this $15\%$ of the input tokens are masked at random. Since the $[ MASK ]$ token is not known in finetuning not all masked tokens are replaced by this marker. Instead 
+**Masked Language Model (MLM):** For this $15\%$ of the input tokens are masked at randomly. Since the $[ MASK ]$ token is not known in finetuning not all masked tokens are replaced by this marker. Instead 
 * $80\%$ of the masked tokens are replaced by $[ MASK ]$
 * $10 \%$ of them are replaced by a random other token.
 * $10 \%$ of them remain unchanged.
+
 These masked tokens are predicted by passing the final hidden vectors, which belong to the masked tokens to an output softmax over the vocabulary. The Loss function, which is minimized during training, regards only the prediction of the masked values and ignores the predictions of the non-masked words. As a consequence, the model converges slower than directional models, but has **increased context awareness**.
 
 
@@ -744,7 +743,7 @@ Summary of main properties:
 * At the input: [Byte Pair Encoding](https://huggingface.co/course/chapter6/5?fw=pt) and positional encoding.
 * 768-dimensional token-representations
 * 117 Million parameters
-* Unsupervised Pretraining and task-specific supervised fine-
+* Unsupervised Pretraining and task-specific supervised fine-tuning.
 * Trained on [BooksCorpus Dataset (7000 unpublished books)](https://paperswithcode.com/dataset/bookcorpus), 5GB
 * already remarkable zero-shot performance on different NLP tasks like question-answering, schema resolution, sentiment analysis only due to pre-training of the AR LM.
 
