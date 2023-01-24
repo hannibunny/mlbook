@@ -464,6 +464,17 @@ Positional Encoding: To each position within the sequence a unique *positional-e
 
 ```
 
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/BERTpositionalEncoding.png
+---
+align: center
+width: 400pt
+name:  positionalencoding3
+---
+Visualisation of true positional encoding in BERT
+
+```
+
 #### Example
 
 For the two-word example sentence *Thinking Machines* and for the case of a single head, the calculations done in the Self-Attention block, as specified in 
