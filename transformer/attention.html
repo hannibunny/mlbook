@@ -1082,6 +1082,12 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <p><span class="caption-number">Fig. 92 </span><span class="caption-text">Positional Encoding: To each position within the sequence a unique <em>positional-encoding-vector</em> is assigned. As can be seen the euclidean distance between vectors for further away positions is larger than the distance between vectors, which belong to positions close to each other.  <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#positionalencoding2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<figure class="align-center" id="positionalencoding3">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTpositionalEncoding.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTpositionalEncoding.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTpositionalEncoding.png" style="width: 400pt;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 93 </span><span class="caption-text">Visualisation of true positional encoding in BERT</span><a class="headerlink" href="#positionalencoding3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h4>
@@ -1090,21 +1096,21 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="encoderblockexample">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerSelfAttentionDetail.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerSelfAttentionDetail.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerSelfAttentionDetail.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 93 </span><span class="caption-text">Example: Singlehead Self-Attention for the two-words sequence <em>Thinking Machines</em> . Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#encoderblockexample" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 94 </span><span class="caption-text">Example: Singlehead Self-Attention for the two-words sequence <em>Thinking Machines</em> . Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#encoderblockexample" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Instead of calculating the outputs <span class="math notranslate nohighlight">\(z_i\)</span> of a single head individually all of them can be calculated simultanously by matrix multiplication:</p>
 <figure class="align-center" id="selfattentionmatrix">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png" src="https://maucher.home.hdm-stuttgart.de/Pics/selfattentionmatrix.png" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 94 </span><span class="caption-text">Calculating all Self-Attention outputs <span class="math notranslate nohighlight">\(z_i\)</span> by matrix-multiplication (Single head). Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#selfattentionmatrix" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 95 </span><span class="caption-text">Calculating all Self-Attention outputs <span class="math notranslate nohighlight">\(z_i\)</span> by matrix-multiplication (Single head). Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#selfattentionmatrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>And for Multi-Head Self-Attention the overall calculation is as follows:</p>
 <figure class="align-center" id="transformermultihead">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerMultiHead.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerMultiHead.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerMultiHead.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 95 </span><span class="caption-text">Calculating all Self-Attention outputs <span class="math notranslate nohighlight">\(z_i\)</span> by matrix-multiplication (Single head). Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#transformermultihead" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 96 </span><span class="caption-text">Calculating all Self-Attention outputs <span class="math notranslate nohighlight">\(z_i\)</span> by matrix-multiplication (Single head). Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#transformermultihead" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1115,21 +1121,21 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="stack">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerStack.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 96 </span><span class="caption-text">Encoder- and Decoder-Stack of a Transformer. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#stack" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 97 </span><span class="caption-text">Encoder- and Decoder-Stack of a Transformer. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#stack" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A typical Encoder block is depicted in the image below. In this image the <em>Self-Attention</em> module is the same as already depicted in <a class="reference internal" href="#multihead"><span class="std std-ref">Image Multihead Self-attention</span></a>. The outputs <span class="math notranslate nohighlight">\(z_i\)</span> of the Self-Attention module are exactly the contextual embeddings, which have been denoted by <span class="math notranslate nohighlight">\(y_i\)</span> in <a class="reference internal" href="#multihead"><span class="std std-ref">Image Multihead Self-attention</span></a>. Each of the outputs <span class="math notranslate nohighlight">\(z_i\)</span> is passed to a Multi-Layer Perceptron (MLP). The outputs of the MLP are the new representations <span class="math notranslate nohighlight">\(r_i\)</span> (one for each input token). These outputs <span class="math notranslate nohighlight">\(r_i\)</span> constitute the inputs <span class="math notranslate nohighlight">\(x_i\)</span> to the next Encoder block.</p>
 <figure class="align-center" id="encoderblock">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoder1.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoder1.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoder1.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 97 </span><span class="caption-text">Encoder Block - simple variant: Self-Attention Layer followed by Feed Forward Network. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#encoderblock" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 98 </span><span class="caption-text">Encoder Block - simple variant: Self-Attention Layer followed by Feed Forward Network. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#encoderblock" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The image above depicts a simple variant of an Encoder block, consisting only of Self-Attention and a Feed Forward Neural Network. A more complex and more practical option is shown in the image below. Here, short-cut connections from the Encoder-block input to the output of the Self-Attention Layer are implemented. The concept of such short-cuts has been introduced and analysed in the context of Resnet (<span id="id9">[<a class="reference internal" href="../referenceSection.html#id63">HZRS15</a>]</span>). Moreover, the sum of the Encoder-block input and the output of the Self-Attention Layer is layer-normalized (see <span id="id10">[<a class="reference internal" href="../referenceSection.html#id64">BKH16</a>]</span>), before it is passed to the Feed Forward Net.</p>
 <figure class="align-center" id="norm">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png" src="https://maucher.home.hdm-stuttgart.de/Pics/normalisationEncoder.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 98 </span><span class="caption-text">Encoder Block - practical variant: Short-Cut Connections and Layer Normalisation are applied in addition to Self-Attention and Feed Forward Network. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#norm" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 99 </span><span class="caption-text">Encoder Block - practical variant: Short-Cut Connections and Layer Normalisation are applied in addition to Self-Attention and Feed Forward Network. Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#norm" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Image <a class="reference internal" href="#decoder"><span class="std std-ref">Encoder-Decoder</span></a> illustrates the modules of the Decoder block and the linking of Encoder and Decoder. As can be seen a Decoder block integrates two types of attention:</p>
@@ -1142,14 +1148,14 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="decoder">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoderDecoder1.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoderDecoder1.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerEncoderDecoder1.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 99 </span><span class="caption-text">Encoder- and Decoder Stack in a Transformer <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#decoder" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 100 </span><span class="caption-text">Encoder- and Decoder Stack in a Transformer <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#decoder" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In the image below the iterative prediction of the tokens of the target-sequence is illustrated. In iteration <span class="math notranslate nohighlight">\(i=4\)</span> the <span class="math notranslate nohighlight">\(4.th\)</span> target token must be predicted. For this the decoder takes as input the <span class="math notranslate nohighlight">\(i-1=3\)</span> previous estimations and the keys and the values from the Encoder stack.</p>
 <figure class="align-center" id="transpredict">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/transformerPrediction.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/transformerPrediction.png" src="https://maucher.home.hdm-stuttgart.de/Pics/transformerPrediction.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 100 </span><span class="caption-text">Prediction of the <a class="reference external" href="http://4.th">4.th</a> target word, given the 3 previously predictions . Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#transpredict" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 101 </span><span class="caption-text">Prediction of the <a class="reference external" href="http://4.th">4.th</a> target word, given the 3 previously predictions . Image source: <a class="reference external" href="http://jalammar.github.io/illustrated-transformer">http://jalammar.github.io/illustrated-transformer</a></span><a class="headerlink" href="#transpredict" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1166,14 +1172,14 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="bertcompare">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTcomparison.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTcomparison.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTcomparison.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 101 </span><span class="caption-text">Prediction of the <a class="reference external" href="http://4.th">4.th</a> target word, given the 3 previously predictions. Image source: <span id="id14">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertcompare" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 102 </span><span class="caption-text">Prediction of the <a class="reference external" href="http://4.th">4.th</a> target word, given the 3 previously predictions. Image source: <span id="id14">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertcompare" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>BERT training is separated into 2 stages: Pre-Training and Fine-Tuning. During Pre-Training, the model is trained on unlabeled data for the tasks Masked Language Model (MLM) and Next Sentence Prediction (NSP). Fine-Tuning starts with the parameters, that have been learned in Pre-Training. There exists different downstream tasks such as <em>Question-Answering, Named-Entity-Recognition</em> or <em>Multi Natural Language Inference</em>, for which BERT’s parameters can be fine-tuned. Depending on the Downstream task, the BERT architecutre must be slightly adapted for Fine-Tuning.</p>
 <figure class="align-center" id="berttraining">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTpreTrainFineTune.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTpreTrainFineTune.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTpreTrainFineTune.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 102 </span><span class="caption-text">BERT: Pretraining on tasks Masked Language Model and Next Sentence Prediction, followed by task-specific Fine-Tuning. Image source: <span id="id15">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#berttraining" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 103 </span><span class="caption-text">BERT: Pretraining on tasks Masked Language Model and Next Sentence Prediction, followed by task-specific Fine-Tuning. Image source: <span id="id15">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#berttraining" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In BERT, tokens are not words, but word-pieces. This yields a better <em>out-of-vocabulary-robustness</em>.</p>
@@ -1197,7 +1203,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="berttraining2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTinput.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTinput.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTinput.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 103 </span><span class="caption-text">Input of sentence pairs to BERT Encoder stack. Segment Embedding is applied to indicate first or second sentence. Image source: <span id="id16">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#berttraining2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 104 </span><span class="caption-text">Input of sentence pairs to BERT Encoder stack. Segment Embedding is applied to indicate first or second sentence. Image source: <span id="id16">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#berttraining2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For the NSP task a classifier is trained, which distinguishes <em>successive sentences</em> and <em>non-successive sentences</em>. For this the output of the <span class="math notranslate nohighlight">\([CLS]\)</span> token is passed to a binary classification layer. The purpose of adding such Pre-Training is that many NLP tasks such as Question-Answering (QA) and Natural Language Inference (NLI) need to understand relationships between sentences.</p>
@@ -1213,7 +1219,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="bertfinetune">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTfinetuning.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTfinetuning.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTfinetuning.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 104 </span><span class="caption-text">BERT Fine-Tuning. Image source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 105 </span><span class="caption-text">BERT Fine-Tuning. Image source: <span id="id17">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1223,7 +1229,7 @@ a_{i,j} &amp; = &amp; softmax(a'_{i,j})
 <figure class="align-center" id="bertfinetune2">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BERTfeatureExtraction.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BERTfeatureExtraction.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BERTfeatureExtraction.png" style="width: 400pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 105 </span><span class="caption-text">Contextual Embeddings from BERT. Image source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Contextual Embeddings from BERT. Image source: <span id="id18">[<a class="reference internal" href="../referenceSection.html#id50">DCLT19</a>]</span></span><a class="headerlink" href="#bertfinetune2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1252,7 +1258,7 @@ p(output | input, task)
 <figure class="align-center" id="x-shotlearners">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png" src="https://maucher.home.hdm-stuttgart.de/Pics/zero-one-fewshot-learning.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 106 </span><span class="caption-text">Image source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>. Zero-shot, one-shot and few-shot, contrasted with traditional fine-tuning. The panels above show four methods for performing a task with a language model. Fine-tuning is the traditional method, whereas zero-, one-, and few-shot, which are applied in GPT-3, require the model to perform the task with only forward passes at test time. In the few shot setting typically a few dozen examples are presented to the model. Exact phrasings for all GPT-3 task descriptions, examples and prompts can be found in <a class="reference external" href="https://arxiv.org/pdf/2005.14165.pdf">Appendix G of the paper</a>.</span><a class="headerlink" href="#x-shotlearners" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Image source: <span id="id23">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>. Zero-shot, one-shot and few-shot, contrasted with traditional fine-tuning. The panels above show four methods for performing a task with a language model. Fine-tuning is the traditional method, whereas zero-, one-, and few-shot, which are applied in GPT-3, require the model to perform the task with only forward passes at test time. In the few shot setting typically a few dozen examples are presented to the model. Exact phrasings for all GPT-3 task descriptions, examples and prompts can be found in <a class="reference external" href="https://arxiv.org/pdf/2005.14165.pdf">Appendix G of the paper</a>.</span><a class="headerlink" href="#x-shotlearners" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Of course, before x-shot learning can be applied, the model must be pretrained. <strong>GPT is pretrained as a autoregeressive language model</strong> from unsupervised data (large amounts of texts).</p>
@@ -1261,7 +1267,7 @@ p(output | input, task)
 <figure class="align-center" id="id26">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/gpt3modelvariants.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/gpt3modelvariants.png" src="https://maucher.home.hdm-stuttgart.de/Pics/gpt3modelvariants.png" style="width: 600pt;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 107 </span><span class="caption-text">Image source: <span id="id25">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>. Sizes, architectures, and learning hyper-parameters (batch size in tokens and learning rate) of the trained models. All models were trained for a total of 300 billion tokens</span><a class="headerlink" href="#id26" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 108 </span><span class="caption-text">Image source: <span id="id25">[<a class="reference internal" href="../referenceSection.html#id74">BMR+20</a>]</span>. Sizes, architectures, and learning hyper-parameters (batch size in tokens and learning rate) of the trained models. All models were trained for a total of 300 billion tokens</span><a class="headerlink" href="#id26" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Summary of main properties:</p>
