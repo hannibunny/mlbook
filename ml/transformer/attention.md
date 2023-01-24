@@ -464,6 +464,10 @@ Positional Encoding: To each position within the sequence a unique *positional-e
 
 ```
 
+#### Example
+
+Below the Self-Attention calculations are demonstrated for a simple two-word-sentence, first for single-head, then for multi-head attention. Positional encoding is disregarded in this example.
+
 For the two-word example sentence *Thinking Machines* and for the case of a single head, the calculations done in the Self-Attention block, as specified in 
 {ref}`Image Singlehead Self-attention<singlehead>`, are sketched in the image below. In this example postional encoding has been omitted for sake of simplicity. 
 
